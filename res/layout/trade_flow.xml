@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<include layout="@layout/title_back"/>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:background="@color/F3F2F2">
+		<com.example.zf_android.trade.PagerTabWidget
+			android:id="@+id/tab_widget"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="24dp"
+			android:layout_marginRight="24dp"
+			android:layout_marginTop="12dp"
+			android:layout_marginBottom="12dp"/>
+	</FrameLayout>
+
+	<android.support.v4.view.ViewPager
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1">
+
+	</android.support.v4.view.ViewPager>
+
+
+</LinearLayout>

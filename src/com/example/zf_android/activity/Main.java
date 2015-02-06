@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
  
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.TradeFlowActivity;
 
 public class Main extends BaseActivity implements OnClickListener{
 	
@@ -85,7 +86,7 @@ public class Main extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.main_rl_jyls: //交易流水 
 			 
-			 
+			startActivity(new Intent(Main.this, TradeFlowActivity.class));
 			break;
 		case R.id.main_rl_Forum: //我要贷款   
 			 

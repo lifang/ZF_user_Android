@@ -75,6 +75,10 @@
             android:name="com.example.zf_android.activity.OrderDetail"
             android:screenOrientation="portrait" >
         </activity>
+	    <activity
+		    android:name="com.example.zf_android.trade.TradeFlowActivity"
+		    android:screenOrientation="portrait">
+		</activity>
     </application>
 
 </manifest>
