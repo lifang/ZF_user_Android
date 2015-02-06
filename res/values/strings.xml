@@ -17,6 +17,9 @@
     <string name="refresh_toomuch">刷新频繁，请稍后再试</string>
     <string name="remeberpass">忘记密码</string>
 
+    <string name="title_trade_flow">交易流水</string>
+    <string name="title_trade_client">选择终端</string>
+
     <string-array name="trade_flow_tabs">
         <item>转账</item>
         <item>消费</item>
@@ -25,6 +28,12 @@
         <item>话费充值</item>
     </string-array>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="trade_client">请选择终端号</string>
+    <string name="trade_start_date">请选择开始时间</string>
+    <string name="trade_end_date">请选择结束时间</string>
+
+    <string name="trade_search">开始查询</string>
+    <string name="trade_statistic">开始统计</string>
+    <string name="title_activity_trade_client">TradeClientActivity</string>
 
 </resources>

@@ -1,16 +1,178 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.example.zf_android.trade.TradeFlowFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/F3F2F2">
 
-	<!-- TODO: Update blank fragment layout -->
-	<TextView
-		android:id="@+id/trade_text"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="center"
-		android:textSize="40sp"
-		android:text="@string/hello_blank_fragment"/>
+    <LinearLayout
+        android:id="@+id/trade_client"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:background="@color/white"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/trade_client"/>
+
+        <TextView
+            android:id="@+id/trade_client_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_7dp"
+            android:gravity="center"
+            android:text="@string/trade_client"
+            android:textColor="@color/text535252"
+            android:textSize="@dimen/s_17sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_7dp"
+            android:background="@drawable/title_down"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/Viewc2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="6dp"
+        android:paddingLeft="24dp">
+
+        <RelativeLayout
+            android:id="@+id/trade_start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/trade_start_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/trade_date"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/trade_start_icon"
+                android:layout_marginLeft="@dimen/d_7dp"
+                android:gravity="center_vertical"
+                android:text="@string/trade_start_date"
+                android:textColor="@color/text535252"
+                android:textSize="@dimen/s_17sp"/>
+
+            <TextView
+                android:id="@+id/trade_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/trade_start_arrow"
+                android:gravity="center_vertical"
+                android:textColor="@color/text535252"
+                android:textSize="@dimen/s_17sp"/>
+
+            <ImageView
+                android:id="@+id/trade_start_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/d_12dp"
+                android:layout_marginRight="@dimen/d_12dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/post_right"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/Viewc2"/>
+
+        <RelativeLayout
+            android:id="@+id/trade_end"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/trade_end_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/trade_date"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/trade_end_icon"
+                android:layout_marginLeft="@dimen/d_7dp"
+                android:gravity="center_vertical"
+                android:text="@string/trade_end_date"
+                android:textColor="@color/text535252"
+                android:textSize="@dimen/s_17sp"/>
+
+            <TextView
+                android:id="@+id/trade_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/trade_end_arrow"
+                android:gravity="center_vertical"
+                android:textColor="@color/text535252"
+                android:textSize="@dimen/s_17sp"/>
+
+            <ImageView
+                android:id="@+id/trade_end_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/d_12dp"
+                android:layout_marginRight="@dimen/d_12dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/post_right"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:paddingLeft="@dimen/d_12dp"
+        android:paddingRight="@dimen/d_12dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/trade_search"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/d_12dp"
+            android:text="@string/trade_search"
+            android:textColor="@color/white"
+            android:enabled="false"
+            android:background="@drawable/normal_button_selector"/>
+
+        <Button
+            android:id="@+id/trade_statistic"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/d_12dp"
+            android:text="@string/trade_statistic"
+            android:textColor="@color/white"
+            android:enabled="false"
+            android:background="@drawable/normal_button_selector"/>
+
+    </LinearLayout>
+
+</LinearLayout>
