@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@color/F3F2F2"
+  	 >
+
+ <include layout="@layout/title_back" />
+	<View android:layout_marginTop="11dp"
+	    android:layout_width="fill_parent"
+	    android:background="@color/Viewc2"
+	    android:layout_height="1dp"/>
+	<LinearLayout android:layout_height="34dp"
+	    android:layout_width="fill_parent"
+	    android:orientation="horizontal"
+	    android:gravity="center_vertical"
+	    >
+	    
+	    <TextView android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="选择订单类型"
+	        android:textColor="@color/text292929"
+	       	android:textSize="13sp"
+	       	android:layout_marginLeft="16dp"
+	       	/>
+	    <ImageView android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:background="@drawable/title_down"
+	        android:layout_marginLeft="10dp"/>
+	    <TextView android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="购买"
+	        android:textColor="@color/text6c6c6c6"
+	       	android:textSize="13sp"
+	       	android:layout_marginLeft="10dp"
+	       	/>
+	    
+	</LinearLayout>
+		<View 
+	    android:layout_width="fill_parent"
+	    android:background="@color/Viewc2"
+	    android:layout_height="1dp"/>
+		<View android:layout_marginTop="11dp"
+	    android:layout_width="fill_parent"
+	    android:background="@color/Viewc2"
+	    android:layout_height="1dp"/>
+	 <LinearLayout
+        android:id="@+id/eva_nodata"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:background="@color/ffffff"
+        android:orientation="horizontal" 
+        android:visibility="gone">
+
+        <include layout="@layout/include_norecord" />
+    </LinearLayout>
+ 
+		<com.examlpe.zf_android.util.XListView
+        android:id="@+id/x_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+       
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+</LinearLayout>

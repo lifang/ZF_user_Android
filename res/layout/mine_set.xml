@@ -1,0 +1,138 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@color/F3F2F2"
+  	 >
+
+ <include layout="@layout/title_back" />
+     <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/Viewc" />
+	<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="#FFFFFF" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="17dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="接受新通知"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+
+             <View
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="1dp"
+      
+          />
+    
+ 
+        <ImageView
+            android:id="@+id/img_on_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+           	android:background="@drawable/pos_on"
+            android:layout_marginRight="7dp"
+              />
+    </LinearLayout>
+  <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+     
+        android:background="@color/Viewc" />
+     <LinearLayout
+        android:id="@+id/ll_new"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+       android:background="@drawable/bg_item" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="17dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="检测新版本"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:maxLength="8"
+            android:singleLine="true"
+            android:text="v 1.0.1"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+         	android:visibility="invisible"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/post_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Viewc" />
+   <LinearLayout
+	    android:id="@+id/ll_clean"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+       android:background="@drawable/bg_item" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="14dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="清除缓存"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+
+        <TextView
+                android:id="@+id/tv_clean"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:maxLength="8"
+            android:singleLine="true"
+            android:text="200M"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:visibility="invisible"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/post_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Viewc" />
+</LinearLayout>

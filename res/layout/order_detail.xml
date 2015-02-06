@@ -1,0 +1,284 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ffffff"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:background="@color/F3F2F2" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc2" />
+            
+            <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="13dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+      
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+            android:background="@drawable/mine_set" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+          
+            android:text="未付款"
+            android:textColor="@color/text5a5a5a"
+            android:textSize="17sp" />
+    </LinearLayout>
+            
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="5dp"
+            android:text="实际金额（含配送费）：￥1999"
+            android:textColor="@color/text292929"
+            android:textSize="13sp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="3dp"
+            android:text="含配送费 ：￥99"
+            android:textColor="@color/text292929"
+            android:textSize="13sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="@dimen/margin_right"
+                android:background="@color/Viewc2" />
+                    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="13dp"
+           	android:orientation="horizontal"
+             >
+                        
+                                       <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+       
+            android:text="收件人：王明霞"
+            android:textColor="@color/text292929"
+            android:textSize="13sp" />
+                        
+                        
+               <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+       		android:layout_marginLeft="10dp"
+            android:text="13800001111"
+            android:textColor="@color/text292929"
+            android:textSize="13sp" /> 
+                        
+                    </LinearLayout>
+ 
+ 
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="3dp"
+            android:text="收件地址：上海市上海火车站XXX号"
+            android:textColor="@color/text292929"
+            android:textSize="13sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="@dimen/margin_right"
+                android:background="@color/Viewc2" />
+            
+                      <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="5dp"
+            android:text="留言：发票发票发票"
+            android:textColor="@color/text292929"
+            android:textSize="13sp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="3dp"
+            android:text="发票类型 ：公司"
+            android:textColor="@color/text292929"
+            android:textSize="13sp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="3dp"
+            android:text="发票抬头：苏州协创"
+            android:textColor="@color/text292929"
+            android:textSize="13sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="@dimen/margin_right"
+                android:background="@color/Viewc2" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="7dp"
+                android:background="@color/F3F2F2" />
+            
+            
+            
+            
+                    <LinearLayout android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_height="wrap_content">
+            
+            <LinearLayout android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                
+                                    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="5dp"
+            android:text="订单编号：2013000111222"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="10sp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="3dp"
+            android:text="支付方式：支付宝"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="10sp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_title"
+          	android:layout_marginTop="3dp"
+            android:text="订单日期：2015-2-5 12:00:00"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="10sp" />
+            
+                
+                
+            </LinearLayout>
+            
+            <Button
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            
+      		android:textSize="9sp"
+            android:background="@drawable/buttong_light"
+            android:textColor="@color/bgtitle"
+            android:text="查看终端号" />
+            
+            
+        </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+             	android:layout_marginTop="12dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="@dimen/margin_right"
+                android:background="@color/Viewc2" />
+            
+            
+              <com.examlpe.zf_android.util.ScrollViewWithListView  
+                  android:id="@+id/mylocation_lv"
+        android:layout_width="fill_parent"
+        android:divider="@null"
+        android:layout_height="wrap_content"></com.examlpe.zf_android.util.ScrollViewWithListView> 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </LinearLayout>
+ 
+    </ScrollView>
+          <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc2" />
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/buttong_light"
+            android:textColor="@color/bgtitle"
+            android:text="取消订单" />
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:background="@color/ffffff"
+              />
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/bg_blue_shape"
+            android:text="评价"
+            android:visibility="gone"
+            android:textColor="@color/ffffff" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_blue_shape"
+            android:textColor="@color/ffffff"
+            android:text="付款" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape android:shape="rectangle" >
+                <corners android:radius="0dp" />
+                <solid android:color="@color/ff9900" />
+                <span style="font-family: Arial, Helvetica, sans-serif;"><!--progress的颜色--></span>
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

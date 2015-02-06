@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="bgtitle">#FF6624</color>
+    <color name="text535252">#535252</color>
+<color name="textc9c9c9">#c9c9c9</color>
+    <color name="Viewc">#e1e0e0</color>
+    <color name="Viewc2">#c9c9c9</color>
+    <color name="text5a5a5a">#5a5a5a</color>
+    <color name="bantouming">#e0000000</color>
+    <color name="touming">#00000000</color>
+     <color name="text6c6c6c6">#6c6c6c</color>
+      <color name="text292929">#292929</color>
+    <color name="bg_item">#FE783E</color>
+    <color name="F3F2F2">#F3F2F2</color>
+    
+    
+    
+ <!-- 透明白色 -->
+    <color name="toumingbai">#f6f0f0f0</color>
+ <!-- 底部透明白色 -->
+    <color name="touming7f">#7f000000</color>
+ <!-- 透明黑色 -->
+    <color name="toumingf6">#f6ffffff</color>
+ <!-- 透明白色 -->
+    <color name="toumingf6f4">#f6f4f4f4</color>
+ <!-- 透明白色 -->
+    <color name="toumingf6f1">#f6f1f1f1</color>
+ <!-- 透明白色 -->
+    <color name="fffefe">#fffefe</color>
+ <!-- 头部白色的字体颜色 -->
+    <color name="t000000">#000000</color>
+ <!-- 黑色 -->
+    <color name="tmffffff">#FFFFFFFF</color>
+    <color name="ffffff">#ffffff</color>
+    <color name="f4f4f4">#f4f4f4</color>
+    <color name="f1f1f1">#f1f1f1</color>
+    <color name="f8f8f8">#f8f8f8</color>
+    <color name="t9f8150">#9f8150</color>
+    <color name="e1e1e1">#e1e1e1</color>
+    <color name="f6d9d9d9">#f6d9d9d9</color>
+    <color name="f6f4f4f4">#f6f4f4f4</color>
+    <color name="rad">#FF0000</color>
+    <color name="f6e6cd">#f6e6cd</color>
+    <color name="d3d3d3">#d3d3d3</color>
+    <!-- 主题色 -->
+    <color name="ff9900">#ff9900</color>
+    <color name="f26e26">#f26e26</color>
+    <color name="de4747">#de4747</color>
+    <color name="t04b900">#04b900</color>
+    <color name="t0094d4">#0094d4</color>
+    <color name="d7d7d7">#d7d7d7</color>
+    <!-- 文字色  rad -->
+    <color name="t333333">#333333</color>
+    <color name="t828282">#828282</color>
+    <color name="adadad">#adadad</color>
+    <color name="prebuttom">#c2e5d0</color>
+    <color name="tv_red">#E23D3D</color>
+    <!-- 其他 -->
+    <color name="c6c6c6">#c6c6c6</color>
+    <color name="e5e5e5">#e5e5e5</color>
+    <color name="bf873e">#bf873e</color>
+    <color name="t65727f">#65727f</color>
+    <color name="t9f4c4c">#9f4c4c</color>
+    <color name="t699f4c">#699f4c</color>
+    <color name="B4B4B4">#B4B4B4</color>
+    <color name="E8E8E7">#E8E8E7</color>
+    <color name="F3F3F3">#F3F3F3</color>
+    <color name="F6F9FA">#F6F9FA</color>
+    <color name="seekbar_bg">#e5e5e5</color>
+    <color name="progress_bg">#FF9900</color>
+    <!-- new  FF1F1F color -->
+
+    <color name="bg_1FB8FE">#1FB8FE</color>
+    <color name="bg_0AB2FF">#0AB2FF</color>
+    <color name="bg_575D5F">#575D5F</color>
+    <color name="bg_FF0404">#FF0404</color>
+    <color name="bg_FF1F1F">#FF1F1F</color>
+    <color name="C0075FF">#0075FF</color>
+    <color name="FB9401">#FB9401</color>
+    <color name="c838383">#838383</color>
+    <color name="white">#ffffffff</color>
+ <!-- 白色 -->
+    <color name="top_bg_color">#1FB8FE</color>
+ <!-- 页面上方 蓝色块 -->
+
+    <color name="text_read">#021F35</color>
+    <color name="black">#000000</color>
+    <color name="oederdetails_bg">#F5F5F5</color>
+ <!-- 订单详情浅灰色背景 -->
+    <color name="line_color">#E1E1E1</color>
+ <!-- 1dp 线条的颜色 -->
+    <color name="button_bg_hui_color">#838383</color>
+ <!-- 深灰色 -->
+    <color name="oederdetail_item_red">#FF3B3D</color>
+    <color name="edithinit">#333333</color>
+ <!-- 订单详情 item 红色 -->
+
+</resources>

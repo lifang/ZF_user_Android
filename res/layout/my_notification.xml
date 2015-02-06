@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1.0" 
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/mail_icon" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/logo_image" >
+
+            <TextView
+                android:id="@+id/notification_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="ICES"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <ProgressBar
+                android:id="@+id/downProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_below="@+id/notification_title"
+                android:layout_marginLeft="5dp"
+                android:background="@color/f4f4f4"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/progressbar_style"
+                android:secondaryProgress="0" />
+			<TextView
+			    android:id="@+id/tv_size"
+			    android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/downProgressBar"
+                android:layout_alignParentLeft="true"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="5dp"
+                android:textSize="16sp"
+			     />
+            <TextView
+                android:id="@+id/downPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/downProgressBar"
+                android:text="0%"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/notification_cancle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+       
+        android:background="@drawable/cancle_down_btn" />
+
+</LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.zf_android"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="14" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Welcome"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.About"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.Main"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.PosListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.PosSelect"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.LoginActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.FindLogin"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.FindPass"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.FindPassword"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.MenuMine"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.OrderList"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.MineSet"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.MyMessage"
+            android:screenOrientation="portrait" >
+        </activity>
+                <activity
+            android:name="com.example.zf_android.activity.OrderDetail"
+            android:screenOrientation="portrait" >
+        </activity>
+    </application>
+
+</manifest>

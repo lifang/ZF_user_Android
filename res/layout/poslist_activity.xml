@@ -1,0 +1,164 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/titleback_height"
+        android:layout_gravity="center_vertical"
+        android:background="@color/bgtitle"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/titleback_linear_back"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/titleback_height"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/d_7dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/titleback_image_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/search_bg" />
+
+        <ImageView
+            android:id="@+id/pos_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/shopping2" />
+
+        <ImageView
+            android:id="@+id/search2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:background="@drawable/shopping2" />
+    </LinearLayout>
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+          
+            android:background="#ADAEAF" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/titleback_height"
+        android:layout_gravity="center_vertical"
+        android:background="@color/F6F9FA"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="默认排序"
+                android:textSize="13sp"
+                android:textColor="@color/bg_575D5F" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#ADAEAF" />
+            <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="销量优先"
+                android:textSize="13sp"
+                android:textColor="@color/bg_575D5F" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:background="#ADAEAF" />
+                <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="价格降序"
+                android:textSize="13sp"
+                android:textColor="@color/bg_575D5F" />
+            <ImageView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:background="@drawable/ti_down"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="#ADAEAF" />
+                <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评分最高"
+                android:textSize="13sp"
+                android:textColor="@color/bg_575D5F" />
+        </LinearLayout>
+
+     
+    
+    </LinearLayout>
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+          
+            android:background="#ADAEAF" />
+ <com.examlpe.zf_android.util.XListView
+        android:id="@+id/x_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+</LinearLayout>

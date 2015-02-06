@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="#FFFFFF"
+  	android:gravity="center_horizontal"
+  	 >
+
+ <include layout="@layout/title_back" />
+
+		<TextView android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"
+		    android:text="您的密码已经更新"
+		    android:textColor="@color/text292929"
+            android:textSize="17sp"
+            android:layout_gravity="center"
+		    android:layout_marginTop="50dp"
+		   />
+		   <TextView android:layout_height="wrap_content"
+		    android:layout_width="fill_parent"
+		    android:text="已经发送 XXX"
+		    android:textColor="@color/text292929"
+            android:textSize="17sp"
+		    
+		    android:gravity="center"/>
+		   <TextView android:layout_height="wrap_content"
+		    android:layout_width="fill_parent"
+		    android:text="请注意查收!"
+		    android:textColor="@color/text292929"
+            android:textSize="17sp"
+		    
+		    android:gravity="center"/>
+		
+		
+		<LinearLayout
+	    android:id="@+id/login_linear_login" 
+	    android:layout_width="wrap_content"
+	    android:layout_height="42dp"
+	   	android:paddingLeft="30dp"
+	   	android:paddingRight="30dp"
+	   	android:layout_marginTop="50dp"
+	    android:background="@drawable/bg_blue_shape"
+	    android:gravity="center"
+	 
+	    android:orientation="horizontal"
+	    >
+	 
+	    <TextView 
+	         
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	      
+	        android:text="马上登录"
+	        android:textSize="16sp"
+	        android:textColor="@color/fffefe"
+	        />
+ 
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/ffffff"
+    android:id="@+id/in_no_record"
+    android:gravity="top">
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:layout_marginTop="20dp"
+	    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/wujl_logo" />
+
+        <TextView
+            android:id="@+id/norecord_text_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="No updates"
+            android:textColor="@color/t828282"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/norecord_text_to2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/t828282"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/norecord_linear_go"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+         
+        android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+        android:gravity="center" 
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/norecord_text_to3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="这里是按钮"
+            android:textColor="@color/ffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+	</LinearLayout>
+</LinearLayout>
