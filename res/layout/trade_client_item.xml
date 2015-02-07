@@ -8,12 +8,11 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/trade_client_selected"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginLeft="@dimen/d_12dp"
-        android:layout_marginRight="@dimen/d_12dp"
-        android:src="@drawable/icon_selected"
-        android:visibility="invisible"/>
+        android:layout_marginRight="@dimen/d_12dp"/>
 
     <TextView
         android:id="@+id/trade_client_name"

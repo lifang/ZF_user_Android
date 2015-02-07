@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/F3F2F2">
+
+    <include layout="@layout/title_back"/>
+
+    <View
+        style="@style/Divider"
+        android:layout_marginTop="12dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingLeft="24dp">
+
+        <TextView
+            android:id="@+id/current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/city_current"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="@dimen/s_13sp"/>
+
+        <TextView
+            android:id="@+id/city_current"
+            style="@style/TextCity"
+            android:text="上海"
+            android:layout_toRightOf="@+id/current"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="12dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/city_location"/>
+
+    </RelativeLayout>
+
+    <View
+        style="@style/Divider"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/city_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/Viewc2"
+            android:dividerHeight="1px"
+            android:scrollbars="none"/>
+
+        <com.example.zf_android.trade.LetterListView
+            android:id="@+id/letter_list_view"
+            android:background="@android:color/transparent"
+            android:layout_width="30dip"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="6dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

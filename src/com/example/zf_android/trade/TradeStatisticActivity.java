@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
 
 public class TradeStatisticActivity extends Activity {
@@ -38,6 +39,8 @@ public class TradeStatisticActivity extends Activity {
     }
 
     private void initViews() {
+        new TitleMenuUtil(this, getString(R.string.title_trade_statistic)).show();
+
         statisticAmount = (TextView) findViewById(R.id.trade_statistic_amount);
         statisticCount = (TextView) findViewById(R.id.trade_statistic_count);
         statisticTime = (TextView) findViewById(R.id.trade_statistic_time);
