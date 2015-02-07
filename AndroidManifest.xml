@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.zf_android"
-    android:versionCode="1"
-    android:versionName="1.0" >
+          package="com.example.zf_android"
+          android:versionCode="1"
+          android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -71,8 +71,24 @@
             android:name="com.example.zf_android.activity.MyMessage"
             android:screenOrientation="portrait" >
         </activity>
-                <activity
+        <activity
             android:name="com.example.zf_android.activity.OrderDetail"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".trade.TradeFlowActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".trade.TradeClientActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".trade.TradeStatisticActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".trade.TradeDetailActivity"
             android:screenOrientation="portrait" >
         </activity>
     </application>
