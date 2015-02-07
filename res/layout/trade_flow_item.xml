@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:paddingLeft="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextTrace.Left"
+                    android:text="@string/trade_time"/>
+
+                <TextView
+                    style="@style/TextTrace.Left"
+                    android:text="@string/trade_account"/>
+
+                <TextView
+                    style="@style/TextTrace.Left"
+                    android:text="@string/trade_receive_account"/>
+
+                <TextView
+                    style="@style/TextTrace.Left"
+                    android:text="@string/trade_client_number"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    android:id="@+id/trade_time"
+                    style="@style/TextTrace.Right"/>
+
+                <TextView
+                    android:id="@+id/trade_account"
+                    style="@style/TextTrace.Right"/>
+
+                <TextView
+                    android:id="@+id/trade_receive_account"
+                    style="@style/TextTrace.Right"/>
+
+                <TextView
+                    android:id="@+id/trade_client_number"
+                    style="@style/TextTrace.Right"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/trade_arrow">
+
+            <TextView
+                style="@style/TextTrace.Big"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/trade_finished"/>
+
+            <TextView
+                android:id="@+id/trade_amount"
+                style="@style/TextTrace.Big"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/trade_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/d_12dp"
+            android:layout_marginRight="@dimen/d_12dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/post_right"/>
+    </RelativeLayout>
+
+    <View
+        style="@style/Divider"
+        android:layout_alignParentBottom="true"/>
+</LinearLayout>
+
+
+
+
+
+

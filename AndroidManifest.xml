@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.zf_android"
-    android:versionCode="1"
-    android:versionName="1.0" >
+          package="com.example.zf_android"
+          android:versionCode="1"
+          android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="14" />
-
-    <android:uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -32,55 +24,55 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.About"
+            android:name="com.example.zf_android.activity.About"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.Main"
+            android:name="com.example.zf_android.activity.Main"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.PosListActivity"
+            android:name="com.example.zf_android.activity.PosListActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.PosSelect"
+            android:name="com.example.zf_android.activity.PosSelect"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.example.zf_android.activity.LoginActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.FindLogin"
+            android:name="com.example.zf_android.activity.FindLogin"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.FindPass"
+            android:name="com.example.zf_android.activity.FindPass"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.FindPassword"
+            android:name="com.example.zf_android.activity.FindPassword"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.MenuMine"
+            android:name="com.example.zf_android.activity.MenuMine"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.OrderList"
+            android:name="com.example.zf_android.activity.OrderList"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.MineSet"
+            android:name="com.example.zf_android.activity.MineSet"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.MyMessage"
+            android:name="com.example.zf_android.activity.MyMessage"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.OrderDetail"
+            android:name="com.example.zf_android.activity.OrderDetail"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -89,7 +81,15 @@
         </activity>
         <activity
             android:name=".trade.TradeClientActivity"
-            android:label="@string/title_activity_trade_client" >
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".trade.TradeStatisticActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".trade.TradeDetailActivity"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

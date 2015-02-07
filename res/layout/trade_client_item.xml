@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/d_12dp"
         android:layout_marginRight="@dimen/d_12dp"
-        android:src="@drawable/icon_selected"/>
+        android:src="@drawable/icon_selected"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/trade_client_name"

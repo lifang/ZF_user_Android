@@ -53,6 +53,10 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
         setDividerPadding(0);
     }
 
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+    }
+
     public void setViewPager(ViewPager mViewPager) {
         this.mViewPager = mViewPager;
         if (mTabViews.size() > 0) setCurrentTab(0);

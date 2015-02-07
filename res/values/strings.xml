@@ -19,6 +19,7 @@
 
     <string name="title_trade_flow">交易流水</string>
     <string name="title_trade_client">选择终端</string>
+    <string name="title_trade_detail">交易详情</string>
 
     <string-array name="trade_flow_tabs">
         <item>转账</item>
@@ -34,6 +35,39 @@
 
     <string name="trade_search">开始查询</string>
     <string name="trade_statistic">开始统计</string>
-    <string name="title_activity_trade_client">TradeClientActivity</string>
+
+    <string name="trade_flow_title">交易流水:</string>
+    <string name="trade_time">交易时间:</string>
+    <string name="trade_account">交易帐号:</string>
+    <string name="trade_receive_account">收款账号:</string>
+    <string name="trade_client_number">终 端 号:</string>
+    <string name="trade_finished">交易完成</string>
+
+    <string name="trade_amount">交易金额:</string>
+    <string name="trade_count">交易笔数:</string>
+    <string name="trade_channel">支付通道:</string>
+    <string name="trade_charge">手 续 费:</string>
+
+    <string name="trade_item_commercial_info">商户信息</string>
+    <string-array name="trade_item_commercial">
+        <item>编    号</item>
+        <item>代理商ID</item>
+        <item>商 户 ID</item>
+    </string-array>
+
+    <string name="trade_item_bank_info">银行信息</string>
+    <string-array name="trade_item_bank">
+        <item>终 端 号</item>
+        <item>付款账号</item>
+        <item>收款账号</item>
+        <item>支付通道</item>
+        <item>分润金额</item>
+        <item>交易金额</item>
+        <item>交易时间</item>
+        <item>交易金额</item>
+        <item>交易批次号</item>
+        <item>交易流水号</item>
+        <item>付款银行号</item>
+    </string-array>
 
 </resources>

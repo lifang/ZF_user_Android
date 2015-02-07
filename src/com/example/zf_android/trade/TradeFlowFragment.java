@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.StringUtil;
@@ -50,6 +51,8 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 
     private Button mTradeSearch;
     private Button mTradeStatistic;
+
+    private LinearLayout mTradeContainer;
 
     /**
      * 终端名
@@ -110,11 +113,18 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
         mTradeSearch = (Button) view.findViewById(R.id.trade_search);
         mTradeStatistic = (Button) view.findViewById(R.id.trade_statistic);
 
+        mTradeContainer = (LinearLayout) view.findViewById(R.id.trade_container);
+
         mTradeClient.setOnClickListener(this);
         mTradeStart.setOnClickListener(this);
         mTradeEnd.setOnClickListener(this);
         mTradeSearch.setOnClickListener(this);
         mTradeStatistic.setOnClickListener(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -130,8 +140,8 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
             case REQUEST_TRADE_CLIENT:
                 String clientName = data.getStringExtra(TradeClientActivity.CLIENT_NAME);
                 mTradeClientName.setText(clientName);
-                mTradeSearch.setEnabled(true);
-                mTradeStatistic.setEnabled(true);
+                tradeClientName = clientName;
+                toggleButtons();
                 break;
         }
     }
@@ -148,7 +158,61 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
             case R.id.trade_end:
                 showDatePicker(tradeEndDate, false);
                 break;
+            case R.id.trade_search:
+                doTradeSearch();
+                break;
+            case R.id.trade_statistic:
+                Intent intent = new Intent(getActivity(), TradeStatisticActivity.class);
+                intent.putExtra(TradeStatisticActivity.CLIENT_NUMBER, tradeClientName);
+                intent.putExtra(TradeStatisticActivity.START_DATE, tradeStartDate);
+                intent.putExtra(TradeStatisticActivity.END_DATE, tradeEndDate);
+                startActivity(intent);
+                break;
         }
+    }
+
+    /**
+     * 交易查询
+     */
+    private void doTradeSearch() {
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+
+        // test data
+        for (int i = 0; i < 10; i++) {
+            LinearLayout itemLayout = (LinearLayout) inflater.inflate(R.layout.trade_flow_item, null);
+            TextView time = (TextView) itemLayout.findViewById(R.id.trade_time);
+            TextView account = (TextView) itemLayout.findViewById(R.id.trade_account);
+            TextView receiveAccount = (TextView) itemLayout.findViewById(R.id.trade_receive_account);
+            TextView clientNumber = (TextView) itemLayout.findViewById(R.id.trade_client_number);
+            TextView amount = (TextView) itemLayout.findViewById(R.id.trade_amount);
+            time.setText("2015-02-07 00:00:00");
+            account.setText("0123456789");
+            receiveAccount.setText("9876543210");
+            clientNumber.setText(tradeClientName);
+            amount.setText("9999.99");
+            mTradeContainer.addView(itemLayout);
+            itemLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(), TradeDetailActivity.class));
+                }
+            });
+        }
+
+    }
+
+    /**
+     * 将按钮置为可以点击, 触发条件:
+     * <li>已选择终端号</li>
+     * <li>已选择开始时间</li>
+     * <li>已选择结束时间</li>
+     */
+    private void toggleButtons() {
+        boolean shouldEnable = !TextUtils.isEmpty(tradeClientName)
+                && !TextUtils.isEmpty(tradeStartDate)
+                && !TextUtils.isEmpty(tradeEndDate);
+        mTradeSearch.setEnabled(shouldEnable);
+        mTradeStatistic.setEnabled(shouldEnable);
     }
 
     /**
@@ -183,8 +247,8 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
                             public void onDateSet(DatePicker datePicker,
                                                   int year, int month, int day) {
                                 month = month + 1;
-                                String dateStr = year + "-"
-                                        + (month < 10 ? "0" + month : month) + "-"
+                                String dateStr = year + "/"
+                                        + (month < 10 ? "0" + month : month) + "/"
                                         + (day < 10 ? "0" + day : day);
                                 if (isStartDate) {
                                     mTradeStartDate.setText(dateStr);
@@ -193,6 +257,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
                                     mTradeEndDate.setText(dateStr);
                                     tradeEndDate = dateStr;
                                 }
+                                toggleButtons();
                             }
                         }, year, month, day);
             }

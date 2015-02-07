@@ -101,4 +101,6 @@
     <color name="normal_button_disabled">#F8AE79</color>
     <color name="normal_button_pressed">#C54800</color>
 
+    <color name="trade_statistic_bg">#212029</color>
+
 </resources>
