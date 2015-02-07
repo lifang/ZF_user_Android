@@ -33,7 +33,7 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
     }
 
     private void initViews() {
-        new TitleMenuUtil(this, getString(R.string.title_trade_client)).show();
+        new TitleMenuUtil(this, getString(R.string.title_trade_flow)).show();
 
         mTabWidget = (MyTabWidget) findViewById(R.id.tab_widget);
         mViewPager = (MyViewPager) findViewById(R.id.view_pager);

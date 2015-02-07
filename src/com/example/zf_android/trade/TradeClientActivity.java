@@ -3,6 +3,7 @@ package com.example.zf_android.trade;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -26,17 +27,22 @@ public class TradeClientActivity extends ListActivity {
         setContentView(R.layout.activity_trade_client);
         new TitleMenuUtil(this, getString(R.string.title_trade_client)).show();
 
+        String selectedName = getIntent().getStringExtra(CLIENT_NAME);
+
         List<Map<String, Object>> items = new ArrayList<Map<String, Object>>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             Map<String, Object> item = new HashMap<String, Object>();
-            item.put("name", System.currentTimeMillis() + "");
+            String clientName = "CLIENT NUMBER " + i;
+            item.put("name", clientName);
+            item.put("selected", TextUtils.isEmpty(selectedName)
+                    || !selectedName.equals(clientName) ? null : R.drawable.icon_selected);
             items.add(item);
         }
         SimpleAdapter adapter = new SimpleAdapter(
                 this, items,
                 R.layout.trade_client_item,
-                new String[]{"name"},
-                new int[]{R.id.trade_client_name});
+                new String[]{"name", "selected"},
+                new int[]{R.id.trade_client_name, R.id.trade_client_selected});
         setListAdapter(adapter);
     }
 

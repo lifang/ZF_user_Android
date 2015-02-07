@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.R;
@@ -150,7 +151,9 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.trade_client:
-                startActivityForResult(new Intent(getActivity(), TradeClientActivity.class), REQUEST_TRADE_CLIENT);
+                Intent i = new Intent(getActivity(), TradeClientActivity.class);
+                i.putExtra(TradeClientActivity.CLIENT_NAME, tradeClientName);
+                startActivityForResult(i, REQUEST_TRADE_CLIENT);
                 break;
             case R.id.trade_start:
                 showDatePicker(tradeStartDate, true);
@@ -254,6 +257,10 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
                                     mTradeStartDate.setText(dateStr);
                                     tradeStartDate = dateStr;
                                 } else {
+                                    if (!TextUtils.isEmpty(tradeStartDate) && dateStr.compareTo(tradeStartDate) < 0) {
+                                        Toast.makeText(getActivity(), getString(R.string.toast_end_date_error), Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
                                     mTradeEndDate.setText(dateStr);
                                     tradeEndDate = dateStr;
                                 }
