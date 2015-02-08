@@ -96,4 +96,11 @@
     <color name="edithinit">#333333</color>
  <!-- 订单详情 item 红色 -->
 
+    <!-- 按钮颜色 -->
+    <color name="normal_button_enabled">#FD6A00</color>
+    <color name="normal_button_disabled">#F8AE79</color>
+    <color name="normal_button_pressed">#C54800</color>
+
+    <color name="trade_statistic_bg">#212029</color>
+
 </resources>

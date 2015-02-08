@@ -1,0 +1,211 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:background="@color/F3F2F2">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/Viewc2"/>
+
+        <LinearLayout
+            android:id="@+id/trade_client"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/trade_client"/>
+
+            <TextView
+                android:id="@+id/trade_client_name"
+                style="@style/TextItem"
+                android:layout_marginLeft="@dimen/d_7dp"
+                android:text="@string/trade_client"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_7dp"
+                android:background="@drawable/title_down"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/Viewc2"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/Viewc2"
+            android:layout_marginTop="6dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingLeft="24dp">
+
+            <RelativeLayout
+                android:id="@+id/trade_start"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/trade_start_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/trade_date"/>
+
+                <TextView
+                    style="@style/TextItem.Relative"
+                    android:layout_toRightOf="@+id/trade_start_icon"
+                    android:layout_marginLeft="@dimen/d_7dp"
+                    android:text="@string/trade_start_date"/>
+
+                <TextView
+                    android:id="@+id/trade_start_date"
+                    style="@style/TextItem.Relative"
+                    android:layout_toLeftOf="@+id/trade_start_arrow"/>
+
+                <ImageView
+                    android:id="@+id/trade_start_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/d_12dp"
+                    android:layout_marginRight="@dimen/d_12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/post_right"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/Viewc2"/>
+
+            <RelativeLayout
+                android:id="@+id/trade_end"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/trade_end_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/trade_date"/>
+
+                <TextView
+                    style="@style/TextItem.Relative"
+                    android:layout_toRightOf="@+id/trade_end_icon"
+                    android:layout_marginLeft="@dimen/d_7dp"
+                    android:text="@string/trade_end_date"/>
+
+                <TextView
+                    android:id="@+id/trade_end_date"
+                    style="@style/TextItem.Relative"
+                    android:layout_toLeftOf="@+id/trade_end_arrow"/>
+
+                <ImageView
+                    android:id="@+id/trade_end_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/d_12dp"
+                    android:layout_marginRight="@dimen/d_12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/post_right"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/Viewc2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:paddingLeft="@dimen/d_12dp"
+            android:paddingRight="@dimen/d_12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/trade_search"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/d_12dp"
+                android:text="@string/trade_search"
+                android:textColor="@color/white"
+                android:enabled="false"
+                android:background="@drawable/normal_button_selector"/>
+
+            <Button
+                android:id="@+id/trade_statistic"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/d_12dp"
+                android:text="@string/trade_statistic"
+                android:textColor="@color/white"
+                android:enabled="false"
+                android:background="@drawable/normal_button_selector"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextTrace"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:layout_marginBottom="@dimen/d_7dp"
+                android:layout_marginLeft="24dp"
+                android:textSize="12sp"
+                android:text="@string/trade_flow_title"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/Viewc2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/trade_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+
+</ScrollView>

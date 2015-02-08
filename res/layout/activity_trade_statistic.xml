@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/title_back"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/trade_statistic_bg">
+
+        <TextView
+            style="@style/TextStatistic.Small"
+            android:text="@string/trade_amount"
+            android:layout_marginTop="33dp"/>
+
+        <TextView
+            android:id="@+id/trade_statistic_amount"
+            style="@style/TextStatistic"
+            android:textSize="50sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                style="@style/TextStatistic.Small"
+                android:text="@string/trade_count"/>
+
+            <TextView
+                android:id="@+id/trade_statistic_count"
+                style="@style/TextStatistic"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="20dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:id="@+id/trade_statistic_time"
+                style="@style/TextTrace.Statistic"
+                android:layout_gravity="left"/>
+
+            <TextView
+                style="@style/TextTrace.Statistic"
+                android:text="转账"
+                android:layout_gravity="right"/>
+        </FrameLayout>
+
+        <View
+            style="@style/Divider"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextTrace.Statistic"
+                android:text="@string/trade_client_number"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:id="@+id/trade_statistic_client"
+                style="@style/TextTrace.Statistic"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="left"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextTrace.Statistic"
+                android:text="@string/trade_channel"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:id="@+id/trade_statistic_channel"
+                style="@style/TextTrace.Statistic"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="left"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
