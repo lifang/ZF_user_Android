@@ -1,16 +1,13 @@
-package com.example.zf_zandroid.adapter;
+ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
  
 import com.example.zf_android.R;
-import com.example.zf_android.activity.OrderDetail;
-import com.example.zf_android.activity.OrderList;
 import com.example.zf_android.entity.TestEntitiy;
 
  
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,12 +20,12 @@ import android.widget.Toast;
 
  
 
-public class OrderAdapter extends BaseAdapter{
+public class RecordAdapter extends BaseAdapter{
 	private Context context;
 	private List<TestEntitiy> list;
 	private LayoutInflater inflater;
-	private ViewHolder holder = null;
-	public OrderAdapter(Context context, List<TestEntitiy> list) {
+	private ViewHolder holder1 = null;
+	public RecordAdapter(Context context, List<TestEntitiy> list) {
 		this.context = context;
 		this.list = list;
 	}
@@ -51,31 +48,23 @@ public class OrderAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		inflater = LayoutInflater.from(context);
  		if(convertView == null){
-			holder = new ViewHolder();
- 			convertView = inflater.inflate(R.layout.order_item, null);
- 			holder.content = (TextView) convertView.findViewById(R.id.content_pp);
+			holder1 = new ViewHolder();
+ 			convertView = inflater.inflate(R.layout.record_item, null);
+ 			holder1.content1 = (TextView) convertView.findViewById(R.id.content_pp);
 //			holder.title = (TextView) convertView.findViewById(R.id.title);		 
 //			holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
-			convertView.setTag(holder);
+			convertView.setTag(holder1);
  		}else{
- 		holder = (ViewHolder)convertView.getTag();
+ 		holder1 = (ViewHolder)convertView.getTag();
  	}
  
-  		holder.content.setText(list.get(position).getContent());
-  		convertView.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent i = new Intent(context, OrderDetail.class);
-				context.startActivity(i);
-			}
-		});
+  		holder1.content1.setText(list.get(position).getContent());
+		 
 		
 		return convertView;
 	}
 
 	public final class ViewHolder {
-		public TextView content;
+		public TextView content1;
 	}
 }

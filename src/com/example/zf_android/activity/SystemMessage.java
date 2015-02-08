@@ -30,13 +30,13 @@ import com.example.zf_zandroid.adapter.OrderAdapter;
  * 
 *    
 * 类名称：MyMessage   
-* 类描述：   我的消息
+* 类描述：   系统消息
 * 创建人： ljp 
 * 创建时间：2015-2-5 下午2:15:03   
 * @version    
 *
  */
-public class MyMessage extends BaseActivity implements  IXListViewListener{
+public class SystemMessage extends BaseActivity implements  IXListViewListener{
 	private XListView Xlistview;
 	private int page=1;
 	private int rows=Config.ROWS;
@@ -90,8 +90,8 @@ public class MyMessage extends BaseActivity implements  IXListViewListener{
 			next_sure=(TextView) findViewById(R.id.next_sure);
 			next_sure.setVisibility(View.VISIBLE);
 			next_sure.setText("编辑");
-			new TitleMenuUtil(MyMessage.this, "系统公告").show();
-			myAdapter=new MessageAdapter(MyMessage.this, myList);
+			new TitleMenuUtil(SystemMessage.this, "我的消息").show();
+			myAdapter=new MessageAdapter(SystemMessage.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 			Xlistview=(XListView) findViewById(R.id.x_listview);
 			// refund_listview.getmFooterView().getmHintView().setText("已经没有数据了");
@@ -105,14 +105,11 @@ public class MyMessage extends BaseActivity implements  IXListViewListener{
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					// TODO Auto-generated method stub
-//					Intent i = new Intent(MyMessage.this, OrderDetail.class);
-//					startActivity(i);
+ 					Intent i = new Intent(SystemMessage.this, SystemDetail.class);
+ 					startActivity(i);
 				}
 			});
 			Xlistview.setAdapter(myAdapter);
-			
-			
-			
 			next_sure.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -120,7 +117,6 @@ public class MyMessage extends BaseActivity implements  IXListViewListener{
 					// TODO Auto-generated method stub
 					if(MyApplication.getIsSelect()){
 						//遍历数组删除操作
-						next_sure.setText("删除");
 						MyApplication.setIsSelect(false);
 						myAdapter.notifyDataSetChanged();
 						for(int i=0;i<myList.size();i++){
@@ -130,7 +126,6 @@ public class MyMessage extends BaseActivity implements  IXListViewListener{
 							}
 						}
 					}else{
-						next_sure.setText("编辑");
 						MyApplication.setIsSelect(true);
 						myAdapter.notifyDataSetChanged();
 					}

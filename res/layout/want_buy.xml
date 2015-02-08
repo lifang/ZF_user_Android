@@ -1,0 +1,184 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@color/F3F2F2"
+  	 >
+
+ <include layout="@layout/title_back" />
+ <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/Viewc" />
+	 <LinearLayout
+	    android:id="@+id/ll_pay_type"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+       android:background="@drawable/bg_item" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="@dimen/margin_left2"
+           
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="填写购买意向单"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+
+         <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:layout_marginRight="14dp"
+            android:background="#FFFFFF" >
+
+            <EditText
+                android:id="@+id/login_edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@color/white"
+                android:hint="先生/女士"
+                android:maxWidth="20dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:id="@+id/login_linear_deletename"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2dp"
+                android:gravity="center"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_delete" />
+            </LinearLayout>
+        </RelativeLayout>
+
+     
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Viewc" />
+    	 <LinearLayout
+	    android:id="@+id/ll_kf"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+       android:background="@drawable/bg_item" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="@dimen/margin_left2"
+             
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="您的联系方式"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+
+         <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:layout_marginRight="14dp"
+            android:background="#FFFFFF" >
+
+            <EditText
+                android:id="@+id/login_edit_name1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@color/white"
+                android:hint="请输入手机号"
+                android:maxWidth="20dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:id="@+id/login_linear_deletename1"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2dp"
+                android:gravity="center"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_delete" />
+            </LinearLayout>
+        </RelativeLayout>
+
+      
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Viewc" />
+<View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/Viewc" />
+<RelativeLayout  android:layout_height="200dp"
+    android:layout_width="fill_parent"
+    android:background="@color/ffffff"
+    >
+    
+    
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left2"
+             android:layout_marginRight="14dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="您的联系方式"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left2"
+              android:layout_alignParentBottom="true"
+              android:layout_alignParentRight="true"
+            android:singleLine="true"
+            android:text="最多填写200个汉字"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+    
+</RelativeLayout>
+<Button
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_blue_shape"
+            android:textColor="@color/ffffff"
+            android:text="提交" />
+</LinearLayout>
+
+ 

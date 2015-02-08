@@ -71,10 +71,36 @@
             android:name="com.example.zf_android.activity.MyMessage"
             android:screenOrientation="portrait" >
         </activity>
-                <activity
+        <activity
             android:name="com.example.zf_android.activity.OrderDetail"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.example.zf_android.activity.SystemDetail"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.MymsgDetail"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.SystemMessage"
+            android:screenOrientation="portrait" >
+        </activity> 
+            <activity
+            android:name="com.example.zf_android.activity.ApplyDetail"
+            android:screenOrientation="portrait" >
+        </activity> 
+        <activity
+            android:name="com.example.zf_android.activity.ContentUs"
+            android:screenOrientation="portrait" >
+        </activity> 
+                <activity
+            android:name="com.example.zf_android.activity.WantBuy"
+            android:screenOrientation="portrait" >
+        </activity> 
+             
+          
     </application>
 
 </manifest>

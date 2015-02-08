@@ -21,7 +21,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:background="@color/F3F2F2" />
-
+ 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
@@ -221,16 +221,73 @@
             
             
               <com.examlpe.zf_android.util.ScrollViewWithListView  
-                  android:id="@+id/mylocation_lv"
+                  android:id="@+id/pos_lv1"
         android:layout_width="fill_parent"
         android:divider="@null"
-        android:layout_height="wrap_content"></com.examlpe.zf_android.util.ScrollViewWithListView> 
+        android:layout_height="wrap_content">
+                  
+              </com.examlpe.zf_android.util.ScrollViewWithListView> 
+            <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="7dp"
+            android:text="共计:   10件"
+         	android:gravity="right"
+              
+            android:textColor="@color/text292929"
+            android:textSize="13sp" />
+
+         
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="7dp"
+            android:text="实付金额：9999"
+            android:textColor="@color/text292929"
+            android:textSize="13sp" />
+    </LinearLayout>
+             
             
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc2" />
             
-            
-            
-            
-            
+              <LinearLayout android:orientation="vertical"
+      android:layout_height="wrap_content"
+      android:layout_width="fill_parent"
+      android:background="@color/F3F2F2">
+      
+      <TextView android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/margin_left2"
+          android:layout_marginTop="15dp"
+          android:textColor="@color/text6c6c6c6"
+          android:textSize="11sp"
+          android:text="追踪记录"
+          />
+      <com.examlpe.zf_android.util.ScrollViewWithListView  
+                  android:id="@+id/his_lv"
+        android:layout_width="fill_parent"
+        android:divider="@null"
+        android:background="#e5e4e4"
+        android:layout_marginLeft="@dimen/margin_left2"
+        android:layout_marginRight="@dimen/margin_right2"
+        android:layout_height="100dp">
+                  
+              </com.examlpe.zf_android.util.ScrollViewWithListView>
+      
+  </LinearLayout>
             
             
             

@@ -91,11 +91,12 @@ public class Main extends BaseActivity implements OnClickListener{
 			 
 			break;
 		case R.id.main_rl_xtgg: //系统公告   
-			 
+			  
+			 startActivity(new Intent(Main.this,SystemMessage.class));
 			 
 			break;
 		case R.id.main_rl_lxwm: //联系我们
-			 
+			 startActivity(new Intent(Main.this,ContentUs.class));
 			 
 			break;
 		default:
