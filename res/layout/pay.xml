@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@color/F3F2F2"
+  	 >
+
+ <include layout="@layout/title_back" />
+ <LinearLayout android:layout_height="wrap_content"
+     android:layout_width="fill_parent"
+     android:background="#000000"
+     android:orientation="vertical">
+     
+     <TextView android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:layout_marginTop="36dp"
+         android:textColor="@color/ffffff"
+         android:layout_marginLeft="@dimen/margin_left2"
+         android:textSize="11sp"
+         android:text="付款金额"/>
+          
+     <TextView android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:layout_marginTop="32dp"
+         android:textColor="@color/ffffff"
+         android:layout_marginBottom="20dp"
+         android:layout_marginLeft="@dimen/margin_left2"
+         android:textSize="30sp"
+         android:text="$ 999999"/>
+     
+     
+ </LinearLayout>
+     <TextView android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+      	android:layout_marginTop="17dp"
+         android:textColor="@color/text535252"
+         android:layout_marginLeft="@dimen/margin_left2"
+         android:textSize="8sp"
+         android:text="选择支付方式"/>
+      <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/Viewc2" />
+            <LinearLayout
+        android:id="@+id/ll_sh"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_item" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="21dp"
+            android:background="@drawable/pay_zfb" />
+
+     
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/dot_item"
+            android:gravity="center"
+            android:text="3"
+           	android:visibility="gone"
+            android:textColor="@color/ffffff" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/post_right" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        
+        android:background="@color/Viewc2" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/Viewc2" />
+            <LinearLayout
+        android:id="@+id/ll_request"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_item" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="21dp"
+            android:background="@drawable/pay_yh" />
+
+         
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/dot_item"
+            android:gravity="center"
+            android:text="3"
+           	android:visibility="gone"
+            android:textColor="@color/ffffff" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/post_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Viewc2" />
+</LinearLayout>

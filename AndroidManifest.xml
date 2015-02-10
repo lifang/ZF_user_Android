@@ -127,11 +127,24 @@
             android:name="com.example.zf_android.activity.ContentUs"
             android:screenOrientation="portrait" >
         </activity> 
-                <activity
+         
+        <activity
             android:name="com.example.zf_android.activity.WantBuy"
             android:screenOrientation="portrait" >
         </activity> 
-             
+         <activity
+            android:name="com.example.zf_android.activity.ShopCar"
+            android:screenOrientation="portrait" >
+        </activity>           
+         
+        <activity
+            android:name="com.example.zf_android.activity.ConfirmOrder"
+            android:screenOrientation="portrait" >
+        </activity> 
+                     <activity
+            android:name="com.example.zf_android.activity.PayFromCar"
+            android:screenOrientation="portrait" >
+        </activity> 
           
     </application>
 

@@ -13,13 +13,13 @@ import com.example.zf_android.R;
  * 
 *    
 * 类名称：About   
-* 类描述：   关于页面
+* 类描述：  终端管理
 * 创建人： ljp 
 * 创建时间：2015-1-27 下午7:55:20   
 * @version    
 *
  */
-public class About extends BaseActivity implements OnClickListener{
+public class ManagerPos extends BaseActivity implements OnClickListener{
 	
  
 	
@@ -27,8 +27,8 @@ public class About extends BaseActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		new TitleMenuUtil(About.this, "关于").show();
+		setContentView(R.layout.menu_mine);
+		new TitleMenuUtil(ManagerPos.this, "终端管理").show();
 	}
 
 	@Override

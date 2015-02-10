@@ -16,7 +16,7 @@ import com.example.zf_android.trade.TradeFlowActivity;
 public class Main extends BaseActivity implements OnClickListener{
 
 	private RelativeLayout  main_rl_pos,main_rl_renzhen,main_rl_zdgl,main_rl_jyls,
-	main_rl_Forum,main_rl_wylc,main_rl_xtgg,main_rl_lxwm,main_rl_my,main_rl_pos1;
+	main_rl_Forum,main_rl_wylc,main_rl_xtgg,main_rl_lxwm,main_rl_my,main_rl_pos1,main_rl_gwc;
 	private ImageView testbutton;
 
     private View citySelect;
@@ -46,7 +46,8 @@ public class Main extends BaseActivity implements OnClickListener{
         citySelect = findViewById(R.id.titleback_linear_back);
         cityName = (TextView) findViewById(R.id.tv_city);
         citySelect.setOnClickListener(this);
-
+        main_rl_gwc=(RelativeLayout) findViewById(R.id.main_rl_gwc);
+        main_rl_gwc.setOnClickListener(this);
 		main_rl_pos=(RelativeLayout) findViewById(R.id.main_rl_pos);
 		main_rl_pos.setOnClickListener(this);
 		main_rl_renzhen=(RelativeLayout) findViewById(R.id.main_rl_renzhen);
@@ -115,7 +116,8 @@ public class Main extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.main_rl_lxwm: //联系我们
 			 startActivity(new Intent(Main.this,ContentUs.class));
-			 
+		case R.id.main_rl_gwc:  
+			 startActivity(new Intent(Main.this,ShopCar.class));
 			break;
 		default:
 			break;
