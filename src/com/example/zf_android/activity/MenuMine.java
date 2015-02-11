@@ -43,7 +43,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 			
 			break;
 		case R.id.ll_sh:
-			
+			startActivity(new Intent(MenuMine.this,MerchantList.class));
 			break;
 		case R.id.search:
 			startActivity(new Intent(MenuMine.this,MineSet.class));
@@ -58,7 +58,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.ll_wdxx: 
 		 
-		startActivity(new Intent(MenuMine.this,OrderList.class));
+		startActivity(new Intent(MenuMine.this,MyInfo.class));
 		break;
 		default:
 			break;

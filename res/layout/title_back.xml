@@ -10,7 +10,7 @@
         android:layout_width="60dp"
         android:layout_height="48dp"
        
-        android:layout_marginLeft="7dp"
+        android:layout_marginLeft="@dimen/margin_left"
         android:gravity="center_vertical" >
 
         <ImageView
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/d_7dp"
+        android:layout_marginRight="11dp"
         android:src="@drawable/delete_sure"
          android:visibility="gone"
       />
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="7dp"
+        android:layout_marginRight="11dp"
         android:gravity="right"
         android:singleLine="true"
         android:text="确认"

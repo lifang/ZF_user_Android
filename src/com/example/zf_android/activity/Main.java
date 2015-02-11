@@ -1,17 +1,22 @@
 package com.example.zf_android.activity;
  
+import org.apache.http.Header;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+ 
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class Main extends BaseActivity implements OnClickListener{
 
@@ -39,6 +44,35 @@ public class Main extends BaseActivity implements OnClickListener{
 					 startActivity(i);
 			}
 		});
+		System.out.println("-----");
+		getdata();
+	}
+
+	private void getdata() {
+		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		String url="https://114.215.149.242:18080/ZFMerchant/api/customers/getOne/8";
+		System.out.println("-url---"+url);
+		MyApplication.getInstance().getClient().get(url, new AsyncHttpResponseHandler() {
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) { 
+				System.out.println("-onSuccess---");
+				String responseMsg = new String(responseBody).toString();
+				Log.e("LJP", responseMsg);
+				
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				// TODO Auto-generated method stub
+				System.out.println("-onFailure---");
+			}
+		});
+	
 	}
 
 	private void initView() {

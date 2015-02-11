@@ -28,7 +28,7 @@ import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_zandroid.adapter.AdressAdapter;
 import com.example.zf_zandroid.adapter.MessageAdapter;
 
-public class AdressList extends BaseActivity implements  IXListViewListener{
+public class MerchantList extends BaseActivity implements  IXListViewListener{
 	private XListView Xlistview;
 	private int page=1;
 	private int rows=Config.ROWS;
@@ -83,8 +83,8 @@ public class AdressList extends BaseActivity implements  IXListViewListener{
 			search=(ImageView) findViewById(R.id.search);
 			mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
 			 
-			new TitleMenuUtil(AdressList.this, "我的地址").show();
-			myAdapter=new AdressAdapter(AdressList.this, myList);
+			new TitleMenuUtil(MerchantList.this, "我的地址").show();
+			myAdapter=new AdressAdapter(MerchantList.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 			Xlistview=(XListView) findViewById(R.id.x_listview);
 			// refund_listview.getmFooterView().getmHintView().setText("已经没有数据了");
