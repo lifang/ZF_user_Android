@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -19,16 +20,24 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.common.CommonUtil;
+import com.example.zf_android.trade.entity.City;
+import com.example.zf_android.trade.entity.Province;
+import com.example.zf_android.trade.widget.LetterListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class CitySelectActivity extends Activity {
 
-    public static final String CITY_SELECTED = "city_selected";
+    public static final String CITY_ID = "city_id";
+    public static final String CITY_NAME = "city_selected";
     private String mCitySelected;
     private TextView mCityCurrent;
 
@@ -40,38 +49,60 @@ public class CitySelectActivity extends Activity {
     private Handler handler;
     private Thread overlayThread;
 
-    private List<String> mCities = new ArrayList<String>();
+    private List<City> mCities = new ArrayList<City>();
     private List<String> mLetters = new ArrayList<String>();
+    private List<Object> mItems = new ArrayList<Object>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_select);
 
-        mCitySelected = getIntent().getStringExtra(CITY_SELECTED);
+        mCitySelected = getIntent().getStringExtra(CITY_NAME);
 
         new TitleMenuUtil(this, getString(R.string.title_city_select)).show();
         initViews();
     }
 
-    /**
-     * 初始化一些测试数据
-     */
-    private void initTestData() {
-        for (int i = 0; i < LetterListView.b.length; i++) {
-            // 随机剔除一些字母
-            if (i % 5 != 4) {
-                mLetters.add(LetterListView.b[i]);
-                mCities.add(LetterListView.b[i]);
-                for (int j = 0; j < 20; j++) {
-                    mCities.add(LetterListView.b[i].toUpperCase() + " - City");
+    private void initCities() {
+        new Thread() {
+            @Override
+            public void run() {
+                List<Province> provinces = CommonUtil.readProvincesAndCities(CitySelectActivity.this);
+                for (Province province : provinces) {
+                    List<City> cities = province.getCities();
+                    mCities.addAll(cities);
                 }
+
+                Collections.sort(mCities, new Comparator<City>() {
+                    @Override
+                    public int compare(City lhs, City rhs) {
+                        return lhs.getPinyin().compareTo(rhs.getPinyin());
+                    }
+                });
+
+                char letter = '0';
+                for (City city : mCities) {
+                    if (!TextUtils.isEmpty(city.getPinyin())) {
+                        char cur = city.getPinyin().charAt(0);
+                        if (letter != cur) {
+                            letter = cur;
+                            String item = String.valueOf(letter).toUpperCase();
+                            mLetters.add(item);
+                            mItems.add(item);
+                        }
+                        mItems.add(city);
+                    }
+                }
+                handler.sendEmptyMessage(1);
             }
-        }
+        }.start();
+
     }
 
     private void initViews() {
-        initTestData();
+        initCities();
         initOverlay();
 
         mCityCurrent = (TextView) findViewById(R.id.city_current);
@@ -88,15 +119,26 @@ public class CitySelectActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String cityName = ((TextView) view).getText().toString();
-                if (mLetters.contains(cityName)) return;
+                if (mLetters.contains(cityName))
+                    return;
+
+                City city = (City) view.getTag(R.id.city_current);
                 Intent intent = new Intent();
-                intent.putExtra(CITY_SELECTED, cityName);
+                intent.putExtra(CITY_ID, city.getId());
+                intent.putExtra(CITY_NAME, city.getName());
                 setResult(RESULT_OK, intent);
                 finish();
             }
         });
 
-        handler = new Handler();
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == 1) {
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        };
         overlayThread = new Thread() {
             @Override
             public void run() {
@@ -110,7 +152,7 @@ public class CitySelectActivity extends Activity {
                     @Override
                     public void onTouchingLetterChanged(String s) {
                         if (mLetters.contains(s)) {
-                            int position = mCities.indexOf(s);
+                            int position = mItems.indexOf(s);
                             mListView.setSelection(position);
                             overlay.setText(s);
                             overlay.setVisibility(View.VISIBLE);
@@ -147,12 +189,12 @@ public class CitySelectActivity extends Activity {
 
         @Override
         public int getCount() {
-            return mCities.size();
+            return mItems.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return mCities.get(position);
+            return mItems.get(position);
         }
 
         @Override
@@ -178,13 +220,15 @@ public class CitySelectActivity extends Activity {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            String city = mCities.get(position);
-            if (mLetters.contains(city)) {
+            Object item = mItems.get(position);
+
+            if (mLetters.contains(item.toString())) {
                 holder.tv.setBackgroundColor(resources.getColor(R.color.F3F2F2));
             } else {
                 holder.tv.setBackgroundColor(resources.getColor(R.color.white));
             }
-            holder.tv.setText(city.toUpperCase());
+            holder.tv.setText(item.toString().toUpperCase());
+            holder.tv.setTag(R.id.city_current, item);
             return convertView;
         }
 

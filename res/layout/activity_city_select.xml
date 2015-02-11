@@ -58,7 +58,7 @@
             android:dividerHeight="1px"
             android:scrollbars="none"/>
 
-        <com.example.zf_android.trade.LetterListView
+        <com.example.zf_android.trade.widget.LetterListView
             android:id="@+id/letter_list_view"
             android:background="@android:color/transparent"
             android:layout_width="30dip"
