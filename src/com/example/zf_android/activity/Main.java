@@ -25,7 +25,9 @@ public class Main extends BaseActivity implements OnClickListener{
 	private ImageView testbutton;
 
     private View citySelect;
-    private TextView cityName;
+    private TextView cityTextView;
+    private int cityId;
+    private String cityName;
     public static final int REQUEST_CITY = 1;
 
 	@Override
@@ -78,7 +80,7 @@ public class Main extends BaseActivity implements OnClickListener{
 	private void initView() {
 		// TODO Auto-generated method stub
         citySelect = findViewById(R.id.titleback_linear_back);
-        cityName = (TextView) findViewById(R.id.tv_city);
+        cityTextView = (TextView) findViewById(R.id.tv_city);
         citySelect.setOnClickListener(this);
         main_rl_gwc=(RelativeLayout) findViewById(R.id.main_rl_gwc);
         main_rl_gwc.setOnClickListener(this);
@@ -110,7 +112,7 @@ public class Main extends BaseActivity implements OnClickListener{
 		switch (v.getId()) {
         case R.id.titleback_linear_back: // Ñ¡Ôñ³ÇÊÐ
             Intent intent = new Intent(Main.this, CitySelectActivity.class);
-            intent.putExtra(CitySelectActivity.CITY_SELECTED, cityName.getText().toString());
+            intent.putExtra(CitySelectActivity.CITY_NAME, cityTextView.getText().toString());
             startActivityForResult(intent, REQUEST_CITY);
             break;
 
@@ -164,8 +166,9 @@ public class Main extends BaseActivity implements OnClickListener{
         if (resultCode != RESULT_OK) return;
         switch (requestCode) {
             case REQUEST_CITY:
-                String city = data.getStringExtra(CitySelectActivity.CITY_SELECTED);
-                cityName.setText(city);
+                cityId = data.getIntExtra(CitySelectActivity.CITY_ID, 0);
+                cityName = data.getStringExtra(CitySelectActivity.CITY_NAME);
+                cityTextView.setText(cityName);
                 break;
         }
     }

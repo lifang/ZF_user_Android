@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.widget.MyTabWidget;
+import com.example.zf_android.trade.widget.MyViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +43,7 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
 
         String[] tabs = getResources().getStringArray(R.array.trade_flow_tabs);
         for (int i = 0; i < tabs.length; i++) {
-            TradeFlowFragment fragment = TradeFlowFragment.newInstance(i);
+            TradeFlowFragment fragment = TradeFlowFragment.newInstance(i + 1);
             mFragments.add(fragment);
             mTabWidget.addTab(tabs[i]);
         }
