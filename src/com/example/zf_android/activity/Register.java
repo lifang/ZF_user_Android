@@ -79,12 +79,13 @@ public class Register extends BaseActivity implements OnClickListener{
 			if(isMail){
 				//发送邮件请求
 				Intent i = new Intent(getApplicationContext(),
-						FindLogin.class);
+						RegistMail.class);
+				i.putExtra("email", login_edit_name.getText().toString());
 				startActivity(i);
 			}else{
 				//发送手机请求
 				Intent i = new Intent(getApplicationContext(),
-						FindPassword.class);
+						Register4phone.class);
 				i.putExtra("phone", login_edit_name.getText().toString());
 				startActivity(i);
 			}

@@ -177,10 +177,24 @@
             android:name="com.example.zf_android.activity.ChangePassword"
             android:screenOrientation="portrait" >
         </activity>         
+         
           <activity
             android:name="com.example.zf_android.activity.MerchantList"
             android:screenOrientation="portrait" >
-        </activity>                
+        </activity>     
+         
+         <activity
+            android:name="com.example.zf_android.activity.Register"
+            android:screenOrientation="portrait" >
+        </activity>    
+         <activity
+            android:name="com.example.zf_android.activity.RegistMail"
+            android:screenOrientation="portrait" >
+        </activity>    
+                 <activity
+            android:name="com.example.zf_android.activity.Register4phone"
+            android:screenOrientation="portrait" >
+        </activity>         
     </application>
 
 </manifest>

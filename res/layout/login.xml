@@ -210,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                   
-                    android:text="@string/remeberpass"
+                    android:text="注册"
                    
                   android:textSize="@dimen/s_13sp" />
             </LinearLayout>

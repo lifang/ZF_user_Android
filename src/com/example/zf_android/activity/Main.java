@@ -52,9 +52,9 @@ public class Main extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 
 		// TODO Auto-generated method stub
-		String url="https://114.215.149.242:18080/ZFMerchant/api/customers/getOne/8";
+		String url="http://114.215.149.242:18080/ZFMerchant/api/customers/getOne/8";
 		System.out.println("-url---"+url);
-		MyApplication.getInstance().getClient().get(url, new AsyncHttpResponseHandler() {
+		MyApplication.getInstance().getClient().get("http://114.215.149.242:18080/ZFMerchant/api/customers/getOne/8", new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
@@ -69,7 +69,7 @@ public class Main extends BaseActivity implements OnClickListener{
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
 				// TODO Auto-generated method stub
-				System.out.println("-onFailure---");
+				 error.printStackTrace();
 			}
 		});
 	

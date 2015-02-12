@@ -25,6 +25,7 @@ import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -134,9 +135,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 			
 			break;
 		case R.id.login_linear_signin:  // 获取验证码 
-		//	pass=StringUtil.replaceBlank(login_edit_pass.getText().toString());
-		 
-			//pass= StringUtil.Md5(pass);
+	 
 			 
  		if(check()){
  			  sure();
@@ -164,18 +163,18 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 		// TODO Auto-generated method stub
 		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
 		if(email.length()==0){
-			Toast.makeText(getApplicationContext(), "Email cannot be empty！",
+			Toast.makeText(getApplicationContext(), "手机号不能为空！",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		
 		if(StringUtil.replaceBlank(login_edit_code.getText().toString()).length()==0){
-			Toast.makeText(getApplicationContext(), "vcode cannot be empty！",
+			Toast.makeText(getApplicationContext(), "验证码不能为空！",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(!login_edit_code.getText().toString().endsWith(vcode)){
-			Toast.makeText(getApplicationContext(), "vcode error！",
+			Toast.makeText(getApplicationContext(), "验证码不正确！",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
@@ -183,77 +182,74 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 		
 		pass=StringUtil.replaceBlank(login_edit_pass.getText().toString());
 		if(pass.length()==0){
-			Toast.makeText(getApplicationContext(), "Password cannot be empty！",
+			Toast.makeText(getApplicationContext(), "密码不能为空",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(!login_edit_pass2.getText().toString().equals(pass)){
-			Toast.makeText(getApplicationContext(), "Password donot match！",
+			Toast.makeText(getApplicationContext(), "密码不一样",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
-	//	pass=StringUtil.Md5(pass);
+	 pass=StringUtil.Md5(pass);
 		return true;
 	}
 
-	private void sure() {
-		// TODO Auto-generated method stub
- 
+	private void sure() { 
+		
+		 AsyncHttpClient client = new AsyncHttpClient();  
+		 
 		RequestParams params = new RequestParams();
-		params.put("studentPassword",pass);
-		params.put("activationCode",vcode); 
-		params.put("studentEmail", email); 
-		System.out.println(pass+"-md5--");
-		pass=StringUtil.replaceBlank(login_edit_pass.getText().toString());
-		System.out.println(pass+"--md5-");
-		
-	 
-		
+		 
+		params.put("username",email); 
+		params.put("studentPassword", pass); 
+		params.put("cityId", Config.CITY_ID); 
+		params.put("accountType", false); 	 
 		params.setUseJsonStreamer(true);
-//		MyApplication.getInstance().getClient().post(Config.studentFindPassword, params, new AsyncHttpResponseHandler() {
-//
-//			@Override
-//			public void onSuccess(int statusCode, Header[] headers,
-//					byte[] responseBody) {
-//				// TODO Auto-generated method stub
-//				String responseMsg = new String(responseBody).toString();
-//				System.out.println("MSG" + responseMsg);	
-//				System.out.println("headers" + headers.toString());	
-//				Gson gson = new Gson();				
-//				JSONObject jsonobject = null;
-//				int code = 0;
-//				try {
-//					jsonobject = new JSONObject(responseMsg);
-//					code = jsonobject.getInt("code");
-//					
-//					if(code==-2){
-//						Intent i =new Intent(getApplication(),LoginActivity.class);
-//						startActivity(i);
-//					}else if(code==0){
-//						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-//								Toast.LENGTH_SHORT).show();
-//						Intent i =new Intent(getApplication(),LoginActivity.class);
-//						startActivity(i);
-//					}else{
-//						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-//								Toast.LENGTH_SHORT).show();
-//					}	 
-//				} catch (JSONException e) {
-//					// TODO Auto-generated catch block
-//					System.out.println("MSG" + "e````"+e.toString());	
-//					e.printStackTrace();
-//					
-//				}
-//			}
-//
-//			@Override
-//			public void onFailure(int statusCode, Header[] headers,
-//					byte[] responseBody, Throwable error) {
-//				// TODO Auto-generated method stub
-//				System.out.println("eee" + responseBody.toString());	
-//			}
-//		});
-	
+ 
+		MyApplication.getInstance().getClient().post(Config.UserRegistration, params, new AsyncHttpResponseHandler() {
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+
+				// TODO Auto-generated method stub
+				String responseMsg = new String(responseBody).toString();
+				System.out.println("MSG" + responseMsg);	
+				System.out.println("headers" + headers.toString());	
+				Gson gson = new Gson();
+				
+				JSONObject jsonobject = null;
+				int code = 0;
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					code = jsonobject.getInt("code");
+					if(code==1){ //判断返回结果是否合法
+						Toast.makeText(getApplicationContext(),  jsonobject.getString("result"), 1000).show();
+ 
+	 				 
+	 					 finish();
+					}else{
+						 
+						Toast.makeText(getApplicationContext(),  jsonobject.getString("result"), 1000).show();
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					System.out.println("MSG" + "e````"+e.toString());	
+					e.printStackTrace();
+					
+				}
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				// TODO Auto-generated method stub
+				login_linear_signin.setClickable(true);
+				Toast.makeText(getApplicationContext(), "请检查网络问题",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 
 	/**
@@ -261,64 +257,60 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 	 */
 	private void getCode() {
 		// TODO Auto-generated method stub
- 		 
-		//tv_code.setText("Resent Code");
+ 	 
 		 handler.postDelayed(runnable, 1000);  
-		 vcode="1234";
-//		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
-//		RequestParams params = new RequestParams();
-//		params.put("email",email);
-//		System.out.println("email----"+email);
-//		params.setUseJsonStreamer(true);
-//		AsyncHttpClient client =MyApplication.getInstance().getClient();
-//		client.setTimeout(30000);
-//		client.post(Config.getActivationCode, params, new AsyncHttpResponseHandler() {
-//
-//			@Override
-//			public void onSuccess(int statusCode, Header[] headers,
-//					byte[] responseBody) {
-//				// TODO Auto-generated method stub
-//				String responseMsg = new String(responseBody).toString();
-//				System.out.println("MSG" + responseMsg);			
-//				Gson gson = new Gson();
-//				JSONObject jsonobject;
-//			 
-//			 
-//				try {
-//					jsonobject = new JSONObject(responseMsg);
-//					int code=jsonobject.getInt("code");
-//					System.out.println("code`1`"+code);
-//					if(code==-2){
-//						System.out.println("code`-2`"+code);
-//						Intent i =new Intent(getApplication(),LoginActivity.class);
-//						startActivity(i);
-//					}else if(code==0){
-//						tv_check.setVisibility(View.VISIBLE);
-//						System.out.println("code`0`"+code);
+	 
+		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
+	 
+		AsyncHttpClient client =MyApplication.getInstance().getClient();
+		client.setTimeout(30000);
+		client.get(Config.RegistgetCode+email ,new AsyncHttpResponseHandler() {
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				// TODO Auto-generated method stub
+				String responseMsg = new String(responseBody).toString();
+				System.out.println("MSG" + responseMsg);			
+				Gson gson = new Gson();
+				JSONObject jsonobject;
+			 
+			 
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					int code=jsonobject.getInt("code");
+					System.out.println("code`1`"+code);
+					if(code==-2){
+						System.out.println("code`-2`"+code);
+						Intent i =new Intent(getApplication(),LoginActivity.class);
+						startActivity(i);
+					}else if(code==1){
+						tv_check.setVisibility(View.VISIBLE);
+						System.out.println("code`0`"+code);
 //						Result rs = gson.fromJson(jsonobject.getString("result"), new TypeToken<Result>() {
 //	 					}.getType());
-//						vcode=rs.getActivationCode();
-//						System.out.println("vcode"+vcode);
-//					}else{
-//						System.out.println("MSG" + "else" );	
-//						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-//								Toast.LENGTH_SHORT).show();
-//					}
-//				} catch (Exception e) {
-//					// TODO: handle exception
-//					System.out.println("MSG" + "e````"+e.toString());	
-//				//	 Toast.makeText(getApplicationContext(), e.toString(), 1000).show();
-//				}
-// 
-//			}
-//
-//			@Override
-//			public void onFailure(int statusCode, Header[] headers,
-//					byte[] responseBody, Throwable error) {
-//				// TODO Auto-generated method stub
-//
-//			}
-//		});
+						vcode=jsonobject.getString("result");
+						System.out.println("vcode"+vcode);
+					}else{
+						System.out.println("MSG" + "else" );	
+						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("MSG" + "e````"+e.toString());	
+				//	 Toast.makeText(getApplicationContext(), e.toString(), 1000).show();
+				}
+ 
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				// TODO Auto-generated method stub
+
+			}
+		});
  
 	}
 	private void initView() {
