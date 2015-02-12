@@ -43,7 +43,7 @@ public class TradeStatisticActivity extends Activity {
         setContentView(R.layout.activity_trade_statistic);
         initViews();
 
-        API.getTradeRecordTotal(this, mTradeType, mClientNumber, mStartDate, mEndDate,
+        API.getTradeRecordStatistic(this, mTradeType, mClientNumber, mStartDate, mEndDate,
                 new HttpCallback<TradeStatistic>(this) {
                     @Override
                     public void onSuccess(TradeStatistic data) {
@@ -51,7 +51,7 @@ public class TradeStatisticActivity extends Activity {
                         statisticCount.setText("" + data.getTradeTotal());
                         statisticTime.setText(mStartDate.replaceAll("-", "/") + " - " + mEndDate.replaceAll("-", "/"));
                         statisticClient.setText(data.getTerminalNumber());
-                        statisticChannel.setText("" + data.getPayChannelId());
+                        statisticChannel.setText(data.getPayChannelName());
                     }
 
                     @Override

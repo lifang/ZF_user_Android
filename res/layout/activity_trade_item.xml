@@ -16,6 +16,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/trade_detail_status"
                 android:text="交易成功"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,16 +56,16 @@
                     android:layout_marginLeft="10dp">
 
                     <TextView
-                        style="@style/TextDetail.Top"
-                        android:text="￥9999.99"/>
+                        android:id="@+id/trade_detail_amount"
+                        style="@style/TextDetail.Top"/>
 
                     <TextView
-                        style="@style/TextDetail.Top"
-                        android:text="￥9999.99"/>
+                        android:id="@+id/trade_detail_poundage"
+                        style="@style/TextDetail.Top"/>
 
                     <TextView
-                        style="@style/TextDetail.Top"
-                        android:text="2014-02-07 00:00:00"/>
+                        android:id="@+id/trade_detail_time"
+                        style="@style/TextDetail.Top"/>
                 </LinearLayout>
 
             </LinearLayout>
