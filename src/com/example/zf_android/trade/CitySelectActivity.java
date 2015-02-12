@@ -37,7 +37,7 @@ import java.util.List;
 public class CitySelectActivity extends Activity {
 
     public static final String CITY_ID = "city_id";
-    public static final String CITY_NAME = "city_selected";
+    public static final String CITY_NAME = "city_name";
     private String mCitySelected;
     private TextView mCityCurrent;
 

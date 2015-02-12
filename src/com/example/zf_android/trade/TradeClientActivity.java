@@ -40,7 +40,7 @@ public class TradeClientActivity extends ListActivity {
                 new int[]{R.id.trade_client_name, R.id.trade_client_selected});
         setListAdapter(adapter);
 
-        API.getTerminals(this, 1, new HttpCallback<List<TradeClient>>(this) {
+        API.getTerminalList(this, 1, new HttpCallback<List<TradeClient>>(this) {
 
             @Override
             public void onSuccess(List<TradeClient> data) {
@@ -57,7 +57,8 @@ public class TradeClientActivity extends ListActivity {
 
             @Override
             public TypeToken<List<TradeClient>> getTypeToken() {
-                return new TypeToken<List<TradeClient>>(){};
+                return new TypeToken<List<TradeClient>>() {
+                };
             }
         });
     }

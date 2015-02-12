@@ -14,19 +14,19 @@ public abstract class HttpCallback<T> {
 
     private Context context;
 
-    private Dialog loadintDialog;
+    private Dialog loadingDialog;
 
     public HttpCallback(Activity context) {
         this.context = context;
-        loadintDialog = DialogUtil.getLoadingDialg(context);
+        loadingDialog = DialogUtil.getLoadingDialg(context);
     }
 
     public void preLoad() {
-        loadintDialog.show();
+        loadingDialog.show();
     }
 
     public void postLoad() {
-        loadintDialog.dismiss();
+        loadingDialog.dismiss();
     }
 
     public void onFailure(String message) {

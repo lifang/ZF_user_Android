@@ -70,11 +70,11 @@
             android:layout_toLeftOf="@+id/trade_arrow">
 
             <TextView
+                android:id="@+id/trade_status"
                 style="@style/TextTrace.Big"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:text="@string/trade_finished"/>
+                android:layout_alignParentRight="true"/>
 
             <TextView
                 android:id="@+id/trade_amount"

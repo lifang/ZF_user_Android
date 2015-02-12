@@ -23,9 +23,12 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeRecord;
 import com.google.gson.reflect.TypeToken;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -35,11 +38,6 @@ import java.util.List;
 public class TradeFlowFragment extends Fragment implements View.OnClickListener {
 
     public static final String TRADE_TYPE = "trade_type";
-    public static final int TRADE_TRANSFER = 1;
-    public static final int TRADE_CONSUME = 2;
-    public static final int TRADE_REPAY = 3;
-    public static final int TRADE_LIFE_CHARGE = 4;
-    public static final int TRADE_PHONE_CHARGE = 5;
 
     public static final int REQUEST_TRADE_CLIENT = 0;
 
@@ -62,10 +60,10 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
     private LinearLayout mTradeContainer;
 
     private String tradeClientName;
-
     private String tradeStartDate;
-
     private String tradeEndDate;
+    private List<TradeRecord> records;
+    private boolean hasSearched = false;
 
     public static TradeFlowFragment newInstance(int tradeType) {
         TradeFlowFragment fragment = new TradeFlowFragment();
@@ -123,6 +121,21 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
         mTradeEnd.setOnClickListener(this);
         mTradeSearch.setOnClickListener(this);
         mTradeStatistic.setOnClickListener(this);
+
+        if (!TextUtils.isEmpty(tradeClientName)) {
+            mTradeClientName.setText(tradeClientName);
+        }
+        if (!TextUtils.isEmpty(tradeStartDate)) {
+            mTradeStartDate.setText(tradeStartDate);
+        }
+        if (!TextUtils.isEmpty(tradeEndDate)) {
+            mTradeEndDate.setText(tradeEndDate);
+        }
+        if (hasSearched) {
+            mTradeSearchContent.setVisibility(View.VISIBLE);
+            addTradeItems();
+        }
+        toggleButtons();
     }
 
     @Override
@@ -164,34 +177,16 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
                 showDatePicker(tradeEndDate, false);
                 break;
             case R.id.trade_search:
+                hasSearched = true;
                 mTradeSearchContent.setVisibility(View.VISIBLE);
-                API.getTradeRecord(getActivity(),
+                API.getTradeRecordList(getActivity(),
                         mTradeType, tradeClientName, tradeStartDate, tradeEndDate, 1, 100,
                         new HttpCallback<List<TradeRecord>>(getActivity()) {
 
                             @Override
                             public void onSuccess(List<TradeRecord> data) {
-                                LayoutInflater inflater = LayoutInflater.from(getActivity());
-                                for (TradeRecord record : data) {
-                                    LinearLayout itemLayout = (LinearLayout) inflater.inflate(R.layout.trade_flow_item, null);
-                                    TextView time = (TextView) itemLayout.findViewById(R.id.trade_time);
-                                    TextView account = (TextView) itemLayout.findViewById(R.id.trade_account);
-                                    TextView receiveAccount = (TextView) itemLayout.findViewById(R.id.trade_receive_account);
-                                    TextView clientNumber = (TextView) itemLayout.findViewById(R.id.trade_client_number);
-                                    TextView amount = (TextView) itemLayout.findViewById(R.id.trade_amount);
-                                    time.setText(record.getTradedTimeStr());
-                                    account.setText(record.getPayFromAccount());
-                                    receiveAccount.setText(record.getPayIntoAccount());
-                                    clientNumber.setText(record.getTerminalNumber());
-                                    amount.setText(getString(R.string.notation_yuan) + record.getAmount());
-                                    mTradeContainer.addView(itemLayout);
-                                    itemLayout.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            startActivity(new Intent(getActivity(), TradeDetailActivity.class));
-                                        }
-                                    });
-                                }
+                                records = data;
+                                addTradeItems();
                             }
 
                             @Override
@@ -209,6 +204,37 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
                 intent.putExtra(TradeStatisticActivity.END_DATE, tradeEndDate);
                 startActivity(intent);
                 break;
+        }
+    }
+
+    private void addTradeItems() {
+        if (null == records || records.size() == 0)
+            return;
+        mTradeContainer.removeAllViews();
+        final LayoutInflater inflater = LayoutInflater.from(getActivity());
+        for (final TradeRecord record : records) {
+            LinearLayout itemLayout = (LinearLayout) inflater.inflate(R.layout.trade_flow_item, null);
+            TextView status = (TextView) itemLayout.findViewById(R.id.trade_status);
+            TextView time = (TextView) itemLayout.findViewById(R.id.trade_time);
+            TextView account = (TextView) itemLayout.findViewById(R.id.trade_account);
+            TextView receiveAccount = (TextView) itemLayout.findViewById(R.id.trade_receive_account);
+            TextView clientNumber = (TextView) itemLayout.findViewById(R.id.trade_client_number);
+            TextView amount = (TextView) itemLayout.findViewById(R.id.trade_amount);
+            status.setText(getResources().getStringArray(R.array.trade_status)[record.getTradedStatus()]);
+            time.setText(record.getTradedTimeStr());
+            account.setText(record.getPayFromAccount());
+            receiveAccount.setText(record.getPayIntoAccount());
+            clientNumber.setText(record.getTerminalNumber());
+            amount.setText(getString(R.string.notation_yuan) + record.getAmount());
+            mTradeContainer.addView(itemLayout);
+            itemLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), TradeDetailActivity.class);
+                    intent.putExtra(TradeDetailActivity.TRADE_RECORD_ID, record.getId());
+                    startActivity(intent);
+                }
+            });
         }
     }
 

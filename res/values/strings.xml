@@ -75,10 +75,17 @@
         <item>分润金额</item>
         <item>交易金额</item>
         <item>交易时间</item>
-        <item>交易金额</item>
+        <item>交易状态</item>
         <item>交易批次号</item>
         <item>交易流水号</item>
         <item>付款银行号</item>
+    </string-array>
+
+    <string-array name="trade_status">
+        <item></item>
+        <item>待付款</item>
+        <item>交易完成</item>
+        <item>交易失败</item>
     </string-array>
 
     <string name="city_current">当前</string>

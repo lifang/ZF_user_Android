@@ -8,6 +8,7 @@ public class TradeStatistic {
     private int tradeTypeId;
     private int amountTotal;
     private int payChannelId;
+    private String payChannelName;
     private String terminalNumber;
     private int tradeTotal;
 
@@ -33,6 +34,14 @@ public class TradeStatistic {
 
     public void setPayChannelId(int payChannelId) {
         this.payChannelId = payChannelId;
+    }
+
+    public String getPayChannelName() {
+        return payChannelName;
+    }
+
+    public void setPayChannelName(String payChannelName) {
+        this.payChannelName = payChannelName;
     }
 
     public String getTerminalNumber() {

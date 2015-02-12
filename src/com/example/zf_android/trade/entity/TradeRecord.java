@@ -5,12 +5,21 @@ package com.example.zf_android.trade.entity;
  */
 public class TradeRecord {
 
+    private int id;
     private int amount;
     private String payIntoAccount;
-    private String tradedStatus;
+    private int tradedStatus;
     private String tradedTimeStr;
     private String payFromAccount;
     private String terminalNumber;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getAmount() {
         return amount;
@@ -28,11 +37,11 @@ public class TradeRecord {
         this.payIntoAccount = payIntoAccount;
     }
 
-    public String getTradedStatus() {
+    public int getTradedStatus() {
         return tradedStatus;
     }
 
-    public void setTradedStatus(String tradedStatus) {
+    public void setTradedStatus(int tradedStatus) {
         this.tradedStatus = tradedStatus;
     }
 
