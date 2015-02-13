@@ -22,6 +22,7 @@ import com.examlpe.zf_android.util.XListView.IXListViewListener;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.MyShopCar.Good;
 import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_zandroid.adapter.OrderAdapter;
 import com.example.zf_zandroid.adapter.ShopcarAdapter;
@@ -46,7 +47,7 @@ public class ShopCar extends BaseActivity implements  IXListViewListener{
 	private LinearLayout eva_nodata;
 	private boolean onRefresh_number = true;
 	private ShopcarAdapter myAdapter;
-	List<TestEntitiy>  myList = new ArrayList<TestEntitiy>();
+	List<Good>  myList = new ArrayList<Good>();
 	List<TestEntitiy>  moreList = new ArrayList<TestEntitiy>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -170,10 +171,7 @@ public class ShopCar extends BaseActivity implements  IXListViewListener{
 			// TODO Auto-generated method stub
 			 
 		 
-				 TestEntitiy te=new TestEntitiy();
-				 te.setContent("̩ɽTS9000---"+page+page);
-				 myList.add(te);
-			 
+				 
 			
 			System.out.println("getData");
 			handler.sendEmptyMessage(0);

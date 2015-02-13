@@ -3,14 +3,21 @@ package com.example.zf_zandroid.adapter;
 import java.util.List;
 
 import com.example.zf_android.R;
+import com.example.zf_android.activity.ShopCar;
 import com.example.zf_android.entity.TestEntitiy;
+import com.example.zf_android.entity.MyShopCar.Good;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,13 +26,23 @@ import android.widget.Toast;
 
 public class ShopcarAdapter extends BaseAdapter {
 	private Context context;
-	private List<TestEntitiy> list;
+	private List<Good> list;
 	private LayoutInflater inflater;
 	private ViewHolder holder = null;
+	private TextView howMoney;
+	private Activity activity;
+	private int currentHowMoney;
+	private CheckBox selectAll_cb;
 
-	public ShopcarAdapter(Context context, List<TestEntitiy> list) {
+	public ShopcarAdapter(Context context, List<Good> list) {
 		this.context = context;
 		this.list = list;
+		activity = (Activity) context;
+		currentHowMoney = 0;
+		howMoney = (TextView) activity.findViewById(R.id.howMoney);
+		
+		selectAll_cb = (CheckBox) activity.findViewById(R.id.item_cb);
+		selectAll_cb.setOnCheckedChangeListener(onCheckedChangeListener);
 	}
 
 	@Override
@@ -49,20 +66,26 @@ public class ShopcarAdapter extends BaseAdapter {
 		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.sopping_caritem, null);
-			holder.content = (TextView) convertView
-					.findViewById(R.id.content_pp);
+			holder.checkBox = (CheckBox) convertView.findViewById(R.id.item_cb);
+			holder.checkBox.setOnCheckedChangeListener(onCheckedChangeListener);
+			holder.title = (TextView) convertView.findViewById(R.id.title);
+			holder.wayName = (TextView) convertView.findViewById(R.id.wayName);
+			holder.Model_number = (TextView) convertView
+					.findViewById(R.id.Model_number);
 			// holder.title = (TextView) convertView.findViewById(R.id.title);
 			// holder.evevt_img = (ImageView)
 			// convertView.findViewById(R.id.evevt_img);
-			holder.editView = (TextView) convertView
-					.findViewById(R.id.editView);
-			holder.editView.setOnClickListener(onClick);
+			holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
+			holder.editBtn.setOnClickListener(onClick);
 			holder.ll_select = (LinearLayout) convertView
 					.findViewById(R.id.ll_select);
-			holder.editView.setTag(holder);
+			holder.editBtn.setTag(holder);
 			holder.reduce = convertView.findViewById(R.id.reduce);
 			holder.buyCountEdit = (EditText) convertView
 					.findViewById(R.id.buyCountEdit);
+			holder.showCountText = (TextView) convertView
+					.findViewById(R.id.showCountText);
+
 			holder.add = convertView.findViewById(R.id.add);
 
 			holder.reduce.setTag(holder);
@@ -70,13 +93,24 @@ public class ShopcarAdapter extends BaseAdapter {
 
 			holder.reduce.setOnClickListener(onClick);
 			holder.add.setOnClickListener(onClick);
-			holder.cost = convertView.findViewById(R.id.cost);
+			holder.retail_price = (TextView) convertView
+					.findViewById(R.id.retail_price);
 			holder.delete = convertView.findViewById(R.id.delete);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.content.setText(list.get(position).getContent());
+		holder.position = position;
+		holder.checkBox.setTag(position);
+		Good good = list.get(position);
+		holder.checkBox.setChecked(good.isChecked());
+
+		holder.title.setText(good.getTitle());
+		holder.showCountText.setText("X  " + good.getQuantity());
+		holder.buyCountEdit.setText("" + good.getQuantity());
+		holder.retail_price.setText("$ " + good.getRetail_price());
+		holder.wayName.setText(good.getName());
+		holder.Model_number.setText(good.getModel_number());
 		return convertView;
 	}
 
@@ -86,6 +120,9 @@ public class ShopcarAdapter extends BaseAdapter {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			ViewHolder hoder = (ViewHolder) v.getTag();
+			int position = hoder.position;
+			Good editGood = list.get(position);
+			int quantity = editGood.getQuantity();
 			switch (v.getId()) {
 			case R.id.editView:
 				LinearLayout ll_select = hoder.ll_select;
@@ -95,9 +132,9 @@ public class ShopcarAdapter extends BaseAdapter {
 						: View.VISIBLE);
 				hoder.ll_select.setVisibility(isEdit ? View.INVISIBLE
 						: View.VISIBLE);
-				hoder.cost.setVisibility(isEdit ? View.VISIBLE
+				hoder.retail_price.setVisibility(isEdit ? View.VISIBLE
 						: View.INVISIBLE);
-				hoder.editView.setText(isEdit ? "编辑" : "完成");
+				hoder.editBtn.setText(isEdit ? "编辑" : "完成");
 
 				break;
 
@@ -105,30 +142,91 @@ public class ShopcarAdapter extends BaseAdapter {
 				// do delete
 				break;
 			case R.id.reduce:
-				int now1 = Integer.parseInt(hoder.buyCountEdit.getText().toString());
-				if (now1 > 0) {
-					hoder.buyCountEdit.setText(--now1+"");
+
+				if (quantity > 0) {
+					editGood.setQuantity(--quantity);
+					hoder.buyCountEdit.setText(editGood.getQuantity() + "");
+					hoder.showCountText.setText("X  " + editGood.getQuantity());
+					if (hoder.checkBox.isChecked()) {
+						currentHowMoney -= editGood.getRetail_price();
+						howMoney.setText("合计：￥" + currentHowMoney);
+					}
 				}
 				break;
 			case R.id.add:
-				int now2 = Integer.parseInt(hoder.buyCountEdit.getText().toString());
-				hoder.buyCountEdit.setText(++now2+"");
+				editGood.setQuantity(++quantity);
+				hoder.buyCountEdit.setText(editGood.getQuantity() + "");
+				hoder.showCountText.setText("X  " + editGood.getQuantity());
+				if (hoder.checkBox.isChecked()) {
+					currentHowMoney += editGood.getRetail_price();
+					howMoney.setText("合计：￥" + currentHowMoney);
+				}
 				break;
 
 			}
 
 		}
 	};
+	private int flag=0;
+	private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
+
+		@Override
+		public void onCheckedChanged(CompoundButton buttonView,
+				boolean isChecked) {
+			// TODO Auto-generated method stub
+			if (selectAll_cb == buttonView) {
+				for (int index = 0; index < list.size(); index++) {
+					list.get(index).setChecked(isChecked);
+				}
+//				currentHowMoney = 0;
+//				if (isChecked) {
+//					for (int index = 0; index < list.size(); index++) {
+//						Good g = list.get(index);
+//						currentHowMoney += g.getRetail_price()
+//								* g.getQuantity();
+//					}
+//				}
+				//howMoney.setText("合计：￥" + currentHowMoney);
+				notifyDataSetChanged();
+			} else {
+				if(isChecked){
+					flag++;
+				}else{
+					flag--;
+				}
+				if(flag==0){
+					selectAll_cb.setChecked(false);
+				}else if(flag==list.size()){
+					selectAll_cb.setChecked(true);
+				}
+				int position = (Integer) buttonView.getTag();
+				Good good = list.get(position);
+				good.setChecked(isChecked);
+				currentHowMoney += (isChecked ? good.getRetail_price()
+						* good.getQuantity() : -good.getRetail_price()
+						* good.getQuantity());
+				howMoney.setText("合计：￥" + currentHowMoney);
+				Log.e("print", "currentHowMoney:"+currentHowMoney);
+			}
+
+		}
+	};
 
 	public final class ViewHolder {
-		public TextView content;
+		private int position;
+		private CheckBox checkBox;
+		private TextView title;
+
 		/*** 编辑按钮 ***/
-		private TextView editView;
+		private TextView editBtn;
 		private LinearLayout ll_select;
-		private View cost;
+		private TextView retail_price;
 		private View delete;
 		private EditText buyCountEdit;
+		private TextView showCountText;
 		private View reduce;
 		private View add;
+		public TextView Model_number;
+		public TextView wayName;
 	}
 }
