@@ -1,7 +1,8 @@
-package com.example.zf_android.trade;
+package com.example.zf_android.trade.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
@@ -21,6 +22,7 @@ public class LetterListView extends View {
             "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     int choose = -1;
     Paint paint = new Paint();
+    boolean showBg = false;
 
     public LetterListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -38,6 +40,9 @@ public class LetterListView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        if (showBg) {
+            canvas.drawColor(Color.parseColor("#e5e5e5"));
+        }
         int height = getHeight();
         int width = getWidth();
         int singleHeight = height / b.length;
@@ -68,6 +73,7 @@ public class LetterListView extends View {
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                showBg = true;
                 if (oldChoose != c && listener != null) {
                     if (c >= 0 && c < b.length) {
                         listener.onTouchingLetterChanged(b[c]);
@@ -75,7 +81,6 @@ public class LetterListView extends View {
                         invalidate();
                     }
                 }
-
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (oldChoose != c && listener != null) {
@@ -87,6 +92,7 @@ public class LetterListView extends View {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                showBg = false;
                 choose = -1;
                 invalidate();
                 break;

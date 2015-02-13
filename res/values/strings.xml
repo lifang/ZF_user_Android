@@ -17,6 +17,8 @@
     <string name="refresh_toomuch">刷新频繁，请稍后再试</string>
     <string name="remeberpass">忘记密码</string>
 
+    <!-- 交易流水模块 -->
+
     <string name="title_trade_flow">交易流水</string>
     <string name="title_trade_client">选择终端</string>
     <string name="title_trade_statistic">统计结果</string>
@@ -24,6 +26,11 @@
     <string name="title_city_select">选择城市</string>
 
     <string name="toast_end_date_error">结束时间不能小于开始时间</string>
+
+    <string name="loading_data">加载数据...</string>
+    <string name="load_data_failed">加载数据失败</string>
+    <string name="network_info">无法连接到网络</string>
+    <string name="notation_yuan">￥</string>
 
     <string-array name="trade_flow_tabs">
         <item>转账</item>
@@ -68,10 +75,17 @@
         <item>分润金额</item>
         <item>交易金额</item>
         <item>交易时间</item>
-        <item>交易金额</item>
+        <item>交易状态</item>
         <item>交易批次号</item>
         <item>交易流水号</item>
         <item>付款银行号</item>
+    </string-array>
+
+    <string-array name="trade_status">
+        <item></item>
+        <item>待付款</item>
+        <item>交易完成</item>
+        <item>交易失败</item>
     </string-array>
 
     <string name="city_current">当前</string>

@@ -1,4 +1,4 @@
-package com.example.zf_android.trade;
+package com.example.zf_android.trade.widget;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
