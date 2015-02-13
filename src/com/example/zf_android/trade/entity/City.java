@@ -1,9 +1,11 @@
 package com.example.zf_android.trade.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Leo on 2015/2/11.
  */
-public class City {
+public class City implements Serializable {
     private int id;
     private String name;
     private int parentId;
@@ -39,6 +41,14 @@ public class City {
 
     public void setPinyin(String pinyin) {
         this.pinyin = pinyin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (null == o) return false;
+        if (!(o instanceof City)) return false;
+        City that = (City) o;
+        return that.getId() == this.getId();
     }
 
     @Override

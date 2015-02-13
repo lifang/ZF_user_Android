@@ -14,8 +14,11 @@ import android.widget.TextView;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
+import com.example.zf_android.trade.entity.City;
+import com.example.zf_android.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class Main extends BaseActivity implements OnClickListener{
@@ -28,7 +31,11 @@ public class Main extends BaseActivity implements OnClickListener{
     private TextView cityTextView;
     private int cityId;
     private String cityName;
+
+    private Province province;
+    private City city;
     public static final int REQUEST_CITY = 1;
+    public static final int REQUEST_CITY_WHEEL = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,9 +118,16 @@ public class Main extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
         case R.id.titleback_linear_back: // 选择城市
-            Intent intent = new Intent(Main.this, CitySelectActivity.class);
-            intent.putExtra(CitySelectActivity.CITY_NAME, cityTextView.getText().toString());
-            startActivityForResult(intent, REQUEST_CITY);
+            // 城市选择
+//            Intent intent = new Intent(Main.this, CitySelectActivity.class);
+//            intent.putExtra(CitySelectActivity.CITY_NAME, cityTextView.getText().toString());
+//            startActivityForResult(intent, REQUEST_CITY);
+
+            // 省市联动选择
+            Intent intent = new Intent(Main.this, CityProvinceActivity.class);
+            intent.putExtra(CityProvinceActivity.SELECTED_PROVINCE, province);
+            intent.putExtra(CityProvinceActivity.SELECTED_CITY, city);
+            startActivityForResult(intent, REQUEST_CITY_WHEEL);
             break;
 
 		case R.id.main_rl_pos1:  // 买POS机器
@@ -169,6 +183,11 @@ public class Main extends BaseActivity implements OnClickListener{
                 cityId = data.getIntExtra(CitySelectActivity.CITY_ID, 0);
                 cityName = data.getStringExtra(CitySelectActivity.CITY_NAME);
                 cityTextView.setText(cityName);
+                break;
+            case REQUEST_CITY_WHEEL:
+                province = (Province) data.getSerializableExtra(CityProvinceActivity.SELECTED_PROVINCE);
+                city = (City) data.getSerializableExtra(CityProvinceActivity.SELECTED_CITY);
+                cityTextView.setText(city.getName());
                 break;
         }
     }
