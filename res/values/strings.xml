@@ -89,5 +89,13 @@
     </string-array>
 
     <string name="city_current">当前</string>
+	
+	<!-- 售后记录 -->
+	<string name="after_sale_maintain">维修记录</string>
+	<string name="after_sale_return">退货记录</string>
+	<string name="after_sale_cancel">注销记录</string>
+	<string name="after_sale_change">换货记录</string>
+	<string name="after_sale_update">更新资料记录</string>
+	<string name="after_sale_lease">租赁退还记录</string>
 
 </resources>

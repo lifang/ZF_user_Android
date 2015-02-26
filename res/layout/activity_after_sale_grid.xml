@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+	<include layout="@layout/title_back"/>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="17dp">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="80dp"
+			android:orientation="horizontal">
+
+			<TextView
+				style="@style/TextGrid"
+				android:drawableTop="@drawable/after_sale_maintain"
+				android:text="@string/after_sale_maintain"/>
+
+			<View style="@style/CutLine"/>
+
+			<TextView
+				style="@style/TextGrid"
+				android:drawableTop="@drawable/after_sale_return"
+				android:text="@string/after_sale_return"/>
+
+			<View style="@style/CutLine"/>
+
+			<TextView
+				style="@style/TextGrid"
+				android:drawableTop="@drawable/after_sale_cancel"
+				android:text="@string/after_sale_cancel"/>
+
+		</LinearLayout>
+
+		<View style="@style/Divider"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="80dp"
+			android:orientation="horizontal">
+
+			<TextView
+				style="@style/TextGrid"
+				android:drawableTop="@drawable/after_sale_change"
+				android:text="@string/after_sale_change"/>
+
+			<View style="@style/CutLine"/>
+
+			<TextView
+				style="@style/TextGrid"
+				android:drawableTop="@drawable/after_sale_update"
+				android:text="@string/after_sale_update"/>
+
+			<View style="@style/CutLine"/>
+
+			<TextView
+				style="@style/TextGrid"
+				android:drawableTop="@drawable/after_sale_lease"
+				android:text="@string/after_sale_lease"/>
+
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

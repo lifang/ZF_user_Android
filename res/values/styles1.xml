@@ -1,100 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Divider">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1px</item>
-        <item name="android:background">@color/Viewc2</item>
-    </style>
+	<style name="Divider">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">1px</item>
+		<item name="android:background">@color/Viewc2</item>
+	</style>
 
-    <style name="TextBase">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+	<style name="TextBase">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
 
-    <style name="TextItem" parent="TextBase">
-        <item name="android:textColor">@color/text535252</item>
-        <item name="android:textSize">@dimen/s_17sp</item>
-    </style>
+	<style name="TextItem" parent="TextBase">
+		<item name="android:textColor">@color/text535252</item>
+		<item name="android:textSize">@dimen/s_17sp</item>
+	</style>
 
-    <style name="TextItem.Relative" parent="TextItem">
-        <item name="android:layout_centerVertical">true</item>
-    </style>
+	<style name="TextItem.Relative" parent="TextItem">
+		<item name="android:layout_centerVertical">true</item>
+	</style>
 
-    <style name="TextTrace" parent="TextBase">
-        <item name="android:textColor">@color/text6c6c6c6</item>
-    </style>
+	<style name="TextTrace" parent="TextBase">
+		<item name="android:textColor">@color/text6c6c6c6</item>
+	</style>
 
-    <style name="TextTrace.Left" parent="TextTrace">
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:textSize">@dimen/s_12sp</item>
-        <item name="android:layout_gravity">center_vertical|right</item>
-    </style>
+	<style name="TextTrace.Left" parent="TextTrace">
+		<item name="android:layout_height">0dp</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:textSize">@dimen/s_12sp</item>
+		<item name="android:layout_gravity">center_vertical|right</item>
+	</style>
 
-    <style name="TextTrace.Right" parent="TextTrace">
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:textSize">@dimen/s_12sp</item>
-        <item name="android:gravity">center_vertical|left</item>
-    </style>
+	<style name="TextTrace.Right" parent="TextTrace">
+		<item name="android:layout_height">0dp</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:textSize">@dimen/s_12sp</item>
+		<item name="android:gravity">center_vertical|left</item>
+	</style>
 
-    <style name="TextTrace.Big" parent="TextTrace">
-        <item name="android:textSize">@dimen/s_17sp</item>
-    </style>
+	<style name="TextTrace.Big" parent="TextTrace">
+		<item name="android:textSize">@dimen/s_17sp</item>
+	</style>
 
-    <style name="TextTrace.Statistic" parent="TextTrace">
-        <item name="android:textSize">@dimen/s_14sp</item>
-        <item name="android:layout_marginLeft">12dp</item>
-    </style>
+	<style name="TextTrace.Statistic" parent="TextTrace">
+		<item name="android:textSize">@dimen/s_14sp</item>
+		<item name="android:layout_marginLeft">12dp</item>
+	</style>
 
-    <style name="TextStatistic" parent="TextBase">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:layout_marginLeft">24dp</item>
-    </style>
+	<style name="TextStatistic" parent="TextBase">
+		<item name="android:textColor">@color/white</item>
+		<item name="android:layout_marginLeft">24dp</item>
+	</style>
 
-    <style name="TextStatistic.Small" parent="TextStatistic">
-        <item name="android:textSize">@dimen/s_14sp</item>
-    </style>
+	<style name="TextStatistic.Small" parent="TextStatistic">
+		<item name="android:textSize">@dimen/s_14sp</item>
+	</style>
 
-    <style name="TextDetail.Top" parent="TextBase">
-        <item name="android:textColor">@color/text292929</item>
-        <item name="android:textSize">@dimen/s_13sp</item>
-        <item name="android:layout_marginTop">12dp</item>
-    </style>
+	<style name="TextDetail.Top" parent="TextBase">
+		<item name="android:textColor">@color/text292929</item>
+		<item name="android:textSize">@dimen/s_13sp</item>
+		<item name="android:layout_marginTop">12dp</item>
+	</style>
 
-    <style name="TextDetail.Title" parent="TextBase">
-        <item name="android:textColor">@color/text6c6c6c6</item>
-        <item name="android:textSize">@dimen/s_17sp</item>
-    </style>
+	<style name="TextDetail.Title" parent="TextBase">
+		<item name="android:textColor">@color/text6c6c6c6</item>
+		<item name="android:textSize">@dimen/s_17sp</item>
+	</style>
 
-    <style name="TextDetail.Info" parent="TextBase">
-        <item name="android:textColor">@color/text6c6c6c6</item>
-        <item name="android:textSize">@dimen/s_13sp</item>
-    </style>
+	<style name="TextDetail.Info" parent="TextBase">
+		<item name="android:textColor">@color/text6c6c6c6</item>
+		<item name="android:textSize">@dimen/s_13sp</item>
+	</style>
 
-    <style name="TextCity" parent="TextBase">
-        <item name="android:textColor">@color/text292929</item>
-        <item name="android:textSize">@dimen/s_17sp</item>
-    </style>
+	<style name="TextCity" parent="TextBase">
+		<item name="android:textColor">@color/text292929</item>
+		<item name="android:textSize">@dimen/s_17sp</item>
+	</style>
 
-    <style name="Dialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:backgroundDimEnabled">true</item>
-    </style>
+	<style name="Dialog" parent="@android:style/Theme.Dialog">
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowIsFloating">true</item>
+		<item name="android:windowIsTranslucent">false</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+		<item name="android:backgroundDimEnabled">true</item>
+	</style>
 
-    <style name="Progress">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:maxWidth">50.0dip</item>
-        <item name="android:maxHeight">50.0dip</item>
-        <item name="android:minWidth">50.0dip</item>
-        <item name="android:minHeight">50.0dip</item>
-    </style>
+	<style name="Progress">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:maxWidth">50.0dip</item>
+		<item name="android:maxHeight">50.0dip</item>
+		<item name="android:minWidth">50.0dip</item>
+		<item name="android:minHeight">50.0dip</item>
+	</style>
+
+	<style name="CutLine">
+		<item name="android:layout_width">1px</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:background">@color/Viewc2</item>
+	</style>
+
+	<style name="TextGrid">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="android:gravity">bottom|center_horizontal</item>
+		<item name="android:clickable">true</item>
+		<item name="android:background">@drawable/item_pressed</item>
+	</style>
 
 </resources>
