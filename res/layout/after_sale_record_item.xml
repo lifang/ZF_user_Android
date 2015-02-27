@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white">
+
+    <View style="@style/Divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/record_number_title"
+                    style="@style/TextTrace.Small"/>
+
+                <TextView
+                    android:id="@+id/record_number"
+                    style="@style/TextTrace.Small"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/record_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                style="@style/TextTrace.Small"/>
+        </LinearLayout>
+
+        <View style="@style/Divider"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    style="@style/TextTrace.Record"
+                    android:text="终端号"/>
+
+                <TextView
+                    style="@style/TextItem.Record"
+                    android:text="终端号"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_alignParentLeft="true">
+
+                    <TextView
+                        style="@style/TextTrace.Record"
+                        android:text="终端号"/>
+
+                    <TextView
+                        style="@style/TextItem.Record"
+                        android:text="终端号"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/trade_end_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/post_right"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View style="@style/Divider"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/trade_search"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/d_12dp"
+                android:text="@string/trade_search"
+                android:textColor="@color/blank_button_selector"
+                android:background="@drawable/blank_button_selector"/>
+
+            <Button
+                android:id="@+id/trade_statistic"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/d_12dp"
+                android:text="付款"
+                android:textColor="@color/white"
+                android:background="@drawable/normal_button_selector"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/Divider"/>
+
+</LinearLayout>
