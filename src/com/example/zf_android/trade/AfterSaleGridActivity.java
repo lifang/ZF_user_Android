@@ -51,32 +51,25 @@ public class AfterSaleGridActivity extends Activity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.after_sale_maintain:
                 recordType = AfterSaleListActivity.RECORD_MAINTAIN;
-                recordTitle = getString(R.string.after_sale_maintain);
                 break;
             case R.id.after_sale_return:
                 recordType = AfterSaleListActivity.RECORD_RETURN;
-                recordTitle = getString(R.string.after_sale_return);
                 break;
             case R.id.after_sale_cancel:
                 recordType = AfterSaleListActivity.RECORD_CANCEL;
-                recordTitle = getString(R.string.after_sale_cancel);
                 break;
             case R.id.after_sale_change:
                 recordType = AfterSaleListActivity.RECORD_CHANGE;
-                recordTitle = getString(R.string.after_sale_change);
                 break;
             case R.id.after_sale_update:
                 recordType = AfterSaleListActivity.RECORD_UPDATE;
-                recordTitle = getString(R.string.after_sale_update);
                 break;
             case R.id.after_sale_lease:
                 recordType = AfterSaleListActivity.RECORD_LEASE;
-                recordTitle = getString(R.string.after_sale_lease);
                 break;
         }
         Intent intent = new Intent(this, AfterSaleListActivity.class);
         intent.putExtra(AfterSaleListActivity.RECORD_TYPE, recordType);
-        intent.putExtra(AfterSaleListActivity.RECORD_TITLE, recordTitle);
         startActivity(intent);
     }
 }

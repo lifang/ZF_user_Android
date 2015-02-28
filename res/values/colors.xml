@@ -104,6 +104,6 @@
     <color name="trade_statistic_bg">#212029</color>
     <color name="background_dark">#9f000000</color>
 
-	<color name="background_pressed">#e5e5e5</color>
+	<color name="background_pressed">#dedede</color>
 
 </resources>

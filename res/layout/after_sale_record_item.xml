@@ -3,130 +3,155 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/white">
+              android:background="@drawable/item_white_pressed"
+              android:clickable="true">
 
-    <View style="@style/Divider"/>
+	<View style="@style/Divider"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:paddingLeft="12dp"
+		android:paddingRight="12dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:orientation="horizontal">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="22dp"
+			android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/record_number_title"
-                    style="@style/TextTrace.Small"/>
+				<TextView
+					android:id="@+id/after_sale_number_title"
+					style="@style/TextTrace.Small"/>
 
-                <TextView
-                    android:id="@+id/record_number"
-                    style="@style/TextTrace.Small"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
+				<TextView
+					android:id="@+id/after_sale_number"
+					style="@style/TextTrace.Small"
+					android:layout_marginLeft="5dp"/>
+			</LinearLayout>
 
-            <TextView
-                android:id="@+id/record_time"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                style="@style/TextTrace.Small"/>
-        </LinearLayout>
+			<TextView
+				android:id="@+id/after_sale_time"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				style="@style/TextTrace.Small"/>
+		</LinearLayout>
 
-        <View style="@style/Divider"/>
+		<View style="@style/Divider"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:layout_weight="1">
 
-                <TextView
-                    style="@style/TextTrace.Record"
-                    android:text="终端号"/>
+				<TextView
+					style="@style/TextTrace.Record"
+					android:text="@string/after_sale_terminal"/>
 
-                <TextView
-                    style="@style/TextItem.Record"
-                    android:text="终端号"/>
-            </LinearLayout>
+				<TextView
+					android:id="@+id/after_sale_terminal"
+					style="@style/TextItem.Record"/>
+			</LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+			<RelativeLayout
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_alignParentLeft="true">
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:orientation="vertical"
+					android:layout_alignParentLeft="true">
 
-                    <TextView
-                        style="@style/TextTrace.Record"
-                        android:text="终端号"/>
+					<TextView
+						style="@style/TextTrace.Record"
+						android:text="@string/after_sale_status"/>
 
-                    <TextView
-                        style="@style/TextItem.Record"
-                        android:text="终端号"/>
-                </LinearLayout>
+					<TextView
+						android:id="@+id/after_sale_status"
+						style="@style/TextItem.Record"/>
+				</LinearLayout>
 
-                <ImageView
-                    android:id="@+id/trade_end_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/post_right"/>
-            </RelativeLayout>
-        </LinearLayout>
+				<ImageView
+					android:id="@+id/trade_end_arrow"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentRight="true"
+					android:layout_centerVertical="true"
+					android:src="@drawable/post_right"/>
+			</RelativeLayout>
+		</LinearLayout>
 
-        <View style="@style/Divider"/>
+		<LinearLayout
+			android:id="@+id/after_sale_button_container"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:visibility="gone">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:orientation="horizontal">
+			<View style="@style/Divider"/>
 
-            <Button
-                android:id="@+id/trade_search"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:layout_marginRight="@dimen/d_12dp"
-                android:text="@string/trade_search"
-                android:textColor="@color/blank_button_selector"
-                android:background="@drawable/blank_button_selector"/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="12dp"
+				android:layout_marginBottom="12dp"
+				android:gravity="center_horizontal"
+				android:orientation="horizontal"
+				android:clickable="true">
 
-            <Button
-                android:id="@+id/trade_statistic"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/d_12dp"
-                android:text="付款"
-                android:textColor="@color/white"
-                android:background="@drawable/normal_button_selector"/>
+				<Button
+					android:id="@+id/after_sale_button_left"
+					android:layout_width="0dp"
+					android:layout_height="40dp"
+					android:layout_weight="1"
+					android:layout_marginRight="@dimen/d_12dp"
+					android:textColor="@color/blank_button_selector"
+					android:background="@drawable/blank_button_selector"
+					android:visibility="visible"/>
 
-        </LinearLayout>
+				<Button
+					android:id="@+id/after_sale_button_right"
+					android:layout_width="0dp"
+					android:layout_height="40dp"
+					android:layout_weight="1"
+					android:layout_marginLeft="@dimen/d_12dp"
+					android:textColor="@color/white"
+					android:background="@drawable/normal_button_selector"
+					android:visibility="visible"/>
 
-    </LinearLayout>
+				<Button
+					android:id="@+id/after_sale_button_center"
+					android:layout_width="154dp"
+					android:layout_height="40dp"
+					android:textColor="@color/white"
+					android:background="@drawable/normal_button_selector"
+					android:visibility="gone"/>
 
-    <View style="@style/Divider"/>
+				<Button
+					android:id="@+id/after_sale_button_center_blank"
+					android:layout_width="154dp"
+					android:layout_height="40dp"
+					android:textColor="@color/blank_button_selector"
+					android:background="@drawable/blank_button_selector"
+					android:visibility="gone"/>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+
+	<View style="@style/Divider"/>
 
 </LinearLayout>

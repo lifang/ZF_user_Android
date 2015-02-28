@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="trade_status">
+		<item></item>
+		<item>待付款</item>
+		<item>交易完成</item>
+		<item>交易失败</item>
+	</string-array>
+
+	<string-array name="maintain_status">
+		<item></item>
+		<item>未付款</item>
+		<item>待发回</item>
+		<item>维修中</item>
+		<item>处理完成</item>
+		<item>已取消</item>
+	</string-array>
+
+	<string-array name="return_status">
+		<item></item>
+		<item>待处理</item>
+		<item>退货中</item>
+		<item></item>
+		<item>处理完成</item>
+		<item>已取消</item>
+	</string-array>
+
+	<string-array name="cancel_status">
+		<item></item>
+		<item>待处理</item>
+		<item>处理中</item>
+		<item></item>
+		<item>处理完成</item>
+		<item>已取消</item>
+	</string-array>
+
+	<string-array name="change_status">
+		<item></item>
+		<item>待处理</item>
+		<item>换货中</item>
+		<item></item>
+		<item>处理完成</item>
+		<item>已取消</item>
+	</string-array>
+
+	<string-array name="update_status">
+		<item></item>
+		<item>待处理</item>
+		<item>处理中</item>
+		<item></item>
+		<item>处理完成</item>
+		<item>已取消</item>
+	</string-array>
+
+	<string-array name="lease_status">
+		<item></item>
+		<item>待处理</item>
+		<item>退还中</item>
+		<item></item>
+		<item>处理完成</item>
+		<item>已取消</item>
+	</string-array>
+
+</resources>
