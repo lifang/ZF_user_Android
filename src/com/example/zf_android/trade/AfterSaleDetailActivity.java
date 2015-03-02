@@ -149,7 +149,6 @@ public class AfterSaleDetailActivity extends Activity {
 						mButton1.setText(getString(R.string.button_cancel_apply));
 						mButton1.setOnClickListener(mCancelApplyListener);
 						CommonUtil.toastShort(AfterSaleDetailActivity.this, getString(R.string.toast_resubmit_cancel_success));
-						getData();
 					}
 
 					@Override
@@ -380,6 +379,7 @@ public class AfterSaleDetailActivity extends Activity {
 			switch (requestCode) {
 				case AfterSaleListActivity.REQUEST_MARK:
 					CommonUtil.toastShort(this, getString(R.string.toast_add_mark_success));
+					getData();
 					break;
 			}
 		}
