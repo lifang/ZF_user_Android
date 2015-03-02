@@ -20,7 +20,7 @@ import com.example.zf_android.R;
 *
  */
 public class About extends BaseActivity implements OnClickListener{
-	
+	private int a;
  
 	
 	@Override
