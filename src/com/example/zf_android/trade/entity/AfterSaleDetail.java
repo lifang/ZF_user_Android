@@ -37,6 +37,9 @@ public class AfterSaleDetail {
 
 	private Page<Comment> comments;
 
+	@SerializedName("resource_info")
+	private List<ResourceInfo> resourceInfos;
+
 	public int getId() {
 		return id;
 	}
@@ -115,5 +118,13 @@ public class AfterSaleDetail {
 
 	public void setComments(Page<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public List<ResourceInfo> getResourceInfos() {
+		return resourceInfos;
+	}
+
+	public void setResourceInfos(List<ResourceInfo> resourceInfos) {
+		this.resourceInfos = resourceInfos;
 	}
 }

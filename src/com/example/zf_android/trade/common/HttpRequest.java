@@ -78,6 +78,6 @@ public class HttpRequest {
             callback.onFailure(context.getString(R.string.network_info));
             return;
         }
-        client.post(context, url, null, entity, "application/json", responseHandler);
+        client.post(context, url, null, entity, "application/json; charset=utf-8", responseHandler);
     }
 }

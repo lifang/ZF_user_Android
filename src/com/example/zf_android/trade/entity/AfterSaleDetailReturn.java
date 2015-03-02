@@ -1,6 +1,10 @@
 package com.example.zf_android.trade.entity;
 
+import android.content.res.Resources;
+
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Created by Leo on 2015/2/28.

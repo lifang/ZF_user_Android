@@ -135,10 +135,18 @@
 		    android:name=".trade.AfterSaleDetailActivity"
 		    android:screenOrientation="portrait" >
 	    </activity>
+	    <activity
+		    android:name=".trade.AfterSalePayActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
         <activity
             android:name=".trade.AfterSaleMarkActivity"
             android:screenOrientation="portrait" >
         </activity>
+	    <activity
+		    android:name=".trade.AfterSaleMaterialActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
 
         <activity
             android:name="com.example.zf_android.activity.SystemDetail"
