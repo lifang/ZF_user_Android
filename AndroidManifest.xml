@@ -123,6 +123,30 @@
             android:name=".trade.CityProvinceActivity"
             android:screenOrientation="portrait" >
         </activity>
+	    <activity
+		    android:name=".trade.AfterSaleGridActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.AfterSaleListActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.AfterSaleDetailActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.AfterSalePayActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+        <activity
+            android:name=".trade.AfterSaleMarkActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+	    <activity
+		    android:name=".trade.AfterSaleMaterialActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
 
         <activity
             android:name="com.example.zf_android.activity.SystemDetail"
