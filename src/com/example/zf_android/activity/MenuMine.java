@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.AfterSaleGridActivity;
 
 public class MenuMine extends BaseActivity implements OnClickListener{
 	private ImageView search;
@@ -54,7 +55,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.ll_shjl: 
 			 
-			startActivity(new Intent(MenuMine.this,OrderList.class));
+			startActivity(new Intent(MenuMine.this,AfterSaleGridActivity.class));
 			break;
 		case R.id.ll_wdxx: 
 		 

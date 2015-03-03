@@ -2,14 +2,15 @@ package com.example.zf_android.trade.common;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.zf_android.R;
-import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 
 /**
  * Created by Leo on 2015/2/11.
@@ -33,7 +34,10 @@ public class HttpRequest {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                Response data = JsonParser.fromJson(responseString, callback.getTypeToken());
+                Log.e("", responseString);
+                Response data = null == callback.getTypeToken() ?
+                        JsonParser.fromJson(responseString, Response.class) :
+                        JsonParser.fromJson(responseString, callback.getTypeToken());
                 if (data.getCode() == 1) {
                     callback.onSuccess(data.getResult());
                 } else if (!TextUtils.isEmpty(data.getMessage())) {
@@ -67,5 +71,14 @@ public class HttpRequest {
             return;
         }
         client.post(url, requestParams, responseHandler);
+    }
+
+    public void post(String url, HttpEntity entity) {
+        if (!NetworkUtil.isNetworkAvailable(context)) {
+            callback.onFailure(context.getString(R.string.network_info));
+            return;
+        }
+     //   client.post(context, url, null, entity, "application/json; charset=utf-8", responseHandler);
+        client.post(context, url, null, entity, "application/json", responseHandler);
     }
 }

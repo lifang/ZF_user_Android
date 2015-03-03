@@ -157,7 +157,6 @@ public class CitySelectActivity extends Activity {
                             overlay.setText(s);
                             overlay.setVisibility(View.VISIBLE);
                             handler.removeCallbacks(overlayThread);
-                            // 延迟一秒后执行，让overlay为不可见
                             handler.postDelayed(overlayThread, 1500);
                         }
                     }
