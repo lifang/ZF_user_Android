@@ -34,6 +34,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="7dp"
             android:layout_weight="1"
+            android:hint="搜索商品"
             android:drawableLeft="@drawable/search_bg" />
 
         <ImageView
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="7dp"
-            android:background="@drawable/shopping2" />
+            android:background="@drawable/car11" />
 
         <ImageView
             android:id="@+id/search2"
@@ -51,7 +52,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
-            android:background="@drawable/shopping2" />
+            android:background="@drawable/car22" />
     </LinearLayout>
     <View
             android:layout_width="fill_parent"
@@ -76,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:text="默认排序"
                 android:textSize="13sp"
-                android:textColor="@color/bg_575D5F" />
+                android:textColor="@color/bgtitle" />
         </LinearLayout>
 
         <View
@@ -152,6 +153,18 @@
             android:layout_height="1dp"
           
             android:background="#ADAEAF" />
+     <LinearLayout
+        android:id="@+id/eva_nodata"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+      
+        android:layout_gravity="center"
+        android:background="@color/ffffff"
+        android:orientation="horizontal" 
+        android:visibility="gone">
+
+        <include layout="@layout/include_norecord" />
+    </LinearLayout>
  <com.examlpe.zf_android.util.XListView
         android:id="@+id/x_listview"
         android:layout_width="fill_parent"

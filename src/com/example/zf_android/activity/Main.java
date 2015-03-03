@@ -166,6 +166,7 @@ public class Main extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.main_rl_lxwm: //联系我们
 			 startActivity(new Intent(Main.this,ContentUs.class));
+			 break;
 		case R.id.main_rl_gwc:  
 			 startActivity(new Intent(Main.this,ShopCar.class));
 			break;

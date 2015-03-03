@@ -14,4 +14,7 @@ public class Config {
 	public static final String FINDPASS = null;
 	public final static String RegistgetCode = PATHS+"user/sendPhoneVerificationCode/";
 	public static final String GRTONE =PATHS+"customers/getOne/";
+	//http://114.215.149.242:18080/ZFMerchant/api/cart/update
+	public static final String Car_edit =PATHS+"cart/update";
+	public static final int CODE = 1;
 }

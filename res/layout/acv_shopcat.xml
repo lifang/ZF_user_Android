@@ -76,7 +76,8 @@
 
             <TextView
                 android:id="@+id/howMoney"
-                android:layout_width="150dp"
+                android:layout_width="fill_parent"
+                android:gravity="right"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:text="合计：￥0"

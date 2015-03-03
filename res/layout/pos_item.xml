@@ -61,7 +61,7 @@
                	android:layout_gravity="center_vertical"
 			    >
                            <TextView
-        
+        		android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
              
@@ -79,13 +79,13 @@
                 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               
+               	android:id="@+id/ys"
  				android:textColor="@color/text292929"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:layout_gravity="center_vertical"
             
-                android:text="支付宝"
+                android:text="已售99"
                 android:textSize="11sp" />
                   </LinearLayout>
             </LinearLayout>
@@ -150,7 +150,7 @@
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="11sp" />
 			                  <TextView
-                
+                android:id="@+id/tv_td"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
              	android:layout_marginLeft="7dp"

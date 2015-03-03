@@ -2,11 +2,19 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
+import org.apache.http.Header;
+
+import com.example.zf_android.Config;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.activity.ShopCar;
+import com.example.zf_android.entity.MyShopCar;
 import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_android.entity.MyShopCar.Good;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -108,6 +116,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.title.setText(good.getTitle());
 		holder.showCountText.setText("X  " + good.getQuantity());
 		holder.buyCountEdit.setText("" + good.getQuantity());
+		holder.buyCountEdit.getText();
 		holder.retail_price.setText("$ " + good.getRetail_price());
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
@@ -122,7 +131,8 @@ public class ShopcarAdapter extends BaseAdapter {
 			ViewHolder hoder = (ViewHolder) v.getTag();
 			int position = hoder.position;
 			Good editGood = list.get(position);
-			int quantity = editGood.getQuantity();
+		  	int quantity = editGood.getQuantity();
+		 	//int quantity = Integer.parseInt(holder.buyCountEdit.getText().toString());
 			switch (v.getId()) {
 			case R.id.editView:
 				LinearLayout ll_select = hoder.ll_select;
@@ -135,7 +145,10 @@ public class ShopcarAdapter extends BaseAdapter {
 				hoder.retail_price.setVisibility(isEdit ? View.VISIBLE
 						: View.INVISIBLE);
 				hoder.editBtn.setText(isEdit ? "编辑" : "完成");
-
+				if(isEdit){
+						System.out.println(position+"----"+Integer.parseInt( hoder.buyCountEdit.getText().toString()));
+					 changeContent(position, Integer.parseInt( hoder.buyCountEdit.getText().toString()));
+				}
 				break;
 
 			case R.id.delete:
@@ -151,6 +164,8 @@ public class ShopcarAdapter extends BaseAdapter {
 						currentHowMoney -= editGood.getRetail_price();
 						howMoney.setText("合计：￥" + currentHowMoney);
 					}
+					System.out.println("位置---"+position+quantity);
+				    changeContent(position, quantity);
 				}
 				break;
 			case R.id.add:
@@ -161,6 +176,7 @@ public class ShopcarAdapter extends BaseAdapter {
 					currentHowMoney += editGood.getRetail_price();
 					howMoney.setText("合计：￥" + currentHowMoney);
 				}
+				 changeContent(position, quantity);
 				break;
 
 			}
@@ -178,15 +194,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				for (int index = 0; index < list.size(); index++) {
 					list.get(index).setChecked(isChecked);
 				}
-//				currentHowMoney = 0;
-//				if (isChecked) {
-//					for (int index = 0; index < list.size(); index++) {
-//						Good g = list.get(index);
-//						currentHowMoney += g.getRetail_price()
-//								* g.getQuantity();
-//					}
-//				}
-				//howMoney.setText("合计：￥" + currentHowMoney);
+ 
 				notifyDataSetChanged();
 			} else {
 				if(isChecked){
@@ -211,7 +219,42 @@ public class ShopcarAdapter extends BaseAdapter {
 
 		}
 	};
+	public void changeContent(final int index,final int cont){
+		 
+			// TODO Auto-generated method stub
+			String url =  Config.Car_edit;
+			RequestParams params = new RequestParams();
+			params.put("id", list.get(index).getId());
+			params.put("quantity", cont);
+			params.setUseJsonStreamer(true);
 
+			MyApplication.getInstance().getClient()
+					.post(url, params, new AsyncHttpResponseHandler() {
+
+						@Override
+						public void onSuccess(int statusCode, Header[] headers,
+								byte[] responseBody) {
+							String responseMsg = new String(responseBody)
+									.toString();
+							Log.e("print", responseMsg);
+
+						 list.get(index).setQuantity(cont);
+						 notifyDataSetChanged();
+
+						}
+
+						@Override
+						public void onFailure(int statusCode, Header[] headers,
+								byte[] responseBody, Throwable error) {
+							// TODO Auto-generated method stub
+							System.out.println("-onFailure---");
+							Log.e("print", "-onFailure---" + error);
+						}
+					});
+	 
+		 
+		 
+	}
 	public final class ViewHolder {
 		private int position;
 		private CheckBox checkBox;

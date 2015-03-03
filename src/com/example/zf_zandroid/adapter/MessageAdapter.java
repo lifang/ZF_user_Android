@@ -61,7 +61,7 @@ public class MessageAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.tv_title.setText(list.get(position).getContent());
+		holder.tv_title.setText(list.get(position).getTitle());
 		if(MyApplication.getIsSelect()){
 			 
 			holder.item_cb.setVisibility(View.VISIBLE);
