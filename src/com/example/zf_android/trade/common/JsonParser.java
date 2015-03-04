@@ -18,7 +18,7 @@ public class JsonParser {
 		JsonElement messageElement = jo.get("message");
 		String message = messageElement.isJsonNull() ? null : messageElement.getAsString();
 		JsonElement resultElement = jo.get("result");
-		String result = messageElement.isJsonNull() ? null : resultElement.getAsString();
+		String result = resultElement.isJsonNull() ? null : resultElement.getAsString();
 
 		return new Response(code, message, result);
 	}

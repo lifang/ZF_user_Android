@@ -254,7 +254,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 				accountKey.setVisibility(View.INVISIBLE);
 				receiveAccountKey.setText(getString(R.string.trade_phone_number));
 				
-				receiveAccountKey.setText(record.getPhone());
+				receiveAccount.setText(record.getPhone());
 				break;
 			}
             
