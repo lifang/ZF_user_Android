@@ -29,7 +29,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
  
-
+ 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -50,6 +51,7 @@ import com.loopj.android.http.RequestParams;
  *         comdo
  */
 public class LoginActivity extends Activity implements OnClickListener {
+	private String name,pass,url,deviceToken;
 	private ImageView loginImage;
 	private CheckBox isremeber_cb;
 	private Boolean isRemeber = true;
@@ -125,6 +127,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		login_edit_name = (EditText) findViewById(R.id.login_edit_name);
 		login_edit_pass = (EditText) findViewById(R.id.login_edit_pass);
+		
 		login_linear_deletename = (LinearLayout) findViewById(R.id.login_linear_deletename);
 		login_linear_deletepass = (LinearLayout) findViewById(R.id.login_linear_deletepass);
 		login_linear_deletepass.setOnClickListener(this);
@@ -190,12 +193,20 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.login_linear_login:
+		case R.id.login_linear_login: 
 			// µ«¬º
-			System.out.println("login```");
-			login();
+			if(check()){
+				login();
+			}
+		 
 
 			break;
+		case R.id.zhuche_ll: 
+		// µ«¬º
+		startActivity(new Intent(LoginActivity.this,Register.class));
+	 
+
+		break;
 		case R.id.login_linear_deletename:
 			login_edit_name.setText("");
 			break;
@@ -215,13 +226,13 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		params.put("username", usename);
 		params.put("password", passsword);
-	 
- 
+		params.setUseJsonStreamer(true);
+		
 		
 		String url=Config.LOGIN;
-		 
-		
-		client.post(url, params, new AsyncHttpResponseHandler() {
+		System.out.println("usename`` `" + usename);
+		System.out.println("passsword`` `" + passsword);
+		client.post(Config.LOGIN, params, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
@@ -229,7 +240,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 				// TODO Auto-generated method stub
 				String userMsg = new String(responseBody).toString();
 				System.out.println("userMsg`` `" + userMsg);
-				Log.i("dzq", userMsg);
+			 
 				Gson gson = new Gson();
 
 // 
@@ -263,11 +274,27 @@ public class LoginActivity extends Activity implements OnClickListener {
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
 				// TODO Auto-generated method stub
-				
+				System.out.println("onFailure`` `"  );
 			}
 		});
 
 	}
-
+	private boolean check() {
+		// TODO Auto-generated method stub
+		usename=StringUtil.replaceBlank(login_edit_name.getText().toString());
+		if(usename.length()==0){
+			Toast.makeText(getApplicationContext(), "«Î ‰»Î”√ªß√˚£°",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		passsword=StringUtil.replaceBlank(login_edit_pass.getText().toString());
+		if(passsword.length()==0){
+			Toast.makeText(getApplicationContext(), "«Î ‰»Î√‹¬Î£°",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		passsword=StringUtil.Md5(passsword);
+		return true;
+	}
 
 }

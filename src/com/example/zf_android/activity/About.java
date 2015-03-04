@@ -12,23 +12,23 @@ import com.example.zf_android.R;
 /***
  * 
 *    
-* ÀàÃû³Æ£ºAbout   
-* ÀàÃèÊö£º   ¹ØÓÚÒ³Ãæ
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-1-27 ÏÂÎç7:55:20   
+* ï¿½ï¿½ï¿½ï¿½Æ£ï¿½About   
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
+* ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp 
+* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-1-27 ï¿½ï¿½ï¿½ï¿½7:55:20   
 * @version    
 *
  */
 public class About extends BaseActivity implements OnClickListener{
-	
- 
+	private int a;
+	private int index;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		new TitleMenuUtil(About.this, "¹ØÓÚ").show();
+		new TitleMenuUtil(About.this, "ï¿½ï¿½ï¿½ï¿½").show();
 	}
 
 	@Override

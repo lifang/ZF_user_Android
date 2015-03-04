@@ -30,7 +30,7 @@ public class ContentUs extends BaseActivity implements OnClickListener{
 			// TODO Auto-generated method stub
 			 switch (v.getId()) {
 			case R.id.ll_pay_type:
-				 startActivity(new Intent(ContentUs.this,WantBuy.class));
+				  startActivity(new Intent(ContentUs.this,WantBuy.class));
 				break;
 
 			default:
