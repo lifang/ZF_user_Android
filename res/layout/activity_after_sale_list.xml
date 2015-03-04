@@ -2,17 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:background="@color/F3F2F2">
 
-    <include layout="@layout/title_back"/>
+	<include layout="@layout/title_back"/>
 
-    <ListView
-        android:id="@+id/after_sale_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="8dp"
-        android:background="@color/F3F2F2"
-        android:divider="@color/F3F2F2"
-        android:dividerHeight="8dp"
-        android:scrollbars="none"/>
+	<ListView
+		android:id="@+id/after_sale_list"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:paddingTop="8dp"
+		android:background="@color/F3F2F2"
+		android:divider="@color/F3F2F2"
+		android:dividerHeight="8dp"
+		android:scrollbars="none"/>
 </LinearLayout>

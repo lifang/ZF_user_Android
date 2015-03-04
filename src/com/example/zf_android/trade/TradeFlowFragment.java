@@ -1,5 +1,23 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TradeIntent.CLIENT_NUMBER;
+import static com.example.zf_android.trade.Constants.TradeIntent.END_DATE;
+import static com.example.zf_android.trade.Constants.TradeIntent.REQUEST_TRADE_CLIENT;
+import static com.example.zf_android.trade.Constants.TradeIntent.START_DATE;
+import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_RECORD_ID;
+import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_TYPE;
+import static com.example.zf_android.trade.Constants.TradeType.CONSUME;
+import static com.example.zf_android.trade.Constants.TradeType.LIFE_PAY;
+import static com.example.zf_android.trade.Constants.TradeType.PHONE_PAY;
+import static com.example.zf_android.trade.Constants.TradeType.REPAYMENT;
+import static com.example.zf_android.trade.Constants.TradeType.TRANSFER;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -8,6 +26,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,32 +37,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zf_android.R;
-import com.example.zf_android.trade.common.DialogUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeRecord;
 import com.google.gson.reflect.TypeToken;
-
-import org.w3c.dom.Text;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Leo on 2015/2/6.
  */
 public class TradeFlowFragment extends Fragment implements View.OnClickListener {
 
-    public static final String TRADE_TYPE = "trade_type";
-
-    public static final int REQUEST_TRADE_CLIENT = 0;
-
     private int mTradeType;
-
-    private Dialog dlg;
 
     private View mTradeClient;
     private TextView mTradeClientName;
@@ -100,8 +103,6 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dlg = DialogUtil.getLoadingDialg(getActivity());
-
         mTradeClient = view.findViewById(R.id.trade_client);
         mTradeClientName = (TextView) view.findViewById(R.id.trade_client_name);
 
@@ -122,6 +123,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
         mTradeSearch.setOnClickListener(this);
         mTradeStatistic.setOnClickListener(this);
 
+        // restore the saved state
         if (!TextUtils.isEmpty(tradeClientName)) {
             mTradeClientName.setText(tradeClientName);
         }
@@ -154,7 +156,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
         if (resultCode != Activity.RESULT_OK) return;
         switch (requestCode) {
             case REQUEST_TRADE_CLIENT:
-                String clientName = data.getStringExtra(TradeClientActivity.CLIENT_NUMBER);
+                String clientName = data.getStringExtra(CLIENT_NUMBER);
                 mTradeClientName.setText(clientName);
                 tradeClientName = clientName;
                 toggleButtons();
@@ -167,7 +169,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.trade_client:
                 Intent i = new Intent(getActivity(), TradeClientActivity.class);
-                i.putExtra(TradeClientActivity.CLIENT_NUMBER, tradeClientName);
+                i.putExtra(CLIENT_NUMBER, tradeClientName);
                 startActivityForResult(i, REQUEST_TRADE_CLIENT);
                 break;
             case R.id.trade_start:
@@ -179,6 +181,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
             case R.id.trade_search:
                 hasSearched = true;
                 mTradeSearchContent.setVisibility(View.VISIBLE);
+                Log.d("", "search records from trade type = " + mTradeType);
                 API.getTradeRecordList(getActivity(),
                         mTradeType, tradeClientName, tradeStartDate, tradeEndDate, 1, 100,
                         new HttpCallback<List<TradeRecord>>(getActivity()) {
@@ -198,10 +201,10 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.trade_statistic:
                 Intent intent = new Intent(getActivity(), TradeStatisticActivity.class);
-                intent.putExtra(TradeStatisticActivity.TRADE_TYPE, mTradeType);
-                intent.putExtra(TradeStatisticActivity.CLIENT_NUMBER, tradeClientName);
-                intent.putExtra(TradeStatisticActivity.START_DATE, tradeStartDate);
-                intent.putExtra(TradeStatisticActivity.END_DATE, tradeEndDate);
+                intent.putExtra(TRADE_TYPE, mTradeType);
+                intent.putExtra(CLIENT_NUMBER, tradeClientName);
+                intent.putExtra(START_DATE, tradeStartDate);
+                intent.putExtra(END_DATE, tradeEndDate);
                 startActivity(intent);
                 break;
         }
@@ -220,10 +223,43 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
             TextView receiveAccount = (TextView) itemLayout.findViewById(R.id.trade_receive_account);
             TextView clientNumber = (TextView) itemLayout.findViewById(R.id.trade_client_number);
             TextView amount = (TextView) itemLayout.findViewById(R.id.trade_amount);
+            
+            // this text value is according to the trade type
+            TextView accountKey = (TextView) itemLayout.findViewById(R.id.trade_account_key);
+            TextView receiveAccountKey = (TextView) itemLayout.findViewById(R.id.trade_receive_account_key);
+			switch (mTradeType) {
+			case TRANSFER:
+			case REPAYMENT:
+				accountKey.setText(getString(R.string.trade_pay_account));
+				receiveAccountKey.setText(getString(R.string.trade_receive_account));
+				
+				account.setText(record.getPayFromAccount());
+	            receiveAccount.setText(record.getPayIntoAccount());
+				break;
+			case CONSUME:
+				accountKey.setText(getString(R.string.trade_close_time));
+				receiveAccountKey.setText(getString(R.string.trade_poundage));
+				
+				account.setText(record.getTradedTimeStr());
+	            receiveAccount.setText(record.getPoundage() + "");
+				break;
+			case LIFE_PAY:
+				accountKey.setText(getString(R.string.trade_account_name));
+				receiveAccountKey.setText(getString(R.string.trade_account_number));
+				
+				account.setText(record.getAccountName());
+	            receiveAccount.setText(record.getAccountNumber());
+				break;
+			case PHONE_PAY:
+				accountKey.setVisibility(View.INVISIBLE);
+				receiveAccountKey.setText(getString(R.string.trade_phone_number));
+				
+				receiveAccountKey.setText(record.getPhone());
+				break;
+			}
+            
             status.setText(getResources().getStringArray(R.array.trade_status)[record.getTradedStatus()]);
             time.setText(record.getTradedTimeStr());
-            account.setText(record.getPayFromAccount());
-            receiveAccount.setText(record.getPayIntoAccount());
             clientNumber.setText(record.getTerminalNumber());
             amount.setText(getString(R.string.notation_yuan) + record.getAmount());
             mTradeContainer.addView(itemLayout);
@@ -231,7 +267,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), TradeDetailActivity.class);
-                    intent.putExtra(TradeDetailActivity.TRADE_RECORD_ID, record.getId());
+                    intent.putExtra(TRADE_RECORD_ID, record.getId());
                     startActivity(intent);
                 }
             });
@@ -239,10 +275,10 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
     }
 
     /**
-     * 将按钮置为可以点击, 触发条件:
-     * <li>已选择终端号</li>
-     * <li>已选择开始时间</li>
-     * <li>已选择结束时间</li>
+     * enable or disable the buttons
+     *
+     * @param
+     * @return
      */
     private void toggleButtons() {
         boolean shouldEnable = !TextUtils.isEmpty(tradeClientName)
@@ -253,10 +289,11 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
     }
 
     /**
-     * 选择日期控件
+     * show the date picker
      *
-     * @param date        已经选好的日期, 如果没有则显示当前日期
-     * @param isStartDate true开始时间, false结束时间
+     * @param date the chosen date
+     * @param isStartDate if true to choose the start date, else the end date
+     * @return
      */
     private void showDatePicker(final String date, final boolean isStartDate) {
 

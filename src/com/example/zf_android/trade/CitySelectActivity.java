@@ -1,5 +1,13 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.CityIntent.CITY_ID;
+import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +28,6 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
@@ -29,15 +36,8 @@ import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.example.zf_android.trade.widget.LetterListView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 public class CitySelectActivity extends Activity {
 
-    public static final String CITY_ID = "city_id";
-    public static final String CITY_NAME = "city_name";
     private String mCitySelected;
     private TextView mCityCurrent;
 
@@ -52,7 +52,6 @@ public class CitySelectActivity extends Activity {
     private List<City> mCities = new ArrayList<City>();
     private List<String> mLetters = new ArrayList<String>();
     private List<Object> mItems = new ArrayList<Object>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

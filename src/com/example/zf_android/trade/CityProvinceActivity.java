@@ -1,5 +1,10 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
+
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,15 +23,10 @@ import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.example.zf_android.trade.widget.WheelView;
 
-import java.util.List;
-
 /**
  * Created by Leo on 2015/2/11.
  */
 public class CityProvinceActivity extends Activity {
-
-    public static final String SELECTED_PROVINCE = "selected_province";
-    public static final String SELECTED_CITY = "selected_city";
 
     private List<Province> mProvinces;
     private static final int OFFSET = 5;

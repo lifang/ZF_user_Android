@@ -1,5 +1,20 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_ID;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_STATUS;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.REQUEST_MARK;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.MAINTAIN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,14 +37,9 @@ import com.example.zf_android.trade.entity.AfterSaleDetailLease;
 import com.example.zf_android.trade.entity.AfterSaleDetailMaintain;
 import com.example.zf_android.trade.entity.AfterSaleDetailReturn;
 import com.example.zf_android.trade.entity.AfterSaleDetailUpdate;
-import com.example.zf_android.trade.entity.AfterSaleRecord;
 import com.example.zf_android.trade.entity.Comment;
 import com.example.zf_android.trade.entity.ResourceInfo;
 import com.google.gson.reflect.TypeToken;
-
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Leo on 2015/2/28.
@@ -62,8 +72,8 @@ public class AfterSaleDetailActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mRecordType = getIntent().getIntExtra(AfterSaleListActivity.RECORD_TYPE, 0);
-		mRecordId = getIntent().getIntExtra(AfterSaleListActivity.RECORD_ID, 0);
+		mRecordType = getIntent().getIntExtra(RECORD_TYPE, 0);
+		mRecordId = getIntent().getIntExtra(RECORD_ID, 0);
 		setContentView(R.layout.activity_after_sale_detail);
 		String[] titles = getResources().getStringArray(R.array.title_after_sale_detail);
 		new TitleMenuUtil(this, titles[mRecordType]).show();
@@ -77,8 +87,8 @@ public class AfterSaleDetailActivity extends Activity {
 	@Override
 	public void finish() {
 		Intent intent = new Intent();
-		intent.putExtra(AfterSaleListActivity.RECORD_ID, mRecordId);
-		intent.putExtra(AfterSaleListActivity.RECORD_STATUS, mRecordStatus);
+		intent.putExtra(RECORD_ID, mRecordId);
+		intent.putExtra(RECORD_STATUS, mRecordStatus);
 		setResult(RESULT_OK, intent);
 		super.finish();
 	}
@@ -103,7 +113,7 @@ public class AfterSaleDetailActivity extends Activity {
 						mRecordStatus = 5;
 						String status = getResources().getStringArray(R.array.maintain_status)[5];
 						mStatus.setText(status);
-						if (mRecordType == AfterSaleListActivity.RECORD_CANCEL) {
+						if (mRecordType == CANCEL) {
 							mButton1.setText(getString(R.string.button_submit_cancel));
 							mButton1.setOnClickListener(mSubmitCancelListener);
 						} else {
@@ -124,9 +134,9 @@ public class AfterSaleDetailActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(AfterSaleDetailActivity.this, AfterSaleMarkActivity.class);
-				intent.putExtra(AfterSaleListActivity.RECORD_TYPE, mRecordType);
-				intent.putExtra(AfterSaleListActivity.RECORD_ID, mRecordId);
-				startActivityForResult(intent, AfterSaleListActivity.REQUEST_MARK);
+				intent.putExtra(RECORD_TYPE, mRecordType);
+				intent.putExtra(RECORD_ID, mRecordId);
+				startActivityForResult(intent, REQUEST_MARK);
 			}
 		};
 
@@ -149,7 +159,6 @@ public class AfterSaleDetailActivity extends Activity {
 						mButton1.setText(getString(R.string.button_cancel_apply));
 						mButton1.setOnClickListener(mCancelApplyListener);
 						CommonUtil.toastShort(AfterSaleDetailActivity.this, getString(R.string.toast_resubmit_cancel_success));
-						getData();
 					}
 
 					@Override
@@ -176,7 +185,7 @@ public class AfterSaleDetailActivity extends Activity {
 				terminalPairs.put(terminalKeys[3], data.getPayChannel());
 				terminalPairs.put(terminalKeys[4], data.getMerchantName());
 				terminalPairs.put(terminalKeys[5], data.getMerchantPhone());
-				if (mRecordType == AfterSaleListActivity.RECORD_LEASE) {
+				if (mRecordType == LEASE) {
 					AfterSaleDetailLease lease = (AfterSaleDetailLease) data;
 					terminalPairs.put(terminalKeys[6], getString(R.string.notation_yuan) + lease.getLeasePrice());
 					terminalPairs.put(terminalKeys[7], getString(R.string.notation_yuan) + lease.getLeaseDeposit());
@@ -189,7 +198,7 @@ public class AfterSaleDetailActivity extends Activity {
 				mTime.setText(data.getApplyTime());
 				// render other categories
 				switch (mRecordType) {
-					case AfterSaleListActivity.RECORD_MAINTAIN:
+					case MAINTAIN:
 						String[] maintainStatus = getResources().getStringArray(R.array.maintain_status);
 						mStatus.setText(maintainStatus[data.getStatus()]);
 						if (data.getStatus() == 1) {
@@ -216,7 +225,7 @@ public class AfterSaleDetailActivity extends Activity {
 						maintainPairs.put(maintainKeys[2], maintainDetail.getDescription());
 						renderCategoryTemplate(R.string.after_sale_maintain_title, maintainPairs);
 						break;
-					case AfterSaleListActivity.RECORD_RETURN:
+					case RETURN:
 						String[] returnStatus = getResources().getStringArray(R.array.return_status);
 						mStatus.setText(returnStatus[data.getStatus()]);
 						if (data.getStatus() == 1) {
@@ -244,7 +253,7 @@ public class AfterSaleDetailActivity extends Activity {
 						// render return material category
 						renderMaterialTemplate(R.string.after_sale_return_material_title, data.getResourceInfos());
 						break;
-					case AfterSaleListActivity.RECORD_CANCEL:
+					case CANCEL:
 						String[] cancelStatus = getResources().getStringArray(R.array.cancel_status);
 						mStatus.setText(cancelStatus[data.getStatus()]);
 						if (data.getStatus() == 1) {
@@ -262,7 +271,7 @@ public class AfterSaleDetailActivity extends Activity {
 						// render cancel material category
 						renderMaterialTemplate(R.string.after_sale_cancel_material_title, data.getResourceInfos());
 						break;
-					case AfterSaleListActivity.RECORD_CHANGE:
+					case CHANGE:
 						String[] changeStatus = getResources().getStringArray(R.array.change_status);
 						mStatus.setText(changeStatus[data.getStatus()]);
 						if (data.getStatus() == 1) {
@@ -288,7 +297,7 @@ public class AfterSaleDetailActivity extends Activity {
 						// render change material category
 						renderMaterialTemplate(R.string.after_sale_change_material_title, data.getResourceInfos());
 						break;
-					case AfterSaleListActivity.RECORD_UPDATE:
+					case UPDATE:
 						String[] updateStatus = getResources().getStringArray(R.array.update_status);
 						mStatus.setText(updateStatus[data.getStatus()]);
 						if (data.getStatus() == 1) {
@@ -301,7 +310,7 @@ public class AfterSaleDetailActivity extends Activity {
 						// render update material category
 						renderMaterialTemplate(R.string.after_sale_update_material_title, data.getResourceInfos());
 						break;
-					case AfterSaleListActivity.RECORD_LEASE:
+					case LEASE:
 						String[] leaseStatus = getResources().getStringArray(R.array.lease_status);
 						mStatus.setText(leaseStatus[data.getStatus()]);
 						if (data.getStatus() == 1) {
@@ -348,22 +357,22 @@ public class AfterSaleDetailActivity extends Activity {
 			@Override
 			public TypeToken getTypeToken() {
 				switch (mRecordType) {
-					case AfterSaleListActivity.RECORD_MAINTAIN:
+					case MAINTAIN:
 						return new TypeToken<AfterSaleDetailMaintain>() {
 						};
-					case AfterSaleListActivity.RECORD_RETURN:
+					case RETURN:
 						return new TypeToken<AfterSaleDetailReturn>() {
 						};
-					case AfterSaleListActivity.RECORD_CANCEL:
+					case CANCEL:
 						return new TypeToken<AfterSaleDetailCancel>() {
 						};
-					case AfterSaleListActivity.RECORD_CHANGE:
+					case CHANGE:
 						return new TypeToken<AfterSaleDetailChange>() {
 						};
-					case AfterSaleListActivity.RECORD_UPDATE:
+					case UPDATE:
 						return new TypeToken<AfterSaleDetailUpdate>() {
 						};
-					case AfterSaleListActivity.RECORD_LEASE:
+					case LEASE:
 						return new TypeToken<AfterSaleDetailLease>() {
 						};
 					default:
@@ -378,8 +387,9 @@ public class AfterSaleDetailActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
-				case AfterSaleListActivity.REQUEST_MARK:
+				case REQUEST_MARK:
 					CommonUtil.toastShort(this, getString(R.string.toast_add_mark_success));
+					getData();
 					break;
 			}
 		}
@@ -448,8 +458,8 @@ public class AfterSaleDetailActivity extends Activity {
 					@Override
 					public void onClick(View view) {
 						Intent intent = new Intent(AfterSaleDetailActivity.this, AfterSaleMaterialActivity.class);
-						intent.putExtra(AfterSaleListActivity.RECORD_TYPE, mRecordType);
-						intent.putExtra(AfterSaleDetailActivity.MATERIAL_URL, resourceInfo.getPath());
+						intent.putExtra(RECORD_TYPE, mRecordType);
+						intent.putExtra(MATERIAL_URL, resourceInfo.getPath());
 						startActivity(intent);
 					}
 				});

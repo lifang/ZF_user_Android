@@ -1,5 +1,7 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TradeIntent.CLIENT_NUMBER;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +23,6 @@ import java.util.List;
 import java.util.Map;
 
 public class TradeClientActivity extends ListActivity {
-
-    public static final String CLIENT_NUMBER = "client_number";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
