@@ -1,5 +1,10 @@
 package com.example.zf_android.activity;
  
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
+import static com.example.zf_android.trade.Constants.CityIntent.CITY_ID;
+import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
+
 import org.apache.http.Header;
 
 import android.content.Intent;
@@ -117,54 +122,54 @@ public class Main extends BaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-        case R.id.titleback_linear_back: // Ñ¡Ôñ³ÇÊÐ
-            // ³ÇÊÐÑ¡Ôñ
-//            Intent intent = new Intent(Main.this, CitySelectActivity.class);
-//            intent.putExtra(CitySelectActivity.CITY_NAME, cityTextView.getText().toString());
-//            startActivityForResult(intent, REQUEST_CITY);
+        case R.id.titleback_linear_back: // Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½
+            // start the city selection activity
+            Intent intent = new Intent(Main.this, CitySelectActivity.class);
+            intent.putExtra(CITY_NAME, cityTextView.getText().toString());
+            startActivityForResult(intent, REQUEST_CITY);
 
-            // Ê¡ÊÐÁª¶¯Ñ¡Ôñ
-            Intent intent = new Intent(Main.this, CityProvinceActivity.class);
-            intent.putExtra(CityProvinceActivity.SELECTED_PROVINCE, province);
-            intent.putExtra(CityProvinceActivity.SELECTED_CITY, city);
-            startActivityForResult(intent, REQUEST_CITY_WHEEL);
+            // start the province and city selection activity
+//            Intent intent = new Intent(Main.this, CityProvinceActivity.class);
+//            intent.putExtra(SELECTED_PROVINCE, province);
+//            intent.putExtra(SELECTED_CITY, city);
+//            startActivityForResult(intent, REQUEST_CITY_WHEEL);
             break;
 
-		case R.id.main_rl_pos1:  // ÂòPOS»úÆ÷
+		case R.id.main_rl_pos1:  // ï¿½ï¿½POSï¿½ï¿½ï¿½ï¿½
 			 startActivity(new Intent(Main.this,MyMessage.class));
 			 
 			break;
-		case R.id.main_rl_my:  // ÂòPOS»úÆ÷
+		case R.id.main_rl_my:  // ï¿½ï¿½POSï¿½ï¿½ï¿½ï¿½
 			 startActivity(new Intent(Main.this,MenuMine.class));
 			 
 			break;
 		
-		case R.id.main_rl_pos:  // ÂòPOS»úÆ÷
+		case R.id.main_rl_pos:  // ï¿½ï¿½POSï¿½ï¿½ï¿½ï¿½
 			 startActivity(new Intent(Main.this,PosListActivity.class));
 			 
 			break;
 			
-		case R.id.main_rl_renzhen:  //ÈÏÖ¤
+		case R.id.main_rl_renzhen:  //ï¿½ï¿½Ö¤
 			 Intent i =new Intent(Main.this,OrderList.class);
 			 startActivity(i);
 			 
 			break;
-		case R.id.main_rl_zdgl: //ÖÕ¶Ë¹ÜÀí 
+		case R.id.main_rl_zdgl: //ï¿½Õ¶Ë¹ï¿½ï¿½ï¿½ 
 			 
 			break;
-		case R.id.main_rl_jyls: //½»Ò×Á÷Ë® 
+		case R.id.main_rl_jyls: //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë® 
 			 
 			startActivity(new Intent(Main.this, TradeFlowActivity.class));
 			break;
-		case R.id.main_rl_Forum: //ÎÒÒª´û¿î   
+		case R.id.main_rl_Forum: //ï¿½ï¿½Òªï¿½ï¿½ï¿½   
 			 
 			break;
-		case R.id.main_rl_xtgg: //ÏµÍ³¹«¸æ   
+		case R.id.main_rl_xtgg: //ÏµÍ³ï¿½ï¿½ï¿½ï¿½   
 			  
 			 startActivity(new Intent(Main.this,SystemMessage.class));
 			 
 			break;
-		case R.id.main_rl_lxwm: //ÁªÏµÎÒÃÇ
+		case R.id.main_rl_lxwm: //ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½
 			 startActivity(new Intent(Main.this,ContentUs.class));
 		case R.id.main_rl_gwc:  
 			 startActivity(new Intent(Main.this,ShopCar.class));
@@ -180,13 +185,13 @@ public class Main extends BaseActivity implements OnClickListener{
         if (resultCode != RESULT_OK) return;
         switch (requestCode) {
             case REQUEST_CITY:
-                cityId = data.getIntExtra(CitySelectActivity.CITY_ID, 0);
-                cityName = data.getStringExtra(CitySelectActivity.CITY_NAME);
+                cityId = data.getIntExtra(CITY_ID, 0);
+                cityName = data.getStringExtra(CITY_NAME);
                 cityTextView.setText(cityName);
                 break;
             case REQUEST_CITY_WHEEL:
-                province = (Province) data.getSerializableExtra(CityProvinceActivity.SELECTED_PROVINCE);
-                city = (City) data.getSerializableExtra(CityProvinceActivity.SELECTED_CITY);
+                province = (Province) data.getSerializableExtra(SELECTED_PROVINCE);
+                city = (City) data.getSerializableExtra(SELECTED_CITY);
                 cityTextView.setText(city.getName());
                 break;
         }

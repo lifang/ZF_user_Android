@@ -1,15 +1,21 @@
 package com.example.zf_android.trade;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.example.zf_android.R;
-import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.common.HttpRequest;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.MAINTAIN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
+
+import android.content.Context;
+
+import com.example.zf_android.R;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.common.HttpRequest;
 
 /**
  * Created by Leo on 2015/2/11.
@@ -105,22 +111,22 @@ public class API {
 			HttpCallback callback) {
 		String url;
 		switch (recordType) {
-			case AfterSaleListActivity.RECORD_MAINTAIN:
+			case MAINTAIN:
 				url = AFTER_SALE_MAINTAIN_LIST;
 				break;
-			case AfterSaleListActivity.RECORD_RETURN:
+			case RETURN:
 				url = AFTER_SALE_RETURN_LIST;
 				break;
-			case AfterSaleListActivity.RECORD_CANCEL:
+			case CANCEL:
 				url = AFTER_SALE_CANCEL_LIST;
 				break;
-			case AfterSaleListActivity.RECORD_CHANGE:
+			case CHANGE:
 				url = AFTER_SALE_CHANGE_LIST;
 				break;
-			case AfterSaleListActivity.RECORD_UPDATE:
+			case UPDATE:
 				url = AFTER_SALE_UPDATE_LIST;
 				break;
-			case AfterSaleListActivity.RECORD_LEASE:
+			case LEASE:
 				url = AFTER_SALE_LEASE_LIST;
 				break;
 			default:
@@ -133,7 +139,7 @@ public class API {
 			params.put("customer_id", customId);
 			params.put("page", page);
 			params.put("pageSize", pageSize);
-			entity = new StringEntity(params.toString());
+			entity = new StringEntity(params.toString(), "UTF-8");
 		} catch (Exception e) {
 			callback.onFailure(context.getString(R.string.load_data_failed));
 		}
@@ -147,22 +153,22 @@ public class API {
 			HttpCallback callback) {
 		String url;
 		switch (recordType) {
-			case AfterSaleListActivity.RECORD_MAINTAIN:
+			case MAINTAIN:
 				url = AFTER_SALE_MAINTAIN_DETAIL;
 				break;
-			case AfterSaleListActivity.RECORD_RETURN:
+			case RETURN:
 				url = AFTER_SALE_RETURN_DETAIL;
 				break;
-			case AfterSaleListActivity.RECORD_CANCEL:
+			case CANCEL:
 				url = AFTER_SALE_CANCEL_DETAIL;
 				break;
-			case AfterSaleListActivity.RECORD_CHANGE:
+			case CHANGE:
 				url = AFTER_SALE_CHANGE_DETAIL;
 				break;
-			case AfterSaleListActivity.RECORD_UPDATE:
+			case UPDATE:
 				url = AFTER_SALE_UPDATE_DETAIL;
 				break;
-			case AfterSaleListActivity.RECORD_LEASE:
+			case LEASE:
 				url = AFTER_SALE_LEASE_DETAIL;
 				break;
 			default:
@@ -172,7 +178,7 @@ public class API {
 		JSONObject params = new JSONObject();
 		try {
 			params.put("id", recordId);
-			entity = new StringEntity(params.toString());
+			entity = new StringEntity(params.toString(), "UTF-8");
 		} catch (Exception e) {
 			callback.onFailure(context.getString(R.string.load_data_failed));
 		}
@@ -186,22 +192,22 @@ public class API {
 			HttpCallback callback) {
 		String url;
 		switch (recordType) {
-			case AfterSaleListActivity.RECORD_MAINTAIN:
+			case MAINTAIN:
 				url = AFTER_SALE_MAINTAIN_CANCEL;
 				break;
-			case AfterSaleListActivity.RECORD_RETURN:
+			case RETURN:
 				url = AFTER_SALE_RETURN_CANCEL;
 				break;
-			case AfterSaleListActivity.RECORD_CANCEL:
+			case CANCEL:
 				url = AFTER_SALE_CANCEL_CANCEL;
 				break;
-			case AfterSaleListActivity.RECORD_CHANGE:
+			case CHANGE:
 				url = AFTER_SALE_CHANGE_CANCEL;
 				break;
-			case AfterSaleListActivity.RECORD_UPDATE:
+			case UPDATE:
 				url = AFTER_SALE_UPDATE_CANCEL;
 				break;
-			case AfterSaleListActivity.RECORD_LEASE:
+			case LEASE:
 				url = AFTER_SALE_LEASE_CANCEL;
 				break;
 			default:
@@ -211,7 +217,7 @@ public class API {
 		JSONObject params = new JSONObject();
 		try {
 			params.put("id", recordId);
-			entity = new StringEntity(params.toString());
+			entity = new StringEntity(params.toString(), "UTF-8");
 		} catch (Exception e) {
 			callback.onFailure(context.getString(R.string.load_data_failed));
 		}
@@ -226,7 +232,7 @@ public class API {
 		JSONObject params = new JSONObject();
 		try {
 			params.put("id", recordId);
-			entity = new StringEntity(params.toString());
+			entity = new StringEntity(params.toString(), "UTF-8");
 		} catch (Exception e) {
 			callback.onFailure(context.getString(R.string.load_data_failed));
 		}
@@ -243,16 +249,16 @@ public class API {
 			HttpCallback callback) {
 		String url;
 		switch (recordType) {
-			case AfterSaleListActivity.RECORD_MAINTAIN:
+			case MAINTAIN:
 				url = AFTER_SALE_MAINTAIN_ADD_MARK;
 				break;
-			case AfterSaleListActivity.RECORD_RETURN:
+			case RETURN:
 				url = AFTER_SALE_RETURN_ADD_MARK;
 				break;
-			case AfterSaleListActivity.RECORD_CHANGE:
+			case CHANGE:
 				url = AFTER_SALE_CHANGE_ADD_MARK;
 				break;
-			case AfterSaleListActivity.RECORD_LEASE:
+			case LEASE:
 				url = AFTER_SALE_LEASE_ADD_MARK;
 				break;
 			default:
@@ -264,8 +270,8 @@ public class API {
 			params.put("id", recordId);
 			params.put("customer_id", customerId);
 			params.put("computer_name", company);
-			params.put("tracker_number", number);
-			entity = new StringEntity(params.toString());
+			params.put("track_number", number);
+			entity = new StringEntity(params.toString(), "UTF-8");
 		} catch (Exception e) {
 			callback.onFailure(context.getString(R.string.load_data_failed));
 		}

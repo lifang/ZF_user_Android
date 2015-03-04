@@ -28,10 +28,12 @@
                     android:text="@string/trade_time"/>
 
                 <TextView
+                    android:id="@+id/trade_account_key"
                     style="@style/TextTrace.Left"
-                    android:text="@string/trade_account"/>
+                    android:text="@string/trade_pay_account"/>
 
                 <TextView
+                    android:id="@+id/trade_receive_account_key"
                     style="@style/TextTrace.Left"
                     android:text="@string/trade_receive_account"/>
 

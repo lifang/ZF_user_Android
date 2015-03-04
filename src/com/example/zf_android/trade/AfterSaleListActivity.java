@@ -1,5 +1,20 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_ID;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_STATUS;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.REQUEST_DETAIL;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.REQUEST_MARK;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.MAINTAIN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,27 +35,11 @@ import com.example.zf_android.trade.common.Page;
 import com.example.zf_android.trade.entity.AfterSaleRecord;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Leo on 2015/2/26.
  */
 public class AfterSaleListActivity extends Activity {
-
-	public static final int RECORD_MAINTAIN = 0;
-	public static final int RECORD_RETURN = 1;
-	public static final int RECORD_CANCEL = 2;
-	public static final int RECORD_CHANGE = 3;
-	public static final int RECORD_UPDATE = 4;
-	public static final int RECORD_LEASE = 5;
-
-	public static final int REQUEST_DETAIL = 0;
-	public static final int REQUEST_MARK = 1;
-
-	public static final String RECORD_TYPE = "record_type";
-	public static final String RECORD_ID = "record_id";
-	public static final String RECORD_STATUS = "record_status";
+	
 	private int mRecordType;
 
 	private ListView mListView;
@@ -203,17 +202,17 @@ public class AfterSaleListActivity extends Activity {
 			holder.tvTime.setText(data.getCreateTime());
 			holder.tvTerminal.setText(data.getTerminalNum());
 			String[] status = getResources().getStringArray(
-					mRecordType == RECORD_MAINTAIN ? R.array.maintain_status
-							: mRecordType == RECORD_RETURN ? R.array.return_status
-							: mRecordType == RECORD_CANCEL ? R.array.cancel_status
-							: mRecordType == RECORD_CHANGE ? R.array.change_status
-							: mRecordType == RECORD_UPDATE ? R.array.update_status
+					mRecordType == MAINTAIN ? R.array.maintain_status
+							: mRecordType == RETURN ? R.array.return_status
+							: mRecordType == CANCEL ? R.array.cancel_status
+							: mRecordType == CHANGE ? R.array.change_status
+							: mRecordType == UPDATE ? R.array.update_status
 							: R.array.lease_status
 			);
 			holder.tvStatus.setText(status[data.getStatus()]);
 
 			switch (mRecordType) {
-				case RECORD_MAINTAIN:
+				case MAINTAIN:
 					if (data.getStatus() == 1) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.VISIBLE);
@@ -240,7 +239,7 @@ public class AfterSaleListActivity extends Activity {
 						holder.llButtonContainer.setVisibility(View.GONE);
 					}
 					break;
-				case RECORD_CANCEL:
+				case CANCEL:
 					if (data.getStatus() == 1) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
@@ -265,7 +264,7 @@ public class AfterSaleListActivity extends Activity {
 						holder.llButtonContainer.setVisibility(View.GONE);
 					}
 					break;
-				case RECORD_UPDATE:
+				case UPDATE:
 					if (data.getStatus() == 1) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
@@ -280,9 +279,9 @@ public class AfterSaleListActivity extends Activity {
 						holder.llButtonContainer.setVisibility(View.GONE);
 					}
 					break;
-				case RECORD_RETURN:
-				case RECORD_CHANGE:
-				case RECORD_LEASE:
+				case RETURN:
+				case CHANGE:
+				case LEASE:
 					if (data.getStatus() == 1) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
