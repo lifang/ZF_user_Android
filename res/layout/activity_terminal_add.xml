@@ -10,46 +10,71 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:paddingTop="24dp">
+		android:orientation="vertical">
 
-		<View style="@style/Divider"/>
-
-		<FrameLayout style="@style/FrameItem">
-
-			<TextView
-				style="@style/TextItem"
-				android:layout_gravity="left|center_vertical"
-				android:text="@string/after_sale_mark_company"/>
-
-			<EditText
-				android:id="@+id/after_sale_mark_company"
-				style="@style/EditTextItem"/>
-		</FrameLayout>
-
-		<View style="@style/Divider"/>
+		<View
+			style="@style/Divider"
+			android:layout_marginTop="24dp"/>
 
 		<FrameLayout style="@style/FrameItem">
 
 			<TextView
 				style="@style/TextItem"
 				android:layout_gravity="left|center_vertical"
-				android:text="@string/after_sale_mark_number"/>
+				android:text="@string/terminal_add_org"/>
+
+			<ImageView
+				android:id="@+id/trade_end_arrow"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="right|center_vertical"
+				android:src="@drawable/post_right"/>
+		</FrameLayout>
+
+		<View style="@style/Divider"/>
+
+
+		<View
+			style="@style/Divider"
+			android:layout_marginTop="8dp"/>
+
+		<FrameLayout style="@style/FrameItem">
+
+			<TextView
+				style="@style/TextItem"
+				android:layout_gravity="left|center_vertical"
+				android:text="@string/terminal_add_number"/>
 
 			<EditText
-				android:id="@+id/after_sale_mark_number"
+				android:id="@+id/terminal_number"
 				style="@style/EditTextItem"/>
 		</FrameLayout>
 
 		<View style="@style/Divider"/>
 
+		<View
+			style="@style/Divider"
+			android:layout_marginTop="8dp"/>
+
+		<FrameLayout style="@style/FrameItem">
+
+			<TextView
+				style="@style/TextItem"
+				android:layout_gravity="left|center_vertical"
+				android:text="@string/terminal_add_name"/>
+
+			<EditText
+				android:id="@+id/terminal_merchant_name"
+				style="@style/EditTextItem"/>
+		</FrameLayout>
+
+		<View style="@style/Divider"/>
 	</LinearLayout>
 
 	<Button
-		android:id="@+id/after_sale_mark_submit"
+		android:id="@+id/terminal_submit"
 		style="@style/ButtonNormal"
 		android:layout_marginTop="24dp"
 		android:text="@string/button_submit"
 		android:enabled="false"/>
-
 </LinearLayout>

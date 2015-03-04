@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
  */
 public class JsonParser {
 
-	public static <T> Response<T> fromJson(String json, Class<T> rawType) {
+	public static Response fromJson(String json) {
 		Gson gson = new Gson();
 		JsonObject jo = gson.fromJson(json, JsonObject.class);
 
@@ -18,7 +18,7 @@ public class JsonParser {
 		JsonElement messageElement = jo.get("message");
 		String message = messageElement.isJsonNull() ? null : messageElement.getAsString();
 		JsonElement resultElement = jo.get("result");
-		T result = gson.fromJson(resultElement, rawType);
+		String result = messageElement.isJsonNull() ? null : resultElement.getAsString();
 
 		return new Response(code, message, result);
 	}

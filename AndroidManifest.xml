@@ -147,6 +147,18 @@
 		    android:name=".trade.AfterSaleMaterialActivity"
 		    android:screenOrientation="portrait" >
 	    </activity>
+	    <activity
+		    android:name=".trade.TerminalManageActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.TerminalAddActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.TerminalDetailActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
 
         <activity
             android:name="com.example.zf_android.activity.SystemDetail"

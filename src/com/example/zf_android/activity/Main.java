@@ -21,6 +21,7 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
+import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
@@ -155,7 +156,7 @@ public class Main extends BaseActivity implements OnClickListener{
 			 
 			break;
 		case R.id.main_rl_zdgl: //�ն˹��� 
-			 
+			startActivity(new Intent(Main.this, TerminalManageActivity.class));
 			break;
 		case R.id.main_rl_jyls: //������ˮ 
 			 

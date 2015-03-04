@@ -61,4 +61,25 @@ public class Constants {
 		public static final String RECORD_STATUS = "record_status";
 		public static final String MATERIAL_URL = "material_url";
 	}
+
+	/**
+	 * The status of terminal
+	 */
+	public static class TerminalStatus {
+		public static final int OPENED = 1;
+		public static final int PART_OPENED = 2;
+		public static final int UNOPENED = 3;
+		public static final int CANCELED = 4;
+		public static final int STOPPED = 5;
+	}
+
+	/**
+	 * The intent data among terminal activities
+	 */
+	public static class TerminalIntent {
+		public static final int REQUEST_ADD = 0;
+		public static final int REQUEST_DETAIL = 1;
+
+		public static final String TERMINAL_ID = "terminal_id";
+	}
 }

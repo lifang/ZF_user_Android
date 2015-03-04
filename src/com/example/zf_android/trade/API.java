@@ -25,9 +25,13 @@ public class API {
 	public static final String SCHEMA = "http://";
 	public static final String HOST = "114.215.149.242:18080";
 
+	// selection terminal list
 	public static final String TERMINAL_LIST = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTerminals/%d";
+	// trade record list
 	public static final String TRADE_RECORD_LIST = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecords/%d/%s/%s/%s/%d/%d";
+	// trade record statistic
 	public static final String TRADE_RECORD_STATISTIC = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecordTotal/%d/%s/%s/%s";
+	// trade record detail
 	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecord/%d";
 
 	// After sale record list
@@ -63,6 +67,12 @@ public class API {
 	public static final String AFTER_SALE_CHANGE_ADD_MARK = SCHEMA + HOST + "/ZFMerchant/api/cs/change/addMark";
 	public static final String AFTER_SALE_LEASE_ADD_MARK = SCHEMA + HOST + "/ZFMerchant/api/cs/lease/returns/addMark";
 
+	// Terminal list
+	public static final String TERMINAL_APPLY_LIST = SCHEMA + HOST + "/ZFMerchant/api/terminal/getApplyList";
+	// Terminal Add
+	public static final String TERMINAL_ADD = SCHEMA + HOST + "/ZFMerchant/api/terminal/addTerminal";
+	// Terminal detail
+	public static final String TERMINAL_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/terminal/getApplyDetails";
 
 	public static void getTerminalList(
 			Context context,
@@ -278,5 +288,57 @@ public class API {
 		new HttpRequest(context, callback).post(url, entity);
 	}
 
+	public static void getTerminalApplyList(
+			Context context,
+			int customerId,
+			int page,
+			int pageSize,
+			HttpCallback callback) {
+		HttpEntity entity = null;
+		JSONObject params = new JSONObject();
+		try {
+			params.put("customersId", customerId);
+			params.put("indexPage", page);
+			params.put("pageNum", pageSize);
+			entity = new StringEntity(params.toString(), "UTF-8");
+		} catch (Exception e) {
+			callback.onFailure(context.getString(R.string.load_data_failed));
+		}
+		new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, entity);
+	}
+
+	public static void addTerminal(
+			Context context,
+			int customerId,
+			String terminalNumber,
+			String merchantName,
+			HttpCallback callback) {
+		HttpEntity entity = null;
+		JSONObject params = new JSONObject();
+		try {
+			params.put("customerId", customerId);
+			params.put("serialNum", terminalNumber);
+			params.put("title", merchantName);
+			entity = new StringEntity(params.toString(), "UTF-8");
+		} catch (Exception e) {
+			callback.onFailure(context.getString(R.string.load_data_failed));
+		}
+		new HttpRequest(context, callback).post(TERMINAL_ADD, entity);
+	}
+
+	public static void getTerminalDetail(
+			Context context,
+			int terminalId,
+			HttpCallback callback) {
+		HttpEntity entity = null;
+		JSONObject params = new JSONObject();
+		try {
+			params.put("terminalsId", terminalId + "");
+			entity = new StringEntity(params.toString(), "UTF-8");
+		} catch (Exception e) {
+			callback.onFailure(context.getString(R.string.load_data_failed));
+		}
+		new HttpRequest(context, callback).post(TERMINAL_DETAIL, entity);
+	}
 
 }
