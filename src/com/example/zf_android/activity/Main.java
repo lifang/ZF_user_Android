@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.TerminalManageActivity;
@@ -151,7 +152,7 @@ public class Main extends BaseActivity implements OnClickListener{
 			break;
 			
 		case R.id.main_rl_renzhen:  //��֤
-			 Intent i =new Intent(Main.this,OrderList.class);
+			 Intent i =new Intent(Main.this, ApplyListActivity.class);
 			 startActivity(i);
 			 
 			break;

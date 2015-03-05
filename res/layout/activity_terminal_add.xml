@@ -14,14 +14,24 @@
 
 		<View
 			style="@style/Divider"
-			android:layout_marginTop="24dp"/>
+			android:layout_marginTop="12dp"/>
 
-		<FrameLayout style="@style/FrameItem">
+		<FrameLayout
+			android:id="@+id/terminal_choose_channel"
+			style="@style/FrameItem"
+			android:clickable="true"
+			android:background="@drawable/item_white_pressed">
 
 			<TextView
 				style="@style/TextItem"
 				android:layout_gravity="left|center_vertical"
-				android:text="@string/terminal_add_org"/>
+				android:text="@string/terminal_add_channel"/>
+
+			<TextView
+				android:id="@+id/terminal_pay_channel"
+				style="@style/TextItem"
+				android:layout_marginRight="20dp"
+				android:layout_gravity="right|center_vertical"/>
 
 			<ImageView
 				android:id="@+id/trade_end_arrow"
@@ -33,10 +43,9 @@
 
 		<View style="@style/Divider"/>
 
-
 		<View
 			style="@style/Divider"
-			android:layout_marginTop="8dp"/>
+			android:layout_marginTop="4dp"/>
 
 		<FrameLayout style="@style/FrameItem">
 
@@ -54,7 +63,7 @@
 
 		<View
 			style="@style/Divider"
-			android:layout_marginTop="8dp"/>
+			android:layout_marginTop="4dp"/>
 
 		<FrameLayout style="@style/FrameItem">
 

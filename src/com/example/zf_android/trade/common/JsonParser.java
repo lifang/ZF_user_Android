@@ -5,6 +5,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
 /**
  * Created by Leo on 2015/2/11.
  */
@@ -18,7 +20,7 @@ public class JsonParser {
 		JsonElement messageElement = jo.get("message");
 		String message = messageElement.isJsonNull() ? null : messageElement.getAsString();
 		JsonElement resultElement = jo.get("result");
-		String result = resultElement.isJsonNull() ? null : resultElement.getAsString();
+		JsonObject result = resultElement.isJsonNull() ? null : resultElement.getAsJsonObject();
 
 		return new Response(code, message, result);
 	}

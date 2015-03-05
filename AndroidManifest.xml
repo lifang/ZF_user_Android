@@ -99,6 +99,10 @@
             
             android:screenOrientation="portrait" >
         </activity>
+
+	    <!--======================================================-->
+	    <!--               Leo's Activities                       -->
+	    <!--======================================================-->
         <activity
             android:name=".trade.TradeFlowActivity"
             android:screenOrientation="portrait" >
@@ -152,6 +156,10 @@
 		    android:screenOrientation="portrait" >
 	    </activity>
 	    <activity
+		    android:name=".trade.TerminalChannelActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
 		    android:name=".trade.TerminalAddActivity"
 		    android:screenOrientation="portrait" >
 	    </activity>
@@ -159,6 +167,21 @@
 		    android:name=".trade.TerminalDetailActivity"
 		    android:screenOrientation="portrait" >
 	    </activity>
+	    <activity
+		    android:name=".trade.ShowWebImageActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.ApplyListActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.ApplyDetailActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <!--======================================================-->
+	    <!--               Leo's Activities End                   -->
+	    <!--======================================================-->
 
         <activity
             android:name="com.example.zf_android.activity.SystemDetail"

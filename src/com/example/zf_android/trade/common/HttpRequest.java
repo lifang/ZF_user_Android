@@ -11,6 +11,11 @@ import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 /**
  * Created by Leo on 2015/2/11.
@@ -79,5 +84,22 @@ public class HttpRequest {
 			return;
 		}
 		client.post(context, url, null, entity, "application/json", responseHandler);
+	}
+
+	public void post(String url, Map<String, Object> params) {
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			callback.onFailure(context.getString(R.string.load_data_failed));
+			return;
+		}
+		post(url, entity);
+	}
+
+	public void post(String url) {
+		HttpEntity entity = null;
+		post(url, entity);
 	}
 }

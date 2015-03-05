@@ -2,6 +2,12 @@ package com.example.zf_android.trade;
 
 public class Constants {
 
+	public static class ShowWebImageIntent {
+		public static final String IMAGE_URLS = "image_urls";
+		public static final String IMAGE_NAMES = "image_names";
+		public static final String POSITION = "position";
+	}
+
 	/**
 	 * The intent data among city selection
 	 */
@@ -81,5 +87,8 @@ public class Constants {
 		public static final int REQUEST_DETAIL = 1;
 
 		public static final String TERMINAL_ID = "terminal_id";
+		public static final String TERMINAL_STATUS = "terminal_status";
+		public static final String CHANNEL_ID = "channel_id";
+		public static final String CHANNEL_NAME = "channel_name";
 	}
 }
