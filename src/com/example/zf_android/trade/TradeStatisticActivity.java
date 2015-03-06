@@ -1,10 +1,13 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TradeIntent.CLIENT_NUMBER;
+import static com.example.zf_android.trade.Constants.TradeIntent.END_DATE;
+import static com.example.zf_android.trade.Constants.TradeIntent.START_DATE;
+import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_TYPE;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
@@ -14,11 +17,6 @@ import com.example.zf_android.trade.entity.TradeStatistic;
 import com.google.gson.reflect.TypeToken;
 
 public class TradeStatisticActivity extends Activity {
-
-    public static final String TRADE_TYPE = "trade_type";
-    public static final String START_DATE = "start_date";
-    public static final String END_DATE = "end_date";
-    public static final String CLIENT_NUMBER = "client_number";
 
     private int mTradeType;
     private String mStartDate;

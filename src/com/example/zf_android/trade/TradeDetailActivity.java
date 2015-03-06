@@ -1,5 +1,6 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_RECORD_ID;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,8 +16,6 @@ import com.example.zf_android.trade.entity.TradeDetail;
 import com.google.gson.reflect.TypeToken;
 
 public class TradeDetailActivity extends Activity {
-
-	public static final String TRADE_RECORD_ID = "trade_record_id";
 
 	private LinearLayout mCommercialKeyContainer;
 	private LinearLayout mCommercialValueContainer;

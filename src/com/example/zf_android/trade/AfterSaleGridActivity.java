@@ -1,5 +1,13 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.MAINTAIN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,29 +55,28 @@ public class AfterSaleGridActivity extends Activity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int recordType = 0;
-        String recordTitle = "";
         switch (v.getId()) {
             case R.id.after_sale_maintain:
-                recordType = AfterSaleListActivity.RECORD_MAINTAIN;
+                recordType = MAINTAIN;
                 break;
             case R.id.after_sale_return:
-                recordType = AfterSaleListActivity.RECORD_RETURN;
+                recordType = RETURN;
                 break;
             case R.id.after_sale_cancel:
-                recordType = AfterSaleListActivity.RECORD_CANCEL;
+                recordType = CANCEL;
                 break;
             case R.id.after_sale_change:
-                recordType = AfterSaleListActivity.RECORD_CHANGE;
+                recordType = CHANGE;
                 break;
             case R.id.after_sale_update:
-                recordType = AfterSaleListActivity.RECORD_UPDATE;
+                recordType = UPDATE;
                 break;
             case R.id.after_sale_lease:
-                recordType = AfterSaleListActivity.RECORD_LEASE;
+                recordType = LEASE;
                 break;
         }
         Intent intent = new Intent(this, AfterSaleListActivity.class);
-        intent.putExtra(AfterSaleListActivity.RECORD_TYPE, recordType);
+        intent.putExtra(RECORD_TYPE, recordType);
         startActivity(intent);
     }
 }

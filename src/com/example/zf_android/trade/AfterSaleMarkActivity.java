@@ -1,5 +1,8 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_ID;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,10 +13,8 @@ import android.widget.EditText;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
-import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
-import com.example.zf_android.trade.entity.AfterSaleDetail;
 import com.google.gson.reflect.TypeToken;
 
 /**
@@ -37,8 +38,8 @@ public class AfterSaleMarkActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		mRecordType = getIntent().getIntExtra(AfterSaleListActivity.RECORD_TYPE, 0);
-		mRecordId = getIntent().getIntExtra(AfterSaleListActivity.RECORD_ID, 0);
+		mRecordType = getIntent().getIntExtra(RECORD_TYPE, 0);
+		mRecordId = getIntent().getIntExtra(RECORD_ID, 0);
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_after_sale_mark);

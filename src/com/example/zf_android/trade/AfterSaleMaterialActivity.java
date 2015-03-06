@@ -1,5 +1,13 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.MATERIAL_URL;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -27,23 +35,23 @@ public class AfterSaleMaterialActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mRecordType = getIntent().getIntExtra(AfterSaleListActivity.RECORD_TYPE, 0);
-		mUrl = getIntent().getStringExtra(AfterSaleDetailActivity.MATERIAL_URL);
+		mRecordType = getIntent().getIntExtra(RECORD_TYPE, 0);
+		mUrl = getIntent().getStringExtra(MATERIAL_URL);
 		String title = "";
 		switch (mRecordType) {
-			case AfterSaleListActivity.RECORD_RETURN:
+			case RETURN:
 				title = getString(R.string.after_sale_return_material_title);
 				break;
-			case AfterSaleListActivity.RECORD_CANCEL:
+			case CANCEL:
 				title = getString(R.string.after_sale_cancel_material_title);
 				break;
-			case AfterSaleListActivity.RECORD_CHANGE:
+			case CHANGE:
 				title = getString(R.string.after_sale_change_material_title);
 				break;
-			case AfterSaleListActivity.RECORD_UPDATE:
+			case UPDATE:
 				title = getString(R.string.after_sale_update_material_title);
 				break;
-			case AfterSaleListActivity.RECORD_LEASE:
+			case LEASE:
 				title = getString(R.string.after_sale_lease_material_title);
 				break;
 		}
@@ -58,7 +66,6 @@ public class AfterSaleMaterialActivity extends Activity {
 		loadingDialog = DialogUtil.getLoadingDialg(this);
 
 		mWebView = (WebView) findViewById(R.id.after_sale_material_web_view);
-		mWebView.getSettings().setJavaScriptEnabled(true);
 		mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 		mWebView.getSettings().setLoadWithOverviewMode(true);
 		mWebView.getSettings().setDomStorageEnabled(true);

@@ -2,6 +2,12 @@ package com.example.zf_android.activity;
  
 import java.util.ArrayList;
 import java.util.List;
+ 
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
+import static com.example.zf_android.trade.Constants.CityIntent.CITY_ID;
+import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
+ 
 
 import org.apache.http.Header;
 
@@ -149,16 +155,13 @@ public class Main extends BaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
+ 
         case R.id.titleback_linear_back:  
-          
-//            Intent intent = new Intent(Main.this, CitySelectActivity.class);
-//            intent.putExtra(CitySelectActivity.CITY_NAME, cityTextView.getText().toString());
-//            startActivityForResult(intent, REQUEST_CITY);
-
+ 
          
             Intent intent = new Intent(Main.this, CityProvinceActivity.class);
-            intent.putExtra(CityProvinceActivity.SELECTED_PROVINCE, province);
-            intent.putExtra(CityProvinceActivity.SELECTED_CITY, city);
+          //  intent.putExtra(CityProvinceActivity.SELECTED_PROVINCE, province);
+          //   intent.putExtra(CityProvinceActivity.SELECTED_CITY, city);
             startActivityForResult(intent, REQUEST_CITY_WHEEL);
             break;
 
@@ -166,21 +169,28 @@ public class Main extends BaseActivity implements OnClickListener{
 			 startActivity(new Intent(Main.this,MyMessage.class));
 			 
 			break;
-		case R.id.main_rl_my:  // 锟斤拷POS锟斤拷锟斤拷
+ 
+ 
+		case R.id.main_rl_my:  // ��POS����
+ 
 			 startActivity(new Intent(Main.this,MenuMine.class));
 			 
 			break;
-		
-		case R.id.main_rl_pos:  // 锟斤拷POS锟斤拷锟斤拷
+ 
+		case R.id.main_rl_pos:  // ��POS����
+ 
 			 startActivity(new Intent(Main.this,PosListActivity.class));
 			 
 			break;
-			
-		case R.id.main_rl_renzhen:  //锟斤拷证
+ 
+ 
+		case R.id.main_rl_renzhen:  //��֤
+ 
 			 Intent i =new Intent(Main.this,OrderList.class);
 			 startActivity(i);
 			 
 			break;
+ 
 		case R.id.main_rl_zdgl: //锟秸端癸拷锟斤拷 
 			 
 			break;
@@ -191,12 +201,16 @@ public class Main extends BaseActivity implements OnClickListener{
 		case R.id.main_rl_Forum: //锟斤拷要锟斤拷锟�  
 			 
 			break;
-		case R.id.main_rl_xtgg: //系统锟斤拷锟斤拷   
+ 
+		case R.id.main_rl_xtgg: //ϵͳ����   
+ 
 			  
 			 startActivity(new Intent(Main.this,SystemMessage.class));
 			 
 			break;
-		case R.id.main_rl_lxwm: //锟斤拷系锟斤拷锟斤拷
+ 
+		case R.id.main_rl_lxwm: //��ϵ����
+ 
 			 startActivity(new Intent(Main.this,ContentUs.class));
 			 break;
 		case R.id.main_rl_gwc:  
@@ -213,13 +227,13 @@ public class Main extends BaseActivity implements OnClickListener{
         if (resultCode != RESULT_OK) return;
         switch (requestCode) {
             case REQUEST_CITY:
-                cityId = data.getIntExtra(CitySelectActivity.CITY_ID, 0);
-                cityName = data.getStringExtra(CitySelectActivity.CITY_NAME);
+                cityId = data.getIntExtra(CITY_ID, 0);
+                cityName = data.getStringExtra(CITY_NAME);
                 cityTextView.setText(cityName);
                 break;
             case REQUEST_CITY_WHEEL:
-                province = (Province) data.getSerializableExtra(CityProvinceActivity.SELECTED_PROVINCE);
-                city = (City) data.getSerializableExtra(CityProvinceActivity.SELECTED_CITY);
+                province = (Province) data.getSerializableExtra(SELECTED_PROVINCE);
+                city = (City) data.getSerializableExtra(SELECTED_CITY);
                 cityTextView.setText(city.getName());
                 break;
         }

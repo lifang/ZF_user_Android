@@ -34,7 +34,7 @@ public class HttpRequest {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                Log.e("", responseString);
+                Log.d("", responseString);
                 Response data = null == callback.getTypeToken() ?
                         JsonParser.fromJson(responseString, Response.class) :
                         JsonParser.fromJson(responseString, callback.getTypeToken());
@@ -78,7 +78,6 @@ public class HttpRequest {
             callback.onFailure(context.getString(R.string.network_info));
             return;
         }
-     //   client.post(context, url, null, entity, "application/json; charset=utf-8", responseHandler);
         client.post(context, url, null, entity, "application/json", responseHandler);
     }
 }
