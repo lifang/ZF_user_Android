@@ -50,7 +50,7 @@ import com.loopj.android.http.RequestParams;
 *
  */
 public class PosListActivity extends BaseActivity implements OnClickListener, IXListViewListener{
-	private ImageView pos_select;	
+	private ImageView pos_select,search2;	
 	private XListView Xlistview;
 	private int page=1;
 	private int rows=Config.ROWS;
@@ -108,7 +108,8 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		// TODO Auto-generated method stub
 		pos_select=(ImageView) findViewById(R.id.pos_select);
 		pos_select.setOnClickListener(this);
-		
+		search2=(ImageView) findViewById(R.id.search2);
+		search2.setOnClickListener(this);
 		
 		myAdapter=new PosAdapter(PosListActivity.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
@@ -137,7 +138,11 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			Intent i =new Intent(PosListActivity.this,PosSelect.class);
 			startActivity(i);
 			break;
-
+			//search2
+		case R.id.search2:
+		 
+			startActivity( new Intent(PosListActivity.this,ShopCar.class));
+			break;
 		default:
 			break;
 		}
@@ -222,7 +227,10 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 							int a =jsonobject.getInt("code");
 							if(a==Config.CODE){ //判断返回结果是否合法
 							//	"code":0,"message":"用户登录成功","token":"14188706016196","result":{"studentEmail":"475813996@qq.com","studentId":6,"studentStatus":2,"studentMobilePhone":"18862243513"}}
-								moreList= gson.fromJson(jsonobject.getString("result"), new TypeToken<List<PosEntity>>() {
+								String res =jsonobject.getString("result");
+								jsonobject = new JSONObject(res);
+								
+								moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<PosEntity>>() {
 			 					}.getType());
 			 				 
 								myList.addAll(moreList);

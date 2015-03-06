@@ -73,8 +73,8 @@ public class PosAdapter extends BaseAdapter {
 		//"retail_price":72464,"pay_channe":"通道2",
 		//"Title":"泰山Pos旗舰版2","Model_number":"型号10"}
 		holder.title.setText(list.get(position).getTitle());
-		holder.tv_price.setText(list.get(position).getRetail_price()/100+"");
-		holder.content1.setText(list.get(position).getModel_number());
+		holder.tv_price.setText("$"+list.get(position).getRetail_price()/100+"");
+		holder.content1.setText("已售"+list.get(position).getModel_number());
 		holder.tv_td.setText(list.get(position).getPay_channe());
 		holder.ys.setText(list.get(position).getVolume_number()+"");
 		

@@ -78,6 +78,7 @@
         </activity>
         <activity
             android:name=".activity.MenuMine"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -90,6 +91,7 @@
         </activity>
         <activity
             android:name=".activity.MyMessage"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -175,6 +177,7 @@
         </activity> 
          <activity
             android:name="com.example.zf_android.activity.ShopCar"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>           
          

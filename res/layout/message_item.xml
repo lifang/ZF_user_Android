@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
          
         	
-            android:maxLength="8"
+            
             android:singleLine="true"
             android:text="2014-1-1 12:00:00"
             android:textColor="@color/text292929"

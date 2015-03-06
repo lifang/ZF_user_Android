@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.MessageEntity;
 import com.example.zf_android.entity.TestEntitiy;
 
 import android.content.Context;
@@ -22,11 +23,11 @@ import android.widget.Toast;
 
 public class MessageAdapter extends BaseAdapter {
 	private Context context;
-	private List<TestEntitiy> list;
+	private List<MessageEntity> list;
 	private LayoutInflater inflater;
 	private ViewHolder holder = null;
 
-	public MessageAdapter(Context context, List<TestEntitiy> list) {
+	public MessageAdapter(Context context, List<MessageEntity> list) {
 		this.context = context;
 		this.list = list;
 	}
@@ -61,7 +62,8 @@ public class MessageAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.tv_title.setText(list.get(position).getTitle());
+		holder.tv_title.setText(list.get(position).getContent());
+		holder.tv_time.setText(list.get(position).getCreate_at());
 		if(MyApplication.getIsSelect()){
 			 
 			holder.item_cb.setVisibility(View.VISIBLE);

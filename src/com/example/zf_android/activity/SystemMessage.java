@@ -23,6 +23,7 @@ import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.MessageEntity;
 import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_zandroid.adapter.MessageAdapter;
 import com.example.zf_zandroid.adapter.OrderAdapter;
@@ -44,8 +45,8 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 	private boolean onRefresh_number = true;
 	private MessageAdapter myAdapter;
 	private TextView next_sure;
-	List<TestEntitiy>  myList = new ArrayList<TestEntitiy>();
-	List<TestEntitiy>  moreList = new ArrayList<TestEntitiy>();
+	List<MessageEntity>  myList = new ArrayList<MessageEntity>();
+	List<MessageEntity>  moreList = new ArrayList<MessageEntity>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -183,15 +184,15 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 			// TODO Auto-generated method stub
 			 
 		 
-			 TestEntitiy te=new TestEntitiy();
-			 te.setContent("---这里是标题1---"+page+page);
-			 myList.add(te);
-			 TestEntitiy te2=new TestEntitiy();
-			 te2.setContent("---这里是标题2---"+page+page);
-			 myList.add(te2);
-			 TestEntitiy te22=new TestEntitiy();
-			 te22.setContent("---标题3---"+page+page);
-			 myList.add(te22);
+//			 TestEntitiy te=new TestEntitiy();
+//			 te.setContent("---这里是标题1---"+page+page);
+//			 myList.add(te);
+//			 TestEntitiy te2=new TestEntitiy();
+//			 te2.setContent("---这里是标题2---"+page+page);
+//			 myList.add(te2);
+//			 TestEntitiy te22=new TestEntitiy();
+//			 te22.setContent("---标题3---"+page+page);
+//			 myList.add(te22);
 			
 			System.out.println("getData");
 			handler.sendEmptyMessage(0);

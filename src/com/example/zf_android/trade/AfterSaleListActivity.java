@@ -79,7 +79,7 @@ public class AfterSaleListActivity extends Activity {
 
 		initButtonListeners();
 
-		API.getAfterSaleRecordList(this, mRecordType, 16, 1, 10, new HttpCallback<Page<AfterSaleRecord>>(this) {
+		API.getAfterSaleRecordList(this, mRecordType, 80, 1, 10, new HttpCallback<Page<AfterSaleRecord>>(this) {
 			@Override
 			public void onSuccess(Page<AfterSaleRecord> data) {
 				mEntities.addAll(data.getContent());
