@@ -1,208 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
- 
- 
- 
-    <string name="app_name">ZF_Android</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="no_internet">网络异常</string>
-    <string name="xlistview_header_hint_normal">push down to refresh</string>
-    <string name="xlistview_header_hint_ready">loding more</string>
-    <string name="xlistview_header_hint_loading">Loding...</string>
-    <string name="xlistview_header_last_time">last refresh time：</string>
-    <string name="xlistview_footer_hint_normal">loding more</string>
-    <string name="xlistview_footer_hint_ready">loding more</string>
-    <string name="hintname">请输入手机/邮箱</string>
-    <string name="hintpass">请输入密码</string>
-    <string name="forgetpass">找回密码</string>
-    <string name="refresh_toomuch">刷新频繁，请稍后再试</string>
-    <string name="remeberpass">忘记密码</string>
 
-    <!-- trade titles -->
-    <string name="title_trade_flow">交易流水</string>
-    <string name="title_trade_client">选择终端</string>
-    <string name="title_trade_statistic">统计结果</string>
-    <string name="title_trade_detail">交易详情</string>
-    <string name="title_city_select">选择城市</string>
+	<string name="app_name">ZF_Android</string>
+	<string name="hello_world">Hello world!</string>
+	<string name="action_settings">Settings</string>
+	<string name="no_internet">网络异常</string>
+	<string name="xlistview_header_hint_normal">push down to refresh</string>
+	<string name="xlistview_header_hint_ready">loding more</string>
+	<string name="xlistview_header_hint_loading">Loding...</string>
+	<string name="xlistview_header_last_time">last refresh time：</string>
+	<string name="xlistview_footer_hint_normal">loding more</string>
+	<string name="xlistview_footer_hint_ready">loding more</string>
+	<string name="hintname">请输入手机/邮箱</string>
+	<string name="hintpass">请输入密码</string>
+	<string name="forgetpass">找回密码</string>
+	<string name="refresh_toomuch">刷新频繁，请稍后再试</string>
+	<string name="remeberpass">忘记密码</string>
 
-    <!-- Toast messages -->
-    <string name="toast_end_date_error">结束时间不能小于开始时间</string>
-    <string name="loading_data">加载数据...</string>
-    <string name="load_data_failed">请求数据失败</string>
-    <string name="network_info">无法连接到网络</string>
+	<!--======================================================-->
+	<!--                      交易流水                          -->
+	<!--======================================================-->
+	<string name="title_trade_flow">交易流水</string>
+	<string name="title_trade_client">选择终端</string>
+	<string name="title_trade_statistic">统计结果</string>
+	<string name="title_trade_detail">交易详情</string>
+	<string name="title_city_select">选择城市</string>
 
-    <!-- notations -->
-    <string name="notation_yuan">￥</string>
-    <string name="notation_day">天</string>
+	<string name="toast_end_date_error">结束时间不能小于开始时间</string>
+	<string name="loading_data">加载数据...</string>
+	<string name="load_data_failed">请求数据失败</string>
+	<string name="network_info">无法连接到网络</string>
 
-    <!-- trade flow -->
-    <string-array name="trade_flow_tabs">
-        <item>转账</item>
-        <item>消费</item>
-        <item>还款</item>
-        <item>生活充值</item>
-        <item>话费充值</item>
-    </string-array>
+	<string name="notation_yuan">￥</string>
+	<string name="notation_percent">%</string>
+	<string name="notation_day">天</string>
 
-    <string name="trade_client">请选择终端号</string>
-    <string name="trade_start_date">请选择开始时间</string>
-    <string name="trade_end_date">请选择结束时间</string>
-    
-    <string name="trade_search">开始查询</string>
-    <string name="trade_statistic">开始统计</string>
-    
-    <string name="trade_flow_title">交易流水:</string>
-    <string name="trade_time">交易时间:</string>
-    <string name="trade_client_number">终 端 号:</string>
-    
-    <string name="trade_pay_account">付款帐号:</string>
-    <string name="trade_receive_account">收款账号:</string>
-    <string name="trade_close_time">结算时间:</string>
-    <string name="trade_poundage">手 续 费:</string>
-    <string name="trade_into_account">转入账号:</string>
-    <string name="trade_account_name">账户名:</string>
-    <string name="trade_account_number">账户号码:</string>
-    <string name="trade_phone_number">手机号码:</string>
-    
-    <string name="trade_amount">交易金额:</string>
-    <string name="trade_count">交易笔数:</string>
-    <string name="trade_channel">支付通道:</string>
-    <string name="trade_charge">手 续 费:</string>
-    <string name="trade_item_commercial_info">商户信息</string>
+	<string-array name="trade_flow_tabs">
+		<item>转账</item>
+		<item>消费</item>
+		<item>还款</item>
+		<item>生活充值</item>
+		<item>话费充值</item>
+	</string-array>
 
-    <string-array name="trade_item_commercial">
-        <item>编    号</item>
-        <item>代理商ID</item>
-        <item>商 户 ID</item>
-    </string-array>
+	<string name="trade_client">请选择终端号</string>
+	<string name="trade_start_date">请选择开始时间</string>
+	<string name="trade_end_date">请选择结束时间</string>
 
-    <string name="trade_item_bank_info">银行信息</string>
+	<string name="trade_search">开始查询</string>
+	<string name="trade_statistic">开始统计</string>
 
-    <string-array name="trade_item_bank">
-        <item>终 端 号</item>
-        <item>付款账号</item>
-        <item>收款账号</item>
-        <item>支付通道</item>
-        <item>分润金额</item>
-        <item>交易金额</item>
-        <item>交易时间</item>
-        <item>交易状态</item>
-        <item>交易批次号</item>
-        <item>交易流水号</item>
-    </string-array>
+	<string name="trade_flow_title">交易流水:</string>
+	<string name="trade_time">交易时间:</string>
+	<string name="trade_client_number">终 端 号:</string>
 
-    <string name="city_current">当前</string>
+	<string name="trade_pay_account">付款帐号:</string>
+	<string name="trade_receive_account">收款账号:</string>
+	<string name="trade_close_time">结算时间:</string>
+	<string name="trade_poundage">手 续 费:</string>
+	<string name="trade_into_account">转入账号:</string>
+	<string name="trade_account_name">账户名:</string>
+	<string name="trade_account_number">账户号码:</string>
+	<string name="trade_phone_number">手机号码:</string>
 
-    <!-- 售后记录 -->
-    <string name="title_after_sale">售后记录</string>
-    <string name="title_after_sale_mark">物流信息</string>
-    <string name="title_after_sale_pay">支付维修费用</string>
+	<string name="trade_amount">交易金额:</string>
+	<string name="trade_count">交易笔数:</string>
+	<string name="trade_channel">支付通道:</string>
+	<string name="trade_charge">手 续 费:</string>
+	<string name="trade_item_commercial_info">商户信息</string>
 
-    <string-array name="title_after_sale_list">
-        <item>维修记录</item>
-        <item>退货记录</item>
-        <item>注销记录</item>
-        <item>换货记录</item>
-        <item>更新资料记录</item>
-        <item>租赁退还记录</item>
-    </string-array>
-    <string-array name="title_after_sale_detail">
-        <item>维修详情</item>
-        <item>退货详情</item>
-        <item>注销详情</item>
-        <item>换货详情</item>
-        <item>更新资料详情</item>
-        <item>租赁退还详情</item>
-    </string-array>
+	<string-array name="trade_item_commercial">
+		<item>编    号</item>
+		<item>代理商ID</item>
+		<item>商 户 ID</item>
+	</string-array>
 
-    <string name="after_sale_maintain">维修记录</string>
-    <string name="after_sale_return">退货记录</string>
-    <string name="after_sale_cancel">注销记录</string>
-    <string name="after_sale_change">换货记录</string>
-    <string name="after_sale_update">更新资料记录</string>
-    <string name="after_sale_lease">租赁退还记录</string>
+	<string name="trade_item_bank_info">银行信息</string>
 
-    <string-array name="after_sale_number">
-        <item>维修编号:</item>
-        <item>退货编号:</item>
-        <item>注销编号:</item>
-        <item>换货编号:</item>
-        <item>更新资料编号:</item>
-        <item>租赁退还编号:</item>
-    </string-array>
+	<string-array name="trade_item_bank">
+		<item>终 端 号</item>
+		<item>付款账号</item>
+		<item>收款账号</item>
+		<item>支付通道</item>
+		<item>分润金额</item>
+		<item>交易金额</item>
+		<item>交易时间</item>
+		<item>交易状态</item>
+		<item>交易批次号</item>
+		<item>交易流水号</item>
+	</string-array>
 
-    <string name="after_sale_terminal">终端号</string>
-    <string name="after_sale_status">状态</string>
-    <string name="button_cancel_apply">取消申请</string>
-    <string name="button_pay">付款</string>
-    <string name="button_submit_flow">提交物流信息</string>
-    <string name="button_submit_cancel">重新提交注销</string>
-    <string name="button_pay_maintain">支付维修费</string>
-    <string name="button_submit">提交</string>
-    <string name="after_sale_apply_time">申请时间:</string>
-    <string name="after_sale_trace_record">追踪记录:</string>
-    <string name="after_sale_terminal_title">终端信息</string>
+	<string name="city_current">当前</string>
 
-    <string-array name="after_sale_terminal">
-        <item>终 端 号</item>
-        <item>POS品牌</item>
-        <item>POS型号</item>
-        <item>支付平台</item>
-        <item>商 户 名</item>
-        <item>商户电话</item>
-        <item>租    金</item>
-        <item>租赁押金</item>
-        <item>租赁时长</item>
-        <item>最长租赁日期</item>
-        <item>最短租赁日期</item>
-    </string-array>
+	<!--======================================================-->
+	<!--                      售后记录                          -->
+	<!--======================================================-->
+	<string name="title_after_sale">售后记录</string>
+	<string name="title_after_sale_mark">物流信息</string>
+	<string name="title_after_sale_pay">支付维修费用</string>
 
-    <string name="after_sale_maintain_title">维修信息</string>
+	<string-array name="title_after_sale_list">
+		<item>维修记录</item>
+		<item>退货记录</item>
+		<item>注销记录</item>
+		<item>换货记录</item>
+		<item>更新资料记录</item>
+		<item>租赁退还记录</item>
+	</string-array>
+	<string-array name="title_after_sale_detail">
+		<item>维修详情</item>
+		<item>退货详情</item>
+		<item>注销详情</item>
+		<item>换货详情</item>
+		<item>更新资料详情</item>
+		<item>租赁退还详情</item>
+	</string-array>
 
-    <string-array name="after_sale_maintian">
-        <item>收货地址</item>
-        <item>维修费用</item>
-        <item>故障描述</item>
-    </string-array>
+	<string name="after_sale_maintain">维修记录</string>
+	<string name="after_sale_return">退货记录</string>
+	<string name="after_sale_cancel">注销记录</string>
+	<string name="after_sale_change">换货记录</string>
+	<string name="after_sale_update">更新资料记录</string>
+	<string name="after_sale_lease">租赁退还记录</string>
 
-    <string name="after_sale_return_title">退货信息</string>
+	<string-array name="after_sale_number">
+		<item>维修编号:</item>
+		<item>退货编号:</item>
+		<item>注销编号:</item>
+		<item>换货编号:</item>
+		<item>更新资料编号:</item>
+		<item>租赁退还编号:</item>
+	</string-array>
 
-    <string-array name="after_sale_return">
-        <item>退款金额</item>
-        <item>退款银行</item>
-        <item>退款账号</item>
-        <item>退款原因</item>
-    </string-array>
+	<string name="after_sale_terminal">终端号</string>
+	<string name="after_sale_status">状态</string>
+	<string name="button_cancel_apply">取消申请</string>
+	<string name="button_pay">付款</string>
+	<string name="button_submit_flow">提交物流信息</string>
+	<string name="button_submit_cancel">重新提交注销</string>
+	<string name="button_pay_maintain">支付维修费</string>
+	<string name="button_submit">提交</string>
+	<string name="after_sale_apply_time">申请时间:</string>
+	<string name="after_sale_trace_record">追踪记录:</string>
+	<string name="after_sale_terminal_title">终端信息</string>
 
-    <string name="after_sale_return_material_title">注销所需资料</string>
-    <string name="after_sale_cancel_material_title">注销申请资料</string>
-    <string name="after_sale_change_title">换货信息</string>
+	<string-array name="after_sale_terminal">
+		<item>终 端 号</item>
+		<item>POS品牌</item>
+		<item>POS型号</item>
+		<item>支付平台</item>
+		<item>商 户 名</item>
+		<item>商户电话</item>
+		<item>租    金</item>
+		<item>租赁押金</item>
+		<item>租赁时长</item>
+		<item>最长租赁日期</item>
+		<item>最短租赁日期</item>
+	</string-array>
 
-    <string-array name="after_sale_change">
-        <item>收货地址</item>
-        <item>换货原因</item>
-    </string-array>
+	<string name="after_sale_maintain_title">维修信息</string>
 
-    <string name="after_sale_change_material_title">换货所需资料</string>
-    <string name="after_sale_update_material_title">申请更新资料</string>
-    <string name="after_sale_lease_title">退货信息</string>
+	<string-array name="after_sale_maintian">
+		<item>收货地址</item>
+		<item>维修费用</item>
+		<item>故障描述</item>
+	</string-array>
 
-    <string-array name="after_sale_lease">
-        <item>退款金额</item>
-        <item>联 系 人</item>
-        <item>联系电话</item>
-    </string-array>
+	<string name="after_sale_return_title">退货信息</string>
 
-    <string name="after_sale_lease_material_title">租赁退还申请资料</string>
-    <string name="after_sale_material_name">资料名称</string>
-    <string name="after_sale_material_view">点击查看</string>
-    <string name="after_sale_material_unsubmit">未提交</string>
-    <string name="toast_cancel_apply_success">取消申请成功</string>
-    <string name="toast_resubmit_cancel_success">重新提交注销成功</string>
-    <string name="toast_add_mark_success">提交物流信息成功</string>
-    <string name="after_sale_mark_company">物流公司</string>
-    <string name="after_sale_mark_number">物流单号</string>
+	<string-array name="after_sale_return">
+		<item>退款金额</item>
+		<item>退款银行</item>
+		<item>退款账号</item>
+		<item>退款原因</item>
+	</string-array>
 
+	<string name="after_sale_return_material_title">注销所需资料</string>
+	<string name="after_sale_cancel_material_title">注销申请资料</string>
+	<string name="after_sale_change_title">换货信息</string>
+
+	<string-array name="after_sale_change">
+		<item>收货地址</item>
+		<item>换货原因</item>
+	</string-array>
+
+	<string name="after_sale_change_material_title">换货所需资料</string>
+	<string name="after_sale_update_material_title">申请更新资料</string>
+	<string name="after_sale_lease_title">退货信息</string>
+
+	<string-array name="after_sale_lease">
+		<item>退款金额</item>
+		<item>联 系 人</item>
+		<item>联系电话</item>
+	</string-array>
+
+	<string name="after_sale_lease_material_title">租赁退还申请资料</string>
+	<string name="after_sale_material_name">资料名称</string>
+	<string name="after_sale_material_view">点击查看</string>
+	<string name="after_sale_material_unsubmit">未提交</string>
+	<string name="toast_cancel_apply_success">取消申请成功</string>
+	<string name="toast_resubmit_cancel_success">重新提交注销成功</string>
+	<string name="toast_add_mark_success">提交物流信息成功</string>
+	<string name="after_sale_mark_company">物流公司</string>
+	<string name="after_sale_mark_number">物流单号</string>
+
+	<!--======================================================-->
+	<!--                      终端管理                          -->
+	<!--======================================================-->
+	<string name="title_terminal_management">终端管理</string>
+	<string name="title_terminal_add_others">添加其它终端</string>
+	<string name="title_terminal_detail">终端详情</string>
+	<string name="title_terminal_choose_channel">选择支付通道</string>
+
+	<string name="terminal_add_others">添加其他终端</string>
+	<string name="terminal_add_tips">方便您查看交易流水</string>
+
+	<string name="terminal_button_video">视频认证</string>
+	<string name="terminal_button_pos">找回POS密码</string>
+	<string name="terminal_button_sync">同步</string>
+	<string name="terminal_button_open">开通申请</string>
+	<string name="terminal_button_reopen">重新开通申请</string>
+
+	<string name="terminal_add_channel">指定支付通道</string>
+	<string name="terminal_add_number">填入终端号</string>
+	<string name="terminal_add_name">填入商户名称</string>
+
+	<string name="terminal_open_status">开通状态:</string>
+
+	<string name="terminal_category_apply">终端信息</string>
+	<string name="terminal_category_open">开通详情</string>
+
+	<string name="terminal_no_detail">暂无终端详情</string>
+	<string-array name="terminal_apply_keys">
+		<item>终 端 号</item>
+		<item>POS品牌</item>
+		<item>POS型号</item>
+		<item>支付平台</item>
+		<item>商 户 名</item>
+		<item>商户电话</item>
+		<item>订 单 号</item>
+		<item>订购时间</item>
+	</string-array>
+
+	<string name="terminal_type">交易类型</string>
+	<string name="terminal_rate">费率</string>
+	<string name="terminal_status">开通状态</string>
+
+	<!--======================================================-->
+	<!--                      开通认证                          -->
+	<!--======================================================-->
+	<string name="title_apply_open">开通申请</string>
+
+	<string name="apply_button_open">申请开通</string>
+	<string name="apply_button_reopen">重新申请开通</string>
+	<string name="apply_button_video">视频认证</string>
 </resources>
-

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/F3F2F2">
+
+	<include layout="@layout/title_back"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<View
+			style="@style/Divider"
+			android:layout_marginTop="12dp"/>
+
+		<FrameLayout
+			android:id="@+id/terminal_choose_channel"
+			style="@style/FrameItem"
+			android:clickable="true"
+			android:background="@drawable/item_white_pressed">
+
+			<TextView
+				style="@style/TextItem"
+				android:layout_gravity="left|center_vertical"
+				android:text="@string/terminal_add_channel"/>
+
+			<TextView
+				android:id="@+id/terminal_pay_channel"
+				style="@style/TextItem"
+				android:layout_marginRight="20dp"
+				android:layout_gravity="right|center_vertical"/>
+
+			<ImageView
+				android:id="@+id/trade_end_arrow"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="right|center_vertical"
+				android:src="@drawable/post_right"/>
+		</FrameLayout>
+
+		<View style="@style/Divider"/>
+
+		<View
+			style="@style/Divider"
+			android:layout_marginTop="4dp"/>
+
+		<FrameLayout style="@style/FrameItem">
+
+			<TextView
+				style="@style/TextItem"
+				android:layout_gravity="left|center_vertical"
+				android:text="@string/terminal_add_number"/>
+
+			<EditText
+				android:id="@+id/terminal_number"
+				style="@style/EditTextItem"/>
+		</FrameLayout>
+
+		<View style="@style/Divider"/>
+
+		<View
+			style="@style/Divider"
+			android:layout_marginTop="4dp"/>
+
+		<FrameLayout style="@style/FrameItem">
+
+			<TextView
+				style="@style/TextItem"
+				android:layout_gravity="left|center_vertical"
+				android:text="@string/terminal_add_name"/>
+
+			<EditText
+				android:id="@+id/terminal_merchant_name"
+				style="@style/EditTextItem"/>
+		</FrameLayout>
+
+		<View style="@style/Divider"/>
+	</LinearLayout>
+
+	<Button
+		android:id="@+id/terminal_submit"
+		style="@style/ButtonNormal"
+		android:layout_marginTop="24dp"
+		android:text="@string/button_submit"
+		android:enabled="false"/>
+</LinearLayout>

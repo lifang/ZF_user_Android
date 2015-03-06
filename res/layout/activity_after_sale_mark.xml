@@ -15,14 +15,7 @@
 
 		<View style="@style/Divider"/>
 
-		<FrameLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="24dp"
-			android:paddingRight="24dp"
-			android:paddingTop="16dp"
-			android:paddingBottom="16dp"
-			android:background="@color/white">
+		<FrameLayout style="@style/FrameItem">
 
 			<TextView
 				style="@style/TextItem"
@@ -31,28 +24,12 @@
 
 			<EditText
 				android:id="@+id/after_sale_mark_company"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:minWidth="50dp"
-				android:maxWidth="250dp"
-				android:singleLine="true"
-				android:textColor="@color/text6c6c6c6"
-				android:textSize="15sp"
-				android:background="@android:color/transparent"
-				android:layout_gravity="right|center_vertical"/>
-
+				style="@style/EditTextItem"/>
 		</FrameLayout>
 
 		<View style="@style/Divider"/>
 
-		<FrameLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="24dp"
-			android:paddingRight="24dp"
-			android:paddingTop="16dp"
-			android:paddingBottom="16dp"
-			android:background="@color/white">
+		<FrameLayout style="@style/FrameItem">
 
 			<TextView
 				style="@style/TextItem"
@@ -61,16 +38,7 @@
 
 			<EditText
 				android:id="@+id/after_sale_mark_number"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:minWidth="50dp"
-				android:maxWidth="250dp"
-				android:singleLine="true"
-				android:textColor="@color/text6c6c6c6"
-				android:textSize="15sp"
-				android:background="@android:color/transparent"
-				android:layout_gravity="right|center_vertical"/>
-
+				style="@style/EditTextItem"/>
 		</FrameLayout>
 
 		<View style="@style/Divider"/>
@@ -79,14 +47,9 @@
 
 	<Button
 		android:id="@+id/after_sale_mark_submit"
-		android:layout_width="154dp"
-		android:layout_height="40dp"
+		style="@style/ButtonNormal"
 		android:layout_marginTop="24dp"
-		android:layout_gravity="center_horizontal"
-		android:textColor="@color/white"
-		android:background="@drawable/normal_button_selector"
 		android:text="@string/button_submit"
 		android:enabled="false"/>
-
 
 </LinearLayout>

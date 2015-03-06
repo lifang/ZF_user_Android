@@ -32,8 +32,10 @@ import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
+import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
@@ -185,14 +187,12 @@ public class Main extends BaseActivity implements OnClickListener{
  
  
 		case R.id.main_rl_renzhen:  //��֤
- 
-			 Intent i =new Intent(Main.this,OrderList.class);
+			 Intent i =new Intent(Main.this, ApplyListActivity.class);
 			 startActivity(i);
 			 
 			break;
- 
-		case R.id.main_rl_zdgl: //锟秸端癸拷锟斤拷 
-			 
+		case R.id.main_rl_zdgl: //�ն˹��� 
+			startActivity(new Intent(Main.this, TerminalManageActivity.class));
 			break;
 		case R.id.main_rl_jyls: //锟斤拷锟斤拷锟斤拷水 
 			 

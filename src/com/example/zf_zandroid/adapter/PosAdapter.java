@@ -1,26 +1,18 @@
 package com.example.zf_zandroid.adapter;
 
-import java.util.List;
-
-import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
-import com.example.zf_android.entity.PosEntity;
-import com.example.zf_android.entity.TestEntitiy;
-
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.zf_android.R;
+import com.example.zf_android.entity.PosEntity;
+
+import java.util.List;
 
 public class PosAdapter extends BaseAdapter {
 	private Context context;
@@ -69,9 +61,9 @@ public class PosAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		//volume_number":123,"id":2,"good_brand":"Æ·ÅÆ1","total_score":1,
-		//"retail_price":72464,"pay_channe":"Í¨µÀ2",
-		//"Title":"Ì©É½PosÆì½¢°æ2","Model_number":"ÐÍºÅ10"}
+		//volume_number":123,"id":2,"good_brand":"Æ·ï¿½ï¿½1","total_score":1,
+		//"retail_price":72464,"pay_channe":"Í¨ï¿½ï¿½2",
+		//"Title":"Ì©É½Posï¿½ì½¢ï¿½ï¿½2","Model_number":"ï¿½Íºï¿½10"}
 		holder.title.setText(list.get(position).getTitle());
 		holder.tv_price.setText("$"+list.get(position).getRetail_price()/100+"");
 		holder.content1.setText("ÒÑÊÛ"+list.get(position).getModel_number());

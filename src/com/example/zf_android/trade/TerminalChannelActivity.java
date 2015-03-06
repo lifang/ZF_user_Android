@@ -3,7 +3,6 @@ package com.example.zf_android.trade;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.entity.TradeClient;
+import com.example.zf_android.trade.entity.TerminalChannel;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -20,44 +19,47 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.zf_android.trade.Constants.TradeIntent.CLIENT_NUMBER;
+import static com.example.zf_android.trade.Constants.TerminalIntent.CHANNEL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.CHANNEL_NAME;
 
-public class TradeClientActivity extends ListActivity {
+/**
+ * Created by Leo on 2015/3/5.
+ */
+public class TerminalChannelActivity extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_simple_list);
-		new TitleMenuUtil(this, getString(R.string.title_trade_client)).show();
+		new TitleMenuUtil(this, getString(R.string.title_terminal_choose_channel)).show();
 
-		final String selectedNumber = getIntent().getStringExtra(CLIENT_NUMBER);
+		final int selectedId = getIntent().getIntExtra(CHANNEL_ID, 0);
 
 		final List<Map<String, Object>> items = new ArrayList<Map<String, Object>>();
 		final SimpleAdapter adapter = new SimpleAdapter(
 				this, items,
 				R.layout.simple_list_item,
-				new String[]{"name", "selected"},
-				new int[]{R.id.item_name, R.id.item_selected});
+				new String[]{"id", "name", "selected"},
+				new int[]{R.id.item_id, R.id.item_name, R.id.item_selected});
 		setListAdapter(adapter);
 
-		API.getTerminalList(this, 80, new HttpCallback<List<TradeClient>>(this) {
+		API.getChannelList(this, new HttpCallback<List<TerminalChannel>>(this) {
 
 			@Override
-			public void onSuccess(List<TradeClient> data) {
-				for (TradeClient client : data) {
+			public void onSuccess(List<TerminalChannel> data) {
+				for (TerminalChannel channel : data) {
 					Map<String, Object> item = new HashMap<String, Object>();
-					String clientNumber = client.getSerialNum();
-					item.put("name", clientNumber);
-					item.put("selected", TextUtils.isEmpty(clientNumber)
-							|| !clientNumber.equals(selectedNumber) ? null : R.drawable.icon_selected);
+					item.put("id", channel.getId());
+					item.put("name", channel.getName());
+					item.put("selected", selectedId == channel.getId() ? R.drawable.icon_selected : null);
 					items.add(item);
 				}
 				adapter.notifyDataSetChanged();
 			}
 
 			@Override
-			public TypeToken<List<TradeClient>> getTypeToken() {
-				return new TypeToken<List<TradeClient>>() {
+			public TypeToken<List<TerminalChannel>> getTypeToken() {
+				return new TypeToken<List<TerminalChannel>>() {
 				};
 			}
 		});
@@ -66,9 +68,11 @@ public class TradeClientActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		TextView tv = (TextView) v.findViewById(R.id.item_name);
+		TextView idTv = (TextView) v.findViewById(R.id.item_id);
+		TextView nameTv = (TextView) v.findViewById(R.id.item_name);
 		Intent intent = new Intent();
-		intent.putExtra(CLIENT_NUMBER, tv.getText().toString());
+		intent.putExtra(CHANNEL_ID, Integer.parseInt(idTv.getText().toString()));
+		intent.putExtra(CHANNEL_NAME, nameTv.getText().toString());
 		setResult(RESULT_OK, intent);
 		finish();
 	}

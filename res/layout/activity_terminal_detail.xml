@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/F3F2F2">
+
+	<include layout="@layout/title_back"/>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:scrollbars="none">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingLeft="24dp"
+				android:paddingRight="24dp">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:paddingTop="22dp"
+					android:paddingBottom="17dp"
+					android:layout_alignParentLeft="true">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textSize="14sp"
+						android:textColor="@color/text535252"
+						android:text="@string/terminal_open_status"/>
+
+					<TextView
+						android:id="@+id/terminal_detail_status"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="16dp"
+						android:textSize="20sp"
+						android:textColor="@color/text535252"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:id="@+id/terminal_linear_left"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_toLeftOf="@+id/terminal_linear_right"
+					android:layout_marginRight="5dp"
+					android:orientation="vertical"
+					android:layout_centerVertical="true">
+
+					<Button
+						android:id="@+id/terminal_button_left_top"
+						style="@style/ButtonBlank"/>
+
+					<Button
+						android:id="@+id/terminal_button_left_bottom"
+						style="@style/ButtonBlank"
+						android:layout_marginTop="10dp"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:id="@+id/terminal_linear_right"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:layout_alignParentRight="true"
+					android:layout_centerVertical="true">
+
+					<Button
+						android:id="@+id/terminal_button_right_top"
+						style="@style/ButtonBlank"/>
+
+					<Button
+						android:id="@+id/terminal_button_right_bottom"
+						style="@style/ButtonBlank"
+						android:layout_marginTop="10dp"/>
+				</LinearLayout>
+			</RelativeLayout>
+
+			<View style="@style/Divider"/>
+
+			<LinearLayout
+				android:id="@+id/terminal_category_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"/>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_marginTop="25dp"
+				android:paddingLeft="24dp"
+				android:paddingRight="24dp">
+
+				<TextView
+					style="@style/TextTrace.Comment"
+					android:text="@string/after_sale_trace_record"/>
+
+				<LinearLayout
+					android:id="@+id/terminal_comment_container"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:background="#e5e4e4"
+					android:paddingBottom="20dp"/>
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>
