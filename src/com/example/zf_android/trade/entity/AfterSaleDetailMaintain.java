@@ -7,35 +7,35 @@ import com.google.gson.annotations.SerializedName;
  */
 public class AfterSaleDetailMaintain extends AfterSaleDetail {
 
-	@SerializedName("receiver_addr")
-	private String receiverAddr;
+    @SerializedName("receiver_addr")
+    private String receiverAddr;
 
-	@SerializedName("repair_price")
-	private int repairPrice;
+    @SerializedName("repair_price")
+    private String repairPrice;
 
-	private String description;
+    private String description;
 
-	public String getReceiverAddr() {
-		return receiverAddr;
-	}
+    public String getReceiverAddr() {
+        return receiverAddr;
+    }
 
-	public void setReceiverAddr(String receiverAddr) {
-		this.receiverAddr = receiverAddr;
-	}
+    public void setReceiverAddr(String receiverAddr) {
+        this.receiverAddr = receiverAddr;
+    }
 
-	public int getRepairPrice() {
-		return repairPrice;
-	}
+    public String getRepairPrice() {
+        return repairPrice;
+    }
 
-	public void setRepairPrice(int repairPrice) {
-		this.repairPrice = repairPrice;
-	}
+    public void setRepairPrice(String repairPrice) {
+        this.repairPrice = repairPrice;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
