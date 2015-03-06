@@ -65,8 +65,8 @@ public class PosAdapter extends BaseAdapter {
 		//"retail_price":72464,"pay_channe":"Í¨ï¿½ï¿½2",
 		//"Title":"Ì©É½Posï¿½ì½¢ï¿½ï¿½2","Model_number":"ï¿½Íºï¿½10"}
 		holder.title.setText(list.get(position).getTitle());
-		holder.tv_price.setText(list.get(position).getRetail_price()/100+"");
-		holder.content1.setText(list.get(position).getModel_number());
+		holder.tv_price.setText("$"+list.get(position).getRetail_price()/100+"");
+		holder.content1.setText("ÒÑÊÛ"+list.get(position).getModel_number());
 		holder.tv_td.setText(list.get(position).getPay_channe());
 		holder.ys.setText(list.get(position).getVolume_number()+"");
 		

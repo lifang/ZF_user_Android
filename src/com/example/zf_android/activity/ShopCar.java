@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -29,6 +30,8 @@ import com.example.zf_android.R;
 import com.example.zf_android.entity.MyShopCar;
 import com.example.zf_android.entity.MyShopCar.Good;
 import com.example.zf_android.entity.TestEntitiy;
+import com.example.zf_android.trade.CityProvinceActivity;
+import com.example.zf_android.trade.TradeFlowActivity;
 import com.example.zf_zandroid.adapter.OrderAdapter;
 import com.example.zf_zandroid.adapter.ShopcarAdapter;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -42,8 +45,8 @@ import com.loopj.android.http.RequestParams;
  * @version
  * 
  */
-public class ShopCar extends BaseActivity implements IXListViewListener {
-
+public class ShopCar extends BaseActivity implements IXListViewListener,OnClickListener {
+	private RelativeLayout rl_sy,rl_gw,rl_xx,rl_wd;
 	private XListView Xlistview;
 	private int page = 1;
 	private int rows = Config.ROWS;
@@ -95,6 +98,18 @@ public class ShopCar extends BaseActivity implements IXListViewListener {
 
 	private void initView() {
 		// TODO Auto-generated method stub
+		
+		rl_wd=(RelativeLayout) findViewById(R.id.main_rl_my);
+		rl_wd.setOnClickListener(this);
+		rl_xx=(RelativeLayout) findViewById(R.id.main_rl_pos1);
+		rl_xx.setOnClickListener(this);
+		rl_sy =(RelativeLayout) findViewById(R.id.main_rl_sy);
+		rl_sy.setOnClickListener(this); 
+		
+		
+		
+		
+		
 		findViewById(R.id.confirm).setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -112,7 +127,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener {
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
-
+		Xlistview.getmFooterView().setState2(0);
 		Xlistview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -139,22 +154,22 @@ public class ShopCar extends BaseActivity implements IXListViewListener {
 	@Override
 	public void onLoadMore() {
 		// TODO Auto-generated method stub
-		if (onRefresh_number) {
-			page = page + 1;
-
-			onRefresh_number = false;
-			getData();
-
-			// if (Tools.isConnect(getApplicationContext())) {
-			// onRefresh_number = false;
-			// getData();
-			// } else {
-			// onRefresh_number = true;
-			// handler.sendEmptyMessage(2);
-			// }
-		} else {
-			handler.sendEmptyMessage(3);
-		}
+//		if (onRefresh_number) {
+//			page = page + 1;
+//
+//			onRefresh_number = false;
+//			getData();
+//
+//			// if (Tools.isConnect(getApplicationContext())) {
+//			// onRefresh_number = false;
+//			// getData();
+//			// } else {
+//			// onRefresh_number = true;
+//			// handler.sendEmptyMessage(2);
+//			// }
+//		} else {
+//			handler.sendEmptyMessage(3);
+//		}
 	}
 
 	private void onLoad() {
@@ -175,7 +190,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener {
 	private void getData() {
 		// TODO Auto-generated method stub
 		String url = "http://114.215.149.242:18080/ZFMerchant/api/cart/list";
-		RequestParams params = new RequestParams("customerId", "2");
+		RequestParams params = new RequestParams("customerId", "80");
 		params.setUseJsonStreamer(true);
 
 		MyApplication.getInstance().getClient()
@@ -216,5 +231,26 @@ public class ShopCar extends BaseActivity implements IXListViewListener {
 				});
  
 		handler.sendEmptyMessage(0);
+	}
+
+	@Override
+	public void onClick(View v) { 
+		switch (v.getId()) {
+
+		case R.id.main_rl_pos1:  // ��POS����
+			 startActivity(new Intent(ShopCar.this,MyMessage.class));
+			 finish();
+			break;
+		case R.id.main_rl_my:  // ��POS����
+			 startActivity(new Intent(ShopCar.this,MenuMine.class));
+			 finish();
+			break;
+		case R.id.main_rl_sy:  // ��POS����
+			 startActivity(new Intent(ShopCar.this,Main.class));
+			 finish();
+			break;
+		default:
+			break;
+		}
 	}
 }

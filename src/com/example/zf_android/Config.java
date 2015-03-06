@@ -6,15 +6,21 @@ public class Config {
     public final static String IMAGE_PATH = "";
 	public static String checkVersion=PATHS+"";
 	public static int ROWS=10;
+	public static String getmes=PATHS+"message/receiver/getAll";
 	public final static String LOGIN = PATHS+"user/studentLogin";
 	public static final int CITY_ID = 1;
+	public static int UserID=1;
 	//user/userRegistration
 	public final static String UserRegistration = PATHS+"user/userRegistration";
 	public static final String SHARED = "zfandroid";
 	public static final String FINDPASS = null;
 	public final static String RegistgetCode = PATHS+"user/sendPhoneVerificationCode/";
 	public static final String GRTONE =PATHS+"customers/getOne/";
-	//http://114.215.149.242:18080/ZFMerchant/api/cart/update
+	// http://114.215.149.242:18080/ZFMerchant/api/message/receiver/getById
+	public static final String getMSGById =PATHS+"message/receiver/getById";
 	public static final String Car_edit =PATHS+"cart/update";
 	public static final int CODE = 1;
+	public static final String getMyOrderAll =PATHS+"order/getMyOrderAll";
+	public static final String batchRead =PATHS+"message/receiver/batchRead";
+	 
 }

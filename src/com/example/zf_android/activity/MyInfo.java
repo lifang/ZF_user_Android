@@ -157,7 +157,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 	}
 	private void exit() {
 		// TODO Auto-generated method stub
-		
+		startActivity(new Intent(MyInfo.this,LoginActivity.class));
 	}
 
 	 
