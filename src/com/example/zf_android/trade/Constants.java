@@ -91,4 +91,14 @@ public class Constants {
 		public static final String CHANNEL_ID = "channel_id";
 		public static final String CHANNEL_NAME = "channel_name";
 	}
+
+	/**
+	 * The intent data among apply activities
+	 */
+	public static class ApplyIntent {
+		public static final String CHOOSE_TITLE = "choose_title";
+		public static final String CHOOSE_ITEMS = "choose_items";
+		public static final String SELECTED_ID = "selected_id";
+		public static final String SELECTED_TITLE = "selected_title";
+	}
 }

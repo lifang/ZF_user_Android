@@ -196,7 +196,18 @@
 		<item name="android:padding">5dp</item>
 		<item name="android:gravity">center</item>
 		<item name="android:textSize">13sp</item>
+	</style>
 
+	<style name="TextTrace.Left.Key" parent="TextTrace.Left">
+		<item name="android:textSize">14sp</item>
+		<item name="android:paddingTop">1dp</item>
+		<item name="android:paddingBottom">1dp</item>
+	</style>
+
+	<style name="TextTrace.Right.Value" parent="TextTrace.Right">
+		<item name="android:textSize">14sp</item>
+		<item name="android:paddingTop">1dp</item>
+		<item name="android:paddingBottom">1dp</item>
 	</style>
 
 </resources>

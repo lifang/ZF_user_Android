@@ -250,8 +250,30 @@
 	<!--                      开通认证                          -->
 	<!--======================================================-->
 	<string name="title_apply_open">开通申请</string>
+	<string name="title_apply_choose">选择商户</string>
 
 	<string name="apply_button_open">申请开通</string>
 	<string name="apply_button_reopen">重新申请开通</string>
 	<string name="apply_button_video">视频认证</string>
+
+	<string name="apply_public">对公</string>
+	<string name="apply_private">对私</string>
+
+	<string name="apply_detail_brand">POS品牌</string>
+	<string name="apply_detail_model">POS型号</string>
+	<string name="apply_detail_serial">终 端 号</string>
+	<string name="apply_detail_channel">支付通道</string>
+
+	<string-array name="apply_detail_merchant_keys">
+		<item>选择已有商户</item>
+		<item>姓名</item>
+		<item>店铺名称(商户名)</item>
+		<item>性别</item>
+		<item>选择生日</item>
+		<item>身份证号</item>
+		<item>电话</item>
+		<item>邮箱</item>
+		<item>选择所在地</item>
+	</string-array>
+	<string name="apply_upload_photo">上传图片</string>
 </resources>
