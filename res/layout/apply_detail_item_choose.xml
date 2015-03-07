@@ -4,28 +4,29 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-	<FrameLayout
-		style="@style/FrameItem">
+    <FrameLayout
+        style="@style/FrameItem"
+        android:background="@drawable/item_white_pressed">
 
-		<TextView
-			android:id="@+id/apply_detail_key"
-			style="@style/TextItem"
-			android:layout_gravity="left|center_vertical"/>
+        <TextView
+            android:id="@+id/apply_detail_key"
+            style="@style/TextItem"
+            android:layout_gravity="left|center_vertical"/>
 
-		<TextView
-			android:id="@+id/apply_detail_value"
-			style="@style/TextItem"
-			android:layout_marginRight="20dp"
-			android:layout_gravity="right|center_vertical"
-			android:textColor="@color/text6c6c6c6"/>
+        <TextView
+            android:id="@+id/apply_detail_value"
+            style="@style/TextItem"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="right|center_vertical"
+            android:textColor="@color/text6c6c6c6"/>
 
-		<ImageView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="right|center_vertical"
-			android:src="@drawable/post_right"/>
-	</FrameLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/post_right"/>
+    </FrameLayout>
 
-	<View style="@style/Divider"/>
+    <View style="@style/Divider"/>
 
 </LinearLayout>

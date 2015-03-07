@@ -3,7 +3,6 @@ package com.example.zf_android.trade;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -11,22 +10,17 @@ import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
-import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.ApplyChooseItem;
-import com.example.zf_android.trade.entity.TradeClient;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
 import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_TITLE;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_TITLE;
-import static com.example.zf_android.trade.Constants.TradeIntent.CLIENT_NUMBER;
-
-import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
 
 public class ApplyChooseActivity extends ListActivity {
 
@@ -47,7 +41,8 @@ public class ApplyChooseActivity extends ListActivity {
 			item.put("id", chooseItem.getId());
 			item.put("name", chooseItem.getTitle());
 			item.put("selected", chooseItem.getId() == selectedId ? R.drawable.icon_selected : null);
-		}
+		    items.add(item);
+        }
 		final SimpleAdapter adapter = new SimpleAdapter(
 				this, items,
 				R.layout.simple_list_item,

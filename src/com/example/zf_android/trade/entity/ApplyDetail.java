@@ -19,7 +19,7 @@ public class ApplyDetail {
 	private List<ApplyChooseItem> merchants;
 
 	@SerializedName("applyFor")
-	private List<ApplyMerchantDetail> customerDetails;
+	private List<ApplyCustomerDetail> customerDetails;
 
 	public ApplyTerminalDetail getTerminalDetail() {
 		return terminalDetail;
@@ -45,11 +45,11 @@ public class ApplyDetail {
 		this.merchants = merchants;
 	}
 
-	public List<ApplyMerchantDetail> getCustomerDetails() {
+	public List<ApplyCustomerDetail> getCustomerDetails() {
 		return customerDetails;
 	}
 
-	public void setCustomerDetails(List<ApplyMerchantDetail> customerDetails) {
+	public void setCustomerDetails(List<ApplyCustomerDetail> customerDetails) {
 		this.customerDetails = customerDetails;
 	}
 }
