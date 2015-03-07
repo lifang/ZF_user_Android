@@ -41,6 +41,8 @@ import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
+
 
 public class Main extends BaseActivity implements OnClickListener{
 
@@ -159,12 +161,9 @@ public class Main extends BaseActivity implements OnClickListener{
 		switch (v.getId()) {
  
         case R.id.titleback_linear_back:  
- 
-         
-            Intent intent = new Intent(Main.this, CityProvinceActivity.class);
-          //  intent.putExtra(CityProvinceActivity.SELECTED_PROVINCE, province);
-          //   intent.putExtra(CityProvinceActivity.SELECTED_CITY, city);
-            startActivityForResult(intent, REQUEST_CITY_WHEEL);
+            Intent intent = new Intent(Main.this, CitySelectActivity.class);
+            intent.putExtra(CITY_NAME, cityName);
+            startActivityForResult(intent, REQUEST_CITY);
             break;
 
 		case R.id.main_rl_pos1:  // 锟斤拷POS锟斤拷锟斤拷

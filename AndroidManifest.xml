@@ -181,6 +181,10 @@
 		    android:name=".trade.ApplyDetailActivity"
 		    android:screenOrientation="portrait" >
 	    </activity>
+        <activity
+            android:name=".trade.ApplyChooseActivity"
+            android:screenOrientation="portrait" >
+        </activity>
 	    <!--======================================================-->
 	    <!--               Leo's Activities End                   -->
 	    <!--======================================================-->

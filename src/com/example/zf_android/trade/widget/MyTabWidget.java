@@ -59,18 +59,37 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
 	public void onFocusChange(View v, boolean hasFocus) {
 	}
 
+	/**
+	 * set a {@link ViewPager} to the tab content
+	 *
+	 * @param mViewPager
+	 */
 	public void setViewPager(ViewPager mViewPager) {
 		this.mViewPager = mViewPager;
 		if (mTabViews.size() > 0) setCurrentTab(0);
 	}
 
+	/**
+	 * Add a tab
+	 *
+	 * @param tab the tab name
+	 */
 	public void addTab(String tab) {
+		addTab(tab, 13);
+	}
 
+	/**
+	 * Add a tab
+	 *
+	 * @param tab  the tab name
+	 * @param size the tab text size (sp)
+	 */
+	public void addTab(String tab, int size) {
 		TextView tv = new TextView(mContext);
 		tv.setText(tab);
 		tv.setTextColor(mBaseColor);
 		tv.setGravity(Gravity.CENTER);
-		tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+		tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
 		mTabViews.add(tv);
 		addView(tv);
 		tv.setOnClickListener(this);
@@ -92,6 +111,11 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
 		}
 	}
 
+	/**
+	 * update the tab style when selected
+	 *
+	 * @param position
+	 */
 	public void updateTabs(int position) {
 
 		for (TextView tv : mTabViews) {
@@ -110,6 +134,11 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
 		}
 	}
 
+	/**
+	 * set the listener for tab selection
+	 *
+	 * @param listener
+	 */
 	public void setOnTabSelectedListener(OnTabSelectedListener listener) {
 		onTabSelectedListener = listener;
 	}
