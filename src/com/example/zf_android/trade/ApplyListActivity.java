@@ -52,10 +52,10 @@ public class ApplyListActivity extends Activity {
 		mApplyList = (ListView) findViewById(R.id.apply_list);
 		mTerminalItems = new ArrayList<TerminalItem>();
 		mAdapter = new ApplyListAdapter();
-		mApplyList.setAdapter(mAdapter);
 
 		View header = new View(this);
 		mApplyList.addHeaderView(header);
+        mApplyList.setAdapter(mAdapter);
 	}
 
 	private void loadData() {

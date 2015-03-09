@@ -64,7 +64,6 @@ public class TerminalManageActivity extends Activity {
 		mTerminalList = (ListView) findViewById(R.id.terminal_list);
 		mTerminalItems = new ArrayList<TerminalItem>();
 		mAdapter = new TerminalListAdapter();
-		mTerminalList.setAdapter(mAdapter);
 
 		LinearLayout listHeader = (LinearLayout) mInflater.inflate(R.layout.terminal_list_header, null);
 		TextView addTerminal = (TextView) listHeader.findViewById(R.id.terminal_add_others);
@@ -75,6 +74,7 @@ public class TerminalManageActivity extends Activity {
 			}
 		});
 		mTerminalList.addHeaderView(listHeader);
+        mTerminalList.setAdapter(mAdapter);
 	}
 
 	private void initBtnListeners() {

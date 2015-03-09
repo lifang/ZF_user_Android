@@ -233,6 +233,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 			case REQUEST_CHOOSE_CHANNEL: {
 				mChannelId = data.getIntExtra(SELECTED_ID, 0);
 				setItemValue(getString(R.string.apply_detail_channel), data.getStringExtra(SELECTED_TITLE));
+                break;
 			}
 			case REQUEST_UPLOAD_IMAGE:
 			case REQUEST_TAKE_PHOTO: {
@@ -273,11 +274,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 							}
 						}
 						if (TextUtils.isEmpty(realPath)) {
-							CommonUtil.toastShort(ApplyDetailActivity.this, getString(R.string.toast_upload_failed));
-							if (null != uploadingTextView) {
-								uploadingTextView.setText(getString(R.string.apply_upload_again));
-								uploadingTextView.setClickable(true);
-							}
+                            handler.sendEmptyMessage(0);
 							return;
 						}
 						CommonUtil.uploadFile(realPath, "img", new CommonUtil.OnUploadListener() {
@@ -291,6 +288,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 									msg.obj = url;
 									handler.sendMessage(msg);
 								} catch (JSONException e) {
+                                    handler.sendEmptyMessage(0);
 								}
 							}
 
