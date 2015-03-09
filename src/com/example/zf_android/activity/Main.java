@@ -40,14 +40,18 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.PicEntity;
 import com.example.zf_android.entity.PosEntity;
+import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
+import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
 
 
 public class Main extends BaseActivity implements OnClickListener{
@@ -230,12 +234,9 @@ public class Main extends BaseActivity implements OnClickListener{
 		switch (v.getId()) {
  
         case R.id.titleback_linear_back:  
- 
-         
-            Intent intent = new Intent(Main.this, CityProvinceActivity.class);
-          //  intent.putExtra(CityProvinceActivity.SELECTED_PROVINCE, province);
-          //   intent.putExtra(CityProvinceActivity.SELECTED_CITY, city);
-            startActivityForResult(intent, REQUEST_CITY_WHEEL);
+            Intent intent = new Intent(Main.this, CitySelectActivity.class);
+            intent.putExtra(CITY_NAME, cityName);
+            startActivityForResult(intent, REQUEST_CITY);
             break;
 
 		case R.id.main_rl_pos1:  // 锟斤拷POS锟斤拷锟斤拷
@@ -258,14 +259,12 @@ public class Main extends BaseActivity implements OnClickListener{
  
  
 		case R.id.main_rl_renzhen:  //��֤
- 
-			 Intent i =new Intent(Main.this,OrderList.class);
+			 Intent i =new Intent(Main.this, ApplyListActivity.class);
 			 startActivity(i);
 			 
 			break;
- 
-		case R.id.main_rl_zdgl: //锟秸端癸拷锟斤拷 
-			 
+		case R.id.main_rl_zdgl: //�ն˹��� 
+			startActivity(new Intent(Main.this, TerminalManageActivity.class));
 			break;
 		case R.id.main_rl_jyls: //锟斤拷锟斤拷锟斤拷水 
 			 

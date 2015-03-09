@@ -99,6 +99,10 @@
             android:name="com.example.zf_android.activity.OrderDetail"
             android:screenOrientation="portrait" >
         </activity>
+
+	    <!--======================================================-->
+	    <!--               Leo's Activities                       -->
+	    <!--======================================================-->
         <activity
             android:name=".trade.TradeFlowActivity"
             android:screenOrientation="portrait" >
@@ -143,10 +147,48 @@
             android:name=".trade.AfterSaleMarkActivity"
             android:screenOrientation="portrait" >
         </activity>
+ 
+	    <activity
+		    android:name=".trade.AfterSaleMaterialActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.TerminalManageActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.TerminalChannelActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.TerminalAddActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.TerminalDetailActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.ShowWebImageActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.ApplyListActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.ApplyDetailActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
         <activity
-            android:name=".trade.AfterSaleMaterialActivity"
+            android:name=".trade.ApplyChooseActivity"
             android:screenOrientation="portrait" >
         </activity>
+	    <!--======================================================-->
+	    <!--               Leo's Activities End                   -->
+	    <!--======================================================-->
+
+>>>>>>> cd2d620783085a3967ff63a60fbd08d843f9069f
         <activity
             android:name="com.example.zf_android.activity.SystemDetail"
             android:screenOrientation="portrait" >

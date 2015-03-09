@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
- 
- 
- 
+
     <string name="app_name">ZF_Android</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -19,24 +17,24 @@
     <string name="refresh_toomuch">刷新频繁，请稍后再试</string>
     <string name="remeberpass">忘记密码</string>
 
-    <!-- trade titles -->
+    <!--======================================================-->
+    <!--                      交易流水                          -->
+    <!--======================================================-->
     <string name="title_trade_flow">交易流水</string>
     <string name="title_trade_client">选择终端</string>
     <string name="title_trade_statistic">统计结果</string>
     <string name="title_trade_detail">交易详情</string>
     <string name="title_city_select">选择城市</string>
 
-    <!-- Toast messages -->
     <string name="toast_end_date_error">结束时间不能小于开始时间</string>
     <string name="loading_data">加载数据...</string>
     <string name="load_data_failed">请求数据失败</string>
     <string name="network_info">无法连接到网络</string>
 
-    <!-- notations -->
     <string name="notation_yuan">￥</string>
+    <string name="notation_percent">%</string>
     <string name="notation_day">天</string>
 
-    <!-- trade flow -->
     <string-array name="trade_flow_tabs">
         <item>转账</item>
         <item>消费</item>
@@ -48,14 +46,14 @@
     <string name="trade_client">请选择终端号</string>
     <string name="trade_start_date">请选择开始时间</string>
     <string name="trade_end_date">请选择结束时间</string>
-    
+
     <string name="trade_search">开始查询</string>
     <string name="trade_statistic">开始统计</string>
-    
+
     <string name="trade_flow_title">交易流水:</string>
     <string name="trade_time">交易时间:</string>
     <string name="trade_client_number">终 端 号:</string>
-    
+
     <string name="trade_pay_account">付款帐号:</string>
     <string name="trade_receive_account">收款账号:</string>
     <string name="trade_close_time">结算时间:</string>
@@ -64,7 +62,7 @@
     <string name="trade_account_name">账户名:</string>
     <string name="trade_account_number">账户号码:</string>
     <string name="trade_phone_number">手机号码:</string>
-    
+
     <string name="trade_amount">交易金额:</string>
     <string name="trade_count">交易笔数:</string>
     <string name="trade_channel">支付通道:</string>
@@ -94,7 +92,9 @@
 
     <string name="city_current">当前</string>
 
-    <!-- 售后记录 -->
+    <!--======================================================-->
+    <!--                      售后记录                          -->
+    <!--======================================================-->
     <string name="title_after_sale">售后记录</string>
     <string name="title_after_sale_mark">物流信息</string>
     <string name="title_after_sale_pay">支付维修费用</string>
@@ -204,5 +204,85 @@
     <string name="after_sale_mark_company">物流公司</string>
     <string name="after_sale_mark_number">物流单号</string>
 
-</resources>
+    <!--======================================================-->
+    <!--                      终端管理                          -->
+    <!--======================================================-->
+    <string name="title_terminal_management">终端管理</string>
+    <string name="title_terminal_add_others">添加其它终端</string>
+    <string name="title_terminal_detail">终端详情</string>
+    <string name="title_terminal_choose_channel">选择支付通道</string>
 
+    <string name="terminal_add_others">添加其他终端</string>
+    <string name="terminal_add_tips">方便您查看交易流水</string>
+
+    <string name="terminal_button_video">视频认证</string>
+    <string name="terminal_button_pos">找回POS密码</string>
+    <string name="terminal_button_sync">同步</string>
+    <string name="terminal_button_open">开通申请</string>
+    <string name="terminal_button_reopen">重新开通申请</string>
+
+    <string name="terminal_add_channel">指定支付通道</string>
+    <string name="terminal_add_number">填入终端号</string>
+    <string name="terminal_add_name">填入商户名称</string>
+
+    <string name="terminal_open_status">开通状态:</string>
+
+    <string name="terminal_category_apply">终端信息</string>
+    <string name="terminal_category_open">开通详情</string>
+
+    <string name="terminal_no_detail">暂无终端详情</string>
+    <string-array name="terminal_apply_keys">
+        <item>终 端 号</item>
+        <item>POS品牌</item>
+        <item>POS型号</item>
+        <item>支付平台</item>
+        <item>商 户 名</item>
+        <item>商户电话</item>
+        <item>订 单 号</item>
+        <item>订购时间</item>
+    </string-array>
+
+    <string name="terminal_type">交易类型</string>
+    <string name="terminal_rate">费率</string>
+    <string name="terminal_status">开通状态</string>
+
+    <!--======================================================-->
+    <!--                      开通认证                        -->
+    <!--======================================================-->
+    <string name="toast_upload_failed">上传图片失败</string>
+
+    <string name="title_apply_open">开通申请</string>
+    <string name="title_apply_choose_merchant">选择商户</string>
+    <string name="title_apply_choose_gender">选择性别</string>
+    <string name="title_apply_choose_channel">选择支付通道</string>
+
+    <string name="apply_button_open">申请开通</string>
+    <string name="apply_button_reopen">重新申请开通</string>
+    <string name="apply_button_video">视频认证</string>
+
+    <string name="apply_public">对公</string>
+    <string name="apply_private">对私</string>
+
+    <string name="apply_detail_brand">POS品牌</string>
+    <string name="apply_detail_model">POS型号</string>
+    <string name="apply_detail_serial">终 端 号</string>
+    <string name="apply_detail_channel">支付通道</string>
+
+    <string-array name="apply_detail_merchant_keys">
+        <item>选择已有商户</item>
+        <item>姓名</item>
+        <item>店铺名称(商户名)</item>
+        <item>性别</item>
+        <item>选择生日</item>
+        <item>身份证号</item>
+        <item>电话</item>
+        <item>邮箱</item>
+        <item>选择所在地</item>
+    </string-array>
+    <string-array name="apply_detail_gender">
+        <item>男</item>
+        <item>女</item>
+        <item>其他</item>
+    </string-array>
+    <string name="apply_upload_photo">上传图片</string>
+</resources>

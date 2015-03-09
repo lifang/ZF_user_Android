@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View style="@style/CutLine.Table"/>
+
+        <TextView
+            android:id="@+id/terminal_column_type"
+            style="@style/TextTrace.Table"/>
+
+        <View style="@style/CutLine.Table"/>
+
+        <TextView
+            android:id="@+id/terminal_column_rate"
+            style="@style/TextTrace.Table"/>
+
+        <View style="@style/CutLine.Table"/>
+
+        <TextView
+            android:id="@+id/terminal_column_status"
+            style="@style/TextTrace.Table"/>
+
+        <View style="@style/CutLine.Table"/>
+    </LinearLayout>
+
+    <View style="@style/Divider.Table"/>
+
+</LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <FrameLayout
+        style="@style/FrameItem">
+
+        <TextView
+            android:id="@+id/apply_detail_key"
+            style="@style/TextItem"
+            android:layout_gravity="left|center_vertical"/>
+
+        <EditText
+            android:id="@+id/apply_detail_value"
+            style="@style/EditTextItem"/>
+    </FrameLayout>
+
+    <View style="@style/Divider"/>
+
+</LinearLayout>

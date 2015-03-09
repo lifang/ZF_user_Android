@@ -1,20 +1,5 @@
 package com.example.zf_android.trade;
 
-import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_ID;
-import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_STATUS;
-import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
-import static com.example.zf_android.trade.Constants.AfterSaleIntent.REQUEST_DETAIL;
-import static com.example.zf_android.trade.Constants.AfterSaleIntent.REQUEST_MARK;
-import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
-import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
-import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
-import static com.example.zf_android.trade.Constants.AfterSaleType.MAINTAIN;
-import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
-import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,11 +20,26 @@ import com.example.zf_android.trade.common.Page;
 import com.example.zf_android.trade.entity.AfterSaleRecord;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_ID;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_STATUS;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.REQUEST_DETAIL;
+import static com.example.zf_android.trade.Constants.AfterSaleIntent.REQUEST_MARK;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
+import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
+import static com.example.zf_android.trade.Constants.AfterSaleType.MAINTAIN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
+import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
+
 /**
  * Created by Leo on 2015/2/26.
  */
 public class AfterSaleListActivity extends Activity {
-	
+
 	private int mRecordType;
 
 	private ListView mListView;
@@ -225,6 +225,7 @@ public class AfterSaleListActivity extends Activity {
 						holder.btnLeft.setOnClickListener(mCancelApplyListener);
 
 						holder.btnRight.setText(getString(R.string.button_pay));
+						holder.btnRight.setOnClickListener(mPayMaintainListener);
 					} else if (data.getStatus() == 2) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);

@@ -145,4 +145,69 @@
 		<item name="android:textSize">11sp</item>
 	</style>
 
+	<style name="FrameItem">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">50dp</item>
+		<item name="android:paddingLeft">24dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:background">@color/white</item>
+	</style>
+
+	<style name="EditTextItem">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:minWidth">80dp</item>
+		<item name="android:maxWidth">250dp</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:textColor">@color/text6c6c6c6</item>
+		<item name="android:textSize">15sp</item>
+		<item name="android:background">@android:color/transparent</item>
+		<item name="android:layout_gravity">right|center_vertical</item>
+	</style>
+
+	<style name="ButtonNormal">
+		<item name="android:layout_width">154dp</item>
+		<item name="android:layout_height">40dp</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:textColor">@color/white</item>
+		<item name="android:background">@drawable/normal_button_selector</item>
+	</style>
+
+	<style name="ButtonBlank">
+		<item name="android:layout_width">90dp</item>
+		<item name="android:layout_height">30dp</item>
+		<item name="android:textColor">@color/blank_button_selector</item>
+		<item name="android:background">@drawable/blank_button_selector</item>
+		<item name="android:textSize">12sp</item>
+		<item name="android:visibility">gone</item>
+	</style>
+
+	<style name="Divider.Table" parent="Divider">
+		<item name="android:background">@color/bgtitle</item>
+	</style>
+
+	<style name="CutLine.Table" parent="CutLine">
+		<item name="android:background">@color/bgtitle</item>
+	</style>
+
+	<style name="TextTrace.Table" parent="TextTrace">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:padding">5dp</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textSize">13sp</item>
+	</style>
+
+	<style name="TextTrace.Left.Key" parent="TextTrace.Left">
+		<item name="android:textSize">14sp</item>
+		<item name="android:paddingTop">1dp</item>
+		<item name="android:paddingBottom">1dp</item>
+	</style>
+
+	<style name="TextTrace.Right.Value" parent="TextTrace.Right">
+		<item name="android:textSize">14sp</item>
+		<item name="android:paddingTop">1dp</item>
+		<item name="android:paddingBottom">1dp</item>
+	</style>
+
 </resources>
