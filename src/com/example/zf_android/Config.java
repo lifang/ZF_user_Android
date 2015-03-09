@@ -22,5 +22,6 @@ public class Config {
 	public static final int CODE = 1;
 	public static final String getMyOrderAll =PATHS+"order/getMyOrderAll";
 	public static final String batchRead =PATHS+"message/receiver/batchRead";
+	public static final String GOODDETAIL =PATHS+"good/goodinfo";
 	 
 }

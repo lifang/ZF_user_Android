@@ -18,10 +18,10 @@ import com.example.zf_android.R;
 /***
  * 
 *    
-* ÀàÃû³Æ£ºAbout   
-* ÀàÃèÊö£º   ¹ØÓÚÒ³Ãæ
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-1-27 ÏÂÎç7:55:20   
+* ï¿½ï¿½ï¿½ï¿½Æ£ï¿½About   
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
+* ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp 
+* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-1-27 ï¿½ï¿½ï¿½ï¿½7:55:20   
 * @version    
 *
  */
@@ -36,7 +36,7 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.changetext);
-		new TitleMenuUtil(ChangeText.this, "¹ØÓÚ").show();
+		new TitleMenuUtil(ChangeText.this, "ï¿½ï¿½ï¿½ï¿½").show();
 		login_linear_deletename=(LinearLayout) findViewById(R.id.login_linear_deletename);
 		login_linear_deletename.setOnClickListener(this);
 		login_edit_name=(EditText) findViewById(R.id.login_edit_name);
@@ -54,15 +54,13 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 		case R.id.btn_sub:
 				tv_content=login_edit_name.getText().toString();
 			 if(StringUtil.replaceBlank(tv_content).length()>0){
-				 // Ö´ĞĞÇëÇó
 				 
-				 //OKÖ®ºó
 					Intent intent2 = new Intent();
 					intent2.putExtra("text", tv_content);
 					ChangeText.this.setResult(index, intent2);
 					finish();
 			 }else{
-				 Toast.makeText(ChangeText.this, "ÇëÊäÈëÒª¸Ä±äµÄÃû×Ö", 1000).show();
+				 Toast.makeText(ChangeText.this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 1000).show();
 			 }
 			break;
 

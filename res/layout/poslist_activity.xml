@@ -29,6 +29,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/et_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -67,12 +68,14 @@
         android:orientation="horizontal" >
 
         <LinearLayout
+            android:id="@+id/ll_mr"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center" >
 
             <TextView
+                android:id="@+id/tv_mr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="默认排序"
@@ -87,6 +90,7 @@
             android:layout_marginTop="10dp"
             android:background="#ADAEAF" />
             <LinearLayout
+            android:id="@+id/ll_xxyx"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -97,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:text="销量优先"
                 android:textSize="13sp"
+                  android:id="@+id/tv_2"
                 android:textColor="@color/bg_575D5F" />
         </LinearLayout>
 
@@ -107,6 +112,7 @@
             android:layout_marginTop="12dp"
             android:background="#ADAEAF" />
                 <LinearLayout
+                    android:id="@+id/ll_updown"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -118,9 +124,11 @@
                 android:layout_height="wrap_content"
                 android:text="价格降序"
                 android:textSize="13sp"
+                    android:id="@+id/tv_3"
                 android:textColor="@color/bg_575D5F" />
             <ImageView android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                    android:id="@+id/img3"
                 android:layout_marginLeft="1dp"
                 android:background="@drawable/ti_down"/>
         </LinearLayout>
@@ -132,6 +140,7 @@
             android:layout_marginTop="8dp"
             android:background="#ADAEAF" />
                 <LinearLayout
+                    android:id="@+id/ll_pj"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -141,6 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="评分最高"
+                    android:id="@+id/tv_4"
                 android:textSize="13sp"
                 android:textColor="@color/bg_575D5F" />
         </LinearLayout>

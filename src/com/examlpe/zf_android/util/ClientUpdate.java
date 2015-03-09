@@ -62,10 +62,10 @@ public class ClientUpdate {
 	private int newVerCode, verCodeMin;
 	public Builder dialog;
 	private File file = null;
-	private static int whitch = -1;// ÓÃÀ´¼ÇÂ¼ÊÇ´ÓÄÄÖÖ¸üÐÂµã»÷µÄÈ¡Ïû 0ÎªÆÕÍ¨¸üÐÂ£¬1ÎªÇ¿ÖÆ¸üÐÂ
+	private static int whitch = -1;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Ç´ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ 0Îªï¿½ï¿½Í¨ï¿½ï¿½ï¿½Â£ï¿½1ÎªÇ¿ï¿½Æ¸ï¿½ï¿½ï¿½
 	private Update_AsyncTask mUpdate_AsyncTask = new Update_AsyncTask();
 	public static Update_AsyncTask mUpdate;
-	private boolean isConnOk = true;// ÊÇ·ñÁ¬½Ó³É¹¦
+	private boolean isConnOk = true;// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ó³É¹ï¿½
 
 	public ClientUpdate(Activity activity) {
 		this.activity = activity;
@@ -75,11 +75,11 @@ public class ClientUpdate {
 	public ClientUpdate() {
 	}
 
-	// ¼ì²â°æ±¾
+	// ï¿½ï¿½ï¿½æ±¾
 	public void check() {
 		if (!isNetworkAvailable(this.activity)) {
 		 
-			Toast.makeText(activity, "ÍøÂçÒì³££¡", 1000).show();
+			Toast.makeText(activity, "ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½", 1000).show();
 			return;
 		}
 		new Thread(new Runnable() {
@@ -90,24 +90,23 @@ public class ClientUpdate {
 		}).start();
 	}
 
-	// ¼ì²â°æ±¾ÏµÍ³ÉèÖÃÒ³
+	// ï¿½ï¿½ï¿½æ±¾ÏµÍ³ï¿½ï¿½ï¿½ï¿½Ò³
 	public void checkSetting() {
 		if (!isNetworkAvailable(this.activity)) {
 		 
-			Toast.makeText(activity, "ÍøÂçÒì³££¡", 1000).show();
+			Toast.makeText(activity, "ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½", 1000).show();
 			return;
 		}
 		checkVersion();
  
 	}
 
-	// ÍøÂç»ñÈ¡Êý¾Ý¼ì²â°æ±¾
+	// ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ý¼ï¿½ï¿½æ±¾
 	private void checkVersion() { 
 		getVersion();
 
 		String sign;
-		AsyncHttpClient client = new AsyncHttpClient(); // ´´½¨Òì²½ÇëÇóµÄ¿Í»§¶Ë¶ÔÏó
-
+		AsyncHttpClient client = new AsyncHttpClient(); // 
 		RequestParams params = new RequestParams();
 
 //		Map<String, String> paramValues = new HashMap<String, String>();
@@ -171,11 +170,11 @@ public class ClientUpdate {
 		}
 		dataVersion= packInfo.versionName;
 			  
-			  System.out.println("µ±Ç°°æ±¾ºÅ¡¤¡¤¡¤"+dataVersion);
+			  System.out.println("ï¿½ï¿½Ç°ï¿½æ±¾ï¿½Å¡ï¿½ï¿½ï¿½ï¿½ï¿½"+dataVersion);
 		return dataVersion;
 	}
 
-	// Ñ¡ÔñÊÇ·ñ¸üÐÂ¶Ô»°¿ò
+	// Ñ¡ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Â¶Ô»ï¿½ï¿½ï¿½
 	public void showUpdateDialog(String a) {
 		new UpdateDialog(activity, new UpdateDialog.ICallBack() {
 			@Override
@@ -186,7 +185,7 @@ public class ClientUpdate {
 		}, a, "").show();
 	}
 
-	// Ñ¡Ôñ×îµÍ°æ±¾Ç¿ÖÆ¸üÐÂ¶Ô»°¿ò
+	// Ñ¡ï¿½ï¿½ï¿½ï¿½Í°æ±¾Ç¿ï¿½Æ¸ï¿½ï¿½Â¶Ô»ï¿½ï¿½ï¿½
 //	public void showMinUpdateDialog() {
 //		whitch = 1;
 //		upEnDialog = new UpdateEnforceDialog(activity, new UpdateEnforceDialog.IEnforceCallBack() {
@@ -213,7 +212,7 @@ public class ClientUpdate {
 // 
 //	}
 
-	// ÅÐ¶ÏÍøÂçÊÇ·ñÍ¨³©
+	// ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Í¨ï¿½ï¿½
 	public static boolean isNetworkAvailable(Context ctx) {
 		try {
 			ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -225,7 +224,7 @@ public class ClientUpdate {
 		}
 	}
 
-	// ·¢ËÍÏÂÔØÏûÏ¢
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	private void sendNotification() {
 		mNotificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
 		notification = new Notification(R.drawable.mail_icon, "ICES", System.currentTimeMillis());
@@ -253,7 +252,7 @@ public class ClientUpdate {
 		}).start();
 	}
 
-	// Õâ¸öÄÚ²¿ÀàÓÃÀ´Òì²½ÏÂÔØÐÂ°æ±¾app Í¨¹ý·þÎñ¶ËÏÂÔØ
+	// ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì²½ï¿½ï¿½ï¿½ï¿½ï¿½Â°æ±¾app Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public class Update_AsyncTask extends AsyncTask<URL, Integer, Object> {
 		private long lastProgressUpdate = 0;
 		private double totalSize,nowSize;
@@ -269,7 +268,7 @@ public class ClientUpdate {
 					return null;
 				}
 				in = conn.getInputStream();
-				int contentlength = conn.getContentLength();// µÃµ½ÏÂÔØµÄ×Ü³¤¶È
+				int contentlength = conn.getContentLength();// ï¿½Ãµï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½Ü³ï¿½ï¿½ï¿½
 				totalSize=((int)(contentlength/(1024.00*1024)*100))/100.00;
 				if (!file.exists()) {
 					file.getParentFile().mkdirs();
@@ -282,7 +281,7 @@ public class ClientUpdate {
 				while ((current = in.read(arr)) != -1 && !this.isCancelled()) {
 					out.write(arr, 0, current);
 					x = x + current;
-					count = (int) ((double) x / (double) contentlength * 100);// ¼ÆËãÏÂÔØµÄ°Ù·Ö°Ù
+					count = (int) ((double) x / (double) contentlength * 100);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ØµÄ°Ù·Ö°ï¿½
 					nowSize = ((int)(x/(1024.00*1024)*100)/100.00);
 					if (!this.isCancelled() && new Date().getTime() - lastProgressUpdate > 500) {
 						publishProgress(count);
@@ -318,10 +317,10 @@ public class ClientUpdate {
  				remoteviews.setProgressBar(R.id.downProgressBar, 100, 100, false);
  				remoteviews.setTextViewText(R.id.downPercent, 100 + "%");
 					mNotificationManager.notify(88888, notification);
-					// ¹Ø±ÕÍ¨Öª
+					// ï¿½Ø±ï¿½Í¨Öª
 					mNotificationManager.cancel(88888);
 				}
-				// ÏµÍ³°²×°ÎÄ¼þµÄÒþÊ½ÒâÍ¼
+				// ÏµÍ³ï¿½ï¿½×°ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Í¼
 				Intent notify_Intent = new Intent(Intent.ACTION_VIEW);
 				notify_Intent.setDataAndType(Uri.fromFile(new File(new ClientUpdate().getFilePath())), "application/vnd.android.package-archive");
 				activity.startActivity(notify_Intent);
@@ -353,7 +352,7 @@ public class ClientUpdate {
 			if (values.length == 0)
 				return;
 			int step = values[0];
-			if (step >= 0 && step < 99) {// ×ÏÉ«µÄstep ÊÇÒì²½ÏÂÔØ¼ÆËã³öÀ´ÉèÖÃ½ø¶ÈµÄÖµ
+			if (step >= 0 && step < 99) {// ï¿½ï¿½É«ï¿½ï¿½step ï¿½ï¿½ï¿½ì²½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã½ï¿½Èµï¿½Öµ
 				if (whitch == 0) {
 					remoteviews.setProgressBar(R.id.downProgressBar, 100, step, false);
 					remoteviews.setTextViewText(R.id.downPercent, step + "%");
@@ -367,19 +366,19 @@ public class ClientUpdate {
 		}
 	}
 
-	// »ñµÃÓ¦ÓÃÏÂÔØÂ·¾¶
+	// ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 	public String getFilePath() {
-		boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED); // ÅÐ¶Ïsd¿¨ÊÇ·ñ´æÔÚ
-		if (sdCardExist) // Èç¹ûSD¿¨´æÔÚ£¬Ôò»ñÈ¡¸úÄ¿Â¼
+		boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED); // ï¿½Ð¶ï¿½sdï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
+		if (sdCardExist) // ï¿½ï¿½ï¿½SDï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ä¿Â¼
 		{
-			return Environment.getExternalStorageDirectory().toString() + File.separator + "ICES.apk";// »ñÈ¡¸úÄ¿Â¼
+			return Environment.getExternalStorageDirectory().toString() + File.separator + "ICES.apk";// ï¿½ï¿½È¡ï¿½ï¿½Ä¿Â¼
 		} else {
-			return activity.getCacheDir().getAbsolutePath() + File.separator + "ICES.apk";// »ñÈ¡¸úÄ¿Â¼
+			return activity.getCacheDir().getAbsolutePath() + File.separator + "ICES.apk";// ï¿½ï¿½È¡ï¿½ï¿½Ä¿Â¼
 		}
 	}
 
 	/**
-	 * ÓÃÓÚsettingÒ³ÃæµÄ°æ±¾¼ì²â
+	 * ï¿½ï¿½ï¿½ï¿½settingÒ³ï¿½ï¿½Ä°æ±¾ï¿½ï¿½ï¿½
 	 * 
 	 * @return
 	 */
@@ -415,7 +414,7 @@ public class ClientUpdate {
 //							showUpdateDialog();
 //						}
 //					} else {
-//						new ToastShow(activity, "ÄúÒÑ¾­ÊÇ×îÐÂ°æ±¾").show();
+//						new ToastShow(activity, "ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°æ±¾").show();
 //					}
 //				} catch (JSONException e) {
 //					e.printStackTrace();

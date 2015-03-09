@@ -144,7 +144,7 @@ public class ShopcarAdapter extends BaseAdapter {
 						: View.VISIBLE);
 				hoder.retail_price.setVisibility(isEdit ? View.VISIBLE
 						: View.INVISIBLE);
-				hoder.editBtn.setText(isEdit ? "±à¼­" : "Íê³É");
+				hoder.editBtn.setText(isEdit ? "ï¿½à¼­" : "ï¿½ï¿½ï¿½");
 				if(isEdit){
 						System.out.println(position+"----"+Integer.parseInt( hoder.buyCountEdit.getText().toString()));
 					 changeContent(position, Integer.parseInt( hoder.buyCountEdit.getText().toString()));
@@ -162,9 +162,9 @@ public class ShopcarAdapter extends BaseAdapter {
 					hoder.showCountText.setText("X  " + editGood.getQuantity());
 					if (hoder.checkBox.isChecked()) {
 						currentHowMoney -= editGood.getRetail_price();
-						howMoney.setText("ºÏ¼Æ£º£¤" + currentHowMoney);
+						howMoney.setText("ï¿½Ï¼Æ£ï¿½ï¿½ï¿½" + currentHowMoney);
 					}
-					System.out.println("Î»ÖÃ---"+position+quantity);
+					System.out.println("Î»ï¿½ï¿½---"+position+quantity);
 				    changeContent(position, quantity);
 				}
 				break;
@@ -174,7 +174,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				hoder.showCountText.setText("X  " + editGood.getQuantity());
 				if (hoder.checkBox.isChecked()) {
 					currentHowMoney += editGood.getRetail_price();
-					howMoney.setText("ºÏ¼Æ£º£¤" + currentHowMoney);
+					howMoney.setText("ï¿½Ï¼Æ£ï¿½ï¿½ï¿½" + currentHowMoney);
 				}
 				 changeContent(position, quantity);
 				break;
@@ -213,7 +213,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				currentHowMoney += (isChecked ? good.getRetail_price()
 						* good.getQuantity() : -good.getRetail_price()
 						* good.getQuantity());
-				howMoney.setText("ºÏ¼Æ£º£¤" + currentHowMoney);
+				howMoney.setText("ï¿½Ï¼Æ£ï¿½ï¿½ï¿½" + currentHowMoney);
 				Log.e("print", "currentHowMoney:"+currentHowMoney);
 			}
 
@@ -260,7 +260,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		private CheckBox checkBox;
 		private TextView title;
 
-		/*** ±à¼­°´Å¥ ***/
+	 
 		private TextView editBtn;
 		private LinearLayout ll_select;
 		private TextView retail_price;

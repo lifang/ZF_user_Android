@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_top"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@color/top_bg_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+    </RelativeLayout>
+	
+    <include layout="@layout/title_search_one"/>
+     	 <LinearLayout
+        android:id="@+id/eva_nodata"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+       android:layout_below="@+id/main_top"
+        android:layout_gravity="center"
+        android:background="@color/ffffff"
+        android:orientation="horizontal" 
+        >
+
+        <include layout="@layout/include_norecord" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/todayorder_search_linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/main_top"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/todayorder_search_list_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fadingEdge="none"
+            android:scrollbars="none" >
+        </ListView>
+
+        <cn.com.besttone.merchant.util.XListView
+            android:id="@+id/order_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:fadingEdge="none"
+            android:scrollbars="none"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</RelativeLayout>

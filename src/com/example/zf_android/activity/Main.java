@@ -10,9 +10,13 @@ import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
  
 
 import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -25,18 +29,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
  
  
 import com.examlpe.zf_android.util.ImageCacheUtil;
  
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.PicEntity;
+import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 
@@ -57,6 +67,7 @@ public class Main extends BaseActivity implements OnClickListener{
     public static final int REQUEST_CITY_WHEEL = 2;
     //vp
     private ArrayList<String> mal = new ArrayList<String>();
+    private ArrayList<PicEntity> myList = new ArrayList<PicEntity>();
 	private ViewPager view_pager;
 	private MyAdapter adapter ;
 	private ImageView[] indicator_imgs  ;//存放引到图片数组
@@ -66,6 +77,36 @@ public class Main extends BaseActivity implements OnClickListener{
 	private int  index_ima=0;
 	private ArrayList<String> ma = new ArrayList<String>();
 	List<View> list = new ArrayList<View>();
+	private Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 0:
+				for (int i = 0; i <myList.size(); i++) {			 
+					item = inflater.inflate(R.layout.item, null);
+					list.add(item);
+					ma.add(myList.get(i).getPicture_url());
+				}
+				indicator_imgs	= new ImageView[ma.size()];
+				initIndicator();
+				adapter.notifyDataSetChanged();		 
+				break;
+			case 1:
+				Toast.makeText(getApplicationContext(), (String) msg.obj,
+						Toast.LENGTH_SHORT).show();
+				break;
+			case 2: // 网络有问题
+				Toast.makeText(getApplicationContext(), "网络未连接",
+						Toast.LENGTH_SHORT).show();
+				break;
+			case 3:
+			 
+				break;
+			case 4:
+			 
+				break;
+			}
+		}
+	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -99,7 +140,39 @@ public class Main extends BaseActivity implements OnClickListener{
 				System.out.println("-onSuccess---");
 				String responseMsg = new String(responseBody).toString();
 				Log.e("LJP", responseMsg);
+				 
+					Gson gson = new Gson();
+					
+					JSONObject jsonobject = null;
+					String code = null;
+					try {
+						jsonobject = new JSONObject(responseMsg);
+						code = jsonobject.getString("code");
+						int a =jsonobject.getInt("code");
+						if(a==Config.CODE){  
+							String res =jsonobject.getString("result");
+						//	jsonobject = new JSONObject(res);
+							
+							myList= gson.fromJson(res, new TypeToken<List<PicEntity>>() {
+		 					}.getType());
+						 
+			 				handler.sendEmptyMessage(0);
+		 					  
+		 				 
+		 			 
+						}else{
+							code = jsonobject.getString("message");
+							Toast.makeText(getApplicationContext(), code, 1000).show();
+						}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						 ;	
+						e.printStackTrace();
+						
+					}
 				
+				
+				  
 			}
 
 			@Override
@@ -247,7 +320,7 @@ private void initIndicator(){
 		for (int i = 0; i < ma.size(); i++) {
 			imgView = new ImageView(this);
 			LinearLayout.LayoutParams params_linear = new LinearLayout.LayoutParams(10,10);
-			params_linear.setMargins(7, 0, 7, 20);
+			params_linear.setMargins(7, 10, 7, 10);
 			imgView.setLayoutParams(params_linear);
 			indicator_imgs[i] = imgView;
 			

@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
  
+import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.User;
 import com.loopj.android.http.AsyncHttpClient;
 
@@ -20,7 +21,7 @@ public class MyApplication extends Application{
 	private static MyApplication  mInstance=null;
 	//private ArrayList<Order> orderList = new ArrayList<Order>();
 	/**
-	 * ÑéÖ¤ÐÅÏ¢token
+	 * ï¿½ï¿½Ö¤ï¿½ï¿½Ï¢token
 	 */
 	private static  String versionCode="";
 	private static int notifyId=0;
@@ -70,17 +71,28 @@ public class MyApplication extends Application{
 	}
 
 
-	/**
-	 * ´æ´¢µ±Ç°ÓÃ»§¶ÔÏóÐÅÏ¢,ÐèÔÚwelcome³õÊ¼»¯ÓÃ»§ÐÅÏ¢
-	 */
+	public static PosSelectEntity pse = new PosSelectEntity();
+	
+	
+	
+	
+	
+	public static PosSelectEntity getPse() {
+		return pse;
+	}
+	public static void setPse(PosSelectEntity pse) {
+		MyApplication.pse = pse;
+	}
+
+
 	public static User currentUser = new User();
-	//ÔËÓÃlistÀ´±£´æÃÇÃ¿Ò»¸öactivityÊÇ¹Ø¼ü   
+	 
     private List<Activity> mList = new LinkedList<Activity>();   
  // add Activity     
     public void addActivity(Activity activity) {    
         mList.add(activity);    
     }    
-    //¹Ø±ÕÃ¿Ò»¸ölistÄÚµÄactivity   
+    //ï¿½Ø±ï¿½Ã¿Ò»ï¿½ï¿½listï¿½Úµï¿½activity   
     public void exit() {    
         try {    
             for (Activity activity:mList) {    
@@ -101,7 +113,7 @@ public class MyApplication extends Application{
 //		initImageLoader(getApplicationContext());
 //		SDKInitializer.initialize(this);
 //		  PackageManager packageManager = getPackageManager();
-//          // getPackageName()ÊÇÄãµ±Ç°ÀàµÄ°üÃû£¬0´ú±íÊÇ»ñÈ¡°æ±¾ÐÅÏ¢
+//          // getPackageName()ï¿½ï¿½ï¿½ãµ±Ç°ï¿½ï¿½Ä°ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½Ç»ï¿½È¡ï¿½æ±¾ï¿½ï¿½Ï¢
 //          PackageInfo packInfo;
 //		try {
 //			packInfo = packageManager.getPackageInfo(getPackageName(),0);

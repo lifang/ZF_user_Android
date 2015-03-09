@@ -148,9 +148,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
+            android:maxLength="12"
             android:singleLine="true"
-            android:text="泰山丶安保..."
+            android:ellipsize="end"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -190,9 +190,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
+           
+             
+                android:maxLength="12"
             android:singleLine="true"
-            android:text="磁条"
+            android:ellipsize="end"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -232,9 +234,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
+      
+            
+            android:maxLength="12"
             android:singleLine="true"
-            android:text="支付宝"
+            android:ellipsize="end"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -274,9 +278,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
+             android:maxLength="12"
             android:singleLine="true"
-            android:text="磁条"
+            android:ellipsize="end"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -316,9 +320,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
+                  android:maxLength="12"
             android:singleLine="true"
-            android:text="支付宝"
+            android:ellipsize="end"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -358,9 +362,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
+                 android:maxLength="12"
             android:singleLine="true"
-            android:text="自打"
+            android:ellipsize="end"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -400,9 +404,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
+                  android:maxLength="12"
             android:singleLine="true"
-            android:text="T+0"
+            android:ellipsize="end"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 

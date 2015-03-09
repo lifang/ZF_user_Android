@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,25 +40,20 @@ import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-/***
- * 
-*    
-* ¿‡√˚≥∆£∫PosListActivity   
-* ¿‡√Ë ˆ£∫   ¬ÚPOSª˙∆˜¡–±Ì
-* ¥¥Ω®»À£∫ ljp 
-* ¥¥Ω® ±º‰£∫2015-1-27 œ¬ŒÁ7:51:36   
-* @version    
-*
- */
+ 
 public class PosListActivity extends BaseActivity implements OnClickListener, IXListViewListener{
-	private ImageView pos_select,search2;	
+	private ImageView pos_select,search2,img3;	
 	private XListView Xlistview;
 	private int page=1;
 	private int rows=Config.ROWS;
-	private LinearLayout eva_nodata;
+	private LinearLayout eva_nodata,ll_xxyx,ll_mr,ll_updown,ll_pj;
 	private boolean onRefresh_number = true;
 	private PosAdapter myAdapter;
-	private TextView next_sure;
+	private String keys=null;
+	private TextView next_sure,tv_mr,tv_2,tv_3,tv_4;
+	private Boolean isDown=true;
+	private int orderType=0;
+	private EditText et_search;
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
 	List<PosEntity>  moreList = new ArrayList<PosEntity>();
 	private Handler handler = new Handler() {
@@ -67,7 +63,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				onLoad( );
 				
 				if(myList.size()==0){
-				//	norecord_text_to.setText("ƒ˙√ª”–œ‡πÿµƒ…Ã∆∑");
+				//	norecord_text_to.setText("ÔøΩÔøΩ√ªÔøΩÔøΩÔøΩÔøΩÿµÔøΩÔøΩÔøΩ∆∑");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -79,7 +75,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 						Toast.LENGTH_SHORT).show();
 			 
 				break;
-			case 2: // Õ¯¬Á”–Œ Ã‚
+			case 2: // 
 				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -106,6 +102,22 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	}
 	private void initView() {
 		// TODO Auto-generated method stub
+		ll_mr=(LinearLayout) findViewById(R.id.ll_mr);
+		ll_mr.setOnClickListener(this);
+		ll_xxyx=(LinearLayout) findViewById(R.id.ll_xxyx);
+		ll_xxyx.setOnClickListener(this);
+		ll_updown=(LinearLayout) findViewById(R.id.ll_updown);
+		ll_updown.setOnClickListener(this);
+		ll_pj=(LinearLayout) findViewById(R.id.ll_pj);
+		ll_pj.setOnClickListener(this);
+		tv_mr=(TextView) findViewById(R.id.tv_mr);
+		tv_2=(TextView) findViewById(R.id.tv_2);
+		tv_3=(TextView) findViewById(R.id.tv_3);
+		tv_4=(TextView) findViewById(R.id.tv_4);
+		img3=(ImageView) findViewById(R.id.img3);
+		
+		et_search=(EditText) findViewById(R.id.et_search);
+		et_search.setOnClickListener(this);
 		pos_select=(ImageView) findViewById(R.id.pos_select);
 		pos_select.setOnClickListener(this);
 		search2=(ImageView) findViewById(R.id.search2);
@@ -114,7 +126,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		myAdapter=new PosAdapter(PosListActivity.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview=(XListView) findViewById(R.id.x_listview);
-		// refund_listview.getmFooterView().getmHintView().setText("“—æ≠√ª”– ˝æ›¡À");
+		// refund_listview.getmFooterView().getmHintView().setText("ÔøΩ—æÔøΩ√ªÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ");
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -125,7 +137,10 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
- 
+				Intent i =new Intent (PosListActivity.this,GoodDeatail.class);
+				i.putExtra("id", myList.get(position-1).getId());
+				System.out.println("-Xlistview--"+id);
+				startActivity(i);
 			}
 		});
 		Xlistview.setAdapter(myAdapter);
@@ -136,13 +151,64 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		switch (v.getId()) {
 		case R.id.pos_select:
 			Intent i =new Intent(PosListActivity.this,PosSelect.class);
-			startActivity(i);
+			startActivityForResult(i, 1);
 			break;
 			//search2
 		case R.id.search2:
 		 
 			startActivity( new Intent(PosListActivity.this,ShopCar.class));
 			break;
+		case R.id.et_search:
+			Intent ii =  new Intent(PosListActivity.this,PosSearch.class);
+			startActivityForResult(ii, 2);
+			
+		 
+			break;	
+		case R.id.ll_mr:
+			orderType=0;
+			tv_mr.setTextColor(getResources().getColor(R.color.bgtitle));
+			tv_2.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			tv_3.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			tv_4.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			myList.clear();
+			getData();
+			break;	
+		case R.id.ll_xxyx:
+			orderType=1;
+			tv_mr.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			tv_2.setTextColor(getResources().getColor(R.color.bgtitle));
+			tv_3.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			tv_4.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			myList.clear();
+			getData();
+			break;	
+		case R.id.ll_updown:
+			if(isDown){
+				orderType=2;
+				isDown=false;
+				img3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ti_down));
+			}else{
+				orderType=3;
+				isDown=true;
+				img3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ti_up));
+			}
+			 
+			tv_mr.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			tv_2.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			tv_3.setTextColor(getResources().getColor(R.color.bgtitle));
+			tv_4.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			myList.clear();
+			getData();
+			break;	
+		case R.id.ll_pj:
+			orderType=4;
+			tv_mr.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			tv_2.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			tv_3.setTextColor(getResources().getColor(R.color.bg_575D5F));
+			tv_4.setTextColor(getResources().getColor(R.color.bgtitle));
+			myList.clear();
+			getData();
+			break;	
 		default:
 			break;
 		}
@@ -170,13 +236,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			onRefresh_number = false;
 			getData();
 			
-//			if (Tools.isConnect(getApplicationContext())) {
-//				onRefresh_number = false;
-//				getData();
-//			} else {
-//				onRefresh_number = true;
-//				handler.sendEmptyMessage(2);
-//			}
+ 
 		}
 		else {
 			handler.sendEmptyMessage(3);
@@ -193,16 +253,15 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		myList.clear();
 		getData();
 	}
-	/*
-	 * «Î«Û ˝æ›
-	 */
+	 
 	private void getData() {
 		// TODO Auto-generated method stub
 		String url = "http://114.215.149.242:18080/ZFMerchant/api/good/list";
-		RequestParams params = new RequestParams("city_id", 1);
+		RequestParams params = new RequestParams();
 		params.put("city_id", 1);
-		params.put("orderType", 0);
-		 
+		params.put("orderType", orderType);
+	 	params.put("keys", keys);
+		System.out.println("keys```"+keys+orderType);
 		params.setUseJsonStreamer(true);
 
 		MyApplication.getInstance().getClient()
@@ -225,8 +284,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 							jsonobject = new JSONObject(responseMsg);
 							code = jsonobject.getString("code");
 							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){ //≈–∂œ∑µªÿΩ·π˚ «∑Ò∫œ∑®
-							//	"code":0,"message":"”√ªßµ«¬º≥…π¶","token":"14188706016196","result":{"studentEmail":"475813996@qq.com","studentId":6,"studentStatus":2,"studentMobilePhone":"18862243513"}}
+							if(a==Config.CODE){  
 								String res =jsonobject.getString("result");
 								jsonobject = new JSONObject(res);
 								
@@ -261,5 +319,32 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				});
  
 		 
+	}
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		switch (resultCode) {
+		case 1:
+			if(data!=null){
+				System.out.println("ËøõÂÖ•Êù°‰ª∂ÈÄâÊã©ÂõûË∞É¬∑¬∑¬∑");
+				getData();
+			}
+			
+			break;
+		case 2:
+			if(data!=null){
+				String  a =data.getStringExtra("text");
+				keys=a;
+				et_search.setText(a);
+				getData();
+			}
+			
+			break;
+		default:
+			break;
+
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+
 	}
 }

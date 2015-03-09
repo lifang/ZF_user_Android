@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+<color name="tmc">#e08d8d8d</color>
     <color name="bgtitle">#FF6624</color>
     <color name="text535252">#535252</color>
 <color name="textc9c9c9">#c9c9c9</color>
