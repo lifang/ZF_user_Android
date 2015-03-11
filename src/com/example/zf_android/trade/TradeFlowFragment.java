@@ -154,8 +154,9 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 
 		mRecordList = (ListView) view.findViewById(R.id.trade_record_list);
 		mAdapter = new TradeRecordListAdapter();
+        mRecordList.addHeaderView(header);
 		mRecordList.setAdapter(mAdapter);
-		mRecordList.addHeaderView(header);
+
 		mRecordList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
