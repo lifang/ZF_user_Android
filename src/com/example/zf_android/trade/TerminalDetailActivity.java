@@ -20,7 +20,6 @@ import com.example.zf_android.trade.common.StringUtil;
 import com.example.zf_android.trade.entity.TerminalApply;
 import com.example.zf_android.trade.entity.TerminalComment;
 import com.example.zf_android.trade.entity.TerminalDetail;
-import com.example.zf_android.trade.entity.TerminalItem;
 import com.example.zf_android.trade.entity.TerminalOpen;
 import com.example.zf_android.trade.entity.TerminalRate;
 import com.google.gson.reflect.TypeToken;
@@ -30,6 +29,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
 import static com.example.zf_android.trade.Constants.TerminalStatus.CANCELED;
@@ -37,10 +39,6 @@ import static com.example.zf_android.trade.Constants.TerminalStatus.OPENED;
 import static com.example.zf_android.trade.Constants.TerminalStatus.PART_OPENED;
 import static com.example.zf_android.trade.Constants.TerminalStatus.STOPPED;
 import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
-
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
 
 /**
  * Created by Leo on 2015/3/4.
@@ -100,6 +98,8 @@ public class TerminalDetailActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(TerminalDetailActivity.this, ApplyDetailActivity.class);
+				intent.putExtra(TERMINAL_ID, mTerminalId);
+				intent.putExtra(TERMINAL_STATUS, mTerminalStatus);
 				startActivity(intent);
 			}
 		};

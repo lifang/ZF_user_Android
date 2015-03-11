@@ -285,8 +285,7 @@
 		<item>结算银行代码</item>
 		<item>结算银行账户</item>
 		<item>税务登记证号</item>
-		<item>组织机构好</item>
-		<item>结算银行代码</item>
+		<item>组织机构号</item>
 		<item>支付通道</item>
 	</string-array>
 

@@ -74,7 +74,7 @@ public class TerminalManageActivity extends Activity {
 			}
 		});
 		mTerminalList.addHeaderView(listHeader);
-        mTerminalList.setAdapter(mAdapter);
+		mTerminalList.setAdapter(mAdapter);
 	}
 
 	private void initBtnListeners() {
@@ -87,7 +87,10 @@ public class TerminalManageActivity extends Activity {
 		mOpenListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				TerminalItem item = (TerminalItem) view.getTag();
 				Intent intent = new Intent(TerminalManageActivity.this, ApplyDetailActivity.class);
+				intent.putExtra(TERMINAL_ID, item.getId());
+				intent.putExtra(TERMINAL_STATUS, item.getStatus());
 				startActivity(intent);
 			}
 		};
