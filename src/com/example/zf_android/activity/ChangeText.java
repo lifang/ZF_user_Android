@@ -36,7 +36,7 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.changetext);
-		new TitleMenuUtil(ChangeText.this, "����").show();
+		new TitleMenuUtil(ChangeText.this, "请输入内容").show();
 		login_linear_deletename=(LinearLayout) findViewById(R.id.login_linear_deletename);
 		login_linear_deletename.setOnClickListener(this);
 		login_edit_name=(EditText) findViewById(R.id.login_edit_name);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.AdressEntity;
 import com.example.zf_android.entity.TestEntitiy;
 
 import android.content.Context;
@@ -22,11 +23,11 @@ import android.widget.Toast;
 
 public class AdressAdapter extends BaseAdapter {
 	private Context context;
-	private List<TestEntitiy> list;
+	private List<AdressEntity> list;
 	private LayoutInflater inflater;
 	private ViewHolder holder = null;
 
-	public AdressAdapter(Context context, List<TestEntitiy> list) {
+	public AdressAdapter(Context context, List<AdressEntity> list) {
 		this.context = context;
 		this.list = list;
 	}
@@ -61,14 +62,13 @@ public class AdressAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.tv_title.setText(list.get(position).getContent());
+		holder.tv_title.setText(list.get(position).getReceiver());
 		if(MyApplication.getIsSelect()){
 			 
 			holder.item_cb.setVisibility(View.VISIBLE);
 		}else{
 			holder.item_cb.setVisibility(View.GONE);
 		}
-		
 		list.get(position).setIscheck(holder.item_cb.isChecked());
 		holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
@@ -78,7 +78,8 @@ public class AdressAdapter extends BaseAdapter {
 				list.get(position).setIscheck(isChecked);
 			}
 		});
-		//holder.item_cb.toggle();
+ 
+ 
 		return convertView;
 	}
 

@@ -37,14 +37,14 @@
             android:textSize="17sp" />
 
         <TextView
-            android:id="@+id/tv_type"
+            android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="磁条"
+            android:text="法人名字"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 

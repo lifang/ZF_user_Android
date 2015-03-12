@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/ffffff"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="8dp"
+        android:background="@color/F3F2F2" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/Viewc2" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="28dp"
+        android:background="@color/ffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="莫三代"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="16sp" />
+
+        <RatingBar
+            android:id="@+id/si_rt_msxf"
+            style="@style/star_rating_bar_style1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:layout_marginTop="2dp"
+            android:duplicateParentState="true"
+            android:gravity="center_vertical"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="3"
+            android:stepSize="0.1" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/margin_left2"
+        android:layout_marginRight="@dimen/margin_left2"
+        android:background="@color/Viewc2" />
+
+    <TextView
+        android:id="@+id/tv_ccc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_left2"
+        android:layout_marginRight="@dimen/margin_left2"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="这里是评论。。。。"
+        android:textColor="@color/text6c6c6c6"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_left2"
+        android:layout_marginRight="@dimen/margin_left2"
+        android:layout_marginTop="5dp"
+        android:text="2012-1-1 10：00:00"
+        android:textColor="@color/text6c6c6c6"
+        android:textSize="10sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/Viewc2" />
+
+</LinearLayout>

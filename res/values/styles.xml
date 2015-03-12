@@ -57,4 +57,10 @@
             <item name="android:backgroundDimEnabled">true</item>
             <item name="android:backgroundDimAmount">0.6</item>
         </style>
+        
+    <style name="star_rating_bar_style1" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/star_rating_bar1</item>
+        <item name="android:minHeight">26dp</item>
+        <item name="android:maxHeight">32dp</item>
+        </style>
 </resources>

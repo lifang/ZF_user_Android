@@ -11,6 +11,7 @@ import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.AfterSaleGridActivity;
 
+
 public class MenuMine extends BaseActivity implements OnClickListener{
 	private ImageView search;
 	private LinearLayout  ll_dd,ll_shjl,ll_wdxx,ll_sh,ll_request;
@@ -41,7 +42,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 	case R.id.ll_request:
-			
+		startActivity(new Intent(MenuMine.this,ApplyDetail.class));
 			break;
 		case R.id.ll_sh:
 			startActivity(new Intent(MenuMine.this,MerchantList.class));

@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -37,11 +38,14 @@ import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.ApplyneedEntity;
 import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.FactoryEntity;
 import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.PicEntity;
 import com.example.zf_zandroid.adapter.HuilvAdapter;
+import com.example.zf_zandroid.adapter.HuilvAdapter1;
+import com.example.zf_zandroid.adapter.HuilvAdapter2;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
  
@@ -49,6 +53,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
  
 public class GoodDeatail extends BaseActivity implements OnClickListener{
+	private Button setting_btn_clear1,setting_btn_clear;
 	private int id;
 	private TextView eventsFinshTime,tv_detail,name,creat_tv,location,tv_time,tv_tel2;
 	private LinearLayout titleback_linear_back;
@@ -63,15 +68,24 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private LayoutInflater inflater;
 	private RelativeLayout rl_imgs,rela_loc;
 	private int  index_ima=0;
-	GoodinfoEntity gfe;
+	GoodinfoEntity gfe;;
+	private String chanel="通道3";
+	private int  	commentsCount;
 	FactoryEntity factoryEntity;
 	private  TextView tv_title,content1,tv_pp,tv_xh,tv_ys,tv_price,tv_lx,tv_sjhttp
-	,tv_spxx,fac_detai,ppxx,wkxx,dcxx,tv_qgd,tv_jm;
-	private ScrollViewWithListView  pos_lv1;
+	,tv_spxx,fac_detai,ppxx,wkxx,dcxx,tv_qgd,tv_jm,tv_comment,tv_appneed,tv_ins;
+	private ScrollViewWithListView  pos_lv1,pos_lv2,pos_lv3;
 	private HuilvAdapter lvAdapter;
+	private HuilvAdapter1 lvAdapter2;
+	private HuilvAdapter2 lvAdapter3;
+	List<ApplyneedEntity>  publist = new ArrayList<ApplyneedEntity>();
+	List<ApplyneedEntity>  singlelist = new ArrayList<ApplyneedEntity>();
 	private ArrayList<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
+	private ArrayList<ChanelEntitiy> celist2 = new ArrayList<ChanelEntitiy>();
+	private ArrayList<ChanelEntitiy> celist3 = new ArrayList<ChanelEntitiy>();
 	private String phoneNumber,locName;
 	private float lat,lng;
+	private int paychannelId ,goodId,quantity;
 	List<View> list = new ArrayList<View>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -126,7 +140,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_detail);
-	 
+		paychannelId=3;
 		id=getIntent().getIntExtra("id", 0);
 		innitView();
 		getdata();
@@ -135,16 +149,26 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	}
 	private void innitView() {
 		// TODO Auto-generated method stub
+		tv_ins=(TextView) findViewById(R.id.tv_ins);
+		tv_ins.setOnClickListener(this);
+		tv_appneed=(TextView) findViewById(R.id.tv_appneed);
+		tv_appneed.setOnClickListener(this);
+		tv_comment=(TextView) findViewById(R.id.tv_comment);
+		tv_comment.setOnClickListener(this);
 		rl_imgs=(RelativeLayout) findViewById(R.id.rl_imgs); 
 		view_pager = (ViewPager) findViewById(R.id.view_pager); 
 		inflater = LayoutInflater.from(this);
 		adapter = new MyAdapter(list); 
 		view_pager.setAdapter(adapter);
 		view_pager.setOnPageChangeListener(new MyListener());
-		
-		
+		setting_btn_clear1=(Button) findViewById(R.id.setting_btn_clear1);
+		setting_btn_clear1.setOnClickListener(this);
+		setting_btn_clear=(Button) findViewById(R.id.setting_btn_clear);
+		setting_btn_clear.setOnClickListener(this);
 		pos_lv1=(ScrollViewWithListView) findViewById(R.id.pos_lv1);
-		 
+		pos_lv2=(ScrollViewWithListView) findViewById(R.id.pos_lv2);
+		pos_lv3=(ScrollViewWithListView) findViewById(R.id.pos_lv3);
+ 
 		//页面刷新数据
 		titleback_linear_back=(LinearLayout) findViewById(R.id.titleback_linear_back);
 		titleback_linear_back.setOnClickListener(this);
@@ -172,7 +196,38 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.titleback_linear_back: 
+		case R.id.tv_ins
+		:   //tv_appneed
+			Intent tv_ins =new Intent(GoodDeatail.this, LeaseInstruction.class);
+		 
+			startActivity(tv_ins);
+		break;
+		case R.id.tv_appneed:   //tv_appneed
+			Intent tv_appneed =new Intent(GoodDeatail.this, ApplyNeed.class);
+			 
+			startActivity(tv_appneed);
+		break;
+		case R.id.tv_comment:   //tv_appneed
+			Intent tv_comment =new Intent(GoodDeatail.this, GoodComment.class);
+			tv_comment.putExtra("goodId", gfe.getId());
+			tv_comment.putExtra("commentsCount",commentsCount+"");
+			startActivity(tv_comment);
+		break;
+		case R.id.setting_btn_clear:   //tv_comment
+			Intent i2 =new Intent(GoodDeatail.this, GoodConfirm.class);
+			i2.putExtra("getTitle", gfe.getTitle());
+			i2.putExtra("price", gfe.getPrice());
+			i2.putExtra("model", gfe.getModel_number());
+			i2.putExtra("chanel", chanel);
+			i2.putExtra("paychannelId", paychannelId);
+			i2.putExtra("goodId", gfe.getId());
+			startActivity(i2);
+		break;
+		
+		case R.id.setting_btn_clear1:  
+			addGood();
+		break;
+		case R.id.titleback_linear_back:  
 			finish();
 			break;
 		case R.id.search2: 
@@ -193,6 +248,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	}
 	
 	private void getdata() {
+		 
 		RequestParams params = new RequestParams();
 		params.put("goodId",id);
 		params.put("city_id",1);
@@ -220,24 +276,44 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					}else if(code==1){
 						String res =jsonobject.getString("result");
 						jsonobject = new JSONObject(res);
-							
+					 commentsCount=jsonobject.getInt("commentsCount");
+					tv_comment.setText("查看评论"+" ("+commentsCount+") ");
 							List<String> piclist= gson.fromJson(jsonobject.getString("goodPics"), new TypeToken<List<String>>() {
 		 					}.getType());
 							 gfe=gson.fromJson(jsonobject.getString("goodinfo"), new TypeToken<GoodinfoEntity>() {
 		 					}.getType());
+							 MyApplication.gfe=gfe;
+							 goodId=gfe.getId();
 							 factoryEntity=gson.fromJson(jsonobject.getString("factory"), new TypeToken<FactoryEntity>() {
 			 				}.getType());
 //							 ImageCacheUtil.IMAGE_CACHE.get( factoryEntity.getLogo_file_path(),
-//						 				fac_img);  图片路径待定
-							//  
+//						 				fac_img);  图片路径待定 
+							// requireMaterial_pub
+						 
+							 // singlelist = new ArrayList<ApplyneedEntity>();
+							 
 							 String res2=	 jsonobject.getString("paychannelinfo");
 							 jsonobject = new JSONObject(res2);
+							 publist=gson.fromJson(jsonobject.getString("requireMaterial_pub"), new TypeToken<List<ApplyneedEntity>>() {
+			 					}.getType());
+							 MyApplication.pub=publist;
+							 System.out.println("publist"+publist.size());
+							 singlelist=gson.fromJson(jsonobject.getString("requireMaterial_pra"), new TypeToken<List<ApplyneedEntity>>() {
+			 					}.getType());
+							 MyApplication.single=singlelist;
 							 celist=gson.fromJson(jsonobject.getString("standard_rates"), new TypeToken<List<ChanelEntitiy>>() {
 				 				}.getType());
-							 
+							 celist2=gson.fromJson(jsonobject.getString("tDates"), new TypeToken<List<ChanelEntitiy>>() {
+				 				}.getType());
+							 celist3=gson.fromJson(jsonobject.getString("other_rate"), new TypeToken<List<ChanelEntitiy>>() {
+				 				}.getType());
 						System.out.println("``celist`"+celist.size());
 						lvAdapter=new HuilvAdapter(GoodDeatail.this, celist);
 						pos_lv1.setAdapter(lvAdapter);
+						lvAdapter2=new HuilvAdapter1(GoodDeatail.this, celist2);
+						pos_lv2.setAdapter(lvAdapter2);
+						lvAdapter3=new HuilvAdapter2(GoodDeatail.this, celist3);
+						pos_lv3.setAdapter(lvAdapter3);
 						for(int i=0;i<piclist.size();i++){
 							ma.add(piclist.get(i));
 						}
@@ -264,6 +340,61 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			}
 		});
 
+	
+	
+	}
+	
+	private void addGood(){
+	 
+		RequestParams params = new RequestParams();
+		params.put("customerId",80);
+		params.put("goodId",1);
+		//paychannelId
+		params.put("paychannelId",paychannelId);
+		params.setUseJsonStreamer(true);
+		MyApplication.getInstance().getClient().post(Config.goodadd, params, new AsyncHttpResponseHandler() {
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				// TODO Auto-generated method stub
+				String userMsg = new String(responseBody).toString();
+	 
+				Log.i("ljp", userMsg);
+				Gson gson = new Gson();
+				//EventEntity
+				JSONObject jsonobject = null;
+				int code = 0;
+				try {
+					jsonobject = new JSONObject(userMsg);
+					code = jsonobject.getInt("code");
+					if(code==-2){
+						Intent i =new Intent(getApplication(),LoginActivity.class);
+						startActivity(i);
+					}else if(code==1){
+						Toast.makeText(getApplicationContext(), "添加商品成功",
+								Toast.LENGTH_SHORT).show();
+					}else{
+						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				 
+				
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
+	
 	
 	
 	}

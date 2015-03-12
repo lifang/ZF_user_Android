@@ -182,7 +182,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="6%"
+                android:text="说明"
                 android:textColor="@color/text292929" />
 			 
           
@@ -199,7 +199,7 @@
         android:layout_height="wrap_content">
                   
               </com.examlpe.zf_android.util.ScrollViewWithListView>
-	  <LinearLayout
+              <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
@@ -220,12 +220,11 @@
             android:layout_marginLeft="5dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="资金服务费："
+            android:text="刷卡交易标准："
             android:textColor="@color/text292929"
             android:textSize="13sp" />
     </LinearLayout>
-
-    <LinearLayout
+	     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
@@ -245,17 +244,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="111"
+                android:text="商户类"
                 android:textColor="@color/text292929" />
-			<View android:layout_height="0.5dp"
-			    android:layout_width="fill_parent"
-			    android:background="@color/Viewc2"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:text="111"
-                android:textColor="@color/text292929" />
+		 
         </LinearLayout>
 		<View android:layout_width="0.5dp"
 		    android:layout_height="fill_parent"
@@ -271,17 +262,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="111"
+                android:text="费率"
                 android:textColor="@color/text292929" />
-			<View android:layout_height="0.5dp"
-			    android:layout_width="fill_parent"
-			    android:background="@color/Viewc2"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:text="111"
-                android:textColor="@color/text292929" />
+			 
+            
         </LinearLayout>
 		<View android:layout_width="0.5dp"
 		    android:layout_height="fill_parent"
@@ -297,22 +281,24 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="111"
+                android:text="说明"
                 android:textColor="@color/text292929" />
-			<View android:layout_height="0.5dp"
-			    android:layout_width="fill_parent"
-			    android:background="@color/Viewc2"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:text="111"
-                android:textColor="@color/text292929" />
+			 
+          
         </LinearLayout>
  
 		 
     </LinearLayout>
-      <LinearLayout
+    <com.examlpe.zf_android.util.ScrollViewWithListView  
+                  android:id="@+id/pos_lv2"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="@dimen/margin_left2"
+        android:layout_marginRight="@dimen/margin_left2"
+        android:divider="@null"
+        android:layout_height="wrap_content">
+                  
+              </com.examlpe.zf_android.util.ScrollViewWithListView>
+              <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
@@ -333,12 +319,11 @@
             android:layout_marginLeft="5dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="其他交易费率："
+            android:text="刷卡交易标准："
             android:textColor="@color/text292929"
             android:textSize="13sp" />
     </LinearLayout>
-
-    <LinearLayout
+                <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
@@ -358,17 +343,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="111"
+                android:text="商户类"
                 android:textColor="@color/text292929" />
-			<View android:layout_height="0.5dp"
-			    android:layout_width="fill_parent"
-			    android:background="@color/Viewc2"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:text="111"
-                android:textColor="@color/text292929" />
+		 
         </LinearLayout>
 		<View android:layout_width="0.5dp"
 		    android:layout_height="fill_parent"
@@ -384,17 +361,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="111"
+                android:text="费率"
                 android:textColor="@color/text292929" />
-			<View android:layout_height="0.5dp"
-			    android:layout_width="fill_parent"
-			    android:background="@color/Viewc2"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:text="111"
-                android:textColor="@color/text292929" />
+			 
+            
         </LinearLayout>
 		<View android:layout_width="0.5dp"
 		    android:layout_height="fill_parent"
@@ -410,19 +380,25 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="111"
+                android:text="说明"
                 android:textColor="@color/text292929" />
-			<View android:layout_height="0.5dp"
-			    android:layout_width="fill_parent"
-			    android:background="@color/Viewc2"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:text="111"
-                android:textColor="@color/text292929" />
+			 
+          
         </LinearLayout>
  
 		 
     </LinearLayout>
+    <com.examlpe.zf_android.util.ScrollViewWithListView  
+                  android:id="@+id/pos_lv3"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="@dimen/margin_left2"
+        android:layout_marginRight="@dimen/margin_left2"
+        android:divider="@null"
+        android:layout_height="wrap_content">
+                  
+              </com.examlpe.zf_android.util.ScrollViewWithListView>
+ 
+ 
+		 
+    
 </LinearLayout>

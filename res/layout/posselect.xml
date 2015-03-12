@@ -16,10 +16,10 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/d_7dp"
+            android:layout_marginLeft="7dp"
             android:layout_toRightOf="@id/titleback_linear_back"
             android:gravity="center_vertical"
-            android:text="Back"
+            android:text="取消"
             android:textColor="@color/fffefe"
             android:textSize="@dimen/s_19sp" />
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:singleLine="true"
-            android:text="title"
+            android:text="筛选"
             android:textColor="@color/white"
             android:textSize="17sp" />
 
@@ -99,11 +99,12 @@
         <ImageView
             android:id="@+id/img_on_off"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
-            android:src="@drawable/pos_on" />
+                	android:background="@drawable/pos_on"
+            />
     </LinearLayout>
     <View
         android:layout_width="fill_parent"
@@ -441,19 +442,21 @@
             android:layout_marginLeft="14dp"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="最低价 $"
+            android:text="最低价 "
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
-                android:id="@+id/tv_zdj"
+        <EditText
+                android:id="@+id/et_zdj"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
+            
+            android:background="@color/ffffff"
             android:singleLine="true"
-            android:text="200"
+            android:inputType="number"
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -489,15 +492,17 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
-                android:id="@+id/tv_zgj"
+        <EditText
+                android:id="@+id/et_zgj"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
+                     
+            android:background="@color/ffffff"
             android:singleLine="true"
-            android:text="支付宝"
+            android:inputType="number"
+   
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 

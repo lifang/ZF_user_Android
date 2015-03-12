@@ -56,6 +56,7 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pos_selec_lv);
 		initView();
+		
 		title=getIntent().getStringExtra("key");
 		index=getIntent().getIntExtra("index", 0);
 		tv_title.setText(title);

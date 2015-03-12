@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
  
+import com.example.zf_android.entity.ApplyneedEntity;
+import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.User;
 import com.loopj.android.http.AsyncHttpClient;
@@ -84,10 +86,38 @@ public class MyApplication extends Application{
 		MyApplication.pse = pse;
 	}
 
+	public static List<ApplyneedEntity> pub = new LinkedList<ApplyneedEntity>();   
+	public static List<ApplyneedEntity> single = new LinkedList<ApplyneedEntity>();   
+	  
+	  
+ 
+
+	public static List<ApplyneedEntity> getPub() {
+		return pub;
+	}
+	public static void setPub(List<ApplyneedEntity> pub) {
+		MyApplication.pub = pub;
+	}
+	public static List<ApplyneedEntity> getSingle() {
+		return single;
+	}
+	public static void setSingle(List<ApplyneedEntity> single) {
+		MyApplication.single = single;
+	}
+
 
 	public static User currentUser = new User();
+	public static GoodinfoEntity gfe=new GoodinfoEntity();
 	 
-    private List<Activity> mList = new LinkedList<Activity>();   
+    public static GoodinfoEntity getGfe() {
+		return gfe;
+	}
+	public static void setGfe(GoodinfoEntity gfe) {
+		MyApplication.gfe = gfe;
+	}
+
+
+	private List<Activity> mList = new LinkedList<Activity>();   
  // add Activity     
     public void addActivity(Activity activity) {    
         mList.add(activity);    

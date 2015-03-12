@@ -3,14 +3,20 @@ package com.example.zf_android.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,21 +30,30 @@ import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.MerchantEntity;
+import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_zandroid.adapter.AdressAdapter;
+import com.example.zf_zandroid.adapter.MerchanAdapter;
 import com.example.zf_zandroid.adapter.MessageAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class MerchantList extends BaseActivity implements  IXListViewListener{
 	private XListView Xlistview;
 	private int page=1;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata;
-	private RelativeLayout mune_rl;
+	private RelativeLayout mune_rl; 
 	private boolean onRefresh_number = true;
-	private AdressAdapter myAdapter;
+	private MerchanAdapter myAdapter;
 	private ImageView search;
-	List<TestEntitiy>  myList = new ArrayList<TestEntitiy>();
-	List<TestEntitiy>  moreList = new ArrayList<TestEntitiy>();
+	private ListView lv;
+	private int customerId=80;
+	List<MerchantEntity>  myList = new ArrayList<MerchantEntity>();
+	List<MerchantEntity>  moreList = new ArrayList<MerchantEntity>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -46,7 +61,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				onLoad( );
 				
 				if(myList.size()==0){
-				//	norecord_text_to.setText("ÄúÃ»ÓÐÏà¹ØµÄÉÌÆ·");
+				//	norecord_text_to.setText("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ·");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -58,7 +73,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 						Toast.LENGTH_SHORT).show();
 			 
 				break;
-			case 2: // ÍøÂçÓÐÎÊÌâ
+			case 2: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -83,11 +98,11 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			search=(ImageView) findViewById(R.id.search);
 			mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
 			 
-			new TitleMenuUtil(MerchantList.this, "ÎÒµÄµØÖ·").show();
-			myAdapter=new AdressAdapter(MerchantList.this, myList);
+			new TitleMenuUtil(MerchantList.this, "æˆ‘çš„å•†æˆ·").show();
+			myAdapter=new MerchanAdapter(MerchantList.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 			Xlistview=(XListView) findViewById(R.id.x_listview);
-			// refund_listview.getmFooterView().getmHintView().setText("ÒÑ¾­Ã»ÓÐÊý¾ÝÁË");
+			// refund_listview.getmFooterView().getmHintView().setText("ï¿½Ñ¾ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			Xlistview.setPullLoadEnable(true);
 			Xlistview.setXListViewListener(this);
 			Xlistview.setDivider(null);
@@ -104,7 +119,8 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			});
 			Xlistview.setAdapter(myAdapter);
 			
-			
+			lv=(ListView) findViewById(R.id.lv);
+			lv.setAdapter(myAdapter);
 			
 			search.setOnClickListener(new OnClickListener() {
 				
@@ -112,14 +128,14 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					if(MyApplication.getIsSelect()){
-						//±éÀúÊý×éÉ¾³ý²Ù×÷					 
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½					 
 						MyApplication.setIsSelect(false);
 						myAdapter.notifyDataSetChanged();
 						mune_rl.setVisibility(View.GONE);
 //						for(int i=0;i<myList.size();i++){
 //							 
 //							if(myList.get(i).getIscheck()){
-//								System.out.println("µÚ---"+i+"Ìõ±»Ñ¡ÖÐ");
+//								System.out.println("ï¿½ï¿½---"+i+"ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½");
 //							}
 						//}
 					}else{
@@ -148,16 +164,15 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			if (onRefresh_number) {
 				page = page+1;
 				
-				onRefresh_number = false;
-				getData();
+			 
 				
-//				if (Tools.isConnect(getApplicationContext())) {
-//					onRefresh_number = false;
-//					getData();
-//				} else {
-//					onRefresh_number = true;
-//					handler.sendEmptyMessage(2);
-//				}
+				if (Tools.isConnect(getApplicationContext())) {
+					onRefresh_number = false;
+					getData();
+				} else {
+					onRefresh_number = true;
+					handler.sendEmptyMessage(2);
+				}
 			}
 			else {
 				handler.sendEmptyMessage(3);
@@ -175,23 +190,75 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			getData();
 		}
 		/*
-		 * ÇëÇóÊý¾Ý
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		 */
 		private void getData() {
 			// TODO Auto-generated method stub
+
+			// TODO Auto-generated method stub
+			String url = "http://114.215.149.242:18080/ZFMerchant/api/merchant/getList/";
+			RequestParams params = new RequestParams();
 			 
+			url=url+customerId+"/"+page+"/"+rows;
+			params.setUseJsonStreamer(true);
+
+			MyApplication.getInstance().getClient()
+					.get(url, new AsyncHttpResponseHandler() {
+
+						@Override
+						public void onSuccess(int statusCode, Header[] headers,
+								byte[] responseBody) {
+							String responseMsg = new String(responseBody)
+									.toString();
+							Log.e("print", responseMsg);
+
+						 
+							 
+							Gson gson = new Gson();
+							
+							JSONObject jsonobject = null;
+							String code = null;
+							try {
+								jsonobject = new JSONObject(responseMsg);
+								code = jsonobject.getString("code");
+								int a =jsonobject.getInt("code");
+								if(a==Config.CODE){  
+//									String res =jsonobject.getString("result");
+//									jsonobject = new JSONObject(res);
+//									
+									moreList= gson.fromJson(jsonobject.getString("result"), new TypeToken<List<MerchantEntity>>() {
+				 					}.getType());
+				 				 
+									myList.addAll(moreList);
+					 				handler.sendEmptyMessage(0);
+ 				 					  
+				 				 
+				 			 
+								}else{
+									code = jsonobject.getString("message");
+									Toast.makeText(getApplicationContext(), code, 1000).show();
+								}
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								 ;	
+								e.printStackTrace();
+								
+							}
+
+						}
+
+						@Override
+						public void onFailure(int statusCode, Header[] headers,
+								byte[] responseBody, Throwable error) {
+							// TODO Auto-generated method stub
+							System.out.println("-onFailure---");
+							Log.e("print", "-onFailure---" + error);
+						}
+					});
+	 
+			 
+		
 		 
-			 TestEntitiy te=new TestEntitiy();
-			 te.setContent("ÓÃ»§Ãûuser"+page+page);
-			 myList.add(te);
-			 TestEntitiy te2=new TestEntitiy();
-			 te2.setContent("ÓÃ»§Ãûuser"+page+page);
-			 myList.add(te2);
-			 TestEntitiy te22=new TestEntitiy();
-			 te22.setContent("ÓÃ»§Ãûuser"+page+page);
-			 myList.add(te22);
-			
-			System.out.println("getData");
-			handler.sendEmptyMessage(0);
+		 
 		}
 }

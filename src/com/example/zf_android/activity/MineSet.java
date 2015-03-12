@@ -26,7 +26,7 @@ public class MineSet extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mine_set);
-		new TitleMenuUtil(MineSet.this, "ÉèÖÃ").show();
+		new TitleMenuUtil(MineSet.this, "è®¾ç½®").show();
 		mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
 		isOpen_mineset=mySharedPreferences.getBoolean("isOpen_mineset", true);
@@ -49,7 +49,7 @@ public class MineSet extends BaseActivity implements OnClickListener{
 			switch (v.getId()) {
 			case R.id.ll_new:
 				
-				//¼ì²â¸üÐÂ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				
 				break;
 			case R.id.tv_clean:

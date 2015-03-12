@@ -58,10 +58,12 @@
             android:src="@drawable/delete_sure" />
 
         <ImageView
+            android:id="@+id/img_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="24dp"
+           
+            android:padding="20dp"
             android:layout_toLeftOf="@id/search"
             android:src="@drawable/delete_add" />
     </RelativeLayout>
@@ -94,8 +96,11 @@
             android:layout_height="fill_parent"
             android:background="@color/white"
             android:fadingEdge="none"
+            android:visibility="gone"
             android:scrollbars="none" />
-
+		<ListView android:id="@+id/lv"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
         <RelativeLayout
             android:id="@+id/mune_rl"
             android:layout_width="fill_parent"

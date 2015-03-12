@@ -44,7 +44,7 @@ import com.loopj.android.http.RequestParams;
 /***
  * 
  * 
- * ÀàÃû³Æ£ºMyMessage ÀàÃèÊö£º ÎÒµÄÏûÏ¢ ´´½¨ÈË£º ljp ´´½¨Ê±¼ä£º2015-2-5 ÏÂÎç2:15:03
+ * ï¿½ï¿½ï¿½ï¿½Æ£ï¿½MyMessage ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Òµï¿½ï¿½ï¿½Ï¢ ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-2-5 ï¿½ï¿½ï¿½ï¿½2:15:03
  * 
  * @version
  * 
@@ -73,7 +73,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 				onLoad();
 
 				if (myList.size() == 0) {
-					// norecord_text_to.setText("ÄúÃ»ÓĞÏà¹ØµÄÉÌÆ·");
+					// norecord_text_to.setText("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ·");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -85,7 +85,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 						Toast.LENGTH_SHORT).show();
 
 				break;
-			case 2: // ÍøÂçÓĞÎÊÌâ
+			case 2: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Toast.makeText(getApplicationContext(),
 						"no 3g or wifi content", Toast.LENGTH_SHORT).show();
 				break;
@@ -123,12 +123,12 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 
 		next_sure = (TextView) findViewById(R.id.next_sure);
 		next_sure.setVisibility(View.VISIBLE);
-		next_sure.setText("±à¼­");
-		new TitleMenuUtil(MyMessage.this, "ÏµÍ³¹«¸æ").show();
+		next_sure.setText("ç¡®è®¤");
+		new TitleMenuUtil(MyMessage.this, "æˆ‘çš„æ¶ˆæ¯").show();
 		myAdapter = new MessageAdapter(MyMessage.this, myList);
 		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) findViewById(R.id.x_listview);
-		// refund_listview.getmFooterView().getmHintView().setText("ÒÑ¾­Ã»ÓĞÊı¾İÁË");
+		// refund_listview.getmFooterView().getmHintView().setText("ï¿½Ñ¾ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -152,8 +152,8 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (MyApplication.getIsSelect()) {
-					// ±éÀúÊı×éÉ¾³ı²Ù×÷
-					next_sure.setText("È¡Ïû");
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½
+					next_sure.setText("å–æ¶ˆ");
 					MyApplication.setIsSelect(false);
 					myAdapter.notifyDataSetChanged();
 				 
@@ -162,7 +162,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 					rl_edit.setVisibility(View.GONE);
 		 
 				} else {
-					next_sure.setText("±à¼­");
+					next_sure.setText("åˆ é™¤");
 					MyApplication.setIsSelect(true);
 					rl_edit.setVisibility(View.VISIBLE);
 					rl_editno.setVisibility(View.GONE);
@@ -216,14 +216,14 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 	}
 
 	/*
-	 * ÇëÇóÊı¾İ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private void getData() {
 		// TODO Auto-generated method stub
 
 		RequestParams params = new RequestParams();
 
-		params.put("customer_id", 16);
+		params.put("customer_id", 80);
 		params.put("page", page);
 		params.put("pageSize", rows);
 		params.setUseJsonStreamer(true);
@@ -261,7 +261,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 				 					 	
 				 						if (moreList.size()==0) {
 				 							Toast.makeText(getApplicationContext(),
-				 									"Ã»ÓĞ¸ü¶àÊı¾İÁË", Toast.LENGTH_SHORT).show();
+				 									"Ã»ï¿½Ğ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Toast.LENGTH_SHORT).show();
 				 							Xlistview.getmFooterView().setState2(2);
 				 					 
 				 						} 
@@ -298,14 +298,14 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 		
 		
 		case R.id.tv_all: 
-			System.out.println("ALLÌõ±»Ñ¡ÖĞ");
+		 
 			break;
 		case R.id.tv_dle: 
-			System.out.println("µÚ--tv_dle- Ìõ±»Ñ¡ÖĞ");
+			 
 			for (int i = 0; i < myList.size(); i++) {
 
 				if (myList.get(i).getIscheck()) {
-					System.out.println("µÚ---" + i + "Ìõ±»Ñ¡ÖĞ");
+				 
 				}
 			}
 			
@@ -378,8 +378,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 							 
 							}else if(code==1){
 								
-								Toast.makeText(getApplicationContext(), "²Ù×÷³É¹¦",
-										Toast.LENGTH_SHORT).show();
+								 
 								
 								
 							}else{

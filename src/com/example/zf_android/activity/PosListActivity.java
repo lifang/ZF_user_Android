@@ -50,6 +50,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	private boolean onRefresh_number = true;
 	private PosAdapter myAdapter;
 	private String keys=null;
+	private int maxPrice=0,minPrice=0;
 	private TextView next_sure,tv_mr,tv_2,tv_3,tv_4;
 	private Boolean isDown=true;
 	private int orderType=0;
@@ -261,6 +262,8 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		params.put("city_id", 1);
 		params.put("orderType", orderType);
 	 	params.put("keys", keys);
+		params.put("minPrice", minPrice);
+	 	params.put("maxPrice", maxPrice);
 		System.out.println("keys```"+keys+orderType);
 		params.setUseJsonStreamer(true);
 
@@ -327,6 +330,10 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		case 1:
 			if(data!=null){
 				System.out.println("进入条件选择回调···");
+				minPrice=data.getIntExtra("minPrice", 0);
+				maxPrice=data.getIntExtra("maxPrice", 1000000);
+				System.out.println(maxPrice+"进入条件选择回调···"+minPrice); 
+				myList.clear();
 				getData();
 			}
 			

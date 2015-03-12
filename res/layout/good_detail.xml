@@ -265,7 +265,7 @@
                     android:layout_gravity="center_vertical"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="终端类型"
+                    android:text="支付通道"
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
 
@@ -280,14 +280,17 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="30dp"
+                            android:textColor="@color/bgtitle"
                         android:gravity="center"
                         android:background="@drawable/bg_shape"
-                        android:text="xxx" />
+                        android:text="通道3" />
 
                      <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="30dp"
+                        android:visibility="invisible"
+                        
                         android:gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
@@ -298,6 +301,7 @@
                         android:layout_weight="1"
                         android:layout_height="30dp"
                         android:gravity="center"
+                                   android:visibility="invisible"
                         android:background="@drawable/bg_shape"
                         android:text="xxx" />
                 </LinearLayout>
@@ -305,6 +309,8 @@
             
             
             <LinearLayout
+                android:id="@+id/zftd"
+                android:visibility="gone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
@@ -495,9 +501,10 @@
                 android:orientation="horizontal">
                 
                             <TextView
+                    android:id="@+id/tv_comment"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:text="查看评论（231）"
                     android:gravity="center"
                     
@@ -537,10 +544,10 @@
                             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:text="开通所需材料"
                     android:gravity="center"
-                    
+                    android:id="@+id/tv_appneed"
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="17sp" />
                 <View android:layout_width="0.5dp"
@@ -552,9 +559,10 @@
                             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:text="租赁说明"
                        android:gravity="center"
+                    android:id="@+id/tv_ins"
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="17sp" />
                 
@@ -846,7 +854,7 @@
                          
                         android:textColor="@color/fffefe"
                         
-                        android:background="@drawable/bg_red_shape"
+                                    android:background="@drawable/bg_blue_shape"
                         android:text="立即购买"/>
 
            

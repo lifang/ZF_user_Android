@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.MerchantEntity;
 import com.example.zf_android.entity.TestEntitiy;
 
 import android.content.Context;
@@ -22,11 +23,11 @@ import android.widget.Toast;
 
 public class MerchanAdapter extends BaseAdapter {
 	private Context context;
-	private List<TestEntitiy> list;
+	private List<MerchantEntity> list;
 	private LayoutInflater inflater;
 	private ViewHolder holder = null;
 
-	public MerchanAdapter(Context context, List<TestEntitiy> list) {
+	public MerchanAdapter(Context context, List<MerchantEntity> list) {
 		this.context = context;
 		this.list = list;
 	}
@@ -54,14 +55,15 @@ public class MerchanAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.merchant_item, null);
 			holder.tv_title = (TextView) convertView
 					.findViewById(R.id.tv_title);
-			//holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
+			holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
 			holder.item_cb = (CheckBox) convertView.findViewById(R.id.item_cb);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.tv_title.setText(list.get(position).getContent());
+		//holder.tv_title.setText(list.get(position).getLegal_person_name());
+		holder.tv_title.setText(list.get(position).getTitle());
 		if(MyApplication.getIsSelect()){
 			 
 			holder.item_cb.setVisibility(View.VISIBLE);
@@ -78,12 +80,12 @@ public class MerchanAdapter extends BaseAdapter {
 				list.get(position).setIscheck(isChecked);
 			}
 		});
-		//holder.item_cb.toggle();
+		 
 		return convertView;
 	}
 
 	public final class ViewHolder {
-		public TextView tv_title, tv_time;
+		public TextView tv_title, tv_name;
 		public CheckBox item_cb;
 
 	}

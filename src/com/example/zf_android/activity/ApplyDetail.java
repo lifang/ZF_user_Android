@@ -1,25 +1,36 @@
 package com.example.zf_android.activity;
 
+import java.util.List;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.Config;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.PosEntity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 /***
  * 
-*    
-* ÀàÃû³Æ£ºApplyDetail   
-* ÀàÃèÊö£º   ÉêÇë½ø¶È²éÑ¯
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-2-7 ÉÏÎç11:28:06   
+*    ç”³è¯·è¿›åº¦æŸ¥è¯¢
 * @version    
 *
  */
@@ -33,13 +44,75 @@ public class ApplyDetail extends BaseActivity implements OnClickListener{
 			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.apply_detail);
-			new TitleMenuUtil(ApplyDetail.this, "ÉêÇë¿ªÍ¨½ø¶È²éÑ¯").show();
+			new TitleMenuUtil(ApplyDetail.this, "ç”³è¯·å¼€é€šç²¾åº¦æŸ¥è¯¢").show();
 			initView();
-			getData();
+			 
 		}
 		private void getData() {
 			// TODO Auto-generated method stub
-			msg_show.setText("Ã»ÓĞ²éÑ¯½á¹û£¬ÇëÌîĞ´ÕıÈ·µÄÊÖ»úºÅÂë");
+			msg_show.setText("æ— å¿§æŸ¥è¯¢ç»“æœï¼Œè¯·å¡«å†™æ­£ç¡®çš„æ‰‹æœºå·ç ï¼");
+			String url = "http://114.215.149.242:18080/ZFMerchant/api/terminal/openStatus";
+			RequestParams params = new RequestParams();
+			params.put("id", 80);
+			params.put("phone", login_edit_name.getText().toString());
+			System.out.println("login_edit_name.getText().toString()"+login_edit_name.getText().toString());
+			params.setUseJsonStreamer(true);
+
+			MyApplication.getInstance().getClient()
+					.post(url, params, new AsyncHttpResponseHandler() {
+
+						@Override
+						public void onSuccess(int statusCode, Header[] headers,
+								byte[] responseBody) {
+							String responseMsg = new String(responseBody)
+									.toString();
+							Log.e("print ad", responseMsg);
+							System.out.println("adadada"+responseMsg);
+						 
+							 
+							Gson gson = new Gson();
+							
+							JSONObject jsonobject = null;
+							String code = null;
+							try {
+								jsonobject = new JSONObject(responseMsg);
+								code = jsonobject.getString("code");
+								int a =jsonobject.getInt("code");
+								if(a==Config.CODE){  
+									String res =jsonobject.getString("result");
+									jsonobject = new JSONObject(res);
+//									
+//									moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<PosEntity>>() {
+//				 					}.getType());
+//				 				 
+//									myList.addAll(moreList);
+//					 				handler.sendEmptyMessage(0);
+//				 					  
+				 				 
+				 			 
+								}else{
+									code = jsonobject.getString("message");
+									Toast.makeText(getApplicationContext(), code, 1000).show();
+								}
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								 ;	
+								e.printStackTrace();
+								
+							}
+
+						}
+
+						@Override
+						public void onFailure(int statusCode, Header[] headers,
+								byte[] responseBody, Throwable error) {
+							// TODO Auto-generated method stub
+							System.out.println("-onFailure---");
+							Log.e("print", "-onFailure---" + error);
+						}
+					});
+	 
+			 
 		}
 		private void initView() {
 			// TODO Auto-generated method stub
@@ -70,7 +143,7 @@ public class ApplyDetail extends BaseActivity implements OnClickListener{
 					
 				}
 			});
-			login_linear_deletename=(LinearLayout) findViewById(R.id.login_edit_name);
+			login_linear_deletename=(LinearLayout) findViewById(R.id.login_linear_deletename);
 			login_linear_in=(LinearLayout) findViewById(R.id.login_linear_in);
 			login_linear_deletename.setOnClickListener(this);
 			login_linear_in.setOnClickListener(this);

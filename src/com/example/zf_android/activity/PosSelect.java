@@ -8,10 +8,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,12 +34,17 @@ import com.loopj.android.http.RequestParams;
 
 public class PosSelect extends BaseActivity implements  OnClickListener{
 	private ImageView img_on_off;
+	private Boolean isOpen_mineset;
+	private SharedPreferences mySharedPreferences;
+	private Editor editor;
+	private EditText et1,et2;
+ 
 	private PosSelectEntity pse;
 	private List<PosItem> mylist=new ArrayList<PosItem>();
 	private LinearLayout ll_pp,ll_type, ll_pay_type,ll_paycard_type,ll_jy_type,ll_qgd_type,ll_time,ll_zdj,ll_zgj;
-	private TextView tv_pp,tv_type,tv_pay_type,tv_paycard_type,tv_jy_type,tv_qgd_type,tv_time,tv_zdj,tv_zgj;
+	private TextView next_sure,tv_back,tv_pp,tv_type,tv_pay_type,tv_paycard_type,tv_jy_type,tv_qgd_type,tv_time,tv_zdj,tv_zgj;
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) { 
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.posselect);
@@ -115,9 +123,22 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 	
 	}
 	private void initView() {
+		
+		
+		mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
+		editor = mySharedPreferences.edit();
+		isOpen_mineset=mySharedPreferences.getBoolean("isOpen_ps", true);
+		img_on_off=(ImageView) findViewById(R.id.img_on_off);
+		if(!isOpen_mineset){
+			img_on_off.setBackgroundResource(R.drawable.pos_off);
+		 
+		}
+		img_on_off.setOnClickListener(this);
+		
 		// TODO Auto-generated method stub
-		tv_zdj=(TextView) findViewById(R.id.tv_zdj);
-		tv_zgj=(TextView) findViewById(R.id.tv_zgj);
+		et1=(EditText) findViewById(R.id.et_zdj);
+		et2=(EditText) findViewById(R.id.et_zgj);
+		
 		tv_time=(TextView) findViewById(R.id.tv_time);
 		tv_qgd_type=(TextView) findViewById(R.id.tv_qgd_type);
 		tv_jy_type=(TextView) findViewById(R.id.tv_jy_type);
@@ -141,17 +162,56 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 		ll_qgd_type.setOnClickListener(this);
 		ll_time=(LinearLayout) findViewById(R.id.ll_time);
 		ll_time.setOnClickListener(this);
-		ll_zdj=(LinearLayout) findViewById(R.id.ll_zdj);
-		ll_zdj.setOnClickListener(this);
-		ll_zgj=(LinearLayout) findViewById(R.id.ll_zgj);
-		ll_zgj.setOnClickListener(this);
+//		ll_zdj=(LinearLayout) findViewById(R.id.ll_zdj);
+//		ll_zdj.setOnClickListener(this);
+//		ll_zgj=(LinearLayout) findViewById(R.id.ll_zgj);
+//		ll_zgj.setOnClickListener(this);
+		next_sure=(TextView) findViewById(R.id.next_sure);
+		next_sure.setOnClickListener(this);
+		tv_back=(TextView) findViewById(R.id.tv_back);
+		tv_back.setOnClickListener(this);
 	}
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.img_on_off:  // ����
+		case R.id.next_sure:  // 
+			int a=0 ;int b=0;
+			if(et1.getText().toString()==null){
+				  a=0;
+			}else{
+				  a=Integer.parseInt(  et1.getText().toString());
+			}
+			if( et2.getText().toString()==null){
+				  b=0;
+			}else{
+				  b=Integer.parseInt(  et2.getText().toString());
+			}
+			
+			 if(a==0||b==0){
+					Intent intent2 = new Intent();
+					intent2.putExtra("minPrice", a);
+					intent2.putExtra("maxPrice", b);
+					PosSelect.this.setResult(1, intent2);
+					finish();
+			 }else{
+					if(a>b){
+						Toast.makeText(getApplicationContext(), "最低价必须比最高价低", 1000).show();
+						break;
+					}else{
+						Intent intent2 = new Intent();
+						intent2.putExtra("minPrice", a);
+						intent2.putExtra("maxPrice", b);
+						PosSelect.this.setResult(1, intent2);
+						finish();
+					}
+			 }
 		 
+ 
+			
+			break;
+		case R.id.tv_back:  // next_sure
+			finish();
 			break;
 		case R.id.ll_pp:  // 
 			Intent ll_pp=new Intent(PosSelect.this, PosSelecList.class);
@@ -187,6 +247,25 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 		case R.id.ll_time:   
 		 
 		break;
+		case R.id.img_on_off:
+			
+			if(isOpen_mineset){
+				isOpen_mineset=false;
+				//img_on_off.setBackgroundDrawable(getResources().getDrawable(R.drawable.pos_off));
+				img_on_off.setBackgroundResource(R.drawable.pos_off);
+				editor.putBoolean("isOpen_ps",false);
+					editor.commit();
+				
+			}else{
+				isOpen_mineset=true;
+				img_on_off.setBackgroundResource(R.drawable.pos_on);		 
+				editor.putBoolean("isOpen_ps",true);
+					editor.commit();
+			}
+			
+			
+			
+			break;
 		default:
 			break;
 		}
