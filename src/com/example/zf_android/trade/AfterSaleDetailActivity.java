@@ -339,7 +339,7 @@ public class AfterSaleDetailActivity extends Activity {
 						break;
 				}
 
-				List<Comment> comments = data.getComments().getList();
+				List<Comment> comments = data.getComments().getContent();
 				if (null != comments && comments.size() > 0) {
 					for (Comment comment : comments) {
 						LinearLayout commentLayout = (LinearLayout) mInflater.inflate(R.layout.after_sale_detail_comment, null);

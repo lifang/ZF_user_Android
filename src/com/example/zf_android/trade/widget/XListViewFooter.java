@@ -69,7 +69,7 @@ public class XListViewFooter extends LinearLayout {
 	public void setState2(int state) {
 		 	this.setVisibility(View.GONE);
 		  	mHintView.setVisibility(View.GONE);
-		//	mHintView.setText("Ã»ÓÐ¸ü¶àÁË£¡");
+		//	mHintView.setText("Ã»ï¿½Ð¸ï¿½ï¿½ï¿½Ë£ï¿½");
 		 
 	}
 	public void setBottomMargin(int height) {

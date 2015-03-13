@@ -9,15 +9,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.common.Page;
+import com.example.zf_android.trade.common.Pageable;
 import com.example.zf_android.trade.entity.AfterSaleRecord;
+import com.example.zf_android.trade.widget.XListView;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -38,329 +39,370 @@ import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
 /**
  * Created by Leo on 2015/2/26.
  */
-public class AfterSaleListActivity extends Activity {
+public class AfterSaleListActivity extends Activity implements XListView.IXListViewListener {
 
-    private int mRecordType;
+	private int mRecordType;
 
-    private ListView mListView;
-    private RecordListAdapter mAdapter;
-    private List<AfterSaleRecord> mEntities;
+	private XListView mListView;
+	private RecordListAdapter mAdapter;
+	private List<AfterSaleRecord> mEntities;
 
-    private int page = 0;
-    private int total = 0;
-    private final int rows = 10;
+	private int page = 0;
+	private int total = 0;
+	private final int rows = 10;
 
-    private LayoutInflater mInflater;
+	private LayoutInflater mInflater;
 
-    // cancel apply button listener
-    private View.OnClickListener mCancelApplyListener;
-    // submit mark button listener
-    private View.OnClickListener mSubmitMarkListener;
-    // pay maintain button listener;
-    private View.OnClickListener mPayMaintainListener;
-    // submit cancel button listener
-    private View.OnClickListener mSubmitCancelListener;
+	// cancel apply button listener
+	private View.OnClickListener mCancelApplyListener;
+	// submit mark button listener
+	private View.OnClickListener mSubmitMarkListener;
+	// pay maintain button listener;
+	private View.OnClickListener mPayMaintainListener;
+	// submit cancel button listener
+	private View.OnClickListener mSubmitCancelListener;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mRecordType = getIntent().getIntExtra(RECORD_TYPE, 0);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mRecordType = getIntent().getIntExtra(RECORD_TYPE, 0);
 
-        setContentView(R.layout.activity_after_sale_list);
-        String[] titles = getResources().getStringArray(R.array.title_after_sale_list);
-        new TitleMenuUtil(this, titles[mRecordType]).show();
+		setContentView(R.layout.activity_after_sale_list);
+		String[] titles = getResources().getStringArray(R.array.title_after_sale_list);
+		new TitleMenuUtil(this, titles[mRecordType]).show();
 
 
-        mInflater = LayoutInflater.from(this);
-        mEntities = new ArrayList<AfterSaleRecord>();
-        mListView = (ListView) findViewById(R.id.after_sale_list);
-        mAdapter = new RecordListAdapter();
-        mListView.setAdapter(mAdapter);
+		mInflater = LayoutInflater.from(this);
+		mEntities = new ArrayList<AfterSaleRecord>();
+		mListView = (XListView) findViewById(R.id.after_sale_list);
+		mAdapter = new RecordListAdapter();
 
-        initButtonListeners();
+		// init the XListView
+		mListView.initHeaderAndFooter();
+		mListView.setXListViewListener(this);
+		mListView.setPullLoadEnable(true);
 
-        API.getAfterSaleRecordList(this, mRecordType, 80, page + 1, rows, new HttpCallback<Page<AfterSaleRecord>>(this) {
-            @Override
-            public void onSuccess(Page<AfterSaleRecord> data) {
-                if (null != data.getList()) {
-                    mEntities.addAll(data.getList());
-                }
-                page++;
-                total = data.getTotal();
-                mAdapter.notifyDataSetChanged();
-            }
+		mListView.setAdapter(mAdapter);
+		initButtonListeners();
+		loadData();
+	}
 
-            @Override
-            public TypeToken<Page<AfterSaleRecord>> getTypeToken() {
-                return new TypeToken<Page<AfterSaleRecord>>() {
-                };
-            }
-        });
-    }
+	private void loadData() {
+		API.getAfterSaleRecordList(this, mRecordType, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(this) {
+			@Override
+			public void onSuccess(Pageable<AfterSaleRecord> data) {
+				if (null != data.getContent()) {
+					mEntities.addAll(data.getContent());
+				}
+				page++;
+				total = data.getTotal();
+				mAdapter.notifyDataSetChanged();
+			}
 
-    private void initButtonListeners() {
-        mCancelApplyListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AfterSaleRecord record = (AfterSaleRecord) v.getTag();
-                API.cancelAfterSaleApply(AfterSaleListActivity.this, mRecordType, record.getId(), new HttpCallback(AfterSaleListActivity.this) {
-                    @Override
-                    public void onSuccess(Object data) {
-                        record.setStatus(5);
-                        mAdapter.notifyDataSetChanged();
-                        CommonUtil.toastShort(AfterSaleListActivity.this, getString(R.string.toast_cancel_apply_success));
-                    }
+			@Override
+			public void preLoad() {
+			}
 
-                    @Override
-                    public TypeToken getTypeToken() {
-                        return null;
-                    }
-                });
-            }
-        };
+			@Override
+			public void postLoad() {
+				loadFinished();
+			}
 
-        mSubmitMarkListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AfterSaleRecord record = (AfterSaleRecord) v.getTag();
-                Intent intent = new Intent(AfterSaleListActivity.this, AfterSaleMarkActivity.class);
-                intent.putExtra(RECORD_TYPE, mRecordType);
-                intent.putExtra(RECORD_ID, record.getId());
-                startActivityForResult(intent, REQUEST_MARK);
-            }
-        };
+			@Override
+			public TypeToken<Pageable<AfterSaleRecord>> getTypeToken() {
+				return new TypeToken<Pageable<AfterSaleRecord>>() {
+				};
+			}
+		});
 
-        mPayMaintainListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AfterSaleListActivity.this, AfterSalePayActivity.class));
-            }
-        };
+	}
 
-        mSubmitCancelListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AfterSaleRecord record = (AfterSaleRecord) v.getTag();
-                API.resubmitCancel(AfterSaleListActivity.this, record.getId(), new HttpCallback(AfterSaleListActivity.this) {
-                    @Override
-                    public void onSuccess(Object obj) {
-                        record.setStatus(1);
-                        mAdapter.notifyDataSetChanged();
-                        CommonUtil.toastShort(AfterSaleListActivity.this, getString(R.string.toast_resubmit_cancel_success));
-                    }
+	private void initButtonListeners() {
+		mCancelApplyListener = new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				final AfterSaleRecord record = (AfterSaleRecord) v.getTag();
+				API.cancelAfterSaleApply(AfterSaleListActivity.this, mRecordType, record.getId(), new HttpCallback(AfterSaleListActivity.this) {
+					@Override
+					public void onSuccess(Object data) {
+						record.setStatus(5);
+						mAdapter.notifyDataSetChanged();
+						CommonUtil.toastShort(AfterSaleListActivity.this, getString(R.string.toast_cancel_apply_success));
+					}
 
-                    @Override
-                    public TypeToken getTypeToken() {
-                        return null;
-                    }
-                });
-            }
-        };
-    }
+					@Override
+					public TypeToken getTypeToken() {
+						return null;
+					}
+				});
+			}
+		};
 
-    class RecordListAdapter extends BaseAdapter {
-        RecordListAdapter() {
-        }
+		mSubmitMarkListener = new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				AfterSaleRecord record = (AfterSaleRecord) v.getTag();
+				Intent intent = new Intent(AfterSaleListActivity.this, AfterSaleMarkActivity.class);
+				intent.putExtra(RECORD_TYPE, mRecordType);
+				intent.putExtra(RECORD_ID, record.getId());
+				startActivityForResult(intent, REQUEST_MARK);
+			}
+		};
 
-        @Override
-        public int getCount() {
-            return mEntities.size();
-        }
+		mPayMaintainListener = new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(AfterSaleListActivity.this, AfterSalePayActivity.class));
+			}
+		};
 
-        @Override
-        public AfterSaleRecord getItem(int position) {
-            return mEntities.get(position);
-        }
+		mSubmitCancelListener = new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				final AfterSaleRecord record = (AfterSaleRecord) v.getTag();
+				API.resubmitCancel(AfterSaleListActivity.this, record.getId(), new HttpCallback(AfterSaleListActivity.this) {
+					@Override
+					public void onSuccess(Object obj) {
+						record.setStatus(1);
+						mAdapter.notifyDataSetChanged();
+						CommonUtil.toastShort(AfterSaleListActivity.this, getString(R.string.toast_resubmit_cancel_success));
+					}
 
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
+					@Override
+					public TypeToken getTypeToken() {
+						return null;
+					}
+				});
+			}
+		};
+	}
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
-            if (convertView == null) {
-                convertView = mInflater.inflate(R.layout.after_sale_record_item, null);
-                holder = new ViewHolder();
-                holder.tvNumberTitle = (TextView) convertView.findViewById(R.id.after_sale_number_title);
-                holder.tvNumber = (TextView) convertView.findViewById(R.id.after_sale_number);
-                holder.tvTime = (TextView) convertView.findViewById(R.id.after_sale_time);
-                holder.tvTerminal = (TextView) convertView.findViewById(R.id.after_sale_terminal);
-                holder.tvStatus = (TextView) convertView.findViewById(R.id.after_sale_status);
-                holder.llButtonContainer = (LinearLayout) convertView.findViewById(R.id.after_sale_button_container);
-                holder.btnLeft = (Button) convertView.findViewById(R.id.after_sale_button_left);
-                holder.btnRight = (Button) convertView.findViewById(R.id.after_sale_button_right);
-                holder.btnCenter = (Button) convertView.findViewById(R.id.after_sale_button_center);
-                holder.btnCenterBlank = (Button) convertView.findViewById(R.id.after_sale_button_center_blank);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
+	@Override
+	public void onRefresh() {
+		page = 0;
+		mEntities.clear();
+		loadData();
+	}
 
-            final AfterSaleRecord data = getItem(position);
-            String[] numberTitles = getResources().getStringArray(R.array.after_sale_number);
-            holder.tvNumberTitle.setText(numberTitles[mRecordType]);
-            holder.tvNumber.setText(data.getApplyNum());
-            holder.tvTime.setText(data.getCreateTime());
-            holder.tvTerminal.setText(data.getTerminalNum());
-            String[] status = getResources().getStringArray(
-                    mRecordType == MAINTAIN ? R.array.maintain_status
-                            : mRecordType == RETURN ? R.array.return_status
-                            : mRecordType == CANCEL ? R.array.cancel_status
-                            : mRecordType == CHANGE ? R.array.change_status
-                            : mRecordType == UPDATE ? R.array.update_status
-                            : R.array.lease_status
-            );
-            holder.tvStatus.setText(status[data.getStatus()]);
+	@Override
+	public void onLoadMore() {
+		if (mEntities.size() >= total) {
+			mListView.stopLoadMore();
+			CommonUtil.toastShort(this, "no more data");
+		} else {
+			loadData();
+		}
+	}
 
-            switch (mRecordType) {
-                case MAINTAIN:
-                    if (data.getStatus() == 1) {
-                        holder.llButtonContainer.setVisibility(View.VISIBLE);
-                        holder.btnLeft.setVisibility(View.VISIBLE);
-                        holder.btnRight.setVisibility(View.VISIBLE);
-                        holder.btnCenter.setVisibility(View.GONE);
-                        holder.btnCenterBlank.setVisibility(View.GONE);
+	private void loadFinished() {
+		mListView.stopRefresh();
+		mListView.stopLoadMore();
+		mListView.setRefreshTime(Tools.getHourAndMin());
+	}
 
-                        holder.btnLeft.setText(getString(R.string.button_cancel_apply));
-                        holder.btnLeft.setTag(data);
-                        holder.btnLeft.setOnClickListener(mCancelApplyListener);
+	class RecordListAdapter extends BaseAdapter {
+		RecordListAdapter() {
+		}
 
-                        holder.btnRight.setText(getString(R.string.button_pay));
-                        holder.btnRight.setOnClickListener(mPayMaintainListener);
-                    } else if (data.getStatus() == 2) {
-                        holder.llButtonContainer.setVisibility(View.VISIBLE);
-                        holder.btnLeft.setVisibility(View.GONE);
-                        holder.btnRight.setVisibility(View.GONE);
-                        holder.btnCenter.setVisibility(View.VISIBLE);
-                        holder.btnCenterBlank.setVisibility(View.GONE);
+		@Override
+		public int getCount() {
+			return mEntities.size();
+		}
 
-                        holder.btnCenter.setText(getString(R.string.button_submit_flow));
-                        holder.btnCenter.setTag(data);
-                        holder.btnCenter.setOnClickListener(mSubmitMarkListener);
-                    } else {
-                        holder.llButtonContainer.setVisibility(View.GONE);
-                    }
-                    break;
-                case CANCEL:
-                    if (data.getStatus() == 1) {
-                        holder.llButtonContainer.setVisibility(View.VISIBLE);
-                        holder.btnLeft.setVisibility(View.GONE);
-                        holder.btnRight.setVisibility(View.GONE);
-                        holder.btnCenter.setVisibility(View.GONE);
-                        holder.btnCenterBlank.setVisibility(View.VISIBLE);
+		@Override
+		public AfterSaleRecord getItem(int position) {
+			return mEntities.get(position);
+		}
 
-                        holder.btnCenterBlank.setText(R.string.button_cancel_apply);
-                        holder.btnCenterBlank.setTag(data);
-                        holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
-                    } else if (data.getStatus() == 5) {
-                        holder.llButtonContainer.setVisibility(View.VISIBLE);
-                        holder.btnLeft.setVisibility(View.GONE);
-                        holder.btnRight.setVisibility(View.GONE);
-                        holder.btnCenter.setVisibility(View.VISIBLE);
-                        holder.btnCenterBlank.setVisibility(View.GONE);
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
 
-                        holder.btnCenter.setText(R.string.button_submit_cancel);
-                        holder.btnCenter.setTag(data);
-                        holder.btnCenter.setOnClickListener(mSubmitCancelListener);
-                    } else {
-                        holder.llButtonContainer.setVisibility(View.GONE);
-                    }
-                    break;
-                case UPDATE:
-                    if (data.getStatus() == 1) {
-                        holder.llButtonContainer.setVisibility(View.VISIBLE);
-                        holder.btnLeft.setVisibility(View.GONE);
-                        holder.btnRight.setVisibility(View.GONE);
-                        holder.btnCenter.setVisibility(View.GONE);
-                        holder.btnCenterBlank.setVisibility(View.VISIBLE);
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ViewHolder holder;
+			if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.after_sale_record_item, null);
+				holder = new ViewHolder();
+				holder.tvNumberTitle = (TextView) convertView.findViewById(R.id.after_sale_number_title);
+				holder.tvNumber = (TextView) convertView.findViewById(R.id.after_sale_number);
+				holder.tvTime = (TextView) convertView.findViewById(R.id.after_sale_time);
+				holder.tvTerminal = (TextView) convertView.findViewById(R.id.after_sale_terminal);
+				holder.tvStatus = (TextView) convertView.findViewById(R.id.after_sale_status);
+				holder.llButtonContainer = (LinearLayout) convertView.findViewById(R.id.after_sale_button_container);
+				holder.btnLeft = (Button) convertView.findViewById(R.id.after_sale_button_left);
+				holder.btnRight = (Button) convertView.findViewById(R.id.after_sale_button_right);
+				holder.btnCenter = (Button) convertView.findViewById(R.id.after_sale_button_center);
+				holder.btnCenterBlank = (Button) convertView.findViewById(R.id.after_sale_button_center_blank);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
 
-                        holder.btnCenterBlank.setText(getString(R.string.button_cancel_apply));
-                        holder.btnCenterBlank.setTag(data);
-                        holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
-                    } else {
-                        holder.llButtonContainer.setVisibility(View.GONE);
-                    }
-                    break;
-                case RETURN:
-                case CHANGE:
-                case LEASE:
-                    if (data.getStatus() == 1) {
-                        holder.llButtonContainer.setVisibility(View.VISIBLE);
-                        holder.btnLeft.setVisibility(View.GONE);
-                        holder.btnRight.setVisibility(View.GONE);
-                        holder.btnCenter.setVisibility(View.GONE);
-                        holder.btnCenterBlank.setVisibility(View.VISIBLE);
+			final AfterSaleRecord data = getItem(position);
+			String[] numberTitles = getResources().getStringArray(R.array.after_sale_number);
+			holder.tvNumberTitle.setText(numberTitles[mRecordType]);
+			holder.tvNumber.setText(data.getApplyNum());
+			holder.tvTime.setText(data.getCreateTime());
+			holder.tvTerminal.setText(data.getTerminalNum());
+			String[] status = getResources().getStringArray(
+					mRecordType == MAINTAIN ? R.array.maintain_status
+							: mRecordType == RETURN ? R.array.return_status
+							: mRecordType == CANCEL ? R.array.cancel_status
+							: mRecordType == CHANGE ? R.array.change_status
+							: mRecordType == UPDATE ? R.array.update_status
+							: R.array.lease_status
+			);
+			holder.tvStatus.setText(status[data.getStatus()]);
 
-                        holder.btnCenterBlank.setText(R.string.button_cancel_apply);
-                        holder.btnCenterBlank.setTag(data);
-                        holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
-                    } else if (data.getStatus() == 2) {
-                        holder.llButtonContainer.setVisibility(View.VISIBLE);
-                        holder.btnLeft.setVisibility(View.GONE);
-                        holder.btnRight.setVisibility(View.GONE);
-                        holder.btnCenter.setVisibility(View.VISIBLE);
-                        holder.btnCenterBlank.setVisibility(View.GONE);
+			switch (mRecordType) {
+				case MAINTAIN:
+					if (data.getStatus() == 1) {
+						holder.llButtonContainer.setVisibility(View.VISIBLE);
+						holder.btnLeft.setVisibility(View.VISIBLE);
+						holder.btnRight.setVisibility(View.VISIBLE);
+						holder.btnCenter.setVisibility(View.GONE);
+						holder.btnCenterBlank.setVisibility(View.GONE);
 
-                        holder.btnCenter.setText(R.string.button_submit_flow);
-                        holder.btnCenter.setTag(data);
-                        holder.btnCenter.setOnClickListener(mSubmitMarkListener);
-                    } else {
-                        holder.llButtonContainer.setVisibility(View.GONE);
-                    }
-                    break;
-            }
+						holder.btnLeft.setText(getString(R.string.button_cancel_apply));
+						holder.btnLeft.setTag(data);
+						holder.btnLeft.setOnClickListener(mCancelApplyListener);
 
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(AfterSaleListActivity.this, AfterSaleDetailActivity.class);
-                    intent.putExtra(RECORD_TYPE, mRecordType);
-                    intent.putExtra(RECORD_ID, data.getId());
-                    startActivityForResult(intent, REQUEST_DETAIL);
-                }
-            });
+						holder.btnRight.setText(getString(R.string.button_pay));
+						holder.btnRight.setOnClickListener(mPayMaintainListener);
+					} else if (data.getStatus() == 2) {
+						holder.llButtonContainer.setVisibility(View.VISIBLE);
+						holder.btnLeft.setVisibility(View.GONE);
+						holder.btnRight.setVisibility(View.GONE);
+						holder.btnCenter.setVisibility(View.VISIBLE);
+						holder.btnCenterBlank.setVisibility(View.GONE);
 
-            return convertView;
-        }
-    }
+						holder.btnCenter.setText(getString(R.string.button_submit_flow));
+						holder.btnCenter.setTag(data);
+						holder.btnCenter.setOnClickListener(mSubmitMarkListener);
+					} else {
+						holder.llButtonContainer.setVisibility(View.GONE);
+					}
+					break;
+				case CANCEL:
+					if (data.getStatus() == 1) {
+						holder.llButtonContainer.setVisibility(View.VISIBLE);
+						holder.btnLeft.setVisibility(View.GONE);
+						holder.btnRight.setVisibility(View.GONE);
+						holder.btnCenter.setVisibility(View.GONE);
+						holder.btnCenterBlank.setVisibility(View.VISIBLE);
 
-    static class ViewHolder {
-        public TextView tvNumberTitle;
-        public TextView tvNumber;
-        public TextView tvTime;
-        public TextView tvTerminal;
-        public TextView tvStatus;
-        public LinearLayout llButtonContainer;
-        public Button btnLeft;
-        public Button btnRight;
-        public Button btnCenter;
-        public Button btnCenterBlank;
-    }
+						holder.btnCenterBlank.setText(R.string.button_cancel_apply);
+						holder.btnCenterBlank.setTag(data);
+						holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
+					} else if (data.getStatus() == 5) {
+						holder.llButtonContainer.setVisibility(View.VISIBLE);
+						holder.btnLeft.setVisibility(View.GONE);
+						holder.btnRight.setVisibility(View.GONE);
+						holder.btnCenter.setVisibility(View.VISIBLE);
+						holder.btnCenterBlank.setVisibility(View.GONE);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case REQUEST_DETAIL:
-                    int id = data.getIntExtra(RECORD_ID, 0);
-                    int status = data.getIntExtra(RECORD_STATUS, 0);
-                    if (id > 0 && status > 0) {
-                        for (AfterSaleRecord record : mEntities) {
-                            if (record.getId() == id) {
-                                record.setStatus(status);
-                                mAdapter.notifyDataSetChanged();
-                            }
-                        }
-                    }
-                    break;
-                case REQUEST_MARK:
-                    CommonUtil.toastShort(this, getString(R.string.toast_add_mark_success));
-                    break;
-            }
+						holder.btnCenter.setText(R.string.button_submit_cancel);
+						holder.btnCenter.setTag(data);
+						holder.btnCenter.setOnClickListener(mSubmitCancelListener);
+					} else {
+						holder.llButtonContainer.setVisibility(View.GONE);
+					}
+					break;
+				case UPDATE:
+					if (data.getStatus() == 1) {
+						holder.llButtonContainer.setVisibility(View.VISIBLE);
+						holder.btnLeft.setVisibility(View.GONE);
+						holder.btnRight.setVisibility(View.GONE);
+						holder.btnCenter.setVisibility(View.GONE);
+						holder.btnCenterBlank.setVisibility(View.VISIBLE);
 
-        }
-    }
+						holder.btnCenterBlank.setText(getString(R.string.button_cancel_apply));
+						holder.btnCenterBlank.setTag(data);
+						holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
+					} else {
+						holder.llButtonContainer.setVisibility(View.GONE);
+					}
+					break;
+				case RETURN:
+				case CHANGE:
+				case LEASE:
+					if (data.getStatus() == 1) {
+						holder.llButtonContainer.setVisibility(View.VISIBLE);
+						holder.btnLeft.setVisibility(View.GONE);
+						holder.btnRight.setVisibility(View.GONE);
+						holder.btnCenter.setVisibility(View.GONE);
+						holder.btnCenterBlank.setVisibility(View.VISIBLE);
+
+						holder.btnCenterBlank.setText(R.string.button_cancel_apply);
+						holder.btnCenterBlank.setTag(data);
+						holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
+					} else if (data.getStatus() == 2) {
+						holder.llButtonContainer.setVisibility(View.VISIBLE);
+						holder.btnLeft.setVisibility(View.GONE);
+						holder.btnRight.setVisibility(View.GONE);
+						holder.btnCenter.setVisibility(View.VISIBLE);
+						holder.btnCenterBlank.setVisibility(View.GONE);
+
+						holder.btnCenter.setText(R.string.button_submit_flow);
+						holder.btnCenter.setTag(data);
+						holder.btnCenter.setOnClickListener(mSubmitMarkListener);
+					} else {
+						holder.llButtonContainer.setVisibility(View.GONE);
+					}
+					break;
+			}
+
+			convertView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(AfterSaleListActivity.this, AfterSaleDetailActivity.class);
+					intent.putExtra(RECORD_TYPE, mRecordType);
+					intent.putExtra(RECORD_ID, data.getId());
+					startActivityForResult(intent, REQUEST_DETAIL);
+				}
+			});
+
+			return convertView;
+		}
+	}
+
+	static class ViewHolder {
+		public TextView tvNumberTitle;
+		public TextView tvNumber;
+		public TextView tvTime;
+		public TextView tvTerminal;
+		public TextView tvStatus;
+		public LinearLayout llButtonContainer;
+		public Button btnLeft;
+		public Button btnRight;
+		public Button btnCenter;
+		public Button btnCenterBlank;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK) {
+			switch (requestCode) {
+				case REQUEST_DETAIL:
+					int id = data.getIntExtra(RECORD_ID, 0);
+					int status = data.getIntExtra(RECORD_STATUS, 0);
+					if (id > 0 && status > 0) {
+						for (AfterSaleRecord record : mEntities) {
+							if (record.getId() == id) {
+								record.setStatus(status);
+								mAdapter.notifyDataSetChanged();
+							}
+						}
+					}
+					break;
+				case REQUEST_MARK:
+					CommonUtil.toastShort(this, getString(R.string.toast_add_mark_success));
+					break;
+			}
+
+		}
+	}
 }
