@@ -2,6 +2,12 @@ package com.example.zf_android.trade;
 
 public class Constants {
 
+    /**
+     * TODO: This just a TEST constant
+     */
+    public static int TEST_CUSTOMER = 80;
+
+
 	public static class ShowWebImageIntent {
 		public static final String IMAGE_URLS = "image_urls";
 		public static final String IMAGE_NAMES = "image_names";

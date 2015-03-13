@@ -31,7 +31,7 @@ public class API {
 	// trade record statistic
 	public static final String TRADE_RECORD_STATISTIC = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecordTotal/%d/%s/%s/%s";
 	// trade record detail
-	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecord/%d";
+	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecord/%d/%d";
 
 	// After sale record list
 	public static final String AFTER_SALE_MAINTAIN_LIST = SCHEMA + HOST + "/ZFMerchant/api/cs/repair/getAll";
@@ -94,11 +94,14 @@ public class API {
 	// Apply Submit
 	public static final String APPLY_SUBMIT = SCHEMA + HOST + "/ZFMerchant/api/apply/addOpeningApply";
 
+	// Apply Opening Progress Query
+	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
+
 	public static void getTerminalList(
 			Context context,
 			int customerId,
 			HttpCallback callback) {
-		new HttpRequest(context, callback).get(String.format(TERMINAL_LIST, customerId));
+		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST, customerId));
 	}
 
 	public static void getTradeRecordList(
@@ -110,7 +113,7 @@ public class API {
 			int page,
 			int rows,
 			HttpCallback callback) {
-		new HttpRequest(context, callback).get(String.format(TRADE_RECORD_LIST,
+		new HttpRequest(context, callback).post(String.format(TRADE_RECORD_LIST,
 				tradeTypeId, terminalNumber, startTime, endTime, page, rows));
 	}
 
@@ -121,15 +124,16 @@ public class API {
 			String startTime,
 			String endTime,
 			HttpCallback callback) {
-		new HttpRequest(context, callback).get(String.format(TRADE_RECORD_STATISTIC,
+		new HttpRequest(context, callback).post(String.format(TRADE_RECORD_STATISTIC,
 				tradeTypeId, terminalNumber, startTime, endTime));
 	}
 
 	public static void getTradeRecordDetail(
 			Context context,
+			int typeId,
 			int recordId,
 			HttpCallback callback) {
-		new HttpRequest(context, callback).get(String.format(TRADE_RECORD_DETAIL, recordId));
+		new HttpRequest(context, callback).post(String.format(TRADE_RECORD_DETAIL, typeId, recordId));
 	}
 
 	public static void getAfterSaleRecordList(
@@ -137,7 +141,7 @@ public class API {
 			int recordType,
 			int customId,
 			int page,
-			int pageSize,
+			int rows,
 			HttpCallback callback) {
 		String url;
 		switch (recordType) {
@@ -165,7 +169,7 @@ public class API {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customer_id", customId);
 		params.put("page", page);
-		params.put("pageSize", pageSize);
+		params.put("rows", rows);
 		new HttpRequest(context, callback).post(url, params);
 	}
 
@@ -281,12 +285,12 @@ public class API {
 			Context context,
 			int customerId,
 			int page,
-			int pageSize,
+			int rows,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customersId", customerId);
-		params.put("indexPage", page);
-		params.put("pageNum", pageSize);
+		params.put("page", page);
+		params.put("rows", rows);
 		new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, params);
 	}
 
@@ -314,9 +318,11 @@ public class API {
 	public static void getTerminalDetail(
 			Context context,
 			int terminalId,
+			int customerId,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("terminalsId", terminalId + "");
+		params.put("terminalsId", terminalId);
+		params.put("customerId", customerId);
 		new HttpRequest(context, callback).post(TERMINAL_DETAIL, params);
 	}
 
@@ -333,12 +339,12 @@ public class API {
 			Context context,
 			int customerId,
 			int page,
-			int pageSize,
+			int rows,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customersId", customerId);
-		params.put("indexPage", page);
-		params.put("pageNum", pageSize);
+		params.put("page", page);
+		params.put("rows", rows);
 		new HttpRequest(context, callback).post(APPLY_LIST, params);
 	}
 
@@ -377,4 +383,14 @@ public class API {
 		new HttpRequest(context, callback).post(APPLY_SUBMIT, params);
 	}
 
+	public static void queryApplyProgress(
+			Context context,
+			int customerId,
+			String phone,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", customerId);
+		params.put("phone", phone);
+		new HttpRequest(context, callback).post(APPLY_PROGRESS, params);
+	}
 }

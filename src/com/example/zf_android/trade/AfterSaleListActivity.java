@@ -9,15 +9,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.common.Page;
+import com.example.zf_android.trade.common.Pageable;
 import com.example.zf_android.trade.entity.AfterSaleRecord;
+import com.example.zf_android.trade.widget.XListView;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -38,16 +39,17 @@ import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
 /**
  * Created by Leo on 2015/2/26.
  */
-public class AfterSaleListActivity extends Activity {
+public class AfterSaleListActivity extends Activity implements XListView.IXListViewListener {
 
 	private int mRecordType;
 
-	private ListView mListView;
+	private XListView mListView;
 	private RecordListAdapter mAdapter;
 	private List<AfterSaleRecord> mEntities;
-	private int currentPage = 1;
+
+	private int page = 0;
 	private int total = 0;
-	private final int pageSize = 10;
+	private final int rows = 10;
 
 	private LayoutInflater mInflater;
 
@@ -72,27 +74,47 @@ public class AfterSaleListActivity extends Activity {
 
 		mInflater = LayoutInflater.from(this);
 		mEntities = new ArrayList<AfterSaleRecord>();
-		mListView = (ListView) findViewById(R.id.after_sale_list);
+		mListView = (XListView) findViewById(R.id.after_sale_list);
 		mAdapter = new RecordListAdapter();
+
+		// init the XListView
+		mListView.initHeaderAndFooter();
+		mListView.setXListViewListener(this);
+		mListView.setPullLoadEnable(true);
+
 		mListView.setAdapter(mAdapter);
-
 		initButtonListeners();
+		loadData();
+	}
 
-		API.getAfterSaleRecordList(this, mRecordType, 80, 1, 10, new HttpCallback<Page<AfterSaleRecord>>(this) {
+	private void loadData() {
+		API.getAfterSaleRecordList(this, mRecordType, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(this) {
 			@Override
-			public void onSuccess(Page<AfterSaleRecord> data) {
-				mEntities.addAll(data.getContent());
-				currentPage = data.getCurrentPage();
+			public void onSuccess(Pageable<AfterSaleRecord> data) {
+				if (null != data.getContent()) {
+					mEntities.addAll(data.getContent());
+				}
+				page++;
 				total = data.getTotal();
 				mAdapter.notifyDataSetChanged();
 			}
 
 			@Override
-			public TypeToken<Page<AfterSaleRecord>> getTypeToken() {
-				return new TypeToken<Page<AfterSaleRecord>>() {
+			public void preLoad() {
+			}
+
+			@Override
+			public void postLoad() {
+				loadFinished();
+			}
+
+			@Override
+			public TypeToken<Pageable<AfterSaleRecord>> getTypeToken() {
+				return new TypeToken<Pageable<AfterSaleRecord>>() {
 				};
 			}
 		});
+
 	}
 
 	private void initButtonListeners() {
@@ -153,6 +175,29 @@ public class AfterSaleListActivity extends Activity {
 				});
 			}
 		};
+	}
+
+	@Override
+	public void onRefresh() {
+		page = 0;
+		mEntities.clear();
+		loadData();
+	}
+
+	@Override
+	public void onLoadMore() {
+		if (mEntities.size() >= total) {
+			mListView.stopLoadMore();
+			CommonUtil.toastShort(this, "no more data");
+		} else {
+			loadData();
+		}
+	}
+
+	private void loadFinished() {
+		mListView.stopRefresh();
+		mListView.stopLoadMore();
+		mListView.setRefreshTime(Tools.getHourAndMin());
 	}
 
 	class RecordListAdapter extends BaseAdapter {
