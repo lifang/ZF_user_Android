@@ -247,7 +247,7 @@
 	<string name="terminal_status">开通状态</string>
 
 	<!--======================================================-->
-	<!--                      开通认证                        -->
+	<!--                      开通认证                          -->
 	<!--======================================================-->
 	<string name="toast_upload_failed">上传图片失败</string>
 	<string name="toast_no_sdcard">SD卡未挂载</string>
@@ -303,5 +303,11 @@
 	<string name="apply_uploading">上传中...</string>
 	<string name="apply_upload_again">重新上传</string>
 	<string name="apply_upload_success">上传成功</string>
+
+	<string name="title_apply_open_progress">申请开通进度查询</string>
+	<string name="apply_progress_phone">输入手机号</string>
+	<string name="button_query">查询</string>
+	<string name="apply_progress_no_data">无查询结果,请填写正确的手机号码!</string>
+	<string name="apply_progress_terminal">终端号</string>
 
 </resources>

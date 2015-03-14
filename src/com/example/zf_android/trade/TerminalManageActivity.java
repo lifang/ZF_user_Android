@@ -14,10 +14,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.common.Page;
 import com.example.zf_android.trade.entity.TerminalItem;
+import com.example.zf_android.trade.widget.XListView;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -36,12 +39,16 @@ import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
 /**
  * Created by Leo on 2015/3/4.
  */
-public class TerminalManageActivity extends Activity {
+public class TerminalManageActivity extends Activity implements XListView.IXListViewListener {
 
 	private LayoutInflater mInflater;
-	private ListView mTerminalList;
+	private XListView mTerminalList;
 	private List<TerminalItem> mTerminalItems;
 	private TerminalListAdapter mAdapter;
+
+	private int page = 0;
+	private int total = 0;
+	private final int rows = 10;
 
 	private View.OnClickListener mSyncListener;
 	private View.OnClickListener mOpenListener;
@@ -61,7 +68,7 @@ public class TerminalManageActivity extends Activity {
 
 	private void initViews() {
 		mInflater = LayoutInflater.from(this);
-		mTerminalList = (ListView) findViewById(R.id.terminal_list);
+		mTerminalList = (XListView) findViewById(R.id.terminal_list);
 		mTerminalItems = new ArrayList<TerminalItem>();
 		mAdapter = new TerminalListAdapter();
 
@@ -73,7 +80,15 @@ public class TerminalManageActivity extends Activity {
 				startActivityForResult(new Intent(TerminalManageActivity.this, TerminalAddActivity.class), REQUEST_ADD);
 			}
 		});
+
+		// add the custom header view
 		mTerminalList.addHeaderView(listHeader);
+
+		// init the XListView
+		mTerminalList.initHeaderAndFooter();
+		mTerminalList.setXListViewListener(this);
+		mTerminalList.setPullLoadEnable(true);
+
 		mTerminalList.setAdapter(mAdapter);
 	}
 
@@ -120,16 +135,29 @@ public class TerminalManageActivity extends Activity {
 	}
 
 	private void loadData() {
-		API.getTerminalApplyList(this, 80, 1, 10, new HttpCallback<List<TerminalItem>>(this) {
+		API.getTerminalApplyList(this, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Page<TerminalItem>>(this) {
 			@Override
-			public void onSuccess(List<TerminalItem> data) {
-				mTerminalItems.addAll(data);
+			public void onSuccess(Page<TerminalItem> data) {
+				if (null != data.getList()) {
+					mTerminalItems.addAll(data.getList());
+				}
+				total = data.getTotal();
+				page++;
 				mAdapter.notifyDataSetChanged();
 			}
 
 			@Override
-			public TypeToken<List<TerminalItem>> getTypeToken() {
-				return new TypeToken<List<TerminalItem>>() {
+			public void preLoad() {
+			}
+
+			@Override
+			public void postLoad() {
+				loadFinished();
+			}
+
+			@Override
+			public TypeToken<Page<TerminalItem>> getTypeToken() {
+				return new TypeToken<Page<TerminalItem>>() {
 				};
 			}
 		});
@@ -148,6 +176,29 @@ public class TerminalManageActivity extends Activity {
 
 				break;
 		}
+	}
+
+	@Override
+	public void onRefresh() {
+		page = 0;
+		mTerminalItems.clear();
+		loadData();
+	}
+
+	@Override
+	public void onLoadMore() {
+		if (mTerminalItems.size() >= total) {
+			mTerminalList.stopLoadMore();
+			CommonUtil.toastShort(this, "no more data");
+		} else {
+			loadData();
+		}
+	}
+
+	private void loadFinished() {
+		mTerminalList.stopRefresh();
+		mTerminalList.stopLoadMore();
+		mTerminalList.setRefreshTime(Tools.getHourAndMin());
 	}
 
 	class TerminalListAdapter extends BaseAdapter {

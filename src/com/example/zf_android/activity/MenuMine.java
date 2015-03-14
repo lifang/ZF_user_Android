@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.AfterSaleGridActivity;
+import com.example.zf_android.trade.ApplyOpenProgressActivity;
 
 
 public class MenuMine extends BaseActivity implements OnClickListener{
@@ -52,7 +53,8 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 	case R.id.ll_request:
-		startActivity(new Intent(MenuMine.this,ApplyDetail.class));
+//		startActivity(new Intent(MenuMine.this,ApplyDetail.class));
+			startActivity(new Intent(this, ApplyOpenProgressActivity.class));
 			break;
 		case R.id.ll_sh:
 			startActivity(new Intent(MenuMine.this,MerchantList.class));
