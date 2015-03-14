@@ -17,6 +17,7 @@
         android:orientation="horizontal" >
 
         <TextView
+            android:id="@+id/tv_ddbh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
@@ -25,6 +26,7 @@
             android:textSize="8sp" />
 
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -39,6 +41,7 @@
             android:background="@drawable/order_item_img" />
 
         <TextView
+            android:id="@+id/tv_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -91,6 +94,7 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/tv_price"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -102,6 +106,7 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/tv_goodnum"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -161,6 +166,7 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    android:id="@+id/tv_gtd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
@@ -189,6 +195,7 @@
         android:orientation="horizontal" >
 
         <TextView
+            android:id="@+id/tv_sum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
@@ -197,6 +204,7 @@
             android:textSize="8sp" />
 
         <TextView
+            android:id="@+id/tv_psf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -206,6 +214,7 @@
             android:textSize="8sp" />
 
         <TextView
+            android:id="@+id/tv_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -215,14 +224,19 @@
             android:textSize="13sp" />
     </LinearLayout>
 
-    <View
+     
+	 <LinearLayout
+	     android:id="@+id/ll_ishow"
+	      android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
+	    <View
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:background="@color/Viewc2" />
-
-    <LinearLayout
+	        <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:layout_marginBottom="11dp"
@@ -262,6 +276,12 @@
             android:textColor="@color/ffffff"
             android:text="付款" />
     </LinearLayout>
+	    
+	    
+	    
+	    
+	</LinearLayout>
+ 
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"

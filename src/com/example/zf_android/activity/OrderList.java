@@ -3,10 +3,15 @@ package com.example.zf_android.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -24,29 +29,36 @@ import com.examlpe.zf_android.util.XListView.IXListViewListener;
  
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.OrderEntity;
+import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_zandroid.adapter.OrderAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 /***
  * 
 *    
-* ÀàÃû³Æ£ºOrderList   
-* ÀàÃèÊö£º   ¶©µ¥ÁĞ±í
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-2-4 ÏÂÎç3:04:31   
+* ï¿½ï¿½ï¿½ï¿½Æ£ï¿½OrderList   
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
+* ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp 
+* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-2-4 ï¿½ï¿½ï¿½ï¿½3:04:31   
 * @version    
 *
  */
 public class OrderList extends BaseActivity implements  IXListViewListener{
-	//ÒÔÏÂ²ÎÊı Xlist
+	//ï¿½ï¿½ï¿½Â²ï¿½ï¿½ï¿½ Xlist
 	private XListView Xlistview;
 	private int page=1;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata;
 	private boolean onRefresh_number = true;
 	private OrderAdapter myAdapter;
-	List<TestEntitiy>  myList = new ArrayList<TestEntitiy>();
-	List<TestEntitiy>  moreList = new ArrayList<TestEntitiy>();
+	List<OrderEntity>  myList = new ArrayList<OrderEntity>();
+	List<OrderEntity>  moreList = new ArrayList<OrderEntity>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -54,7 +66,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 				onLoad( );
 				
 				if(myList.size()==0){
-				//	norecord_text_to.setText("ÄúÃ»ÓĞÏà¹ØµÄÉÌÆ·");
+				//	norecord_text_to.setText("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ·");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -66,7 +78,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 						Toast.LENGTH_SHORT).show();
 			 
 				break;
-			case 2: // ÍøÂçÓĞÎÊÌâ
+			case 2: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -77,7 +89,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 			}
 		}
 	};
-	//¸öÌå²ÎÊı
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +103,11 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 	private void initView() {
 		// TODO Auto-generated method stub
 		
-		new TitleMenuUtil(OrderList.this, "ÎÒµÄ¶©µ¥").show();
+		new TitleMenuUtil(OrderList.this, "æˆ‘çš„è®¢å•").show();
 		myAdapter=new OrderAdapter(OrderList.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview=(XListView) findViewById(R.id.x_listview);
-		// refund_listview.getmFooterView().getmHintView().setText("ÒÑ¾­Ã»ÓĞÊı¾İÁË");
+		// refund_listview.getmFooterView().getmHintView().setText("ï¿½Ñ¾ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -107,6 +119,8 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 					int position, long id) {
 				// TODO Auto-generated method stub
 				Intent i = new Intent(OrderList.this, OrderDetail.class);
+				i.putExtra("status", myList.get(position-1).getOrder_status());
+				i.putExtra("id", myList.get(position-1).getOrder_id());
 				startActivity(i);
 			}
 		});
@@ -129,17 +143,15 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		// TODO Auto-generated method stub
 		if (onRefresh_number) {
 			page = page+1;
+ 
 			
-			onRefresh_number = false;
-			getData();
-			
-//			if (Tools.isConnect(getApplicationContext())) {
-//				onRefresh_number = false;
-//				getData();
-//			} else {
-//				onRefresh_number = true;
-//				handler.sendEmptyMessage(2);
-//			}
+			if (Tools.isConnect(getApplicationContext())) {
+				onRefresh_number = false;
+				getData();
+			} else {
+				onRefresh_number = true;
+				handler.sendEmptyMessage(2);
+			}
 		}
 		else {
 			handler.sendEmptyMessage(3);
@@ -157,18 +169,76 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		getData();
 	}
 	/*
-	 * ÇëÇóÊı¾İ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private void getData() {
 		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		String url = "http://114.215.149.242:18080/ZFMerchant/api/order/getMyOrderAll";
+		RequestParams params = new RequestParams();
+		params.put("customer_id", 80);
+		params.put("page", page);
+		params.put("pageSize", 2);
 		 
-	 
-			 TestEntitiy te=new TestEntitiy();
-				te.setContent("---content---"+page+page);
-				myList.add(te);
+		params.setUseJsonStreamer(true);
+
+		MyApplication.getInstance().getClient()
+				.post(url, params, new AsyncHttpResponseHandler() {
+
+					@Override
+					public void onSuccess(int statusCode, Header[] headers,
+							byte[] responseBody) {
+						String responseMsg = new String(responseBody)
+								.toString();
+						Log.e("print", responseMsg);
+
+					 
+						 
+						Gson gson = new Gson();
+						
+						JSONObject jsonobject = null;
+						String code = null;
+						try {
+							jsonobject = new JSONObject(responseMsg);
+							code = jsonobject.getString("code");
+							int a =jsonobject.getInt("code");
+							if(a==Config.CODE){  
+								String res =jsonobject.getString("result");
+								jsonobject = new JSONObject(res);
+								moreList.clear();
+								System.out.println("-jsonobject String()--"+jsonobject.getString("content").toString());
+								moreList= gson.fromJson(jsonobject.getString("content").toString(), new TypeToken<List<OrderEntity>>() {
+			 					}.getType());
+								System.out.println("-sendEmptyMessage String()--");
+								myList.addAll(moreList);
+				 				handler.sendEmptyMessage(0);
+ 	 					  
+			 				 
+			 			 
+							}else{
+								code = jsonobject.getString("message");
+								Toast.makeText(getApplicationContext(), code, 1000).show();
+							}
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							 ;	
+							e.printStackTrace();
+							
+						}
+
+					}
+
+					@Override
+					public void onFailure(int statusCode, Header[] headers,
+							byte[] responseBody, Throwable error) {
+						// TODO Auto-generated method stub
+						System.out.println("-onFailure---");
+						Log.e("print", "-onFailure---" + error);
+					}
+				});
+ 
 		 
-		
-		System.out.println("getData");
-		handler.sendEmptyMessage(0);
+	
 	}
 }

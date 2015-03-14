@@ -3,10 +3,15 @@ package com.example.zf_android.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -27,13 +32,17 @@ import com.example.zf_android.entity.MessageEntity;
 import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_zandroid.adapter.MessageAdapter;
 import com.example.zf_zandroid.adapter.OrderAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 /***
  * 
 *    
-* ÀàÃû³Æ£ºMyMessage   
-* ÀàÃèÊö£º   ÏµÍ³ÏûÏ¢
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-2-5 ÏÂÎç2:15:03   
+* ï¿½ï¿½ï¿½ï¿½Æ£ï¿½MyMessage   
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ÏµÍ³ï¿½ï¿½Ï¢
+* ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp 
+* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-2-5 ï¿½ï¿½ï¿½ï¿½2:15:03   
 * @version    
 *
  */
@@ -45,6 +54,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 	private boolean onRefresh_number = true;
 	private MessageAdapter myAdapter;
 	private TextView next_sure;
+	private String Url = Config.getsysmes;
 	List<MessageEntity>  myList = new ArrayList<MessageEntity>();
 	List<MessageEntity>  moreList = new ArrayList<MessageEntity>();
 	private Handler handler = new Handler() {
@@ -54,7 +64,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 				onLoad( );
 				
 				if(myList.size()==0){
-				//	norecord_text_to.setText("ÄúÃ»ÓĞÏà¹ØµÄÉÌÆ·");
+				//	norecord_text_to.setText("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ·");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -66,7 +76,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 						Toast.LENGTH_SHORT).show();
 			 
 				break;
-			case 2: // ÍøÂçÓĞÎÊÌâ
+			case 2: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -88,14 +98,12 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 
 		private void initView() {
 			// TODO Auto-generated method stub
-			next_sure=(TextView) findViewById(R.id.next_sure);
-			next_sure.setVisibility(View.VISIBLE);
-			next_sure.setText("±à¼­");
-			new TitleMenuUtil(SystemMessage.this, "ÎÒµÄÏûÏ¢").show();
+ 
+			new TitleMenuUtil(SystemMessage.this, "ç³»ç»Ÿå…¬å‘Š").show();
 			myAdapter=new MessageAdapter(SystemMessage.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 			Xlistview=(XListView) findViewById(R.id.x_listview);
-			// refund_listview.getmFooterView().getmHintView().setText("ÒÑ¾­Ã»ÓĞÊı¾İÁË");
+			// refund_listview.getmFooterView().getmHintView().setText("ï¿½Ñ¾ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			Xlistview.setPullLoadEnable(true);
 			Xlistview.setXListViewListener(this);
 			Xlistview.setDivider(null);
@@ -111,27 +119,27 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 				}
 			});
 			Xlistview.setAdapter(myAdapter);
-			next_sure.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					if(MyApplication.getIsSelect()){
-						//±éÀúÊı×éÉ¾³ı²Ù×÷
-						MyApplication.setIsSelect(false);
-						myAdapter.notifyDataSetChanged();
-						for(int i=0;i<myList.size();i++){
-							 
-							if(myList.get(i).getIscheck()){
-								System.out.println("µÚ---"+i+"Ìõ±»Ñ¡ÖĞ");
-							}
-						}
-					}else{
-						MyApplication.setIsSelect(true);
-						myAdapter.notifyDataSetChanged();
-					}
-				}
-			});
+//			next_sure.setOnClickListener(new OnClickListener() {
+//				
+//				@Override
+//				public void onClick(View v) {
+//					// TODO Auto-generated method stub
+//					if(MyApplication.getIsSelect()){
+//						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½
+//						MyApplication.setIsSelect(false);
+//						myAdapter.notifyDataSetChanged();
+//						for(int i=0;i<myList.size();i++){
+//							 
+//							if(myList.get(i).getIscheck()){
+//								System.out.println("ï¿½ï¿½---"+i+"ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½");
+//							}
+//						}
+//					}else{
+//						MyApplication.setIsSelect(true);
+//						myAdapter.notifyDataSetChanged();
+//					}
+//				}
+//			});
 		}
 
 		@Override
@@ -151,16 +159,15 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 			if (onRefresh_number) {
 				page = page+1;
 				
-				onRefresh_number = false;
-				getData();
+		 
 				
-//				if (Tools.isConnect(getApplicationContext())) {
-//					onRefresh_number = false;
-//					getData();
-//				} else {
-//					onRefresh_number = true;
-//					handler.sendEmptyMessage(2);
-//				}
+				if (Tools.isConnect(getApplicationContext())) {
+					onRefresh_number = false;
+					getData();
+				} else {
+					onRefresh_number = true;
+					handler.sendEmptyMessage(2);
+				}
 			}
 			else {
 				handler.sendEmptyMessage(3);
@@ -177,24 +184,81 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 			myList.clear();
 			getData();
 		}
-		/*
-		 * ÇëÇóÊı¾İ
-		 */
+	 
 		private void getData() {
 			// TODO Auto-generated method stub
-			 
+
+			// TODO Auto-generated method stub
+
+			RequestParams params = new RequestParams();
+
 		 
-//			 TestEntitiy te=new TestEntitiy();
-//			 te.setContent("---ÕâÀïÊÇ±êÌâ1---"+page+page);
-//			 myList.add(te);
-//			 TestEntitiy te2=new TestEntitiy();
-//			 te2.setContent("---ÕâÀïÊÇ±êÌâ2---"+page+page);
-//			 myList.add(te2);
-//			 TestEntitiy te22=new TestEntitiy();
-//			 te22.setContent("---±êÌâ3---"+page+page);
-//			 myList.add(te22);
-			
-			System.out.println("getData");
-			handler.sendEmptyMessage(0);
+			params.put("page", page);
+			params.put("rows", rows);
+			params.setUseJsonStreamer(true);
+			MyApplication.getInstance().getClient()
+					.post(Url, params, new AsyncHttpResponseHandler() {
+
+						@Override
+						public void onSuccess(int statusCode, Header[] headers,
+								byte[] responseBody) {
+							System.out.println("-onSuccess---");
+							String responseMsg = new String(responseBody)
+									.toString();
+							Log.e("LJP", responseMsg);
+							Gson gson = new Gson();
+							JSONObject jsonobject = null;
+							int code = 0;
+							try {
+								jsonobject = new JSONObject(responseMsg);
+								 
+								 
+								code = jsonobject.getInt("code");
+								
+								if(code==-2){
+								 
+								}else if(code==1){
+									
+									String res =jsonobject.getString("result");
+									System.out.println("`res``"+res);
+									jsonobject = new JSONObject(res);
+									moreList.clear();
+									
+					 				moreList = gson.fromJson(jsonobject.getString("content") ,
+										new TypeToken<List<MessageEntity>>() {
+										}.getType());
+					 					 	
+					 						if (moreList.size()==0) {
+					 							Toast.makeText(getApplicationContext(),
+					 									"æ²¡æœ‰æ›´å¤šæ•°æ®äº†", Toast.LENGTH_SHORT).show();
+					 							Xlistview.getmFooterView().setState2(2);
+					 					 
+					 						} 
+					 						 
+					 				myList.addAll(moreList);
+					 				handler.sendEmptyMessage(0);
+			 
+									
+									
+								}else{
+									Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
+											Toast.LENGTH_SHORT).show();
+								}
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							 
+						}
+
+						@Override
+						public void onFailure(int statusCode, Header[] headers,
+								byte[] responseBody, Throwable error) {
+							// TODO Auto-generated method stub
+							error.printStackTrace();
+						}
+					});
+			 
+		
 		}
 }

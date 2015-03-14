@@ -294,7 +294,10 @@
             android:name="com.example.zf_android.activity.LeaseInstruction"
             android:screenOrientation="portrait" >
         </activity>
-         
-    </application>
+                        <activity
+            android:name="com.example.zf_android.activity.MerchantEdit"
+            android:screenOrientation="portrait" >
+        </activity>
+     </application>
 
 </manifest>

@@ -17,7 +17,7 @@ public class ContentUs extends BaseActivity implements OnClickListener{
 			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.content_us);
-			new TitleMenuUtil(ContentUs.this, "联系我们").show();
+			new TitleMenuUtil(ContentUs.this, "鑱旂郴鎴戜滑").show();
 			initView();
 		}
 		private void initView() {

@@ -44,6 +44,7 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/tv_price"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -62,13 +63,17 @@
                 android:gravity="right"
                 android:maxLines="1"
                 android:text="X   2"
+                android:id="@+id/tv_x"
                 android:textColor="@color/text292929"
                 android:textSize="11sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+				<RelativeLayout android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="2">
+				    
+				                <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+              android:layout_alignParentTop="true"
                 android:gravity="bottom"
                 android:orientation="horizontal" >
 
@@ -98,8 +103,8 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:gravity="bottom"
                 android:orientation="horizontal" >
 
@@ -124,6 +129,21 @@
                     android:textColor="@color/text292929"
                     android:textSize="11sp" />
             </LinearLayout>
+				    
+				    <Button
+				      
+            android:layout_width="50dp"
+            android:layout_height="24dp"
+            android:id="@+id/btn_ishow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            
+      		android:textSize="9sp"
+            android:background="@drawable/send_bg_shape"
+            android:textColor="@color/bgtitle"
+            android:text="评论" />
+				</RelativeLayout>
+ 
         </LinearLayout>
     </LinearLayout>
 

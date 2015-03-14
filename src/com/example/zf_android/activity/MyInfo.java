@@ -30,10 +30,10 @@ import com.loopj.android.http.ResponseHandlerInterface;
 /***
  * 
 *    
-* ÀàÃû³Æ£ºMyInfo   
-* ÀàÃèÊö£º  ÎÒµÄĞÅÏ¢
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-1-27 ÏÂÎç7:55:20   
+* ï¿½ï¿½ï¿½ï¿½Æ£ï¿½MyInfo   
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Òµï¿½ï¿½ï¿½Ï¢
+* ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp 
+* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-1-27 ï¿½ï¿½ï¿½ï¿½7:55:20   
 * @version    
 *
  */
@@ -48,7 +48,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.myinfo);
-		new TitleMenuUtil(MyInfo.this, "ÎÒµÄĞÅÏ¢2222").show();
+		new TitleMenuUtil(MyInfo.this, "æˆ‘çš„ä¿¡æ¯").show();
 		initView();
 		System.out.println("11111");
  
@@ -86,41 +86,41 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btn_exit:
-			// Ö´ĞĞÍË³öµÇÂ¼
+			// Ö´ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½Â¼
 			exit();
 			break;
-		case  R.id.mi_r1: // ĞÕÃû
+		case  R.id.mi_r1: // ï¿½ï¿½ï¿½ï¿½
 			Intent i =new Intent(MyInfo.this,ChangeText.class);
 			i.putExtra("key", 1);
 			startActivityForResult(i, 1);
 			 
 			break;
-		case  R.id.mi_r2: // ÊÖ»ú
+		case  R.id.mi_r2: // ï¿½Ö»ï¿½
 			Intent i2 =new Intent(MyInfo.this,ChangeText.class);
 			i2.putExtra("key", 2);
 			startActivityForResult(i2, 2);
 			 
 			break;
-		case  R.id.mi_r3: // ÓÊÏä
+		case  R.id.mi_r3: // ï¿½ï¿½ï¿½ï¿½
 			Intent i3 =new Intent(MyInfo.this,ChangeText.class);
 			i3.putExtra("key",3);
 			startActivityForResult(i3, 3);
 			 
 			break;
-		case  R.id.mi_r4: // ËùÔÚµØ
+		case  R.id.mi_r4: // ï¿½ï¿½ï¿½Úµï¿½
 			 
 			 
 			break;
-		case  R.id.mi_r5: // ÎÒµÄ»ı·Ö
+		case  R.id.mi_r5: // ï¿½ÒµÄ»ï¿½ï¿½
 			 
 			 
 			break;
-		case  R.id.mi_r6: // µØÖ·¹ÜÀí
+		case  R.id.mi_r6: // ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½
 			 
 			startActivity(new Intent(MyInfo.this,AdressList.class));
 			 
 			break;
-		case  R.id.mi_r7: // ĞŞ¸ÄÃÜÂë
+		case  R.id.mi_r7: // ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½
 			startActivity(new Intent(MyInfo.this,ChangePassword.class));
 			 
 			break;

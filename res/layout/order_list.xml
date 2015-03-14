@@ -30,7 +30,7 @@
 	        android:layout_marginLeft="10dp"/>
 	    <TextView android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="购买"
+	        android:text="全部"
 	        android:textColor="@color/text6c6c6c6"
 	       	android:textSize="13sp"
 	       	android:layout_marginLeft="10dp"

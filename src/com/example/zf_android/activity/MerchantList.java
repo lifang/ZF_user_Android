@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -49,7 +50,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	private RelativeLayout mune_rl; 
 	private boolean onRefresh_number = true;
 	private MerchanAdapter myAdapter;
-	private ImageView search;
+	private ImageView search,img_add;
 	private ListView lv;
 	private int customerId=80;
 	List<MerchantEntity>  myList = new ArrayList<MerchantEntity>();
@@ -97,7 +98,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			// TODO Auto-generated method stub
 			search=(ImageView) findViewById(R.id.search);
 			mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
-			 
+			img_add=(ImageView) findViewById(R.id.img_add);
 			new TitleMenuUtil(MerchantList.this, "我的商户").show();
 			myAdapter=new MerchanAdapter(MerchantList.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
@@ -113,15 +114,27 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					// TODO Auto-generated method stub
-//					Intent i = new Intent(MyMessage.this, OrderDetail.class);
-//					startActivity(i);
+			 
 				}
 			});
 			Xlistview.setAdapter(myAdapter);
 			
 			lv=(ListView) findViewById(R.id.lv);
 			lv.setAdapter(myAdapter);
-			
+			lv.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int position, long arg3) {
+					// TODO Auto-generated method stub
+					System.out.println("```onItemClick``");
+					Intent i = new Intent(MerchantList.this, MerchantEdit.class);
+					i.putExtra("ID", myList.get(position).getId());
+					i.putExtra("name", myList.get(position).getTitle()+"");
+					startActivity(i);
+				}
+				
+			});
 			search.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -143,6 +156,16 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 						MyApplication.setIsSelect(true);
 						myAdapter.notifyDataSetChanged();
 					}
+				}
+			});
+			img_add.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					Intent i = new Intent(MerchantList.this, MerchantEdit.class);
+					i.putExtra("ID", 0);
+					startActivity(i);
 				}
 			});
 		}

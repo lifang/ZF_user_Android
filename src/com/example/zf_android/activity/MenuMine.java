@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
@@ -15,6 +16,7 @@ import com.example.zf_android.trade.AfterSaleGridActivity;
 public class MenuMine extends BaseActivity implements OnClickListener{
 	private ImageView search;
 	private LinearLayout  ll_dd,ll_shjl,ll_wdxx,ll_sh,ll_request;
+	private RelativeLayout  main_rl1, main_rl2, main_rl3;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -24,6 +26,14 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 	}
 	private void initView() {
 		// TODO Auto-generated method stub
+		
+        main_rl1=(RelativeLayout) findViewById(R.id.main_rl_sy);
+        main_rl1.setOnClickListener(this);
+        main_rl2=(RelativeLayout) findViewById(R.id.main_rl_gwc);
+        main_rl2.setOnClickListener(this);
+        main_rl3=(RelativeLayout) findViewById(R.id.main_rl_pos1);
+        main_rl3.setOnClickListener(this);
+		
 		search=(ImageView) findViewById(R.id.search);
 		search.setOnClickListener(this);
 		ll_dd=(LinearLayout) findViewById(R.id.ll_dd);
@@ -62,6 +72,21 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		 
 		startActivity(new Intent(MenuMine.this,MyInfo.class));
 		break;
+		
+		case R.id.main_rl_sy: //ϵͳ����   
+			 
+			  
+			 startActivity(new Intent(MenuMine.this,Main.class));
+			 
+			break;
+
+		case R.id.main_rl_gwc: //��ϵ����
+
+			 startActivity(new Intent(MenuMine.this,ShopCar.class));
+			 break;
+		case R.id.main_rl_pos1:  
+			 startActivity(new Intent(MenuMine.this,MyMessage.class));
+			break;
 		default:
 			break;
 		}

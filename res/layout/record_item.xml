@@ -23,12 +23,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           
+           	android:id="@+id/tv_name"
             android:text="某某人"
             android:textColor="@color/text6c6c6c6"
             android:textSize="11sp" />
 
         <TextView
+            android:id="@+id/tv_tme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"

@@ -47,13 +47,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-          
+          	android:id="@+id/tv_status"
             android:text="未付款"
             android:textColor="@color/text5a5a5a"
             android:textSize="17sp" />
     </LinearLayout>
             
             <TextView
+            android:id="@+id/tv_sjps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_title"
@@ -62,6 +63,7 @@
             android:textColor="@color/text292929"
             android:textSize="13sp" />
             <TextView
+                android:id="@+id/tv_psf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_title"
@@ -87,13 +89,15 @@
                                        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-       
+       		android:id="@+id/tv_reperson"
             android:text="收件人：王明霞"
             android:textColor="@color/text292929"
             android:textSize="13sp" />
                         
                         
                <TextView
+                   android:id="@+id/tv_tel"
+                   
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
        		android:layout_marginLeft="10dp"
@@ -105,6 +109,7 @@
  
  
             <TextView
+            android:id="@+id/tv_adress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_title"
@@ -121,6 +126,8 @@
                 android:background="@color/Viewc2" />
             
                       <TextView
+                           android:id="@+id/tv_ly"
+                         
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_title"
@@ -129,6 +136,7 @@
             android:textColor="@color/text292929"
             android:textSize="13sp" />
             <TextView
+                android:id="@+id/tv_fplx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_title"
@@ -137,6 +145,7 @@
             android:textColor="@color/text292929"
             android:textSize="13sp" />
             <TextView
+                android:id="@+id/fptt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_title"
@@ -172,6 +181,7 @@
                 android:orientation="vertical">
                 
                                     <TextView
+                                        android:id="@+id/tv_ddbh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_title"
@@ -180,6 +190,7 @@
             android:textColor="@color/text6c6c6c6"
             android:textSize="10sp" />
             <TextView
+            android:id="@+id/tv_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_title"
@@ -188,6 +199,7 @@
             android:textColor="@color/text6c6c6c6"
             android:textSize="10sp" />
             <TextView
+                android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_title"
@@ -203,7 +215,7 @@
             <Button
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            
+            android:id="@+id/btn_ishow"
       		android:textSize="9sp"
             android:background="@drawable/buttong_light"
             android:textColor="@color/bgtitle"
@@ -241,13 +253,15 @@
             android:layout_marginLeft="7dp"
             android:text="共计:   10件"
          	android:gravity="right"
-              
+             android:id="@+id/tv_gj"
             android:textColor="@color/text292929"
             android:textSize="13sp" />
 
          
 
         <TextView
+            android:id="@+id/tv_money"
+            
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -295,7 +309,10 @@
         </LinearLayout>
  
     </ScrollView>
-          <View
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/ll_ishow">        <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="@color/Viewc2" />
@@ -337,5 +354,6 @@
             android:background="@drawable/bg_blue_shape"
             android:textColor="@color/ffffff"
             android:text="付款" />
-    </LinearLayout>
+    </LinearLayout></LinearLayout>
+   
 </LinearLayout>

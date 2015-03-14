@@ -7,6 +7,8 @@ public class Config {
 	public static String checkVersion=PATHS+"";
 	public static int ROWS=10;
 	public static String getmes=PATHS+"message/receiver/getAll";
+	public static String getsysmes=PATHS+"web/message/getAll";
+	 
 	public final static String LOGIN = PATHS+"user/studentLogin";
 	public static final int CITY_ID = 1;
 	public static int UserID=1;

@@ -22,10 +22,10 @@ import com.example.zf_zandroid.adapter.RecordAdapter;
 /***
  * 
 *    
-* ÀàÃû³Æ£ºConfirmOrder   
-* ÀàÃèÊö£º   ¶©µ¥È·ÈÏ
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-2-9 ÏÂÎç3:49:46   
+* ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ConfirmOrder   
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
+* ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp 
+* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-2-9 ï¿½ï¿½ï¿½ï¿½3:49:46   
 * @version    
 *
  */
@@ -47,7 +47,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 						Toast.LENGTH_SHORT).show();
 			 
 				break;
-			case 2: // ÍøÂçÓÐÎÊÌâ
+			case 2: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -69,13 +69,13 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 		private void getData() {
 			// TODO Auto-generated method stub
 			 TestEntitiy te=new TestEntitiy();	
-			 te.setContent("Ì©É½Æì½¢900");
+			 te.setContent("Ì©É½ï¿½ì½¢900");
 			 poslist.add(te);
 			 TestEntitiy te1=new TestEntitiy();	
-			 te1.setContent("Ì©É½Æì½¢1000");
+			 te1.setContent("Ì©É½ï¿½ì½¢1000");
 			 poslist.add(te1);
 			 TestEntitiy te22=new TestEntitiy();	
-			 te22.setContent("Ì©É½Æì½¢1100");
+			 te22.setContent("Ì©É½ï¿½ì½¢1100");
 			 poslist.add(te22);
 	 
 			 
@@ -84,9 +84,9 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 		}
 		private void initView() {
 			// TODO Auto-generated method stub
-			new TitleMenuUtil(ConfirmOrder.this, "¶©µ¥È·ÈÏ").show();
+			new TitleMenuUtil(ConfirmOrder.this, "ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½").show();
  			pos_lv=(ScrollViewWithListView) findViewById(R.id.pos_lv1);
- 			posAdapter=new OrderDetail_PosAdapter(ConfirmOrder.this, poslist);
+ 			//posAdapter=new OrderDetail_PosAdapter(ConfirmOrder.this, poslist);
  			pos_lv.setAdapter(posAdapter);
 			
  			btn_pay=(Button) findViewById(R.id.btn_pay);
