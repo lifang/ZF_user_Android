@@ -192,6 +192,14 @@
             android:screenOrientation="portrait" >
         </activity>
 	    <activity
+		    android:name=".trade.ApplyChannelActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
+		    android:name=".trade.ApplyBankActivity"
+		    android:screenOrientation="portrait" >
+	    </activity>
+	    <activity
 		    android:name=".trade.ApplyOpenProgressActivity"
 		    android:screenOrientation="portrait" >
 	    </activity>

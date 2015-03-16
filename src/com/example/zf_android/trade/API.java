@@ -6,6 +6,7 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
