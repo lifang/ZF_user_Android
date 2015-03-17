@@ -16,7 +16,7 @@
 			android:id="@+id/apply_bank_input"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_marginRight="114dp"
+			android:layout_marginRight="50dp"
 			android:textSize="19sp"
 			android:textColor="@color/text6c6c6c6"
 			android:hint="@string/apply_bank_input"
@@ -26,15 +26,14 @@
 			android:focusable="true"
 			android:focusableInTouchMode="true"/>
 
-		<Button
-			android:layout_width="108dp"
-			android:layout_height="36dp"
-			android:textColor="@color/white"
-			android:textSize="16sp"
-			android:background="@drawable/normal_button_selector"
+		<ImageButton
+			android:id="@+id/apply_bank_search"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
 			android:layout_gravity="right|center_vertical"
-			android:text="@string/button_query"
-			android:enabled="false"/>
+			android:background="@android:color/transparent"
+			android:src="@drawable/icon_search"
+			android:enabled="true"/>
 	</FrameLayout>
 
 	<View style="@style/Divider"/>
@@ -43,7 +42,8 @@
 		android:id="@+id/apply_bank_result_container"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:orientation="vertical"
+		android:visibility="gone">
 
 		<TextView
 			style="@style/TextItem"
@@ -56,7 +56,7 @@
 		<View style="@style/Divider"/>
 
 		<ListView
-			android:id="@+id/apply_channel_list"
+			android:id="@+id/apply_bank_list"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:divider="@color/Viewc2"

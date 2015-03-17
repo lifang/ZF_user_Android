@@ -79,7 +79,7 @@ public class ApplyListActivity extends Activity {
         });
     }
 
-    class ApplyListAdapter extends BaseAdapter {
+    private class ApplyListAdapter extends BaseAdapter {
         ApplyListAdapter() {
         }
 
@@ -145,7 +145,7 @@ public class ApplyListActivity extends Activity {
         }
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         public TextView tvTerminalNumber;
         public TextView tvTerminalStatus;
         public Button btnOpen;

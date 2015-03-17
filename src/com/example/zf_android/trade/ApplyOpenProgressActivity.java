@@ -125,7 +125,7 @@ public class ApplyOpenProgressActivity extends Activity {
 		return tv;
 	}
 
-	class ApplyProgressListAdapter extends BaseAdapter {
+	private class ApplyProgressListAdapter extends BaseAdapter {
 		ApplyProgressListAdapter() {
 		}
 
@@ -159,7 +159,7 @@ public class ApplyOpenProgressActivity extends Activity {
 			holder.left.removeAllViews();
 			holder.right.removeAllViews();
 			final ApplyOpenProgress item = getItem(i);
-			String[] status = getResources().getStringArray(R.array.terminal_status);
+			String[] status = getResources().getStringArray(R.array.terminal_open_status);
 
 			TextView terminalKey = createKeyText();
 			terminalKey.setText(getString(R.string.apply_progress_terminal));
@@ -182,7 +182,7 @@ public class ApplyOpenProgressActivity extends Activity {
 		}
 	}
 
-	static class ViewHolder {
+	private static class ViewHolder {
 		public LinearLayout left;
 		public LinearLayout right;
 	}

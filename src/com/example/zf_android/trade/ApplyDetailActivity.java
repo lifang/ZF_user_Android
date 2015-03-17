@@ -27,6 +27,7 @@ import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.StringUtil;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
+import com.example.zf_android.trade.entity.ApplyBank;
 import com.example.zf_android.trade.entity.ApplyChannel;
 import com.example.zf_android.trade.entity.ApplyChooseItem;
 import com.example.zf_android.trade.entity.ApplyCustomerDetail;
@@ -56,11 +57,13 @@ import java.util.Map;
 import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
 import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_TITLE;
 import static com.example.zf_android.trade.Constants.ApplyIntent.MATERIAL_KEY;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_BANK;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_MERCHANT;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BANK;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BILLING;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
@@ -119,8 +122,10 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private City mMerchantCity;
 	private String mMerchantBirthday;
 	private int mMerchantGender = 3;
-	private ApplyChannel mMerchantChannel;
-	private ApplyChannel.Billing mMerchantBilling;
+	private ApplyChannel mChosenChannel;
+	private ApplyChannel.Billing mChosenBilling;
+	private ApplyBank mChosenBank;
+	private String mBankKey;
 
 	private String photoPath;
 	private TextView uploadingTextView;
@@ -198,10 +203,10 @@ public class ApplyDetailActivity extends FragmentActivity {
 				params.put("bankNum", getItemValue(mBankKeys[2]));
 				params.put("registeredNo", getItemValue(mBankKeys[3]));
 				params.put("organizationNo", getItemValue(mBankKeys[4]));
-				if (null != mMerchantChannel)
-					params.put("channel", mMerchantChannel.getId());
-				if (null != mMerchantBilling)
-					params.put("billingId", mMerchantBilling.id);
+				if (null != mChosenChannel)
+					params.put("channel", mChosenChannel.getId());
+				if (null != mChosenBilling)
+					params.put("billingId", mChosenBilling.id);
 
 				totalParams.add(params);
 
@@ -310,9 +315,15 @@ public class ApplyDetailActivity extends FragmentActivity {
 				break;
 			}
 			case REQUEST_CHOOSE_CHANNEL: {
-				mMerchantChannel = (ApplyChannel) data.getSerializableExtra(SELECTED_CHANNEL);
-				mMerchantBilling = (ApplyChannel.Billing) data.getSerializableExtra(SELECTED_BILLING);
-				setItemValue(getString(R.string.apply_detail_channel), mMerchantChannel.getName());
+				mChosenChannel = (ApplyChannel) data.getSerializableExtra(SELECTED_CHANNEL);
+				mChosenBilling = (ApplyChannel.Billing) data.getSerializableExtra(SELECTED_BILLING);
+				setItemValue(getString(R.string.apply_detail_channel), mChosenChannel.getName());
+				break;
+			}
+			case REQUEST_CHOOSE_BANK: {
+				mChosenBank = (ApplyBank) data.getSerializableExtra(SELECTED_BANK);
+				if (null != mChosenBank)
+					setItemValue(mBankKey, mChosenBank.getName());
 				break;
 			}
 			case REQUEST_UPLOAD_IMAGE:
@@ -409,7 +420,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[2]))
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[3]))
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[4]))
-				&& (null != mMerchantChannel && null != mMerchantBilling);
+				&& (null != mChosenChannel && null != mChosenBilling);
 		mApplySubmit.setEnabled(enabled);
 	}
 
@@ -524,8 +535,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(ApplyDetailActivity.this, ApplyChannelActivity.class);
-				intent.putExtra(SELECTED_CHANNEL, mMerchantChannel);
-				intent.putExtra(SELECTED_BILLING, mMerchantBilling);
+				intent.putExtra(SELECTED_CHANNEL, mChosenChannel);
+				intent.putExtra(SELECTED_BILLING, mChosenBilling);
 				startActivityForResult(intent, REQUEST_CHOOSE_CHANNEL);
 //				if (mChannelItems.size() > 0) {
 //					startChooseItemActivity(REQUEST_CHOOSE_CHANNEL, getString(R.string.title_apply_choose_channel), mChannelId, mChannelItems);
@@ -616,7 +627,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 			}
 		}
 
-		for (ApplyMaterial material : mMaterials.values()) {
+		for (final ApplyMaterial material : mMaterials.values()) {
 			switch (material.getTypes()) {
 				case TYPE_TEXT:
 					mMaterialContainer.addView(getDetailItem(ITEM_EDIT, material.getName(), material.getValue()));
@@ -637,7 +648,10 @@ public class ApplyDetailActivity extends FragmentActivity {
 					chooseBank.setOnClickListener(new View.OnClickListener() {
 						@Override
 						public void onClick(View view) {
-							CommonUtil.toastShort(ApplyDetailActivity.this, "choosing bank ...");
+							mBankKey = material.getName();
+							Intent intent = new Intent(ApplyDetailActivity.this, ApplyBankActivity.class);
+							intent.putExtra(SELECTED_BANK, mChosenBank);
+							startActivityForResult(intent, REQUEST_CHOOSE_BANK);
 						}
 					});
 					mMaterialContainer.addView(chooseBank);

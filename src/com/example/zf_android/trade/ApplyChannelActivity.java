@@ -226,7 +226,7 @@ public class ApplyChannelActivity extends Activity {
 		}
 	}
 
-	static class ViewHolder {
+	private static class ViewHolder {
 		ImageView icon;
 		TextView name;
 		TextView id;

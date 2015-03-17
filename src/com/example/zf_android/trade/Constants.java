@@ -105,8 +105,9 @@ public class Constants {
 		public static final int REQUEST_CHOOSE_MERCHANT = 0x1001;
 		public static final int REQUEST_CHOOSE_CITY = 0x1002;
 		public static final int REQUEST_CHOOSE_CHANNEL = 0x1003;
-		public static final int REQUEST_UPLOAD_IMAGE = 0x1004;
-		public static final int REQUEST_TAKE_PHOTO = 0x1005;
+		public static final int REQUEST_CHOOSE_BANK = 0x1004;
+		public static final int REQUEST_UPLOAD_IMAGE = 0x1005;
+		public static final int REQUEST_TAKE_PHOTO = 0x1006;
 
 		public static final String MATERIAL_KEY = "material_key";
 		public static final String CHOOSE_TITLE = "choose_title";
@@ -116,6 +117,8 @@ public class Constants {
 
 		public static final String SELECTED_CHANNEL = "selected_channel";
 		public static final String SELECTED_BILLING = "selected_billing";
+
+		public static final String SELECTED_BANK = "selected_bank";
 	}
 
 }

@@ -1,9 +1,11 @@
 package com.example.zf_android.trade.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Leo on 2015/3/16.
  */
-public class ApplyBank {
+public class ApplyBank implements Serializable {
 
 	private String code;
 	private String name;

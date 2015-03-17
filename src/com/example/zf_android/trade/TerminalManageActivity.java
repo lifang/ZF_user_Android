@@ -201,7 +201,7 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 		mTerminalList.setRefreshTime(Tools.getHourAndMin());
 	}
 
-	class TerminalListAdapter extends BaseAdapter {
+	private class TerminalListAdapter extends BaseAdapter {
 		TerminalListAdapter() {
 		}
 
@@ -300,7 +300,7 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 		}
 	}
 
-	static class ViewHolder {
+	private static class ViewHolder {
 		public TextView tvTerminalNumber;
 		public TextView tvTerminalStatus;
 		public LinearLayout llButtonContainer;
