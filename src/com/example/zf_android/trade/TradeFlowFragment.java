@@ -308,7 +308,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
         }.show(getActivity().getSupportFragmentManager(), "DatePicker");
     }
 
-    class TradeRecordListAdapter extends BaseAdapter {
+    private class TradeRecordListAdapter extends BaseAdapter {
         TradeRecordListAdapter() {
         }
 
@@ -388,7 +388,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         public TextView tvStatus;
         public TextView tvTime;
         public TextView tvAccountKey;

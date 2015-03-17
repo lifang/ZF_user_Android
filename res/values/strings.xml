@@ -256,6 +256,7 @@
 	<string name="title_apply_choose_merchant">选择商户</string>
 	<string name="title_apply_choose_gender">选择性别</string>
 	<string name="title_apply_choose_channel">选择支付通道</string>
+	<string name="title_apply_choose_bank">选择银行</string>
 
 	<string name="apply_button_open">申请开通</string>
 	<string name="apply_button_reopen">重新申请开通</string>
@@ -268,6 +269,9 @@
 	<string name="apply_detail_model">POS型号</string>
 	<string name="apply_detail_serial">终 端 号</string>
 	<string name="apply_detail_channel">支付通道</string>
+
+	<string name="apply_bank_input">请输入银行名称</string>
+	<string name="apply_bank_result">搜索结果</string>
 
 	<string-array name="apply_detail_merchant_keys">
 		<item>选择已有商户</item>
@@ -292,7 +296,6 @@
 	<string-array name="apply_detail_gender">
 		<item>男</item>
 		<item>女</item>
-		<item>其他</item>
 	</string-array>
 
 	<string-array name="apply_detail_upload">

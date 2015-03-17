@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+	<include layout="@layout/title_back"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="horizontal"
+		android:background="@color/F3F2F2">
+
+		<ListView
+			android:id="@+id/apply_channel_list"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:divider="@color/Viewc2"
+			android:dividerHeight="1px"
+			android:footerDividersEnabled="true"
+			android:scrollbars="none"
+			android:fadingEdge="none"
+			android:background="@color/F3F2F2"/>
+
+		<View style="@style/CutLine"/>
+
+		<ListView
+			android:id="@+id/apply_billing_list"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:divider="@color/Viewc2"
+			android:dividerHeight="1px"
+			android:footerDividersEnabled="true"
+			android:scrollbars="none"
+			android:fadingEdge="none"
+			android:background="@color/white"/>
+	</LinearLayout>
+
+</LinearLayout>

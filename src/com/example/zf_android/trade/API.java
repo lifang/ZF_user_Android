@@ -6,6 +6,7 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
@@ -88,6 +89,8 @@ public class API {
 	public static final String APPLY_MERCHANT_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/apply/getMerchant";
 	// Get the Channel List
 	public static final String APPLY_CHANNEL_LIST = SCHEMA + HOST + "/ZFMerchant/api/apply/getChannels";
+	// Get the Bank List
+	public static final String APPLY_BANK_LIST = SCHEMA + HOST + "/ZFMerchant/api/apply/ChooseBank";
 
 	// upload image url
 	public static final String UPLOAD_IMAGE = SCHEMA + HOST + "/ZFMerchant/api/comment/upload/tempImage";
@@ -374,6 +377,11 @@ public class API {
 			Context context,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(APPLY_CHANNEL_LIST);
+	}
+
+	public static void getApplyBankList(
+			Context context, HttpCallback callback) {
+		new HttpRequest(context, callback).post(APPLY_BANK_LIST);
 	}
 
 	public static void submitApply(

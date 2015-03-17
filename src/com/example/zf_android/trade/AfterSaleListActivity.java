@@ -200,7 +200,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 		mListView.setRefreshTime(Tools.getHourAndMin());
 	}
 
-	class RecordListAdapter extends BaseAdapter {
+	private class RecordListAdapter extends BaseAdapter {
 		RecordListAdapter() {
 		}
 
@@ -368,7 +368,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 		}
 	}
 
-	static class ViewHolder {
+	private static class ViewHolder {
 		public TextView tvNumberTitle;
 		public TextView tvNumber;
 		public TextView tvTime;

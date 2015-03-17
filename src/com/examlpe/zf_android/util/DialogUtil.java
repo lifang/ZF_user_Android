@@ -55,7 +55,7 @@ public class DialogUtil {
         dialog.setContentView(v);
         Window window = dialog.getWindow();
         window.setGravity(Gravity.CENTER);
-        window.setLayout(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);// ¼ÓÉÏ¿ÉÒÔµã»÷dialogÍâÎ§¿ÉÒÔÏûÊ§
+        window.setLayout(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);// ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½Ôµï¿½ï¿½dialogï¿½ï¿½Î§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§
       //  window.setWindowAnimations(R.style.TanchuDialogAnim);
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
