@@ -1,0 +1,182 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@color/F3F2F2"
+  	 >
+
+ <include layout="@layout/title_back" />
+    <ScrollView  android:layout_height="wrap_content"
+        android:layout_width="fill_parent">
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="vertical">
+  	<LinearLayout  android:layout_height="60dp"
+ 	    android:layout_width="fill_parent"
+ 
+ 	    android:orientation="horizontal">
+ 	    
+ 	    <TextView  android:layout_height="wrap_content"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_marginTop="30dp"
+ 	        android:layout_marginLeft="@dimen/margin_left2"
+ 	        android:textSize="20sp"
+ 	        android:textColor="@color/text292929"
+ 	        android:text="总积分"/>
+ 	     	    <TextView  android:layout_height="wrap_content"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_marginLeft="10dp"
+ 	         	        android:layout_marginTop="30dp"
+ 	         	        android:textSize="20sp"
+ 	        android:textColor="@color/text292929"
+ 	        android:text="999"/>
+ 	</LinearLayout>
+ 	 	     	    <TextView  android:layout_height="wrap_content"
+ 	        android:layout_width="wrap_content"
+ 	   
+ 	        android:layout_marginLeft="@dimen/margin_left2"
+ 	       
+ 	         	        android:textSize="10sp"
+ 	        android:textColor="@color/text292929"
+ 	        android:text="999"/>
+	<View android:layout_height="0.5dp"
+	    android:layout_width="wrap_content"
+	    android:layout_marginTop="8dp"
+	    android:background="@color/Viewc2"/>
+<LinearLayout
+         android:id="@+id/mi_r6"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_item" >
+	
+ 
+        
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+                  android:layout_marginLeft="@dimen/margin_left2"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="您的姓名"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+
+        <EditText
+           	android:id="@+id/et_name1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+           
+            android:layout_marginRight="@dimen/margin_left2"
+            android:singleLine="true"
+       		android:background="@color/ffffff"
+       		android:hint="123123"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="13sp" />
+
+         
+    </LinearLayout>
+    <View android:layout_height="0.5dp"
+	    android:layout_width="wrap_content"
+ 
+	    android:background="@color/Viewc2"/>
+    <LinearLayout
+         android:id="@+id/mi_r7"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_item" >
+	
+ 
+        
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+                  android:layout_marginLeft="@dimen/margin_left2"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="您的联系电话"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+
+        <EditText
+           android:id="@+id/et_tel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+           
+            android:layout_marginRight="@dimen/margin_left2"
+            android:singleLine="true"
+            android:inputType="number"
+       		android:background="@color/ffffff"
+       		android:hint="123123"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="13sp" />
+
+         
+    </LinearLayout>
+    <View android:layout_height="0.5dp"
+	    android:layout_width="wrap_content"
+ 
+	    android:background="@color/Viewc2"/>
+    <LinearLayout
+         android:id="@+id/mi_r8"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_item" >
+	
+ 
+        
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+                  android:layout_marginLeft="@dimen/margin_left2"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="您要兑换的金额（￥）"
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+
+        <EditText
+           android:id="@+id/et_y1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            
+            android:layout_marginRight="@dimen/margin_left2"
+            android:singleLine="true"
+       		android:background="@color/ffffff"
+       		android:hint="123123"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="13sp" />
+
+         
+    </LinearLayout>
+    <View android:layout_height="0.5dp"
+	    android:layout_width="wrap_content"
+ 
+	    android:background="@color/Viewc2"/>
+    <Button  
+    android:id="@+id/btn_exit"
+    android:layout_height="42dp"
+    android:layout_width="184dp"
+    android:layout_marginTop="50dp"
+    android:layout_marginBottom="30dp"
+    android:text="保存"
+    android:background="@drawable/bg_blue_shape"
+    android:layout_gravity="center_horizontal"
+    android:textColor="@color/ffffff"
+    android:textSize="20sp"/>
+        </LinearLayout>
+    </ScrollView>
+    
+</LinearLayout>

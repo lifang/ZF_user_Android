@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -52,8 +53,8 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 	List<MarkEntity>  relist = new ArrayList<MarkEntity>(); 
 	private OrderDetail_PosAdapter posAdapter;
 	private RecordAdapter reAdapter;
-	private LinearLayout ll_ishow;
-	private Button btn_ishow;
+	private LinearLayout ll_ishow,ll_ishow2;
+	private Button btn_ishow,btn_pay,btn_cancle,btn_pj;
 	private List<OrderDetailEntity>  ode =new ArrayList<OrderDetailEntity>();
 	private TextView tv_status,tv_sjps,tv_psf,tv_reperson,tv_tel,tv_adress,tv_ly,tv_fplx,fptt,
 	tv_ddbh,tv_pay,tv_time,tv_gj,tv_money;
@@ -102,11 +103,11 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			new TitleMenuUtil(OrderDetail.this, "订单详情").show();
 			status=getIntent().getIntExtra("status", 0);
 			id=getIntent().getIntExtra("id", 1);
-			 
- 
+			id=155;
+			System.out.println("status```"+status);
 			initView();
 			getData();
-		}
+		} 
 		private void getData() {
 			// TODO Auto-generated method stub
 			 
@@ -114,7 +115,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			// TODO Auto-generated method stub
 			String url = "http://114.215.149.242:18080/ZFMerchant/api/order/getMyOrderById";
 			RequestParams params = new RequestParams();
-			params.put("id", 108);
+			params.put("id", id);
 		 
 			System.out.println("id```" +id);
 			params.setUseJsonStreamer(true);
@@ -148,6 +149,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
  									System.out.println("```ode`"+ode.get(0).getOrder_receiver_phone());
  								//	jsonobject = new JSONObject(res);
  								 	goodlist= ode.get(0).getOrder_goodsList() ;
+ 								 	MyApplication.Goodlist=goodlist;
  									relist=ode.get(0).getComments().getContent() ;
  									System.out.println("```relist`"+relist.size());
  									System.out.println("```goodlist`"+goodlist.size());
@@ -188,7 +190,13 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 		private void initView() {
 			// TODO Auto-generated method stub
 			tv_money=(TextView) findViewById(R.id.tv_money);
-			
+			btn_pay=(Button) findViewById(R.id.btn_pay);
+			btn_pay.setOnClickListener(this);
+			btn_cancle=(Button) findViewById(R.id.btn_cancle);
+			btn_cancle.setOnClickListener(this);
+			btn_pj=(Button) findViewById(R.id.btn_pj);
+			btn_pj.setOnClickListener(this);
+			ll_ishow2=(LinearLayout) findViewById(R.id.ll_ishow2);
 			tv_gj=(TextView) findViewById(R.id.tv_gj);
 			btn_ishow=(Button) findViewById(R.id.btn_ishow);
 			btn_ishow.setOnClickListener(this);
@@ -212,29 +220,29 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			
 			his_lv=(ScrollViewWithListView) findViewById(R.id.his_lv);
 			
- 
+		 
 			
 			
-			switch (id) {
+			switch (status) {
 			case 1:
 				tv_status.setText("未付款");
-				btn_ishow.setVisibility(View.GONE);
+				btn_ishow.setVisibility(View.VISIBLE);
 				break;
 			case 2:
 				tv_status.setText("已付款");
-				btn_ishow.setVisibility(View.VISIBLE);
+				ll_ishow2.setVisibility(View.VISIBLE);
 				break;
 			case 3:
 				tv_status.setText("已发货");
-				btn_ishow.setVisibility(View.VISIBLE);
+				ll_ishow2.setVisibility(View.VISIBLE);
 				break;
 			case 4:
 				tv_status.setText("已评价");
-				btn_ishow.setVisibility(View.VISIBLE);
+			 
 				break;
 			case 5:
 				tv_status.setText("已取消");
-				btn_ishow.setVisibility(View.GONE);
+				 
 				break;
 			case 6:
 				tv_status.setText("交易关闭");
@@ -244,6 +252,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			default:
 				break;
 			}
+			ll_ishow2.setVisibility(View.VISIBLE);
 		}
 		@Override
 		public void onClick(View arg0) {
@@ -252,7 +261,21 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			case R.id.btn_ishow:
 				Toast.makeText(getApplicationContext(), "请先付款···", 1000).show();
 				break;
-
+			case R.id.btn_pay:
+				 
+				Intent i = new Intent(getApplicationContext(),PayFromCar.class);
+				startActivity(i);
+				break;
+			case R.id.btn_cancle:
+				Toast.makeText(getApplicationContext(), "取消成功", 1000).show();
+				finish();
+				break;
+				// 
+			case R.id.btn_pj:
+				 //Comment
+				Intent btn_pj = new Intent(getApplicationContext(),Comment.class);
+				startActivity(btn_pj);
+				break;
 			default:
 				break;
 			}

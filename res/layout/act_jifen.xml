@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@color/F3F2F2"
+  	 >
+
+ <include layout="@layout/title_back" />
+ 	<LinearLayout  android:layout_height="70dp"
+ 	    android:layout_width="fill_parent"
+ 
+ 	    android:orientation="horizontal">
+ 	    
+ 	    <TextView  android:layout_height="wrap_content"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_marginTop="30dp"
+ 	        android:layout_marginLeft="@dimen/margin_left2"
+ 	        android:textSize="20sp"
+ 	        android:textColor="@color/text292929"
+ 	        android:text="总积分"/>
+ 	     	    <TextView  android:layout_height="wrap_content"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_marginLeft="10dp"
+ 	         	        android:layout_marginTop="30dp"
+ 	         	        android:textSize="20sp"
+ 	        android:textColor="@color/text292929"
+ 	        android:text="999"/>
+ 	</LinearLayout>
+	<View android:layout_height="0.5dp"
+	    android:layout_width="wrap_content"
+	    android:background="@color/Viewc2"/>
+	<com.examlpe.zf_android.util.XListView
+        android:id="@+id/x_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+       
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+</LinearLayout>

@@ -5,14 +5,16 @@
     android:orientation="vertical" >
 
    
-     
+     <View android:layout_height="0.5dp"
+         android:layout_width="fill_parent"
+         android:background="@color/Viewc2"/>
  
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="86dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="6dp"
+   	android:layout_marginTop="6dp"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -51,7 +53,7 @@
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
-                    
+                 android:visibility="invisible"
                 android:text="$ 9999"
                 android:textColor="@color/bgtitle"
                 android:textSize="11sp" />
@@ -63,8 +65,8 @@
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
+                android:visibility="invisible"
                 android:text="X   2"
-    
                 android:id="@+id/tv_x"
                 android:textColor="@color/text292929"
                 android:textSize="11sp" />
@@ -132,31 +134,85 @@
                     android:textSize="11sp" />
             </LinearLayout>
 				    
-				    <Button
-				      
-            android:layout_width="50dp"
-            android:layout_height="24dp"
-            android:id="@+id/btn_ishow"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            
-      		android:textSize="9sp"
-            android:background="@drawable/send_bg_shape"
-            android:textColor="@color/bgtitle"
-            android:text="评论" />
+				     
 				</RelativeLayout>
  
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:background="@color/Viewc2" />
-
-     
-
     
+   
+     <View android:layout_height="0.5dp"
+         android:layout_width="fill_parent"
+         android:background="@color/Viewc2"/>
+	<LinearLayout android:layout_width="fill_parent"
+	    android:layout_height="38dp"
+	    android:gravity="center_vertical"
+	    android:orientation="horizontal">
+	    <TextView android:layout_height="wrap_content"
+	        android:layout_width="86dp"
+	        android:text="评分："
+	        
+	                  android:layout_marginLeft="12dp"
+	        android:textSize="17sp"
+	        android:textColor="@color/text292929"/>
+	  <RatingBar
+            android:id="@+id/si_rt_msxf"
+            style="@style/star_rating_bar_style1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:layout_marginTop="2dp"
+            android:duplicateParentState="true"
+            android:gravity="center_vertical"
+             
+            android:numStars="5"
+            android:rating="5"
+            android:stepSize="1" />
+	    
+	</LinearLayout>
+     
+   
+     <View android:layout_height="0.5dp"
+         android:layout_width="fill_parent"
+         android:background="@color/Viewc2"/>
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/ffffff" >
+
+        <EditText
+            android:id="@+id/item_et"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="14dp"
+            android:gravity="top"
+            android:singleLine="true"
+            android:hint="请输入评价"
+            android:background="@color/ffffff"
+            android:textColor="@color/text292929"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:singleLine="true"
+            android:layout_marginBottom="3dp"
+            android:text="最多填写200个汉字"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:textColor="@color/text292929"
+            android:textSize="10sp" />
+    </RelativeLayout>
+    <View android:layout_height="0.5dp"
+         android:layout_width="fill_parent"
+         android:background="@color/Viewc2"/>
+    <View android:layout_height="5dp"
+        android:layout_width="fill_parent"
+        android:background="@color/F3F2F2"/>
 </LinearLayout>

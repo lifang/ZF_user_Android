@@ -8,6 +8,7 @@ import java.util.List;
  
 import com.example.zf_android.entity.ApplyneedEntity;
 import com.example.zf_android.entity.GoodinfoEntity;
+import com.example.zf_android.entity.Goodlist;
 import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.User;
 import com.loopj.android.http.AsyncHttpClient;
@@ -88,10 +89,16 @@ public class MyApplication extends Application{
 
 	public static List<ApplyneedEntity> pub = new LinkedList<ApplyneedEntity>();   
 	public static List<ApplyneedEntity> single = new LinkedList<ApplyneedEntity>();   
-	  
-	  
+	 
+	public static List<Goodlist>  Goodlist = new LinkedList<Goodlist>();   
  
 
+	public static List<Goodlist> getGoodlist() {
+		return Goodlist;
+	}
+	public static void setGoodlist(List<Goodlist> goodlist) {
+		Goodlist = goodlist;
+	}
 	public static List<ApplyneedEntity> getPub() {
 		return pub;
 	}

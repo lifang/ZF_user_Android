@@ -112,18 +112,19 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
 
-		Xlistview.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				Intent i = new Intent(OrderList.this, OrderDetail.class);
-				i.putExtra("status", myList.get(position-1).getOrder_status());
-				i.putExtra("id", myList.get(position-1).getOrder_id());
-				startActivity(i);
-			}
-		});
+//		Xlistview.setOnItemClickListener(new OnItemClickListener() {
+//
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view,
+//					int position, long id) {
+//				// TODO Auto-generated method stub status
+//				Intent i = new Intent(OrderList.this, OrderDetail.class);
+//				i.putExtra("status", myList.get(position-1).getOrder_status());
+//				System.out.println("onItemClick----"+myList.get(position-1).getOrder_status());
+//				i.putExtra("id", myList.get(position-1).getOrder_id());
+//				startActivity(i);
+//			}
+//		});
 		Xlistview.setAdapter(myAdapter);
 	}
 

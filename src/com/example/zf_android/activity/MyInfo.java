@@ -112,7 +112,9 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 			 
 			break;
 		case  R.id.mi_r5: // �ҵĻ��
-			 
+			Intent jf =new Intent(MyInfo.this,JifenActivity.class);
+		 
+			startActivityForResult(jf, 3);
 			 
 			break;
 		case  R.id.mi_r6: // ��ַ����

@@ -64,7 +64,7 @@ public class OrderDetail_PosAdapter extends BaseAdapter{
  
   		 	holder.content.setText(list.get(position).getGood_name());
   		 	holder.tv_price .setText("￥ "+list.get(position).getGood_actualprice());
-  			holder.tv_x .setText(list.get(position).getGood_actualprice());
+  			holder.tv_x .setText("X    "+list.get(position).getGood_num() );
 			holder.btn_ishow.setVisibility(state==3?View.VISIBLE:View.GONE);
 		 
 		

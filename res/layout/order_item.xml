@@ -251,7 +251,7 @@
             android:layout_weight="1"
             android:background="@drawable/buttong_light"
             android:textColor="@color/bgtitle"
-            
+            android:id="@+id/btn_cancle"
             android:text="取消订单" />
 
         <Button
@@ -269,6 +269,7 @@
             android:textColor="@color/ffffff" />
 
         <Button
+              android:id="@+id/btn_pay"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
