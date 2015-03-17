@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,9 @@ import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.StringUtil;
+import com.example.zf_android.trade.common.TextWatcherAdapter;
+import com.example.zf_android.trade.entity.ApplyBank;
+import com.example.zf_android.trade.entity.ApplyChannel;
 import com.example.zf_android.trade.entity.ApplyChooseItem;
 import com.example.zf_android.trade.entity.ApplyCustomerDetail;
 import com.example.zf_android.trade.entity.ApplyDetail;
@@ -42,17 +46,26 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
 import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_TITLE;
+import static com.example.zf_android.trade.Constants.ApplyIntent.MATERIAL_KEY;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_BANK;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_MERCHANT;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BANK;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BILLING;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_TITLE;
 import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
@@ -105,11 +118,14 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private MyTabWidget mTab;
 
 	private int mMerchantId;
-	private String mMerchantGender;
-	private String mMerchantBirthday;
 	private Province mMerchantProvince;
 	private City mMerchantCity;
-	private int mChannelId;
+	private String mMerchantBirthday;
+	private int mMerchantGender = 3;
+	private ApplyChannel mChosenChannel;
+	private ApplyChannel.Billing mChosenBilling;
+	private ApplyBank mChosenBank;
+	private String mBankKey;
 
 	private String photoPath;
 	private TextView uploadingTextView;
@@ -118,6 +134,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 
 	private List<String> mImageUrls = new ArrayList<String>();
 	private List<String> mImageNames = new ArrayList<String>();
+
+	private LinkedHashMap<Integer, ApplyMaterial> mMaterials = new LinkedHashMap<Integer, ApplyMaterial>();
 
 
 	@Override
@@ -162,6 +180,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 		mApplySubmit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				List<Map<String, Object>> totalParams = new ArrayList<Map<String, Object>>();
+
 				Map<String, Object> params = new HashMap<String, Object>();
 				params.put("terminalId", mTerminalId);
 				params.put("status", mTerminalStatus == 2 ? 2 : 1);
@@ -171,7 +191,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				params.put("merchantId", mMerchantId);
 				params.put("name", getItemValue(mMerchantKeys[1]));
 				params.put("merchantName", getItemValue(mMerchantKeys[2]));
-				params.put("sex", getItemValue(mMerchantKeys[3]));
+				params.put("sex", mMerchantGender);
 				params.put("birthday", getItemValue(mMerchantKeys[4]));
 				params.put("cardId", getItemValue(mMerchantKeys[5]));
 				params.put("phone", getItemValue(mMerchantKeys[6]));
@@ -183,8 +203,33 @@ public class ApplyDetailActivity extends FragmentActivity {
 				params.put("bankNum", getItemValue(mBankKeys[2]));
 				params.put("registeredNo", getItemValue(mBankKeys[3]));
 				params.put("organizationNo", getItemValue(mBankKeys[4]));
-				params.put("channel", mChannelId);
-				API.submitApply(ApplyDetailActivity.this, params, new HttpCallback(ApplyDetailActivity.this) {
+				if (null != mChosenChannel)
+					params.put("channel", mChosenChannel.getId());
+				if (null != mChosenBilling)
+					params.put("billingId", mChosenBilling.id);
+
+				totalParams.add(params);
+
+				for (ApplyMaterial material : mMaterials.values()) {
+					if (material.getTypes() == TYPE_TEXT) {
+						String key = material.getName();
+						String value = getItemValue(key);
+						material.setValue(value);
+					}
+					if (TextUtils.isEmpty(material.getValue())) continue;
+					Map<String, Object> param = new HashMap<String, Object>();
+					param.put("key", material.getName());
+					param.put("value", material.getValue());
+					param.put("types", material.getTypes());
+					param.put("openingRequirementId", material.getOpeningRequirementId());
+					param.put("targetId", material.getId());
+
+					totalParams.add(param);
+				}
+
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("paramMap", totalParams);
+				API.submitApply(ApplyDetailActivity.this, paramMap, new HttpCallback(ApplyDetailActivity.this) {
 					@Override
 					public void onSuccess(Object data) {
 						CommonUtil.toastShort(ApplyDetailActivity.this, data.toString());
@@ -228,7 +273,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 					}
 				});
 				// set the customer details
-				setCustomerDetail(customerDetails);
+				setCustomerDetail(materials, customerDetails);
 
 			}
 
@@ -253,7 +298,6 @@ public class ApplyDetailActivity extends FragmentActivity {
 					public void onSuccess(Merchant data) {
 						mMerchant = data;
 						setMerchantDetailValues(data);
-						mApplySubmit.setEnabled(true);
 					}
 
 					@Override
@@ -271,13 +315,20 @@ public class ApplyDetailActivity extends FragmentActivity {
 				break;
 			}
 			case REQUEST_CHOOSE_CHANNEL: {
-				mChannelId = data.getIntExtra(SELECTED_ID, 0);
-				setItemValue(getString(R.string.apply_detail_channel), data.getStringExtra(SELECTED_TITLE));
+				mChosenChannel = (ApplyChannel) data.getSerializableExtra(SELECTED_CHANNEL);
+				mChosenBilling = (ApplyChannel.Billing) data.getSerializableExtra(SELECTED_BILLING);
+				setItemValue(getString(R.string.apply_detail_channel), mChosenChannel.getName());
+				break;
+			}
+			case REQUEST_CHOOSE_BANK: {
+				mChosenBank = (ApplyBank) data.getSerializableExtra(SELECTED_BANK);
+				if (null != mChosenBank)
+					setItemValue(mBankKey, mChosenBank.getName());
 				break;
 			}
 			case REQUEST_UPLOAD_IMAGE:
 			case REQUEST_TAKE_PHOTO: {
-
+				final int key = data.getIntExtra(MATERIAL_KEY, 0);
 				final Handler handler = new Handler() {
 					@Override
 					public void handleMessage(Message msg) {
@@ -287,6 +338,14 @@ public class ApplyDetailActivity extends FragmentActivity {
 								uploadingTextView.setText(getString(R.string.apply_upload_success));
 								uploadingTextView.setClickable(false);
 							}
+							String url = (String) msg.obj;
+							for (ApplyMaterial material : mMaterials.values()) {
+								if (material.getTypes() == TYPE_IMAGE && material.getName().equals(key)) {
+									material.setValue(url);
+									break;
+								}
+							}
+
 						} else {
 							CommonUtil.toastShort(ApplyDetailActivity.this, getString(R.string.toast_upload_failed));
 							if (null != uploadingTextView) {
@@ -342,6 +401,27 @@ public class ApplyDetailActivity extends FragmentActivity {
 				break;
 			}
 		}
+
+		updateUIWithValidation();
+	}
+
+	private void updateUIWithValidation() {
+		final boolean enabled = mMerchantId > 0
+				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[1]))
+				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[2]))
+				&& (mMerchantGender == 0 || mMerchantGender == 1)
+				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[4]))
+				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[5]))
+				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[6]))
+				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[7]))
+				&& null != mMerchantCity
+				&& !TextUtils.isEmpty(getItemValue(mBankKeys[0]))
+				&& !TextUtils.isEmpty(getItemValue(mBankKeys[1]))
+				&& !TextUtils.isEmpty(getItemValue(mBankKeys[2]))
+				&& !TextUtils.isEmpty(getItemValue(mBankKeys[3]))
+				&& !TextUtils.isEmpty(getItemValue(mBankKeys[4]))
+				&& (null != mChosenChannel && null != mChosenBilling);
+		mApplySubmit.setEnabled(enabled);
 	}
 
 	public String getRealPathFromURI(Uri contentUri) {
@@ -392,7 +472,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 		mMerchantContainer.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[1], null));
 		mMerchantContainer.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[2], null));
 
-		View merchantGender = getDetailItem(ITEM_CHOOSE, mMerchantKeys[3], null);
+		final View merchantGender = getDetailItem(ITEM_CHOOSE, mMerchantKeys[3], null);
 		merchantGender.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -402,6 +482,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						setItemValue(mMerchantKeys[3], items[which]);
+						mMerchantGender = which == 1 ? 0 : 1;
+						updateUIWithValidation();
 					}
 				});
 				builder.show();
@@ -417,6 +499,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 					@Override
 					public void onDateSet(String date) {
 						setItemValue(mMerchantKeys[4], date);
+						updateUIWithValidation();
 					}
 				});
 			}
@@ -451,29 +534,33 @@ public class ApplyDetailActivity extends FragmentActivity {
 		chooseChannel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (mChannelItems.size() > 0) {
-					startChooseItemActivity(REQUEST_CHOOSE_CHANNEL, getString(R.string.title_apply_choose_channel), mChannelId, mChannelItems);
-				} else {
-					API.getApplyChannelList(ApplyDetailActivity.this, new HttpCallback<List>(ApplyDetailActivity.this) {
-						@Override
-						public void onSuccess(List data) {
-							for (Object obj : data) {
-								LinkedTreeMap map = (LinkedTreeMap) obj;
-								ApplyChooseItem item = new ApplyChooseItem();
-								item.setId((int) Math.floor((Double) map.get("id")));
-								item.setTitle((String) map.get("name"));
-								mChannelItems.add(item);
-							}
-							startChooseItemActivity(REQUEST_CHOOSE_CHANNEL, getString(R.string.title_apply_choose_channel), mChannelId, mChannelItems);
-						}
-
-						@Override
-						public TypeToken<List> getTypeToken() {
-							return new TypeToken<List>() {
-							};
-						}
-					});
-				}
+				Intent intent = new Intent(ApplyDetailActivity.this, ApplyChannelActivity.class);
+				intent.putExtra(SELECTED_CHANNEL, mChosenChannel);
+				intent.putExtra(SELECTED_BILLING, mChosenBilling);
+				startActivityForResult(intent, REQUEST_CHOOSE_CHANNEL);
+//				if (mChannelItems.size() > 0) {
+//					startChooseItemActivity(REQUEST_CHOOSE_CHANNEL, getString(R.string.title_apply_choose_channel), mChannelId, mChannelItems);
+//				} else {
+//					API.getApplyChannelList(ApplyDetailActivity.this, new HttpCallback<List>(ApplyDetailActivity.this) {
+//						@Override
+//						public void onSuccess(List data) {
+//							for (Object obj : data) {
+//								LinkedTreeMap map = (LinkedTreeMap) obj;
+//								ApplyChooseItem item = new ApplyChooseItem();
+//								item.setId((int) Math.floor((Double) map.get("id")));
+//								item.setTitle((String) map.get("name"));
+//								mChannelItems.add(item);
+//							}
+//							startChooseItemActivity(REQUEST_CHOOSE_CHANNEL, getString(R.string.title_apply_choose_channel), mChannelId, mChannelItems);
+//						}
+//
+//						@Override
+//						public TypeToken<List> getTypeToken() {
+//							return new TypeToken<List>() {
+//							};
+//						}
+//					});
+//				}
 			}
 		});
 		mCustomerContainer.addView(chooseChannel);
@@ -484,11 +571,19 @@ public class ApplyDetailActivity extends FragmentActivity {
 	 *
 	 * @param merchant
 	 */
-	private void setMerchantDetailValues(Merchant merchant) {
+	private void setMerchantDetailValues(final Merchant merchant) {
 		setItemValue(mMerchantKeys[1], merchant.getLegalPersonName());
 		setItemValue(mMerchantKeys[2], merchant.getTitle());
 		setItemValue(mMerchantKeys[5], merchant.getLegalPersonCardId());
 		setItemValue(mMerchantKeys[6], merchant.getPhone());
+		CommonUtil.findCityById(this, merchant.getCityId(), new CommonUtil.OnCityFoundListener() {
+			@Override
+			public void onCityFound(Province province, City city) {
+				mMerchantProvince = province;
+				mMerchantCity = city;
+				setItemValue(mMerchantKeys[8], city.getName());
+			}
+		});
 
 		setItemValue(mBankKeys[0], merchant.getAccountBankName());
 		setItemValue(mBankKeys[1], merchant.getAccountBankNum());
@@ -518,34 +613,52 @@ public class ApplyDetailActivity extends FragmentActivity {
 	 *
 	 * @param customerDetails
 	 */
-	private void setCustomerDetail(List<ApplyCustomerDetail> customerDetails) {
-		for (ApplyCustomerDetail customerDetail : customerDetails) {
-			switch (customerDetail.getTypes()) {
+	private void setCustomerDetail(List<ApplyMaterial> materials, List<ApplyCustomerDetail> customerDetails) {
+		if (null == materials || materials.size() <= 0) return;
+		for (ApplyMaterial material : materials) {
+			mMaterials.put(material.getId(), material);
+		}
+		if (null != customerDetails && customerDetails.size() > 0) {
+			for (ApplyCustomerDetail customerDetail : customerDetails) {
+				ApplyMaterial material = mMaterials.get(customerDetail.getTargetId());
+				if (null != material) {
+					material.setValue(customerDetail.getValue());
+				}
+			}
+		}
+
+		for (final ApplyMaterial material : mMaterials.values()) {
+			switch (material.getTypes()) {
 				case TYPE_TEXT:
-					mMaterialContainer.addView(getDetailItem(ITEM_EDIT, customerDetail.getKey(), customerDetail.getValue()));
+					mMaterialContainer.addView(getDetailItem(ITEM_EDIT, material.getName(), material.getValue()));
 					break;
 				case TYPE_IMAGE:
-					String imageName = customerDetail.getKey();
-					String imageUrl = customerDetail.getValue();
+					String imageName = material.getName();
+					String imageUrl = material.getValue();
 					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
+						mImageNames.add(imageName);
+						mImageUrls.add(imageUrl);
 						mMaterialContainer.addView(getDetailItem(ITEM_VIEW, imageName, imageUrl));
 					} else {
 						mMaterialContainer.addView(getDetailItem(ITEM_UPLOAD, imageName, imageUrl));
 					}
 					break;
 				case TYPE_BANK:
-
+					View chooseBank = getDetailItem(ITEM_CHOOSE, material.getName(), null);
+					chooseBank.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View view) {
+							mBankKey = material.getName();
+							Intent intent = new Intent(ApplyDetailActivity.this, ApplyBankActivity.class);
+							intent.putExtra(SELECTED_BANK, mChosenBank);
+							startActivityForResult(intent, REQUEST_CHOOSE_BANK);
+						}
+					});
+					mMaterialContainer.addView(chooseBank);
 					break;
 			}
 		}
 
-	}
-
-	private void setMerchantItem(int itemType, String key, String value) {
-		LinearLayout item = (LinearLayout) mMerchantContainer.findViewWithTag(key);
-		setupItem(item, itemType, key, value);
 	}
 
 	private LinearLayout getDetailItem(int itemType, String key, String value) {
@@ -576,7 +689,11 @@ public class ApplyDetailActivity extends FragmentActivity {
 			case ITEM_EDIT: {
 				TextView tvKey = (TextView) item.findViewById(R.id.apply_detail_key);
 				EditText etValue = (EditText) item.findViewById(R.id.apply_detail_value);
-
+				etValue.addTextChangedListener(new TextWatcherAdapter() {
+					public void afterTextChanged(final Editable gitDirEditText) {
+						updateUIWithValidation();
+					}
+				});
 				if (!TextUtils.isEmpty(key))
 					tvKey.setText(key);
 				if (!TextUtils.isEmpty(value))
@@ -613,6 +730,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 										Intent intent = new Intent();
 										intent.setType("image/*");
 										intent.setAction(Intent.ACTION_GET_CONTENT);
+										intent.putExtra(MATERIAL_KEY, key);
 										startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
 										break;
 									}
@@ -628,6 +746,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 											photoPath = outFile.getAbsolutePath();
 											intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile));
 											intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+											intent.putExtra(MATERIAL_KEY, key);
 											startActivityForResult(intent, REQUEST_TAKE_PHOTO);
 										} else {
 											CommonUtil.toastShort(ApplyDetailActivity.this, getString(R.string.toast_no_sdcard));

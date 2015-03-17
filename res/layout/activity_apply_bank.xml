@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/F3F2F2">
+
+	<include layout="@layout/title_back"/>
+
+	<View
+		style="@style/Divider"
+		android:layout_marginTop="24dp"/>
+
+	<FrameLayout style="@style/FrameItem">
+
+		<EditText
+			android:id="@+id/apply_bank_input"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginRight="50dp"
+			android:textSize="19sp"
+			android:textColor="@color/text6c6c6c6"
+			android:hint="@string/apply_bank_input"
+			android:textColorHint="@color/Viewc2"
+			android:background="@android:color/transparent"
+			android:layout_gravity="left|center_vertical"
+			android:focusable="true"
+			android:focusableInTouchMode="true"/>
+
+		<ImageButton
+			android:id="@+id/apply_bank_search"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right|center_vertical"
+			android:background="@android:color/transparent"
+			android:src="@drawable/icon_search"
+			android:enabled="true"/>
+	</FrameLayout>
+
+	<View style="@style/Divider"/>
+
+	<LinearLayout
+		android:id="@+id/apply_bank_result_container"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:visibility="gone">
+
+		<TextView
+			style="@style/TextItem"
+			android:layout_gravity="left"
+			android:layout_marginTop="24dp"
+			android:layout_marginLeft="24dp"
+			android:layout_marginBottom="8dp"
+			android:text="@string/apply_bank_result"/>
+
+		<View style="@style/Divider"/>
+
+		<ListView
+			android:id="@+id/apply_bank_list"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:divider="@color/Viewc2"
+			android:dividerHeight="1px"
+			android:footerDividersEnabled="true"
+			android:scrollbars="none"
+			android:background="@color/F3F2F2"/>
+	</LinearLayout>
+
+
+</LinearLayout>

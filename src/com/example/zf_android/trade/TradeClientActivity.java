@@ -45,6 +45,7 @@ public class TradeClientActivity extends ListActivity {
 			@Override
 			public void onSuccess(List<TradeClient> data) {
 				for (TradeClient client : data) {
+					if (null == client || TextUtils.isEmpty(client.getSerialNum())) continue;
 					Map<String, Object> item = new HashMap<String, Object>();
 					String clientNumber = client.getSerialNum();
 					item.put("name", clientNumber);

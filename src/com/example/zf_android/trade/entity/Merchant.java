@@ -157,7 +157,7 @@ public class Merchant {
     @SerializedName("customer_id")
     private Integer customerId;
 
-	@SerializedName("cityId")
+	@SerializedName("city_id")
     private Integer cityId;
 
     private String bodyPhotoPath;

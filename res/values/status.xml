@@ -70,4 +70,10 @@
 		<item>已注销</item>
 		<item>已停用</item>
 	</string-array>
+	
+	<string-array name="terminal_open_status">
+		<item>未开通</item>
+		<item>审核中</item>
+		<item>已开通</item>
+	</string-array>
 </resources>

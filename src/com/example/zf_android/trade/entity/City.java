@@ -10,6 +10,7 @@ public class City implements Serializable {
     private String name;
     private int parentId;
     private String pinyin;
+	private Province province;
 
     public int getId() {
         return id;
@@ -43,7 +44,15 @@ public class City implements Serializable {
         this.pinyin = pinyin;
     }
 
-    @Override
+	public Province getProvince() {
+		return province;
+	}
+
+	public void setProvince(Province province) {
+		this.province = province;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (null == o) return false;
         if (!(o instanceof City)) return false;
