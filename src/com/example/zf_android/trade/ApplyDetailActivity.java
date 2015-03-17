@@ -38,7 +38,6 @@ import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Merchant;
 import com.example.zf_android.trade.entity.Province;
 import com.example.zf_android.trade.widget.MyTabWidget;
-import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
@@ -46,9 +45,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +70,7 @@ import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NA
 import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
 import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
 
 /**
@@ -95,6 +92,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private static final int ITEM_VIEW = 4;
 
 	private int mTerminalId;
+	private String mTerminalNumber;
 	private int mTerminalStatus;
 
 	private Merchant mMerchant;
@@ -144,6 +142,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 		setContentView(R.layout.activity_apply_detail);
 		new TitleMenuUtil(this, getString(R.string.title_apply_open)).show();
 		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
+		mTerminalNumber = getIntent().getStringExtra(TERMINAL_NUMBER);
 		mTerminalStatus = getIntent().getIntExtra(TERMINAL_STATUS, 0);
 
 		initViews();
@@ -211,12 +210,21 @@ public class ApplyDetailActivity extends FragmentActivity {
 				totalParams.add(params);
 
 				for (ApplyMaterial material : mMaterials.values()) {
+					// text type
 					if (material.getTypes() == TYPE_TEXT) {
 						String key = material.getName();
 						String value = getItemValue(key);
 						material.setValue(value);
 					}
+					// bank type
+					else if (material.getTypes() == TYPE_BANK) {
+						String key = material.getName();
+						LinearLayout item = (LinearLayout) mContainer.findViewWithTag(key);
+						String value = (String) item.getTag(R.id.apply_detail_key);
+						material.setValue(value);
+					}
 					if (TextUtils.isEmpty(material.getValue())) continue;
+					// image types' value have been set in advance
 					Map<String, Object> param = new HashMap<String, Object>();
 					param.put("key", material.getName());
 					param.put("value", material.getValue());
@@ -322,8 +330,12 @@ public class ApplyDetailActivity extends FragmentActivity {
 			}
 			case REQUEST_CHOOSE_BANK: {
 				mChosenBank = (ApplyBank) data.getSerializableExtra(SELECTED_BANK);
-				if (null != mChosenBank)
+				if (null != mChosenBank) {
+					LinearLayout item = (LinearLayout) mContainer.findViewWithTag(mBankKey);
+					item.setTag(R.id.apply_detail_key, mChosenBank.getCode());
 					setItemValue(mBankKey, mChosenBank.getName());
+				}
+
 				break;
 			}
 			case REQUEST_UPLOAD_IMAGE:
@@ -650,6 +662,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 						public void onClick(View view) {
 							mBankKey = material.getName();
 							Intent intent = new Intent(ApplyDetailActivity.this, ApplyBankActivity.class);
+							intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
 							intent.putExtra(SELECTED_BANK, mChosenBank);
 							startActivityForResult(intent, REQUEST_CHOOSE_BANK);
 						}

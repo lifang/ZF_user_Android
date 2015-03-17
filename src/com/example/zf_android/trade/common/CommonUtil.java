@@ -1,8 +1,9 @@
 package com.example.zf_android.trade.common;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,18 +11,14 @@ import android.os.Message;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
-import com.example.zf_android.R;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -42,28 +39,71 @@ import java.util.List;
  */
 public class CommonUtil {
 
+	/**
+	 * Copy text to clipboard
+	 *
+	 * @param context
+	 * @param content the text to copy
+	 */
+	public static void copy(Context context, String content) {
+		ClipboardManager clipboard = (ClipboardManager) context
+				.getSystemService(Context.CLIPBOARD_SERVICE);
+		ClipData clip = ClipData.newPlainText("label", content);
+		clipboard.setPrimaryClip(clip);
+	}
+
+	/**
+	 * Toast text shortly
+	 *
+	 * @param context
+	 * @param res     the string resource id
+	 */
 	public static void toastShort(Context context, int res) {
 		String message = context.getString(res);
 		toastShort(context, message);
 	}
 
+	/**
+	 * Toast text shortly
+	 *
+	 * @param context
+	 * @param message to message to toast
+	 */
 	public static void toastShort(Context context, String message) {
 		if (null != context && !TextUtils.isEmpty(message)) {
 			Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 		}
 	}
 
+	/**
+	 * Measure the view
+	 *
+	 * @param view
+	 */
 	public static void calcViewMeasure(View view) {
 		int width = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
 		int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
 		view.measure(width, expandSpec);
 	}
 
+	/**
+	 * Translate the <i>dip</i> to <i>px</i>
+	 *
+	 * @param context
+	 * @param dpValue
+	 * @return
+	 */
 	public static int dip2px(Context context, float dpValue) {
 		final float scale = context.getResources().getDisplayMetrics().density;
 		return (int) (dpValue * scale + 0.5f);
 	}
 
+	/**
+	 * Read the provinces and cities from the asset file
+	 *
+	 * @param context
+	 * @return
+	 */
 	public static List<Province> readProvincesAndCities(Context context) {
 		BufferedReader bufReader = null;
 		String result = "";
@@ -90,6 +130,13 @@ public class CommonUtil {
 		return provinces;
 	}
 
+	/**
+	 * Find the city from asset file by id
+	 *
+	 * @param context
+	 * @param id       the city id
+	 * @param listener callback after city found
+	 */
 	public static void findCityById(final Context context, final Integer id, final OnCityFoundListener listener) {
 		if (null == id) return;
 		final Handler handler = new Handler() {
@@ -123,6 +170,13 @@ public class CommonUtil {
 		}.start();
 	}
 
+	/**
+	 * Show the system's {@link DatePickerDialog} to choose date
+	 *
+	 * @param activity
+	 * @param date     the date has been selected
+	 * @param listener callback after date selected
+	 */
 	public static void showDatePicker(FragmentActivity activity, final String date, final OnDateSetListener listener) {
 
 		final Calendar c = Calendar.getInstance();
@@ -161,6 +215,13 @@ public class CommonUtil {
 		}.show(activity.getSupportFragmentManager(), "DatePicker");
 	}
 
+	/**
+	 * Upload a local file to the Server
+	 *
+	 * @param filePath  the local file's absolute path in phone
+	 * @param paramName the file param name ia a http request
+	 * @param listener  callback after upload succeeded
+	 */
 	public static void uploadFile(String filePath, String paramName, OnUploadListener listener) {
 		String fileName = filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
 		String end = "\r\n";

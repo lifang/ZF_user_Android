@@ -1,6 +1,8 @@
 package com.example.zf_android.trade;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -29,6 +31,7 @@ import java.util.List;
 import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_ADD;
 import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
 import static com.example.zf_android.trade.Constants.TerminalStatus.CANCELED;
 import static com.example.zf_android.trade.Constants.TerminalStatus.OPENED;
@@ -105,6 +108,7 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 				TerminalItem item = (TerminalItem) view.getTag();
 				Intent intent = new Intent(TerminalManageActivity.this, ApplyDetailActivity.class);
 				intent.putExtra(TERMINAL_ID, item.getId());
+				intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
 				intent.putExtra(TERMINAL_STATUS, item.getStatus());
 				startActivity(intent);
 			}
@@ -116,7 +120,24 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 				API.findPosPassword(TerminalManageActivity.this, item.getId(), new HttpCallback(TerminalManageActivity.this) {
 					@Override
 					public void onSuccess(Object data) {
-
+						final String password = "";
+						final AlertDialog.Builder builder = new AlertDialog.Builder(TerminalManageActivity.this);
+						builder.setMessage(password);
+						builder.setPositiveButton(getString(R.string.button_copy), new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialogInterface, int i) {
+								CommonUtil.copy(TerminalManageActivity.this, password);
+								dialogInterface.dismiss();
+								CommonUtil.toastShort(TerminalManageActivity.this, getString(R.string.toast_copy_password));
+							}
+						});
+						builder.setNegativeButton(getString(R.string.button_cancel), new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialogInterface, int i) {
+								dialogInterface.dismiss();
+							}
+						});
+						builder.show();
 					}
 
 					@Override
@@ -272,6 +293,7 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 				public void onClick(View view) {
 					Intent intent = new Intent(TerminalManageActivity.this, TerminalDetailActivity.class);
 					intent.putExtra(TERMINAL_ID, item.getId());
+					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
 					intent.putExtra(TERMINAL_STATUS, item.getStatus());
 					startActivityForResult(intent, REQUEST_DETAIL);
 				}

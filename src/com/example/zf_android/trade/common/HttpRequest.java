@@ -40,9 +40,15 @@ public class HttpRequest {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, String responseString) {
 				Log.e("", responseString);
-				Response data = null == callback.getTypeToken() ?
-						JsonParser.fromJson(responseString) :
-						JsonParser.fromJson(responseString, callback.getTypeToken());
+				Response data;
+				try {
+					data = null == callback.getTypeToken() ?
+							JsonParser.fromJson(responseString) :
+							JsonParser.fromJson(responseString, callback.getTypeToken());
+				} catch (Exception e) {
+					callback.onFailure(context.getString(R.string.parse_data_failed));
+					return;
+				}
 				if (data.getCode() == 1) {
 					callback.onSuccess(data.getResult());
 				} else if (!TextUtils.isEmpty(data.getMessage())) {

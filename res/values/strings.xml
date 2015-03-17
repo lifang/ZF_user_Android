@@ -29,6 +29,7 @@
 	<string name="toast_end_date_error">结束时间不能小于开始时间</string>
 	<string name="loading_data">加载数据...</string>
 	<string name="load_data_failed">请求数据失败</string>
+	<string name="parse_data_failed">解析数据失败</string>
 	<string name="network_info">无法连接到网络</string>
 
 	<string name="notation_yuan">￥</string>
@@ -245,6 +246,10 @@
 	<string name="terminal_type">交易类型</string>
 	<string name="terminal_rate">费率</string>
 	<string name="terminal_status">开通状态</string>
+
+	<string name="button_cancel">取消</string>
+	<string name="button_copy">复制</string>
+	<string name="toast_copy_password">密码已复制到剪贴板</string>
 
 	<!--======================================================-->
 	<!--                      开通认证                          -->
