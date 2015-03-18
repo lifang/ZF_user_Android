@@ -6,7 +6,6 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
@@ -335,7 +334,7 @@ public class API {
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("terminalid", terminalId);
-		new HttpRequest(context, callback).post(TERMINAL_DETAIL, params);
+		new HttpRequest(context, callback).post(TERMINAL_FIND_POS, params);
 	}
 
 	public static void getApplyList(
@@ -380,8 +379,12 @@ public class API {
 	}
 
 	public static void getApplyBankList(
-			Context context, HttpCallback callback) {
-		new HttpRequest(context, callback).post(APPLY_BANK_LIST);
+			Context context,
+			String terminalNumber,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("serial_num", terminalNumber);
+		new HttpRequest(context, callback).post(APPLY_BANK_LIST, params);
 	}
 
 	public static void submitApply(

@@ -3,6 +3,7 @@ package com.example.zf_android.trade;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,24 +19,28 @@ import android.widget.TextView;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.common.TextWatcherAdapter;
 import com.example.zf_android.trade.entity.ApplyBank;
-import com.example.zf_android.trade.entity.ApplyChannel;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BANK;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 
 /**
  * Created by Leo on 2015/3/16.
  */
 public class ApplyBankActivity extends Activity implements View.OnClickListener {
 
+	private String mTerminalNumber;
+
 	private EditText mBankInput;
 	private ImageButton mBankSearch;
 	private LinearLayout mResultContainer;
 
+	private List<ApplyBank> mAllBanks = new ArrayList<ApplyBank>();
 	private List<ApplyBank> mBanks = new ArrayList<ApplyBank>();
 	private ListView mBankList;
 	private BankListAdapter mAdapter;
@@ -46,6 +51,7 @@ public class ApplyBankActivity extends Activity implements View.OnClickListener 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_apply_bank);
 		new TitleMenuUtil(this, getString(R.string.title_apply_choose_bank)).show();
+		mTerminalNumber = getIntent().getStringExtra(TERMINAL_NUMBER);
 		mChosenBank = (ApplyBank) getIntent().getSerializableExtra(SELECTED_BANK);
 
 		mBankInput = (EditText) findViewById(R.id.apply_bank_input);
@@ -66,14 +72,12 @@ public class ApplyBankActivity extends Activity implements View.OnClickListener 
 				finish();
 			}
 		});
-	}
 
-	@Override
-	public void onClick(View view) {
-		mResultContainer.setVisibility(View.VISIBLE);
-		API.getApplyBankList(this, new HttpCallback<List<ApplyBank>>(this) {
+		API.getApplyBankList(this, mTerminalNumber, new HttpCallback<List<ApplyBank>>(this) {
 			@Override
 			public void onSuccess(List<ApplyBank> data) {
+				mResultContainer.setVisibility(View.VISIBLE);
+				mAllBanks = data;
 				mBanks.clear();
 				if (null != data && data.size() > 0)
 					mBanks.addAll(data);
@@ -86,6 +90,18 @@ public class ApplyBankActivity extends Activity implements View.OnClickListener 
 				};
 			}
 		});
+	}
+
+	@Override
+	public void onClick(View view) {
+		String keyword = mBankInput.getText().toString();
+		mBanks.clear();
+		for (ApplyBank bank : mAllBanks) {
+			if (bank.getName().indexOf(keyword) > -1) {
+				mBanks.add(bank);
+			}
+		}
+		mAdapter.notifyDataSetChanged();
 	}
 
 	private class BankListAdapter extends BaseAdapter {

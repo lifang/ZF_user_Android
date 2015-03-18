@@ -38,7 +38,6 @@ import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Merchant;
 import com.example.zf_android.trade.entity.Province;
 import com.example.zf_android.trade.widget.MyTabWidget;
-import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
@@ -46,9 +45,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -56,7 +52,6 @@ import java.util.Map;
 
 import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
 import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_TITLE;
-import static com.example.zf_android.trade.Constants.ApplyIntent.MATERIAL_KEY;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_BANK;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
@@ -74,6 +69,7 @@ import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NA
 import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
 import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
 
 /**
@@ -95,6 +91,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private static final int ITEM_VIEW = 4;
 
 	private int mTerminalId;
+	private String mTerminalNumber;
 	private int mTerminalStatus;
 
 	private Merchant mMerchant;
@@ -126,6 +123,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private ApplyChannel.Billing mChosenBilling;
 	private ApplyBank mChosenBank;
 	private String mBankKey;
+	private String mUploadKey;
 
 	private String photoPath;
 	private TextView uploadingTextView;
@@ -144,6 +142,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 		setContentView(R.layout.activity_apply_detail);
 		new TitleMenuUtil(this, getString(R.string.title_apply_open)).show();
 		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
+		mTerminalNumber = getIntent().getStringExtra(TERMINAL_NUMBER);
 		mTerminalStatus = getIntent().getIntExtra(TERMINAL_STATUS, 0);
 
 		initViews();
@@ -211,12 +210,21 @@ public class ApplyDetailActivity extends FragmentActivity {
 				totalParams.add(params);
 
 				for (ApplyMaterial material : mMaterials.values()) {
+					// text type
 					if (material.getTypes() == TYPE_TEXT) {
 						String key = material.getName();
 						String value = getItemValue(key);
 						material.setValue(value);
 					}
+					// bank type
+					else if (material.getTypes() == TYPE_BANK) {
+						String key = material.getName();
+						LinearLayout item = (LinearLayout) mContainer.findViewWithTag(key);
+						String value = (String) item.getTag(R.id.apply_detail_key);
+						material.setValue(value);
+					}
 					if (TextUtils.isEmpty(material.getValue())) continue;
+					// image types' value have been set in advance
 					Map<String, Object> param = new HashMap<String, Object>();
 					param.put("key", material.getName());
 					param.put("value", material.getValue());
@@ -322,13 +330,16 @@ public class ApplyDetailActivity extends FragmentActivity {
 			}
 			case REQUEST_CHOOSE_BANK: {
 				mChosenBank = (ApplyBank) data.getSerializableExtra(SELECTED_BANK);
-				if (null != mChosenBank)
+				if (null != mChosenBank) {
+					LinearLayout item = (LinearLayout) mContainer.findViewWithTag(mBankKey);
+					item.setTag(R.id.apply_detail_key, mChosenBank.getCode());
 					setItemValue(mBankKey, mChosenBank.getName());
+				}
+
 				break;
 			}
 			case REQUEST_UPLOAD_IMAGE:
 			case REQUEST_TAKE_PHOTO: {
-				final int key = data.getIntExtra(MATERIAL_KEY, 0);
 				final Handler handler = new Handler() {
 					@Override
 					public void handleMessage(Message msg) {
@@ -340,7 +351,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 							}
 							String url = (String) msg.obj;
 							for (ApplyMaterial material : mMaterials.values()) {
-								if (material.getTypes() == TYPE_IMAGE && material.getName().equals(key)) {
+								if (material.getTypes() == TYPE_IMAGE && material.getName().equals(mUploadKey)) {
 									material.setValue(url);
 									break;
 								}
@@ -650,6 +661,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 						public void onClick(View view) {
 							mBankKey = material.getName();
 							Intent intent = new Intent(ApplyDetailActivity.this, ApplyBankActivity.class);
+							intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
 							intent.putExtra(SELECTED_BANK, mChosenBank);
 							startActivityForResult(intent, REQUEST_CHOOSE_BANK);
 						}
@@ -725,12 +737,12 @@ public class ApplyDetailActivity extends FragmentActivity {
 						builder.setItems(items, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
+								mUploadKey = key;
 								switch (which) {
 									case 0: {
 										Intent intent = new Intent();
 										intent.setType("image/*");
 										intent.setAction(Intent.ACTION_GET_CONTENT);
-										intent.putExtra(MATERIAL_KEY, key);
 										startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
 										break;
 									}
@@ -746,7 +758,6 @@ public class ApplyDetailActivity extends FragmentActivity {
 											photoPath = outFile.getAbsolutePath();
 											intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile));
 											intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-											intent.putExtra(MATERIAL_KEY, key);
 											startActivityForResult(intent, REQUEST_TAKE_PHOTO);
 										} else {
 											CommonUtil.toastShort(ApplyDetailActivity.this, getString(R.string.toast_no_sdcard));

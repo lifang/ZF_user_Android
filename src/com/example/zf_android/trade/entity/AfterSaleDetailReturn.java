@@ -12,7 +12,7 @@ import java.util.List;
 public class AfterSaleDetailReturn extends AfterSaleDetail {
 
 	@SerializedName("return_price")
-	private int returnPrice;
+	private String returnPrice;
 
 	@SerializedName("bank_name")
 	private String bankName;
@@ -22,11 +22,11 @@ public class AfterSaleDetailReturn extends AfterSaleDetail {
 
 	private String reason;
 
-	public int getReturnPrice() {
+	public String getReturnPrice() {
 		return returnPrice;
 	}
 
-	public void setReturnPrice(int returnPrice) {
+	public void setReturnPrice(String returnPrice) {
 		this.returnPrice = returnPrice;
 	}
 
