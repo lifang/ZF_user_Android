@@ -1,6 +1,8 @@
 package com.example.zf_android.trade;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -113,7 +115,24 @@ public class TerminalDetailActivity extends Activity {
 				API.findPosPassword(TerminalDetailActivity.this, mTerminalId, new HttpCallback(TerminalDetailActivity.this) {
 					@Override
 					public void onSuccess(Object data) {
-
+						final String password = data.toString();
+						final AlertDialog.Builder builder = new AlertDialog.Builder(TerminalDetailActivity.this);
+						builder.setMessage(password);
+						builder.setPositiveButton(getString(R.string.button_copy), new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialogInterface, int i) {
+								CommonUtil.copy(TerminalDetailActivity.this, password);
+								dialogInterface.dismiss();
+								CommonUtil.toastShort(TerminalDetailActivity.this, getString(R.string.toast_copy_password));
+							}
+						});
+						builder.setNegativeButton(getString(R.string.button_cancel), new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialogInterface, int i) {
+								dialogInterface.dismiss();
+							}
+						});
+						builder.show();
 					}
 
 					@Override

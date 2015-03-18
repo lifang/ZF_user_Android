@@ -52,7 +52,6 @@ import java.util.Map;
 
 import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
 import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_TITLE;
-import static com.example.zf_android.trade.Constants.ApplyIntent.MATERIAL_KEY;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_BANK;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
@@ -124,6 +123,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private ApplyChannel.Billing mChosenBilling;
 	private ApplyBank mChosenBank;
 	private String mBankKey;
+	private String mUploadKey;
 
 	private String photoPath;
 	private TextView uploadingTextView;
@@ -340,7 +340,6 @@ public class ApplyDetailActivity extends FragmentActivity {
 			}
 			case REQUEST_UPLOAD_IMAGE:
 			case REQUEST_TAKE_PHOTO: {
-				final int key = data.getIntExtra(MATERIAL_KEY, 0);
 				final Handler handler = new Handler() {
 					@Override
 					public void handleMessage(Message msg) {
@@ -352,7 +351,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 							}
 							String url = (String) msg.obj;
 							for (ApplyMaterial material : mMaterials.values()) {
-								if (material.getTypes() == TYPE_IMAGE && material.getName().equals(key)) {
+								if (material.getTypes() == TYPE_IMAGE && material.getName().equals(mUploadKey)) {
 									material.setValue(url);
 									break;
 								}
@@ -738,12 +737,12 @@ public class ApplyDetailActivity extends FragmentActivity {
 						builder.setItems(items, new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
+								mUploadKey = key;
 								switch (which) {
 									case 0: {
 										Intent intent = new Intent();
 										intent.setType("image/*");
 										intent.setAction(Intent.ACTION_GET_CONTENT);
-										intent.putExtra(MATERIAL_KEY, key);
 										startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
 										break;
 									}
@@ -759,7 +758,6 @@ public class ApplyDetailActivity extends FragmentActivity {
 											photoPath = outFile.getAbsolutePath();
 											intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile));
 											intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-											intent.putExtra(MATERIAL_KEY, key);
 											startActivityForResult(intent, REQUEST_TAKE_PHOTO);
 										} else {
 											CommonUtil.toastShort(ApplyDetailActivity.this, getString(R.string.toast_no_sdcard));

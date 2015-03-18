@@ -120,7 +120,7 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 				API.findPosPassword(TerminalManageActivity.this, item.getId(), new HttpCallback(TerminalManageActivity.this) {
 					@Override
 					public void onSuccess(Object data) {
-						final String password = "";
+						final String password = data.toString();
 						final AlertDialog.Builder builder = new AlertDialog.Builder(TerminalManageActivity.this);
 						builder.setMessage(password);
 						builder.setPositiveButton(getString(R.string.button_copy), new DialogInterface.OnClickListener() {

@@ -110,7 +110,6 @@ public class Constants {
 		public static final int REQUEST_UPLOAD_IMAGE = 0x1005;
 		public static final int REQUEST_TAKE_PHOTO = 0x1006;
 
-		public static final String MATERIAL_KEY = "material_key";
 		public static final String CHOOSE_TITLE = "choose_title";
 		public static final String CHOOSE_ITEMS = "choose_items";
 		public static final String SELECTED_ID = "selected_id";
