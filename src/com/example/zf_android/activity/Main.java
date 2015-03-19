@@ -31,7 +31,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
  
- 
+  
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption.LocationMode;
 import com.examlpe.zf_android.util.ImageCacheUtil;
  
 import com.example.zf_android.BaseActivity;
@@ -40,6 +43,7 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.PicEntity;
 import com.example.zf_android.entity.PosEntity;
+import com.example.zf_android.entity.User;
 import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
@@ -55,7 +59,8 @@ import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
 
 
 public class Main extends BaseActivity implements OnClickListener{
-
+	private LocationClient mLocationClient;
+	private TextView LocationResult;
 	private RelativeLayout  main_rl_pos,main_rl_renzhen,main_rl_zdgl,main_rl_jyls,
 	main_rl_Forum,main_rl_wylc,main_rl_xtgg,main_rl_lxwm,main_rl_my,main_rl_pos1,main_rl_gwc;
 	private ImageView testbutton;
@@ -116,6 +121,12 @@ public class Main extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		//初始化 测试数据
+		User user =new User();
+		user.setId(80);
+		MyApplication.currentUser=user;
+		
+		System.out.println("-onSuccess--id-"+MyApplication.currentUser.getId() );
 		initView();
 		testbutton=(ImageView) findViewById(R.id.testbutton);
 		testbutton.setOnClickListener(new OnClickListener() {
@@ -129,8 +140,30 @@ public class Main extends BaseActivity implements OnClickListener{
 		});
 		System.out.println("-----");
 		getdata();
+		
+		//地图功能
+		
+		mLocationClient = ((MyApplication)getApplication()).mLocationClient;
+		
+		LocationResult = (TextView)findViewById(R.id.tv_city);
+		 ((MyApplication)getApplication()).mLocationResult = LocationResult;
+		InitLocation();
+		mLocationClient.start();
+		
+		
+		 System.out.println("当前城市 ID----" +MyApplication.getCITYID());
+		
+	}	
+	private void InitLocation(){
+		LocationClientOption option = new LocationClientOption();
+		option.setLocationMode(LocationMode.Hight_Accuracy);//设置定位模式
+		option.setCoorType("gcj02");//返回的定位结果是百度经纬度，默认值gcj02
+		int span=1000;
+ 
+		option.setScanSpan(span);//设置发起定位请求的间隔时间为5000ms
+		option.setIsNeedAddress(true);
+		mLocationClient.setLocOption(option);
 	}
-
 	private void getdata() {
 		// TODO Auto-generated method stub
 

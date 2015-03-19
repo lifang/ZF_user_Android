@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -40,7 +41,7 @@ import com.loopj.android.http.RequestParams;
 /***
  * 
  * 
- * ÀàÃû³Æ£ºShopCar ÀàÃèÊö£º ¹ºÎï³µ ´´½¨ÈË£º ljp ´´½¨Ê±¼ä£º2015-2-9 ÉÏÎç11:30:10
+ * ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ShopCar ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï³µ ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-2-9 ï¿½ï¿½ï¿½ï¿½11:30:10
  * 
  * @version
  * 
@@ -53,7 +54,10 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 	private LinearLayout eva_nodata;
 	private boolean onRefresh_number = true;
 	private ShopcarAdapter myAdapter;
+	private int index=0;
+	private TextView howMoney;
 	private List<Good> myShopList=new ArrayList<Good>();
+	private List<Good> comfirmList=new ArrayList<Good>();
 	List<TestEntitiy> moreList = new ArrayList<TestEntitiy>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -62,7 +66,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 				onLoad();
 				//
 				// if (myShopList.size() == 0) {
-				// // norecord_text_to.setText("ÄúÃ»ÓÐÏà¹ØµÄÉÌÆ·");
+				// // norecord_text_to.setText("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ·");
 				// Xlistview.setVisibility(View.GONE);
 				// eva_nodata.setVisibility(View.VISIBLE);
 				// }
@@ -74,7 +78,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 						Toast.LENGTH_SHORT).show();
 
 				break;
-			case 2: // ÍøÂçÓÐÎÊÌâ
+			case 2: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Toast.makeText(getApplicationContext(),
 						"no 3g or wifi content", Toast.LENGTH_SHORT).show();
 				break;
@@ -86,7 +90,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 		}
 	};
 
-	// ¸öÌå²ÎÊý
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -105,7 +109,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 		rl_xx.setOnClickListener(this);
 		rl_sy =(RelativeLayout) findViewById(R.id.main_rl_sy);
 		rl_sy.setOnClickListener(this); 
-		
+		howMoney=(TextView) findViewById(R.id.howMoney);
 		
 		
 		
@@ -115,15 +119,27 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent i = new Intent(ShopCar.this, ConfirmOrder.class);
-				startActivity(i);
+				comfirmList.clear();
+				for(int i =0;i<myShopList.size();i++){
+					 if(myShopList.get(i).isChecked()){
+						 System.out.println(myShopList.get(i).getQuantity()+"---"+myShopList.get(i).getRetail_price());
+						 comfirmList.add(myShopList.get(i));
+						 index=index+myShopList.get(i).getQuantity();
+					 }
+				}
+				MyApplication.comfirmList=comfirmList;
+				
+				 Intent i = new Intent(ShopCar.this, ConfirmOrder.class);
+				 i.putExtra("howMoney", howMoney.getText().toString());
+				 i.putExtra("index", index);
+				 startActivity(i);
 			}
 		});
 
 		myAdapter = new ShopcarAdapter(ShopCar.this, myShopList);
 		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) findViewById(R.id.x_listview);
-		// refund_listview.getmFooterView().getmHintView().setText("ÒÑ¾­Ã»ÓÐÊý¾ÝÁË");
+		// refund_listview.getmFooterView().getmHintView().setText("ï¿½Ñ¾ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -185,7 +201,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 	}
 
 	/*
-	 * ÇëÇóÊý¾Ý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private void getData() {
 		// TODO Auto-generated method stub

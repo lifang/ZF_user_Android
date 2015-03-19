@@ -55,14 +55,16 @@ public class AdressAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.adress_item, null);
 			holder.tv_title = (TextView) convertView
 					.findViewById(R.id.adress_name);
-			//holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
+			 holder.tv_tel = (TextView) convertView.findViewById(R.id.tv_tel);
 			holder.item_cb = (CheckBox) convertView.findViewById(R.id.item_cb);
+			 holder.adresss = (TextView) convertView.findViewById(R.id.adresss);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-
-		holder.tv_title.setText(list.get(position).getReceiver());
+		 holder.adresss.setText("收件地址 ： "+list.get(position).getAddress());
+		holder.tv_title.setText("收件人 ： "+list.get(position).getReceiver());
+		 holder.tv_tel.setText( list.get(position).getMoblephone());
 		if(MyApplication.getIsSelect()){
 			 
 			holder.item_cb.setVisibility(View.VISIBLE);
@@ -84,7 +86,7 @@ public class AdressAdapter extends BaseAdapter {
 	}
 
 	public final class ViewHolder {
-		public TextView tv_title, tv_time;
+		public TextView tv_title, tv_time,tv_tel,adresss;
 		public CheckBox item_cb;
 
 	}

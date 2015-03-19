@@ -136,7 +136,7 @@ public class Exchange extends BaseActivity implements OnClickListener{
 		next_sure.setText("提交");
 		next_sure.setVisibility(View.VISIBLE);
 		new TitleMenuUtil(Exchange.this, "兑换积分").show();
-		getData();
+		 
 		
 	}
 

@@ -2,23 +2,29 @@ package com.example.zf_android.entity;
 /***
  * 
 *    
-* ÀàÃû³Æ£ºMessageEntity   
-* ÀàÃèÊö£º   ¸öÈËÏûÏ¢ÊµÌå
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-3-3 ÏÂÎç2:21:53   
+* ï¿½ï¿½ï¿½ï¿½Æ£ï¿½MessageEntity   
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Êµï¿½ï¿½
+* ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp 
+* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-3-3 ï¿½ï¿½ï¿½ï¿½2:21:53   
 * @version    
 *
  */
 public class MessageEntity {
-	//"content":"ÎÒÊÇÄÚÈİÏêÇé","id":"2","title":"»¹ÊÇ±êÌâ","create_at":"2015-02-12 19:42:52"
+	//"content":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","id":"2","title":"ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½","create_at":"2015-02-12 19:42:52"
 	private String content;
 	private String id;
 	private String title;
 	private String create_at;
 	private Boolean ischeck;
+	private Boolean status;
 	
 	
-	
+	public Boolean getStatus() {
+		return status;
+	}
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
 	public Boolean getIscheck() {
 		return ischeck;
 	}

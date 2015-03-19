@@ -34,10 +34,10 @@ import com.loopj.android.http.RequestParams;
 /**
  * 
 *    
-* ÀàÃû³Æ£ºSystemDetail   
-* ÀàÃèÊö£º   ÏûÏ¢ÏêÇé
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-2-6 ÏÂÎç3:32:14   
+* ï¿½ï¿½ï¿½ï¿½Æ£ï¿½SystemDetail   
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½    æ¶ˆæ¯è¯¦æƒ…
+* ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp 
+* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-2-6 ï¿½ï¿½ï¿½ï¿½3:32:14   
 * @version    
 *
  */
@@ -51,7 +51,7 @@ public class MymsgDetail extends BaseActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.system_detail);
-		new TitleMenuUtil(MymsgDetail.this, "ÏûÏ¢ÏêÇé");
+		new TitleMenuUtil(MymsgDetail.this, "æ¶ˆæ¯è¯¦æƒ…");
 		id=getIntent().getStringExtra("id");
 		System.out.println("````"+id);
 		initView();
@@ -64,9 +64,9 @@ public class MymsgDetail extends BaseActivity{
 
 			RequestParams params = new RequestParams();
 
-		 	params.put("customer_id",80 );
-			params.put("id", 1 );
-			System.out.println("-onSuccess--id-");
+		 	params.put("customer_id",MyApplication.currentUser.getId() );
+			params.put("id", id );
+		 
 			params.setUseJsonStreamer(true);
 			AsyncHttpClient cl =new AsyncHttpClient();
 			cl.post(Config.getMSGById, params, new AsyncHttpResponseHandler() {
@@ -126,6 +126,66 @@ public class MymsgDetail extends BaseActivity{
 			 
 		 
 	}
+	private void deleMsg(){
+ 
+	 
+			// TODO Auto-generated method stub
+
+			RequestParams params = new RequestParams();
+
+		 	params.put("customer_id",MyApplication.currentUser.getId() );
+			params.put("id", id );
+			System.out.println("-onSuccess--id-"+MyApplication.currentUser.getId() );
+			params.setUseJsonStreamer(true);
+			AsyncHttpClient cl =new AsyncHttpClient();
+			cl.post(Config.DELETEMSG, params, new AsyncHttpResponseHandler() {
+
+						@Override
+						public void onSuccess(int statusCode, Header[] headers,
+								byte[] responseBody) {
+							System.out.println("-onSuccess---");
+							String responseMsg = new String(responseBody)
+									.toString();
+							Log.e("LJP", responseMsg);
+							Gson gson = new Gson();
+							JSONObject jsonobject = null;
+							int code = 0;
+							try {
+								jsonobject = new JSONObject(responseMsg);
+								 
+								 
+								code = jsonobject.getInt("code");
+								
+								if(code==-2){
+								 
+								}else if(code==1){
+									
+									Toast.makeText(getApplicationContext(), "åˆ é™¤æˆåŠŸ",
+											Toast.LENGTH_SHORT).show();
+									
+									
+								}else{
+									Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
+											Toast.LENGTH_SHORT).show();
+								}
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							 
+						}
+
+						@Override
+						public void onFailure(int statusCode, Header[] headers,
+								byte[] responseBody, Throwable error) {
+							// TODO Auto-generated method stub
+							error.printStackTrace();
+						}
+					});
+			 
+		 
+	
+	}
 	private void initView() {
 		// TODO Auto-generated method stub
 		tv_titel=(TextView) findViewById(R.id.msg_title);
@@ -138,16 +198,16 @@ public class MymsgDetail extends BaseActivity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//Ö´ĞĞÉ¾³ı²Ù×÷
+				//Ö´ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				Dialog ddd = new DialogUtil(MymsgDetail.this,
-						"Mark all as read").getCheck(new CallBackChange() {
+						"ç¡®è®¤åˆ é™¤ï¼Ÿ").getCheck(new CallBackChange() {
 
 					@Override
 					public void change() {
 						// TODO Auto-generated method stub
 						// Toast.makeText(getApplication(), "DOOOO",
 						// 1000).show();
-					 
+						deleMsg();
 					}
 
 				});

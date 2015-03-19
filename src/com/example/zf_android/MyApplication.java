@@ -2,24 +2,118 @@ package com.example.zf_android;
 
  
  
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
  
+ 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.GeofenceClient;
+import com.baidu.location.LocationClient;
 import com.example.zf_android.entity.ApplyneedEntity;
+import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.Goodlist;
 import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.User;
+import com.example.zf_android.entity.MyShopCar.Good;
+import com.example.zf_android.trade.CitySelectActivity;
+import com.example.zf_android.trade.common.CommonUtil;
+import com.example.zf_android.trade.entity.City;
+import com.example.zf_android.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpClient;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.Service;
+import android.os.Vibrator;
+import android.util.Log;
+import android.widget.TextView;
  
  
  
 
 public class MyApplication extends Application{
+	public TextView mLocationResult,logMsg;
+	public LocationClient mLocationClient;
+	public GeofenceClient mGeofenceClient;
+	public MyLocationListener mMyLocationListener;
+	public Vibrator mVibrator;
+ 
+
+
+	private List<City> mCities = new ArrayList<City>();
+	/**
+	 * 实现实位回调监听
+	 */
+	public class MyLocationListener implements BDLocationListener {
+
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			//Receive Location 
+			StringBuffer sb = new StringBuffer(256);
+//			sb.append("time : ");
+//			sb.append(location.getTime());
+//			sb.append("\nerror code : ");
+//			sb.append(location.getLocType());
+//			sb.append("\nlatitude : ");
+//			sb.append(location.getLatitude());
+//			sb.append("\nlontitude : ");
+//			sb.append(location.getLongitude());
+//			sb.append("\nradius : ");
+//			sb.append(location.getRadius());
+//			if (location.getLocType() == BDLocation.TypeGpsLocation){
+//				sb.append("\nspeed : ");
+//				sb.append(location.getSpeed());
+//				sb.append("\nsatellite : ");
+//				sb.append(location.getSatelliteNumber());
+//				sb.append("\ndirection : ");
+//				sb.append("\naddr : ");
+//				sb.append(location.getAddrStr());
+//				sb.append(location.getDirection());
+//			} else if (location.getLocType() == BDLocation.TypeNetWorkLocation){
+//				sb.append("\naddr : ");
+//				sb.append(location.getAddrStr());
+//				//运营商信息
+//				sb.append("\noperationers : ");
+//				sb.append(location.getOperators());
+//			}
+			sb.append(location.getAddrStr());
+			logMsg(location.getCity());
+	        List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
+            for (Province province : provinces) {
+                List<City> cities = province.getCities();
+              
+                mCities.addAll(cities);
+                 
+            }
+			 for(City cc:mCities ){
+				 if(cc.getName().endsWith(location.getCity())){
+					 System.out.println("当前城市 ID----"+cc.getId());
+					 setCITYID(cc.getId());
+				 }
+			 }
+			 
+			Log.i("BaiduLocationApiDem", sb.toString());
+		}
+
+
+	}
+	/**
+	 * 显示请求字符串
+	 * @param str
+	 */
+	public void logMsg(String str) {
+		try {
+			if (mLocationResult != null)
+				mLocationResult.setText(str);
+			mLocationClient.stop();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	private static MyApplication  mInstance=null;
 	//private ArrayList<Order> orderList = new ArrayList<Order>();
@@ -29,7 +123,13 @@ public class MyApplication extends Application{
 	private static  String versionCode="";
 	private static int notifyId=0;
 	private static Boolean isSelect=false;
-	
+	private static int CITYID=1;
+	public static int getCITYID() {
+		return CITYID;
+	}
+	public static void setCITYID(int cITYID) {
+		CITYID = cITYID;
+	}
 	public static Boolean getIsSelect() {
 		return isSelect;
 	}
@@ -86,6 +186,23 @@ public class MyApplication extends Application{
 	public static void setPse(PosSelectEntity pse) {
 		MyApplication.pse = pse;
 	}
+	public static List<Good> comfirmList=new LinkedList<Good>();
+	
+	public static List<Good> getComfirmList() {
+		return comfirmList;
+	}
+	public static void setComfirmList(List<Good> comfirmList) {
+		MyApplication.comfirmList = comfirmList;
+	}
+	public static List<ChanelEntitiy> celist = new LinkedList<ChanelEntitiy>();   
+ 
+	public static List<ChanelEntitiy> getCelist() {
+		return celist;
+	}
+	public static void setCelist(List<ChanelEntitiy> celist) {
+		MyApplication.celist = celist;
+	}
+
 
 	public static List<ApplyneedEntity> pub = new LinkedList<ApplyneedEntity>();   
 	public static List<ApplyneedEntity> single = new LinkedList<ApplyneedEntity>();   
@@ -147,19 +264,13 @@ public class MyApplication extends Application{
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;		 
-//		initImageLoader(getApplicationContext());
-//		SDKInitializer.initialize(this);
-//		  PackageManager packageManager = getPackageManager();
-//          // getPackageName()���㵱ǰ��İ���0����ǻ�ȡ�汾��Ϣ
-//          PackageInfo packInfo;
-//		try {
-//			packInfo = packageManager.getPackageInfo(getPackageName(),0);
-//			  int version = packInfo.versionCode;
-//			 setVersionCode(version+"");
-//		} catch (NameNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		mLocationClient = new LocationClient(this.getApplicationContext());
+		mMyLocationListener = new MyLocationListener();
+		mLocationClient.registerLocationListener(mMyLocationListener);
+		mGeofenceClient = new GeofenceClient(getApplicationContext());
+		
+		
+		mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
 	}
 	
 //	private void initImageLoader(Context context) {

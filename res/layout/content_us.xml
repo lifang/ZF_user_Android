@@ -104,7 +104,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
-            android:src="@drawable/mine_dd" />
+            android:src="@drawable/weixin" />
     </LinearLayout>
 
     <View

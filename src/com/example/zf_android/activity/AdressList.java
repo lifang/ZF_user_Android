@@ -160,14 +160,15 @@ public class AdressList extends BaseActivity  {
 
 			// TODO Auto-generated method stub
 		 
-			RequestParams params = new RequestParams();
-			params.put("customerId", 80);
+		//	RequestParams params = new RequestParams();
+			//params.put("customerId", 80+"");
 			 
-			params.setUseJsonStreamer(true);
-			System.out.println("---getData-");
+			//params.setUseJsonStreamer(true);
 			Url=Url+"80";
+			System.out.println("---getData-"+Url);
+			 
 			MyApplication.getInstance().getClient()
-					.get(Url, new AsyncHttpResponseHandler() {
+					.post(Url, new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,

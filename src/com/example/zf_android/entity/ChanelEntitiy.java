@@ -7,8 +7,15 @@ public class ChanelEntitiy {
 //    "name": "T+1"e 
 	private String trade_value;
 	private int terminal_rate;
+	private int standard_rate;
 	
 	
+	public int getStandard_rate() {
+		return standard_rate;
+	}
+	public void setStandard_rate(int standard_rate) {
+		this.standard_rate = standard_rate;
+	}
 	public int getTerminal_rate() {
 		return terminal_rate;
 	}

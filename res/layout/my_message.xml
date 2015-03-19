@@ -54,7 +54,7 @@
                   	android:layout_centerVertical="true"
                     android:layout_marginLeft="7dp"
                     android:layout_alignParentLeft="true"
-                    android:text="全部标记为已读"
+                    android:text="标记为已读"
                     android:textColor="@color/text5a5a5a"
                     android:textSize="11sp" />
 		    	    <TextView

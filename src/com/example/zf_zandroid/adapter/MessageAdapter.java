@@ -64,23 +64,37 @@ public class MessageAdapter extends BaseAdapter {
 
 		holder.tv_title.setText(list.get(position).getContent());
 		holder.tv_time.setText(list.get(position).getCreate_at());
-		if(MyApplication.getIsSelect()){
-			 
+		if (MyApplication.getIsSelect()) {
+
 			holder.item_cb.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			holder.item_cb.setVisibility(View.GONE);
 		}
-		
-		list.get(position).setIscheck(holder.item_cb.isChecked());
-		holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
-				list.get(position).setIscheck(isChecked);
+
+		if (list.get(position).getStatus() == null) {
+
+		} else {
+			if (list.get(position).getStatus()) {
+				holder.tv_title.setTextColor(context.getResources().getColor(R.color.text6c6c6c6));
+				holder.tv_time.setTextColor(context.getResources().getColor(R.color.text6c6c6c6));
+			} else {
+				holder.tv_title.setTextColor(context.getResources().getColor(R.color.text292929));
+				holder.tv_time.setTextColor(context.getResources().getColor(R.color.text292929));
 			}
-		});
-		//holder.item_cb.toggle();
+		}
+
+		list.get(position).setIscheck(holder.item_cb.isChecked());
+		holder.item_cb
+				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						// TODO Auto-generated method stub
+						list.get(position).setIscheck(isChecked);
+					}
+				});
+		// holder.item_cb.toggle();
 		return convertView;
 	}
 

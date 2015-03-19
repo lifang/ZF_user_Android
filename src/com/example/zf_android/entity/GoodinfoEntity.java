@@ -183,6 +183,7 @@ public class GoodinfoEntity {
 	public void setSecond_title(String second_title) {
 		this.second_title = second_title;
 	}
+ 
 	public boolean isHas_lease() {
 		return has_lease;
 	}

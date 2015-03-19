@@ -61,17 +61,18 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
+            
             <RelativeLayout
                 android:id="@+id/rl_imgs"
                 android:layout_width="fill_parent"
                 android:layout_height="200dp"
-                android:visibility="gone"
+                
                 android:background="@color/F3F3F3" >
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/view_pager"
                     android:layout_width="fill_parent"
+                     
                     android:layout_height="fill_parent" >
                 </android.support.v4.view.ViewPager>
 
@@ -251,7 +252,7 @@
                     android:textSize="13sp" />
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
@@ -266,102 +267,28 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="支付通道"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/sign_tv"
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="7dp"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="30dp"
-                            android:textColor="@color/bgtitle"
-                        android:gravity="center"
-                        android:background="@drawable/bg_shape"
-                        android:text="通道3" />
-
-                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="30dp"
-                        android:visibility="invisible"
-                        
-                        android:gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_shape"
-                        android:text="xxx" />
-                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                                   android:visibility="invisible"
-                        android:background="@drawable/bg_shape"
-                        android:text="xxx" />
-                </LinearLayout>
-            </LinearLayout>
-            
-            
-            <LinearLayout
-                android:id="@+id/zftd"
-                android:visibility="gone"
-                android:layout_width="fill_parent"
+					<com.examlpe.zf_android.util.ScrollViewWithGView  android:id="@+id/gview1"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="@dimen/margin_left2"
-                android:layout_marginRight="@dimen/margin_left2"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="终端类型"
-                    android:visibility="invisible"
-                    android:textColor="@color/text6c6c6c6"
-                    android:textSize="13sp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="7dp"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:background="@drawable/bg_shape"
-                        android:text="xxx" />
-
-                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_shape"
-                        android:text="xxx" />
-                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:background="@drawable/bg_shape"
-                        android:text="xxx" />
-                </LinearLayout>
-            </LinearLayout>
+                  android:numColumns="3"
+                  android:layout_alignParentTop="true"
+                  android:layout_toRightOf="@id/sign_tv"
+                  
+                  android:layout_marginLeft="7dp"
+                  android:layout_marginRight="@dimen/margin_left2"
+              android:horizontalSpacing="10dip"
+                android:verticalSpacing="5dip"
+     			android:stretchMode="columnWidth"
+                android:layout_width="fill_parent"></com.examlpe.zf_android.util.ScrollViewWithGView>
+      
+            </RelativeLayout>
+            
+            
+             
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -388,6 +315,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
+                        android:id="@+id/tv_bug"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="30dp"
@@ -397,6 +325,7 @@
                         android:text="购买" />
 
                      <TextView
+                         android:id="@+id/tv_lea"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="30dp"
@@ -519,8 +448,9 @@
                             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:text="交易费率"
+                     android:id="@+id/tv_huilv"
                        android:gravity="center"
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="17sp" />
@@ -754,7 +684,44 @@
             </LinearLayout>
    
  		  <include layout="@layout/layout_chanel" />
-            
+                          <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/margin_left2"
+                android:layout_marginRight="@dimen/margin_left2"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="申请开通条件"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="15sp" />
+
+                
+            </LinearLayout>
+            <View android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="fill_parent"
+                android:background="@color/bgtitle"/>
+                       <TextView
+                    android:id="@+id/tv_sqkt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                  
+                    android:ellipsize="end"
+                     android:layout_marginLeft="@dimen/margin_left2"
+                android:layout_marginRight="@dimen/margin_left2"
+                    
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
                    <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -773,10 +740,7 @@
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="15sp" />
 
-                 <ImageView android:layout_height="wrap_content"
-                     android:layout_width="wrap_content"
-                     android:layout_marginLeft="7dp"
-                     android:background="@drawable/see"/>
+                
             </LinearLayout>
             <View android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
@@ -796,7 +760,39 @@
                     
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
-            
+  <LinearLayout  android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                
+                android:orientation="horizontal">
+                
+                <View android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_weight="1"
+                    android:background="@color/Viewc2"/>
+                <TextView android:textColor="@color/text292929"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="您感兴趣的"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="10sp"/>
+                
+                <View android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_weight="1"
+                    android:background="@color/Viewc2"/>
+            </LinearLayout>
+            <com.examlpe.zf_android.util.ScrollViewWithGView  android:id="@+id/gview"
+                android:layout_height="wrap_content"
+                  android:numColumns="2"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="@dimen/margin_left2"
+                  android:layout_marginRight="@dimen/margin_left2"
+              android:horizontalSpacing="20dip"
+                android:verticalSpacing="10dip"
+     			android:stretchMode="columnWidth"
+                android:layout_width="fill_parent"></com.examlpe.zf_android.util.ScrollViewWithGView>"
         </LinearLayout>
     </ScrollView>
     <View android:layout_height="0.5dp"

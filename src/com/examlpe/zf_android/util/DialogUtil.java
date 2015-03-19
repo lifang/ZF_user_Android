@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,10 +47,18 @@ public class DialogUtil {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog, null);
         TextView title = (TextView) v.findViewById(R.id.title);
+        TextView tv_yes= (TextView) v.findViewById(R.id.tv_yes);
         LinearLayout yes = (LinearLayout) v.findViewById(R.id.login_linear_yes);
         LinearLayout no = (LinearLayout) v.findViewById(R.id.login_linear_no);
-       
-        title.setText(text);
+        ImageView uv =(ImageView) v.findViewById(R.id.is_show);
+        if(text.endsWith("保存到本地")){
+            title.setVisibility(View.INVISIBLE);
+            uv.setVisibility(View.VISIBLE);
+            tv_yes.setText(text);
+        }else{
+            title.setText(text);
+        }
+     
         
         final Dialog dialog = new Dialog(context, R.style.TanChuangDialog);
         dialog.setContentView(v);

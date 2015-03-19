@@ -74,7 +74,7 @@
             android:layout_marginRight="@dimen/margin_left2"
             android:singleLine="true"
        		android:background="@color/ffffff"
-       		android:hint="123123"
+       		android:hint="请输入姓名"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -115,7 +115,7 @@
             android:singleLine="true"
             android:inputType="number"
        		android:background="@color/ffffff"
-       		android:hint="123123"
+       		android:hint="请输入联系电话"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -155,7 +155,7 @@
             android:layout_marginRight="@dimen/margin_left2"
             android:singleLine="true"
        		android:background="@color/ffffff"
-       		android:hint="123123"
+       		android:hint="请输入金额"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 

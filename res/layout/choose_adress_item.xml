@@ -25,6 +25,7 @@
                     android:layout_height="20dp"
                    	android:layout_marginLeft="7dp"
                  	android:clickable="false"
+                 	android:focusable="false"
                    	 android:layout_gravity="center_vertical"
                     android:checked="true" />
 		    <TextView

@@ -75,7 +75,7 @@ public class HuilvAdapter extends BaseAdapter {
 		}else{
 			holder.tv_price.setText(list.get(position).getService_rate()+"%");
 		}
-		holder.tv_price.setText(list.get(position).getService_rate()+"%");
+		holder.tv_price.setText(list.get(position).getStandard_rate()+"%");
 		holder.tv_dec.setText(list.get(position).getDescription());
 	  
 		return convertView;

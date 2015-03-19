@@ -1,29 +1,50 @@
 package com.example.zf_android.entity;
 
 public class AdressEntity {
-//"id":16,"customerId":80,"receiver":"123","isDefault":2,"address":"123",
-	private int id;
-	private int customerId;
-	private String receiver;
-	private int isDefault;
+ 
+//    "id": 70,
+//    "city_parent_name": "甘肃省",
+//    "city_name": "定西市",
+//    "customerId": 80,
+//    "receiver": "四十四",
+//    "isDefault": 1,
+//    "address": "电饭锅给红红火火红红火火",
+//    "cityId": 244,
+//    "city_parent_id": 21,
+//    "zipCode": "3456666",
+//    "moblephone": "17887986789",
+//    "city": "甘肃省定西市"
 	private Boolean Ischeck;
-	private String address;
-	//,"cityId":123,"zipCode":"123","moblephone":"123","telphone":"123
-	private int cityId;
-	private int zipCode;
-	private String moblephone;
-	private String telphone;
+	
 	public Boolean getIscheck() {
 		return Ischeck;
 	}
 	public void setIscheck(Boolean ischeck) {
 		Ischeck = ischeck;
 	}
+	private int id;
+	private String city_name;
+	private int customerId;
+	private String receiver;
+	private int isDefault;
+	private String address;
+	private int cityId;
+	private int city_parent_id;
+	private String zipCode;
+	private String moblephone;
+	private String city;
+	private String city_parent_name;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getCity_name() {
+		return city_name;
+	}
+	public void setCity_name(String city_name) {
+		this.city_name = city_name;
 	}
 	public int getCustomerId() {
 		return customerId;
@@ -55,10 +76,16 @@ public class AdressEntity {
 	public void setCityId(int cityId) {
 		this.cityId = cityId;
 	}
-	public int getZipCode() {
+	public int getCity_parent_id() {
+		return city_parent_id;
+	}
+	public void setCity_parent_id(int city_parent_id) {
+		this.city_parent_id = city_parent_id;
+	}
+	public String getZipCode() {
 		return zipCode;
 	}
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 	public String getMoblephone() {
@@ -67,11 +94,22 @@ public class AdressEntity {
 	public void setMoblephone(String moblephone) {
 		this.moblephone = moblephone;
 	}
-	public String getTelphone() {
-		return telphone;
+	public String getCity() {
+		return city;
 	}
-	public void setTelphone(String telphone) {
-		this.telphone = telphone;
+	public void setCity(String city) {
+		this.city = city;
 	}
+	public String getCity_parent_name() {
+		return city_parent_name;
+	}
+	public void setCity_parent_name(String city_parent_name) {
+		this.city_parent_name = city_parent_name;
+	}
+	
+	
+	
+	
+	
 	
 }

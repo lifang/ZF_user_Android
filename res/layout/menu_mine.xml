@@ -97,6 +97,8 @@
             style="@style/dot_item"
             android:gravity="center"
             android:text="1"
+            android:visibility="invisible"
+            
             android:textColor="@color/ffffff" />
 
         <ImageView

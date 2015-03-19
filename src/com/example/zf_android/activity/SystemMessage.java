@@ -91,14 +91,14 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 		protected void onCreate(Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
-			setContentView(R.layout.my_message);
+			setContentView(R.layout.sys_message);
 			initView();
 			getData();
 		}
 
 		private void initView() {
 			// TODO Auto-generated method stub
- 
+			MyApplication.setIsSelect(false);
 			new TitleMenuUtil(SystemMessage.this, "系统公告").show();
 			myAdapter=new MessageAdapter(SystemMessage.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
@@ -115,6 +115,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 						int position, long id) {
 					// TODO Auto-generated method stub
  					Intent i = new Intent(SystemMessage.this, SystemDetail.class);
+ 					i.putExtra("id",  Integer.parseInt(myList.get(position-1).getId()));
  					startActivity(i);
 				}
 			});
@@ -231,7 +232,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 					 						if (moreList.size()==0) {
 					 							Toast.makeText(getApplicationContext(),
 					 									"没有更多数据了", Toast.LENGTH_SHORT).show();
-					 							Xlistview.getmFooterView().setState2(2);
+					 						//	Xlistview.getmFooterView().setState2(2);
 					 					 
 					 						} 
 					 						 

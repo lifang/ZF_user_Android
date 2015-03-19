@@ -44,7 +44,7 @@ import com.loopj.android.http.RequestParams;
 /***
  * 
  * 
- * ����ƣ�MyMessage �������� �ҵ���Ϣ �����ˣ� ljp ����ʱ�䣺2015-2-5 ����2:15:03
+ * � 我的消息
  * 
  * @version
  * 
@@ -64,6 +64,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 	private TextView next_sure,tv_all,tv_dle;
 	private Boolean isEdit = false;
 	private RelativeLayout rl_edit, rl_editno;
+	List<MessageEntity> idList = new ArrayList<MessageEntity>();
 	List<MessageEntity> myList = new ArrayList<MessageEntity>();
 	List<MessageEntity> moreList = new ArrayList<MessageEntity>();
 	private Handler handler = new Handler() {
@@ -102,6 +103,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_message);
+		MyApplication.setIsSelect(false);
 		initView();
 		getData();
 	}
@@ -123,7 +125,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 
 		next_sure = (TextView) findViewById(R.id.next_sure);
 		next_sure.setVisibility(View.VISIBLE);
-		next_sure.setText("确认");
+		next_sure.setText("删除");
 		new TitleMenuUtil(MyMessage.this, "我的消息").show();
 		myAdapter = new MessageAdapter(MyMessage.this, myList);
 		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
@@ -153,7 +155,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 				// TODO Auto-generated method stub
 				if (MyApplication.getIsSelect()) {
 					// ��������ɾ�����
-					next_sure.setText("取消");
+					next_sure.setText("删除");
 					MyApplication.setIsSelect(false);
 					myAdapter.notifyDataSetChanged();
 				 
@@ -162,7 +164,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 					rl_edit.setVisibility(View.GONE);
 		 
 				} else {
-					next_sure.setText("删除");
+					next_sure.setText("取消");
 					MyApplication.setIsSelect(true);
 					rl_edit.setVisibility(View.VISIBLE);
 					rl_editno.setVisibility(View.GONE);
@@ -261,7 +263,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 				 					 	
 				 						if (moreList.size()==0) {
 				 							Toast.makeText(getApplicationContext(),
-				 									"û�и�������", Toast.LENGTH_SHORT).show();
+				 									"暂时还没有您的消息", Toast.LENGTH_SHORT).show();
 				 							Xlistview.getmFooterView().setState2(2);
 				 					 
 				 						} 
@@ -298,20 +300,27 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 		
 		
 		case R.id.tv_all: 
-		 
+			for (int i = 0; i < myList.size(); i++) {
+
+				if (myList.get(i).getIscheck()) {
+					idList.add(myList.get(i));
+				}
+			}
+			
+ 
+		  	 Msgdelete();
 			break;
 		case R.id.tv_dle: 
 			 
 			for (int i = 0; i < myList.size(); i++) {
 
 				if (myList.get(i).getIscheck()) {
-				 
+					idList.add(myList.get(i));
 				}
 			}
 			
-			
-			
-		  	 Msgdelete();
+ 
+		  	 Msgdelete1();
 			
 			
 			
@@ -338,14 +347,15 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 	private void Msgdelete() {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
-		ids=new String[myList.size()];
-		for (int i = 0; i < myList.size(); i++) {
-			ids[i]=myList.get(i).getId();
-			//if (myList.get(i).getIscheck()) { }
+		ids=new String[idList.size()];
+		for (int i = 0; i < idList.size(); i++) {
+			ids[i]=idList.get(i).getId();
+			 
+		
 		}
 		Gson gson = new Gson();
 	  
-		params.put("customer_id", 16);
+		params.put("customer_id", MyApplication.currentUser.getId());
 		try {
 			params.put("ids", new JSONArray(gson.toJson(ids)));
 		} catch (JSONException e1) {
@@ -381,6 +391,74 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 								 
 								
 								
+							}else{
+								Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
+										Toast.LENGTH_SHORT).show();
+							}
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						 
+					}
+
+					@Override
+					public void onFailure(int statusCode, Header[] headers,
+							byte[] responseBody, Throwable error) {
+						// TODO Auto-generated method stub
+						error.printStackTrace();
+					}
+				});
+	}
+	private void Msgdelete1() {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		ids=new String[idList.size()];
+		for (int i = 0; i < idList.size(); i++) {
+			ids[i]=idList.get(i).getId();
+			 
+		
+		}
+		Gson gson = new Gson();
+	  
+		params.put("customer_id", MyApplication.currentUser.getId());
+		try {
+			params.put("ids", new JSONArray(gson.toJson(ids)));
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+  
+		params.setUseJsonStreamer(true);
+		MyApplication.getInstance().getClient()
+				.post(Config.batchDelete, params, new AsyncHttpResponseHandler() {
+
+					@Override
+					public void onSuccess(int statusCode, Header[] headers,
+							byte[] responseBody) {
+						System.out.println("-onSuccess---");
+						String responseMsg = new String(responseBody)
+								.toString();
+						Log.e("LJP", responseMsg);
+						 
+						JSONObject jsonobject = null;
+						int code = 0;
+						try {
+							jsonobject = new JSONObject(responseMsg);
+							 
+							 
+							code = jsonobject.getInt("code");
+							
+							if(code==1){
+								for (int i = 0; i < myList.size(); i++) {
+
+									if (myList.get(i).getIscheck()) {
+										myList.remove(i);
+									}
+								}
+							//	myAdapter.notify();
+								myAdapter.notifyDataSetChanged();
 							}else{
 								Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
 										Toast.LENGTH_SHORT).show();

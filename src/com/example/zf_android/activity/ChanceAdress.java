@@ -14,10 +14,13 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.examlpe.zf_android.util.ScrollViewWithListView;
+import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -74,7 +77,7 @@ public class ChanceAdress extends BaseActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chance_adress);
-		 
+		 new TitleMenuUtil(ChanceAdress.this, "选择地址").show();
 		initView();
 		getData();
 	}
@@ -83,6 +86,21 @@ public class ChanceAdress extends BaseActivity{
 		lv=(ScrollViewWithListView) findViewById(R.id.lv);
 		myAdapter=new ChooseAdressAdapter(ChanceAdress.this, myList);
 		lv.setAdapter(myAdapter);
+		lv.setOnItemClickListener( new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Intent intent2 = new Intent();
+				intent2.putExtra("id", myList.get(arg2).getId());
+				intent2.putExtra("tel", myList.get(arg2).getMoblephone());
+				intent2.putExtra("adree", myList.get(arg2).getAddress());
+				intent2.putExtra("name", myList.get(arg2).getReceiver());
+				setResult(11, intent2);
+				finish();
+			}
+		});
 		findViewById(R.id.adresslist).setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -105,7 +123,7 @@ public class ChanceAdress extends BaseActivity{
 		System.out.println("---getData-");
 		Url=Url+"80";
 		MyApplication.getInstance().getClient()
-				.get(Url, new AsyncHttpResponseHandler() {
+				.post(Url, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,

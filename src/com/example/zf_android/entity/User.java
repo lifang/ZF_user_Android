@@ -2,10 +2,10 @@ package com.example.zf_android.entity;
 /**
  * 
 *    
-* 类名称：User   
-* 类描述：   用户信息实体类
-* 创建人： ljp  
-* 创建时间：2014-12-4 下午2:19:47   
+* 锟斤拷锟斤拷疲锟経ser   
+* 锟斤拷锟斤拷锟斤拷锟斤拷   锟矫伙拷锟斤拷息实锟斤拷锟斤拷
+* 锟斤拷锟斤拷锟剿ｏ拷 ljp  
+* 锟斤拷锟斤拷时锟戒：2014-12-4 锟斤拷锟斤拷2:19:47   
 * @version    
 *
  */
@@ -29,6 +29,14 @@ public class User {
 //    "code": null,
 //    "dentcode": null
 	private int id;
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	private String username;
 	private int types;
 	private int status;

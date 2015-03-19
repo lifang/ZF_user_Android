@@ -50,7 +50,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="确认"
-	        
+	        android:id="@+id/tv_yes"
 	         android:textColor="@color/C0075FF"
 	        android:textSize="@dimen/s_17sp"
 	       
@@ -62,12 +62,23 @@
 	            android:id="@+id/title"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:text="取消"
+	        android:text="确认删除？"
 	        android:layout_marginBottom="20dp"
 	        android:gravity="center_horizontal"
 	         android:textColor="@color/white"
 	        android:textSize="@dimen/s_17sp"
 	       
 	        />
+
+		    <ImageView
+		        android:id="@+id/is_show"
+		        android:visibility="gone"
+		        android:layout_width="fill_parent"
+		        android:layout_height="200dp"
+		     	android:layout_marginTop="80dp"
+		        android:layout_marginLeft="@dimen/margin_left2"
+		        android:layout_marginRight="@dimen/margin_left2"
+		        android:background="@drawable/weixin_log" />
+		    
 </RelativeLayout>
     

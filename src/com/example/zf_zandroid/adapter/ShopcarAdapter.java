@@ -144,7 +144,7 @@ public class ShopcarAdapter extends BaseAdapter {
 						: View.VISIBLE);
 				hoder.retail_price.setVisibility(isEdit ? View.VISIBLE
 						: View.INVISIBLE);
-				hoder.editBtn.setText(isEdit ? "�༭" : "���");
+				hoder.editBtn.setText(isEdit ? "编辑" : "完成");
 				if(isEdit){
 						System.out.println(position+"----"+Integer.parseInt( hoder.buyCountEdit.getText().toString()));
 					 changeContent(position, Integer.parseInt( hoder.buyCountEdit.getText().toString()));
@@ -162,7 +162,7 @@ public class ShopcarAdapter extends BaseAdapter {
 					hoder.showCountText.setText("X  " + editGood.getQuantity());
 					if (hoder.checkBox.isChecked()) {
 						currentHowMoney -= editGood.getRetail_price();
-						howMoney.setText("�ϼƣ���" + currentHowMoney);
+						howMoney.setText("合计 ： " + currentHowMoney);
 					}
 					System.out.println("λ��---"+position+quantity);
 				    changeContent(position, quantity);
@@ -174,7 +174,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				hoder.showCountText.setText("X  " + editGood.getQuantity());
 				if (hoder.checkBox.isChecked()) {
 					currentHowMoney += editGood.getRetail_price();
-					howMoney.setText("�ϼƣ���" + currentHowMoney);
+					howMoney.setText("合计 ： " + currentHowMoney);
 				}
 				 changeContent(position, quantity);
 				break;
@@ -213,7 +213,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				currentHowMoney += (isChecked ? good.getRetail_price()
 						* good.getQuantity() : -good.getRetail_price()
 						* good.getQuantity());
-				howMoney.setText("�ϼƣ���" + currentHowMoney);
+				howMoney.setText("合计 ：" + currentHowMoney);
 				Log.e("print", "currentHowMoney:"+currentHowMoney);
 			}
 

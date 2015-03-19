@@ -1,9 +1,23 @@
 package com.example.zf_android.entity;
 
 public class PosEntity {
-	//volume_number":123,"id":2,"good_brand":"Æ·ÅÆ1","total_score":1,
-	//"retail_price":72464,"pay_channe":"Í¨µÀ2",
-	//"Title":"Ì©É½PosÆì½¢°æ2","Model_number":"ÐÍºÅ10"}
+	//volume_number":123,"id":2,"good_brand":"Æ·ï¿½ï¿½1","total_score":1,
+	//"retail_price":72464,"pay_channe":"Í¨ï¿½ï¿½2",
+	//"Title":"Ì©É½Posï¿½ì½¢ï¿½ï¿½2","Model_number":"ï¿½Íºï¿½10"}
+	
+//    "volume_number": 413,
+//    "id": 1,
+//    "url_path": "http://picture.youth.cn/qtdb/201503/W020150305443475703964.jpg",
+//    "retail_price": 12415,
+//    "Title": "æ³°å±±Posæ——èˆ°ç‰ˆ1"
+	
+	private String url_path;
+	public String getUrl_path() {
+		return url_path;
+	}
+	public void setUrl_path(String url_path) {
+		this.url_path = url_path;
+	}
 	private Boolean has_lease;
 	
 	public Boolean getHas_lease() {
