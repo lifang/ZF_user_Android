@@ -112,7 +112,7 @@ public class Comment extends BaseActivity{
 		}
 	  
 		params.setUseJsonStreamer(true);
-
+		System.out.println("---"+params.toString());
 		MyApplication.getInstance().getClient()
 				.post(url, params, new AsyncHttpResponseHandler() {
 

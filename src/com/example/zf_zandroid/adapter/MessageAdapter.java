@@ -62,7 +62,7 @@ public class MessageAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.tv_title.setText(list.get(position).getContent());
+		holder.tv_title.setText(list.get(position).getTitle());
 		holder.tv_time.setText(list.get(position).getCreate_at());
 		if (MyApplication.getIsSelect()) {
 

@@ -67,6 +67,7 @@ public class AfterSaleMarkActivity extends Activity {
                             public TypeToken getTypeToken() {
                                 return null;
                             }
+                            
                         });
             }
         });

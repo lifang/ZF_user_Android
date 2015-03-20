@@ -145,7 +145,7 @@ public class OrderAdapter extends BaseAdapter{
 				// TODO Auto-generated method stub
 				 
 				// TODO Auto-generated method stub
-				String url = " /http://114.215.149.242:18080/ZFMerchant/api/order/cancelMyOrder";
+				String url = "http://114.215.149.242:18080/ZFMerchant/api/order/cancelMyOrder";
 				RequestParams params = new RequestParams();
 				 params.put("id", arg0.getTag());
 				 System.out.println("`getTag``"+arg0.getTag());

@@ -2,299 +2,282 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-  	android:orientation="vertical"
-  	android:background="@color/F3F2F2"
-  	 >
+    android:background="@color/F3F2F2"
+    android:orientation="vertical" >
 
- <include layout="@layout/title_back" />
-   <ScrollView  android:layout_height="wrap_content"
-        android:layout_width="fill_parent">
-        <LinearLayout android:layout_height="wrap_content"
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:orientation="vertical">
-  <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/Viewc" />
-    <LinearLayout
-        android:id="@+id/mi_r1"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
- 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-         android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="收件人姓名"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-          
-            android:singleLine="true"
-            android:text="张小小"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            android:orientation="vertical" >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:visibility="invisible"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/Viewc" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-         android:id="@+id/mi_r2"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
- 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-       android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="手机"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/mi_r1"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <TextView
-           android:id="@+id/tv2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-          
-            android:singleLine="true"
-            android:text="15050056006"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="收件人姓名"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:visibility="invisible"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/tv1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="张小小"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-         android:id="@+id/mi_r3"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
- 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="邮编"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right"
+                    android:visibility="invisible" />
+            </LinearLayout>
 
-        <TextView
-           android:id="@+id/tv3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-  
-            android:singleLine="true"
-            android:text="123@gmail.com"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-              android:visibility="invisible"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/mi_r2"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-         android:id="@+id/mi_r4"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
- 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-             android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="选择省/市"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="手机"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <TextView
-           android:id="@+id/tv4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="8"
-            android:singleLine="true"
-            android:text="上海"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <EditText
+                    android:id="@+id/tv2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+            
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="15050056006"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right"
+                    android:visibility="invisible" />
+            </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-         android:id="@+id/mi_r5"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
- 
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-           android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="详细地址"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <TextView
-              android:id="@+id/tv5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="8"
-            android:singleLine="true"
-            android:text="200"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <LinearLayout
+                android:id="@+id/mi_r3"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <ImageView
-              android:visibility="invisible"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
-	
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-    
-    
-    
-    <LinearLayout
-        
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-       >
-	
- <CheckBox
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="邮编"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/tv3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="123@gmail.com"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/mi_r4"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="选择省/市"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:maxLength="8"
+                    android:singleLine="true"
+                    android:text="上海"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/mi_r5"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="详细地址"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/tv5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:maxLength="8"
+                    android:singleLine="true"
+                    android:text="200"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical" >
+
+                <CheckBox
                     android:id="@+id/item_cb"
                     style="@style/MyCheckBox"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-               android:layout_marginLeft="@dimen/margin_left2"
-                 	android:clickable="false"
-                   	 android:layout_gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left2"
                     android:checked="true" />
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-           android:layout_marginLeft="7dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="设置为默认地址"
-            android:textColor="@color/text292929"
-            android:textSize="13sp" />
 
-         
- 
-    </LinearLayout>
-        
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="7dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="设置为默认地址"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
             <Button
-            android:layout_width="180dp"
-            android:layout_height="48dp"
-    		android:id="@+id/adresslist"
-     
-            android:layout_marginBottom="30dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/bg_blue_shape"
-            android:textColor="@color/ffffff"
-            android:text="保存" />
-              
-
-     
-   
-            
+                android:id="@+id/adresslist"
+                android:layout_width="180dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/bg_blue_shape"
+                android:text="保存"
+                android:textColor="@color/ffffff" />
         </LinearLayout>
     </ScrollView>
-    
-    
+
 </LinearLayout>

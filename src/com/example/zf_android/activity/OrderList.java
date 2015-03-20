@@ -8,13 +8,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -51,8 +56,11 @@ import com.loopj.android.http.RequestParams;
  */
 public class OrderList extends BaseActivity implements  IXListViewListener{
 	//���²��� Xlist
+	private PopupWindow menuWindow;
+	private int type;
 	private XListView Xlistview;
 	private int page=1;
+	private TextView tv_type,tv_tyyp;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata;
 	private boolean onRefresh_number = true;
@@ -102,6 +110,16 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 
 	private void initView() {
 		// TODO Auto-generated method stub
+		tv_tyyp=(TextView) findViewById(R.id.tv_tyyp);
+		tv_type=(TextView) findViewById(R.id.tv_type);
+		tv_type.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				menu_press();
+			}
+		});
 		
 		new TitleMenuUtil(OrderList.this, "我的订单").show();
 		myAdapter=new OrderAdapter(OrderList.this, myList);
@@ -127,7 +145,84 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 //		});
 		Xlistview.setAdapter(myAdapter);
 	}
+	public void menu_press() {
+		View view = getLayoutInflater().inflate(R.layout.pop_more, null);
+		// view.findViewById(R.id.todayorder_ordernumber).setOnClickListener(this);
+		// view.findViewById(R.id.todayorder_mobile).setOnClickListener(this);
+		menuWindow = new PopupWindow(view, LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT);
+		TextView tv_new = (TextView) view.findViewById(R.id.tv_new);
+		TextView tv_all = (TextView) view.findViewById(R.id.tv_all);
+		TextView tv_re = (TextView) view.findViewById(R.id.tv_re);
+		if (type == 1) {
+			tv_new.setTextColor(getResources().getColor(R.color.C0075FF));
+			tv_all.setTextColor(getResources().getColor(R.color.black));
+			tv_re.setTextColor(getResources().getColor(R.color.black));
+			 
+		}
+		if (type == 3) {
+			tv_new.setTextColor(getResources().getColor(R.color.black));
+			tv_all.setTextColor(getResources().getColor(R.color.bgtitle));
+			tv_re.setTextColor(getResources().getColor(R.color.black));
+			//titleback_text_title.setText("");
+		}
+		if (type == 2) {
+			tv_new.setTextColor(getResources().getColor(R.color.black));
+			tv_all.setTextColor(getResources().getColor(R.color.black));
+			tv_re.setTextColor(getResources().getColor(R.color.bgtitle));
+		}
+		tv_new.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				type = 1;
+				tv_tyyp.setText("全部");
+
+				menuWindow.dismiss();
+				myList.clear();
+				getData();
+			//	titleback_text_title.setText("");
+			}
+		});
+		tv_all.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				type = 3;
+				tv_tyyp.setText("租赁");
+
+			//	titleback_text_title.setText("");
+				menuWindow.dismiss();
+				myList.clear();
+				getData();
+			}
+		});
+		tv_re.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				type = 2;
+				tv_tyyp.setText("购买");
+
+			//	titleback_text_title.setText("");
+				menuWindow.dismiss();
+				myList.clear();
+				getData();
+			}
+		});
+		menuWindow.setFocusable(true);
+		menuWindow.setOutsideTouchable(true);
+		menuWindow.update();
+		menuWindow.setBackgroundDrawable(new BitmapDrawable());
+		// 设置layout在PopupWindow中显示的位置
+		// int hight = findViewById(R.id.main_top).getHeight()
+		// + Tools.getStatusBarHeight(getApplicationContext());
+		menuWindow.showAsDropDown(this.findViewById(R.id.tv_type),0,10);
+ 
+	}
 	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
@@ -169,9 +264,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		myList.clear();
 		getData();
 	}
-	/*
-	 * �������
-	 */
+ 
 	private void getData() {
 		// TODO Auto-generated method stub
 
@@ -180,10 +273,10 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		RequestParams params = new RequestParams();
 		params.put("customer_id", 80);
 		params.put("page", page);
-		params.put("pageSize", 2);
+		params.put("pageSize", 5);
 		 
 		params.setUseJsonStreamer(true);
-
+		 System.out.println("-params--"+params.toString());
 		MyApplication.getInstance().getClient()
 				.post(url, params, new AsyncHttpResponseHandler() {
 

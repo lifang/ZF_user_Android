@@ -98,7 +98,8 @@ public class API {
 
 	// Apply Opening Progress Query
 	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
-
+	public static final String WNATBUY = SCHEMA + HOST + "/ZFMerchant/api/paychannel/intention/add";
+	public static final String Add_ress = SCHEMA + HOST + "/ZFMerchant/api/customers/insertAddress/";
 	public static void getTerminalList(
 			Context context,
 			int customerId,
@@ -404,4 +405,45 @@ public class API {
 		params.put("phone", phone);
 		new HttpRequest(context, callback).post(APPLY_PROGRESS, params);
 	}
+	public static void ApiWantBug(
+			Context context,
+			String  name,
+			String phone,
+			String content,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", name);
+		params.put("phone", phone);
+		params.put("content", content);
+		new HttpRequest(context, callback).post(WNATBUY, params);
+	}
+//	cityId
+//	receiver
+//	moblephone
+//	zipCode
+//	address
+//	isDefault
+//	customerId
+	public static void AddAdres(
+			Context context,
+			String  cityId,
+			String  receiver,
+			String 	moblephone,
+			String 	zipCode,
+			String 	address,
+			int 	isDefault,
+			int 	customerId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("cityId", cityId);
+		params.put("receiver", receiver);
+		params.put("moblephone", moblephone);
+		params.put("zipCode", zipCode);
+		params.put("address", address);
+		params.put("isDefault", isDefault);
+		params.put("customerId", customerId);
+		new HttpRequest(context, callback).post(Add_ress, params);
+	}
+
+ 
 }

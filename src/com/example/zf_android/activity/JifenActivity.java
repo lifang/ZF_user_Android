@@ -52,9 +52,10 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 	private RelativeLayout mune_rl; 
 	private boolean onRefresh_number = true;
 	private JifenAdapter myAdapter;
- 
-	private TextView next_sure;
+	private JifenEntity  jjjff;
+	private TextView next_sure,tv_jf;
 	private int customerId=80;
+	 private int price;
 	List<JifenEntity>  myList = new ArrayList<JifenEntity>();
 	List<JifenEntity>  moreList = new ArrayList<JifenEntity>();
 	private Handler handler = new Handler() {
@@ -94,10 +95,70 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 			setContentView(R.layout.act_jifen);
 			initView();
 			getData();
+			getIntegralTotal();
 		}
+		private void getIntegralTotal() {
+			// TODO Auto-generated method stub
+	 
+			String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/getIntegralTotal/"+MyApplication.currentUser.getId();
+	 
+			MyApplication.getInstance().getClient()
+					.post(url, new AsyncHttpResponseHandler() {
 
+						@Override
+						public void onSuccess(int statusCode, Header[] headers,
+								byte[] responseBody) {
+							String responseMsg = new String(responseBody)
+									.toString();
+							Log.e("print", responseMsg);
+
+						 
+							 
+							Gson gson = new Gson();
+							
+							JSONObject jsonobject = null;
+							String code = null;
+							try {
+								jsonobject = new JSONObject(responseMsg);
+								code = jsonobject.getString("code");
+								int a =jsonobject.getInt("code");
+								if(a==Config.CODE){  
+									String res =jsonobject.getString("result");
+	 								jsonobject = new JSONObject(res);
+	 								
+									jjjff	 = gson.fromJson(jsonobject.toString(), new TypeToken< JifenEntity >() {
+					 					}.getType());
+									price=jjjff.getMoneyTotal()/100;
+									tv_jf.setText( price+"");
+								}else{
+									code = jsonobject.getString("message");
+									Toast.makeText(getApplicationContext(), code, 1000).show();
+								}
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								 ;	
+								e.printStackTrace();
+								
+							}
+
+						}
+
+						@Override
+						public void onFailure(int statusCode, Header[] headers,
+								byte[] responseBody, Throwable error) {
+							// TODO Auto-generated method stub
+							System.out.println("-onFailure---");
+							Log.e("print", "-onFailure---" + error);
+						}
+					});
+
+		 
+		
+		
+		}
 		private void initView() {
 			// TODO Auto-generated method stub
+			tv_jf=(TextView) findViewById(R.id.tv_jf);
 			next_sure=(TextView) findViewById(R.id.next_sure);
 			mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
 			next_sure.setText("兑换");
@@ -139,7 +200,10 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-				 startActivity(new Intent(JifenActivity.this,Exchange.class));
+					Intent i =new Intent(JifenActivity.this,Exchange.class);
+							i.putExtra("price", price);
+				 startActivity(i );
+				 
 				}
 			});
 			 
@@ -204,7 +268,7 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 			params.setUseJsonStreamer(true);
 
 			MyApplication.getInstance().getClient()
-					.post(url,params, new AsyncHttpResponseHandler() {
+					.post(url,null, new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,

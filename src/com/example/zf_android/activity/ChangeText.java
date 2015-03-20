@@ -43,6 +43,9 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 		btn_sub=(Button) findViewById(R.id.btn_sub);
 		btn_sub.setOnClickListener(this);
 		index=getIntent().getIntExtra("key", 1);
+		String name =getIntent().getStringExtra("name");
+		login_edit_name.setText(name);
+		login_edit_name.setSelection(name.length());
 		System.out.println("index--"+index);
 	}
 
@@ -60,7 +63,7 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 					ChangeText.this.setResult(index, intent2);
 					finish();
 			 }else{
-				 Toast.makeText(ChangeText.this, "������Ҫ�ı������", 1000).show();
+				 Toast.makeText(ChangeText.this, "请输入要改变的内容", 1000).show();
 			 }
 			break;
 

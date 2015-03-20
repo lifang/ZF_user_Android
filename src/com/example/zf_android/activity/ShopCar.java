@@ -208,7 +208,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 		String url = "http://114.215.149.242:18080/ZFMerchant/api/cart/list";
 		RequestParams params = new RequestParams("customerId", "80");
 		params.setUseJsonStreamer(true);
-
+		System.out.println("params---"+ params.toString());
 		MyApplication.getInstance().getClient()
 				.post(url, params, new AsyncHttpResponseHandler() {
 

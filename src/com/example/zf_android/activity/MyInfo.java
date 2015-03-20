@@ -92,18 +92,21 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		case  R.id.mi_r1: // ����
 			Intent i =new Intent(MyInfo.this,ChangeText.class);
 			i.putExtra("key", 1);
+			i.putExtra("name", tv1.getText().toString());
 			startActivityForResult(i, 1);
 			 
 			break;
 		case  R.id.mi_r2: // �ֻ�
 			Intent i2 =new Intent(MyInfo.this,ChangeText.class);
 			i2.putExtra("key", 2);
+			i2.putExtra("name", tv2.getText().toString());
 			startActivityForResult(i2, 2);
 			 
 			break;
 		case  R.id.mi_r3: // ����
 			Intent i3 =new Intent(MyInfo.this,ChangeText.class);
 			i3.putExtra("key",3);
+			i3.putExtra("name", tv3.getText().toString());
 			startActivityForResult(i3, 3);
 			 
 			break;
@@ -145,6 +148,9 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 				String  a =data.getStringExtra("text");
 				tv2.setText(a);
 			}
+			break;
+		case 3:
+		 
 			if(data!=null){
 				String  a =data.getStringExtra("text");
 				tv3.setText(a);

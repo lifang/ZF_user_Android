@@ -1,5 +1,8 @@
 package com.example.zf_android.activity;
 
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,12 +18,18 @@ import android.widget.Toast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.Config;
+ 
 import com.example.zf_android.R;
-import com.google.gson.Gson;
+ 
+import com.example.zf_android.trade.API;
+ 
+import com.example.zf_android.trade.common.HttpCallback;
+ 
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
+ 
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
 
 public class WantBuy extends BaseActivity {
 	private EditText login_edit_name1, login_edit_name, et_contetn;
@@ -49,71 +58,96 @@ public class WantBuy extends BaseActivity {
 						.toString());
 				content = StringUtil.replaceBlank(et_contetn.getText()
 						.toString());
-				if (check()) {
-
-					// TODO Auto-generated method stub
-					AsyncHttpClient client = new AsyncHttpClient(); //  
-					RequestParams params = new RequestParams();
-					System.out.println(content+"-check---"+name+phone);
-					params.put("name", name);
-					params.put("phone", phone);
-					params.put("content", content);
-
-				 	params.setUseJsonStreamer(true);
-
-					client.post( Config.WANTBUY, params,
-							new AsyncHttpResponseHandler() {
-
-								@Override
-								public void onSuccess(int statusCode,
-										Header[] headers, byte[] responseBody) {
-
-									System.out.println("-onSuccess---");
-									String responseMsg = new String(
-											responseBody).toString();
-									Log.e("LJP", responseMsg);
-									Gson gson = new Gson();
-									JSONObject jsonobject = null;
-									int code = 0;
-									try {
-										jsonobject = new JSONObject(responseMsg);
-
-										code = jsonobject.getInt("code");
-
-										if (code == -2) {
-
-										} else if (code == 1) {
-
-											Toast.makeText(
-													getApplicationContext(),
-													"提交成功，请等待客服回复",
-													Toast.LENGTH_SHORT).show();
-											finish();
-
-										} else {
-											Toast.makeText(
-													getApplicationContext(),
-													jsonobject
-															.getString("message"),
-													Toast.LENGTH_SHORT).show();
-										}
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-
-								}
-
-								@Override
-								public void onFailure(int statusCode,
-										Header[] headers, byte[] responseBody,
-										Throwable error) {
-									// TODO Auto-generated method stub
-									System.out.println("onFailure`` `");
-								}
-							});
-
+				if(check()){
+					ggg();
 				}
+			 	 
+//				if (check()) {
+//
+//					// TODO Auto-generated method stub
+//				AsyncHttpClient client = new AsyncHttpClient(); //  
+//				RequestParams params = new RequestParams();
+//				 System.out.println(content+"-check---"+name+phone);
+//				params.put("name",name);
+//				params.put("phone", phone.toString());
+//				params.put("content", content.toString());
+//				params.setUseJsonStreamer(true);
+//				   ///ZFMerchant/api/paychannel/intention/add
+//				String uuu="http://114.215.149.242:18080/ZFMerchant/api/paychannel/intention/add";
+//				System.out.println(params.toString()+"-----");
+//				client.post(uuu, params,
+//							new TextHttpResponseHandler() {
+//
+////								@Override
+////								public void onSuccess(int statusCode,
+////										Header[] headers, byte[] responseBody) {
+////
+////									System.out.println("-onSuccess---");
+////									String responseMsg = new String(
+////											responseBody).toString();
+////									Log.e("LJP", responseMsg);
+////									Gson gson = new Gson();
+////									JSONObject jsonobject = null;
+////									int code = 0;
+////									try {
+////										jsonobject = new JSONObject(responseMsg);
+////
+////										code = jsonobject.getInt("code");
+////
+////										if (code == -2) {
+////
+////										} else if (code == 1) {
+////
+////											Toast.makeText(
+////													getApplicationContext(),
+////													"提交成功，请等待客服回复",
+////													Toast.LENGTH_SHORT).show();
+////											finish();
+////
+////										} else {
+////											Toast.makeText(
+////													getApplicationContext(),
+////													jsonobject
+////															.getString("message"),
+////													Toast.LENGTH_SHORT).show();
+////										}
+////									} catch (JSONException e) {
+////										// TODO Auto-generated catch block
+////										e.printStackTrace();
+////									}
+////
+////								}
+//
+////								@Override
+////								public void onFailure(int statusCode,
+////										Header[] headers, byte[] responseBody,
+////										Throwable error) {
+////									// TODO Auto-generated method stub
+////									System.out.println("onFailure`` `");
+////									Log.e("print", statusCode+"-onFailure---" + headers.toString()+responseBody.toString());
+////								}
+//
+//								@Override
+//								public void onFailure(int statusCode,
+//										Header[] headers,
+//										String responseString,
+//										Throwable throwable) {
+//									// TODO Auto-generated method stub
+//									System.out.println("-onFailure---" );
+//								}
+//
+//								@Override
+//								public void onSuccess(int statusCode,
+//										Header[] headers, String responseString) {
+//									// TODO Auto-generated method stub
+//									System.out.println("-onSuccess---"+responseString);
+//									String responseMsg = new String(
+//											responseString).toString();
+//									Log.e("LJP", responseMsg);
+//								}
+//							});
+//
+//				}
 
 			}
 
@@ -121,7 +155,7 @@ public class WantBuy extends BaseActivity {
 
 	}
 
-	private boolean check() {
+	private boolean check () {
 		// TODO Auto-generated method stub
 		// content
 		if (name.length() == 0) {
@@ -142,5 +176,26 @@ public class WantBuy extends BaseActivity {
 		}
 		return true;
 	}
+	public void ggg(){
 
+
+        API.ApiWantBug(WantBuy.this, name,phone , content,
+        		
+                new HttpCallback(WantBuy.this) {
+           
+
+					@Override
+					public void onSuccess(Object data) {
+						// TODO Auto-generated method stub
+						Toast.makeText(WantBuy.this, "提交成功", 1000).show();
+						finish();
+					}
+
+					@Override
+					public TypeToken getTypeToken() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+                });
+	}
 }

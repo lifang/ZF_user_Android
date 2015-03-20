@@ -38,94 +38,26 @@ import com.loopj.android.http.RequestParams;
 *
  */
 public class Exchange extends BaseActivity implements OnClickListener{
-	private TextView next_sure;
+	private TextView next_sure,tv_xyjf;
 	private EditText et_name,et_tel,t_y;
 	private String name,phone,price;
 	private Button btn_exit;
+	private int price1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.act_exchange);
 		initView();
-		getIntegralTotal();
+		price1=getIntent().getIntExtra("price", 0);
+		tv_xyjf.setText(price1+"");
 	}
 
-	private void getIntegralTotal() {
-		// TODO Auto-generated method stub
  
-		String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/getIntegralTotal/";
-		RequestParams params = new RequestParams();
-		
- 
-		
-		 
-		params.put("customerId", 8);
-		 
-		params.setUseJsonStreamer(true);
-
-		MyApplication.getInstance().getClient()
-				.post(url,params, new AsyncHttpResponseHandler() {
-
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg);
-
-					 
-						 
-						Gson gson = new Gson();
-						
-						JSONObject jsonobject = null;
-						String code = null;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							code = jsonobject.getString("code");
-							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){  
-//								String res =jsonobject.getString("result");
-//								jsonobject = new JSONObject(res);
-//								
-//								moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<JifenEntity>>() {
-//			 					}.getType());
-//			 				 
-//								myList.addAll(moreList);
-//				 				handler.sendEmptyMessage(0);
-				 					  
-			 				 
-			 			 
-							}else{
-								code = jsonobject.getString("message");
-								Toast.makeText(getApplicationContext(), code, 1000).show();
-							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
-							e.printStackTrace();
-							
-						}
-
-					}
-
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
-					}
-				});
-
-	 
-	
-	
-	}
 
 	private void initView() {
 		// TODO Auto-generated method stub
-		 
+		tv_xyjf=(TextView) findViewById(R.id.tv_xyjf);
 		et_name=(EditText) findViewById(R.id.et_name1);
 		et_tel=(EditText) findViewById(R.id.et_tel);
 		t_y=(EditText) findViewById(R.id.et_y1);
@@ -144,7 +76,7 @@ public class Exchange extends BaseActivity implements OnClickListener{
 		name=et_name.getText().toString();
 		phone=et_tel.getText().toString();
 		price=t_y.getText().toString();
-		String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/getIntegralList/";
+		String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/insertIntegralConvert";
 		RequestParams params = new RequestParams();
 		
 		if(StringUtil.replaceBlank(name).length()==0){
@@ -161,7 +93,7 @@ public class Exchange extends BaseActivity implements OnClickListener{
 		}
 		
 		System.out.println(name+"--"+phone+"---"+price);
-		params.put("customerId", 8);
+		params.put("customerId", 80);
 		params.put("name",name);
 		params.put("phone", phone);
 		params.put("price", price);
@@ -196,8 +128,8 @@ public class Exchange extends BaseActivity implements OnClickListener{
 //			 				 
 //								myList.addAll(moreList);
 //				 				handler.sendEmptyMessage(0);
-				 					  
-			 				 
+								Toast.makeText(getApplicationContext(), "兑换成功", 1000).show();
+								
 			 			 
 							}else{
 								code = jsonobject.getString("message");

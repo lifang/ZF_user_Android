@@ -61,7 +61,7 @@ public class AdressList extends BaseActivity  {
 				
 				if(myList.size()==0){
 				//	norecord_text_to.setText("��û����ص���Ʒ");
-					Xlistview.setVisibility(View.GONE);
+					lv.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
 				onRefresh_number = true; 
@@ -110,7 +110,7 @@ public class AdressList extends BaseActivity  {
 			 
 			new TitleMenuUtil(AdressList.this, "地址管理").show();
 			myAdapter=new AdressAdapter(AdressList.this, myList);
-//			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
+			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 //			Xlistview=(XListView) findViewById(R.id.x_listview);
 //			// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������");
 //			Xlistview.setPullLoadEnable(true);

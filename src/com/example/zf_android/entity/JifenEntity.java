@@ -7,6 +7,25 @@ public class JifenEntity {
 //    "types": 1,
 //    "target_type": 1,
 //    "actual_price": 408
+	//{"moneyTotal":8800,"quantityTotal":88}}
+	private int moneyTotal;
+	private int quantityTotal;
+	
+	
+	
+	
+	public int getMoneyTotal() {
+		return moneyTotal;
+	}
+	public void setMoneyTotal(int moneyTotal) {
+		this.moneyTotal = moneyTotal;
+	}
+	public int getQuantityTotal() {
+		return quantityTotal;
+	}
+	public void setQuantityTotal(int quantityTotal) {
+		this.quantityTotal = quantityTotal;
+	}
 	private String order_number;
 	private String payedAt;
 	private int quantity;

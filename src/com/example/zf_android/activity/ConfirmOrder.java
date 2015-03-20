@@ -374,7 +374,7 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 								byte[] responseBody, Throwable error) {
 							// TODO Auto-generated method stub
 							System.out.println("-onFailure---");
-							Log.e("print", "-onFailure---" + error);
+							Log.e("print", statusCode+"-onFailure---" + headers.toString()+responseBody.toString());
 						}
 					});
 	 
