@@ -1,5 +1,9 @@
 package com.example.zf_android.activity;
 
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
+
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
  
 import com.examlpe.zf_android.util.StringUtil;
@@ -20,6 +25,11 @@ import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.CityProvinceActivity;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.entity.City;
+import com.example.zf_android.trade.entity.Province;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
@@ -28,18 +38,19 @@ import com.loopj.android.http.RequestParams;
 /***
  * 
 *    
-* ¿‡√˚≥∆£∫RegistMail   
-* ¿‡√Ë ˆ£∫   ” œ‰◊¢≤·
-* ¥¥Ω®»À£∫ ljp 
-* ¥¥Ω® ±º‰£∫2015-2-11 œ¬ŒÁ2:56:14   
+* ÔøΩÔøΩÔøΩÔøΩ∆£ÔøΩRegistMail   
+* ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ   ÔøΩÔøΩÔøΩÔøΩ◊¢ÔøΩÔøΩ
+* ÔøΩÔøΩÔøΩÔøΩÔøΩÀ£ÔøΩ ljp 
+* ÔøΩÔøΩÔøΩÔøΩ ±ÔøΩ‰£∫2015-2-11 ÔøΩÔøΩÔøΩÔøΩ2:56:14   
 * @version    
 *
  */
 public class RegistMail extends BaseActivity implements OnClickListener{
-	 
+	 private int cityid;
+	 private TextView tv_jy_type;
 	private String  username,password;
 	private EditText login_edit_code,login_edit_pass,login_edit_pass2;
-	private LinearLayout login_linear_deletcode,login_linear_deletpass,login_linear_deletpass2,login_linear_signin;
+	private LinearLayout ll_jy_type,login_linear_deletcode,login_linear_deletpass,login_linear_deletpass2,login_linear_signin;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -47,10 +58,14 @@ public class RegistMail extends BaseActivity implements OnClickListener{
 		setContentView(R.layout.regist_mail);
 		String a=getIntent().getStringExtra("email");
 		initView();
+		cityid=MyApplication.getCITYID();
 		login_edit_code.setText(a);
 	}
 	private void initView() {
 		// TODO Auto-generated method stub
+		ll_jy_type=(LinearLayout) findViewById(R.id.ll_jy_type);
+		ll_jy_type.setOnClickListener(this);
+		tv_jy_type=(TextView) findViewById(R.id.tv_jy_type);
 		login_linear_deletcode=(LinearLayout) findViewById(R.id.login_linear_deletcode);
 		login_linear_deletcode.setOnClickListener(this);
 		login_edit_code=(EditText) findViewById(R.id.login_edit_code);
@@ -145,6 +160,25 @@ public class RegistMail extends BaseActivity implements OnClickListener{
 			}
 		});
 	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode != RESULT_OK) return;
+		switch (requestCode) {
+		case REQUEST_CHOOSE_CITY:
+			Province	mMerchantProvince = (Province) data.getSerializableExtra(SELECTED_PROVINCE);
+			City	mMerchantCity = (City) data.getSerializableExtra(SELECTED_CITY);
+			System.out.println(mMerchantCity.getId()+"mMerchantCity"+mMerchantCity.toString());
+			tv_jy_type.setText(mMerchantCity.getName());
+			cityid=mMerchantCity.getId();
+			break;
+
+		default:
+			break;
+		}
+	}
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -163,6 +197,11 @@ public class RegistMail extends BaseActivity implements OnClickListener{
 				login();
 			}
 			break;
+		  case R.id.ll_jy_type: 
+				Intent intent = new Intent(RegistMail.this, CityProvinceActivity.class);
+ 
+				startActivityForResult(intent, REQUEST_CHOOSE_CITY);
+			  break;
 		default:
 			break;
 		}
@@ -172,91 +211,47 @@ public class RegistMail extends BaseActivity implements OnClickListener{
 		//username,password
 		username=StringUtil.replaceBlank(login_edit_code.getText().toString());
 		if(username.length()==0){
-			Toast.makeText(getApplicationContext(), "”√ªß√‹¬Î≤ªƒ‹Œ™ø’",
+			Toast.makeText(getApplicationContext(), "ËØ∑ËæìÂÖ•ÈÇÆÁÆ±",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		password=StringUtil.replaceBlank(login_edit_pass.getText().toString());
 		String password2=StringUtil.replaceBlank(login_edit_pass2.getText().toString());
 		if(password.length()<4){
-			Toast.makeText(getApplicationContext(), "”√ªß√‹¬Î±ÿ–Î¥Û”⁄4Œª",
+			Toast.makeText(getApplicationContext(), "ÂØÜÁ†Å‰∏çËÉΩ‰∏∫Á©∫",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(!password.equals(password2)){
-			Toast.makeText(getApplicationContext(), "√‹¬Î≤ª“ª÷¬",
+			Toast.makeText(getApplicationContext(), "‰∫åÊ¨°ÂØÜÁ†Å‰∏ç‰∏ÄÊ†∑",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		password=StringUtil.Md5(password);
 		return true;
 	}
-	private void login() {
-		// TODO Auto-generated method stub
-		 AsyncHttpClient client = new AsyncHttpClient();  
-	 
-		RequestParams params = new RequestParams();
-		 
-		params.put("username",username); 
-		params.put("studentPassword", password); 
-		params.put("cityId", Config.CITY_ID); 
-		params.put("accountType", true); 	 
-		params.setUseJsonStreamer(true);
-  
-		MyApplication.getInstance().getClient().post(Config.UserRegistration, params, new AsyncHttpResponseHandler() {
+	private void login() { 
+		 API.zhuche(RegistMail.this, username,password,"", cityid,true,
+	        		
+	                new HttpCallback(RegistMail.this) {
+	           
 
-			@Override
-			public void onSuccess(int statusCode, Header[] headers,
-					byte[] responseBody) {
- 
-				// TODO Auto-generated method stub
-				String responseMsg = new String(responseBody).toString();
-				System.out.println("MSG" + responseMsg);	
-				System.out.println("headers" + headers.toString());	
-				Gson gson = new Gson();
-				
-				JSONObject jsonobject = null;
-				int code = 0;
-				try {
-					jsonobject = new JSONObject(responseMsg);
-					code = jsonobject.getInt("code");
-					if(code==1){ //≈–∂œ∑µªÿΩ·π˚ «∑Ò∫œ∑®
-						Toast.makeText(getApplicationContext(),  jsonobject.getString("result"), 1000).show();
-//						User current = gson.fromJson(jsonobject.getString("result"), new TypeToken<User>() {
-//	 					}.getType());
-//	 					 MyApplication.currentUser = current;
-//	 					 
-//	 					editor.putString("name", current.getStudentEmail());
-//	 					editor.putString("pass", login_edit_pass.getText().toString());
-//	 					editor.putString("tag",mySharedPreferences.getString("tag", "tag")+","+current.getStudentId());
-//	 					editor.commit();
-//	 					 
-//	 					 
-//	 					 MyApplication.setToken(jsonobject.getString("token"));
-//	 					 Intent i =new Intent(LoginActivity.this,MainActivity.class);
-//	 					 startActivity(i);
-	 				 
-	 					 finish();
-					}else{
-						 
-						Toast.makeText(getApplicationContext(),  jsonobject.getString("result"), 1000).show();
-					}
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					System.out.println("MSG" + "e````"+e.toString());	
-					e.printStackTrace();
-					
-				}
-			}
+						@Override
+						public void onSuccess(Object data) {
+							// TODO Auto-generated method stub
+				 		Toast.makeText(RegistMail.this, "Ê≥®ÂÜåÊàêÂäü", 1000).show();
+				 	//	Regist4phoneSucces//
+						Intent i =new Intent(getApplicationContext(), Regist4phoneSucces.class);
+						i.putExtra("tel", username);
+						startActivity(i);
+					 
+						}
 
-			@Override
-			public void onFailure(int statusCode, Header[] headers,
-					byte[] responseBody, Throwable error) {
-				// TODO Auto-generated method stub
-				login_linear_signin.setClickable(true);
-				Toast.makeText(getApplicationContext(), "«ÎºÏ≤ÈÕ¯¬ÁŒ Ã‚",
-						Toast.LENGTH_SHORT).show();
-			}
-		});
+						@Override
+						public TypeToken getTypeToken() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+	                });
 	}
 }

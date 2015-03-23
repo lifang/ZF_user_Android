@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@color/F3F2F2"
+  	 >
+
+ <include layout="@layout/title_back" />
+ 		<TextView android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:layout_marginTop="50dp"
+ 		    android:text="重置密码邮件"
+ 		    android:layout_gravity="center_horizontal"
+ 		    android:textColor="@color/text292929"
+ 		    android:textSize="13sp"/>
+<LinearLayout android:layout_marginTop="3dp"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center_horizontal">
+     		<TextView android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		     
+ 		    android:text="已发送至"
+ 		    android:layout_gravity="center_horizontal"
+ 		    android:textColor="@color/text292929"
+ 		    android:textSize="13sp"/>
+     		 		<TextView android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:id="@+id/tv_tel"
+ 		    android:text="135000@.com"
+ 		    android:layout_gravity="center_horizontal"
+ 		    android:textColor="@color/bgtitle"
+ 		    android:textSize="13sp"/>
+     		  
+</LinearLayout>
+<TextView android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:layout_marginTop="3dp"
+ 		    android:text="请注意查收"
+ 		    android:layout_gravity="center_horizontal"
+ 		    android:textColor="@color/text292929"
+ 		    android:textSize="13sp"/>
+<LinearLayout
+        android:id="@+id/login_linear_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+     	android:layout_gravity="center_horizontal"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/bg_blue_shape"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:text="马上登录"
+            android:textColor="@color/fffefe"
+            android:textSize="@dimen/s_17sp" />
+    </LinearLayout>
+</LinearLayout>

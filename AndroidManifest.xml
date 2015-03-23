@@ -346,7 +346,37 @@
              android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" >
         </activity>
-    
+         
+        	<activity
+            android:name="com.example.zf_android.activity.CreatMerchant"
+             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" >
+        </activity>
+             	<activity
+            android:name="com.example.zf_android.activity.Register3phone"
+             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" >
+        </activity> 
+                     	<activity
+            android:name="com.example.zf_android.activity.Regist4phoneSucces"
+             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" >
+        </activity><activity
+            android:name="com.example.zf_android.activity.Regist4mailSucces"
+             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" >
+        </activity>
+             	  
+             <activity
+            android:name="com.example.zf_android.activity.PassSucces"
+             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" >
+        </activity>	
+                          <activity
+            android:name="com.example.zf_android.activity.FindpassmailSucces"
+             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" >
+        </activity>		 
      </application>
 
 </manifest>

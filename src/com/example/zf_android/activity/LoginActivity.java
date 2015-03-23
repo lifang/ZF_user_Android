@@ -36,6 +36,8 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.User;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.HttpCallback;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
@@ -96,7 +98,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.login);
 		
 		initView();
-		new TitleMenuUtil(LoginActivity.this, "��¼").show();
+		new TitleMenuUtil(LoginActivity.this, "登陆").show();
 		//new ClientUpdate(LoginActivity.this).checkSetting();
 	}
 
@@ -219,64 +221,28 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 
 	private void login() {
-		// TODO Auto-generated method stub
-		AsyncHttpClient client = new AsyncHttpClient(); // �����첽����Ŀͻ��˶���
-		RequestParams params = new RequestParams();
-	 
 
-		params.put("username", usename);
-		params.put("password", passsword);
-		params.setUseJsonStreamer(true);
-		
-		
-		String url=Config.LOGIN;
-		System.out.println("usename`` `" + usename);
-		System.out.println("passsword`` `" + passsword);
-		client.post(Config.LOGIN, params, new AsyncHttpResponseHandler() {
-
-			@Override
-			public void onSuccess(int statusCode, Header[] headers,
-					byte[] responseBody) {
-				// TODO Auto-generated method stub
-				String userMsg = new String(responseBody).toString();
-				System.out.println("userMsg`` `" + userMsg);
-			 
-				Gson gson = new Gson();
-
-// 
-//				ResultCode rc = gson.fromJson(userMsg.toString(), new TypeToken<ResultCode>() {
-//					}.getType());
-//				 
-//				 if(rc.getSolution()!=null&& rc.getSolution().length()>0){
-//					 // �жϴ��󷵻أ�����ʾ��Ϣ
-//						msg.setVisibility(View.VISIBLE);
-//						login_info.setText(rc.getMessage().toString());
-//				 }else{
-//					 
-//					 
-// 						User current = gson.fromJson(userMsg.toString(), new TypeToken<User>() {
-// 					}.getType());
-// 						MyApplication.currentUser = current;
-// 			 
-// 					
-// 					
-// 					Intent i =new Intent(getApplicationContext(),Main.class);
-// 					startActivity(i);
-// 					finish();
-//					System.out.println("�û���¼�ɹ�--���ֵ�¼��Ϣ"+mySharedPreferences.getBoolean("isRemeber", false));
-//				 }
- 			 
- 			 
  
-			}
+ 		System.out.println("usename`` `" + usename);
+ 		System.out.println("passsword`` `" + passsword);
+		 API.Login1(LoginActivity.this,usename,passsword,
+	        		
+	                new HttpCallback(LoginActivity.this) {
+	           
 
-			@Override
-			public void onFailure(int statusCode, Header[] headers,
-					byte[] responseBody, Throwable error) {
-				// TODO Auto-generated method stub
-				System.out.println("onFailure`` `"  );
-			}
-		});
+						@Override
+						public void onSuccess(Object data) {
+							// TODO Auto-generated method stub
+		 
+					 
+						}
+
+						@Override
+						public TypeToken getTypeToken() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+	                });
 
 	}
 	private boolean check() {
@@ -293,7 +259,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		passsword=StringUtil.Md5(passsword);
+	 	passsword=StringUtil.Md5(passsword);
+		System.out.println("---login-"+passsword);
 		return true;
 	}
 

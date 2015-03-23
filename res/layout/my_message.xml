@@ -10,6 +10,8 @@
 	<Button  android:id="@+id/bbb"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
+	    android:visibility="invisible"
+	     
 	    android:text="11111"/>
 	 <LinearLayout
         android:id="@+id/eva_nodata"

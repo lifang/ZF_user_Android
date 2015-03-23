@@ -96,8 +96,10 @@
             android:layout_height="fill_parent"
             android:background="@color/white"
             android:fadingEdge="none"
-            android:visibility="gone"
-            android:scrollbars="none" />
+            android:scrollbars="none"
+            android:visibility="gone" >
+        </com.examlpe.zf_android.util.XListView>
+
 		<ListView android:id="@+id/lv"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"/>
@@ -116,6 +118,7 @@
                 android:background="@color/Viewc2" />
 
             <TextView
+                android:id="@+id/tv_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -126,6 +129,7 @@
 "
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"

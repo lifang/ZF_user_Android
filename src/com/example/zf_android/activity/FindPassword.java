@@ -12,6 +12,7 @@ import android.os.Message;
  
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -25,13 +26,25 @@ import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.HttpCallback;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
- 
+ /***
+  * 
+ *    
+ * ç±»åç§°ï¼šFindPassword   
+ * ç±»æè¿°ï¼š   æ‰‹æœºæ‰¾å›å¯†ç 
+ * åˆ›å»ºäººï¼š ljp 
+ * åˆ›å»ºæ—¶é—´ï¼š2015-3-23 ä¸‹åˆ3:49:21   
+ * @version    
+ *
+  */
 public class FindPassword extends BaseActivity   implements OnClickListener{
 	private TextView tv_code,tv_msg,tv_check;
 	private EditText login_edit_email,login_edit_code,login_edit_pass,login_edit_pass2;
@@ -53,11 +66,11 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
             		isRun=false;
             		tv_code.setClickable(true);
             	 
-            		tv_code.setText("·¢ËÍÑéÖ¤Âë");
+            		tv_code.setText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½");
             		System.out.println("destroy`"+Countmun);
             	}else{
                  	Countmun--;  
-                 	tv_code.setText(  Countmun+"ÃëºóÖØĞÂ·¢ËÍ");  
+                 	tv_code.setText(  Countmun+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½");  
             		System.out.println("Countmun`D2`"+Countmun);
             	}
     
@@ -71,7 +84,7 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_findpass);
-		new TitleMenuUtil(FindPassword.this, "ÕÒ»ØÃÜÂë").show();
+		new TitleMenuUtil(FindPassword.this, "æ‰¾å›å¯†ç ").show();
 		initView();
 		url=Config.FINDPASS;
 	   runnable = new Runnable() {  
@@ -81,11 +94,11 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 	        	 
 	        		Countmun=120;
 	        		tv_code.setClickable(true);
-	    			tv_code.setText("·¢ËÍÑéÖ¤Âë");
+	    			tv_code.setText("å‘é€éªŒè¯ç ");
 	        	}else{
 	        		
 	        		Countmun--;  
-	        		tv_code.setText( Countmun+"ÃëºóÖØĞÂ·¢ËÍ");  
+	        		tv_code.setText( Countmun+"ç§’åé‡æ–°å‘é€");  
 		         
 		            handler.postDelayed(this, 1000);  
 	        	}
@@ -107,21 +120,13 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 		switch ( v.getId()) {
  
 			 
-		case R.id.tv_code:  // »ñÈ¡ÑéÖ¤Âëtv_check
-//			tv_check.setVisibility(View.INVISIBLE);
-//			email=StringUtil.replaceBlank(login_edit_email.getText().toString());
-//			if(email.length()==0){
-//				Toast.makeText(getApplicationContext(), "Email cannot be empty£¡",
-//						Toast.LENGTH_SHORT).show();
-//				break;
-//			}
-			
-			
+		case R.id.tv_code:  // ï¿½ï¿½È¡ï¿½ï¿½Ö¤ï¿½ï¿½tv_check
+ 
 		 	tv_code.setClickable(false);
-			tv_code.setText("120ÃëºóÖØĞÂ»ñÈ¡");
+			tv_code.setText("120ç§’");
 			getCode();
 			break;
-		case R.id.tv_check:  // »ñÈ¡ÑéÖ¤Âë 
+		case R.id.tv_check:  // ï¿½ï¿½È¡ï¿½ï¿½Ö¤ï¿½ï¿½ 
 			System.out.println("vcode"+vcode);
 			 
 			if(login_edit_code.getText().toString().equals(vcode)){
@@ -133,7 +138,7 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 			}
 			
 			break;
-		case R.id.login_linear_signin:  // »ñÈ¡ÑéÖ¤Âë 
+		case R.id.login_linear_signin:  // ï¿½ï¿½È¡ï¿½ï¿½Ö¤ï¿½ï¿½ 
 		//	pass=StringUtil.replaceBlank(login_edit_pass.getText().toString());
 		 
 			//pass= StringUtil.Md5(pass);
@@ -164,18 +169,18 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 		// TODO Auto-generated method stub
 		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
 		if(email.length()==0){
-			Toast.makeText(getApplicationContext(), "Email cannot be empty£¡",
+			Toast.makeText(getApplicationContext(), "æ‰‹æœºå·ä¸èƒ½ä¸ºç©º",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		
 		if(StringUtil.replaceBlank(login_edit_code.getText().toString()).length()==0){
-			Toast.makeText(getApplicationContext(), "vcode cannot be empty£¡",
+			Toast.makeText(getApplicationContext(), "è¯·è¾“å…¥éªŒè¯ç ",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(!login_edit_code.getText().toString().endsWith(vcode)){
-			Toast.makeText(getApplicationContext(), "vcode error£¡",
+			Toast.makeText(getApplicationContext(), "éªŒè¯ç é”™è¯¯",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
@@ -183,16 +188,16 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 		
 		pass=StringUtil.replaceBlank(login_edit_pass.getText().toString());
 		if(pass.length()==0){
-			Toast.makeText(getApplicationContext(), "Password cannot be empty£¡",
+			Toast.makeText(getApplicationContext(), "è¯·è¾“å…¥å¯†ç ",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(!login_edit_pass2.getText().toString().equals(pass)){
-			Toast.makeText(getApplicationContext(), "Password donot match£¡",
+			Toast.makeText(getApplicationContext(), "äºŒæ¬¡å¯†ç ä¸ä¸€è‡´",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
-	//	pass=StringUtil.Md5(pass);
+	 	pass=StringUtil.Md5(pass);
 		return true;
 	}
 
@@ -200,17 +205,32 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 		// TODO Auto-generated method stub
  
 		RequestParams params = new RequestParams();
-		params.put("studentPassword",pass);
-		params.put("activationCode",vcode); 
-		params.put("studentEmail", email); 
-		System.out.println(pass+"-md5--");
+		params.put("password",pass);
+		params.put("code",vcode); 
+		params.put("username", email); 
+		System.out.println(pass+"-------"+email+"----"+vcode);
 		pass=StringUtil.replaceBlank(login_edit_pass.getText().toString());
-		System.out.println(pass+"--md5-");
+		 API.PhonefindPass(FindPassword.this, pass,vcode,email,
+		
+        new HttpCallback(FindPassword.this) {	           
+			@Override
+			public void onSuccess(Object data) {
+				// TODO Auto-generated method stub
+	 		Toast.makeText(FindPassword.this, "ä¿®æ”¹å¯†ç æˆåŠŸ", 1000).show();
+	 		Intent i =new Intent(getApplication(),PassSucces.class);
+	 		startActivity(i);
+			}
+			@Override
+			public TypeToken getTypeToken() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+        });
 		
 	 
 		
-		params.setUseJsonStreamer(true);
-//		MyApplication.getInstance().getClient().post(Config.studentFindPassword, params, new AsyncHttpResponseHandler() {
+//		params.setUseJsonStreamer(true);
+//		MyApplication.getInstance().getClient().post(Config.updatePassword, params, new AsyncHttpResponseHandler() {
 //
 //			@Override
 //			public void onSuccess(int statusCode, Header[] headers,
@@ -218,7 +238,7 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 //				// TODO Auto-generated method stub
 //				String responseMsg = new String(responseBody).toString();
 //				System.out.println("MSG" + responseMsg);	
-//				System.out.println("headers" + headers.toString());	
+//			 
 //				Gson gson = new Gson();				
 //				JSONObject jsonobject = null;
 //				int code = 0;
@@ -232,7 +252,7 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 //					}else if(code==0){
 //						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
 //								Toast.LENGTH_SHORT).show();
-//						Intent i =new Intent(getApplication(),LoginActivity.class);
+//						Intent i =new Intent(getApplication(),PassSucces.class);
 //						startActivity(i);
 //					}else{
 //						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
@@ -240,7 +260,7 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 //					}	 
 //				} catch (JSONException e) {
 //					// TODO Auto-generated catch block
-//					System.out.println("MSG" + "e````"+e.toString());	
+//					System.out.println( "e````"+e.toString());	
 //					e.printStackTrace();
 //					
 //				}
@@ -257,70 +277,63 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 	}
 
 	/**
-	 * »ñÈ¡ÑéÖ¤Âë
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ö¤ï¿½ï¿½
 	 */
 	private void getCode() {
 		// TODO Auto-generated method stub
  		 
 		//tv_code.setText("Resent Code");
-		 handler.postDelayed(runnable, 1000);  
-		 vcode="1234";
-//		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
-//		RequestParams params = new RequestParams();
-//		params.put("email",email);
-//		System.out.println("email----"+email);
-//		params.setUseJsonStreamer(true);
-//		AsyncHttpClient client =MyApplication.getInstance().getClient();
-//		client.setTimeout(30000);
-//		client.post(Config.getActivationCode, params, new AsyncHttpResponseHandler() {
-//
-//			@Override
-//			public void onSuccess(int statusCode, Header[] headers,
-//					byte[] responseBody) {
-//				// TODO Auto-generated method stub
-//				String responseMsg = new String(responseBody).toString();
-//				System.out.println("MSG" + responseMsg);			
-//				Gson gson = new Gson();
-//				JSONObject jsonobject;
-//			 
-//			 
-//				try {
-//					jsonobject = new JSONObject(responseMsg);
-//					int code=jsonobject.getInt("code");
-//					System.out.println("code`1`"+code);
-//					if(code==-2){
-//						System.out.println("code`-2`"+code);
-//						Intent i =new Intent(getApplication(),LoginActivity.class);
-//						startActivity(i);
-//					}else if(code==0){
-//						tv_check.setVisibility(View.VISIBLE);
-//						System.out.println("code`0`"+code);
-//						Result rs = gson.fromJson(jsonobject.getString("result"), new TypeToken<Result>() {
-//	 					}.getType());
-//						vcode=rs.getActivationCode();
-//						System.out.println("vcode"+vcode);
-//					}else{
-//						System.out.println("MSG" + "else" );	
-//						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-//								Toast.LENGTH_SHORT).show();
-//					}
-//				} catch (Exception e) {
-//					// TODO: handle exception
-//					System.out.println("MSG" + "e````"+e.toString());	
-//				//	 Toast.makeText(getApplicationContext(), e.toString(), 1000).show();
-//				}
-// 
-//			}
-//
-//			@Override
-//			public void onFailure(int statusCode, Header[] headers,
-//					byte[] responseBody, Throwable error) {
-//				// TODO Auto-generated method stub
-//
-//			}
-//		});
+	//	 handler.postDelayed(runnable, 1000);  
+		 
+		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
+			AsyncHttpClient aaa= new AsyncHttpClient();
+
+		// TODO Auto-generated method stub
+		String url = "http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind";
+		RequestParams params = new RequestParams();
+		params.put("codeNumber", email);
+		params.setUseJsonStreamer(true);
+		System.out.println("-codeNumber---"+email);
+		
+		aaa.post(url, params, new AsyncHttpResponseHandler() {
+
+					@Override
+					public void onSuccess(int statusCode, Header[] headers,
+							byte[] responseBody) {
+						String responseMsg = new String(responseBody)
+								.toString();
+						 
+						try {
+							vcode=new JSONObject(responseMsg).getString("result");
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						System.out.println("-vcode---"+vcode);
+						Toast.makeText(getApplicationContext(), "å‘é€æˆåŠŸ", 1000).show();
+
+					}
+
+					@Override
+					public void onFailure(int statusCode, Header[] headers,
+							byte[] responseBody, Throwable error) {
+						// TODO Auto-generated method stub
+						System.out.println("-onFailure---");
+						Log.e("print", "-onFailure---" + error);
+					}
+				});
+
+		 
+	
+	
+		 
+		 
+		 
+		 
  
 	}
+ 
+	 
 	private void initView() {
 		// TODO Auto-generated method stub
 		tv_check=(TextView) findViewById(R.id.tv_check);

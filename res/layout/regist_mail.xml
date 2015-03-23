@@ -31,16 +31,7 @@
              android:background="@color/ffffff"
             >
 
-            <LinearLayout
-                android:id="@+id/login_img_passcode"
-                android:layout_width="48dp"
-                android:layout_height="fill_parent"
-                android:gravity="center" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+             
 
 				<EditText
 				    android:id="@+id/login_edit_code"
@@ -49,7 +40,7 @@
 				    android:layout_toRightOf="@id/login_img_passcode"
 				    android:background="@color/ffffff"
 				    android:gravity="center_vertical"
-				     
+				    android:layout_marginLeft="@dimen/margin_left2"
 				    android:maxWidth="20dp"
 				    android:singleLine="true"
 				    android:textColor="@color/t333333"
@@ -298,7 +289,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            
+            android:gravity="right"
             android:maxLength="8"
             android:layout_marginLeft="7dp"
             android:text="上海"

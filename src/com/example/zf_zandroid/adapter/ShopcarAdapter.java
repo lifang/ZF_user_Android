@@ -81,8 +81,10 @@ public class ShopcarAdapter extends BaseAdapter {
 			holder.Model_number = (TextView) convertView
 					.findViewById(R.id.Model_number);
 			// holder.title = (TextView) convertView.findViewById(R.id.title);
-			// holder.evevt_img = (ImageView)
-			// convertView.findViewById(R.id.evevt_img);
+			 holder.delete_img = (ImageView)
+			  convertView.findViewById(R.id.delete_img);
+			 
+			 
 			holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
 			holder.editBtn.setOnClickListener(onClick);
 			holder.ll_select = (LinearLayout) convertView
@@ -98,12 +100,13 @@ public class ShopcarAdapter extends BaseAdapter {
 
 			holder.reduce.setTag(holder);
 			holder.add.setTag(holder);
-
+			holder.delete_img.setTag(holder);
+			holder.delete_img.setOnClickListener(onClick);
 			holder.reduce.setOnClickListener(onClick);
 			holder.add.setOnClickListener(onClick);
 			holder.retail_price = (TextView) convertView
 					.findViewById(R.id.retail_price);
-			holder.delete = convertView.findViewById(R.id.delete);
+		//	holder.delete = convertView.findViewById(R.id.delete);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -129,7 +132,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			ViewHolder hoder = (ViewHolder) v.getTag();
-			int position = hoder.position;
+		 int position = hoder.position;
 			Good editGood = list.get(position);
 		  	int quantity = editGood.getQuantity();
 		 	//int quantity = Integer.parseInt(holder.buyCountEdit.getText().toString());
@@ -138,7 +141,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				LinearLayout ll_select = hoder.ll_select;
 				boolean isEdit = ll_select.getVisibility() == View.VISIBLE ? true
 						: false;
-				hoder.delete.setVisibility(isEdit ? View.INVISIBLE
+				hoder.delete_img.setVisibility(isEdit ? View.INVISIBLE
 						: View.VISIBLE);
 				hoder.ll_select.setVisibility(isEdit ? View.INVISIBLE
 						: View.VISIBLE);
@@ -151,8 +154,43 @@ public class ShopcarAdapter extends BaseAdapter {
 				}
 				break;
 
-			case R.id.delete:
-				// do delete
+			case R.id.delete_img:
+
+				 
+				// TODO Auto-generated method stub
+				String url = "http://114.215.149.242:18080/ZFMerchant/api/cart/delete";
+				RequestParams params = new RequestParams();
+				params.put("id", list.get(hoder.position).getId()); 
+				 final int index =hoder.position;
+				params.setUseJsonStreamer(true);
+
+				MyApplication.getInstance().getClient()
+						.post(url, params, new AsyncHttpResponseHandler() {
+
+							@Override
+							public void onSuccess(int statusCode, Header[] headers,
+									byte[] responseBody) {
+								String responseMsg = new String(responseBody)
+										.toString();
+								Log.e("print", responseMsg);
+
+							 list.remove(index );
+							 notifyDataSetChanged();
+
+							}
+
+							@Override
+							public void onFailure(int statusCode, Header[] headers,
+									byte[] responseBody, Throwable error) {
+								// TODO Auto-generated method stub
+								System.out.println("-onFailure---");
+								Log.e("print", "-onFailure---" + error);
+							}
+						});
+		 
+			 
+			 
+		
 				break;
 			case R.id.reduce:
 
@@ -256,10 +294,10 @@ public class ShopcarAdapter extends BaseAdapter {
 		 
 	}
 	public final class ViewHolder {
-		private int position;
+	 	private int position;
 		private CheckBox checkBox;
 		private TextView title;
-
+		private ImageView delete_img;
 	 
 		private TextView editBtn;
 		private LinearLayout ll_select;

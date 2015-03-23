@@ -116,7 +116,7 @@
                     android:textSize="11sp" />
 
                 <ImageView
-                    android:id="@+id/delete"
+                    android:id="@+id/delete_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

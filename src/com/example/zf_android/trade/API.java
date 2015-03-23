@@ -2,6 +2,7 @@ package com.example.zf_android.trade;
 
 import android.content.Context;
 
+import com.example.zf_android.Config;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
 
@@ -95,11 +96,14 @@ public class API {
 	public static final String UPLOAD_IMAGE = SCHEMA + HOST + "/ZFMerchant/api/comment/upload/tempImage";
 	// Apply Submit
 	public static final String APPLY_SUBMIT = SCHEMA + HOST + "/ZFMerchant/api/apply/addOpeningApply";
-
-	// Apply Opening Progress Query
+	public static final String GETEMAILPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendEmailVerificationCode";
+	// Apply Opening Progress Query  GETEMAILPASS
 	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
 	public static final String WNATBUY = SCHEMA + HOST + "/ZFMerchant/api/paychannel/intention/add";
 	public static final String Add_ress = SCHEMA + HOST + "/ZFMerchant/api/customers/insertAddress/";
+	public static final String GETCODE4PHONE = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeReg";
+	public static final String ZHUCHE = SCHEMA + HOST + "/ZFMerchant/api/user/userRegistration";
+	public static final String GETPHONEPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeFind";
 	public static void getTerminalList(
 			Context context,
 			int customerId,
@@ -444,6 +448,71 @@ public class API {
 		params.put("customerId", customerId);
 		new HttpRequest(context, callback).post(Add_ress, params);
 	}
-
+	public static void AddAdres1(
+			Context context,
+			String  codeNumber,
+	 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codeNumber", codeNumber);
  
+		new HttpRequest(context, callback).post(GETCODE4PHONE, params);
+	}
+	public static void getEmailPass(
+			Context context,
+			String  codeNumber,
+	 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codeNumber", codeNumber);
+ 
+		new HttpRequest(context, callback).post(GETEMAILPASS, params);
+	}
+//	params.put("password",pass);
+//	params.put("code",vcode); 
+//	params.put("username", email); 
+	public static void PhonefindPass(
+			Context context,
+			String  password,
+			String code,
+			String username,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("password", password);
+		params.put("code", code);
+		params.put("username", username);
+		new HttpRequest(context, callback).post(Config.updatePassword, params);
+	}
+	public static void Login1(
+			Context context,
+			String  username,
+			String  passsword,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		params.put("passsword", passsword);
+		new HttpRequest(context, callback).post(Config.LOGIN, params);
+	}
+
+	public static void zhuche(
+			Context context,
+			String  username,
+			 
+			String  password,
+			String  code,
+			int  cityId,
+			Boolean accountType,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		 
+		params.put("password", password);
+		params.put("code", code);
+		params.put("cityId", cityId);
+		params.put("accountType", accountType);
+ 
+		
+ 
+		new HttpRequest(context, callback).post(ZHUCHE, params);
+	}
 }

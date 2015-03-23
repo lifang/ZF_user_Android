@@ -9,13 +9,17 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.google.gson.reflect.TypeToken;
 
 public class FindPass extends BaseActivity implements OnClickListener{
-	//·¢ËÍÖØÖÃÃÜÂëÓÊ¼ş
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½
 	private EditText login_edit_name;
 	private LinearLayout login_linear_deletename,login_linear_in;
 	private TextView tv_msg;
@@ -25,7 +29,7 @@ public class FindPass extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.findpass);
-		new TitleMenuUtil(FindPass.this,"ÕÒ»ØÃÜÂë").show();
+		new TitleMenuUtil(FindPass.this,"æ‰¾å›å¯†ç ").show();
 		initView();
 	}
 	private void initView() {
@@ -47,10 +51,10 @@ public class FindPass extends BaseActivity implements OnClickListener{
 					login_linear_deletename.setVisibility(View.GONE);
 				}
 				if(s.toString().contains("@")){
-					tv_msg.setText("·¢ËÍÖØÖÃÃÜÂëÓÊ¼ş");
+					tv_msg.setText("å‘é€è¿æ¥åˆ°é‚®ç®±");
 					isMail=true;
 				}else{
-					tv_msg.setText("·¢ËÍÑéÖ¤Âë");
+					tv_msg.setText("å‘é€éªŒè¯ç åˆ°æ‰‹æœº");
 					isMail=false;
 				}
 
@@ -77,12 +81,39 @@ public class FindPass extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.login_linear_in:
 			if(isMail){
-				//·¢ËÍÓÊ¼şÇëÇó
-				Intent i = new Intent(getApplicationContext(),
-						FindLogin.class);
-				startActivity(i);
+				 
+ 	 
+				System.out.println("-0--"+login_edit_name.getText().toString());
+				
+				 API.getEmailPass(FindPass.this, login_edit_name.getText().toString(),
+							
+					        new HttpCallback(FindPass.this) {	           
+								@Override
+								public void onSuccess(Object data) {
+									// TODO Auto-generated method stub
+						  
+						 	 
+						 		
+								Intent i = new Intent(getApplicationContext(),
+					 			FindpassmailSucces.class);
+					 			i.putExtra("tel", login_edit_name.getText().toString());
+					 			startActivity(i);
+								}
+								@Override
+								public TypeToken getTypeToken() {
+									// TODO Auto-generated method stub
+									return null;
+								}
+					        });
+ 
+				
 			}else{
-				//·¢ËÍÊÖ»úÇëÇó
+				
+				
+				
+				
+				
+				
 				Intent i = new Intent(getApplicationContext(),
 						FindPassword.class);
 				i.putExtra("phone", login_edit_name.getText().toString());

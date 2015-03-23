@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +33,7 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MerchantEntity;
+import com.example.zf_android.entity.MessageEntity;
 import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_zandroid.adapter.AdressAdapter;
@@ -52,8 +54,11 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	private MerchanAdapter myAdapter;
 	private ImageView search,img_add;
 	private ListView lv;
+	private int ids[]=new int []{};
+	private TextView tv_delete;
 	private int customerId=80;
 	List<MerchantEntity>  myList = new ArrayList<MerchantEntity>();
+	List<MerchantEntity> idList = new ArrayList<MerchantEntity>();
 	List<MerchantEntity>  moreList = new ArrayList<MerchantEntity>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -107,7 +112,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			Xlistview.setPullLoadEnable(true);
 			Xlistview.setXListViewListener(this);
 			Xlistview.setDivider(null);
-
+			tv_delete=(TextView) findViewById(R.id.tv_delete);
 			Xlistview.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override
@@ -163,9 +168,98 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					Intent i = new Intent(MerchantList.this, MerchantEdit.class);
-					i.putExtra("ID", 0);
+					Intent i = new Intent(MerchantList.this, CreatMerchant.class);
+					 
 					startActivity(i);
+				}
+			});
+			tv_delete.setOnClickListener(new OnClickListener() {
+				String UUU="http://114.215.149.242:18080/ZFMerchant/api/merchant/delete";
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+
+					for (int i = 0; i < myList.size(); i++) {
+
+						if (myList.get(i).getIscheck()) {
+							idList.add(myList.get(i));
+						}
+					}
+					
+					
+					
+					RequestParams params = new RequestParams();
+					ids=new int[idList.size()];
+					for (int i = 0; i < idList.size(); i++) {
+						ids[i]=idList.get(i).getId();
+						 
+					
+					}
+					Gson gson = new Gson();
+				  
+				//	params.put("customer_id", MyApplication.currentUser.getId());
+					try {
+						params.put("ids", new JSONArray(gson.toJson(ids)));
+					} catch (JSONException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+			  
+					params.setUseJsonStreamer(true);
+					MyApplication.getInstance().getClient()
+							.post(UUU, params, new AsyncHttpResponseHandler() {
+
+								@Override
+								public void onSuccess(int statusCode, Header[] headers,
+										byte[] responseBody) {
+									System.out.println("-onSuccess---");
+									String responseMsg = new String(responseBody)
+											.toString();
+									Log.e("LJP", responseMsg);
+									 
+									JSONObject jsonobject = null;
+									int code = 0;
+									try {
+										jsonobject = new JSONObject(responseMsg);
+										 
+										 
+										code = jsonobject.getInt("code");
+										
+										if(code==1){
+											for (int i = 0; i < myList.size(); i++) {
+
+												if (myList.get(i).getIscheck()) {
+													 
+													myList.remove(i);
+													 
+													System.out
+															.println("删除"+i);
+													
+												}
+												myList.get(i).setIscheck(false);
+											}
+									 
+											myAdapter.notifyDataSetChanged();
+										}else{
+											Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
+													Toast.LENGTH_SHORT).show();
+										}
+									} catch (JSONException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									 
+								}
+
+								@Override
+								public void onFailure(int statusCode, Header[] headers,
+										byte[] responseBody, Throwable error) {
+									// TODO Auto-generated method stub
+									error.printStackTrace();
+								}
+							});
+				
 				}
 			});
 		}
@@ -220,13 +314,13 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 
 			// TODO Auto-generated method stub
 			String url = "http://114.215.149.242:18080/ZFMerchant/api/merchant/getList/";
-			RequestParams params = new RequestParams();
+		//	RequestParams params = new RequestParams();
 			 
 			url=url+customerId+"/"+page+"/"+rows;
-			params.setUseJsonStreamer(true);
+			//params.setUseJsonStreamer(true);
 
 			MyApplication.getInstance().getClient()
-					.get(url, new AsyncHttpResponseHandler() {
+					.post(url, new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,
@@ -246,10 +340,10 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 								code = jsonobject.getString("code");
 								int a =jsonobject.getInt("code");
 								if(a==Config.CODE){  
-//									String res =jsonobject.getString("result");
-//									jsonobject = new JSONObject(res);
+ 								String res =jsonobject.getString("result");
+ 				jsonobject = new JSONObject(res);
 //									
-									moreList= gson.fromJson(jsonobject.getString("result"), new TypeToken<List<MerchantEntity>>() {
+									moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<MerchantEntity>>() {
 				 					}.getType());
 				 				 
 									myList.addAll(moreList);

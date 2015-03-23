@@ -1,6 +1,7 @@
 package com.example.zf_android.activity;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -17,6 +18,7 @@ import com.example.zf_android.R;
  */
 public class MerchantEdit extends BaseActivity{
 	private int id;
+	private EditText tv1,tv2,tv3,tv4,tv5,tv6,tv7,tv8,tv9;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

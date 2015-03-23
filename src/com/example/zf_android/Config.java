@@ -11,13 +11,15 @@ public class Config {
 	public final static String WANTBUY ="http://114.215.149.242:18080/ZFMerchant/api/paychannel/intention/add";
 	public final static String LOGIN = PATHS+"user/studentLogin";
 	public static final int CITY_ID = 1;
+	public static final   String xfh ="http://192.168.0.238:8080/ZFMerchant/api/user/studentLogin";
 	public static int UserID=1;
 	public static String goodcomment=PATHS+"comment/list";
-	//user/userRegistration
+	//user/userRegistration  http://114.215.149.242:18080/ZFMerchant/api/user/updatePassword
+	public final static String updatePassword = PATHS+"user/updatePassword";
 	public final static String UserRegistration = PATHS+"user/userRegistration";
 	public static final String SHARED = "zfandroid";
-	public static final String FINDPASS = null;
-	public final static String RegistgetCode = PATHS+"user/sendPhoneVerificationCode/";
+	public static final String FINDPASS = null; 
+	public final static String RegistgetCode = PATHS+"user/sendPhoneVerificationCodeReg";//sendPhoneVerificationCodeReg
 	public static final String GRTONE =PATHS+"customers/getOne/";
 	// http://114.215.149.242:18080/ZFMerchant/api/message/receiver/deleteById
 	public static final String DELETEMSG =PATHS+"message/receiver/deleteById";
@@ -37,5 +39,7 @@ public class Config {
 	public static final String SHOPORDER=PATHS+"order/shop";
 	 //"http://114.215.149.242:18080/ZFMerchant/api/order/cart"
 	public static final String order_cart =PATHS+"order/cart";
+//	http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind
+	
 	
 }
