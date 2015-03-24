@@ -7,6 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +25,9 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.OrderEntity;
+import com.example.zf_android.entity.UserEntity;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.HttpCallback;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -37,6 +42,8 @@ public class ChangePassword extends BaseActivity implements OnClickListener{
 //	passwordOld
 //	password
 	String passwordOld,password,password2;
+	private SharedPreferences mySharedPreferences;
+	private Editor editor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -49,66 +56,46 @@ public class ChangePassword extends BaseActivity implements OnClickListener{
 		login_edit_name3=(EditText) findViewById(R.id.login_edit_name3);
 		btn_exit=(Button) findViewById(R.id.btn_exit);
 		btn_exit.setOnClickListener(this);
+		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
+		editor = mySharedPreferences.edit();
 	}
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		if(check ()){
-		 String URL="http://114.215.149.242:18080/ZFMerchant/api/customers/updatePassword/";
+		  
 
 		 
-			RequestParams params = new RequestParams();
-			params.put("id", MyApplication.currentUser.getId());
-			params.put("passwordOld", passwordOld);
-			params.put("password", password);
-			params.setUseJsonStreamer(true);
-			 
-			MyApplication.getInstance().getClient()
-					.post(URL, params, new AsyncHttpResponseHandler() {
+//			RequestParams params = new RequestParams();
+//			params.put("id", MyApplication.currentUser.getId());
+//			params.put("passwordOld", passwordOld);
+//			params.put("password", password);
+//			params.setUseJsonStreamer(true);
+			 API.ChangePass(ChangePassword.this,MyApplication.NewUser.getId(),passwordOld,passwordOld,
+		        		
+		                new HttpCallback (ChangePassword.this) {
 
-						@Override
-						public void onSuccess(int statusCode, Header[] headers,
-								byte[] responseBody) {
-							String responseMsg = new String(responseBody)
-									.toString();
-							Log.e("print", responseMsg);
-
-						 
+							@Override
+							public void onSuccess(Object data) {
+								// TODO Auto-generated method stub
+								Toast.makeText(getApplicationContext(), "修改成功,请重新登录", 1000).show();
 							 
-							Gson gson = new Gson();
-							
-							JSONObject jsonobject = null;
-							String code = null;
-							try {
-								jsonobject = new JSONObject(responseMsg);
-								code = jsonobject.getString("code");
-								int a =jsonobject.getInt("code");
-								if(a==Config.CODE){  
-				 
-									Toast.makeText(getApplicationContext(), "修改成功", 1000).show();
-				 			 
-								}else{
-									code = jsonobject.getString("message");
-									Toast.makeText(getApplicationContext(), "修改失败", 1000).show();
-								}
-							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								 ;	
-								e.printStackTrace();
-								Toast.makeText(getApplicationContext(), "修改失败", 1000).show();
+			 					editor.putBoolean("islogin", false);
+				 		 
+				 				editor.commit();
+				 				
+				 				Intent i= new Intent(getApplicationContext(), LoginActivity.class);
+				 				startActivity(i);
+				 				finish();
 							}
 
-						}
-
-						@Override
-						public void onFailure(int statusCode, Header[] headers,
-								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
-							System.out.println("-onFailure---");
-							Log.e("print", "-onFailure---" + error);
-						}
-					});
+							@Override
+							public TypeToken getTypeToken() {
+								// TODO Auto-generated method stub
+								return   null;
+							};
+		                });
 	 
 		
 		}

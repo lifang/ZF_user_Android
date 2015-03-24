@@ -171,7 +171,7 @@
         android:layout_gravity="center"
         android:background="@color/ffffff"
         android:orientation="horizontal" 
-        android:visibility="gone">
+    >
 
         <include layout="@layout/include_norecord" />
     </LinearLayout>

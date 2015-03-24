@@ -14,7 +14,11 @@ import android.widget.Toast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.google.gson.reflect.TypeToken;
 /***
  * 
 *    
@@ -56,6 +60,7 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 		 switch (v.getId()) {
 		case R.id.btn_sub:
 				tv_content=login_edit_name.getText().toString();
+				 
 			 if(StringUtil.replaceBlank(tv_content).length()>0){
 				 
 					Intent intent2 = new Intent();
@@ -73,5 +78,7 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 	 
 	}
 
+ 
+	
 	 
 }

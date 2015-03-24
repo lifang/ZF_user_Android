@@ -17,6 +17,7 @@ import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.Goodlist;
 import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.User;
+import com.example.zf_android.entity.UserEntity;
 import com.example.zf_android.entity.MyShopCar.Good;
 import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.common.CommonUtil;
@@ -227,6 +228,14 @@ public class MyApplication extends Application{
 	}
 	public static void setSingle(List<ApplyneedEntity> single) {
 		MyApplication.single = single;
+	}
+
+	public static UserEntity NewUser = new UserEntity();
+	public static UserEntity getNewUser() {
+		return NewUser;
+	}
+	public static void setNewUser(UserEntity newUser) {
+		NewUser = newUser;
 	}
 
 

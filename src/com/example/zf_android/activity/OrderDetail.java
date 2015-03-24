@@ -227,9 +227,11 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			case 1:
 				tv_status.setText("未付款");
 				btn_ishow.setVisibility(View.VISIBLE);
+				ll_ishow2.setVisibility(View.GONE);
 				break;
 			case 2:
 				tv_status.setText("已付款");
+				ll_ishow.setVisibility(View.GONE);
 				ll_ishow2.setVisibility(View.VISIBLE);
 				break;
 			case 3:

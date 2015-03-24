@@ -44,6 +44,7 @@ import com.example.zf_android.R;
 import com.example.zf_android.entity.PicEntity;
 import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.entity.User;
+import com.example.zf_android.entity.UserEntity;
 import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
@@ -122,11 +123,9 @@ public class Main extends BaseActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		//初始化 测试数据
-		User user =new User();
-		user.setId(80);
-		MyApplication.currentUser=user;
+		MyApplication.NewUser.setId(80);
+		System.out.println("-onSuccess--id-"+MyApplication.NewUser.getId());
 		
-		System.out.println("-onSuccess--id-"+MyApplication.currentUser.getId() );
 		initView();
 		testbutton=(ImageView) findViewById(R.id.testbutton);
 		testbutton.setOnClickListener(new OnClickListener() {

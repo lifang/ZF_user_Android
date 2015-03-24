@@ -131,6 +131,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 				
 				 Intent i = new Intent(ShopCar.this, ConfirmOrder.class);
 				 i.putExtra("howMoney", howMoney.getText().toString());
+				 
 				 i.putExtra("index", index);
 				 startActivity(i);
 			}

@@ -1,6 +1,7 @@
 package com.example.zf_android.activity;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.Header;
@@ -36,8 +37,10 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.User;
+import com.example.zf_android.entity.UserEntity;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.entity.TerminalItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
@@ -100,6 +103,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 		initView();
 		new TitleMenuUtil(LoginActivity.this, "登陆").show();
 		//new ClientUpdate(LoginActivity.this).checkSetting();
+		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
+		editor = mySharedPreferences.edit();
 	}
 
 	private void initView() {
@@ -227,20 +232,28 @@ public class LoginActivity extends Activity implements OnClickListener {
  		System.out.println("passsword`` `" + passsword);
 		 API.Login1(LoginActivity.this,usename,passsword,
 	        		
-	                new HttpCallback(LoginActivity.this) {
-	           
+	                new HttpCallback<UserEntity> (LoginActivity.this) {
 
 						@Override
-						public void onSuccess(Object data) {
+						public void onSuccess(UserEntity data) {
 							// TODO Auto-generated method stub
-		 
-					 
+							System.out.println("id```"+data.getId());
+							MyApplication.NewUser = data;
+		 					editor.putBoolean("islogin", true);
+			 				editor.putString("name", data.getUsername());
+			 				editor.putInt("id", data.getId());
+			 				editor.commit();
+			 				System.out.println(mySharedPreferences.getBoolean("islogin", false)+"---");
+							Intent i =new Intent(getApplicationContext(), Main.class);
+							startActivity(i);
+							finish();	
 						}
 
 						@Override
 						public TypeToken getTypeToken() {
 							// TODO Auto-generated method stub
-							return null;
+							return  new TypeToken<UserEntity>() {
+							};
 						}
 	                });
 

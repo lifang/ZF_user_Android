@@ -33,8 +33,8 @@ public class API {
 	public static final String TRADE_RECORD_STATISTIC = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecordTotal/%d/%s/%s/%s";
 	// trade record detail
 	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecord/%d/%d";
-
-	// After sale record list
+	public static final String GETINFO = SCHEMA + HOST + "/ZFMerchant/api/customers/getOne/%d";
+	// After sale record list//http://114.215.149.242:18080/ZFMerchant/api/customers/getOne/
 	public static final String AFTER_SALE_MAINTAIN_LIST = SCHEMA + HOST + "/ZFMerchant/api/cs/repair/getAll";
 	public static final String AFTER_SALE_RETURN_LIST = SCHEMA + HOST + "/ZFMerchant/api/return/getAll";
 	public static final String AFTER_SALE_CANCEL_LIST = SCHEMA + HOST + "/ZFMerchant/api/cs/cancels/getAll";
@@ -490,8 +490,41 @@ public class API {
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("username", username);
-		params.put("passsword", passsword);
+		params.put("password", passsword);
 		new HttpRequest(context, callback).post(Config.LOGIN, params);
+	}
+	public static void ChangePass(
+			Context context,
+			int id,
+			String  passwordOld,
+			String  passsword,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("passwordOld", passwordOld);
+		params.put("password", passsword);
+		System.out.println("入参---"+params);
+		new HttpRequest(context, callback).post(Config.CHANGEPASS, params);
+	}
+	public static void ChangeMyInfo(
+			Context context,
+			int id,
+			String  name,
+			String  phone,
+			String  email,
+			int  cityId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		
+		params.put("name", name);
+		params.put("phone", phone);
+		params.put("email", email);
+		params.put("cityId", cityId);
+ 
+	 
+		System.out.println("入参---"+params);
+		new HttpRequest(context, callback).post("http://114.215.149.242:18080/ZFMerchant/api/customers/update/", params);
 	}
 
 	public static void zhuche(
@@ -515,4 +548,69 @@ public class API {
  
 		new HttpRequest(context, callback).post(ZHUCHE, params);
 	}
+	
+	
+	public static void GOODCONFIRM(
+			Context context,
+			int customerId,
+			int goodId,
+			int paychannelId,
+			int quantity,
+			int addressId,
+			String  comment,
+			int is_need_invoice,
+			int invoice_type,
+			String  invoice_info,
+		
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", customerId); 
+		params.put("goodId", goodId);
+		params.put("paychannelId", paychannelId);
+		params.put("quantity", quantity);
+		params.put("addressId", addressId);
+		params.put("comment", comment);
+		params.put("is_need_invoice", is_need_invoice);
+		params.put("invoice_type", invoice_type);
+		params.put("invoice_info", invoice_info);
+		System.out.println("参数--"+params.toString());
+		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+	}
+	
+	public static void getinfo(
+			Context context,
+			int id,
+		 
+			HttpCallback callback) {
+		new HttpRequest(context, callback).post(String.format(GETINFO, id));
+	}
+	
+	public static void CARTFIRM(
+			Context context,
+			int customerId,
+			int [] cartid,
+			int addressId,
+			String  comment,
+			
+			int is_need_invoice,
+			int invoice_type,
+			String  invoice_info,
+		
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", 80); 
+	 	int aa[]=new int []{138,140};
+		params.put("cartid",  aa); 
+		params.put("addressId", addressId);
+		params.put("comment", comment);
+		params.put("is_need_invoice", is_need_invoice);
+		params.put("invoice_type", invoice_type);
+		params.put("invoice_info", invoice_info);
+		System.out.println("参数--"+params.toString());
+		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+	}
+	
+	
+	
+	
 }

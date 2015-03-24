@@ -208,8 +208,8 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 		params.put("password",pass);
 		params.put("code",vcode); 
 		params.put("username", email); 
+	 
 		System.out.println(pass+"-------"+email+"----"+vcode);
-		pass=StringUtil.replaceBlank(login_edit_pass.getText().toString());
 		 API.PhonefindPass(FindPassword.this, pass,vcode,email,
 		
         new HttpCallback(FindPassword.this) {	           
@@ -218,6 +218,7 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 				// TODO Auto-generated method stub
 	 		Toast.makeText(FindPassword.this, "修改密码成功", 1000).show();
 	 		Intent i =new Intent(getApplication(),PassSucces.class);
+	 		i.putExtra("tel", email);
 	 		startActivity(i);
 			}
 			@Override

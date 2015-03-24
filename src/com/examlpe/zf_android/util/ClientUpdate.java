@@ -251,8 +251,7 @@ public class ClientUpdate {
 			}
 		}).start();
 	}
-
-	// ����ڲ��������첽�����°汾app ͨ����������
+ 
 	public class Update_AsyncTask extends AsyncTask<URL, Integer, Object> {
 		private long lastProgressUpdate = 0;
 		private double totalSize,nowSize;

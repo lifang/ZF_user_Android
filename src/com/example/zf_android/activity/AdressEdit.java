@@ -35,7 +35,7 @@ public class AdressEdit extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adress_edit);
 		initView();
-		getData();
+		//getData();
 	}
 	private void getData() {
 		// TODO Auto-generated method stub
@@ -48,7 +48,7 @@ public class AdressEdit extends BaseActivity{
 					public void onSuccess(Object data) {
 						// TODO Auto-generated method stub
 						Toast.makeText(AdressEdit.this, "新加成功", 1000).show();
-						finish();
+						//finish();
 					}
 
 					@Override

@@ -33,6 +33,9 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;
+import com.example.zf_android.entity.UserEntity;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_zandroid.adapter.ChooseAdressAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -47,7 +50,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	private LinearLayout ll_choose;
 	private TextView tv_pop,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count;
 	private Button btn_pay;
-	private String comment;
+	private String comment,invoice_info;
 	private ImageView reduce,add;
 	PopupWindow menuWindow;
 	private int pirce;
@@ -68,6 +71,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 //		i2.putExtra("chanelID", paychannelId);
 //		i2.putExtra("id", gfe.getId());
 //		startActivity(i2);
+		System.out.println("进入订单确认····");
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce=getIntent().getIntExtra("price", 0);
@@ -76,8 +80,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		paychannelId=getIntent().getIntExtra("paychannelId", 1);
 		tv_pay.setText("实付：￥ "+pirce); 
 		tv_totle.setText("实付：￥ "+pirce); 
-		getData();
-		getData1();
+		System.out.println("=paychannelId=="+paychannelId);
+		 getData1();
 	}
 
 	private void initView() {
@@ -416,53 +420,34 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", et_titel.getText().toString());
 		params.setUseJsonStreamer(true);
-		 
-		String Urla=Config.SHOPORDER;
-		MyApplication.getInstance().getClient()
-				.get(Urla, new AsyncHttpResponseHandler() {
+//		int customerId,
+//		int goodId,
+//		int paychannelId,
+//		int quantity,
+//		int addressId,
+//		String  comment,
+//		int is_need_invoice,
+//		int invoice_type,
+//		String  invoice_info,
+		invoice_info=et_titel.getText().toString();
+		API.GOODCONFIRM(GoodConfirm.this,MyApplication.NewUser.getId(),goodId,paychannelId,
+				quantity,addressId,comment,is_need_invoice,invoice_type,invoice_info,
+        		
+                new HttpCallback  (GoodConfirm.this) {
 
 					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg);
-						System.out.println("----"+responseMsg);
-					 
-						 
-						Gson gson = new Gson();
-						
-						JSONObject jsonobject = null;
-						String code = null;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							code = jsonobject.getString("code");
-							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){  
- 							 
-			 				 
-			 			 
-							}else{
-								code = jsonobject.getString("message");
-								Toast.makeText(getApplicationContext(), code, 1000).show();
-							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
-							e.printStackTrace();
-							
-						}
-
-					}
-
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
+					public void onSuccess(Object data) {
 						// TODO Auto-generated method stub
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
+					 
 					}
-				});
+
+					@Override
+					public TypeToken getTypeToken() {
+						// TODO Auto-generated method stub
+						return  null;
+					}
+                });
+
  
 	}
 }

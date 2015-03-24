@@ -35,6 +35,8 @@ import com.example.zf_android.entity.AdressEntity;
 import com.example.zf_android.entity.Answer;
 import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_android.entity.MyShopCar.Good;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_zandroid.adapter.ComfirmcarAdapter;
 import com.example.zf_zandroid.adapter.OrderDetail_PosAdapter;
 import com.example.zf_zandroid.adapter.RecordAdapter;
@@ -141,7 +143,8 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 				 menu_press();
 				break;
 			case R.id.btn_pay:
-				 pay();
+				  pay();
+				// getpay();
 				break;
 			case R.id.ll_adress:
 				 Intent ll_adress=new Intent(ConfirmOrder.this,ChanceAdress.class);
@@ -220,7 +223,7 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 				 			 
 								}else{
 									code = jsonobject.getString("message");
-									Toast.makeText(getApplicationContext(), code, 1000).show();
+									Toast.makeText(getApplicationContext(  ), code, 1000).show();
 								}
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
@@ -320,16 +323,19 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			params.put("customerId", MyApplication.currentUser.getId());
-			System.out.println("----"+MyApplication.currentUser.getId());
-			params.put("addressId", addressId);
-			params.put("comment", "");
+			
+//			参数--{invoice_info=, customerId=80, is_need_invoice=0, quantity=1,
+//					paychannelId=9, goodId=26, comment=, addressId=108, invoice_type=0}
+			params.put("customerId", 80);
+		 
+			params.put("addressId", 108);
+			params.put("comment", "1231");
 			params.put("is_need_invoice", 0);
-			params.put("token", 123);
-//			params.put("invoice_info", invoice_info);
+			params.put("invoice_type", 1);
+ 			params.put("invoice_info","tttt");
  
 			params.setUseJsonStreamer(true);
-
+			System.out.println("参数-lee-"+params);
 			MyApplication.getInstance().getClient()
 					.post(Config.order_cart, params, new AsyncHttpResponseHandler() {
 
@@ -351,9 +357,10 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 								code = jsonobject.getString("code");
 								int a =jsonobject.getInt("code");
 								if(a==Config.CODE){ 
-								//	Toast.makeText(getApplicationContext(), "评论成功", 1000).show();
-								//	finish();
+								 Toast.makeText(getApplicationContext(), "订单确认成功，请支付", 1000).show();
+								 
 									Intent i=new Intent(ConfirmOrder.this,PayFromCar.class);
+									i.putExtra("key", tv_pay.getText().toString());
 									startActivity(i);
 								}else{ 
 									
@@ -374,12 +381,53 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 								byte[] responseBody, Throwable error) {
 							// TODO Auto-generated method stub
 							System.out.println("-onFailure---");
-							Log.e("print", statusCode+"-onFailure---" + headers.toString()+responseBody.toString());
+						 
 						}
 					});
 	 
 			 
 		
 		
+		}
+		
+		public void getpay(){
+			
+			
+//			int customerId,
+//			int [] cartid,
+//			int addressId,
+//			String  comment,
+//			
+//			int is_need_invoice,
+//			int invoice_type,
+//			String  invoice_info,
+			int [] cartid=new int[comfirmList.size()];
+			for(int i=0;i<comfirmList.size();i++){
+				 
+				cartid[i]=comfirmList.get(i).getId();
+			}
+			comment=et_comment.getText().toString();
+			invoice_info =et_info.getText().toString();
+			
+			API.CARTFIRM(ConfirmOrder.this, MyApplication.NewUser.getId(),cartid,
+					addressId,comment,is_need_invoice,invoice_type,invoice_info,
+	        		
+	                new HttpCallback  (ConfirmOrder.this) {
+
+						@Override
+						public void onSuccess(Object data) {
+							// TODO Auto-generated method stub
+						 
+						}
+
+						@Override
+						public TypeToken getTypeToken() {
+							// TODO Auto-generated method stub
+							return  null;
+						}
+	                });
+			
+			
+			
 		}
 }

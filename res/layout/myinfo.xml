@@ -50,7 +50,7 @@
             android:gravity="right"
           
             android:singleLine="true"
-            android:text="张小小"
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -100,7 +100,7 @@
             android:gravity="right"
           
             android:singleLine="true"
-            android:text="15050056006"
+             
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -150,7 +150,7 @@
             android:gravity="right"
   
             android:singleLine="true"
-            android:text="123@gmail.com"
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -200,7 +200,7 @@
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="上海"
+            android:text="苏州"
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -250,7 +250,7 @@
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="200"
+             
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 

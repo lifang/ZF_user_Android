@@ -60,6 +60,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 	private int type;
 	private XListView Xlistview;
 	private int page=1;
+	private String p=null;
 	private TextView tv_type,tv_tyyp;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata;
@@ -176,7 +177,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				type = 1;
+				p=null;
 				tv_tyyp.setText("全部");
 
 				menuWindow.dismiss();
@@ -190,7 +191,8 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				type = 3;
+				type = 2;
+				p="2";
 				tv_tyyp.setText("租赁");
 
 			//	titleback_text_title.setText("");
@@ -204,7 +206,8 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				type = 2;
+				type = 1;
+				p="1";
 				tv_tyyp.setText("购买");
 
 			//	titleback_text_title.setText("");
@@ -272,6 +275,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		String url = "http://114.215.149.242:18080/ZFMerchant/api/order/getMyOrderAll";
 		RequestParams params = new RequestParams();
 		params.put("customer_id", 80);
+		params.put("p", p);
 		params.put("page", page);
 		params.put("pageSize", 5);
 		 

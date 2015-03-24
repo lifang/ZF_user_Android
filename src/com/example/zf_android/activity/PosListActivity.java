@@ -275,12 +275,8 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 							byte[] responseBody) {
 						String responseMsg = new String(responseBody)
 								.toString();
-						Log.e("print", responseMsg);
-
-					 
-						 
+						Log.e("print", responseMsg); 
 						Gson gson = new Gson();
-						
 						JSONObject jsonobject = null;
 						String code = null;
 						try {
@@ -289,16 +285,11 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 							int a =jsonobject.getInt("code");
 							if(a==Config.CODE){  
 								String res =jsonobject.getString("result");
-								jsonobject = new JSONObject(res);
-								
+								jsonobject = new JSONObject(res);	
 								moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<PosEntity>>() {
-			 					}.getType());
-			 				 
+			 					}.getType());			 				 
 								myList.addAll(moreList);
 				 				handler.sendEmptyMessage(0);
-			 					  
-			 				 
-			 			 
 							}else{
 								code = jsonobject.getString("message");
 								Toast.makeText(getApplicationContext(), code, 1000).show();

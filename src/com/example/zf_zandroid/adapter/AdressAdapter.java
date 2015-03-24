@@ -59,6 +59,7 @@ public class AdressAdapter extends BaseAdapter {
 			holder.item_cb = (CheckBox) convertView.findViewById(R.id.item_cb);
 			 holder.adresss = (TextView) convertView.findViewById(R.id.adresss);
 			convertView.setTag(holder);
+ 
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
@@ -71,7 +72,8 @@ public class AdressAdapter extends BaseAdapter {
 		}else{
 			holder.item_cb.setVisibility(View.GONE);
 		}
-		list.get(position).setIscheck(holder.item_cb.isChecked());
+	//	list.get(position).setIscheck(holder.item_cb.isChecked());
+ 
 		holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -80,8 +82,12 @@ public class AdressAdapter extends BaseAdapter {
 				list.get(position).setIscheck(isChecked);
 			}
 		});
- 
- 
+		if(list.get(position).getIscheck()==null){
+			holder.item_cb.setChecked(false);
+		}else{
+			holder.item_cb.setChecked(list.get(position).getIscheck());
+		}
+		 
 		return convertView;
 	}
 

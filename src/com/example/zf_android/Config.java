@@ -10,6 +10,7 @@ public class Config {
 	public static String getsysmes=PATHS+"web/message/getAll";
 	public final static String WANTBUY ="http://114.215.149.242:18080/ZFMerchant/api/paychannel/intention/add";
 	public final static String LOGIN = PATHS+"user/studentLogin";
+	public final static String CHANGEPASS = PATHS+"customers/updatePassword/";
 	public static final int CITY_ID = 1;
 	public static final   String xfh ="http://192.168.0.238:8080/ZFMerchant/api/user/studentLogin";
 	public static int UserID=1;
@@ -39,7 +40,7 @@ public class Config {
 	public static final String SHOPORDER=PATHS+"order/shop";
 	 //"http://114.215.149.242:18080/ZFMerchant/api/order/cart"
 	public static final String order_cart =PATHS+"order/cart";
-//	http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind
+	public static final String JWB =	"http://192.168.0.240:8080/ZFMerchant/api/order/shop"; 
 	
 	
 }

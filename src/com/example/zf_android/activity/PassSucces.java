@@ -24,9 +24,9 @@ public class PassSucces extends BaseActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.success_passphone);
 		new TitleMenuUtil(PassSucces.this, "找回密码").show();
-		tv_tel=(TextView) findViewById(R.id.tv_tel);
-		tel=getIntent().getStringExtra("tel");
-		tv_tel.setText(tel);
+	//	tv_tel=(TextView) findViewById(R.id.tv_tel);
+	//	tel=getIntent().getStringExtra("tel");
+	//	tv_tel.setText(tel);
 		login_linear_signin=(LinearLayout) findViewById(R.id.login_linear_signin);
 		login_linear_signin.setOnClickListener(this);
 	}

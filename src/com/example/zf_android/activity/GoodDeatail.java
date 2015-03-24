@@ -162,7 +162,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_detail);
-		paychannelId=3;
+		 
 		id=getIntent().getIntExtra("id", 0);
 		innitView();
 		gview=(ScrollViewWithGView) findViewById(R.id.gview);
@@ -369,7 +369,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							 User_button=gson.fromJson(jsonobject.getString("payChannelList"), new TypeToken<List<GriviewEntity>>() {
 				 				}.getType());
 							 
-							 
+						 
 							 buttonAdapter=new ButtonGridviewAdapter(GoodDeatail.this, User_button,0);
 							 gview1.setAdapter(buttonAdapter);
 							 gview1.setOnItemClickListener(new OnItemClickListener() {
@@ -419,6 +419,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							 String res2=	 jsonobject.getString("paychannelinfo");
 							 jsonobject = new JSONObject(res2);
 							// tvc_qy.setText(text)
+							 paychannelId=jsonobject.getInt("id");
 							 if(jsonobject.getBoolean("support_type")){
 								 arelist=   gson.fromJson(jsonobject.getString("supportArea"), new TypeToken<List<String>>() {
 					 				}.getType());

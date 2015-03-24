@@ -1,19 +1,28 @@
 package com.example.zf_android.activity;
  
  
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
+
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
  
 import android.widget.TextView;
  
@@ -22,7 +31,17 @@ import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.MyinfoEntity;
+import com.example.zf_android.entity.UserEntity;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.ApplyDetailActivity;
+import com.example.zf_android.trade.CityProvinceActivity;
+import com.example.zf_android.trade.common.CommonUtil;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.entity.City;
+import com.example.zf_android.trade.entity.Province;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -38,11 +57,14 @@ import com.loopj.android.http.ResponseHandlerInterface;
 *
  */
 public class MyInfo extends BaseActivity implements OnClickListener{
-	
+	private List<City> mCities = new ArrayList<City>();
 	private Button btn_exit;
 	private LinearLayout mi_r1,mi_r2,mi_r3,mi_r4,mi_r5,mi_r6,mi_r7,mi_r8;
 	private TextView tv1,tv2,tv3,tv4,tv5;
 	private String url=Config.GRTONE+8;
+	private SharedPreferences mySharedPreferences;
+	private Editor editor;
+	private int cityId=MyApplication.NewUser.getCityId();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -51,7 +73,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		new TitleMenuUtil(MyInfo.this, "我的信息").show();
 		initView();
 		System.out.println("11111");
- 
+		
 	}
 	 
 
@@ -78,7 +100,9 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		tv3=(TextView) findViewById(R.id.tv3);
 		tv4=(TextView) findViewById(R.id.tv4);
 		tv5=(TextView) findViewById(R.id.tv5);
-		
+		tv4.setText("");
+		 
+		getdata();
 	}
 
 	@Override
@@ -111,7 +135,9 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 			 
 			break;
 		case  R.id.mi_r4: // ���ڵ�
-			 
+			Intent intent = new Intent(MyInfo.this, CityProvinceActivity.class);
+	 
+			startActivityForResult(intent, REQUEST_CHOOSE_CITY);
 			 
 			break;
 		case  R.id.mi_r5: // �ҵĻ��
@@ -135,19 +161,30 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 	}
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+		System.out.println("resultCode"+resultCode+requestCode);
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==REQUEST_CHOOSE_CITY){
+			System.out.println("REQUEST_CHOOSE_CITY"+resultCode+requestCode);
+			City mMerchantCity = (City) data.getSerializableExtra(SELECTED_CITY);
+			tv4.setText(mMerchantCity.getName());
+			cityId=mMerchantCity.getId();
+			 
+			 
+		}
 		switch (resultCode) {
 		case 1:
 			if(data!=null){
 				String  a =data.getStringExtra("text");
 				tv1.setText(a);
 			}
+			change();
 			break;
 		case 2:
 			if(data!=null){
 				String  a =data.getStringExtra("text");
 				tv2.setText(a);
 			}
+			change();
 			break;
 		case 3:
 		 
@@ -155,18 +192,93 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 				String  a =data.getStringExtra("text");
 				tv3.setText(a);
 			}
+			change();
 			break;
+ 
 		default:
 			break;
 
 		}
-		super.onActivityResult(requestCode, resultCode, data);
+		 
 
 	}
+	private String  findcity(int id) {
+		// TODO Auto-generated method stub
+		String a="苏州";
+        List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
+        for (Province province : provinces) {
+            List<City> cities = province.getCities();
+          
+            mCities.addAll(cities);
+             
+        }
+		 for(City cc:mCities ){
+			 if(cc.getId()==id){
+				 a=cc.getName();
+				 System.out.println("name---"+a);
+			 }
+		 }
+		 return a;
+	}
+
+
 	private void exit() {
 		// TODO Auto-generated method stub
+		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
+		editor = mySharedPreferences.edit();
+		editor.putBoolean("islogin", false);
+		editor.commit();
+		Toast.makeText(getApplicationContext(), "退出成功", 1000).show();
 		startActivity(new Intent(MyInfo.this,LoginActivity.class));
+		finish();
 	}
+	private void change(){
+		
+		String name =tv1.getText().toString();
+		String phone=tv2.getText().toString();
+		String email=tv3.getText().toString();
+		 API.ChangeMyInfo(MyInfo.this,MyApplication.NewUser.getId(),name,phone,email,cityId,
+	        		
+	                new HttpCallback (MyInfo.this) {
 
+						@Override
+						public void onSuccess(Object data) {
+							// TODO Auto-generated method stub
+							Toast.makeText(getApplicationContext(), "信息更新成", 1000).show();
+						}
+
+						@Override
+						public TypeToken getTypeToken() {
+							// TODO Auto-generated method stub
+							return   null;
+						};
+	                });
+	}
+	private void getdata(){
+		
+	 
+		 API.getinfo(MyInfo.this,MyApplication.NewUser.getId(),
+	        		
+	                new HttpCallback<MyinfoEntity> (MyInfo.this) {
+
+						@Override
+						public void onSuccess(MyinfoEntity data) {
+							// TODO Auto-generated method stub
+							tv1.setText(data.getName());
+							tv2.setText(data.getPhone());
+							tv3.setText(data.getEmail());
+							tv5.setText(data.getIntegral()+"");
+						 
+							tv4.setText(findcity(data.getCity_id()));
+						}
+
+						@Override
+						public TypeToken getTypeToken() {
+							// TODO Auto-generated method stub
+							return  new TypeToken<MyinfoEntity>() {
+							};
+						};
+	                });
+	}
 	 
 }

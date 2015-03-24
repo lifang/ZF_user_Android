@@ -106,47 +106,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 		MyApplication.setIsSelect(false);
 		initView();
 		getData();
-		findViewById(R.id.bbb).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Url="http://192.168.0.240:8080/ZFMerchant/api/paychannel/intention/add";
-				RequestParams params = new RequestParams();
-
-				params.put("name", "1111");
-				params.put("phone", "15050001111");
-				params.put("content", "---content--content");
-			 	params.setUseJsonStreamer(true);
-				
-				 
-				MyApplication.getInstance().getClient()
-						.post(Url, null, new AsyncHttpResponseHandler() {
-
-							@Override
-							public void onSuccess(int statusCode, Header[] headers,
-									byte[] responseBody) {
-								System.out.println("-onSuccess---");
-								String responseMsg = new String(responseBody)
-										.toString();
-								Log.e("LJP", responseMsg);
-								Gson gson = new Gson();
-								JSONObject jsonobject = null;
-								int code = 0;
-							 
-								 
-							}
-
-							@Override
-							public void onFailure(int statusCode, Header[] headers,
-									byte[] responseBody, Throwable error) {
-								// TODO Auto-generated method stub
-								error.printStackTrace();
-							}
-						});
-
-			}
-		});
+	 
 	}
 
 	private void initView() {

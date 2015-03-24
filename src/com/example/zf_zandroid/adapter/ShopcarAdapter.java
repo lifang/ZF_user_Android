@@ -106,7 +106,7 @@ public class ShopcarAdapter extends BaseAdapter {
 			holder.add.setOnClickListener(onClick);
 			holder.retail_price = (TextView) convertView
 					.findViewById(R.id.retail_price);
-		//	holder.delete = convertView.findViewById(R.id.delete);
+		 	holder.tv_changel = (TextView) convertView.findViewById(R.id.tv_changel);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -115,7 +115,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.checkBox.setTag(position);
 		Good good = list.get(position);
 		holder.checkBox.setChecked(good.isChecked());
-
+		 holder.tv_changel .setText(good.getName());
 		holder.title.setText(good.getTitle());
 		holder.showCountText.setText("X  " + good.getQuantity());
 		holder.buyCountEdit.setText("" + good.getQuantity());
@@ -299,7 +299,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		private TextView title;
 		private ImageView delete_img;
 	 
-		private TextView editBtn;
+		private TextView editBtn,tv_changel;
 		private LinearLayout ll_select;
 		private TextView retail_price;
 		private View delete;
