@@ -3,7 +3,7 @@ package com.examlpe.zf_android.util;
 import android.widget.ListView;
 
 /**
- * @Description: scrollviewÖÐÄÚÇ¶listviewµÄ¼òµ¥ÊµÏÖ
+ * @Description: scrollviewä¸­å†…åµŒlistviewçš„ç®€å•å®žçŽ°
  */
 public class ScrollViewWithListView extends ListView {
 	public ScrollViewWithListView(android.content.Context context, android.util.AttributeSet attrs) {
@@ -11,7 +11,7 @@ public class ScrollViewWithListView extends ListView {
 	}
 
 	/**
-	 * Integer.MAX_VALUE >> 2,Èç¹û²»ÉèÖÃ£¬ÏµÍ³Ä¬ÈÏÉèÖÃÊÇÏÔÊ¾Á½Ìõ
+	 * Integer.MAX_VALUE >> 2,å¦‚æžœä¸è®¾ç½®ï¼Œç³»ç»Ÿé»˜è®¤è®¾ç½®æ˜¯æ˜¾ç¤ºä¸¤æ¡
 	 */
 	public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);

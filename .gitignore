@@ -3,3 +3,5 @@ res/values-v11/styles.xml
 res/values-v14/styles.xmlvalues-v11/styles.xml
 build/
 ZF_user_Android.iml
+/gen/
+/project.properties

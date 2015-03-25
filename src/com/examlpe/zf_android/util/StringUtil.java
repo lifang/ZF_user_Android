@@ -18,7 +18,7 @@ import android.util.Base64;
 import android.util.Log;
 
 /***
- * ¶Ô×Ö·û´® ¼ÓÃÜ£¬½âÎö
+ * å¯¹å­—ç¬¦ä¸² åŠ å¯†ï¼Œè§£æ
  * 
  * @author Lijinpeng
  * 
@@ -100,7 +100,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * MD5¼ÓÃÜËã·¨
+	 * MD5åŠ å¯†ç®—æ³•
 	 * 
 	 * @param plainText
 	 * @return
@@ -125,8 +125,8 @@ public class StringUtil {
 			}
 			md5Password = buf.toString();
 
-			System.out.println("result: " + buf.toString());// 32Î»µÄ¼ÓÃÜ
-			System.out.println("result: " + buf.toString().substring(8, 24));// 16Î»µÄ¼ÓÃÜ
+			System.out.println("result: " + buf.toString());// 32ä½çš„åŠ å¯†
+			System.out.println("result: " + buf.toString().substring(8, 24));// 16ä½çš„åŠ å¯†
 
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
@@ -134,7 +134,7 @@ public class StringUtil {
 		return md5Password.toUpperCase();
 	}
 
-	// È¥³ıËùÓĞ¿Õ¸ñ
+	// å»é™¤æ‰€æœ‰ç©ºæ ¼
 	public static String replaceBlank(String str) {
 		String dest = "";
 		if (str != null) {
@@ -146,7 +146,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * ÃÜÂë¼ÓÃÜ
+	 * å¯†ç åŠ å¯†
 	 * 
 	 * @param src
 	 * @param key
@@ -173,11 +173,11 @@ public class StringUtil {
 	}
 
 	/***
-	 * ²ÎÊı¼ÓÃÜ
+	 * å‚æ•°åŠ å¯†
 	 * 
 	 * @param paramValues
 	 * @param secret
-	 * @return ¼ÓÃÜsign
+	 * @return åŠ å¯†sign
 	 */
 	public static String sign(Map<String, String> paramValues, String secret) {
 		StringBuilder sign = new StringBuilder();
