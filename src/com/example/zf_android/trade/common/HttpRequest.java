@@ -89,14 +89,15 @@ public class HttpRequest {
 			callback.onFailure(context.getString(R.string.network_info));
 			return;
 		}
-		client.post(context, url, null, entity, "application/json", responseHandler);
+		client.post(context, url, entity, null, responseHandler);
 	}
 
 	public void post(String url, Map<String, Object> params) {
 		JSONObject jsonParams = new JSONObject(params);
-		HttpEntity entity;
+		StringEntity entity;
 		try {
 			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+			entity.setContentType("application/json;charset=UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			callback.onFailure(context.getString(R.string.load_data_failed));
 			return;
