@@ -36,7 +36,9 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
+        <EditText
+            android:background="@color/ffffff"
+            
             android:id="@+id/tv1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,7 +46,7 @@
             android:gravity="right"
           
             android:singleLine="true"
-            android:text="张小小"
+           
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -81,7 +83,8 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
+         <EditText
+            android:background="@color/ffffff"
            android:id="@+id/tv2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -89,7 +92,7 @@
             android:gravity="right"
           
             android:singleLine="true"
-            android:text="15050056006"
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -126,7 +129,8 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
+         <EditText
+            android:background="@color/ffffff"
            android:id="@+id/tv3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -134,7 +138,7 @@
             android:gravity="right"
   
             android:singleLine="true"
-            android:text="123@gmail.com"
+             
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -171,7 +175,8 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
+       <EditText
+            android:background="@color/ffffff"
            android:id="@+id/tv4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -179,7 +184,7 @@
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="上海"
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -216,7 +221,8 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
+         <EditText
+            android:background="@color/ffffff"
               android:id="@+id/tv5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -224,7 +230,7 @@
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="200"
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -261,15 +267,16 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
-        
+        <EditText
+            android:background="@color/ffffff"
+        	android:id="@+id/tv6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="200"
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -306,15 +313,16 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
-              android:id="@+id/tv17"
+             <TextView
+            
+        	android:id="@+id/tv7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="200"
+          
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -347,7 +355,9 @@
 	 
         
         
-        <TextView
+      <EditText
+            android:background="@color/ffffff"
+        	android:id="@+id/tvkhyh"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
                 android:layout_marginLeft="@dimen/margin_left2"
@@ -404,8 +414,9 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
-           
+            <EditText
+            android:background="@color/ffffff"
+        	android:id="@+id/tv8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -451,7 +462,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="开户银行"
+            android:text="商户法人身份证照片正面"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
@@ -501,7 +512,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="开户银行"
+            android:text="商户法人身份证照片背面"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
@@ -551,7 +562,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="开户银行"
+            android:text="商户法人上半身照片"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
@@ -601,7 +612,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="开户银行"
+            android:text="营业执照照片"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
@@ -651,7 +662,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="开户银行"
+            android:text="税务证照片"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
@@ -701,7 +712,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="开户银行"
+            android:text="组织机构代码证照片"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
@@ -751,7 +762,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="开户银行"
+            android:text="银行开户许可证照片"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 

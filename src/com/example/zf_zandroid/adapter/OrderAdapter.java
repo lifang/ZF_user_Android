@@ -176,7 +176,7 @@ public class OrderAdapter extends BaseAdapter{
 										String res =jsonobject.getString("result");
 										jsonobject = new JSONObject(res);
 					 
-		 	 					  
+										Toast.makeText(context, "取消成功", 1000).show();
 					 				 
 					 			 
 									}else{

@@ -58,6 +58,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 	private String Url = Config.getmes;
 	private LinearLayout eva_nodata;
 	private String ids[]=new String []{};
+	List<Integer> as = new ArrayList<Integer>();
 	JSONArray a;
 	private boolean onRefresh_number = true;
 	private MessageAdapter myAdapter;

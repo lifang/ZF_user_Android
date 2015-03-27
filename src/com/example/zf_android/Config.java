@@ -32,15 +32,18 @@ public class Config {
 	public static final String getMyOrderAll =PATHS+"order/getMyOrderAll";
 	public static final String batchRead =PATHS+"message/receiver/batchRead";
 	public static final String batchDelete =PATHS+"message/receiver/batchDelete";
+	public static final String ADRESSDelete =PATHS+"customers/deleteAddress";
 	public static final String paychannel_info =PATHS+"paychannel/info";
 	public static final String GOODDETAIL =PATHS+"good/goodinfo";
 	public static final String ChooseAdress = PATHS+"customers/getAddressList/";
 	public static final String goodadd=PATHS+"cart/add";
 	//http://114.215.149.242:18080/ZFMerchant/api/paychannel/info
-	public static final String SHOPORDER=PATHS+"order/shop";
+ 	public static final String SHOPORDER=PATHS+"order/shop";
+	 
+	//http://114.215.149.242:18080/ZFMerchant/api/order/cart
 	 //"http://114.215.149.242:18080/ZFMerchant/api/order/cart"
 	public static final String order_cart =PATHS+"order/cart";
-	public static final String JWB =	"http://192.168.0.240:8080/ZFMerchant/api/order/shop"; 
+	public static final String JWB =	"http://192.168.0.240:8081/ZFMerchant/api/order/cart"; 
 	
 	
 }

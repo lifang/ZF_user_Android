@@ -213,8 +213,8 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			tv_sjps=(TextView) findViewById(R.id.tv_sjps);
 			tv_status=(TextView) findViewById(R.id.tv_status);
 			ll_ishow=(LinearLayout) findViewById(R.id.ll_ishow);
-			ll_ishow.setVisibility(status==1 ? View.INVISIBLE
-					: View.VISIBLE); // 只有状态是1 才有下面的按钮
+//			ll_ishow.setVisibility(status==1 ? View.INVISIBLE
+//					: View.VISIBLE); // 只有状态是1 才有下面的按钮
  			pos_lv=(ScrollViewWithListView) findViewById(R.id.pos_lv1);
   
 			
@@ -226,7 +226,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			switch (status) {
 			case 1:
 				tv_status.setText("未付款");
-				btn_ishow.setVisibility(View.VISIBLE);
+				ll_ishow.setVisibility(View.VISIBLE);
 				ll_ishow2.setVisibility(View.GONE);
 				break;
 			case 2:
@@ -254,7 +254,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			default:
 				break;
 			}
-			ll_ishow2.setVisibility(View.VISIBLE);
+			//ll_ishow2.setVisibility(View.VISIBLE);
 		}
 		@Override
 		public void onClick(View arg0) {

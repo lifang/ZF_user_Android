@@ -63,6 +63,7 @@ private EditText et_comment,et_info;
 private String Url=Config.ChooseAdress;
 List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
+List<Integer>  inn = new ArrayList<Integer>();
 			 private int addressId;
 	private ComfirmcarAdapter myAdapter;
 	private LinearLayout ll_adress;
@@ -140,11 +141,11 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 			// TODO Auto-generated method stub tv_pop
 			switch (v.getId()) {
 			case R.id.tv_pop:
-				 menu_press();
+			//	 menu_press();
+			 pay() ;
 				break;
 			case R.id.btn_pay:
-				  pay();
-				// getpay();
+				getpay11();
 				break;
 			case R.id.ll_adress:
 				 Intent ll_adress=new Intent(ConfirmOrder.this,ChanceAdress.class);
@@ -198,8 +199,6 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 								int a =jsonobject.getInt("code");
 								if(a==Config.CODE){  
 	 								String res =jsonobject.getString("result");
- 
-									
 	 								moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
 	 			 					}.getType());
 				 				 
@@ -324,8 +323,7 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 				e1.printStackTrace();
 			}
 			
-//			参数--{invoice_info=, customerId=80, is_need_invoice=0, quantity=1,
-//					paychannelId=9, goodId=26, comment=, addressId=108, invoice_type=0}
+ 
 			params.put("customerId", 80);
 		 
 			params.put("addressId", 108);
@@ -337,7 +335,7 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 			params.setUseJsonStreamer(true);
 			System.out.println("参数-lee-"+params);
 			MyApplication.getInstance().getClient()
-					.post(Config.order_cart, params, new AsyncHttpResponseHandler() {
+					.post(Config.JWB, params, new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,
@@ -390,26 +388,17 @@ List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 		
 		}
 		
-		public void getpay(){
-			
-			
-//			int customerId,
-//			int [] cartid,
-//			int addressId,
-//			String  comment,
-//			
-//			int is_need_invoice,
-//			int invoice_type,
-//			String  invoice_info,
+		public void getpay11(){
+ 
 			int [] cartid=new int[comfirmList.size()];
 			for(int i=0;i<comfirmList.size();i++){
-				 
-				cartid[i]=comfirmList.get(i).getId();
+				inn.add(comfirmList.get(i).getId());
+				//cartid[i]=comfirmList.get(i).getId();
 			}
 			comment=et_comment.getText().toString();
 			invoice_info =et_info.getText().toString();
 			
-			API.CARTFIRM(ConfirmOrder.this, MyApplication.NewUser.getId(),cartid,
+			API.CARTFIRM(ConfirmOrder.this, MyApplication.NewUser.getId(),inn,
 					addressId,comment,is_need_invoice,invoice_type,invoice_info,
 	        		
 	                new HttpCallback  (ConfirmOrder.this) {

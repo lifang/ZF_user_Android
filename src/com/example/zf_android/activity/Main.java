@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -65,7 +66,7 @@ public class Main extends BaseActivity implements OnClickListener{
 	private RelativeLayout  main_rl_pos,main_rl_renzhen,main_rl_zdgl,main_rl_jyls,
 	main_rl_Forum,main_rl_wylc,main_rl_xtgg,main_rl_lxwm,main_rl_my,main_rl_pos1,main_rl_gwc;
 	private ImageView testbutton;
-
+	private RelativeLayout rl_url;
     private View citySelect;
     private TextView cityTextView;
     private int cityId;
@@ -98,7 +99,9 @@ public class Main extends BaseActivity implements OnClickListener{
 				}
 				indicator_imgs	= new ImageView[ma.size()];
 				initIndicator();
-				adapter.notifyDataSetChanged();		 
+				adapter.notifyDataSetChanged();		
+				 view_pager.setCurrentItem(1);
+			 	view_pager.setCurrentItem(0);
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -223,6 +226,7 @@ public class Main extends BaseActivity implements OnClickListener{
 
 	private void initView() {
 		// TODO Auto-generated method stub
+	 
         citySelect = findViewById(R.id.titleback_linear_back);
         cityTextView = (TextView) findViewById(R.id.tv_city);
         citySelect.setOnClickListener(this);
@@ -258,13 +262,15 @@ public class Main extends BaseActivity implements OnClickListener{
 		view_pager.setAdapter(adapter);
 		//绑定动作监听器：如翻页的动画
 		view_pager.setOnPageChangeListener(new MyListener());
+		//index_ima
+		 
 	}
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
- 
+	 
         case R.id.titleback_linear_back:  
             Intent intent = new Intent(Main.this, CitySelectActivity.class);
             intent.putExtra(CITY_NAME, cityName);
@@ -502,6 +508,21 @@ private void initIndicator(){
 			// 改变当前背景图片为：选中
 			index_ima=position;
 			indicator_imgs[position].setBackgroundResource(R.drawable.indicator_focused);
+			System.out.println(index_ima+"```"+myList.get(index_ima).getWebsite_url());
+			View v = list.get(position );
+			v.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					 
+				    Intent intent = new Intent();        
+		            intent.setAction("android.intent.action.VIEW");    
+		            Uri content_url = Uri.parse(myList.get(index_ima).getWebsite_url().toString());   
+		            intent.setData(content_url);  
+		            startActivity(intent);
+				}
+			});
 		}
 		
 		

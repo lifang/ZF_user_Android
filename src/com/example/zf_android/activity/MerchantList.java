@@ -96,6 +96,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.adress_list);
 			initView();
+			MyApplication.setIsSelect(false);
 			getData();
 		}
 
@@ -227,19 +228,20 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 										code = jsonobject.getInt("code");
 										
 										if(code==1){
+											moreList.clear();
 											for (int i = 0; i < myList.size(); i++) {
 
 												if (myList.get(i).getIscheck()) {
-													 
-													myList.remove(i);
+												 	moreList.add( myList.get(i));
+												//	myList.remove(myList.get(i));
 													 
 													System.out
 															.println("删除"+i);
 													
 												}
-												myList.get(i).setIscheck(false);
+												//myList.get(i).setIscheck(false);
 											}
-									 
+											myList.removeAll(moreList);
 											myAdapter.notifyDataSetChanged();
 										}else{
 											Toast.makeText(getApplicationContext(), jsonobject.getString("message"),

@@ -35,6 +35,8 @@
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:text="选择POS类型"
+                android:maxLength="12"
+                android:ellipsize="end"
                 android:textColor="@color/text292929"
                 android:textSize="17sp" />
 
@@ -47,6 +49,8 @@
                 android:maxLength="8"
                 android:singleLine="true"
                 android:text="法人名字"
+                  
+                android:ellipsize="end"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
 

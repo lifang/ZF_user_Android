@@ -67,11 +67,12 @@ public class MerchanAdapter extends BaseAdapter {
 		if(MyApplication.getIsSelect()){
 			 
 			holder.item_cb.setVisibility(View.VISIBLE);
+			
 		}else{
 			holder.item_cb.setVisibility(View.GONE);
 		}
 		
-		list.get(position).setIscheck(holder.item_cb.isChecked());
+		//list.get(position).setIscheck(holder.item_cb.isChecked());
 		holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -81,6 +82,15 @@ public class MerchanAdapter extends BaseAdapter {
 			}
 		});
 		 
+		if(list.get(position).getIscheck()==null){
+			holder.item_cb.setChecked(false);
+			list.get(position).setIscheck(false);
+		}else{
+			holder.item_cb.setChecked(list.get(position).getIscheck());
+		}
+		
+		
+		
 		return convertView;
 	}
 

@@ -376,7 +376,13 @@
             android:name="com.example.zf_android.activity.FindpassmailSucces"
              android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" >
+        </activity>		
+                                  <activity
+            android:name="com.example.zf_android.activity.Adress4Edit"
+             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" >
         </activity>		 
+         
      </application>
 
 </manifest>

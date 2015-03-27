@@ -7,6 +7,7 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
@@ -98,6 +99,8 @@ public class API {
 	public static final String APPLY_SUBMIT = SCHEMA + HOST + "/ZFMerchant/api/apply/addOpeningApply";
 	public static final String GETEMAILPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendEmailVerificationCode";
 	// Apply Opening Progress Query  GETEMAILPASS
+	//http://114.215.149.242:18080/ZFMerchant/api/customers/updateAddress
+	public static final String EDITADRESS = SCHEMA + HOST + "/ZFMerchant/api/customers/updateAddress";
 	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
 	public static final String WNATBUY = SCHEMA + HOST + "/ZFMerchant/api/paychannel/intention/add";
 	public static final String Add_ress = SCHEMA + HOST + "/ZFMerchant/api/customers/insertAddress/";
@@ -446,7 +449,29 @@ public class API {
 		params.put("address", address);
 		params.put("isDefault", isDefault);
 		params.put("customerId", customerId);
+		System.out.println("--ccc----"+params);
 		new HttpRequest(context, callback).post(Add_ress, params);
+	}
+	public static void EditAdres(
+			Context context,
+			String  cityId,
+			String  receiver,
+			String 	moblephone,
+			String 	zipCode,
+			String 	address,
+			int 	isDefault,
+			int 	customerId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("cityId", cityId);
+		params.put("receiver", receiver);
+		params.put("moblephone", moblephone);
+		params.put("zipCode", zipCode);
+		params.put("address", address);
+		params.put("isDefault", isDefault);
+		params.put("id", customerId);
+		System.out.println("--ccc----"+params);
+		new HttpRequest(context, callback).post(EDITADRESS, params);
 	}
 	public static void AddAdres1(
 			Context context,
@@ -588,7 +613,8 @@ public class API {
 	public static void CARTFIRM(
 			Context context,
 			int customerId,
-			int [] cartid,
+			List<Integer>  inn,
+			 
 			int addressId,
 			String  comment,
 			
@@ -599,17 +625,81 @@ public class API {
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customerId", 80); 
-	 	int aa[]=new int []{138,140};
-		params.put("cartid",  aa); 
+		params.put("cartid",  inn); 
 		params.put("addressId", addressId);
 		params.put("comment", comment);
 		params.put("is_need_invoice", is_need_invoice);
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", invoice_info);
 		System.out.println("参数--"+params.toString());
-		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+		new HttpRequest(context, callback).post(Config.JWB, params);
 	}
 	
+
+	
+//	title
+//	legalPersonName
+//	legalPersonCardId
+//	businessLicenseNo
+//	taxRegisteredNo
+//	organizationCodeNo	
+//	cityId
+//	accountBankName
+//	bankOpenAccount
+//	cardIdFrontPhotoPath
+//	cardIdBackPhotoPath
+//	bodyPhotoPath
+//	licenseNoPicPath
+//	taxNoPicPath
+//	orgCodeNoPicPath
+//	accountPicPath
+//	customerId
+
+	
+	public static void NewMerchant(
+			Context context,
+			String  title,
+			String  legalPersonName,
+			String 	legalPersonCardId,
+			String 	businessLicenseNo,
+			String 	taxRegisteredNo,
+			String organizationCodeNo,
+			int cityId,
+			String accountBankName,
+			String bankOpenAccount,
+			String cardIdFrontPhotoPath,
+			String cardIdBackPhotoPath,
+			String bodyPhotoPath,
+			String licenseNoPicPath,
+			String taxNoPicPath,
+			String orgCodeNoPicPath,
+			String accountPicPath,
+			int 	customerId,
+		 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("title", title);
+		params.put("legalPersonName", legalPersonName);
+		params.put("legalPersonCardId", legalPersonCardId);
+		params.put("businessLicenseNo", businessLicenseNo);
+		params.put("taxRegisteredNo", taxRegisteredNo);
+		params.put("organizationCodeNo", organizationCodeNo);
+		params.put("cityId", cityId);
+		params.put("accountBankName", accountBankName);
+		params.put("bankOpenAccount", bankOpenAccount);
+		
+		params.put("cardIdFrontPhotoPath", cardIdFrontPhotoPath);
+		params.put("cardIdBackPhotoPath", cardIdBackPhotoPath);
+		params.put("bodyPhotoPath", bodyPhotoPath);
+		params.put("licenseNoPicPath", licenseNoPicPath);
+		params.put("taxNoPicPath", taxNoPicPath);
+		params.put("orgCodeNoPicPath", orgCodeNoPicPath);
+		params.put("accountPicPath", accountPicPath);
+		params.put("customerId", customerId);
+	 
+		System.out.println("--ccc----"+params);
+		new HttpRequest(context, callback).post(EDITADRESS, params);
+	}
 	
 	
 	

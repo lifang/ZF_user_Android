@@ -420,15 +420,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", et_titel.getText().toString());
 		params.setUseJsonStreamer(true);
-//		int customerId,
-//		int goodId,
-//		int paychannelId,
-//		int quantity,
-//		int addressId,
-//		String  comment,
-//		int is_need_invoice,
-//		int invoice_type,
-//		String  invoice_info,
+ 
 		invoice_info=et_titel.getText().toString();
 		API.GOODCONFIRM(GoodConfirm.this,MyApplication.NewUser.getId(),goodId,paychannelId,
 				quantity,addressId,comment,is_need_invoice,invoice_type,invoice_info,

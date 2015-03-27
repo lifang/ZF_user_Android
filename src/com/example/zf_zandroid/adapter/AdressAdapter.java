@@ -67,7 +67,7 @@ public class AdressAdapter extends BaseAdapter {
 		holder.tv_title.setText("收件人 ： "+list.get(position).getReceiver());
 		 holder.tv_tel.setText( list.get(position).getMoblephone());
 		if(MyApplication.getIsSelect()){
-			 
+		 
 			holder.item_cb.setVisibility(View.VISIBLE);
 		}else{
 			holder.item_cb.setVisibility(View.GONE);
@@ -84,6 +84,7 @@ public class AdressAdapter extends BaseAdapter {
 		});
 		if(list.get(position).getIscheck()==null){
 			holder.item_cb.setChecked(false);
+			list.get(position).setIscheck(false);
 		}else{
 			holder.item_cb.setChecked(list.get(position).getIscheck());
 		}

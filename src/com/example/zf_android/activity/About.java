@@ -28,7 +28,7 @@ public class About extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		new TitleMenuUtil(About.this, "����").show();
+		new TitleMenuUtil(About.this, "关于").show();
 	}
 
 	@Override

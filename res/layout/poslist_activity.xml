@@ -167,7 +167,7 @@
         android:id="@+id/eva_nodata"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-      
+      	android:visibility="gone"
         android:layout_gravity="center"
         android:background="@color/ffffff"
         android:orientation="horizontal" 

@@ -35,31 +35,46 @@ import com.google.gson.reflect.TypeToken;
 * @version    
 *
  */
-public class AdressEdit extends BaseActivity{
-	private String URL="http://114.215.149.242:18080/ZFMerchant/api/customers/insertAddress/";
-//	cityId
-//	receiver
-//	moblephone
-//	zipCode
-//	address
-//	isDefault
-//	customerId
+public class Adress4Edit extends BaseActivity{
+	private String URL="http://114.215.149.242:18080/ZFMerchant/api/customers/updateAddress";
+ 
 	private Button adresslist;
 	private EditText tv1,tv2,tv3,tv5;
 	private int id=MyApplication.NewUser.getId();
-	private int Cityid=MyApplication.NewUser.getCityId();
-	private String name,tel,stringcode ,address;
+	private String Cityid;
+	private String name,tel,stringcode ,address,cityname;
 	private int isDefault=2;
 	private TextView tv4;
 	private CheckBox item_cb;
 	private LinearLayout mi_r4;
+	private int a;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adress_edit);
 		initView();
-		new TitleMenuUtil(AdressEdit.this, "新增地址").show();
+		new TitleMenuUtil(Adress4Edit.this, "修改地址").show();
+		Cityid= getIntent().getStringExtra("cityId");
+		name= getIntent().getStringExtra("receiver");
+		tel= getIntent().getStringExtra("moblephone");
+		stringcode= getIntent().getStringExtra("zipCode");
+		address= getIntent().getStringExtra("address");
+		int a=getIntent().getIntExtra("isDefault", 2);
+		cityname= getIntent().getStringExtra("cityname");
+		id=getIntent().getIntExtra("id",0);
+		tv1.setText(name);
+		tv2.setText(tel);
+		tv3.setText(stringcode);
+		tv4.setText(cityname);
+		tv5.setText(address);
+		if(a==1){
+			item_cb.setChecked(true);
+		}else{
+			item_cb.setChecked(false);
+		}
+ 
+		
 	}
 	private Boolean check() {
 		// TODO Auto-generated method stub
@@ -100,23 +115,20 @@ public class AdressEdit extends BaseActivity{
 	
 	private void getData() {
 		// TODO Auto-generated method stub
-        API.AddAdres(AdressEdit.this, Cityid+"" ,name,tel,stringcode , address ,isDefault,id,
+        API.EditAdres(Adress4Edit.this, Cityid ,name,tel,stringcode , address ,isDefault,id,
         		
-                new HttpCallback(AdressEdit.this) {
+                new HttpCallback(Adress4Edit.this) {
            
 
 					@Override
 					public void onSuccess(Object data) {
 						// TODO Auto-generated method stub
-						Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show();
-					 
-					 
+						Toast.makeText(Adress4Edit.this, " 修改地址成功", 1000).show();
+						 
 						Intent intent2 = new Intent();
 					 
-						AdressEdit.this.setResult(1, intent2);
+						Adress4Edit.this.setResult(22, intent2);
 						finish();
-						 
-						 
 					}
 
 					@Override
@@ -164,7 +176,7 @@ public class AdressEdit extends BaseActivity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(AdressEdit.this, CityProvinceActivity.class);
+				Intent intent = new Intent(Adress4Edit.this, CityProvinceActivity.class);
 				 
 				startActivityForResult(intent, REQUEST_CHOOSE_CITY);
 			}
@@ -178,7 +190,7 @@ public class AdressEdit extends BaseActivity{
 			System.out.println("REQUEST_CHOOSE_CITY"+resultCode+requestCode);
 			City mMerchantCity = (City) data.getSerializableExtra(SELECTED_CITY);
 			tv4.setText(mMerchantCity.getName());
-			Cityid=mMerchantCity.getId() ;	 
+			Cityid=mMerchantCity.getId()+"" ;	 
 		}
 
 	}

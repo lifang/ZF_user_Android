@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,6 +38,7 @@ import com.example.zf_zandroid.adapter.AdressAdapter;
 import com.example.zf_zandroid.adapter.MessageAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -50,6 +52,9 @@ public class AdressList extends BaseActivity  {
 	private boolean onRefresh_number = true;
 	private AdressAdapter myAdapter;
 	private ListView lv;
+	private Integer ids[]=new Integer []{};
+	private TextView tv_delete;
+	List<Integer> as = new ArrayList<Integer>();
 	private ImageView search,img_add;
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
@@ -89,9 +94,11 @@ public class AdressList extends BaseActivity  {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.adress_list);
 			initView();
+			MyApplication.setIsSelect(false);
+			Url=Url+"80";
 			getData();
 		}
-
+ 
 		private void initView() {
 			// TODO Auto-generated method stub
 			search=(ImageView) findViewById(R.id.search);
@@ -102,8 +109,8 @@ public class AdressList extends BaseActivity  {
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
 					Intent i =new Intent(AdressList.this,AdressEdit.class);
-					startActivity(i);
-					
+				 
+					startActivityForResult(i, 1);
 				}
 			});
 			mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
@@ -111,23 +118,28 @@ public class AdressList extends BaseActivity  {
 			new TitleMenuUtil(AdressList.this, "地址管理").show();
 			myAdapter=new AdressAdapter(AdressList.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
-//			Xlistview=(XListView) findViewById(R.id.x_listview);
-//			// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������");
-//			Xlistview.setPullLoadEnable(true);
-//			Xlistview.setXListViewListener(this);
-//			Xlistview.setDivider(null);
-//			Xlistview.setOnItemClickListener(new OnItemClickListener() {
-//
-//				@Override
-//				public void onItemClick(AdapterView<?> parent, View view,
-//						int position, long id) {
-// 
-//				}
-//			});
-//			Xlistview.setAdapter(myAdapter);
+ 
 			lv=(ListView) findViewById(R.id.lv);
 			lv.setAdapter(myAdapter);
-			
+			lv.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					// TODO Auto-generated method stub
+					Intent i =new Intent(getApplicationContext(), Adress4Edit.class);
+					 
+					i.putExtra("id", myList.get(arg2).getId());
+					i.putExtra("cityId", myList.get(arg2).getCityId()+"");
+					i.putExtra("receiver", myList.get(arg2).getReceiver());
+					i.putExtra("moblephone", myList.get(arg2).getMoblephone());
+					i.putExtra("zipCode", myList.get(arg2).getZipCode());
+					i.putExtra("address", myList.get(arg2).getAddress());
+					i.putExtra("isDefault", myList.get(arg2).getIsDefault());
+					i.putExtra("cityname", myList.get(arg2).getCity_name());
+					startActivityForResult(i, 2);
+				}
+			});
 			search.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -138,12 +150,7 @@ public class AdressList extends BaseActivity  {
 						MyApplication.setIsSelect(false);
 						myAdapter.notifyDataSetChanged();
 						mune_rl.setVisibility(View.GONE);
-//						for(int i=0;i<myList.size();i++){
-//							 
-//							if(myList.get(i).getIscheck()){
-//								System.out.println("��---"+i+"����ѡ��");
-//							}
-						//}
+ 
 					}else{
 						mune_rl.setVisibility(View.VISIBLE);
 						MyApplication.setIsSelect(true);
@@ -151,24 +158,103 @@ public class AdressList extends BaseActivity  {
 					}
 				}
 			});
+			 findViewById(R.id.tv_delete).setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					 
+						// TODO Auto-generated method stub
+						RequestParams params = new RequestParams();
+						ids=new Integer[myList.size()];
+						for (int i = 0; i < myList.size(); i++) {
+							
+							if(myList.get(i).getIscheck()){
+								ids[i]=myList.get(i).getId();
+								as.add( myList.get(i).getId() );
+								 System.out.println("delete---"+i);
+								 
+							}
+							
+						 
+						
+						}
+						Gson gson = new Gson();
+					  
+						 
+						try {
+							params.put("ids", new JSONArray(gson.toJson(as)));
+						} catch (JSONException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						System.out.println("DELETE---"+params);
+				  
+						params.setUseJsonStreamer(true);
+						MyApplication.getInstance().getClient()
+								.post(Config.ADRESSDelete, params, new AsyncHttpResponseHandler() {
+
+									@Override
+									public void onSuccess(int statusCode, Header[] headers,
+											byte[] responseBody) {
+										System.out.println("-onSuccess---");
+										String responseMsg = new String(responseBody)
+												.toString();
+										Log.e("LJP", responseMsg);
+										 
+										JSONObject jsonobject = null;
+										int code = 0;
+										try {
+											jsonobject = new JSONObject(responseMsg);
+											 
+											 
+											code = jsonobject.getInt("code");
+											
+											if(code==1){
+												moreList.clear();
+												for (int i = 0; i < myList.size(); i++) {
+													 
+													if (!myList.get(i).getIscheck()) {
+													 	moreList.add(myList.get(i));
+														System.out
+																.println("删除···"+i);
+													}
+												}
+											 	myList.clear();
+											  
+											 	System.out
+												.println("moreList除···"+	moreList.size());
+												 myList.addAll(moreList);
+												myAdapter.notifyDataSetChanged();
+											}else{
+												Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
+														Toast.LENGTH_SHORT).show();
+											}
+										} catch (JSONException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										 
+									}
+
+									@Override
+									public void onFailure(int statusCode, Header[] headers,
+											byte[] responseBody, Throwable error) {
+										// TODO Auto-generated method stub
+										error.printStackTrace();
+									}
+								});
+					 
+				}
+			});
 		}
 
  
 		private void getData() { 
-
-			// TODO Auto-generated method stub
-
-			// TODO Auto-generated method stub
-		 
-		//	RequestParams params = new RequestParams();
-			//params.put("customerId", 80+"");
-			 
-			//params.setUseJsonStreamer(true);
-			Url=Url+"80";
-			System.out.println("---getData-"+Url);
-			 
-			MyApplication.getInstance().getClient()
-					.post(Url, new AsyncHttpResponseHandler() {
+			 myList.clear();
+  
+			 AsyncHttpClient  a= new AsyncHttpClient();
+			a.post(Url, new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,
@@ -225,4 +311,12 @@ public class AdressList extends BaseActivity  {
 		
 		
 		}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		System.out.println("onActivityResult");
+		super.onActivityResult(requestCode, resultCode, data);
+		System.out.println("onActivityResult");
+		getData();
+	}
 }

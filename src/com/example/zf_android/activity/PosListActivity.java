@@ -64,7 +64,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				onLoad( );
 				
 				if(myList.size()==0){
-				//	norecord_text_to.setText("��û����ص���Ʒ");
+			 
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -287,8 +287,10 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 								String res =jsonobject.getString("result");
 								jsonobject = new JSONObject(res);	
 								moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<PosEntity>>() {
-			 					}.getType());			 				 
+			 					}.getType());			 
+								System.out.println("moreList------"+moreList.size());
 								myList.addAll(moreList);
+								System.out.println("myList------"+myList.size());
 				 				handler.sendEmptyMessage(0);
 							}else{
 								code = jsonobject.getString("message");

@@ -156,18 +156,18 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		TextView tv_all = (TextView) view.findViewById(R.id.tv_all);
 		TextView tv_re = (TextView) view.findViewById(R.id.tv_re);
 		if (type == 1) {
-			tv_new.setTextColor(getResources().getColor(R.color.C0075FF));
+			tv_new.setTextColor(getResources().getColor(R.color.bgtitle));
 			tv_all.setTextColor(getResources().getColor(R.color.black));
 			tv_re.setTextColor(getResources().getColor(R.color.black));
 			 
 		}
-		if (type == 3) {
+		if (type == 2) {
 			tv_new.setTextColor(getResources().getColor(R.color.black));
 			tv_all.setTextColor(getResources().getColor(R.color.bgtitle));
 			tv_re.setTextColor(getResources().getColor(R.color.black));
 			//titleback_text_title.setText("");
 		}
-		if (type == 2) {
+		if (type == 3) {
 			tv_new.setTextColor(getResources().getColor(R.color.black));
 			tv_all.setTextColor(getResources().getColor(R.color.black));
 			tv_re.setTextColor(getResources().getColor(R.color.bgtitle));
@@ -179,7 +179,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 				// TODO Auto-generated method stub
 				p=null;
 				tv_tyyp.setText("全部");
-
+				type = 1;
 				menuWindow.dismiss();
 				myList.clear();
 				getData();
@@ -206,7 +206,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				type = 1;
+				type = 3;
 				p="1";
 				tv_tyyp.setText("购买");
 

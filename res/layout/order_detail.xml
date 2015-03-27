@@ -299,6 +299,7 @@
 
     <LinearLayout
         android:id="@+id/ll_ishow"
+         android:visibility="gone"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >

@@ -41,7 +41,7 @@ public class MyApplication extends Application{
 	public GeofenceClient mGeofenceClient;
 	public MyLocationListener mMyLocationListener;
 	public Vibrator mVibrator;
- 
+	
 
 
 	private List<City> mCities = new ArrayList<City>();
@@ -93,6 +93,7 @@ public class MyApplication extends Application{
 				 if(cc.getName().endsWith(location.getCity())){
 					 System.out.println("当前城市 ID----"+cc.getId());
 					 setCITYID(cc.getId());
+					 setCITYNAME(cc.getName());
 				 }
 			 }
 			 
@@ -125,6 +126,14 @@ public class MyApplication extends Application{
 	private static int notifyId=0;
 	private static Boolean isSelect=false;
 	private static int CITYID=1;
+	private static String   CITYNAME="苏州";
+	
+	public static String getCITYNAME() {
+		return CITYNAME;
+	}
+	public static void setCITYNAME(String cITYNAME) {
+		CITYNAME = cITYNAME;
+	}
 	public static int getCITYID() {
 		return CITYID;
 	}
