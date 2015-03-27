@@ -1,5 +1,37 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
+import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_TITLE;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_BANK;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_MERCHANT;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BANK;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BILLING;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_TITLE;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,38 +72,6 @@ import com.example.zf_android.trade.entity.Province;
 import com.example.zf_android.trade.widget.MyTabWidget;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
-import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_TITLE;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_BANK;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_MERCHANT;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BANK;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BILLING;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_TITLE;
-import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
-import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
-
 /**
  * Created by Leo on 2015/3/5.
  */
@@ -82,7 +82,6 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private static final int TYPE_BANK = 3;
 
 	private static final int APPLY_PUBLIC = 1;
-	private static final int APPLY_PRIVATE = 2;
 	private int mApplyType;
 
 	private static final int ITEM_EDIT = 1;

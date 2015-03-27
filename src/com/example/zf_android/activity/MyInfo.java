@@ -3,82 +3,53 @@ package com.example.zf_android.activity;
  
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
 import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
-import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
 
-import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.http.Header;
-import org.apache.http.HttpResponse;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
- 
 import android.widget.TextView;
- 
+import android.widget.Toast;
+
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MyinfoEntity;
-import com.example.zf_android.entity.UserEntity;
 import com.example.zf_android.trade.API;
-import com.example.zf_android.trade.ApplyDetailActivity;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.ResponseHandlerInterface;
-/***
- * 
-*    
-* ����ƣ�MyInfo   
-* ��������  �ҵ���Ϣ
-* �����ˣ� ljp 
-* ����ʱ�䣺2015-1-27 ����7:55:20   
-* @version    
-*
- */
+
 public class MyInfo extends BaseActivity implements OnClickListener{
 	private List<City> mCities = new ArrayList<City>();
 	private Button btn_exit;
-	private LinearLayout mi_r1,mi_r2,mi_r3,mi_r4,mi_r5,mi_r6,mi_r7,mi_r8;
+	private LinearLayout mi_r1,mi_r2,mi_r3,mi_r4,mi_r5,mi_r6,mi_r7;
 	private TextView tv1,tv2,tv3,tv4,tv5;
-	private String url=Config.GRTONE+8;
 	private SharedPreferences mySharedPreferences;
 	private Editor editor;
 	private int cityId=MyApplication.NewUser.getCityId();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.myinfo);
 		new TitleMenuUtil(MyInfo.this, "我的信息").show();
 		initView();
-		System.out.println("11111");
 		
 	}
 	 
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		btn_exit=(Button) findViewById(R.id.btn_exit);
 		btn_exit.setOnClickListener(this);
 		mi_r1=(LinearLayout) findViewById(R.id.mi_r1);
@@ -107,13 +78,11 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btn_exit:
-			// ִ���˳���¼
 			exit();
 			break;
-		case  R.id.mi_r1: // ����
+		case  R.id.mi_r1: 
 			Intent i =new Intent(MyInfo.this,ChangeText.class);
 			i.putExtra("key", 1);
 			i.putExtra("name", tv1.getText().toString());
@@ -127,31 +96,31 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 			startActivityForResult(i2, 2);
 			 
 			break;
-		case  R.id.mi_r3: // ����
+		case  R.id.mi_r3: 
 			Intent i3 =new Intent(MyInfo.this,ChangeText.class);
 			i3.putExtra("key",3);
 			i3.putExtra("name", tv3.getText().toString());
 			startActivityForResult(i3, 3);
 			 
 			break;
-		case  R.id.mi_r4: // ���ڵ�
+		case  R.id.mi_r4: 
 			Intent intent = new Intent(MyInfo.this, CityProvinceActivity.class);
 	 
 			startActivityForResult(intent, REQUEST_CHOOSE_CITY);
 			 
 			break;
-		case  R.id.mi_r5: // �ҵĻ��
+		case  R.id.mi_r5: 
 			Intent jf =new Intent(MyInfo.this,JifenActivity.class);
 		 
 			startActivityForResult(jf, 3);
 			 
 			break;
-		case  R.id.mi_r6: // ��ַ����
+		case  R.id.mi_r6: 
 			 
 			startActivity(new Intent(MyInfo.this,AdressList.class));
 			 
 			break;
-		case  R.id.mi_r7: // �޸�����
+		case  R.id.mi_r7:
 			startActivity(new Intent(MyInfo.this,ChangePassword.class));
 			 
 			break;
@@ -215,7 +184,6 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		 for(City cc:mCities ){
 			 if(cc.getId()==id){
 				 a=cc.getName();
-				 System.out.println("name---"+a);
 			 }
 		 }
 		 return a;
@@ -223,7 +191,6 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 
 
 	private void exit() {
-		// TODO Auto-generated method stub
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
 		editor.putBoolean("islogin", false);
@@ -243,13 +210,11 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 
 						@Override
 						public void onSuccess(Object data) {
-							// TODO Auto-generated method stub
 							Toast.makeText(getApplicationContext(), "信息更新成", 1000).show();
 						}
 
 						@Override
 						public TypeToken getTypeToken() {
-							// TODO Auto-generated method stub
 							return   null;
 						};
 	                });
@@ -263,7 +228,6 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 
 						@Override
 						public void onSuccess(MyinfoEntity data) {
-							// TODO Auto-generated method stub
 							tv1.setText(data.getName());
 							tv2.setText(data.getPhone());
 							tv3.setText(data.getEmail());
@@ -274,7 +238,6 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 
 						@Override
 						public TypeToken getTypeToken() {
-							// TODO Auto-generated method stub
 							return  new TypeToken<MyinfoEntity>() {
 							};
 						};

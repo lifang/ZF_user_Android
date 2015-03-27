@@ -1,5 +1,7 @@
 package com.example.zf_android;
 
+import java.io.File;
+
 public class Config {
 	
     public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
@@ -41,6 +43,4 @@ public class Config {
 	 //"http://114.215.149.242:18080/ZFMerchant/api/order/cart"
 	public static final String order_cart =PATHS+"order/cart";
 	public static final String JWB =	"http://192.168.0.240:8080/ZFMerchant/api/order/shop"; 
-	
-	
 }
