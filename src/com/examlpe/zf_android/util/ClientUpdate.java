@@ -9,26 +9,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
- 
-import com.example.zf_android.CancleUpdate;
-import com.example.zf_android.Config;
-import com.example.zf_android.R;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
- 
- 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.app.Notification;
@@ -36,7 +20,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -48,6 +31,14 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
+
+import com.example.zf_android.CancleUpdate;
+import com.example.zf_android.Config;
+import com.example.zf_android.R;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class ClientUpdate {
 	 
@@ -62,10 +53,10 @@ public class ClientUpdate {
 	private int newVerCode, verCodeMin;
 	public Builder dialog;
 	private File file = null;
-	private static int whitch = -1;// ������¼�Ǵ����ָ��µ����ȡ�� 0Ϊ��ͨ���£�1Ϊǿ�Ƹ���
+	private static int whitch = -1;
 	private Update_AsyncTask mUpdate_AsyncTask = new Update_AsyncTask();
 	public static Update_AsyncTask mUpdate;
-	private boolean isConnOk = true;// �Ƿ����ӳɹ�
+	private boolean isConnOk = true;
 
 	public ClientUpdate(Activity activity) {
 		this.activity = activity;
@@ -90,18 +81,16 @@ public class ClientUpdate {
 		}).start();
 	}
 
-	// ���汾ϵͳ����ҳ
 	public void checkSetting() {
 		if (!isNetworkAvailable(this.activity)) {
 		 
-			Toast.makeText(activity, "�����쳣��", 1000).show();
+			Toast.makeText(activity, "", 1000).show();
 			return;
 		}
 		checkVersion();
  
 	}
 
-	// �����ȡ��ݼ��汾
 	private void checkVersion() { 
 		getVersion();
 
@@ -118,7 +107,6 @@ public class ClientUpdate {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
-				// TODO Auto-generated method stub
 				String response = new String(responseBody).toString();
 				Log.i("MSG", response);
 				Gson gson = new Gson();
@@ -170,11 +158,9 @@ public class ClientUpdate {
 		}
 		dataVersion= packInfo.versionName;
 			  
-			  System.out.println("��ǰ�汾�š�����"+dataVersion);
 		return dataVersion;
 	}
 
-	// ѡ���Ƿ���¶Ի���
 	public void showUpdateDialog(String a) {
 		new UpdateDialog(activity, new UpdateDialog.ICallBack() {
 			@Override
@@ -185,7 +171,6 @@ public class ClientUpdate {
 		}, a, "").show();
 	}
 
-	// ѡ����Ͱ汾ǿ�Ƹ��¶Ի���
 //	public void showMinUpdateDialog() {
 //		whitch = 1;
 //		upEnDialog = new UpdateEnforceDialog(activity, new UpdateEnforceDialog.IEnforceCallBack() {
@@ -212,7 +197,6 @@ public class ClientUpdate {
 // 
 //	}
 
-	// �ж������Ƿ�ͨ��
 	public static boolean isNetworkAvailable(Context ctx) {
 		try {
 			ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -224,7 +208,6 @@ public class ClientUpdate {
 		}
 	}
 
-	// ����������Ϣ
 	private void sendNotification() {
 		mNotificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
 		notification = new Notification(R.drawable.mail_icon, "ICES", System.currentTimeMillis());
@@ -267,7 +250,7 @@ public class ClientUpdate {
 					return null;
 				}
 				in = conn.getInputStream();
-				int contentlength = conn.getContentLength();// �õ����ص��ܳ���
+				int contentlength = conn.getContentLength();
 				totalSize=((int)(contentlength/(1024.00*1024)*100))/100.00;
 				if (!file.exists()) {
 					file.getParentFile().mkdirs();
@@ -280,7 +263,7 @@ public class ClientUpdate {
 				while ((current = in.read(arr)) != -1 && !this.isCancelled()) {
 					out.write(arr, 0, current);
 					x = x + current;
-					count = (int) ((double) x / (double) contentlength * 100);// �������صİٷְ�
+					count = (int) ((double) x / (double) contentlength * 100);
 					nowSize = ((int)(x/(1024.00*1024)*100)/100.00);
 					if (!this.isCancelled() && new Date().getTime() - lastProgressUpdate > 500) {
 						publishProgress(count);
@@ -309,17 +292,14 @@ public class ClientUpdate {
 
 		@Override
 		protected void onPostExecute(Object result) {
-			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			if (!isCancelled() && isConnOk) {
 				if (whitch == 0) {
  				remoteviews.setProgressBar(R.id.downProgressBar, 100, 100, false);
  				remoteviews.setTextViewText(R.id.downPercent, 100 + "%");
 					mNotificationManager.notify(88888, notification);
-					// �ر�֪ͨ
 					mNotificationManager.cancel(88888);
 				}
-				// ϵͳ��װ�ļ�����ʽ��ͼ
 				Intent notify_Intent = new Intent(Intent.ACTION_VIEW);
 				notify_Intent.setDataAndType(Uri.fromFile(new File(new ClientUpdate().getFilePath())), "application/vnd.android.package-archive");
 				activity.startActivity(notify_Intent);
@@ -351,7 +331,7 @@ public class ClientUpdate {
 			if (values.length == 0)
 				return;
 			int step = values[0];
-			if (step >= 0 && step < 99) {// ��ɫ��step ���첽���ؼ���������ý�ȵ�ֵ
+			if (step >= 0 && step < 99) {
 				if (whitch == 0) {
 					remoteviews.setProgressBar(R.id.downProgressBar, 100, step, false);
 					remoteviews.setTextViewText(R.id.downPercent, step + "%");
@@ -365,65 +345,16 @@ public class ClientUpdate {
 		}
 	}
 
-	// ���Ӧ������·��
 	public String getFilePath() {
 		boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED); // �ж�sd���Ƿ����
-		if (sdCardExist) // ���SD�����ڣ����ȡ��Ŀ¼
-		{
+		if (sdCardExist) {
 			return Environment.getExternalStorageDirectory().toString() + File.separator + "ICES.apk";// ��ȡ��Ŀ¼
 		} else {
 			return activity.getCacheDir().getAbsolutePath() + File.separator + "ICES.apk";// ��ȡ��Ŀ¼
 		}
 	}
 
-	/**
-	 * ����settingҳ��İ汾���
-	 * 
-	 * @return
-	 */
 	public void settingCheckVersion() {
-//		TxtRequest_UTF8 stringRequest = new TxtRequest_UTF8(Config.URLVERSION, new Listener<String>() {
-//
-//			@Override
-//			public void onResponse(String arg0) {
-//				System.out.println("setting============arg0:"+arg0);
-//				JSONArray array;
-//				try {
-//					array = new JSONArray(arg0);
-//					JSONObject jsonObj = array.getJSONObject(0);
-//					JSONArray jsArray = jsonObj.getJSONArray("apks");
-//					ApplicationInfo appInfo = activity.getPackageManager().getApplicationInfo(activity.getPackageName(), PackageManager.GET_META_DATA);
-//					String SourceIdentity = appInfo.metaData.get("BaiduMobAd_CHANNEL").toString();
-//					for(int i=0;i<jsArray.length();i++){
-//						if(jsArray.getJSONObject(i).getString("no").equals(SourceIdentity)){
-//							DOWN_PATH=jsArray.getJSONObject(i).getString("url");
-//							break;
-//						}
-//					}
-//					if(DOWN_PATH.equals(""))
-//						DOWN_PATH=jsonObj.getString("url");
-//					newVerCode = jsonObj.getInt("verCode");
-//					verCodeMin = jsonObj.getInt("verCodeMin");
-//					Title = jsonObj.getString("Title");
-//					ReleaseNote = jsonObj.getString("ReleaseNote");
-//					if (newVerCode > (getVersion())) {
-//						if (verCodeMin > getVersion()) {
-//							showMinUpdateDialog();
-//						} else {
-//							showUpdateDialog();
-//						}
-//					} else {
-//						new ToastShow(activity, "���Ѿ������°汾").show();
-//					}
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				} catch (NameNotFoundException e) {
-//					e.printStackTrace();
-//				}
-//
-//			}
-//		}, ((AntsApplication) activity.getApplicationContext()).<String> getDefaultErrorListenerT());
-//		((AntsApplication) activity.getApplicationContext()).getRequestQueue().add(stringRequest, activity);
 	}
 
 }
