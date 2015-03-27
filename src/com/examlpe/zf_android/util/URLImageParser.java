@@ -56,11 +56,11 @@ public class URLImageParser implements ImageGetter {
 		@Override
 		protected Drawable doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			String source = params[0];// 图片URL
+			String source = params[0];// 鍥剧墖URL
 			return fetchDrawable(source);
 		}
 
-		// 获取URL的Drawable对象
+		// 鑾峰彇URL鐨凞rawable瀵硅薄
 		public Drawable fetchDrawable(String urlString) {
 			try {
 				InputStream is = fetch(urlString);
