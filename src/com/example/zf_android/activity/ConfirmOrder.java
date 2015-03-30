@@ -50,20 +50,20 @@ import com.loopj.android.http.RequestParams;
 *    
 * ����ƣ�ConfirmOrder   
 * ��������   ����ȷ��
-* �����ˣ� ljp 
+* �����ˣ� ljp  购物车订单确认
 * ����ʱ�䣺2015-2-9 ����3:49:46   
 * @version    
 *
  */
 public class ConfirmOrder extends BaseActivity implements OnClickListener{
 	private  ScrollViewWithListView   pos_lv,his_lv;
-	 private  int index=0;
+	private  int index=0;
 			 private String howMoney,comment,invoice_info;
 private EditText et_comment,et_info;
 private String Url=Config.ChooseAdress;
 List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
-List<Integer>  inn = new ArrayList<Integer>();
+ArrayList<Integer>  inn = new ArrayList<Integer>();
 			 private int addressId;
 	private ComfirmcarAdapter myAdapter;
 	private LinearLayout ll_adress;
@@ -305,33 +305,25 @@ List<Integer>  inn = new ArrayList<Integer>();
 			// TODO Auto-generated method stub
 			int [] cartid=new int[comfirmList.size()];
 			for(int i=0;i<comfirmList.size();i++){
-				 
 				cartid[i]=comfirmList.get(i).getId();
+				
 			}
+			inn.add(167);
 			comment=et_comment.getText().toString();
 			invoice_info =et_info.getText().toString();
-			
-			// TODO Auto-generated method stub
-	 
 			RequestParams params = new RequestParams();
 			Gson gson = new Gson();
 			try {
 				System.out.println("id```"+cartid.length); 
-				params.put("cartid", new JSONArray(gson.toJson(cartid)));
+				params.put("cartid", new JSONArray(gson.toJson(inn)));
 			} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
- 
 			params.put("customerId", 80);
 		 
-			params.put("addressId", 108);
-			params.put("comment", "1231");
 			params.put("is_need_invoice", 0);
-			params.put("invoice_type", 1);
- 			params.put("invoice_info","tttt");
- 
+	 
 			params.setUseJsonStreamer(true);
 			System.out.println("参数-lee-"+params);
 			MyApplication.getInstance().getClient()
@@ -389,19 +381,19 @@ List<Integer>  inn = new ArrayList<Integer>();
 		}
 		
 		public void getpay11(){
- 
-			int [] cartid=new int[comfirmList.size()];
-			for(int i=0;i<comfirmList.size();i++){
-				inn.add(comfirmList.get(i).getId());
-				//cartid[i]=comfirmList.get(i).getId();
-			}
+			inn.clear();
+			 
+//			for(int i=0;i<comfirmList.size();i++){
+//				inn.add(comfirmList.get(i).getId());
+//			}
+			inn.add(167);
 			comment=et_comment.getText().toString();
 			invoice_info =et_info.getText().toString();
 			
-			API.CARTFIRM(ConfirmOrder.this, MyApplication.NewUser.getId(),inn,
+			API.CARTFIRM1(ConfirmOrder.this, MyApplication.NewUser.getId(),inn,
 					addressId,comment,is_need_invoice,invoice_type,invoice_info,
 	        		
-	                new HttpCallback  (ConfirmOrder.this) {
+	                  new HttpCallback  (ConfirmOrder.this) {
 
 						@Override
 						public void onSuccess(Object data) {

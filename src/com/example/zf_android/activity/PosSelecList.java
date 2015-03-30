@@ -28,6 +28,7 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 	private List<PosItem> mylist=new ArrayList<PosItem>();;
 	private PositmeAdapter myAdapter;
 	private String title;
+	 ArrayList<Integer>  ids = new ArrayList<Integer>();
 	private int index;
 	private CheckBox cb_all;
 	private TextView tv_title,title1,title2;
@@ -75,14 +76,15 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 			mylist=MyApplication.pse.getPay_card(); 
 			break;
 		case 104:
-			mylist=MyApplication.pse.getBrands(); 
+			mylist=MyApplication.pse.getTrade_type(); 
 			break;
 		case 105:
-			mylist=MyApplication.pse.getBrands(); 
+			mylist=MyApplication.pse.getSale_slip(); 
 			break;
 		case 106:
-			mylist=MyApplication.pse.getBrands(); 
+			mylist=MyApplication.pse.gettDate(); 
 			break;
+			
 		case 107:
 			mylist=MyApplication.pse.getBrands(); 
 			break;
@@ -133,13 +135,16 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 					}else{
 						title=title+"."+mylist.get(i1).getValue();
 					}
+					ids.add(mylist.get(i1).getId());
+					System.out.println("选择的ID--"+mylist.get(i1).getId());
 				 }
 			 }
 				Intent intent2 = new Intent();
 				intent2.putExtra("text", title);
+				intent2.putIntegerArrayListExtra("ids", ids);
 				PosSelecList.this.setResult(index, intent2);
-				finish();
-			
+				 finish();
+				  
 			
 			break;
 		default:

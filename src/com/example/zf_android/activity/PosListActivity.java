@@ -30,13 +30,22 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
  
+import com.example.zf_android.entity.NewPoslistEntity;
 import com.example.zf_android.entity.PosEntity;
+import com.example.zf_android.entity.PosItem;
+import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.TestEntitiy;
+import com.example.zf_android.entity.UserEntity;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.Constants;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.entity.TerminalItem;
 import com.example.zf_zandroid.adapter.MessageAdapter;
 import com.example.zf_zandroid.adapter.PosAdapter;
  
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -54,7 +63,22 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	private TextView next_sure,tv_mr,tv_2,tv_3,tv_4;
 	private Boolean isDown=true;
 	private int orderType=0;
+	private int has_purchase=0;
 	private EditText et_search;
+	 List<PosItem> slist=new ArrayList<PosItem>();
+	 ArrayList<Integer>  category = new ArrayList<Integer>();
+	 ArrayList<Integer>  brands_id = new ArrayList<Integer>();
+	 ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
+	 ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
+	 ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
+	 
+	 ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
+	 ArrayList<Integer>  tDate = new ArrayList<Integer>();
+ 
+ 
+
+	 
+	 
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
 	List<PosEntity>  moreList = new ArrayList<PosEntity>();
 	private Handler handler = new Handler() {
@@ -98,6 +122,8 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.poslist_activity);
+		// MyApplication.pse=new PosSelectEntity();
+ 
 		initView();
 		getData();
 	}
@@ -258,61 +284,43 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	private void getData() {
 		// TODO Auto-generated method stub
 		String url = "http://114.215.149.242:18080/ZFMerchant/api/good/list";
+		 
 		RequestParams params = new RequestParams();
 		params.put("city_id", 1);
 		params.put("orderType", orderType);
 	 	params.put("keys", keys);
+	 	
+	 	params.put("has_purchase", has_purchase);
 		params.put("minPrice", minPrice);
 	 	params.put("maxPrice", maxPrice);
-		System.out.println("keys```"+keys+orderType);
-		params.setUseJsonStreamer(true);
+	 	params.put("page", page);
+	 	params.put("rows", rows);
+	 	
+	 	 
+	 	
+	 	
+ 
+		API.POSLIST(this, 1, orderType,
+				brands_id, null, null, null, null, null, null,
+				has_purchase, minPrice, maxPrice, keys, page, rows,
 
-		MyApplication.getInstance().getClient()
-				.post(url, params, new AsyncHttpResponseHandler() {
+				new HttpCallback<NewPoslistEntity>(this) {
+			@Override
+			public void onSuccess(NewPoslistEntity data) {
+				moreList=data.getList();
+				System.out.println("ssss"+moreList.size());
+				myList.addAll(moreList);
+				handler.sendEmptyMessage(0);
+			}
 
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg); 
-						Gson gson = new Gson();
-						JSONObject jsonobject = null;
-						String code = null;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							code = jsonobject.getString("code");
-							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){  
-								String res =jsonobject.getString("result");
-								jsonobject = new JSONObject(res);	
-								moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<PosEntity>>() {
-			 					}.getType());			 
-								System.out.println("moreList------"+moreList.size());
-								myList.addAll(moreList);
-								System.out.println("myList------"+myList.size());
-				 				handler.sendEmptyMessage(0);
-							}else{
-								code = jsonobject.getString("message");
-								Toast.makeText(getApplicationContext(), code, 1000).show();
-							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
-							e.printStackTrace();
-							
-						}
+	 
 
-					}
-
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
-					}
-				});
+			@Override
+			public TypeToken   getTypeToken() {
+				return  new TypeToken<NewPoslistEntity>() {
+				};
+			}
+		});
  
 		 
 	}
@@ -325,7 +333,23 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				System.out.println("进入条件选择回调···");
 				minPrice=data.getIntExtra("minPrice", 0);
 				maxPrice=data.getIntExtra("maxPrice", 1000000);
-				System.out.println(maxPrice+"进入条件选择回调···"+minPrice); 
+				has_purchase=data.getIntExtra("has_purchase", 1);
+				brands_id=data.getIntegerArrayListExtra("brands_id");
+				pay_channel_id=data.getIntegerArrayListExtra("pay_channel_id");
+				pay_card_id=data.getIntegerArrayListExtra("pay_card_id");
+				trade_type_id=data.getIntegerArrayListExtra("trade_type_id");
+				sale_slip_id=data.getIntegerArrayListExtra("sale_slip_id");
+				tDate=data.getIntegerArrayListExtra("tDate");
+			 
+//				 ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
+//				 
+//				 ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
+//				 ArrayList<Integer>  tDate = new ArrayList<Integer>();
+				
+				
+				System.out.println(trade_type_id.toString()+"<trade_type_id--sale_slip_id>"+sale_slip_id.toString()+"tDate-->"+tDate.toString()); 
+				
+				System.out.println(pay_channel_id+"<-->"+minPrice+brands_id.toString()+"pay_card_id"+pay_card_id.toString()); 
 				myList.clear();
 				getData();
 			}
@@ -336,6 +360,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				String  a =data.getStringExtra("text");
 				keys=a;
 				et_search.setText(a);
+				myList.clear();
 				getData();
 			}
 			

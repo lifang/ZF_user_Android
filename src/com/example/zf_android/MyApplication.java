@@ -54,32 +54,7 @@ public class MyApplication extends Application{
 		public void onReceiveLocation(BDLocation location) {
 			//Receive Location 
 			StringBuffer sb = new StringBuffer(256);
-//			sb.append("time : ");
-//			sb.append(location.getTime());
-//			sb.append("\nerror code : ");
-//			sb.append(location.getLocType());
-//			sb.append("\nlatitude : ");
-//			sb.append(location.getLatitude());
-//			sb.append("\nlontitude : ");
-//			sb.append(location.getLongitude());
-//			sb.append("\nradius : ");
-//			sb.append(location.getRadius());
-//			if (location.getLocType() == BDLocation.TypeGpsLocation){
-//				sb.append("\nspeed : ");
-//				sb.append(location.getSpeed());
-//				sb.append("\nsatellite : ");
-//				sb.append(location.getSatelliteNumber());
-//				sb.append("\ndirection : ");
-//				sb.append("\naddr : ");
-//				sb.append(location.getAddrStr());
-//				sb.append(location.getDirection());
-//			} else if (location.getLocType() == BDLocation.TypeNetWorkLocation){
-//				sb.append("\naddr : ");
-//				sb.append(location.getAddrStr());
-//				//运营商信息
-//				sb.append("\noperationers : ");
-//				sb.append(location.getOperators());
-//			}
+ 
 			sb.append(location.getAddrStr());
 			logMsg(location.getCity());
 	        List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
@@ -90,8 +65,8 @@ public class MyApplication extends Application{
                  
             }
 			 for(City cc:mCities ){
-				 if(cc.getName().endsWith(location.getCity())){
-					 System.out.println("当前城市 ID----"+cc.getId());
+				 if(cc.getName().contains(location.getCity())){
+					 System.out.println(location.getCity()+"name<--当前城市 ID----"+cc.getId());
 					 setCITYID(cc.getId());
 					 setCITYNAME(cc.getName());
 				 }

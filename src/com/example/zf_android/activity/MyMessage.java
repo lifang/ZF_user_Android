@@ -59,6 +59,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 	private LinearLayout eva_nodata;
 	private String ids[]=new String []{};
 	List<Integer> as = new ArrayList<Integer>();
+	List<String> Stringas = new ArrayList<String>();
 	JSONArray a;
 	private boolean onRefresh_number = true;
 	private MessageAdapter myAdapter;
@@ -319,7 +320,8 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 			for (int i = 0; i < myList.size(); i++) {
 
 				if (myList.get(i).getIscheck()) {
-					idList.add(myList.get(i));
+					//idList.add(myList.get(i));
+					Stringas.add(myList.get(i).getId());
 				}
 			}
 			
@@ -359,7 +361,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 		}
 		Gson gson = new Gson();
 	  
-		params.put("customer_id", MyApplication.currentUser.getId());
+		params.put("customer_id", 80);
 		try {
 			params.put("ids", new JSONArray(gson.toJson(ids)));
 		} catch (JSONException e1) {
@@ -417,23 +419,18 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 	private void Msgdelete1() {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
-		ids=new String[idList.size()];
-		for (int i = 0; i < idList.size(); i++) {
-			ids[i]=idList.get(i).getId();
-			 
-		
-		}
+	 
 		Gson gson = new Gson();
 	  
-		params.put("customer_id", MyApplication.currentUser.getId());
+		params.put("customer_id", MyApplication.NewUser.getId());
 		try {
-			params.put("ids", new JSONArray(gson.toJson(ids)));
+			params.put("ids", new JSONArray(gson.toJson(Stringas)));
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-  
+		System.out.println("--Msgdelete1-"+params);
 		params.setUseJsonStreamer(true);
 		MyApplication.getInstance().getClient()
 				.post(Config.batchDelete, params, new AsyncHttpResponseHandler() {
@@ -455,14 +452,21 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 							code = jsonobject.getInt("code");
 							
 							if(code==1){
+								moreList.clear();
 								for (int i = 0; i < myList.size(); i++) {
 
 									if (myList.get(i).getIscheck()) {
-										myList.remove(i);
+										moreList.add(myList.get(i));
+										 
+										System.out
+												.println("删除"+i);
 									}
 								}
-							//	myAdapter.notify();
+								 myList.removeAll(moreList);
+								 
 								myAdapter.notifyDataSetChanged();
+								Toast.makeText(getApplicationContext(), "消息删除成功",
+										Toast.LENGTH_SHORT).show();
 							}else{
 								Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
 										Toast.LENGTH_SHORT).show();

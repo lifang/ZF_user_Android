@@ -38,7 +38,17 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 	private SharedPreferences mySharedPreferences;
 	private Editor editor;
 	private EditText et1,et2;
- 
+	private int 	has_purchase=0;
+	 ArrayList<Integer>  brands_id = new ArrayList<Integer>();
+	 ArrayList<Integer>  category = new ArrayList<Integer>();
+	 
+	 ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
+	 ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
+	 ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
+	 
+	 ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
+	 ArrayList<Integer>  tDate = new ArrayList<Integer>();
+	 
 	private PosSelectEntity pse;
 	private List<PosItem> mylist=new ArrayList<PosItem>();
 	private LinearLayout ll_pp,ll_type, ll_pay_type,ll_paycard_type,ll_jy_type,ll_qgd_type,ll_time,ll_zdj,ll_zgj;
@@ -192,6 +202,12 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 					Intent intent2 = new Intent();
 					intent2.putExtra("minPrice", a);
 					intent2.putExtra("maxPrice", b);
+					intent2.putIntegerArrayListExtra("brands_id", brands_id);
+					intent2.putIntegerArrayListExtra("pay_channel_id", pay_channel_id);
+					intent2.putIntegerArrayListExtra("pay_card_id", pay_card_id);
+					intent2.putIntegerArrayListExtra("trade_type_id", trade_type_id);
+					intent2.putIntegerArrayListExtra("sale_slip_id", sale_slip_id);
+					intent2.putIntegerArrayListExtra("tDate", tDate);
 					PosSelect.this.setResult(1, intent2);
 					finish();
 			 }else{
@@ -202,6 +218,14 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 						Intent intent2 = new Intent();
 						intent2.putExtra("minPrice", a);
 						intent2.putExtra("maxPrice", b);
+						intent2.putExtra("has_purchase", has_purchase);
+						intent2.putIntegerArrayListExtra("pay_channel_id", pay_channel_id);
+						intent2.putIntegerArrayListExtra("pay_card_id", pay_card_id);
+						intent2.putIntegerArrayListExtra("brands_id", brands_id);
+ 
+						intent2.putIntegerArrayListExtra("trade_type_id", trade_type_id);
+						intent2.putIntegerArrayListExtra("sale_slip_id", sale_slip_id);
+						intent2.putIntegerArrayListExtra("tDate", tDate);
 						PosSelect.this.setResult(1, intent2);
 						finish();
 					}
@@ -241,12 +265,32 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 			 
 			startActivityForResult(ll_paycard_type, 103);
 			break;
-		case R.id.ll_qgd_type:   
+		case R.id.ll_jy_type:  
+			Intent ll_jy_type=new Intent(PosSelect.this, PosSelecList.class);
+			ll_jy_type.putExtra("key", "选择支付交易类型");
+			ll_jy_type.putExtra("index", 104);
 			 
+			startActivityForResult(ll_jy_type, 104);
+			break;	
+			 
+			
+			
+		case R.id.ll_qgd_type:   
+			Intent ll_qgd_type=new Intent(PosSelect.this, PosSelecList.class);
+			ll_qgd_type.putExtra("key", "选择签购单方式");
+			ll_qgd_type.putExtra("index", 105);
+			 
+			startActivityForResult(ll_qgd_type, 105 	);
+		 
 			break;
 		case R.id.ll_time:   
+			Intent ll_time=new Intent(PosSelect.this, PosSelecList.class);
+			ll_time.putExtra("key", "选择对账日期");
+			ll_time.putExtra("index", 106);
+			 
+			startActivityForResult(ll_time, 106);
+			break;	
 		 
-		break;
 		case R.id.img_on_off:
 			
 			if(isOpen_mineset){
@@ -255,12 +299,14 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 				img_on_off.setBackgroundResource(R.drawable.pos_off);
 				editor.putBoolean("isOpen_ps",false);
 					editor.commit();
+					has_purchase=0;
 				
 			}else{
 				isOpen_mineset=true;
 				img_on_off.setBackgroundResource(R.drawable.pos_on);		 
 				editor.putBoolean("isOpen_ps",true);
-					editor.commit();
+				editor.commit();
+				has_purchase=1;
 			}
 			
 			
@@ -278,7 +324,8 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 			if(data!=null){
 			 
 				tv_pp.setText(data.getStringExtra("text"));
-				
+				brands_id=data.getIntegerArrayListExtra("ids");
+				System.out.println("brands_id"+brands_id.toString());
 			}
 			break;
 		case 101:
@@ -290,8 +337,9 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 			break;
 		case 102: 
 			if(data!=null){
-				 
+				pay_channel_id=data.getIntegerArrayListExtra("ids");
 				tv_pay_type.setText(data.getStringExtra("text"));
+				System.out.println("pay_channel_id"+pay_channel_id.toString());
 			}
 		 
 			break;
@@ -299,6 +347,39 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 		if(data!=null){
 			 
 			tv_paycard_type.setText(data.getStringExtra("text"));
+			 
+			pay_card_id=data.getIntegerArrayListExtra("ids");
+			System.out.println("pay_card_id"+pay_card_id.toString());
+		}
+	 
+		break;
+		case 104: 
+		if(data!=null){
+			 
+			tv_jy_type.setText(data.getStringExtra("text"));
+			 
+			trade_type_id=data.getIntegerArrayListExtra("ids");
+			System.out.println("trade_type_id"+trade_type_id.toString());
+		}
+	 
+		break;
+		case 105: 
+		if(data!=null){
+			 
+			tv_qgd_type.setText(data.getStringExtra("text"));
+			 
+			sale_slip_id=data.getIntegerArrayListExtra("ids");
+			System.out.println("sale_slip_id"+sale_slip_id.toString());
+		}
+	 
+		break;
+		case 106: 
+		if(data!=null){
+			 
+			tv_time.setText(data.getStringExtra("text"));
+			 
+			tDate=data.getIntegerArrayListExtra("ids");
+			System.out.println("tDate"+tDate.toString());
 		}
 	 
 		break;

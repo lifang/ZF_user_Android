@@ -83,7 +83,7 @@ public class MessageAdapter extends BaseAdapter {
 			}
 		}
 
-		list.get(position).setIscheck(holder.item_cb.isChecked());
+		//list.get(position).setIscheck(holder.item_cb.isChecked());
 		holder.item_cb
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -94,7 +94,13 @@ public class MessageAdapter extends BaseAdapter {
 						list.get(position).setIscheck(isChecked);
 					}
 				});
-		// holder.item_cb.toggle();
+		 
+		if(list.get(position).getIscheck()==null){
+			holder.item_cb.setChecked(false);
+			list.get(position).setIscheck(false);
+		}else{
+			holder.item_cb.setChecked(list.get(position).getIscheck());
+		}
 		return convertView;
 	}
 

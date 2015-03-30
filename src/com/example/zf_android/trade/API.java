@@ -6,6 +6,7 @@ import com.example.zf_android.Config;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,6 +107,10 @@ public class API {
     public static final String GETCODE4PHONE = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeReg";
     public static final String ZHUCHE = SCHEMA + HOST + "/ZFMerchant/api/user/userRegistration";
     public static final String GETPHONEPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeFind";
+    public static final String order_cart = SCHEMA + HOST + "/ZFMerchant/api/order/cart";
+    //http://114.215.149.242:18080/ZFMerchant/api/order/cart
+    
+    
     public static void getTerminalList(
             Context context,
             int customerId,
@@ -601,32 +606,7 @@ public class API {
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(GETINFO, id));
 	}
-	
-	public static void CARTFIRM(
-			Context context,
-			int customerId,
-			List<Integer>  inn,
-			 
-			int addressId,
-			String  comment,
-			
-			int is_need_invoice,
-			int invoice_type,
-			String  invoice_info,
-		
-			HttpCallback callback) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("customerId", 80); 
-		params.put("cartid",  inn); 
-		params.put("addressId", addressId);
-		params.put("comment", comment);
-		params.put("is_need_invoice", is_need_invoice);
-		params.put("invoice_type", invoice_type);
-		params.put("invoice_info", invoice_info);
-		System.out.println("鍙傛暟--"+params.toString());
-		new HttpRequest(context, callback).post(Config.JWB, params);
-	}
-	
+ 
 
 	
 //	title
@@ -695,35 +675,89 @@ public class API {
 	
 	
 	
+	public static void CARTFIRM(
+			Context context,
+			int customerId,
+			List<Integer>  inn, 
+			int addressId,
+			String  comment,
+			int is_need_invoice,
+			int invoice_type,
+			String  invoice_info,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", 80); 
+		params.put("cartid",  inn); 
+		params.put("addressId", addressId);
+		params.put("comment", comment);
+		params.put("is_need_invoice", is_need_invoice);
+		params.put("invoice_type", invoice_type);
+		params.put("invoice_info", invoice_info);
+		System.out.println("SHOPORDER--"+params.toString());
+		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+	}
+	
  
  
    
-    public static void CARTFIRM(
+    public static void CARTFIRM1(
             Context context,
             int customerId,
-            int [] cartid,
+            ArrayList<Integer>   cartid,
             int addressId,
             String  comment,
-
             int is_need_invoice,
             int invoice_type,
             String  invoice_info,
-
             HttpCallback callback) {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("customerId", 80);
-        int aa[]=new int []{138,140};
-        params.put("cartid",  aa);
+        params.put("customerId", customerId);
+        params.put("cartid",  cartid);
         params.put("addressId", addressId);
         params.put("comment", comment);
-        params.put("is_need_invoice", is_need_invoice);
+        params.put("is_need_invoice",is_need_invoice);
         params.put("invoice_type", invoice_type);
         params.put("invoice_info", invoice_info);
-        System.out.println("鍙傛暟--"+params.toString());
+   
+        System.out.println("CCC--"+params.toString());
         new HttpRequest(context, callback).post(Config.SHOPORDER, params);
     }
 
-
+	public static void POSLIST(
+			Context context,
+			int  city_id,
+			int  orderType,
+			ArrayList<Integer> 	brands_id,
+			ArrayList<Integer> 	category,
+			ArrayList<Integer> 	pay_channel_id,
+			ArrayList<Integer> pay_card_id,
+			ArrayList<Integer> trade_type_id,
+			ArrayList<Integer> sale_slip_id,
+			ArrayList<Integer> tDate,
+			int has_purchase,
+			double minPrice,
+			double maxPrice,
+			String keys,
+			int page,
+			int rows,
+ 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("city_id", city_id);
+		params.put("orderType", orderType);
+		params.put("has_purchase", has_purchase);
+		params.put("minPrice", minPrice);
+		params.put("maxPrice", maxPrice);
+		params.put("keys", keys);
+		params.put("page", page);
+		params.put("rows", rows);
+	 
+ 		
+ 
+	 
+		System.out.println("--ccc----"+params);
+		new HttpRequest(context, callback).post("http://114.215.149.242:18080/ZFMerchant/api/good/list", params);
+	}
 
 
 }

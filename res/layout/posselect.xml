@@ -311,7 +311,7 @@
             android:layout_marginLeft="14dp"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="类型"
+            android:text="选择支付交易类型"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
@@ -452,7 +452,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            
+            android:text="0"
             android:background="@color/ffffff"
             android:singleLine="true"
             android:inputType="number"
@@ -498,7 +498,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-                     
+                       android:text="0"
             android:background="@color/ffffff"
             android:singleLine="true"
             android:inputType="number"

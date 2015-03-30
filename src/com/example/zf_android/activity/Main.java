@@ -150,7 +150,7 @@ public class Main extends BaseActivity implements OnClickListener{
 		LocationResult = (TextView)findViewById(R.id.tv_city);
 		 ((MyApplication)getApplication()).mLocationResult = LocationResult;
 		InitLocation();
-		mLocationClient.start();
+		//mLocationClient.start();
 		
 		
 		 System.out.println("当前城市 ID----" +MyApplication.getCITYID());
