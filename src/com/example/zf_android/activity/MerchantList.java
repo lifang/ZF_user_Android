@@ -110,12 +110,10 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-<<<<<<< HEAD
-					// TODO Auto-generated method stub
-			 
+ 
 				}
 			});
-			Xlistview.setAdapter(myAdapter);
+		//	Xlistview.setAdapter(myAdapter);
 			
 			lv=(ListView) findViewById(R.id.lv);
 			lv.setAdapter(myAdapter);
@@ -248,8 +246,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 								}
 							});
 				
-=======
->>>>>>> ae1d9d227b348e88b363db60002d195849d448fe
+ 
 				}
 			});
 			xListview.setAdapter(myAdapter);

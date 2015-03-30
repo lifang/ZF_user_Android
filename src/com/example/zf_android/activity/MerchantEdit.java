@@ -51,12 +51,7 @@ public class MerchantEdit extends BaseActivity{
 		tvkhyh=(EditText) findViewById(R.id.tvkhyh);
 	}
 	private void getData() {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-		//title=tv1.getText().toString();
-=======
-		title=tv1.getText().toString();
->>>>>>> ae1d9d227b348e88b363db60002d195849d448fe
+ 
 		legalPersonName=tv2.getText().toString();
 		legalPersonCardId=tv3.getText().toString();
 		businessLicenseNo=tv4.getText().toString();
