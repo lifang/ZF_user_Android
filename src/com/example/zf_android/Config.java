@@ -6,7 +6,7 @@ public class Config {
 	
     public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
     public final static String IMAGE_PATH = "";
-	public static String checkVersion=PATHS+"";
+	public static String URL_CHECK_VERSION=PATHS+"comment/appVersion";
 	public static int ROWS=10;
 	public static String getmes=PATHS+"message/receiver/getAll";
 	public static String getsysmes=PATHS+"web/message/getAll";

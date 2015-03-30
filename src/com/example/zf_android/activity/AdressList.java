@@ -192,7 +192,7 @@ public class AdressList extends BaseActivity  {
 				  
 						params.setUseJsonStreamer(true);
 						MyApplication.getInstance().getClient()
-								.post(Config.ADRESSDelete, params, new AsyncHttpResponseHandler() {
+								.get(Config.ADRESSDelete, new AsyncHttpResponseHandler() {
 
 									@Override
 									public void onSuccess(int statusCode, Header[] headers,

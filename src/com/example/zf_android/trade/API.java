@@ -521,7 +521,6 @@ public class API {
 		params.put("id", id);
 		params.put("passwordOld", passwordOld);
 		params.put("password", passsword);
-		System.out.println("鍏ュ弬---"+params);
 		new HttpRequest(context, callback).post(Config.CHANGEPASS, params);
 	}
 	public static void ChangeMyInfo(
@@ -579,7 +578,6 @@ public class API {
 			int is_need_invoice,
 			int invoice_type,
 			String  invoice_info,
-		
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customerId", customerId); 
@@ -591,7 +589,6 @@ public class API {
 		params.put("is_need_invoice", is_need_invoice);
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", invoice_info);
-		System.out.println("鍙傛暟--"+params.toString());
 		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
 	}
 	
@@ -623,7 +620,6 @@ public class API {
 		params.put("is_need_invoice", is_need_invoice);
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", invoice_info);
-		System.out.println("鍙傛暟--"+params.toString());
 		new HttpRequest(context, callback).post(Config.JWB, params);
 	}
 	
@@ -689,15 +685,9 @@ public class API {
 		params.put("accountPicPath", accountPicPath);
 		params.put("customerId", customerId);
 	 
-		System.out.println("--ccc----"+params);
 		new HttpRequest(context, callback).post(EDITADRESS, params);
 	}
 	
-	
-	
- 
- 
-   
     public static void CARTFIRM(
             Context context,
             int customerId,
@@ -719,12 +709,13 @@ public class API {
         params.put("is_need_invoice", is_need_invoice);
         params.put("invoice_type", invoice_type);
         params.put("invoice_info", invoice_info);
-        System.out.println("鍙傛暟--"+params.toString());
         new HttpRequest(context, callback).post(Config.SHOPORDER, params);
     }
 
 
-
+    public static void checkVersion(Context context, HttpCallback callback){
+		new HttpRequest(context, callback).post(Config.URL_CHECK_VERSION);
+    }
 
 }
 
