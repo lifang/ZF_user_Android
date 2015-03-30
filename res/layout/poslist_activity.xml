@@ -170,8 +170,7 @@
       	android:visibility="gone"
         android:layout_gravity="center"
         android:background="@color/ffffff"
-        android:orientation="horizontal" 
-    >
+        android:orientation="horizontal" >
 
         <include layout="@layout/include_norecord" />
     </LinearLayout>

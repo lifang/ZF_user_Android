@@ -62,13 +62,10 @@ public class AdressList extends BaseActivity  {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				 
-				
 				if(myList.size()==0){
-				//	norecord_text_to.setText("��û����ص���Ʒ");
 					lv.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
-				}
+				} 
 				onRefresh_number = true; 
 			 	myAdapter.notifyDataSetChanged();
 				break;
@@ -121,6 +118,7 @@ public class AdressList extends BaseActivity  {
  
 			lv=(ListView) findViewById(R.id.lv);
 			lv.setAdapter(myAdapter);
+			lv.setVisibility(View.VISIBLE);
 			lv.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override

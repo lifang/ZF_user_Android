@@ -1,5 +1,6 @@
 package com.example.zf_android.activity;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +17,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
@@ -33,19 +34,14 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MerchantEntity;
-import com.example.zf_android.entity.MessageEntity;
-import com.example.zf_android.entity.PosEntity;
-import com.example.zf_android.entity.TestEntitiy;
-import com.example.zf_zandroid.adapter.AdressAdapter;
 import com.example.zf_zandroid.adapter.MerchanAdapter;
-import com.example.zf_zandroid.adapter.MessageAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class MerchantList extends BaseActivity implements  IXListViewListener{
-	private XListView Xlistview;
+	private XListView xListview;
 	private int page=1;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata;
@@ -64,11 +60,9 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				onLoad( );
-				
+				onLoad();
 				if(myList.size()==0){
-				//	norecord_text_to.setText("��û����ص���Ʒ");
-					Xlistview.setVisibility(View.GONE);
+					xListview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
 				onRefresh_number = true; 
@@ -79,7 +73,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 						Toast.LENGTH_SHORT).show();
 			 
 				break;
-			case 2: // ����������
+			case 2: 
 				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -92,7 +86,6 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	};
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
-			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.adress_list);
 			initView();
@@ -101,24 +94,23 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		}
 
 		private void initView() {
-			// TODO Auto-generated method stub
 			search=(ImageView) findViewById(R.id.search);
 			mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
 			img_add=(ImageView) findViewById(R.id.img_add);
-			new TitleMenuUtil(MerchantList.this, "我的商户").show();
 			myAdapter=new MerchanAdapter(MerchantList.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
-			Xlistview=(XListView) findViewById(R.id.x_listview);
-			// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������");
-			Xlistview.setPullLoadEnable(true);
-			Xlistview.setXListViewListener(this);
-			Xlistview.setDivider(null);
+			xListview=(XListView) findViewById(R.id.x_listview);
+			xListview.setVisibility(View.VISIBLE);
+			xListview.setPullLoadEnable(true);
+			xListview.setXListViewListener(this);
+			xListview.setDivider(null);
 			tv_delete=(TextView) findViewById(R.id.tv_delete);
-			Xlistview.setOnItemClickListener(new OnItemClickListener() {
+			xListview.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
+<<<<<<< HEAD
 					// TODO Auto-generated method stub
 			 
 				}
@@ -256,29 +248,25 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 								}
 							});
 				
+=======
+>>>>>>> ae1d9d227b348e88b363db60002d195849d448fe
 				}
 			});
+			xListview.setAdapter(myAdapter);
 		}
 
 		@Override
 		public void onRefresh() {
-			// TODO Auto-generated method stub
 			page = 1;
-			 System.out.println("onRefresh1");
 			myList.clear();
-			 System.out.println("onRefresh2");
 			getData();
 		}
 
 
 		@Override
 		public void onLoadMore() {
-			// TODO Auto-generated method stub
 			if (onRefresh_number) {
 				page = page+1;
-				
-			 
-				
 				if (Tools.isConnect(getApplicationContext())) {
 					onRefresh_number = false;
 					getData();
@@ -292,9 +280,9 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			}
 		}
 		private void onLoad() {
-			Xlistview.stopRefresh();
-			Xlistview.stopLoadMore();
-			Xlistview.setRefreshTime(Tools.getHourAndMin());
+			xListview.stopRefresh();
+			xListview.stopLoadMore();
+			xListview.setRefreshTime(Tools.getHourAndMin());
 		}
 
 		public void buttonClick() {
@@ -303,56 +291,35 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			getData();
 		}
 		private void getData() {
-			// TODO Auto-generated method stub
 
-			// TODO Auto-generated method stub
-			String url = "http://114.215.149.242:18080/ZFMerchant/api/merchant/getList/";
-		//	RequestParams params = new RequestParams();
-			 
-			url=url+customerId+"/"+page+"/"+rows;
-			//params.setUseJsonStreamer(true);
-
+			String url = MessageFormat.format(Config.URL_MERCHANT_LIST, customerId, page, rows);
 			MyApplication.getInstance().getClient()
 					.post(url, new AsyncHttpResponseHandler() {
-
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,
 								byte[] responseBody) {
 							String responseMsg = new String(responseBody)
 									.toString();
-							Log.e("print", responseMsg);
-
-						 
-							 
 							Gson gson = new Gson();
-							
 							JSONObject jsonobject = null;
 							String code = null;
 							try {
 								jsonobject = new JSONObject(responseMsg);
 								code = jsonobject.getString("code");
 								int a =jsonobject.getInt("code");
-								if(a==Config.CODE){  
+								if(a==Config.CODE){
  								String res =jsonobject.getString("result");
- 				jsonobject = new JSONObject(res);
-//									
+ 									jsonobject = new JSONObject(res);
 									moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<MerchantEntity>>() {
 				 					}.getType());
-				 				 
 									myList.addAll(moreList);
 					 				handler.sendEmptyMessage(0);
- 				 					  
-				 				 
-				 			 
 								}else{
 									code = jsonobject.getString("message");
-									Toast.makeText(getApplicationContext(), code, 1000).show();
+									Toast.makeText(getApplicationContext(), code, Toast.LENGTH_SHORT).show();
 								}
 							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								 ;	
 								e.printStackTrace();
-								
 							}
 
 						}
@@ -360,8 +327,6 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 						@Override
 						public void onFailure(int statusCode, Header[] headers,
 								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
-							System.out.println("-onFailure---");
 							Log.e("print", "-onFailure---" + error);
 						}
 					});
