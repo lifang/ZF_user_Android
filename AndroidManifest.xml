@@ -326,6 +326,11 @@
             android:name="com.example.zf_android.activity.MerchantEdit"
             android:screenOrientation="portrait" >
         </activity>
+                                <activity
+            android:name="com.example.zf_android.activity.MerchantItemEdit"
+            android:screenOrientation="portrait" >
+        </activity>
+                        
                              <activity
             android:name="com.example.zf_android.activity.JifenActivity"
             android:screenOrientation="portrait" >

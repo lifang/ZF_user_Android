@@ -62,10 +62,10 @@ public class MyApplication extends Application{
  
 			sb.append(location.getAddrStr());
 			logMsg(location.getCity());
+			mCities.clear();
 	        List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
             for (Province province : provinces) {
                 List<City> cities = province.getCities();
-              
                 mCities.addAll(cities);
                  
             }
@@ -76,7 +76,6 @@ public class MyApplication extends Application{
 					 setCITYNAME(cc.getName());
 				 }
 			 }
-			 
 			Log.i("BaiduLocationApiDem", sb.toString());
 		}
 

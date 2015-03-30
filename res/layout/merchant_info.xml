@@ -3,8 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
   	android:orientation="vertical"
-  	android:background="@color/F3F2F2"
-  	 >
+  	android:background="@color/F3F2F2">
 
  <include layout="@layout/title_back" />
    <ScrollView  android:layout_height="wrap_content"
@@ -357,7 +356,6 @@
         
       <TextView
             android:background="@color/ffffff"
-        	android:id="@+id/tvkhyh"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
                 android:layout_marginLeft="@dimen/margin_left2"
@@ -368,7 +366,7 @@
             android:textSize="17sp" />
 
         <TextView
-           
+            android:id="@+id/tvkhyh"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
