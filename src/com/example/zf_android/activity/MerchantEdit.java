@@ -38,6 +38,7 @@ public class MerchantEdit extends BaseActivity{
 			 
 		}
 		initView();
+		getData();
 	}
 	private void initView() {
 		tv1=(TextView) findViewById(R.id.tv1);

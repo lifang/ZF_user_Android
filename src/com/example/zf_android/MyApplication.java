@@ -266,7 +266,7 @@ public class MyApplication extends Application{
 		mGeofenceClient = new GeofenceClient(getApplicationContext());
 		mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
 		//设置全局imageload
-		initImageLoaderConfig();
+//		initImageLoaderConfig();
 	}
 	
 	public static MyApplication getInstance() {
@@ -274,24 +274,24 @@ public class MyApplication extends Application{
 	}
 	
 	
-	private void initImageLoaderConfig(){
-		DisplayImageOptions options = new DisplayImageOptions.Builder()
-	        .cacheInMemory(true) 					// 设置下载的图片是否缓存在内存中  
-	        .cacheOnDisk(true) 						// 设置下载的图片是否缓存在SD卡中 
-	        .considerExifParams(true) 				// 是否考虑JPEG图像EXIF参数（旋转，翻转）
-	        .bitmapConfig(Bitmap.Config.RGB_565) 	// default
-	        .build();
-		
-		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-			.threadPriority(Thread.NORM_PRIORITY - 2)
-			.denyCacheImageMultipleSizesInMemory()
-			.diskCacheFileNameGenerator(new HashCodeFileNameGenerator())
-			.tasksProcessingOrder(QueueProcessingType.LIFO)
-			.defaultDisplayImageOptions(options)
-			.build();
-		
-		ImageLoader.getInstance().init(config);
-	}
+//	private void initImageLoaderConfig(){
+//		DisplayImageOptions options = new DisplayImageOptions.Builder()
+//	        .cacheInMemory(true) 					// 设置下载的图片是否缓存在内存中  
+//	        .cacheOnDisk(true) 						// 设置下载的图片是否缓存在SD卡中 
+//	        .considerExifParams(true) 				// 是否考虑JPEG图像EXIF参数（旋转，翻转）
+//	        .bitmapConfig(Bitmap.Config.RGB_565) 	// default
+//	        .build();
+//		
+//		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+//			.threadPriority(Thread.NORM_PRIORITY - 2)
+//			.denyCacheImageMultipleSizesInMemory()
+//			.diskCacheFileNameGenerator(new HashCodeFileNameGenerator())
+//			.tasksProcessingOrder(QueueProcessingType.LIFO)
+//			.defaultDisplayImageOptions(options)
+//			.build();
+//		
+//		ImageLoader.getInstance().init(config);
+//	}
 	
 	
 	public ImageLoader getImageLoader(){
