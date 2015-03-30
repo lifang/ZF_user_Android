@@ -5,8 +5,15 @@ package com.example.zf_android;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
- 
- 
+
+import android.app.Activity;
+import android.app.Application;
+import android.app.Service;
+import android.graphics.Bitmap;
+import android.os.Vibrator;
+import android.util.Log;
+import android.widget.TextView;
+
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
@@ -15,22 +22,20 @@ import com.example.zf_android.entity.ApplyneedEntity;
 import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.Goodlist;
+import com.example.zf_android.entity.MyShopCar.Good;
 import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.User;
 import com.example.zf_android.entity.UserEntity;
-import com.example.zf_android.entity.MyShopCar.Good;
-import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpClient;
-
-import android.app.Activity;
-import android.app.Application;
-import android.app.Service;
-import android.os.Vibrator;
-import android.util.Log;
-import android.widget.TextView;
+import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.utils.StorageUtils;
  
  
  
@@ -42,7 +47,7 @@ public class MyApplication extends Application{
 	public MyLocationListener mMyLocationListener;
 	public Vibrator mVibrator;
 	
-
+	private ImageLoader mImageLoader;
 
 	private List<City> mCities = new ArrayList<City>();
 	/**
@@ -95,13 +100,12 @@ public class MyApplication extends Application{
 	private static MyApplication  mInstance=null;
 	//private ArrayList<Order> orderList = new ArrayList<Order>();
 	/**
-	 * ��֤��Ϣtoken
 	 */
 	private static  String versionCode="";
 	private static int notifyId=0;
 	private static Boolean isSelect=false;
 	private static int CITYID=1;
-	private static String   CITYNAME="苏州";
+	private static String   CITYNAME="";
 	
 	public static String getCITYNAME() {
 		return CITYNAME;
@@ -239,7 +243,6 @@ public class MyApplication extends Application{
     public void addActivity(Activity activity) {    
         mList.add(activity);    
     }    
-    //�ر�ÿһ��list�ڵ�activity   
     public void exit() {    
         try {    
             for (Activity activity:mList) {    
@@ -261,21 +264,41 @@ public class MyApplication extends Application{
 		mMyLocationListener = new MyLocationListener();
 		mLocationClient.registerLocationListener(mMyLocationListener);
 		mGeofenceClient = new GeofenceClient(getApplicationContext());
-		
-		
 		mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+		//设置全局imageload
+		initImageLoaderConfig();
 	}
 	
-//	private void initImageLoader(Context context) {
-//		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
-//				context).memoryCache(new LruMemoryCache(2 * 1024 * 1024))
-//				.memoryCacheSize(2 * 1024 * 1024)
-//				.discCacheSize(50 * 1024 * 1024).discCacheFileCount(100)
-//				.build();
-//		ImageLoader.getInstance().init(config);
-//	}
 	public static MyApplication getInstance() {
 		return mInstance;
+	}
+	
+	
+	private void initImageLoaderConfig(){
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+	        .cacheInMemory(true) 					// 设置下载的图片是否缓存在内存中  
+	        .cacheOnDisk(true) 						// 设置下载的图片是否缓存在SD卡中 
+	        .considerExifParams(true) 				// 是否考虑JPEG图像EXIF参数（旋转，翻转）
+	        .bitmapConfig(Bitmap.Config.RGB_565) 	// default
+	        .build();
+		
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+			.threadPriority(Thread.NORM_PRIORITY - 2)
+			.denyCacheImageMultipleSizesInMemory()
+			.diskCacheFileNameGenerator(new HashCodeFileNameGenerator())
+			.tasksProcessingOrder(QueueProcessingType.LIFO)
+			.defaultDisplayImageOptions(options)
+			.build();
+		
+		ImageLoader.getInstance().init(config);
+	}
+	
+	
+	public ImageLoader getImageLoader(){
+		if (mImageLoader == null) {
+			mImageLoader = ImageLoader.getInstance();
+		}
+		return mImageLoader;
 	}
 	
  

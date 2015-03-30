@@ -54,9 +54,6 @@ public class ImageCacheUtil {
 					
 					    BitmapDrawable bd= new BitmapDrawable( loadedImage);                  
 				   imageView.setBackgroundDrawable(bd);
-					
-					
-					// first time show with animation
 					if (!isInCache) {
 						imageView.startAnimation(getInAlphaAnimation(2000));
 					}
@@ -122,7 +119,6 @@ public class ImageCacheUtil {
 		 * close connection, default is connect keep-alive to reuse connection.
 		 * if image is from different server, you can set this
 		 */
-		// IMAGE_CACHE.setRequestProperty("Connection", "false");
 	}
 
 	public static AlphaAnimation getInAlphaAnimation(long durationMillis) {

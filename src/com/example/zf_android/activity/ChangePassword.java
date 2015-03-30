@@ -62,16 +62,7 @@ public class ChangePassword extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		if(check ()){
-		  
-
-		 
-//			RequestParams params = new RequestParams();
-//			params.put("id", MyApplication.currentUser.getId());
-//			params.put("passwordOld", passwordOld);
-//			params.put("password", password);
-//			params.setUseJsonStreamer(true);
 			 API.ChangePass(ChangePassword.this,MyApplication.NewUser.getId(),passwordOld,passwordOld,
 		        		
 		                new HttpCallback (ChangePassword.this) {

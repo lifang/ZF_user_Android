@@ -27,6 +27,9 @@ import android.app.ActivityManager.RunningTaskInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -53,6 +56,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
  
+
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -478,5 +482,38 @@ public class Tools {
 //		builder.show();
 //		return builder;
 //	}
+	
+	/**
+	 * 获得应用版本号
+	 * @param context
+	 * @return
+	 */
+    public static int getVerCode(Context context) {
+        int verCode = -1;
+        try {
+        	PackageManager packageManager = context.getPackageManager();
+        	PackageInfo packInfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            verCode = packInfo.versionCode;
+        } catch (NameNotFoundException e) {
+        	e.printStackTrace();
+        }
+        return verCode;  
+    }  
+    /**
+	 * 获得应用版本号
+	 * @param context
+	 * @return
+	 */
+    public static String getVerName(Context context) {
+        String versionName = "";
+        try {
+        	PackageManager packageManager = context.getPackageManager();
+        	PackageInfo packInfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+        	versionName = packInfo.versionName;
+        } catch (NameNotFoundException e) {
+        	e.printStackTrace();
+        }
+        return versionName;  
+    } 
 
 }

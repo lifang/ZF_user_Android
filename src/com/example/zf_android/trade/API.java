@@ -526,7 +526,6 @@ public class API {
 		params.put("id", id);
 		params.put("passwordOld", passwordOld);
 		params.put("password", passsword);
-		System.out.println("鍏ュ弬---"+params);
 		new HttpRequest(context, callback).post(Config.CHANGEPASS, params);
 	}
 	public static void ChangeMyInfo(
@@ -584,7 +583,6 @@ public class API {
 			int is_need_invoice,
 			int invoice_type,
 			String  invoice_info,
-		
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customerId", customerId); 
@@ -596,7 +594,6 @@ public class API {
 		params.put("is_need_invoice", is_need_invoice);
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", invoice_info);
-		System.out.println("鍙傛暟--"+params.toString());
 		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
 	}
 	
@@ -606,7 +603,35 @@ public class API {
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(GETINFO, id));
 	}
+<<<<<<< HEAD
  
+=======
+	
+	public static void CARTFIRM(
+			Context context,
+			int customerId,
+			List<Integer>  inn,
+			 
+			int addressId,
+			String  comment,
+			
+			int is_need_invoice,
+			int invoice_type,
+			String  invoice_info,
+		
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", 80); 
+		params.put("cartid",  inn); 
+		params.put("addressId", addressId);
+		params.put("comment", comment);
+		params.put("is_need_invoice", is_need_invoice);
+		params.put("invoice_type", invoice_type);
+		params.put("invoice_info", invoice_info);
+		new HttpRequest(context, callback).post(Config.JWB, params);
+	}
+	
+>>>>>>> 9db90446eb53689d1aa0c1d9b63e480de772f4b8
 
 	
 //	title
@@ -669,10 +694,10 @@ public class API {
 		params.put("accountPicPath", accountPicPath);
 		params.put("customerId", customerId);
 	 
-		System.out.println("--ccc----"+params);
 		new HttpRequest(context, callback).post(EDITADRESS, params);
 	}
 	
+<<<<<<< HEAD
 	
 	
 	public static void CARTFIRM(
@@ -701,6 +726,9 @@ public class API {
  
    
     public static void CARTFIRM1(
+=======
+    public static void CARTFIRM(
+>>>>>>> 9db90446eb53689d1aa0c1d9b63e480de772f4b8
             Context context,
             int customerId,
             ArrayList<Integer>   cartid,
@@ -718,6 +746,7 @@ public class API {
         params.put("is_need_invoice",is_need_invoice);
         params.put("invoice_type", invoice_type);
         params.put("invoice_info", invoice_info);
+<<<<<<< HEAD
    
         System.out.println("CCC--"+params.toString());
         new HttpRequest(context, callback).post(Config.SHOPORDER, params);
@@ -759,6 +788,15 @@ public class API {
 		new HttpRequest(context, callback).post("http://114.215.149.242:18080/ZFMerchant/api/good/list", params);
 	}
 
+=======
+        new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+    }
+
+
+    public static void checkVersion(Context context, HttpCallback callback){
+		new HttpRequest(context, callback).post(Config.URL_CHECK_VERSION);
+    }
+>>>>>>> 9db90446eb53689d1aa0c1d9b63e480de772f4b8
 
 }
 
