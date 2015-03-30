@@ -3,8 +3,6 @@ package com.examlpe.zf_android.util;
 
  
 
-import com.example.zf_android.R;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -18,8 +16,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
- 
 
+import com.example.zf_android.R;
+ 
 public class XListView extends ListView implements OnScrollListener {
 
 	private float mLastY = -1; // save event y
@@ -104,10 +103,8 @@ public class XListView extends ListView implements OnScrollListener {
 		mHeaderTimeView = (TextView) mHeaderView
 				.findViewById(R.id.xlistview_header_time);
 		addHeaderView(mHeaderView);
-
 		// init footer view
 		mFooterView = new XListViewFooter(context);
-
 		// init header height
 		mHeaderView.getViewTreeObserver().addOnGlobalLayoutListener(
 				new OnGlobalLayoutListener() {
@@ -207,7 +204,7 @@ public class XListView extends ListView implements OnScrollListener {
 	private void updateHeaderHeight(float delta) {
 		mHeaderView.setVisiableHeight((int) delta
 				+ mHeaderView.getVisiableHeight());
-		if (mEnablePullRefresh && !mPullRefreshing) { // 未处于刷新状态，更新箭头
+		if (mEnablePullRefresh && !mPullRefreshing) {
 			if (mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
 				mHeaderView.setState(XListViewHeader.STATE_READY);
 			} else {
@@ -251,8 +248,6 @@ public class XListView extends ListView implements OnScrollListener {
 			}
 		}
 		mFooterView.setBottomMargin(height);
-
-		// setSelection(mTotalItemCount - 1); // scroll to bottom
 	}
 
 	private void resetFooterHeight() {
@@ -286,8 +281,6 @@ public class XListView extends ListView implements OnScrollListener {
 		case MotionEvent.ACTION_MOVE:
 			final float deltaY = ev.getRawY() - mLastY;
 			mLastY = ev.getRawY();
-			System.out.println("数据监测：" + getFirstVisiblePosition() + "---->"
-					+ getLastVisiblePosition());
 			if (getFirstVisiblePosition() == 0
 					&& (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
 				// the first item is showing, header has shown or pull down.
@@ -380,7 +373,6 @@ public class XListView extends ListView implements OnScrollListener {
 	 */
 	public interface IXListViewListener {
 		public void onRefresh();
-
 		public void onLoadMore();
 	}
 }

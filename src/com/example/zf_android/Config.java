@@ -42,5 +42,9 @@ public class Config {
 	public static final String SHOPORDER=PATHS+"order/shop";
 	 //"http://114.215.149.242:18080/ZFMerchant/api/order/cart"
 	public static final String order_cart =PATHS+"order/cart";
-	public static final String JWB =	"http://192.168.0.240:8080/ZFMerchant/api/order/shop"; 
+	public static final String JWB = "http://192.168.0.240:8080/ZFMerchant/api/order/shop"; 
+	public static final String URL_MERCHANT_DELETE = PATHS+"merchant/delete";
+	public static final String URL_MERCHANT_LIST = PATHS+"merchant/getList/{0}/{1}/{2}";
+
+
 }
