@@ -65,7 +65,9 @@ public class AdressList extends BaseActivity  {
 				if(myList.size()==0){
 					lv.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
-				} 
+				} else{
+					lv.setVisibility(View.VISIBLE);
+				}
 				onRefresh_number = true; 
 			 	myAdapter.notifyDataSetChanged();
 				break;

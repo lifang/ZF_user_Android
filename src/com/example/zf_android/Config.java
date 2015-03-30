@@ -49,5 +49,6 @@ public class Config {
   
 	public static final String URL_MERCHANT_DELETE = PATHS+"merchant/delete";
 	public static final String URL_MERCHANT_LIST = PATHS+"merchant/getList/{0}/{1}/{2}";
- 
+	public static final String URL_MERCHANT_INFO = PATHS+"merchant/getOne/{0}";
+
 }

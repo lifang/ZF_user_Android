@@ -7,6 +7,10 @@ import android.widget.TextView;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.MerchantEntity;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.google.gson.reflect.TypeToken;
 /**
  * 
 *    
@@ -19,20 +23,16 @@ import com.example.zf_android.R;
  */
 public class MerchantEdit extends BaseActivity{
 	private int id;
-	private TextView tv7;
-	private EditText tv1,tv2,tv3,tv4,tv5,tv6,tv8,tv9,tvkhyh;
-	private String title,legalPersonName,legalPersonCardId,businessLicenseNo,taxRegisteredNo,organizationCodeNo,
-	accountBankName,bankOpenAccount,cardIdFrontPhotoPath,cardIdBackPhotoPath,bodyPhotoPath,licenseNoPicPath,taxNoPicPath,
-	orgCodeNoPicPath,accountPicPath;
+	private TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7,tvkhyh,tv8,tv9;
+	private MerchantEntity merchantEntity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.merchant_info);
 		id=getIntent().getIntExtra("ID", 0);
-		new TitleMenuUtil(MerchantEdit.this, "创建商户").show();
 		initView();
 		if(id==0){
-			
+			new TitleMenuUtil(MerchantEdit.this, "创建商户").show();
 		}else{
 			new TitleMenuUtil(MerchantEdit.this, getIntent().getStringExtra("name")).show();
 			 
@@ -40,25 +40,45 @@ public class MerchantEdit extends BaseActivity{
 		initView();
 	}
 	private void initView() {
-		tv1=(EditText) findViewById(R.id.tv1);
-		tv2=(EditText) findViewById(R.id.tv2);
-		tv3=(EditText) findViewById(R.id.tv3);
-		tv4=(EditText) findViewById(R.id.tv4);
-		tv5=(EditText) findViewById(R.id.tv5);
-		tv6=(EditText) findViewById(R.id.tv6);
+		tv1=(TextView) findViewById(R.id.tv1);
+		tv2=(TextView) findViewById(R.id.tv2);
+		tv3=(TextView) findViewById(R.id.tv3);
+		tv4=(TextView) findViewById(R.id.tv4);
+		tv5=(TextView) findViewById(R.id.tv5);
+		tv6=(TextView) findViewById(R.id.tv6);
 		tv7=(TextView) findViewById(R.id.tv7);
-		tv8=(EditText) findViewById(R.id.tv8);
-		tvkhyh=(EditText) findViewById(R.id.tvkhyh);
+		tv8=(TextView) findViewById(R.id.tv8);
+		tvkhyh=(TextView) findViewById(R.id.tvkhyh);
 	}
 	private void getData() {
- 
-		legalPersonName=tv2.getText().toString();
-		legalPersonCardId=tv3.getText().toString();
-		businessLicenseNo=tv4.getText().toString();
-		taxRegisteredNo=tv5.getText().toString();
-		organizationCodeNo=tv6.getText().toString();
- 
-		accountBankName=tvkhyh.getText().toString();
-		bankOpenAccount=tv8.getText().toString();
+		getInfo();
 	}
+	
+	private void getInfo() {
+		 API.merchantInfo(MerchantEdit.this,id,
+	                new HttpCallback<MerchantEntity> (MerchantEdit.this) {
+
+						@Override
+						public void onSuccess(MerchantEntity data) {
+							merchantEntity = data;
+							tv1.setText(data.getTitle());
+							tv2.setText(data.getLegal_person_name());
+							tv3.setText(data.getLegal_person_card_id());
+							tv4.setText(data.getBusiness_license_no());
+							tv5.setText(data.getTax_registered_no());
+							tv6.setText(data.getOrganization_code_no());
+							tvkhyh.setText(data.getAccount_bank_name());
+							tv8.setText(data.getBank_open_account());
+
+						}
+
+						@Override
+						public TypeToken<MerchantEntity> getTypeToken() {
+							return new TypeToken<MerchantEntity>() {
+							};
+						}
+	                });
+
+	}
+
 }
