@@ -22,7 +22,7 @@ import com.example.zf_android.R;
 public class About extends BaseActivity implements OnClickListener{
 	private int a;
 	private int index;
-	
+	private String text;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
