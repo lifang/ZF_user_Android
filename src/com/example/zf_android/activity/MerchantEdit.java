@@ -38,7 +38,7 @@ public class MerchantEdit extends BaseActivity{
 			 
 		}else{
 			new TitleMenuUtil(MerchantEdit.this, getIntent().getStringExtra("name")).show();
-			getData();
+			 
 		}
 		initView();
 	}
@@ -56,13 +56,13 @@ public class MerchantEdit extends BaseActivity{
 	}
 	private void getData() {
 		// TODO Auto-generated method stub
-		title=tv1.getText().toString();
+		//title=tv1.getText().toString();
 		legalPersonName=tv2.getText().toString();
 		legalPersonCardId=tv3.getText().toString();
 		businessLicenseNo=tv4.getText().toString();
 		taxRegisteredNo=tv5.getText().toString();
 		organizationCodeNo=tv6.getText().toString();
-		//cityId
+ 
 		accountBankName=tvkhyh.getText().toString();
 		bankOpenAccount=tv8.getText().toString();
 		

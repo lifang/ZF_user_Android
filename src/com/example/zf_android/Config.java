@@ -39,16 +39,12 @@ public class Config {
 	public static final String ChooseAdress = PATHS+"customers/getAddressList/";
 	public static final String goodadd=PATHS+"cart/add";
 	//http://114.215.149.242:18080/ZFMerchant/api/paychannel/info
-<<<<<<< HEAD
+ 
  	public static final String SHOPORDER=PATHS+"order/shop";
  
 	public static final String JWB ="http://192.168.0.240:8081/ZFMerchant/api/order/cart"; 
 	
-	
-=======
-	public static final String SHOPORDER=PATHS+"order/shop";
-	 //"http://114.215.149.242:18080/ZFMerchant/api/order/cart"
+ 
 	public static final String order_cart =PATHS+"order/cart";
-	public static final String JWB =	"http://192.168.0.240:8080/ZFMerchant/api/order/shop"; 
->>>>>>> 9db90446eb53689d1aa0c1d9b63e480de772f4b8
+ 
 }

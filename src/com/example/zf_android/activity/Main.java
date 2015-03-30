@@ -99,9 +99,10 @@ public class Main extends BaseActivity implements OnClickListener{
 				}
 				indicator_imgs	= new ImageView[ma.size()];
 				initIndicator();
-				adapter.notifyDataSetChanged();		
-				 view_pager.setCurrentItem(1);
-			 	view_pager.setCurrentItem(0);
+				adapter.notifyDataSetChanged();	
+//				view_pager.setCurrentItem(0);
+//				 view_pager.setCurrentItem(1);
+//			 	view_pager.setCurrentItem(0);
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -150,7 +151,7 @@ public class Main extends BaseActivity implements OnClickListener{
 		LocationResult = (TextView)findViewById(R.id.tv_city);
 		 ((MyApplication)getApplication()).mLocationResult = LocationResult;
 		InitLocation();
-		//mLocationClient.start();
+		mLocationClient.start();
 		
 		
 		 System.out.println("当前城市 ID----" +MyApplication.getCITYID());
@@ -190,15 +191,9 @@ public class Main extends BaseActivity implements OnClickListener{
 						int a =jsonobject.getInt("code");
 						if(a==Config.CODE){  
 							String res =jsonobject.getString("result");
-						//	jsonobject = new JSONObject(res);
-							
 							myList= gson.fromJson(res, new TypeToken<List<PicEntity>>() {
 		 					}.getType());
-						 
 			 				handler.sendEmptyMessage(0);
-		 					  
-		 				 
-		 			 
 						}else{
 							code = jsonobject.getString("message");
 							Toast.makeText(getApplicationContext(), code, 1000).show();
@@ -207,11 +202,7 @@ public class Main extends BaseActivity implements OnClickListener{
 						// TODO Auto-generated catch block
 						 ;	
 						e.printStackTrace();
-						
-					}
-				
-				
-				  
+					}	  
 			}
 
 			@Override
@@ -451,20 +442,18 @@ private void initIndicator(){
 			container.removeView(mList.get(position));
 			container.addView(mList.get(position));
 			setIndex(position);
-//			image.setOnClickListener(new OnClickListener() {
-//				
-//				@Override
-//				public void onClick(View v) {
-//					// TODO Auto-generated method stub
-//				//	 Toast.makeText(getApplicationContext(), index_ima+"----", 1000).show();
-//					 Intent i=new Intent(AroundDetail.this,VPImage.class);
-//					// i.putExtra("image_url", ma.get(index_ima));
-//					 i.putExtra("index", index_ima);
-//					 i.putExtra("mal", mal);
-//					 startActivityForResult(i, 9);
-//				}
-//			});
-		  
+			view.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					 Intent intent = new Intent();        
+			            intent.setAction("android.intent.action.VIEW");    
+			            Uri content_url = Uri.parse(myList.get(position).getWebsite_url().toString());   
+			            intent.setData(content_url);  
+			            startActivity(intent);
+				}
+			});
 			
 			
 			return mList.get(position);

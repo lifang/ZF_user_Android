@@ -186,19 +186,13 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 							idList.add(myList.get(i));
 						}
 					}
-					
-					
-					
 					RequestParams params = new RequestParams();
 					ids=new int[idList.size()];
 					for (int i = 0; i < idList.size(); i++) {
 						ids[i]=idList.get(i).getId();
-						 
-					
 					}
 					Gson gson = new Gson();
-				  
-				//	params.put("customer_id", MyApplication.currentUser.getId());
+		 
 					try {
 						params.put("ids", new JSONArray(gson.toJson(ids)));
 					} catch (JSONException e1) {
@@ -308,9 +302,6 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			myList.clear();
 			getData();
 		}
-		/*
-		 * �������
-		 */
 		private void getData() {
 			// TODO Auto-generated method stub
 
