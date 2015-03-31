@@ -383,11 +383,17 @@
              android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" >
         </activity>		
-                                  <activity
+        <activity
             android:name="com.example.zf_android.activity.Adress4Edit"
              android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" >
-        </activity>		 
+        </activity>	
+                <activity
+            android:name="com.example.zf_android.activity.PosSelecSon"
+             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" >
+        </activity>	
+         	 
          
      </application>
 

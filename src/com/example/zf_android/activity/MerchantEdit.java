@@ -89,6 +89,9 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.merchant_info);
 		id=getIntent().getIntExtra("ID", 0);
+ 
+		new TitleMenuUtil(MerchantEdit.this, "编辑商户").show();
+ 
 		initView();
 		MenuListener menuListener = new MenuListener() {
 			@Override

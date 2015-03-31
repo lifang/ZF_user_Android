@@ -3,6 +3,7 @@ package com.example.zf_android.activity;
 import android.os.Bundle;
 import android.widget.EditText;
 
+import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 /***
@@ -22,6 +23,7 @@ public class CreatMerchant extends BaseActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.merchant_new);
+		new TitleMenuUtil(CreatMerchant.this, "创建商户").show();
 		initView();
 	}
 	private void initView() {
