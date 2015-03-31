@@ -2,16 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-  	android:orientation="vertical"
-  	android:background="@color/F3F2F2"
-  	 >
+    android:background="@color/F3F2F2"
+    android:orientation="vertical" >
 
  <include layout="@layout/title_back" />
    <ScrollView  android:layout_height="wrap_content"
         android:layout_width="fill_parent">
-        <LinearLayout android:layout_height="wrap_content"
+
+        <LinearLayout
             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+
    <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -38,14 +40,15 @@
 
         <EditText
             android:background="@color/ffffff"
+            
             android:id="@+id/tv1"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
           
             android:singleLine="true"
-            android:text="张小小"
+           
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -82,16 +85,16 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-              <EditText
+         <EditText
             android:background="@color/ffffff"
            android:id="@+id/tv2"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
           
             android:singleLine="true"
-            android:text="15050056006"
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -128,16 +131,16 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-               <EditText
+         <EditText
             android:background="@color/ffffff"
            android:id="@+id/tv3"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
   
             android:singleLine="true"
-            android:text="123@gmail.com"
+             
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -174,16 +177,15 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-                <EditText
+       <EditText
             android:background="@color/ffffff"
            android:id="@+id/tv4"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
             android:singleLine="true"
-          
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -223,13 +225,12 @@
          <EditText
             android:background="@color/ffffff"
               android:id="@+id/tv5"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
             android:singleLine="true"
-        
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -266,16 +267,15 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-               <EditText
-                   android:id="@+id/tv6"
+        <EditText
             android:background="@color/ffffff"
-            android:layout_width="0dp"
+        	android:id="@+id/tv6"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
             android:singleLine="true"
-         
+            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -313,14 +313,11 @@
             android:textSize="17sp" />
 
              <TextView
-               
-            android:background="@color/ffffff"
-              android:id="@+id/tv7"
-            android:layout_width="0dp"
+        	android:id="@+id/tv7"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
             android:singleLine="true"
           
             android:textColor="@color/text6c6c6c6"
@@ -355,7 +352,8 @@
 	 
         
         
-        <TextView
+      <TextView
+            android:background="@color/ffffff"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
                 android:layout_marginLeft="@dimen/margin_left2"
@@ -365,16 +363,15 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-           <EditText
-               android:id="@+id/tv8"
+      
+    <EditText
             android:background="@color/ffffff"
-            android:layout_width="0dp"
+            android:id="@+id/tvkhyh"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
             android:singleLine="true"
-       
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -400,11 +397,7 @@
         android:layout_gravity="center_vertical"
         android:background="@drawable/bg_item" >
 	
- 
-        
-               <EditText
-                   android:id="@+id/tv9"
-            android:background="@color/ffffff"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_marginLeft="@dimen/margin_left2"
@@ -414,13 +407,13 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <TextView
-           
-            android:layout_width="0dp"
+            <EditText
+            android:background="@color/ffffff"
+        	android:id="@+id/tv8"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:maxLength="8"
             android:singleLine="true"
            
             android:textColor="@color/text6c6c6c6"
@@ -447,369 +440,374 @@
         
             
              <LinearLayout
-   
+		android:id="@+id/layout10"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="开户银行"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+        android:background="@drawable/bg_item" ><TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="商户法人身份证照片正面"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <TextView
-           
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="8"
-            android:singleLine="true"
-       		android:text="上传图片"
-            android:textColor="@color/bgtitle"
-            android:textSize="13sp" />
-<ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-      		android:visibility="gone"
-            android:src="@drawable/upload" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="上传图片"
+                    android:textColor="@color/bgtitle"
+                    android:textSize="13sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-       <LinearLayout
-   
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="开户银行"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <ImageView
+                    android:id="@+id/imgView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:src="@drawable/upload"
+                    android:visibility="gone" />
 
-        <TextView
-           
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="8"
-            android:singleLine="true"
-       		android:text="上传图片"
-            android:textColor="@color/bgtitle"
-            android:textSize="13sp" />
-<ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-      		android:visibility="gone"
-            android:src="@drawable/upload" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-       <LinearLayout
-   
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="开户银行"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <TextView
-           
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="8"
-            android:singleLine="true"
-       		android:text="上传图片"
-            android:textColor="@color/bgtitle"
-            android:textSize="13sp" />
-<ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-      		android:visibility="gone"
-            android:src="@drawable/upload" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout11"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-       <LinearLayout
-   
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="开户银行"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="商户法人身份证照片背面"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <TextView
-           
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="8"
-            android:singleLine="true"
-       		android:text="上传图片"
-            android:textColor="@color/bgtitle"
-            android:textSize="13sp" />
-<ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-      		android:visibility="gone"
-            android:src="@drawable/upload" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:id="@id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="上传图片"
+                    android:textColor="@color/bgtitle"
+                    android:textSize="13sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-       <LinearLayout
-   
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="开户银行"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <ImageView
+                    android:id="@id/imgView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:src="@drawable/upload"
+                    android:visibility="gone" />
 
-        <TextView
-           
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="8"
-            android:singleLine="true"
-       		android:text="上传图片"
-            android:textColor="@color/bgtitle"
-            android:textSize="13sp" />
-<ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-      		android:visibility="gone"
-            android:src="@drawable/upload" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-       <LinearLayout
-   
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="开户银行"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <TextView
-           
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="8"
-            android:singleLine="true"
-       		android:text="上传图片"
-            android:textColor="@color/bgtitle"
-            android:textSize="13sp" />
-<ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-      		android:visibility="gone"
-            android:src="@drawable/upload" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout12"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-       <LinearLayout
-   
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	 
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="开户银行"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="商户法人上半身照片"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <TextView
-           
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="8"
-            android:singleLine="true"
-       		android:text="上传图片"
-            android:textColor="@color/bgtitle"
-            android:textSize="13sp" />
-<ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-      		android:visibility="gone"
-            android:src="@drawable/upload" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:id="@id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="上传图片"
+                    android:textColor="@color/bgtitle"
+                    android:textSize="13sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-         　　　<Button  
-    android:id="@+id/btn_exit"
-    android:layout_height="42dp"
-    android:layout_width="184dp"
-    android:layout_marginTop="50dp"
-    android:layout_marginBottom="30dp"
-    android:text="保存"
-    android:background="@drawable/bg_blue_shape"
-    android:layout_gravity="center_horizontal"
-    android:textColor="@color/ffffff"
-    android:textSize="20sp"/>
- 
-            
-        </LinearLayout>
+                <ImageView
+                    android:id="@id/imgView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:src="@drawable/upload"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/layout13"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="营业执照照片"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="上传图片"
+                    android:textColor="@color/bgtitle"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@id/imgView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:src="@drawable/upload"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/layout14"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="税务证照片"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="上传图片"
+                    android:textColor="@color/bgtitle"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@id/imgView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:src="@drawable/upload"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/layout15"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="组织机构代码证照片"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="上传图片"
+                    android:textColor="@color/bgtitle"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@id/imgView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:src="@drawable/upload"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/layout16"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="银行开户许可证照片"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="上传图片"
+                    android:textColor="@color/bgtitle"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@id/imgView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:src="@drawable/upload"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+         　　　
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="184dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_blue_shape"
+                android:text="创建"
+                android:textColor="@color/ffffff"
+                android:textSize="20sp" />
+</LinearLayout>
     </ScrollView>
     
     

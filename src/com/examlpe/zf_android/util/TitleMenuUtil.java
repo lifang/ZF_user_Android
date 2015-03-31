@@ -16,17 +16,10 @@ public class TitleMenuUtil {
 	private String title;
 	private LinearLayout titleback_linear_back;
 	private TextView titleback_text_title,tv_back;
-	private MenuListener menuListener;
 	public TitleMenuUtil(Activity activity,String title) {
 		this.activity = activity;
 		this.title = title;
 	}
-	public TitleMenuUtil(Activity activity,String title, MenuListener menuListener) {
-		this.activity = activity;
-		this.title = title;
-		this.menuListener = menuListener;
-	}
-	
 	
 	public void show(){
 		titleback_linear_back = (LinearLayout) activity.findViewById(R.id.titleback_linear_back);
@@ -36,9 +29,6 @@ public class TitleMenuUtil {
 		tv_back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(menuListener != null){
-					menuListener.doThings();
-				}
 				activity.finish();
 			}
 		});
@@ -46,9 +36,6 @@ public class TitleMenuUtil {
 		titleback_linear_back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(menuListener != null){
-					menuListener.doThings();
-				}
 				activity.finish();
 			}
 		});
@@ -65,8 +52,4 @@ public class TitleMenuUtil {
 		});
 	}
 	
-	public interface MenuListener{
-		public void doThings();
-		
-	}
 }

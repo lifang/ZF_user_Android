@@ -24,9 +24,10 @@ public class Welcome extends Activity {
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
 		Boolean  islogin=mySharedPreferences.getBoolean("islogin", false);
-		 
-		if(islogin){
+		int id = mySharedPreferences.getInt("id", 0);
+		if(islogin && id != 0){
 			Intent i = new Intent(getApplicationContext(), Main.class);
+			MyApplication.getInstance().setCustomerId(id);
 			startActivity(i);
 			finish();
 		}else{

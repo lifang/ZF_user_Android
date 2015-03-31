@@ -14,7 +14,6 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -25,26 +24,21 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import cn.trinea.android.common.util.StringUtils;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
-import com.examlpe.zf_android.util.TitleMenuUtil.MenuListener;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MerchantEntity;
-import com.example.zf_android.entity.UserEntity;
 import com.example.zf_android.trade.API;
-import com.example.zf_android.trade.ApplyDetailActivity;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.Constants;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.entity.ApplyMaterial;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
@@ -92,21 +86,13 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
  
 		new TitleMenuUtil(MerchantEdit.this, "编辑商户").show();
  
-		initView();
-		MenuListener menuListener = new MenuListener() {
-			@Override
-			public void doThings() {
-				Intent intent = new Intent();
-				intent.putExtra("needFresh", needFresh);
-				setResult(RESULT_OK, intent);
-			}
-		};
 		if(id==0){
-			new TitleMenuUtil(MerchantEdit.this, "创建商户", menuListener).show();
-		}else{
-			new TitleMenuUtil(MerchantEdit.this, getIntent().getStringExtra("name"), menuListener).show();
-			getData();
+			return;
 		}
+		
+		initView();
+		new TitleMenuUtil(MerchantEdit.this, getIntent().getStringExtra("name")).show();
+		getData();
 	}
 	private void initView() {
 		saveBtn = (Button)findViewById(R.id.btn_save);
@@ -176,7 +162,7 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 							tv6.setText(data.getOrganization_code_no());
 							tvkhyh.setText(data.getAccount_bank_name());
 							tv8.setText(data.getBank_open_account());
-							if(data.getCard_id_front_photo_path() != null){
+							if(!StringUtils.isBlank(data.getCard_id_front_photo_path())){
 								layout10.findViewById(R.id.textView).setVisibility(View.GONE);
 								layout10.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 							}else {
@@ -184,42 +170,42 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 								layout10.findViewById(R.id.imgView).setVisibility(View.GONE);
 							}
 							
-							if(data.getCard_id_back_photo_path() != null){
+							if(!StringUtils.isBlank(data.getCard_id_back_photo_path())){
 								layout11.findViewById(R.id.textView).setVisibility(View.GONE);
 								layout11.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 							}else {
 								layout11.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 								layout11.findViewById(R.id.imgView).setVisibility(View.GONE);
 							}
-							if(data.getBody_photo_path() != null){
+							if(!StringUtils.isBlank(data.getBody_photo_path())){
 								layout12.findViewById(R.id.textView).setVisibility(View.GONE);
 								layout12.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 							}else {
 								layout12.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 								layout12.findViewById(R.id.imgView).setVisibility(View.GONE);
 							}
-							if(data.getLicense_no_pic_path() != null){
+							if(!StringUtils.isBlank(data.getLicense_no_pic_path())){
 								layout13.findViewById(R.id.textView).setVisibility(View.GONE);
 								layout13.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 							}else {
 								layout13.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 								layout13.findViewById(R.id.imgView).setVisibility(View.GONE);
 							}
-							if(data.getTax_no_pic_path() != null){
+							if(!StringUtils.isBlank(data.getTax_no_pic_path())){
 								layout14.findViewById(R.id.textView).setVisibility(View.GONE);
 								layout14.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 							}else {
 								layout14.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 								layout14.findViewById(R.id.imgView).setVisibility(View.GONE);
 							}
-							if(data.getOrg_code_no_pic_path() != null){
+							if(!StringUtils.isBlank(data.getOrg_code_no_pic_path())){
 								layout15.findViewById(R.id.textView).setVisibility(View.GONE);
 								layout15.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 							}else {
 								layout15.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 								layout15.findViewById(R.id.imgView).setVisibility(View.GONE);
 							}
-							if(data.getAccount_pic_path() != null){
+							if(!StringUtils.isBlank(data.getAccount_pic_path())){
 								layout16.findViewById(R.id.textView).setVisibility(View.GONE);
 								layout16.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 							}else {
@@ -232,7 +218,7 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 									List<City> cities = province.getCities();
 									for (City city : cities) {
 										if(city.getId() == data.getCity_id()){
-											tv7.setText(city.getName());
+											tv7.setText(province.getName()+city.getName());
 											return;
 										}
 									}
@@ -404,13 +390,14 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 			tv6.setText(value);
 			break;
 		case TYPE_7:
+			Province province =  (Province)data.getSerializableExtra(Constants.CityIntent.SELECTED_PROVINCE);
 			City city = (City)data.getSerializableExtra(Constants.CityIntent.SELECTED_CITY);
-			if(city == null){
+			if(province == null || city == null){
 				merchantEntity.setCity_id(0);
 				tv7.setText("");
 			} else{
 				merchantEntity.setCity_id(city.getId());
-				tv7.setText(city.getName());
+				tv7.setText(province.getName()+city.getName());
 			}
 	
 			break;
@@ -531,6 +518,10 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 					@Override
 					public void onSuccess(String data) {
 						CommonUtil.toastShort(MerchantEdit.this, "修改成功！");
+						Intent intent = new Intent();
+						intent.putExtra("needFresh", needFresh);
+						setResult(RESULT_OK, intent);
+						finish();
 					}
 
 					@Override

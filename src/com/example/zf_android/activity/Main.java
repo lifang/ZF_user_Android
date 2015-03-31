@@ -123,12 +123,8 @@ public class Main extends BaseActivity implements OnClickListener{
 	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//初始化 测试数据
-		MyApplication.NewUser.setId(80);
-		System.out.println("-onSuccess--id-"+MyApplication.NewUser.getId());
 		
 		initView();
 		testbutton=(ImageView) findViewById(R.id.testbutton);
@@ -136,7 +132,6 @@ public class Main extends BaseActivity implements OnClickListener{
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				 Intent i =new Intent(Main.this,LoginActivity.class);
 					 startActivity(i);
 			}

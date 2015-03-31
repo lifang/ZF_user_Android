@@ -20,7 +20,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +41,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class MerchantList extends BaseActivity implements  IXListViewListener{
-	private static final int CODE_INFO = 1;
+	private static final int CODE_EDIT = 1;
+	private static final int CODE_CREATE = 2;
+
 	private XListView xListview;
 	private int page=1;
 	private int rows=Config.ROWS;
@@ -53,6 +54,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	private ImageView search,img_add;
 	private int ids[]=new int []{};
 	private TextView tv_delete;
+	private Integer customerId;
 	List<MerchantEntity>  myList = new ArrayList<MerchantEntity>();
 	List<MerchantEntity> idList = new ArrayList<MerchantEntity>();
 	List<MerchantEntity>  moreList = new ArrayList<MerchantEntity>();
@@ -90,6 +92,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.adress_list);
+			customerId = MyApplication.getInstance().getCustomerId();
 			initView();
 			MyApplication.setIsSelect(false);
 			getData();
@@ -105,6 +108,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			xListview=(XListView) findViewById(R.id.x_listview);
 			xListview.setVisibility(View.VISIBLE);
 			xListview.setPullLoadEnable(true);
+			xListview.setPullRefreshEnable(false);
 			xListview.setXListViewListener(this);
 			xListview.setDivider(null);
 			tv_delete=(TextView) findViewById(R.id.tv_delete);
@@ -117,7 +121,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 					Intent i = new Intent(MerchantList.this, MerchantEdit.class);
 					i.putExtra("ID", myList.get(position-1).getId());
 					i.putExtra("name", myList.get(position-1).getTitle()+"");
-					startActivityForResult(i, CODE_INFO);
+					startActivityForResult(i, CODE_EDIT);
 				}
 				
 			});
@@ -143,7 +147,8 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				@Override
 				public void onClick(View arg0) {
 					Intent i = new Intent(MerchantList.this, CreatMerchant.class);
-					startActivity(i);
+					startActivityForResult(i, CODE_CREATE);
+
 				}
 			});
 			tv_delete.setOnClickListener(new OnClickListener() {
@@ -262,7 +267,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			getData();
 		}
 		private void getData() {
-			String url = MessageFormat.format(Config.URL_MERCHANT_LIST, Constants.TEST_CUSTOMER, page, rows);
+			String url = MessageFormat.format(Config.URL_MERCHANT_LIST, customerId, page, rows);
 			MyApplication.getInstance().getClient()
 					.post(url, new AsyncHttpResponseHandler() {
 						@Override
@@ -308,7 +313,8 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				return;
 			}
 			switch (requestCode) {
-			case CODE_INFO:
+			case CODE_EDIT:
+			case CODE_CREATE:
 				boolean needFresh = data.getBooleanExtra("needFresh", false);
 				if(needFresh){
 					onRefresh();

@@ -801,6 +801,31 @@ public class API {
 		new HttpRequest(context, callback).post(Config.URL_MERCHANT_EDIT, params);
 	}
  
+	public static void createMerchant(
+			Context context,
+			int customerId,
+			MerchantEntity merchantEntity,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("title", merchantEntity.getTitle()==null?"":merchantEntity.getTitle());
+		params.put("legalPersonName", merchantEntity.getLegal_person_name()==null?"":merchantEntity.getLegal_person_name());
+		params.put("legalPersonCardId", merchantEntity.getLegal_person_card_id()==null?"":merchantEntity.getLegal_person_card_id());
+		params.put("businessLicenseNo", merchantEntity.getBusiness_license_no()==null?"":merchantEntity.getBusiness_license_no());
+		params.put("taxRegisteredNo", merchantEntity.getTax_registered_no()==null?"":merchantEntity.getTax_registered_no());
+		params.put("organizationCodeNo", merchantEntity.getOrganization_code_no()==null?"":merchantEntity.getOrganization_code_no());
+		params.put("cityId", merchantEntity.getCity_id());
+		params.put("accountBankName", merchantEntity.getAccount_bank_name()==null?"":merchantEntity.getAccount_bank_name());
+		params.put("bankOpenAccount", merchantEntity.getBank_open_account()==null?"":merchantEntity.getBank_open_account());
+		params.put("cardIdFrontPhotoPath", merchantEntity.getCard_id_front_photo_path()==null?"":merchantEntity.getCard_id_front_photo_path());
+		params.put("cardIdBackPhotoPath", merchantEntity.getCard_id_back_photo_path()==null?"":merchantEntity.getCard_id_back_photo_path());
+		params.put("bodyPhotoPath", merchantEntity.getBody_photo_path()==null?"":merchantEntity.getBody_photo_path());
+		params.put("licenseNoPicPath", merchantEntity.getLicense_no_pic_path()==null?"":merchantEntity.getLicense_no_pic_path());
+		params.put("taxNoPicPath", merchantEntity.getTax_no_pic_path()==null?"":merchantEntity.getTax_no_pic_path());
+		params.put("orgCodeNoPicPath", merchantEntity.getOrg_code_no_pic_path()==null?"":merchantEntity.getOrg_code_no_pic_path());
+		params.put("accountPicPath", merchantEntity.getAccount_pic_path()==null?"":merchantEntity.getAccount_pic_path());
+		params.put("customerId",  customerId);
+		new HttpRequest(context, callback).post(Config.URL_MERCHANT_CREATE, params);
+	}
 
 }
 

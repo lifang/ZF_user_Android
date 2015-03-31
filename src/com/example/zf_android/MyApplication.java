@@ -48,7 +48,9 @@ public class MyApplication extends Application{
 	public Vibrator mVibrator;
 	
 	private ImageLoader mImageLoader;
-
+	
+	private Integer customerId;
+	
 	private List<City> mCities = new ArrayList<City>();
 	/**
 	 * 实现实位回调监听
@@ -298,6 +300,13 @@ public class MyApplication extends Application{
 			mImageLoader = ImageLoader.getInstance();
 		}
 		return mImageLoader;
+	}
+	public Integer getCustomerId() {
+		customerId = 80;
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 	
  
