@@ -11,7 +11,7 @@ public class Config {
 	public static String getmes=PATHS+"message/receiver/getAll";
 	public static String getsysmes=PATHS+"web/message/getAll";
 	public final static String WANTBUY =PATHS+"paychannel/intention/add";
-	public final static String LOGIN = PATHS+"user/studentLogin";
+	public final static String URL_LOGIN = PATHS+"user/studentLogin";
 	public final static String CHANGEPASS = PATHS+"customers/updatePassword/";
 	public static final int CITY_ID = 1;
 	public static int UserID=1;
@@ -50,5 +50,6 @@ public class Config {
 	public static final String URL_MERCHANT_DELETE = PATHS+"merchant/delete";
 	public static final String URL_MERCHANT_LIST = PATHS+"merchant/getList/{0}/{1}/{2}";
 	public static final String URL_MERCHANT_INFO = PATHS+"merchant/getOne/{0}";
+	public static final String URL_MERCHANT_EDIT = PATHS+"merchant/update";
 
 }

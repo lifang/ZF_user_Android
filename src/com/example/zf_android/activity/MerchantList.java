@@ -34,6 +34,7 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MerchantEntity;
+import com.example.zf_android.trade.Constants;
 import com.example.zf_zandroid.adapter.MerchanAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -41,6 +42,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class MerchantList extends BaseActivity implements  IXListViewListener{
+	private static final int CODE_INFO = 1;
 	private XListView xListview;
 	private int page=1;
 	private int rows=Config.ROWS;
@@ -51,7 +53,6 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	private ImageView search,img_add;
 	private int ids[]=new int []{};
 	private TextView tv_delete;
-	private int customerId=80;
 	List<MerchantEntity>  myList = new ArrayList<MerchantEntity>();
 	List<MerchantEntity> idList = new ArrayList<MerchantEntity>();
 	List<MerchantEntity>  moreList = new ArrayList<MerchantEntity>();
@@ -60,12 +61,14 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			switch (msg.what) {
 			case 0:
 				onLoad();
+				xListview.setVisibility(View.GONE);
 				if(myList.size()==0){
-					xListview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
+				} else{
+					myAdapter.notifyDataSetChanged();
+					xListview.setVisibility(View.VISIBLE);
 				}
 				onRefresh_number = true; 
-			 	myAdapter.notifyDataSetChanged();
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -93,6 +96,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		}
 
 		private void initView() {
+			new TitleMenuUtil(MerchantList.this, "我的商户").show();
 			search=(ImageView) findViewById(R.id.search);
 			mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
 			img_add=(ImageView) findViewById(R.id.img_add);
@@ -111,9 +115,9 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 						int position, long arg3) {
 					System.out.println("```onItemClick``");
 					Intent i = new Intent(MerchantList.this, MerchantEdit.class);
-					i.putExtra("ID", myList.get(position).getId());
-					i.putExtra("name", myList.get(position).getTitle()+"");
-					startActivity(i);
+					i.putExtra("ID", myList.get(position-1).getId());
+					i.putExtra("name", myList.get(position-1).getTitle()+"");
+					startActivityForResult(i, CODE_INFO);
 				}
 				
 			});
@@ -205,7 +209,6 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 													Toast.LENGTH_SHORT).show();
 										}
 									} catch (JSONException e) {
-										// TODO Auto-generated catch block
 										e.printStackTrace();
 									}
 									 
@@ -214,7 +217,6 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 								@Override
 								public void onFailure(int statusCode, Header[] headers,
 										byte[] responseBody, Throwable error) {
-									// TODO Auto-generated method stub
 									error.printStackTrace();
 								}
 							});
@@ -260,8 +262,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			getData();
 		}
 		private void getData() {
-
-			String url = MessageFormat.format(Config.URL_MERCHANT_LIST, customerId, page, rows);
+			String url = MessageFormat.format(Config.URL_MERCHANT_LIST, Constants.TEST_CUSTOMER, page, rows);
 			MyApplication.getInstance().getClient()
 					.post(url, new AsyncHttpResponseHandler() {
 						@Override
@@ -290,7 +291,6 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 							} catch (JSONException e) {
 								e.printStackTrace();
 							}
-
 						}
 
 						@Override
@@ -299,10 +299,25 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 							Log.e("print", "-onFailure---" + error);
 						}
 					});
-	 
-			 
-		
 		 
-		 
+		}
+		@Override
+		protected void onActivityResult(final int requestCode, int resultCode, final Intent data) {
+			super.onActivityResult(requestCode, resultCode, data);
+			if (resultCode!=RESULT_OK) {
+				return;
+			}
+			switch (requestCode) {
+			case CODE_INFO:
+				boolean needFresh = data.getBooleanExtra("needFresh", false);
+				if(needFresh){
+					onRefresh();
+				}
+				break;
+
+			default:
+				break;
+			}
+
 		}
 }

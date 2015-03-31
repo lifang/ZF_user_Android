@@ -3,6 +3,7 @@ package com.example.zf_android.trade;
 import android.content.Context;
 
 import com.example.zf_android.Config;
+import com.example.zf_android.entity.MerchantEntity;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
 
@@ -515,7 +516,7 @@ public class API {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("username", username);
 		params.put("password", passsword);
-		new HttpRequest(context, callback).post(Config.LOGIN, params);
+		new HttpRequest(context, callback).post(Config.URL_LOGIN, params);
 	}
 	public static void ChangePass(
 			Context context,
@@ -773,6 +774,31 @@ public class API {
 		Map<String, Object> params = new HashMap<String, Object>();
 		String url = MessageFormat.format(Config.URL_MERCHANT_INFO, id);
 		new HttpRequest(context, callback).post(url);
+	}
+    
+	public static void editMerchant(
+			Context context,
+			MerchantEntity merchantEntity,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("title", merchantEntity.getTitle()==null?"":merchantEntity.getTitle());
+		params.put("legalPersonName", merchantEntity.getLegal_person_name()==null?"":merchantEntity.getLegal_person_name());
+		params.put("legalPersonCardId", merchantEntity.getLegal_person_card_id()==null?"":merchantEntity.getLegal_person_card_id());
+		params.put("businessLicenseNo", merchantEntity.getBusiness_license_no()==null?"":merchantEntity.getBusiness_license_no());
+		params.put("taxRegisteredNo", merchantEntity.getTax_registered_no()==null?"":merchantEntity.getTax_registered_no());
+		params.put("organizationCodeNo", merchantEntity.getOrganization_code_no()==null?"":merchantEntity.getOrganization_code_no());
+		params.put("cityId", merchantEntity.getCity_id());
+		params.put("accountBankName", merchantEntity.getAccount_bank_name()==null?"":merchantEntity.getAccount_bank_name());
+		params.put("bankOpenAccount", merchantEntity.getBank_open_account()==null?"":merchantEntity.getBank_open_account());
+		params.put("cardIdFrontPhotoPath", merchantEntity.getCard_id_front_photo_path()==null?"":merchantEntity.getCard_id_front_photo_path());
+		params.put("cardIdBackPhotoPath", merchantEntity.getCard_id_back_photo_path()==null?"":merchantEntity.getCard_id_back_photo_path());
+		params.put("bodyPhotoPath", merchantEntity.getBody_photo_path()==null?"":merchantEntity.getBody_photo_path());
+		params.put("licenseNoPicPath", merchantEntity.getLicense_no_pic_path()==null?"":merchantEntity.getLicense_no_pic_path());
+		params.put("taxNoPicPath", merchantEntity.getTax_no_pic_path()==null?"":merchantEntity.getTax_no_pic_path());
+		params.put("orgCodeNoPicPath", merchantEntity.getOrg_code_no_pic_path()==null?"":merchantEntity.getOrg_code_no_pic_path());
+		params.put("accountPicPath", merchantEntity.getAccount_pic_path()==null?"":merchantEntity.getAccount_pic_path());
+		params.put("id", merchantEntity.getId());
+		new HttpRequest(context, callback).post(Config.URL_MERCHANT_EDIT, params);
 	}
  
 
