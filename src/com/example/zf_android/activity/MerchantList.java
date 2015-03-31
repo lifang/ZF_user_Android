@@ -41,7 +41,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class MerchantList extends BaseActivity implements  IXListViewListener{
-	private XListView xListview;
+	 
 	private int page=1;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata;
@@ -60,9 +60,9 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				onLoad();
+		 
 				if(myList.size()==0){
-					xListview.setVisibility(View.GONE);
+				 
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
 				onRefresh_number = true; 
@@ -99,21 +99,9 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			img_add=(ImageView) findViewById(R.id.img_add);
 			myAdapter=new MerchanAdapter(MerchantList.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
-			xListview=(XListView) findViewById(R.id.x_listview);
-			xListview.setVisibility(View.VISIBLE);
-			xListview.setPullLoadEnable(true);
-			xListview.setXListViewListener(this);
-			xListview.setDivider(null);
-			tv_delete=(TextView) findViewById(R.id.tv_delete);
-			xListview.setOnItemClickListener(new OnItemClickListener() {
-
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
  
-				}
-			});
-		//	Xlistview.setAdapter(myAdapter);
+			tv_delete=(TextView) findViewById(R.id.tv_delete);
+		 
 			
 			lv=(ListView) findViewById(R.id.lv);
 			lv.setAdapter(myAdapter);
@@ -249,7 +237,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
  
 				}
 			});
-			xListview.setAdapter(myAdapter);
+		 
 		}
 
 		@Override
@@ -276,12 +264,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				handler.sendEmptyMessage(3);
 			}
 		}
-		private void onLoad() {
-			xListview.stopRefresh();
-			xListview.stopLoadMore();
-			xListview.setRefreshTime(Tools.getHourAndMin());
-		}
-
+ 
 		public void buttonClick() {
 			page = 1;
 			myList.clear();

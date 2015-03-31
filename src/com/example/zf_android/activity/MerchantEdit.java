@@ -29,7 +29,7 @@ public class MerchantEdit extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.merchant_info);
 		id=getIntent().getIntExtra("ID", 0);
-		new TitleMenuUtil(MerchantEdit.this, "创建商户").show();
+		new TitleMenuUtil(MerchantEdit.this, "编辑商户").show();
 		initView();
 		if(id==0){
 			

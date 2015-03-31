@@ -27,6 +27,7 @@ import com.example.zf_android.R;
 import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.entity.PosItem;
 import com.example.zf_android.entity.PosSelectEntity;
+import com.example.zf_android.entity.PrePosItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -41,7 +42,7 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 	private int 	has_purchase=0;
 	 ArrayList<Integer>  brands_id = new ArrayList<Integer>();
 	 ArrayList<Integer>  category = new ArrayList<Integer>();
-	 
+	 private List<PrePosItem> sonlist=new ArrayList<PrePosItem>();
 	 ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
 	 ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
 	 ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
@@ -245,7 +246,7 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 			startActivityForResult(ll_pp, 100);
 			break;
 		case R.id.ll_type:  //  
-			Intent ll_type=new Intent(PosSelect.this, PosSelecList.class);
+			Intent ll_type=new Intent(PosSelect.this, PosSelecSon.class);
 			ll_type.putExtra("key", "选择POS类型");
 			ll_type.putExtra("index", 101);
 			 

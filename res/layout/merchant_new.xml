@@ -183,7 +183,7 @@
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="上海"
+          
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -229,7 +229,7 @@
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="200"
+        
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -275,7 +275,7 @@
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="200"
+         
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 
@@ -312,7 +312,8 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-             <EditText
+             <TextView
+               
             android:background="@color/ffffff"
               android:id="@+id/tv7"
             android:layout_width="0dp"
@@ -321,7 +322,7 @@
             android:gravity="right"
             android:maxLength="8"
             android:singleLine="true"
-            android:text="200"
+          
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:id="@+id/menu_rl_c"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+    
+    
+    
+    <CheckBox
+                    android:id="@+id/cb_all"
+                    style="@style/MyCheckBox"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                   	android:layout_marginLeft="7dp"
+                 	android:layout_centerVertical="true"
+                 	 	android:layout_marginRight="14dp"
+                 	 	android:focusable="false"
+                   	 android:layout_gravity="center_vertical"
+                    android:checked="false" />
+    
+    
+    <TextView 
+        android:id="@+id/mune_title"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+      	android:layout_toRightOf="@id/cb_all"
+        android:textSize="13sp"
+          android:textColor="@color/text292929"
+        android:gravity="center_vertical"
+        android:text="one test"/>
+
+     
+        <ImageView 
+        android:id="@+id/mune_img1"
+        android:layout_height="wrap_content"
+        android:layout_width="17dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+ 		android:visibility="invisible"
+        android:background="@drawable/item_down"/>
+    	<ImageView 
+        android:id="@+id/mune_img"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/mune_img1"
+ 
+        android:background="@drawable/item_down"/>
+    
+       <View 
+        
+        android:layout_height="0.5dp"
+        android:layout_width="wrap_content"
+    	
+       	android:layout_alignParentBottom="true"
+       
+        android:background="@color/prebuttom"/>
+</RelativeLayout>

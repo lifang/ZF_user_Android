@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,14 +23,13 @@ import com.example.zf_android.R;
 import com.example.zf_android.entity.PosItem;
 import com.example.zf_android.entity.PrePosItem;
 import com.example.zf_android.entity.TestEntitiy;
+import com.example.zf_zandroid.adapter.MyExpandableListAdapter;
 import com.example.zf_zandroid.adapter.PositmeAdapter;
 
-public class PosSelecList extends BaseActivity implements OnClickListener{
-	private ListView lv;
-	private List<PosItem> mylist=new ArrayList<PosItem>();
-	 
-	 
-	private PositmeAdapter myAdapter;
+public class PosSelecSon extends BaseActivity implements OnClickListener{
+	private ExpandableListView lv;
+	private List<PrePosItem> mylist=new ArrayList<PrePosItem>();;
+	private MyExpandableListAdapter myAdapter;
 	private String title;
 	 ArrayList<Integer>  ids = new ArrayList<Integer>();
 	private int index;
@@ -58,45 +58,18 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pos_selec_lv);
+		setContentView(R.layout.pos_selec_son);
 		initView();
 		
 		title=getIntent().getStringExtra("key");
 		index=getIntent().getIntExtra("index", 0);
 		tv_title.setText(title);
+		mylist=MyApplication.pse.getCategory();
 	 
-		switch (index) {
-		case 100:
-			mylist=MyApplication.pse.getBrands(); 
-			break;
-		case 101:
-			 
-			break;
-		case 102:
-			mylist=MyApplication.pse.getPay_channel(); 
-			break;
-		case 103:
-			mylist=MyApplication.pse.getPay_card(); 
-			break;
-		case 104:
-			mylist=MyApplication.pse.getTrade_type(); 
-			break;
-		case 105:
-			mylist=MyApplication.pse.getSale_slip(); 
-			break;
-		case 106:
-			mylist=MyApplication.pse.gettDate(); 
-			break;
-			
-		case 107:
-			mylist=MyApplication.pse.getBrands(); 
-			break;
-
-		default:
-			break;
-		}
-		
-		myAdapter=new PositmeAdapter(PosSelecList.this, mylist);
+		lv.setGroupIndicator(null);
+		 lv.setDivider(null);
+		 lv.setChildDivider(getResources().getDrawable(R.drawable.dre0));
+		myAdapter=new MyExpandableListAdapter(PosSelecSon.this, mylist);
 		lv.setAdapter(myAdapter);
 	}
 	private void initView() {
@@ -106,7 +79,7 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 		title2=(TextView) findViewById(R.id.sure);
 		title1.setOnClickListener(this);
 		title2.setOnClickListener(this);
-		lv=(ListView) findViewById(R.id.lv);
+		lv=(ExpandableListView) findViewById(R.id.lv);
 	 
 		cb_all=(CheckBox) findViewById(R.id.cb_all);
 		cb_all.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -116,7 +89,7 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 				// TODO Auto-generated method stub
 				// 全部选择--
 				 for(int i1 =0;i1<mylist.size();i1++){
-					 mylist.get(i1).setIsCheck(arg1);
+					// mylist.get(i1).setIsCheck(arg1);
 				 }
 				 handler.sendEmptyMessage(0);
 			}
@@ -132,21 +105,27 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 		case R.id.sure:
 			title="";
 			 for(int i1 =0;i1<mylist.size();i1++){
-				 if(mylist.get(i1).getIsCheck()){
-					if(title.equals("")){
-						title=mylist.get(i1).getValue();
-					}else{
-						title=title+"."+mylist.get(i1).getValue();
-					}
-					ids.add(mylist.get(i1).getId());
-					System.out.println("选择的ID--"+mylist.get(i1).getId());
-				 }
+				 
+//					if(title.equals("")){
+//						title=mylist.get(i1).getValue();
+//					}else{
+//						title=title+"."+mylist.get(i1).getValue();
+//					}
+					 for(int ss=0;ss<mylist.get(i1).getSon().size();ss++){
+						 
+						 if(mylist.get(i1).getSon().get(ss).getIsCheck()){
+							 ids.add(mylist.get(i1).getSon().get(ss).getId());
+							 System.out.println("选择的ID--"+mylist.get(i1).getSon().get(ss).getId());
+						 }
+					 }
+ 
+			 
 			 }
-				Intent intent2 = new Intent();
-				intent2.putExtra("text", title);
-				intent2.putIntegerArrayListExtra("ids", ids);
-				PosSelecList.this.setResult(index, intent2);
-				 finish();
+//				Intent intent2 = new Intent();
+//				intent2.putExtra("text", title);
+//				intent2.putIntegerArrayListExtra("ids", ids);
+//				PosSelecSon.this.setResult(index, intent2);
+//				finish();
 				  
 			
 			break;
