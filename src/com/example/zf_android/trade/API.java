@@ -6,6 +6,7 @@ import com.example.zf_android.Config;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -763,6 +764,16 @@ public class API {
     public static void checkVersion(Context context, HttpCallback callback){
 		new HttpRequest(context, callback).post(Config.URL_CHECK_VERSION);
     }
+    
+    
+    public static void merchantInfo(
+			Context context,
+			int  id,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		String url = MessageFormat.format(Config.URL_MERCHANT_INFO, id);
+		new HttpRequest(context, callback).post(url);
+	}
  
 
 }

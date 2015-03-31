@@ -41,7 +41,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class MerchantList extends BaseActivity implements  IXListViewListener{
-	 
+	 private ListView lv;
 	private int page=1;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata;
@@ -49,7 +49,6 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	private boolean onRefresh_number = true;
 	private MerchanAdapter myAdapter;
 	private ImageView search,img_add;
-	private ListView lv;
 	private int ids[]=new int []{};
 	private TextView tv_delete;
 	private int customerId=80;
@@ -100,41 +99,22 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			myAdapter=new MerchanAdapter(MerchantList.this, myList);
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
  
+ 
 			tv_delete=(TextView) findViewById(R.id.tv_delete);
 		 
 			
 			lv=(ListView) findViewById(R.id.lv);
 			lv.setAdapter(myAdapter);
-			lv.setOnItemClickListener(new OnItemClickListener() {
-
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1,
-						int position, long arg3) {
-					// TODO Auto-generated method stub
-					System.out.println("```onItemClick``");
-					Intent i = new Intent(MerchantList.this, MerchantEdit.class);
-					i.putExtra("ID", myList.get(position).getId());
-					i.putExtra("name", myList.get(position).getTitle()+"");
-					startActivity(i);
-				}
-				
-			});
+		 
+ 
 			search.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if(MyApplication.getIsSelect()){
-						//��������ɾ�����					 
 						MyApplication.setIsSelect(false);
 						myAdapter.notifyDataSetChanged();
 						mune_rl.setVisibility(View.GONE);
-//						for(int i=0;i<myList.size();i++){
-//							 
-//							if(myList.get(i).getIscheck()){
-//								System.out.println("��---"+i+"����ѡ��");
-//							}
-						//}
 					}else{
 						mune_rl.setVisibility(View.VISIBLE);
 						MyApplication.setIsSelect(true);
@@ -146,20 +126,14 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				
 				@Override
 				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
 					Intent i = new Intent(MerchantList.this, CreatMerchant.class);
-					 
 					startActivity(i);
 				}
 			});
 			tv_delete.setOnClickListener(new OnClickListener() {
-				String UUU="http://114.215.149.242:18080/ZFMerchant/api/merchant/delete";
 				@Override
 				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-
 					for (int i = 0; i < myList.size(); i++) {
-
 						if (myList.get(i).getIscheck()) {
 							idList.add(myList.get(i));
 						}
@@ -174,14 +148,13 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 					try {
 						params.put("ids", new JSONArray(gson.toJson(ids)));
 					} catch (JSONException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 
 			  
 					params.setUseJsonStreamer(true);
 					MyApplication.getInstance().getClient()
-							.post(UUU, params, new AsyncHttpResponseHandler() {
+							.post(Config.URL_MERCHANT_DELETE, params, new AsyncHttpResponseHandler() {
 
 								@Override
 								public void onSuccess(int statusCode, Header[] headers,
@@ -237,9 +210,8 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
  
 				}
 			});
-		 
+   
 		}
-
 		@Override
 		public void onRefresh() {
 			page = 1;

@@ -1,28 +1,16 @@
 package com.example.zf_android.trade;
 
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -38,15 +26,36 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
-import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
+import com.example.zf_android.trade.entity.ApplyMaterial;
 import com.example.zf_android.trade.widget.gestureimage.GestureImageView;
 import com.example.zf_android.trade.widget.gestureimage.MyViewPager;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
 
 
 /**
@@ -54,7 +63,9 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
  */
 public class ShowWebImageActivity extends Activity {
     private String[] imageArray;
+    private String[] imageNames;
     private ImageLoader imageLoader;
+    private DisplayImageOptions options;
     private int position;
     private GestureImageView[] mImageViews;
     private MyViewPager viewPager;
@@ -68,20 +79,33 @@ public class ShowWebImageActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.web_image_activity);
         getIntentValue();
+        imageLoader = ImageLoader.getInstance();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                this).threadPriority(Thread.NORM_PRIORITY - 2)
+                .threadPoolSize(3).memoryCacheSize(getMemoryCacheSize(this))
+                .denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO).build();
+        imageLoader.init(config);
+        options = new DisplayImageOptions.Builder().cacheInMemory(true)
+                .cacheOnDisc(false).considerExifParams(true)
+                .bitmapConfig(Bitmap.Config.RGB_565).build();
         initViews();
     }
 
     private void getIntentValue() {
         Intent intent = getIntent();
         String urls = intent.getStringExtra(IMAGE_URLS);
+        String names = intent.getStringExtra(IMAGE_NAMES);
         position = intent.getIntExtra(POSITION, 0);
         imageArray = urls.split(",");
+        imageNames = names.split(",");
         count = imageArray.length;
     }
 
     private void initViews() {
-    	imageLoader = MyApplication.getInstance().getImageLoader();
         upload = (Button) findViewById(R.id.upload_again);
+
         viewPager = (MyViewPager) findViewById(R.id.web_image_viewpager);
         viewPager.setPageMargin(20);
         viewPager.setAdapter(new ImagePagerAdapter(getWebImageViews()));
@@ -230,6 +254,19 @@ public class ShowWebImageActivity extends Activity {
         }.start();
     }
 
+    private static int getMemoryCacheSize(Context context) {
+        int memoryCacheSize;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+            int memClass = ((ActivityManager) context
+                    .getSystemService(Context.ACTIVITY_SERVICE))
+                    .getMemoryClass();
+            memoryCacheSize = (memClass / 8) * 1024 * 1024; // 1/8 of app memory
+            // limit
+        } else {
+            memoryCacheSize = 2 * 1024 * 1024;
+        }
+        return memoryCacheSize;
+    }
 
     private List<View> getWebImageViews() {
         mImageViews = new GestureImageView[count];
@@ -242,13 +279,15 @@ public class ShowWebImageActivity extends Activity {
             final ProgressBar progressBar = (ProgressBar) view
                     .findViewById(R.id.item_loading);
             mImageViews[i] = imageView;
-            imageLoader.displayImage(imageArray[i], imageView, 
+            imageLoader.displayImage(imageArray[i], imageView, options,
                     new SimpleImageLoadingListener() {
+
                         @Override
                         public void onLoadingComplete(String imageUri,
                                                       View view, Bitmap loadedImage) {
                             progressBar.setVisibility(View.GONE);
                         }
+
                         @Override
                         public void onLoadingFailed(String imageUri, View view,
                                                     FailReason failReason) {

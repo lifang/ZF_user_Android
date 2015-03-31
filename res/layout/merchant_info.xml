@@ -3,8 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
   	android:orientation="vertical"
-  	android:background="@color/F3F2F2"
-  	 >
+  	android:background="@color/F3F2F2">
 
  <include layout="@layout/title_back" />
    <ScrollView  android:layout_height="wrap_content"
@@ -36,11 +35,11 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <EditText
+        <TextView
             android:background="@color/ffffff"
             
             android:id="@+id/tv1"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
@@ -83,10 +82,10 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-         <EditText
+         <TextView
             android:background="@color/ffffff"
            android:id="@+id/tv2"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
@@ -129,10 +128,10 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-         <EditText
+         <TextView
             android:background="@color/ffffff"
            android:id="@+id/tv3"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
@@ -175,10 +174,10 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-       <EditText
+       <TextView
             android:background="@color/ffffff"
            android:id="@+id/tv4"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
@@ -221,10 +220,10 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-         <EditText
+         <TextView
             android:background="@color/ffffff"
               android:id="@+id/tv5"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
@@ -267,10 +266,10 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-        <EditText
+        <TextView
             android:background="@color/ffffff"
         	android:id="@+id/tv6"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
@@ -316,7 +315,7 @@
              <TextView
             
         	android:id="@+id/tv7"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
@@ -355,9 +354,8 @@
 	 
         
         
-      <EditText
+      <TextView
             android:background="@color/ffffff"
-        	android:id="@+id/tvkhyh"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
                 android:layout_marginLeft="@dimen/margin_left2"
@@ -368,8 +366,8 @@
             android:textSize="17sp" />
 
         <TextView
-           
-            android:layout_width="0dp"
+            android:id="@+id/tvkhyh"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
@@ -414,10 +412,10 @@
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
-            <EditText
+            <TextView
             android:background="@color/ffffff"
         	android:id="@+id/tv8"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
