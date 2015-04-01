@@ -61,11 +61,8 @@ public class PosAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		//volume_number":123,"id":2,"good_brand":"Ʒ��1","total_score":1,
-		//"retail_price":72464,"pay_channe":"ͨ��2",
-		//"Title":"̩ɽPos�콢��2","Model_number":"�ͺ�10"}
 		holder.title.setText(list.get(position).getTitle());
-		holder.tv_price.setText("￥"+list.get(position).getRetail_price()/100+"");
+		holder.tv_price.setText("￥"+String.format("%.2f", list.get(position).getRetail_price()/100f));
 		holder.content1.setText(list.get(position).getModel_number());
 		holder.tv_td.setText(list.get(position).getPay_channe());
 		holder.ys.setText("已售"+list.get(position).getVolume_number());

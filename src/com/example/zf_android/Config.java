@@ -35,9 +35,7 @@ public class Config {
 	public static final String batchDelete =PATHS+"message/receiver/batchDelete";
 	public static final String ADRESSDelete =PATHS+"customers/deleteAddress";
 	public static final String paychannel_info =PATHS+"paychannel/info";
-	public static final String GOODDETAIL =PATHS+"good/goodinfo";
 	public static final String ChooseAdress = PATHS+"customers/getAddressList/";
-	public static final String goodadd=PATHS+"cart/add";
 	//http://114.215.149.242:18080/ZFMerchant/api/paychannel/info
  
  	public static final String SHOPORDER=PATHS+"order/shop";
@@ -50,7 +48,11 @@ public class Config {
 	public static final String URL_MERCHANT_DELETE = PATHS+"merchant/delete";
 	public static final String URL_MERCHANT_LIST = PATHS+"merchant/getList/{0}/{1}/{2}";
 	public static final String URL_MERCHANT_INFO = PATHS+"merchant/getOne/{0}";
-	public static final String URL_MERCHANT_EDIT = PATHS+"merchant/update";
-	public static final String URL_MERCHANT_CREATE = PATHS+"merchant/insert";
+	public static final String URL_MERCHANT_EDIT = PATHS + "merchant/update";
+	public static final String URL_MERCHANT_CREATE = PATHS + "merchant/insert";
+	public static final String URL_CART_LIST = PATHS + "cart/list";
+	public static final String URL_GOOD_INFO = PATHS + "good/goodinfo";
+	public static final String URL_CART_ADD = PATHS + "cart/add";
 
+	
 }

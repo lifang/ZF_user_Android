@@ -74,8 +74,8 @@ public class MyApplication extends Application{
 			 for(City cc:mCities ){
 				 if(cc.getName().contains(location.getCity())){
 					 System.out.println(location.getCity()+"name<--当前城市 ID----"+cc.getId());
-					 setCITYID(cc.getId());
-					 setCITYNAME(cc.getName());
+					 setCityId(cc.getId());
+					 setCityName(cc.getName());
 				 }
 			 }
 			Log.i("BaiduLocationApiDem", sb.toString());
@@ -105,20 +105,20 @@ public class MyApplication extends Application{
 	private static  String versionCode="";
 	private static int notifyId=0;
 	private static Boolean isSelect=false;
-	private static int CITYID=1;
-	private static String   CITYNAME="";
+	private int cityId=0;
+	private String   cityName="";
 	
-	public static String getCITYNAME() {
-		return CITYNAME;
+	public String getCityName() {
+		return cityName;
 	}
-	public static void setCITYNAME(String cITYNAME) {
-		CITYNAME = cITYNAME;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
-	public static int getCITYID() {
-		return CITYID;
+	public int getCityId() {
+		return cityId;
 	}
-	public static void setCITYID(int cITYID) {
-		CITYID = cITYID;
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
 	public static Boolean getIsSelect() {
 		return isSelect;

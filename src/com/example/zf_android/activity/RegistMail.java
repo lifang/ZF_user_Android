@@ -58,7 +58,7 @@ public class RegistMail extends BaseActivity implements OnClickListener{
 		setContentView(R.layout.regist_mail);
 		String a=getIntent().getStringExtra("email");
 		initView();
-		cityid=MyApplication.getCITYID();
+		cityid=MyApplication.getInstance().getCityId();
 		login_edit_code.setText(a);
 	}
 	private void initView() {

@@ -149,7 +149,7 @@ public class Main extends BaseActivity implements OnClickListener{
 		mLocationClient.start();
 		
 		
-		 System.out.println("当前城市 ID----" +MyApplication.getCITYID());
+		 System.out.println("当前城市 ID----" +MyApplication.getInstance().getCityId());
 		
 	}	
 	private void InitLocation(){

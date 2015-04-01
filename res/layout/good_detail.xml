@@ -137,7 +137,7 @@
                     android:layout_marginLeft="7dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="泰山"
+                    android:text=""
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
 
@@ -165,7 +165,7 @@
                         android:ellipsize="end"
                         android:gravity="bottom"
                         android:maxLines="1"
-                        android:text="999.00"
+                        android:text="0.00"
                         android:textColor="@color/bgtitle"
                         android:textSize="17sp" />
                 </LinearLayout>
@@ -197,7 +197,7 @@
                     android:layout_marginLeft="7dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="T900"
+                    android:text=""
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
 
@@ -215,7 +215,7 @@
                         android:layout_marginRight="3dp"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="已售 99"
+                        android:text="已售 0"
                         android:textColor="@color/text6c6c6c6"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -247,7 +247,7 @@
                     android:layout_marginLeft="7dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="xxx终端"
+                    android:text=""
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -342,7 +342,7 @@
                         android:gravity="center"
                         android:visibility="invisible"
                         android:background="@drawable/bg_shape"
-                        android:text="xxx" />
+                        android:text="" />
                 </LinearLayout>
             </LinearLayout>
             
@@ -434,7 +434,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="fill_parent"
-                    android:text="查看评论（231）"
+                    android:text="0"
                     android:gravity="center"
                     
                     android:textColor="@color/text6c6c6c6"
@@ -561,7 +561,7 @@
                     android:layout_marginLeft="7dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="泰山TS9000"
+                    android:text=""
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -649,7 +649,7 @@
                     android:layout_marginLeft="7dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="泰山TS9000"
+                    android:text=""
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -678,7 +678,7 @@
                     android:layout_marginLeft="7dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="泰山TS9000"
+                    android:text=""
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
             </LinearLayout>

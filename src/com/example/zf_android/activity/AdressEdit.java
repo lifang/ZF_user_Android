@@ -133,7 +133,7 @@ public class AdressEdit extends BaseActivity{
 		tv3=(EditText) findViewById(R.id.tv3);
 		tv5=(EditText) findViewById(R.id.tv5);
 		tv4=(TextView) findViewById(R.id.tv4);
-		tv4.setText(MyApplication.getCITYNAME());
+		tv4.setText(MyApplication.getInstance().getCityName());
 		adresslist=(Button) findViewById(R.id.adresslist);
 		adresslist.setOnClickListener(new OnClickListener() {
 			

@@ -13,16 +13,11 @@ import android.view.MenuItem;
 
 public class Welcome extends Activity {
 	private SharedPreferences mySharedPreferences;
-	private Editor editor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-		
-	 
-		
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
-		editor = mySharedPreferences.edit();
 		Boolean  islogin=mySharedPreferences.getBoolean("islogin", false);
 		int id = mySharedPreferences.getInt("id", 0);
 		if(islogin && id != 0){

@@ -19,7 +19,7 @@
             android:layout_gravity="bottom"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="POS信息"
+            android:text="支付通道信息"
             android:textColor="@color/text6c6c6c6"
             android:textSize="15sp" />
 
@@ -64,7 +64,7 @@
             android:layout_marginLeft="7dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="全国"
+            android:text=""
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
     </LinearLayout>
@@ -120,7 +120,7 @@
             android:layout_marginLeft="5dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="刷卡交易标准："
+            android:text="刷卡交易标准手续费："
             android:textColor="@color/text292929"
             android:textSize="13sp" />
     </LinearLayout>
@@ -130,7 +130,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
         android:layout_marginRight="@dimen/margin_left2"
-        android:background="@drawable/ca_vg"
+        android:background="@color/Viewc2"
+        android:padding="1dp"
         android:layout_marginTop="3dp"
         android:orientation="horizontal" >
 
@@ -149,7 +150,7 @@
                 android:textColor="@color/text292929" />
 		 
         </LinearLayout>
-		<View android:layout_width="0.5dp"
+		<View android:layout_width="1dp"
 		    android:layout_height="fill_parent"
 		    android:background="@color/Viewc2"/>
                    <LinearLayout
@@ -168,7 +169,7 @@
 			 
             
         </LinearLayout>
-		<View android:layout_width="0.5dp"
+		<View android:layout_width="1dp"
 		    android:layout_height="fill_parent"
 		    android:background="@color/Viewc2"/>
 		        <LinearLayout
@@ -220,7 +221,7 @@
             android:layout_marginLeft="5dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="刷卡交易标准："
+            android:text="资金服务费："
             android:textColor="@color/text292929"
             android:textSize="13sp" />
     </LinearLayout>
@@ -229,7 +230,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
         android:layout_marginRight="@dimen/margin_left2"
-        android:background="@drawable/ca_vg"
+        android:background="@color/Viewc2"
+        android:padding="1dp"
         android:layout_marginTop="3dp"
         android:orientation="horizontal" >
 
@@ -244,11 +246,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="商户类"
+                android:text="计算周期"
                 android:textColor="@color/text292929" />
 		 
         </LinearLayout>
-		<View android:layout_width="0.5dp"
+		<View android:layout_width="1dp"
 		    android:layout_height="fill_parent"
 		    android:background="@color/Viewc2"/>
                    <LinearLayout
@@ -267,7 +269,7 @@
 			 
             
         </LinearLayout>
-		<View android:layout_width="0.5dp"
+		<View android:layout_width="1dp"
 		    android:layout_height="fill_parent"
 		    android:background="@color/Viewc2"/>
 		        <LinearLayout
@@ -319,7 +321,7 @@
             android:layout_marginLeft="5dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="刷卡交易标准："
+            android:text="其它交易费："
             android:textColor="@color/text292929"
             android:textSize="13sp" />
     </LinearLayout>
@@ -328,7 +330,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
         android:layout_marginRight="@dimen/margin_left2"
-        android:background="@drawable/ca_vg"
+        android:background="@color/Viewc2"
+        android:padding="1dp"
         android:layout_marginTop="3dp"
         android:orientation="horizontal" >
 
@@ -343,11 +346,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="商户类"
+                android:text="交易类"
                 android:textColor="@color/text292929" />
 		 
         </LinearLayout>
-		<View android:layout_width="0.5dp"
+		<View android:layout_width="1dp"
 		    android:layout_height="fill_parent"
 		    android:background="@color/Viewc2"/>
                    <LinearLayout
@@ -366,7 +369,7 @@
 			 
             
         </LinearLayout>
-		<View android:layout_width="0.5dp"
+		<View android:layout_width="1dp"
 		    android:layout_height="fill_parent"
 		    android:background="@color/Viewc2"/>
 		        <LinearLayout

@@ -83,7 +83,7 @@ public class Register3phone extends BaseActivity   implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		cityid=MyApplication.getCITYID();
+		cityid=MyApplication.getInstance().getCityId();
 		setContentView(R.layout.register_checkcode);
 		new TitleMenuUtil(Register3phone.this, "注册").show();
 		System.out.println("Register4phone---");

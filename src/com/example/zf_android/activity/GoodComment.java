@@ -69,7 +69,6 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 				onLoad( );
 				
 				if(myList.size()==0){
-				//	norecord_text_to.setText("��û����ص���Ʒ");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -81,7 +80,7 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 						Toast.LENGTH_SHORT).show();
 			 
 				break;
-			case 2: // ����������
+			case 2:
 				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -96,13 +95,10 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_commet);
 		title=getIntent().getStringExtra("commentsCount");
-		goodId=getIntent().getIntExtra("goodId", 1);
-		
-		
+		goodId=getIntent().getIntExtra("goodId", 0);
 		initView();
 		getData(); 
 	}
@@ -114,7 +110,6 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 		myAdapter=new GoodCommentAdapter(GoodComment.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview=(XListView) findViewById(R.id.x_listview);
-		// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������");
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -177,14 +172,9 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 	}
  
 	private void getData() {
-		// TODO Auto-generated method stub
-		 
-	 
-
-		// TODO Auto-generated method stub
 		String url = Config.goodcomment;
 		RequestParams params = new RequestParams();
-		params.put("goodId", 1);
+		params.put("goodId", goodId);
 		params.put("indexPage", page);
 	 	params.put("rows", rows);
 	 	System.out.println("---"+page);
@@ -238,17 +228,9 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						System.out.println("-onFailure---");
 						Log.e("print", "-onFailure---" + error);
 					}
 				});
  
-		 
-	
-		 
-		
-	//	System.out.println("getData");
-	//	handler.sendEmptyMessage(0);
 	}
 }

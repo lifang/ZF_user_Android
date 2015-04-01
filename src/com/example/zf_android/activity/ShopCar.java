@@ -13,14 +13,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.examlpe.zf_android.util.XListView;
 import com.examlpe.zf_android.util.XListView.IXListViewListener;
@@ -31,18 +29,13 @@ import com.example.zf_android.R;
 import com.example.zf_android.entity.MyShopCar;
 import com.example.zf_android.entity.MyShopCar.Good;
 import com.example.zf_android.entity.TestEntitiy;
-import com.example.zf_android.trade.CityProvinceActivity;
-import com.example.zf_android.trade.TradeFlowActivity;
-import com.example.zf_zandroid.adapter.OrderAdapter;
 import com.example.zf_zandroid.adapter.ShopcarAdapter;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 /***
  * 
- * 
- * ����ƣ�ShopCar �������� ���ﳵ �����ˣ� ljp ����ʱ�䣺2015-2-9 ����11:30:10
- * 
+ * 购物车
  * @version
  * 
  */
@@ -58,27 +51,20 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 	private TextView howMoney;
 	private List<Good> myShopList=new ArrayList<Good>();
 	private List<Good> comfirmList=new ArrayList<Good>();
+	private int customerId;
 	List<TestEntitiy> moreList = new ArrayList<TestEntitiy>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
 				onLoad();
-				//
-				// if (myShopList.size() == 0) {
-				// // norecord_text_to.setText("��û����ص���Ʒ");
-				// Xlistview.setVisibility(View.GONE);
-				// eva_nodata.setVisibility(View.VISIBLE);
-				// }
-				// onRefresh_number = true;
-				// myAdapter.notifyDataSetChanged();
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
 						Toast.LENGTH_SHORT).show();
 
 				break;
-			case 2: // ����������
+			case 2:
 				Toast.makeText(getApplicationContext(),
 						"no 3g or wifi content", Toast.LENGTH_SHORT).show();
 				break;
@@ -90,19 +76,16 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 		}
 	};
 
-	// �������
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acv_shopcat);
+		customerId = MyApplication.getInstance().getCustomerId();
 		initView();
 		getData();
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
-		
 		rl_wd=(RelativeLayout) findViewById(R.id.main_rl_my);
 		rl_wd.setOnClickListener(this);
 		rl_xx=(RelativeLayout) findViewById(R.id.main_rl_pos1);
@@ -118,7 +101,6 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				comfirmList.clear();
 				for(int i =0;i<myShopList.size();i++){
 					 if(myShopList.get(i).isChecked()){
@@ -140,8 +122,8 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 		myAdapter = new ShopcarAdapter(ShopCar.this, myShopList);
 		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) findViewById(R.id.x_listview);
-		// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������");
-		Xlistview.setPullLoadEnable(true);
+		Xlistview.setPullLoadEnable(false);
+		Xlistview.setPullRefreshEnable(false);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
 		Xlistview.getmFooterView().setState2(0);
@@ -150,9 +132,6 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
-				// Intent i = new Intent(ShopCar.this, OrderDetail.class);
-				// startActivity(i);
 			}
 		});
 		Xlistview.setAdapter(myAdapter);
@@ -160,7 +139,6 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
 		page = 1;
 		System.out.println("onRefresh1");
 		myShopList.clear();
@@ -170,7 +148,6 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 
 	@Override
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 //		if (onRefresh_number) {
 //			page = page + 1;
 //
@@ -201,17 +178,11 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 		getData();
 	}
 
-	/*
-	 * �������
-	 */
 	private void getData() {
-		// TODO Auto-generated method stub
-		String url = "http://114.215.149.242:18080/ZFMerchant/api/cart/list";
-		RequestParams params = new RequestParams("customerId", "80");
+		RequestParams params = new RequestParams("customerId", customerId);
 		params.setUseJsonStreamer(true);
-		System.out.println("params---"+ params.toString());
 		MyApplication.getInstance().getClient()
-				.post(url, params, new AsyncHttpResponseHandler() {
+				.post(Config.URL_CART_LIST, params, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
@@ -241,8 +212,6 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						System.out.println("-onFailure---");
 						Log.e("print", "-onFailure---" + error);
 					}
 				});
@@ -254,15 +223,15 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 	public void onClick(View v) { 
 		switch (v.getId()) {
 
-		case R.id.main_rl_pos1:  // ��POS����
+		case R.id.main_rl_pos1:
 			 startActivity(new Intent(ShopCar.this,MyMessage.class));
 			 finish();
 			break;
-		case R.id.main_rl_my:  // ��POS����
+		case R.id.main_rl_my:
 			 startActivity(new Intent(ShopCar.this,MenuMine.class));
 			 finish();
 			break;
-		case R.id.main_rl_sy:  // ��POS����
+		case R.id.main_rl_sy:
 			 startActivity(new Intent(ShopCar.this,Main.class));
 			 finish();
 			break;
