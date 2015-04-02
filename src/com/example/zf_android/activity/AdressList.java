@@ -1,5 +1,6 @@
 package com.example.zf_android.activity;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,13 +48,13 @@ public class AdressList extends BaseActivity  {
 	private int page=1;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata;
-	private String Url=Config.ChooseAdress;
 	private RelativeLayout mune_rl;
 	private boolean onRefresh_number = true;
 	private AdressAdapter myAdapter;
 	private ListView lv;
 	private Integer ids[]=new Integer []{};
 	private TextView tv_delete;
+	private int customerId;
 	List<Integer> as = new ArrayList<Integer>();
 	private ImageView search,img_add;
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
@@ -92,9 +93,9 @@ public class AdressList extends BaseActivity  {
 			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.adress_list);
+			customerId = MyApplication.getInstance().getCustomerId();
 			initView();
 			MyApplication.setIsSelect(false);
-			Url=Url+"80";
 			getData();
 		}
  
@@ -252,9 +253,9 @@ public class AdressList extends BaseActivity  {
  
 		private void getData() { 
 			 myList.clear();
-  
+			 String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
 			 AsyncHttpClient  a= new AsyncHttpClient();
-			a.post(Url, new AsyncHttpResponseHandler() {
+			a.post(url, new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,

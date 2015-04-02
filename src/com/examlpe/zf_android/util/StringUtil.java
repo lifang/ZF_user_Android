@@ -2,6 +2,7 @@ package com.examlpe.zf_android.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,6 +14,8 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
+
+import com.example.zf_android.Config;
 
 import android.util.Base64;
 import android.util.Log;
@@ -207,5 +210,10 @@ public class StringUtil {
 
 		Log.e("sign", sign.toString());
 		return sign.toString();
+	}
+	
+	public static String getBigImage(String url){
+		 return MessageFormat.format(Config.POS_PIC_URL, url);
+		
 	}
 }

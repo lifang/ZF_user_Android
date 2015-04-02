@@ -1,8 +1,10 @@
 package com.example.zf_android;
 
-import java.io.File;
 
 public class Config {
+	public static final String FILE_PATH = "http://114.215.149.242:18080/ZFMerchant/";
+	public static final String POS_PIC_URL = FILE_PATH+"{0}/b.jpg";
+
 	
     public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
     public final static String IMAGE_PATH = "";
@@ -35,7 +37,6 @@ public class Config {
 	public static final String batchDelete =PATHS+"message/receiver/batchDelete";
 	public static final String ADRESSDelete =PATHS+"customers/deleteAddress";
 	public static final String paychannel_info =PATHS+"paychannel/info";
-	public static final String ChooseAdress = PATHS+"customers/getAddressList/";
 	//http://114.215.149.242:18080/ZFMerchant/api/paychannel/info
  
  	public static final String SHOPORDER=PATHS+"order/shop";
@@ -44,7 +45,7 @@ public class Config {
 	
  
 	public static final String order_cart =PATHS+"order/cart";
-  
+
 	public static final String URL_MERCHANT_DELETE = PATHS+"merchant/delete";
 	public static final String URL_MERCHANT_LIST = PATHS+"merchant/getList/{0}/{1}/{2}";
 	public static final String URL_MERCHANT_INFO = PATHS+"merchant/getOne/{0}";
@@ -53,6 +54,8 @@ public class Config {
 	public static final String URL_CART_LIST = PATHS + "cart/list";
 	public static final String URL_GOOD_INFO = PATHS + "good/goodinfo";
 	public static final String URL_CART_ADD = PATHS + "cart/add";
+	public static final String URL_ADDRESS_LIST = PATHS+"customers/getAddressList/{0}";
+
 
 	
 }

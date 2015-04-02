@@ -39,10 +39,12 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 	private SharedPreferences mySharedPreferences;
 	private Editor editor;
 	private int cityId=MyApplication.NewUser.getCityId();
+	private int customerId;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.myinfo);
+		customerId = MyApplication.getInstance().getCustomerId();
 		new TitleMenuUtil(MyInfo.this, "我的信息").show();
 		initView();
 		
@@ -222,7 +224,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 	private void getdata(){
 		
 	 
-		 API.getinfo(MyInfo.this,MyApplication.NewUser.getId(),
+		 API.getinfo(MyInfo.this,customerId,
 	        		
 	                new HttpCallback<MyinfoEntity> (MyInfo.this) {
 

@@ -1,5 +1,6 @@
 package com.example.zf_android.activity;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,12 +47,7 @@ import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 /***
- * 
-*    
-* ����ƣ�ConfirmOrder   
-* ��������   ����ȷ��
-* �����ˣ� ljp  购物车订单确认
-* ����ʱ�䣺2015-2-9 ����3:49:46   
+* 购物车订单确认
 * @version    
 *
  */
@@ -60,7 +56,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 	private  int index=0;
 			 private String howMoney,comment,invoice_info;
 private EditText et_comment,et_info;
-private String Url=Config.ChooseAdress;
+private int customerId;
 List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 ArrayList<Integer>  inn = new ArrayList<Integer>();
@@ -85,7 +81,7 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 						Toast.LENGTH_SHORT).show();
 			 
 				break;
-			case 2: // ����������
+			case 2:
 				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -98,9 +94,9 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 	};
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
-			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.comfirm_order);
+			customerId = MyApplication.getInstance().getCustomerId();
 			index=getIntent().getIntExtra("index", 0);
 			howMoney=getIntent().getStringExtra("howMoney");
 			initView(); 
@@ -108,14 +104,12 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 			getData1();
 		}
 		private void getData() {
-			// TODO Auto-generated method stub
 			 
 			comfirmList=MyApplication.getComfirmList();
 			myAdapter=new ComfirmcarAdapter(ConfirmOrder.this, comfirmList);
  			pos_lv.setAdapter(myAdapter);
 		}
 		private void initView() {
-			// TODO Auto-generated method stub
 			new TitleMenuUtil(ConfirmOrder.this, "订单确定").show();
  			pos_lv=(ScrollViewWithListView) findViewById(R.id.pos_lv1);
  			btn_pay=(Button) findViewById(R.id.btn_pay);
@@ -138,7 +132,6 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 		}
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub tv_pop
 			switch (v.getId()) {
 			case R.id.tv_pop:
 			//	 menu_press();
@@ -157,7 +150,6 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 		}
 		@Override
 		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-			// TODO Auto-generated method stub
 			super.onActivityResult(requestCode, resultCode, data);
 			if(requestCode==11){
 				if(data!=null){
@@ -170,24 +162,15 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 			}
 		}
 		private void getData1() { 
-
-			// TODO Auto-generated method stub
- 
- 
-			Url=Url+"80";
-			System.out.println("---getData-"+Url);
-			 
+			String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
 			MyApplication.getInstance().getClient()
-					.post(Url, new AsyncHttpResponseHandler() {
+					.post(url, new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,
 								byte[] responseBody) {
 							String responseMsg = new String(responseBody)
 									.toString();
-							Log.e("print", responseMsg);
-							System.out.println("----"+responseMsg);
-						 
 							 
 							Gson gson = new Gson();
 							
@@ -212,21 +195,12 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 	 									}
 	 								}
 	 								
-	 								
-	 								
-	 								
-//	 							myList.addAll(moreList);
-//	 				 				handler.sendEmptyMessage(0);
-				 					  
-				 				 
 				 			 
 								}else{
 									code = jsonobject.getString("message");
 									Toast.makeText(getApplicationContext(  ), code, 1000).show();
 								}
 							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								 ;	
 								e.printStackTrace();
 								
 							}
@@ -236,7 +210,6 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 						@Override
 						public void onFailure(int statusCode, Header[] headers,
 								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
 							System.out.println("-onFailure---");
 							Log.e("print", "-onFailure---" + error);
 						}
@@ -271,7 +244,6 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					invoice_type = 0;
 					tv_pop.setText("公司");
 					menuWindow.dismiss();
@@ -284,7 +256,6 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					invoice_type = 1;
 					tv_pop.setText("个人"); 
 					menuWindow.dismiss(); 

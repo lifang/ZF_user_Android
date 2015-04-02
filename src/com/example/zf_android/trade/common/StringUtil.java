@@ -1,6 +1,9 @@
 package com.example.zf_android.trade.common;
 
+import java.text.MessageFormat;
 import java.util.List;
+
+import com.example.zf_android.Config;
 
 
 /**
@@ -38,4 +41,5 @@ public class StringUtil {
 		sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();
 	}
+
 }

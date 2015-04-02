@@ -1,5 +1,6 @@
 package com.example.zf_android.activity;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,6 @@ import com.loopj.android.http.RequestParams;
 public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
-	private String Url=Config.ChooseAdress;
 	private TextView tv_sjr,tv_tel,tv_adress;
 	private LinearLayout ll_choose,llll;
 	private TextView tv_yajin,tv_lkl,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count;
@@ -52,12 +52,14 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	private CheckBox item_cb;
 	private int yajin;
 	private int invoice_type=1;//发票类型（0公司  1个人）
+	private int customerId;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lea_confirm);
 		new TitleMenuUtil(LeaseConfirm.this, "租赁订单确认").show();
+		customerId = MyApplication.getInstance().getCustomerId();
 		//			i2.putExtra("getTitle", gfe.getGood_brand());
 //		i2.putExtra("price", gfe.getPrice());
 //		i2.putExtra("model", gfe.getModel_number());
@@ -152,17 +154,10 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	}
 
 	private void getData() {
-		// TODO Auto-generated method stub
-	 
-		 
-			RequestParams params = new RequestParams();
-			params.put("customerId", 80);
-			 
-			params.setUseJsonStreamer(true);
+			String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
 			System.out.println("---getData-");
-			Url=Url+"80";
 			MyApplication.getInstance().getClient()
-					.get(Url, new AsyncHttpResponseHandler() {
+					.get(url, new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,
@@ -227,12 +222,10 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	}
 	private void getData1() { 
 
-		// TODO Auto-generated method stub
+		 String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
 
-
- 
 		MyApplication.getInstance().getClient()
-				.post(Config.ChooseAdress+"80", new AsyncHttpResponseHandler() {
+				.post(url, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,

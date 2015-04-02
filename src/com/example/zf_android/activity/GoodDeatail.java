@@ -33,6 +33,7 @@ import cn.trinea.android.common.util.JSONUtils;
 import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.ScrollViewWithGView;
 import com.examlpe.zf_android.util.ScrollViewWithListView;
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -60,8 +61,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private LinearLayout titleback_linear_back;
 	private ImageView image,search2,fac_img;
 	private RelativeLayout ri_tel;
-	private ArrayList<String> ma = new ArrayList<String>();
-	private ArrayList<String> mal = new ArrayList<String>();
+	private List<String> ma = new ArrayList<String>();
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
 	private ViewPager view_pager;
 	private MyAdapter adapter ;
@@ -101,6 +101,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
+				list.clear();
 				for (int i = 0; i <ma.size(); i++) {			 
 					item = inflater.inflate(R.layout.item, null);
 					list.add(item);
@@ -126,7 +127,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				tv_jm.setText(gfe.getEncrypt_card_way());
 				
 				 if(gfe.isHas_lease()){
-					// tv_lea
+					 tv_lea.setVisibility(View.GONE);
 				 }else{
 					 tv_lea.setVisibility(View.INVISIBLE);
 				 }
@@ -353,9 +354,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					tv_comment.setText("查看评论"+" ("+commentsCount+") ");
 							List<String> piclist= gson.fromJson(jsonobject.getString("goodPics"), new TypeToken<List<String>>() {
 		 					}.getType());
-							 for(int i=0;i<piclist.size();i++){
-								 ma.add(piclist.get(i));
-							 }
+							 ma = piclist;
 							 gfe=gson.fromJson(jsonobject.getString("goodinfo"), new TypeToken<GoodinfoEntity>() {
 		 					}.getType());
 							 MyApplication.gfe=gfe;
@@ -700,7 +699,7 @@ private void initIndicator(){
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
  
-			ImageCacheUtil.IMAGE_CACHE.get(  ma.get(position),
+			ImageCacheUtil.IMAGE_CACHE.get(StringUtil.getBigImage(ma.get(position)),
 	 				image);
  		
  		

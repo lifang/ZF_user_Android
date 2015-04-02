@@ -1,5 +1,6 @@
 package com.example.zf_android.activity;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +45,6 @@ import com.loopj.android.http.RequestParams;
  */
 public class ChanceAdress extends BaseActivity{
 	private ScrollViewWithListView   lv;
-	private String Url=Config.ChooseAdress;
 	private int customerId;
 	private ChooseAdressAdapter myAdapter;
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
@@ -77,6 +77,7 @@ public class ChanceAdress extends BaseActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chance_adress);
+		customerId = MyApplication.getInstance().getCustomerId();
 		 new TitleMenuUtil(ChanceAdress.this, "选择地址").show();
 		initView();
 		getData();
@@ -112,18 +113,10 @@ public class ChanceAdress extends BaseActivity{
 		});
 	}
 	private void getData() {
-		// TODO Auto-generated method stub
-
-		// TODO Auto-generated method stub
-	 
-		RequestParams params = new RequestParams();
-		params.put("customerId", 80);
-		 
-		params.setUseJsonStreamer(true);
 		System.out.println("---getData-");
-		Url=Url+"80";
+		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
 		MyApplication.getInstance().getClient()
-				.post(Url, new AsyncHttpResponseHandler() {
+				.post(url, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
