@@ -14,7 +14,7 @@ public class AdressEntity {
 //    "zipCode": "3456666",
 //    "moblephone": "17887986789",
 //    "city": "甘肃省定西市"
-	private Boolean Ischeck;
+	private boolean Ischeck;
 	
 	public Boolean getIscheck() {
 		return Ischeck;

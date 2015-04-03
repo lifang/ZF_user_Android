@@ -179,7 +179,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:maxLines="1"
-                    android:text="$ 1999"
+                    android:text=""
                     android:textColor="@color/bgtitle"
                     android:textSize="17sp" />
 
@@ -227,13 +227,14 @@
                         android:textSize="11sp" />
 
                     <TextView
+                        android:id="@+id/channel_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:ellipsize="end"
                         android:gravity="bottom"
                         android:maxLines="1"
-                        android:text="支付宝"
+                        android:text=""
                         android:textColor="@color/text292929"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -265,7 +266,7 @@
                         android:ellipsize="end"
                         android:gravity="bottom"
                         android:maxLines="1"
-                        android:text="泰山TS9000"
+                        android:text=""
                         android:textColor="@color/text292929"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -501,8 +502,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
              android:layout_marginTop="32dp"
-         android:layout_marginLeft="14dp"
-            android:checked="false" />
+            android:layout_marginLeft="14dp"
+            android:checked="true" />
 		    
 		    <TextView
                             

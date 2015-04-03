@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -33,19 +31,13 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;
-import com.example.zf_android.entity.Answer;
-import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_android.entity.MyShopCar.Good;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_zandroid.adapter.ComfirmcarAdapter;
-import com.example.zf_zandroid.adapter.OrderDetail_PosAdapter;
-import com.example.zf_zandroid.adapter.RecordAdapter;
-import com.example.zf_zandroid.adapter.ShopcarAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 /***
 * 购物车订单确认
 * @version    
@@ -59,7 +51,6 @@ private EditText et_comment,et_info;
 private int customerId;
 List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
-ArrayList<Integer>  inn = new ArrayList<Integer>();
 			 private int addressId;
 	private ComfirmcarAdapter myAdapter;
 	private LinearLayout ll_adress;
@@ -134,8 +125,7 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.tv_pop:
-			//	 menu_press();
-			 pay() ;
+				 menu_press();
 				break;
 			case R.id.btn_pay:
 				getpay11();
@@ -272,109 +262,37 @@ ArrayList<Integer>  inn = new ArrayList<Integer>();
 //			menuWindow.showAtLocation(this.findViewById(R.id.next_sure),
 //					Gravity.TOP | Gravity.RIGHT, 50, 100);
 		}
-		private void pay() {
-			// TODO Auto-generated method stub
-			int [] cartid=new int[comfirmList.size()];
-			for(int i=0;i<comfirmList.size();i++){
-				cartid[i]=comfirmList.get(i).getId();
-				
-			}
-			inn.add(167);
-			comment=et_comment.getText().toString();
-			invoice_info =et_info.getText().toString();
-			RequestParams params = new RequestParams();
-			Gson gson = new Gson();
-			try {
-				System.out.println("id```"+cartid.length); 
-				params.put("cartid", new JSONArray(gson.toJson(inn)));
-			} catch (JSONException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			params.put("customerId", 80);
-		 
-			params.put("is_need_invoice", 0);
-	 
-			params.setUseJsonStreamer(true);
-			System.out.println("参数-lee-"+params);
-			MyApplication.getInstance().getClient()
-					.post(Config.JWB, params, new AsyncHttpResponseHandler() {
-
-						@Override
-						public void onSuccess(int statusCode, Header[] headers,
-								byte[] responseBody) {
-							String responseMsg = new String(responseBody)
-									.toString();
-							Log.e("print", responseMsg);
-
-							Toast.makeText(getApplicationContext(), responseMsg.toString(), 1000).show();
-							 
-							Gson gson = new Gson();
-							
-							JSONObject jsonobject = null;
-							String code = null;
-							try {
-								jsonobject = new JSONObject(responseMsg);
-								code = jsonobject.getString("code");
-								int a =jsonobject.getInt("code");
-								if(a==Config.CODE){ 
-								 Toast.makeText(getApplicationContext(), "订单确认成功，请支付", 1000).show();
-								 
-									Intent i=new Intent(ConfirmOrder.this,PayFromCar.class);
-									i.putExtra("key", tv_pay.getText().toString());
-									startActivity(i);
-								}else{ 
-									
-									Toast.makeText(getApplicationContext(), "创立订单失败", 1000).show();
-									 
-								}
-							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								Toast.makeText(getApplicationContext(), "创立订单失败", 1000).show();
-								e.printStackTrace();
-								 
-							}
-
-						}
-
-						@Override
-						public void onFailure(int statusCode, Header[] headers,
-								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
-							System.out.println("-onFailure---");
-						 
-						}
-					});
-	 
-			 
-		
-		
-		}
 		
 		public void getpay11(){
-			inn.clear();
-			 
-//			for(int i=0;i<comfirmList.size();i++){
-//				inn.add(comfirmList.get(i).getId());
-//			}
-			inn.add(167);
+			int inn[]=new int[comfirmList.size()];
+			for(int i=0;i<comfirmList.size();i++){
+				inn[i]=comfirmList.get(i).getId();
+			}
 			comment=et_comment.getText().toString();
 			invoice_info =et_info.getText().toString();
 			
-			API.CARTFIRM1(ConfirmOrder.this, MyApplication.NewUser.getId(),inn,
+			API.CARTFIRM(ConfirmOrder.this, customerId,inn,
 					addressId,comment,is_need_invoice,invoice_type,invoice_info,
 	        		
 	                  new HttpCallback  (ConfirmOrder.this) {
 
 						@Override
 						public void onSuccess(Object data) {
-							// TODO Auto-generated method stub
-						 
+							System.out.println(data);
+							Intent i1 =new Intent (ConfirmOrder.this,PayFromCar.class);
+							startActivity(i1);
 						}
+						
+						@Override
+						public void onFailure(String message) {
+							super.onFailure(message);
+							Toast.makeText(getApplicationContext(), message, 1000).show();
+						}
+
+
 
 						@Override
 						public TypeToken getTypeToken() {
-							// TODO Auto-generated method stub
 							return  null;
 						}
 	                });

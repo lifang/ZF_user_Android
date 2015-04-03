@@ -1,7 +1,14 @@
 package com.example.zf_android.entity;
 
-public class GoodinfoEntity {
-//	 "lease_agreement": "1",
+import java.io.Serializable;
+
+public class GoodinfoEntity implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6162205914689343598L;
+
+	//	 "lease_agreement": "1",
 	private String lease_agreement;
 	
 //     "encrypt_card_way": "加密卡方式2",

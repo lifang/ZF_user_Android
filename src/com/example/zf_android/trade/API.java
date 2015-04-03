@@ -6,12 +6,16 @@ import com.example.zf_android.Config;
 import com.example.zf_android.entity.MerchantEntity;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
+import com.google.gson.Gson;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
 import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
@@ -596,7 +600,7 @@ public class API {
 		params.put("is_need_invoice", is_need_invoice);
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", invoice_info);
-		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+		new HttpRequest(context, callback).post(Config.URL_ORDER_SHOP, params);
 	}
 	
 	public static void getinfo(
@@ -610,25 +614,29 @@ public class API {
 	public static void CARTFIRM(
 			Context context,
 			int customerId,
-			List<Integer>  inn,
-			 
+			int[]  inn,
 			int addressId,
 			String  comment,
-			
 			int is_need_invoice,
 			int invoice_type,
 			String  invoice_info,
 		
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("customerId", 80); 
-		params.put("cartid",  inn); 
+		params.put("customerId", customerId); 
+		Gson gson = new Gson();
+		try {
+			params.put("cartid", new JSONArray(gson.toJson(inn)));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 		params.put("addressId", addressId);
 		params.put("comment", comment);
 		params.put("is_need_invoice", is_need_invoice);
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", invoice_info);
-		new HttpRequest(context, callback).post(Config.JWB, params);
+		new HttpRequest(context, callback).post(Config.URL_ORDER_CART, params);
 	}
 	
  
@@ -722,7 +730,7 @@ public class API {
         params.put("invoice_info", invoice_info);
  
         System.out.println("CCC--"+params.toString());
-        new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+        new HttpRequest(context, callback).post(Config.URL_ORDER_SHOP, params);
     }
 
 	public static void POSLIST(

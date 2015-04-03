@@ -25,12 +25,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;
+import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_zandroid.adapter.ChooseAdressAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -42,17 +44,19 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 	private TextView tv_sjr,tv_tel,tv_adress;
 	private LinearLayout ll_choose,llll;
-	private TextView tv_yajin,tv_lkl,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count;
+	private TextView tv_yajin,tv_lkl,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count,channel_text,content2;
 	private Button btn_pay;
 	private String comment;
 	private ImageView reduce,add;
-	private int pirce;
+	private int price;
 	private int goodId,paychannelId,quantity,addressId,is_need_invoice=0;
 	private EditText buyCountEdit,comment_et,et_titel;
 	private CheckBox item_cb;
 	private int yajin;
 	private int invoice_type=1;//发票类型（0公司  1个人）
 	private int customerId;
+	private GoodinfoEntity good;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -60,29 +64,31 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		setContentView(R.layout.lea_confirm);
 		new TitleMenuUtil(LeaseConfirm.this, "租赁订单确认").show();
 		customerId = MyApplication.getInstance().getCustomerId();
-		//			i2.putExtra("getTitle", gfe.getGood_brand());
-//		i2.putExtra("price", gfe.getPrice());
-//		i2.putExtra("model", gfe.getModel_number());
-//		i2.putExtra("chanel", chanel);
-//		i2.putExtra("chanelID", paychannelId);
-//		i2.putExtra("id", gfe.getId());
-//		startActivity(i2);
 		initView();
-		title2.setText(getIntent().getStringExtra("getTitle"));
-		pirce=getIntent().getIntExtra("price", 0);
-		retail_price.setText("￥"+ pirce);
-		goodId=getIntent().getIntExtra("goodId", 1);
-		paychannelId=getIntent().getIntExtra("paychannelId", 1);
-		yajin=MyApplication.getGfe().getLease_deposit();
-		tv_pay.setText("实付：￥ "+pirce+yajin); 
-		tv_totle.setText("合计：￥ "+pirce+yajin); 
-	 
+		good = (GoodinfoEntity)getIntent().getSerializableExtra("good");
+		if(good == null){
+			finish();
+		}
+		title2.setText(good.getTitle());
+		content2.setText(good.getModel_number());
+		channel_text.setText(getIntent().getStringExtra("chanel"));
+		buyCountEdit.setText(good.getLease_time()+"");
+		price=good.getLease_price();
+		retail_price.setText("￥"+ StringUtil.getMoneyString(price));
+		goodId=good.getId();
+		paychannelId=getIntent().getIntExtra("paychannelId", 0);
+		yajin=good.getLease_deposit();
+		tv_yajin.setText("￥   "+StringUtil.getMoneyString(yajin));
+		computeMoney();
 		getData();
-		getData1();
+	}
+	
+	private void computeMoney(){
+		tv_pay.setText("实付：￥ "+StringUtil.getMoneyString((price*quantity+yajin))); 
+		tv_totle.setText("合计：￥ "+StringUtil.getMoneyString((price*quantity+yajin))); 
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		add=(ImageView) findViewById(R.id.add);
 		reduce=(ImageView) findViewById(R.id.reduce);
 		reduce.setOnClickListener(this);
@@ -93,11 +99,11 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		tv_count=(TextView) findViewById(R.id.tv_count);
 		tv_tel=(TextView) findViewById(R.id.tv_tel);
 		tv_adress=(TextView) findViewById(R.id.tv_adress);
+		content2 = (TextView) findViewById(R.id.content2);
+		channel_text = (TextView)findViewById(R.id.channel_text);
 		tv_lkl=(TextView) findViewById(R.id.tv_lkl);
 		tv_lkl.setOnClickListener(this);
 		tv_yajin=(TextView) findViewById(R.id.tv_yajin);
-		tv_yajin.setText("￥   "+yajin);
-		//MyApplication.gfe yajin
 		ll_choose=(LinearLayout) findViewById(R.id.ll_choose);
 		ll_choose.setOnClickListener(this);
 		title2=(TextView) findViewById(R.id.title2);
@@ -113,11 +119,14 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				// TODO Auto-generated method stub
 				if(arg1){
-					 
+					btn_pay.setTextColor(getResources().getColor(R.color.ffffff));
+					btn_pay.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_blue_shape));
+					btn_pay.setEnabled(true);
 				}else{
-					 
+					btn_pay.setTextColor(getResources().getColor(R.color.text292929));
+					btn_pay.setBackgroundDrawable(getResources().getDrawable(R.drawable.send_out_goods_shape));
+					btn_pay.setEnabled(false);
 				}
 			}
 		});
@@ -133,15 +142,13 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 				 }else{
 					 quantity= Integer.parseInt( buyCountEdit.getText().toString() );
 				 }
+				 computeMoney();
 			 
-				tv_totle.setText("合计：￥ "+pirce*quantity+yajin); 
-				tv_pay.setText("实付：￥ "+pirce*quantity+yajin); 
 			}
 			
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				// TODO Auto-generated method stub
 				
 			}
 			
@@ -220,81 +227,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			 
 	 
 	}
-	private void getData1() { 
-
-		 String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
-
-		MyApplication.getInstance().getClient()
-				.post(url, new AsyncHttpResponseHandler() {
-
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg);
-						System.out.println("----"+responseMsg);
-					 
-						 
-						Gson gson = new Gson();
-						
-						JSONObject jsonobject = null;
-						String code = null;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							code = jsonobject.getString("code");
-							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){  
- 								String res =jsonobject.getString("result");
-
-								
- 								moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
- 			 					}.getType());
-			 				 
- 								for(int i =0;i<moreList.size();i++){
- 									if(moreList.get(i).getIsDefault()==1) {
- 										//tv_name,tv_tel,tv_adresss;
- 										addressId=moreList.get(i).getId();
- 										tv_adress.setText("收件地址 ： "+moreList.get(i).getAddress());
- 										tv_sjr.setText("收件人 ： "+moreList.get(i).getReceiver());
- 										tv_tel.setText( moreList.get(i).getMoblephone());
- 									}
- 								}
- 								
- 								
- 								
- 								
-// 							myList.addAll(moreList);
-// 				 				handler.sendEmptyMessage(0);
-			 					  
-			 				 
-			 			 
-							}else{
-								code = jsonobject.getString("message");
-								Toast.makeText(getApplicationContext(), code, 1000).show();
-							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
-							e.printStackTrace();
-							
-						}
-
-					}
-
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
-					}
-				});
- 
-		 
-	
-	
-	}
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
@@ -308,20 +240,19 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			startActivity(tv_ins);
 			break;
 		case R.id.btn_pay:
-		  // confirmGood();
-			Intent i1 =new Intent (LeaseConfirm.this,PayFromCar.class);
-			startActivity(i1);
+		   confirmGood();
 			break;
 		case R.id.add:
-			quantity= Integer.parseInt( buyCountEdit.getText().toString() )+1;
-			buyCountEdit.setText(quantity+"");
+			if(good.getReturn_time() > quantity){
+				quantity= Integer.parseInt( buyCountEdit.getText().toString() )+1;
+				buyCountEdit.setText(quantity+"");
+			}
 				break;
 		case R.id.reduce:
-			if(quantity==0){
-				break;
+			if(good.getLease_time() < quantity){
+				quantity= Integer.parseInt( buyCountEdit.getText().toString() )-1;
+				buyCountEdit.setText(quantity+"");
 			}
-			quantity= Integer.parseInt( buyCountEdit.getText().toString() )-1;
-			buyCountEdit.setText(quantity+"");
 				break;
 		default:
 			break;
@@ -342,26 +273,23 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		}
 	}
 	private void confirmGood() {
-		// TODO Auto-generated method stub
-		 
-		 //quantity addressId comment is_need_invoice et_titel  
 		quantity= Integer.parseInt( buyCountEdit.getText().toString() );
 		comment=comment_et.getText().toString();
 		RequestParams params = new RequestParams();
-		params.put("customerId", 80);
+		params.put("customerId", customerId);
 		params.put("goodId", goodId);
 		params.put("paychannelId", paychannelId);
 		params.put("addressId", addressId);
 		params.put("quantity", quantity);
 		params.put("comment", comment);
 		params.put("is_need_invoice", is_need_invoice);
-		params.put("invoice_type", invoice_type);
-		params.put("invoice_info", et_titel.getText().toString());
+//		params.put("invoice_type", invoice_type);
+//		params.put("invoice_info", et_titel.getText().toString());
 		params.setUseJsonStreamer(true);
 		 
-		String Urla=Config.SHOPORDER;
+		String Urla=Config.URL_ORDER_LEASE;
 		MyApplication.getInstance().getClient()
-				.get(Urla, new AsyncHttpResponseHandler() {
+				.post(Urla, params, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
@@ -371,9 +299,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 						Log.e("print", responseMsg);
 						System.out.println("----"+responseMsg);
 					 
-						 
-						Gson gson = new Gson();
-						
 						JSONObject jsonobject = null;
 						String code = null;
 						try {
@@ -381,18 +306,14 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 							code = jsonobject.getString("code");
 							int a =jsonobject.getInt("code");
 							if(a==Config.CODE){  
- 							 
-			 				 
-			 			 
+								Intent i1 =new Intent (LeaseConfirm.this,PayFromCar.class);
+								startActivity(i1);
 							}else{
 								code = jsonobject.getString("message");
 								Toast.makeText(getApplicationContext(), code, 1000).show();
 							}
 						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
 							e.printStackTrace();
-							
 						}
 
 					}

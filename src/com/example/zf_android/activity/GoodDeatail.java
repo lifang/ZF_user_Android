@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -242,10 +243,10 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			setting_btn_clear.setText("立即购买");
 			setting_btn_clear1.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_shape) );
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bgtitle));
-				tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
-				tv_lea.setTextColor(getResources().getColor(R.color.text292929));
+			tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
+			tv_bug.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_shape));
+			tv_lea.setTextColor(getResources().getColor(R.color.text292929));
 			tv_lea.setBackgroundDrawable(getResources().getDrawable(R.drawable.send_out_goods_shape));
-		 	 tv_bug.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_shape));
 		break;
 		case R.id.tv_lea:
 	   //tv_bug  
@@ -255,9 +256,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bg0etitle));
 			setting_btn_clear1.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg0e_shape) );
 			tv_bug.setTextColor(getResources().getColor(R.color.text292929));
+			tv_bug.setBackgroundDrawable(getResources().getDrawable(R.drawable.send_out_goods_shape));
 			tv_lea.setTextColor(getResources().getColor(R.color.bgtitle));
 			 tv_lea.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_shape) );
-			tv_bug.setBackgroundDrawable(getResources().getDrawable(R.drawable.send_out_goods_shape));
 		break;
 		
 		case R.id.tv_ins
@@ -283,12 +284,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						Toast.LENGTH_SHORT).show();				
 			}else if(islea){ 
 				Intent i21 =new Intent(GoodDeatail.this, LeaseConfirm.class);
-				i21.putExtra("getTitle", gfe.getTitle());
-				i21.putExtra("price", gfe.getLease_price());
-				i21.putExtra("model", gfe.getModel_number());
+				i21.putExtra("good", gfe);
 				i21.putExtra("chanel", chanel);
 				i21.putExtra("paychannelId", paychannelId);
-				i21.putExtra("goodId", gfe.getId());
 				startActivity(i21);
 			}else{
 				Intent i2 =new Intent(GoodDeatail.this, GoodConfirm.class);
@@ -514,7 +512,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
  						 publist=gson.fromJson(jsonobject.getString("requireMaterial_pub"), new TypeToken<List<ApplyneedEntity>>() {
  		 					}.getType());
  							 MyApplication.pub=publist;
- 							factoryEntity = gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<List<FactoryEntity>>() {
+ 							factoryEntity = gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<FactoryEntity>() {
  			 				}.getType());
  							if(factoryEntity.getLogo_file_path() != null){
  								ImageCacheUtil.IMAGE_CACHE.get(StringUtil.getImage(factoryEntity.getLogo_file_path()),
