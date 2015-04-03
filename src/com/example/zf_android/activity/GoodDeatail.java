@@ -74,6 +74,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private String chanel="";
 	private int  	commentsCount;
 	FactoryEntity factoryEntity;
+	FactoryEntity factory;
 	private  TextView tvc_zx,tvc_qy,tv_sqkt,tv_bug,tv_lea,tv_title,content1,tv_pp,tv_xh,tv_ys,tv_price,tv_lx,tv_sjhttp
 	,tv_spxx,fac_detai,ppxx,wkxx,dcxx,tv_qgd,tv_jm,tv_comment,tv_appneed,tv_ins,tv_huilv;
 	private ScrollViewWithListView  pos_lv1,pos_lv2,pos_lv3;
@@ -96,6 +97,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private ScrollViewWithGView gview,gview1 ;
 	List<GriviewEntity>  User_button = new ArrayList<GriviewEntity>();
 	private int paychannelId ,goodId,quantity;
+	private ImageView img_see;
 	List<View> list = new ArrayList<View>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -115,11 +117,15 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				tv_pp.setText(gfe.getGood_brand());
 				tv_xh.setText(gfe.getModel_number());
 				tv_ys.setText("已售"+gfe.getVolume_number());
-				tv_price.setText("￥ "+String.format("%.2f", gfe.getRetail_price()/100f));
+				tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
 				tv_lx.setText(gfe.getCategory() );
-			 	tv_sjhttp.setText(factoryEntity.getWebsite_url() );
+				if(factoryEntity != null){
+					ImageCacheUtil.IMAGE_CACHE.get(StringUtil.getImage(factoryEntity.getLogo_file_path()),
+							fac_img);
+					tv_sjhttp.setText(factoryEntity.getWebsite_url() );
+					fac_detai.setText(factoryEntity.getDescription() );
+				}
 				tv_spxx.setText(gfe.getDescription() );
-				fac_detai.setText(factoryEntity.getDescription() );
 				ppxx.setText(gfe.getModel_number() );
 				wkxx.setText(gfe.getShell_material() );
 				dcxx.setText(gfe.getBattery_info());
@@ -127,7 +133,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				tv_jm.setText(gfe.getEncrypt_card_way());
 				
 				 if(gfe.isHas_lease()){
-					 tv_lea.setVisibility(View.GONE);
+					 tv_lea.setVisibility(View.VISIBLE);
 				 }else{
 					 tv_lea.setVisibility(View.INVISIBLE);
 				 }
@@ -179,6 +185,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		tv_appneed.setOnClickListener(this);
 		tv_comment=(TextView) findViewById(R.id.tv_comment);
 		tv_comment.setOnClickListener(this);
+		img_see = (ImageView)findViewById(R.id.img_see);
+		img_see.setOnClickListener(this);
 		rl_imgs=(RelativeLayout) findViewById(R.id.rl_imgs); 
 		view_pager = (ViewPager) findViewById(R.id.view_pager); 
 		inflater = LayoutInflater.from(this); 
@@ -276,7 +284,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			}else if(islea){ 
 				Intent i21 =new Intent(GoodDeatail.this, LeaseConfirm.class);
 				i21.putExtra("getTitle", gfe.getTitle());
-				i21.putExtra("price", gfe.getPrice());
+				i21.putExtra("price", gfe.getLease_price());
 				i21.putExtra("model", gfe.getModel_number());
 				i21.putExtra("chanel", chanel);
 				i21.putExtra("paychannelId", paychannelId);
@@ -285,7 +293,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			}else{
 				Intent i2 =new Intent(GoodDeatail.this, GoodConfirm.class);
 				i2.putExtra("getTitle", gfe.getTitle());
-				i2.putExtra("price", gfe.getPrice());
+				i2.putExtra("price", gfe.getRetail_price());
 				i2.putExtra("model", gfe.getModel_number());
 				i2.putExtra("chanel", chanel);
 				i2.putExtra("paychannelId", paychannelId);
@@ -317,6 +325,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
             intent.setData(content_url);  
             startActivity(intent);
 		break;
+		case R.id.img_see:
+			Intent i1 =new Intent(GoodDeatail.this,FactoryInfo.class);
+			i1.putExtra("factory", factory);
+			startActivity(i1);
+			break;
 		 
 		default:
 			break;
@@ -359,7 +372,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		 					}.getType());
 							 MyApplication.gfe=gfe;
 							 goodId=gfe.getId();
-							 factoryEntity=gson.fromJson(jsonobject.getString("factory"), new TypeToken<FactoryEntity>() {
+							 factory=gson.fromJson(jsonobject.getString("factory"), new TypeToken<FactoryEntity>() {
 			 				}.getType());
 							 String payChannelListStr = JSONUtils.getString(jsonobject, "payChannelList", "[]");
 							 User_button = gson.fromJson(payChannelListStr, 
@@ -402,6 +415,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							 if(res2 != null){
 								 jsonobject = new JSONObject(res2);
 								 paychannelId=jsonobject.getInt("id");
+								 factoryEntity=gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<FactoryEntity>() {
+					 				}.getType());
 								 if(jsonobject.getBoolean("support_type")){
 									 arelist=   gson.fromJson(jsonobject.getString("supportArea"), new TypeToken<List<String>>() {
 									 }.getType());
@@ -473,12 +488,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		 System.out.println("---支付通道ID--"+pcid);
 		
 		params.setUseJsonStreamer(true);
-		MyApplication.getInstance().getClient().post(Config.paychannel_info, params, new AsyncHttpResponseHandler() {
+		MyApplication.getInstance().getClient().post(Config.URL_PAYCHANNEL_INFO, params, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
-				// TODO Auto-generated method stub
 				String userMsg = new String(responseBody).toString();
 	 
 				Log.i("ljp", userMsg);
@@ -500,7 +514,15 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
  						 publist=gson.fromJson(jsonobject.getString("requireMaterial_pub"), new TypeToken<List<ApplyneedEntity>>() {
  		 					}.getType());
  							 MyApplication.pub=publist;
- 
+ 							factoryEntity = gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<List<FactoryEntity>>() {
+ 			 				}.getType());
+ 							if(factoryEntity.getLogo_file_path() != null){
+ 								ImageCacheUtil.IMAGE_CACHE.get(StringUtil.getImage(factoryEntity.getLogo_file_path()),
+ 										fac_img);
+ 							}
+ 							tv_sjhttp.setText(factoryEntity.getWebsite_url() );
+ 							fac_detai.setText(factoryEntity.getDescription() );
+ 							
  						 singlelist=gson.fromJson(jsonobject.getString("requireMaterial_pra"), new TypeToken<List<ApplyneedEntity>>() {
  		 					}.getType());
  							 MyApplication.single=singlelist;
@@ -694,15 +716,11 @@ private void initIndicator(){
 		 */
 		@Override
 		public Object instantiateItem(final ViewGroup container, final int position) {
-			
- 
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
  
 			ImageCacheUtil.IMAGE_CACHE.get(StringUtil.getBigImage(ma.get(position)),
 	 				image);
- 		
- 		
 			container.removeView(mList.get(position));
 			container.addView(mList.get(position));
 			setIndex(position);

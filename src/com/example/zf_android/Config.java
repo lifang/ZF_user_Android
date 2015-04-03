@@ -4,7 +4,7 @@ package com.example.zf_android;
 public class Config {
 	public static final String FILE_PATH = "http://114.215.149.242:18080/ZFMerchant/";
 	public static final String POS_PIC_URL = FILE_PATH+"{0}/b.jpg";
-
+	public static final String FILE_URL = FILE_PATH+"{0}";
 	
     public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
     public final static String IMAGE_PATH = "";
@@ -36,7 +36,6 @@ public class Config {
 	public static final String batchRead =PATHS+"message/receiver/batchRead";
 	public static final String batchDelete =PATHS+"message/receiver/batchDelete";
 	public static final String ADRESSDelete =PATHS+"customers/deleteAddress";
-	public static final String paychannel_info =PATHS+"paychannel/info";
 	//http://114.215.149.242:18080/ZFMerchant/api/paychannel/info
  
  	public static final String SHOPORDER=PATHS+"order/shop";
@@ -55,7 +54,7 @@ public class Config {
 	public static final String URL_GOOD_INFO = PATHS + "good/goodinfo";
 	public static final String URL_CART_ADD = PATHS + "cart/add";
 	public static final String URL_ADDRESS_LIST = PATHS+"customers/getAddressList/{0}";
+	public static final String URL_CART_DELETE = PATHS+"cart/delete";
+	public static final String URL_PAYCHANNEL_INFO =PATHS+"paychannel/info";
 
-
-	
 }

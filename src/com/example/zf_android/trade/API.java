@@ -574,7 +574,7 @@ public class API {
 	}
 	
 	
-	public static void GOODCONFIRM(
+	public static void goodConfirm(
 			Context context,
 			int customerId,
 			int goodId,

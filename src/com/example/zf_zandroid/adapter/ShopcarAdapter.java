@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.http.Header;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
@@ -120,7 +121,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.showCountText.setText("X  " + good.getQuantity());
 		holder.buyCountEdit.setText("" + good.getQuantity());
 		holder.buyCountEdit.getText();
-		holder.retail_price.setText("$ " + good.getRetail_price());
+		holder.retail_price.setText("¥ " + StringUtil.getMoneyString(good.getRetail_price()));
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
 		return convertView;
@@ -156,16 +157,13 @@ public class ShopcarAdapter extends BaseAdapter {
 
 			case R.id.delete_img:
 
-				 
-				// TODO Auto-generated method stub
-				String url = "http://114.215.149.242:18080/ZFMerchant/api/cart/delete";
 				RequestParams params = new RequestParams();
 				params.put("id", list.get(hoder.position).getId()); 
 				 final int index =hoder.position;
 				params.setUseJsonStreamer(true);
 
 				MyApplication.getInstance().getClient()
-						.post(url, params, new AsyncHttpResponseHandler() {
+						.post(Config.URL_CART_DELETE, params, new AsyncHttpResponseHandler() {
 
 							@Override
 							public void onSuccess(int statusCode, Header[] headers,
@@ -174,7 +172,8 @@ public class ShopcarAdapter extends BaseAdapter {
 										.toString();
 								Log.e("print", responseMsg);
 
-							 list.remove(index );
+							 list.remove(index);
+							 computeMoney();
 							 notifyDataSetChanged();
 
 							}
@@ -198,10 +197,7 @@ public class ShopcarAdapter extends BaseAdapter {
 					editGood.setQuantity(--quantity);
 					hoder.buyCountEdit.setText(editGood.getQuantity() + "");
 					hoder.showCountText.setText("X  " + editGood.getQuantity());
-					if (hoder.checkBox.isChecked()) {
-						currentHowMoney -= editGood.getRetail_price();
-						howMoney.setText("合计 ： " + currentHowMoney);
-					}
+					computeMoney();
 					System.out.println("λ��---"+position+quantity);
 				    changeContent(position, quantity);
 				}
@@ -210,11 +206,8 @@ public class ShopcarAdapter extends BaseAdapter {
 				editGood.setQuantity(++quantity);
 				hoder.buyCountEdit.setText(editGood.getQuantity() + "");
 				hoder.showCountText.setText("X  " + editGood.getQuantity());
-				if (hoder.checkBox.isChecked()) {
-					currentHowMoney += editGood.getRetail_price();
-					howMoney.setText("合计 ： " + currentHowMoney);
-				}
-				 changeContent(position, quantity);
+				computeMoney();
+				changeContent(position, quantity);
 				break;
 
 			}
@@ -248,10 +241,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				int position = (Integer) buttonView.getTag();
 				Good good = list.get(position);
 				good.setChecked(isChecked);
-				currentHowMoney += (isChecked ? good.getRetail_price()
-						* good.getQuantity() : -good.getRetail_price()
-						* good.getQuantity());
-				howMoney.setText("合计 ：" + currentHowMoney);
+				computeMoney();
 				Log.e("print", "currentHowMoney:"+currentHowMoney);
 			}
 
@@ -293,6 +283,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		 
 		 
 	}
+	
 	public final class ViewHolder {
 	 	private int position;
 		private CheckBox checkBox;
@@ -310,4 +301,15 @@ public class ShopcarAdapter extends BaseAdapter {
 		public TextView Model_number;
 		public TextView wayName;
 	}
+	
+	private void computeMoney(){
+		currentHowMoney = 0;
+		for(Good good: list){
+			if(good.isChecked()){
+				currentHowMoney += good.getRetail_price()*good.getQuantity();
+			}
+		}
+		howMoney.setText("合计 ： " + StringUtil.getMoneyString(currentHowMoney) );
+	}
+
 }

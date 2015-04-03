@@ -33,7 +33,7 @@
             android:layout_marginLeft="22dp"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="收件人: 张小小"
+            android:text=""
             android:textColor="@color/ffffff"
             android:textSize="17sp" />
                                  <TextView
@@ -43,7 +43,7 @@
             android:layout_marginLeft="15dp"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="13900010002"
+            android:text=""
      android:textColor="@color/ffffff"
             android:textSize="13sp" />
                  
@@ -60,7 +60,7 @@
             android:gravity="center_vertical"
             android:layout_marginTop="14dp"
             android:singleLine="true"
-            android:text="收件地址: 上海市XXX路YY号11#101"
+            android:text=""
               android:textColor="@color/ffffff"
             android:textSize="13sp" />
              
@@ -480,7 +480,7 @@
                             android:layout_height="wrap_content"
                               android:layout_marginLeft="7dp"
                             
-                            android:text="实付：￥29999"
+                            android:text=""
                             android:textColor="@color/text292929"
                             android:textSize="17sp" />
 		     	     		    		    <TextView

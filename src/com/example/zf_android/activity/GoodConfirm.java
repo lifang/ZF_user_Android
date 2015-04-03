@@ -28,6 +28,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
@@ -77,11 +78,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce=getIntent().getIntExtra("price", 0);
-		retail_price.setText("￥"+ pirce);
+		retail_price.setText("￥"+ StringUtil.getMoneyString(pirce));
 		goodId=getIntent().getIntExtra("goodId", 1);
 		paychannelId=getIntent().getIntExtra("paychannelId", 1);
-		tv_pay.setText("实付：￥ "+pirce); 
-		tv_totle.setText("实付：￥ "+pirce); 
+		tv_pay.setText("实付：￥ "+StringUtil.getMoneyString(pirce)); 
+		tv_totle.setText("实付：￥ "+StringUtil.getMoneyString(pirce)); 
 		System.out.println("=paychannelId=="+paychannelId);
 		 getData1();
 	}
@@ -136,8 +137,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 					 quantity= Integer.parseInt( buyCountEdit.getText().toString() );
 				 }
 			 
-				 tv_totle.setText("实付：￥ "+pirce*quantity); 
-				tv_pay.setText("实付：￥ "+pirce*quantity); 
+				 tv_totle.setText("实付：￥ "+StringUtil.getMoneyString(pirce*quantity)); 
+				tv_pay.setText("实付：￥ "+StringUtil.getMoneyString(pirce*quantity)); 
 			}
 			
 			@Override
@@ -361,8 +362,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.btn_pay:
 		   confirmGood();
-			Intent i1 =new Intent (GoodConfirm.this,PayFromCar.class);
-			startActivity(i1);
 			break;
 		case R.id.add:
 			quantity= Integer.parseInt( buyCountEdit.getText().toString() )+1;
@@ -400,7 +399,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		quantity= Integer.parseInt( buyCountEdit.getText().toString() );
 		comment=comment_et.getText().toString();
 		RequestParams params = new RequestParams();
-		params.put("customerId", 80);
+		params.put("customerId", customerId);
 		params.put("goodId", goodId);
 		params.put("paychannelId", paychannelId);
 		params.put("addressId", addressId);
@@ -412,15 +411,17 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		params.setUseJsonStreamer(true);
  
 		invoice_info=et_titel.getText().toString();
-		API.GOODCONFIRM(GoodConfirm.this,MyApplication.NewUser.getId(),goodId,paychannelId,
+		API.goodConfirm(GoodConfirm.this,customerId,goodId,paychannelId,
 				quantity,addressId,comment,is_need_invoice,invoice_type,invoice_info,
         		
                 new HttpCallback  (GoodConfirm.this) {
-
 					@Override
 					public void onSuccess(Object data) {
-						// TODO Auto-generated method stub
-					 
+						Intent i1 =new Intent (GoodConfirm.this,PayFromCar.class);
+						String orderId = data.toString();
+						i1.putExtra("orderId", orderId);
+						startActivity(i1);	
+						finish();
 					}
 
 					@Override

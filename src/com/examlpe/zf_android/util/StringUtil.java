@@ -212,8 +212,14 @@ public class StringUtil {
 		return sign.toString();
 	}
 	
+	public static String getMoneyString(int money){
+		return String.format("%.2f", money/100f);
+		
+	}
 	public static String getBigImage(String url){
 		 return MessageFormat.format(Config.POS_PIC_URL, url);
-		
+	}
+	public static String getImage(String url){
+		 return MessageFormat.format(Config.FILE_URL, url);
 	}
 }

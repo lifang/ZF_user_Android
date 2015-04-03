@@ -23,11 +23,6 @@
             android:textColor="@color/text6c6c6c6"
             android:textSize="15sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:background="@drawable/see" />
     </LinearLayout>
 
     <View

@@ -1,19 +1,14 @@
 package com.example.zf_android.entity;
 
-public class FactoryEntity {
-//    "id": 1,
+import java.io.Serializable;
+
+public class FactoryEntity implements Serializable {
 	private int id;
-//    "status": 5,
 	private int status;
-//    "description": "说明",
 	private String description;
-//    "name": "嗖嗖嗖",
 	private String name;
-//    "website_url": "http://www.baidu.com",
 	private String website_url;
-//    "types": 2,
 	private int types;
-//    "logo_file_path": "images/mf_logo.jpg"
 	private String logo_file_path;
 	public int getId() {
 		return id;
