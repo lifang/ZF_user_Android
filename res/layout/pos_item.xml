@@ -159,7 +159,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:gravity="bottom"
-                android:text="支付宝"
+                android:text=""
                 android:textSize="11sp" />
                 	</LinearLayout>
 			    

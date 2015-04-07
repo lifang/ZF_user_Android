@@ -281,25 +281,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	}
 	 
 	private void getData() {
-		// TODO Auto-generated method stub
-		String url = "http://114.215.149.242:18080/ZFMerchant/api/good/list";
-		 
-		RequestParams params = new RequestParams();
-		params.put("city_id", 1);
-		params.put("orderType", orderType);
-	 	params.put("keys", keys);
-	 	
-	 	params.put("has_purchase", has_purchase);
-		params.put("minPrice", minPrice);
-	 	params.put("maxPrice", maxPrice);
-	 	params.put("page", page);
-	 	params.put("rows", rows);
-	 	
-	 	 
-	 	
-	 	
- 
-		API.POSLIST(this, 1, orderType,
+		API.postList(this, MyApplication.getInstance().getCityId(), orderType,
 				brands_id, null, null, null, null, null, null,
 				has_purchase, minPrice, maxPrice, keys, page, rows,
 

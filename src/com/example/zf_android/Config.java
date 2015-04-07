@@ -52,6 +52,7 @@ public class Config {
  	public static final String URL_ORDER_SHOP=PATHS+"order/shop";
  	public static final String URL_ORDER_LEASE=PATHS+"order/lease";
 	public static final String URL_ORDER_CART =PATHS+"order/cart";
+	public static final String URL_GOOD_LIST = PATHS+"good/list";
 
 
 

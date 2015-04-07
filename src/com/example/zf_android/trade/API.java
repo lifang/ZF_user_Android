@@ -733,7 +733,7 @@ public class API {
         new HttpRequest(context, callback).post(Config.URL_ORDER_SHOP, params);
     }
 
-	public static void POSLIST(
+	public static void postList(
 			Context context,
 			int  city_id,
 			int  orderType,
@@ -764,7 +764,7 @@ public class API {
 	 
  
 		System.out.println("--ccc----"+params);
-		new HttpRequest(context, callback).post("http://114.215.149.242:18080/ZFMerchant/api/good/list", params);
+		new HttpRequest(context, callback).post(Config.URL_GOOD_LIST, params);
 	}
 
  
