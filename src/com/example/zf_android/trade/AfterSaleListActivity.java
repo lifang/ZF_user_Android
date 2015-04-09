@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -88,7 +89,8 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 	}
 
 	private void loadData() {
-		API.getAfterSaleRecordList(this, mRecordType, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(this) {
+		API.getAfterSaleRecordList(this, mRecordType, MyApplication.getInstance().getCustomerId(), page + 1, rows, 
+				new HttpCallback<Pageable<AfterSaleRecord>>(this) {
 			@Override
 			public void onSuccess(Pageable<AfterSaleRecord> data) {
 				if (null != data.getContent()) {
@@ -97,14 +99,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 				page++;
 				total = data.getTotal();
 				mAdapter.notifyDataSetChanged();
-			}
-
-			@Override
-			public void preLoad() {
-			}
-
-			@Override
-			public void postLoad() {
+				
 				loadFinished();
 			}
 
@@ -122,7 +117,8 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 			@Override
 			public void onClick(View v) {
 				final AfterSaleRecord record = (AfterSaleRecord) v.getTag();
-				API.cancelAfterSaleApply(AfterSaleListActivity.this, mRecordType, record.getId(), new HttpCallback(AfterSaleListActivity.this) {
+				API.cancelAfterSaleApply(AfterSaleListActivity.this, mRecordType, record.getId(), 
+						new HttpCallback(AfterSaleListActivity.this) {
 					@Override
 					public void onSuccess(Object data) {
 						record.setStatus(5);

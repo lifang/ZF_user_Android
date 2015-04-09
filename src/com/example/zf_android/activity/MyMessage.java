@@ -16,27 +16,27 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.examlpe.zf_android.util.XListView;
 import com.examlpe.zf_android.util.XListView.IXListViewListener;
- 
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MessageEntity;
-import com.example.zf_android.entity.TestEntitiy;
+import com.example.zf_android.entity.OrderEntity;
+import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.common.Pageable;
 import com.example.zf_zandroid.adapter.MessageAdapter;
-import com.example.zf_zandroid.adapter.OrderAdapter;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -50,12 +50,11 @@ import com.loopj.android.http.RequestParams;
  * 
  */
 public class MyMessage extends BaseActivity implements IXListViewListener,
-		OnClickListener {
+OnClickListener {
 	private XListView Xlistview;
 	private int page = 1;
 	private RelativeLayout rl_sy, main_rl_gwc, rl_xx, rl_wd;
 	private int rows = Config.ROWS;
-	private String Url = Config.getmes;
 	private LinearLayout eva_nodata;
 	private String ids[]=new String []{};
 	List<Integer> as = new ArrayList<Integer>();
@@ -63,8 +62,9 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 	JSONArray a;
 	private boolean onRefresh_number = true;
 	private MessageAdapter myAdapter;
+	private LinearLayout titleback_linear_back;
 	private TextView next_sure,tv_all,tv_dle;
-	private Boolean isEdit = false;
+	private int total = 0;
 	private RelativeLayout rl_edit, rl_editno;
 	List<MessageEntity> idList = new ArrayList<MessageEntity>();
 	List<MessageEntity> myList = new ArrayList<MessageEntity>();
@@ -76,7 +76,6 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 				onLoad();
 
 				if (myList.size() == 0) {
-					// norecord_text_to.setText("��û����ص���Ʒ");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -102,17 +101,15 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_message);
 		MyApplication.setIsSelect(false);
 		initView();
 		getData();
-	 
+
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		rl_edit = (RelativeLayout) findViewById(R.id.rl_edit);
 		rl_editno = (RelativeLayout) findViewById(R.id.rl_editno);
 		tv_all=(TextView) findViewById(R.id.tv_all);
@@ -126,14 +123,15 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 		rl_sy = (RelativeLayout) findViewById(R.id.main_rl_sy);
 		rl_sy.setOnClickListener(this);
 
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
+		titleback_linear_back.setVisibility(View.GONE);
 		next_sure = (TextView) findViewById(R.id.next_sure);
 		next_sure.setVisibility(View.VISIBLE);
-		next_sure.setText("删除");
+		next_sure.setText("编辑");
 		new TitleMenuUtil(MyMessage.this, "我的消息").show();
 		myAdapter = new MessageAdapter(MyMessage.this, myList);
 		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) findViewById(R.id.x_listview);
-		// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������");
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -143,10 +141,9 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
-				  Intent i = new Intent(MyMessage.this, MymsgDetail.class);
-				  i.putExtra("id", myList.get(position-1).getId()+"");
-				  startActivity(i);
+				Intent i = new Intent(MyMessage.this, MymsgDetail.class);
+				i.putExtra("id", myList.get(position-1).getId()+"");
+				startActivityForResult(i, 101);
 			}
 		});
 		Xlistview.setAdapter(myAdapter);
@@ -155,17 +152,14 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (MyApplication.getIsSelect()) {
-					// ��������ɾ�����
-					next_sure.setText("删除");
+					next_sure.setText("编辑");
 					MyApplication.setIsSelect(false);
 					myAdapter.notifyDataSetChanged();
-				 
-					
+
 					rl_editno.setVisibility(View.VISIBLE);
 					rl_edit.setVisibility(View.GONE);
-		 
+
 				} else {
 					next_sure.setText("取消");
 					MyApplication.setIsSelect(true);
@@ -179,7 +173,6 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
 		page = 1;
 		System.out.println("onRefresh1");
 		myList.clear();
@@ -189,20 +182,12 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 
 	@Override
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 		if (onRefresh_number) {
 			page = page + 1;
 
 			onRefresh_number = false;
 			getData();
 
-			// if (Tools.isConnect(getApplicationContext())) {
-			// onRefresh_number = false;
-			// getData();
-			// } else {
-			// onRefresh_number = true;
-			// handler.sendEmptyMessage(2);
-			// }
 		} else {
 			handler.sendEmptyMessage(3);
 		}
@@ -220,90 +205,33 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 		getData();
 	}
 
-	/*
-	 * �������
-	 */
 	private void getData() {
-		// TODO Auto-generated method stub
 
-		RequestParams params = new RequestParams();
+		API.receiverGetAll(this, MyApplication.getInstance().getCustomerId(), page, rows, 
+				new HttpCallback<Pageable<MessageEntity>>(this) {
+			@Override
+			public void onSuccess(Pageable<MessageEntity> data) {
 
-		params.put("customer_id", 80);
-		params.put("page", page);
-		params.put("pageSize", rows);
-		params.setUseJsonStreamer(true);
-		
-		 
-		MyApplication.getInstance().getClient()
-				.post(Url, params, new AsyncHttpResponseHandler() {
+				if (null != data.getContent()) {
+					myList.addAll(data.getContent());
+				}
+				total = data.getTotal();
+				handler.sendEmptyMessage(0);
+			}
 
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						System.out.println("-onSuccess---");
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("LJP", responseMsg);
-						Gson gson = new Gson();
-						JSONObject jsonobject = null;
-						int code = 0;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							 
-							 
-							code = jsonobject.getInt("code");
-							
-							if(code==-2){
-							 
-							}else if(code==1){
-								
-								String res =jsonobject.getString("result");
-								System.out.println("`res``"+res);
-								jsonobject = new JSONObject(res);
-								moreList.clear();
-								
-				 				moreList = gson.fromJson(jsonobject.getString("content") ,
-									new TypeToken<List<MessageEntity>>() {
-									}.getType());
-				 					 	
-				 						if (moreList.size()==0) {
-				 							Toast.makeText(getApplicationContext(),
-				 									"暂时还没有您的消息", Toast.LENGTH_SHORT).show();
-				 							Xlistview.getmFooterView().setState2(2);
-				 					 
-				 						} 
-				 						 
-				 				myList.addAll(moreList);
-				 				handler.sendEmptyMessage(0);
-		 
-								
-								
-							}else{
-								Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-										Toast.LENGTH_SHORT).show();
-							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						 
-					}
+			@Override
+			public TypeToken<Pageable<MessageEntity>> getTypeToken() {
+				return new TypeToken<Pageable<MessageEntity>>() {
+				};
+			}
+		});
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						error.printStackTrace();
-					}
-				});
-		 
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		
-		
+
 		case R.id.tv_all: 
 			for (int i = 0; i < myList.size(); i++) {
 
@@ -311,28 +239,29 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 					idList.add(myList.get(i));
 				}
 			}
-			
- 
-		  	 Msgdelete();
+
+			if (idList.size() > 0) {
+				MsgRead();
+			}else {
+				Toast.makeText(this, "请选择消息后，再执行此操作", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		case R.id.tv_dle: 
-			 
-			for (int i = 0; i < myList.size(); i++) {
 
+			for (int i = 0; i < myList.size(); i++) {
 				if (myList.get(i).getIscheck()) {
-					//idList.add(myList.get(i));
 					Stringas.add(myList.get(i).getId());
 				}
 			}
 			
- 
-		  	 Msgdelete1();
-			
-			
-			
-			
+			if (Stringas.size() > 0) {
+				Msgdelete1();
+			}else {
+				Toast.makeText(this, "请选择消息后，再执行此操作", Toast.LENGTH_SHORT).show();
+			}
+
 			break;
-		
+
 		case R.id.main_rl_gwc: 
 			startActivity(new Intent(MyMessage.this, ShopCar.class));
 			finish();
@@ -349,141 +278,101 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 			break;
 		}
 	}
+	/*
+	 * 批量标记已读
+	 */
+	private void MsgRead() {
 
-	private void Msgdelete() {
-		// TODO Auto-generated method stub
-		RequestParams params = new RequestParams();
 		ids=new String[idList.size()];
 		for (int i = 0; i < idList.size(); i++) {
 			ids[i]=idList.get(i).getId();
-			 
-		
 		}
+
 		Gson gson = new Gson();
-	  
-		params.put("customer_id", 80);
+
 		try {
-			params.put("ids", new JSONArray(gson.toJson(ids)));
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			API.batchRead(this,MyApplication.getInstance().getCustomerId(),new JSONArray(gson.toJson(ids)),
+					new HttpCallback(this) {
+				@Override
+				public void onSuccess(Object data) {
+					page = 1;
+					myList.clear();
+					getData();
+
+					next_sure.setText("编辑");
+					MyApplication.setIsSelect(false);
+					myAdapter.notifyDataSetChanged();
+
+					rl_editno.setVisibility(View.VISIBLE);
+					rl_edit.setVisibility(View.GONE);
+				}
+				@Override
+				public TypeToken getTypeToken() {
+					return null;
+				}
+
+			});
+		} catch (JSONException e2) {
+			e2.printStackTrace();
 		}
 
-  
-		params.setUseJsonStreamer(true);
-		MyApplication.getInstance().getClient()
-				.post(Config.batchRead, params, new AsyncHttpResponseHandler() {
-
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						System.out.println("-onSuccess---");
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("LJP", responseMsg);
-						 
-						JSONObject jsonobject = null;
-						int code = 0;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							 
-							 
-							code = jsonobject.getInt("code");
-							
-							if(code==-2){
-							 
-							}else if(code==1){
-								
-								 
-								
-								
-							}else{
-								Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-										Toast.LENGTH_SHORT).show();
-							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						 
-					}
-
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						error.printStackTrace();
-					}
-				});
 	}
+	/*
+	 * 批量删除
+	 */
 	private void Msgdelete1() {
-		// TODO Auto-generated method stub
-		RequestParams params = new RequestParams();
-	 
 		Gson gson = new Gson();
-	  
-		params.put("customer_id", MyApplication.NewUser.getId());
 		try {
-			params.put("ids", new JSONArray(gson.toJson(Stringas)));
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+			API.batchDelete(this,MyApplication.getInstance().getCustomerId(),new JSONArray(gson.toJson(Stringas)),
+					new HttpCallback(this) {
+				@Override
+				public void onSuccess(Object data) {
+					moreList.clear();
+					for (int i = 0; i < myList.size(); i++) {
 
-		System.out.println("--Msgdelete1-"+params);
-		params.setUseJsonStreamer(true);
-		MyApplication.getInstance().getClient()
-				.post(Config.batchDelete, params, new AsyncHttpResponseHandler() {
-
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						System.out.println("-onSuccess---");
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("LJP", responseMsg);
-						 
-						JSONObject jsonobject = null;
-						int code = 0;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							 
-							 
-							code = jsonobject.getInt("code");
-							
-							if(code==1){
-								moreList.clear();
-								for (int i = 0; i < myList.size(); i++) {
-
-									if (myList.get(i).getIscheck()) {
-										moreList.add(myList.get(i));
-										 
-										System.out
-												.println("删除"+i);
-									}
-								}
-								 myList.removeAll(moreList);
-								 
-								myAdapter.notifyDataSetChanged();
-								Toast.makeText(getApplicationContext(), "消息删除成功",
-										Toast.LENGTH_SHORT).show();
-							}else{
-								Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-										Toast.LENGTH_SHORT).show();
-							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						if (myList.get(i).getIscheck()) {
+							moreList.add(myList.get(i));
 						}
-						 
 					}
+					myList.removeAll(moreList);
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						error.printStackTrace();
+					myAdapter.notifyDataSetChanged();
+					Toast.makeText(getApplicationContext(), "消息删除成功",
+							Toast.LENGTH_SHORT).show();
+				}
+				@Override
+				public TypeToken getTypeToken() {
+					return null;
+				}
+
+			});
+		} catch (JSONException e2) {
+			e2.printStackTrace();
+		}
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK) {
+			if (requestCode == 101) {
+				String mflag = data.getStringExtra("flag");
+				String idString = data.getStringExtra("id");
+				if (mflag.equals("read")) {
+					for (int i = 0; i < myList.size(); i++) {
+						if (idString.equals(myList.get(i).getId())) {
+							myList.get(i).setStatus(true);
+							
+						}
 					}
-				});
+				}else {
+					for (int i = 0; i < myList.size(); i++) {
+						if (idString.equals(myList.get(i).getId())) {
+							myList.remove(i);
+						}
+					}
+				}
+				myAdapter.notifyDataSetChanged();
+			}
+		}
 	}
 }

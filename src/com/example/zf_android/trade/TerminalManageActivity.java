@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -156,9 +157,11 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 	}
 
 	private void loadData() {
-		API.getTerminalApplyList(this, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Page<TerminalItem>>(this) {
+		API.getTerminalApplyList(this, MyApplication.getInstance().getCustomerId(), page + 1, rows, new HttpCallback<Page<TerminalItem>>(this) {
 			@Override
 			public void onSuccess(Page<TerminalItem> data) {
+				loadFinished();
+				
 				if (null != data.getList()) {
 					mTerminalItems.addAll(data.getList());
 				}
@@ -167,14 +170,6 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 				mAdapter.notifyDataSetChanged();
 			}
 
-			@Override
-			public void preLoad() {
-			}
-
-			@Override
-			public void postLoad() {
-				loadFinished();
-			}
 
 			@Override
 			public TypeToken<Page<TerminalItem>> getTypeToken() {

@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="5dp"
-                android:text="实际金额（含配送费）：￥1999"
+                android:text="实际金额（含配送费）："
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
 
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="3dp"
-                android:text="含配送费 ：￥99"
+                android:text="含配送费 ："
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
 
@@ -90,7 +90,7 @@
                     android:id="@+id/tv_reperson"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="收件人：王明霞"
+                    android:text="收件人："
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
 
@@ -99,7 +99,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="13800001111"
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -110,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="3dp"
-                android:text="收件地址：上海市上海火车站XXX号"
+                android:text="收件地址："
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
 
@@ -128,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="5dp"
-                android:text="留言：发票发票发票"
+                android:text="留言："
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
 
@@ -138,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="3dp"
-                android:text="发票类型 ：公司"
+                android:text="发票类型 ："
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
 
@@ -148,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="3dp"
-                android:text="发票抬头：苏州协创"
+                android:text="发票抬头："
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
 
@@ -185,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin_title"
                         android:layout_marginTop="5dp"
-                        android:text="订单编号：2013000111222"
+                        android:text="订单编号："
                         android:textColor="@color/text6c6c6c6"
                         android:textSize="10sp" />
 
@@ -195,7 +194,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin_title"
                         android:layout_marginTop="3dp"
-                        android:text="支付方式：支付宝"
+                        android:text="支付方式："
                         android:textColor="@color/text6c6c6c6"
                         android:textSize="10sp" />
 
@@ -205,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin_title"
                         android:layout_marginTop="3dp"
-                        android:text="订单日期：2015-2-5 12:00:00"
+                        android:text="订单日期："
                         android:textColor="@color/text6c6c6c6"
                         android:textSize="10sp" />
                 </LinearLayout>
@@ -249,7 +248,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="共计:   10件"
+                    android:text="共计:   "
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
 
@@ -259,7 +258,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="7dp"
-                    android:text="实付金额：9999"
+                    android:text="订单日期  ："
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
             </LinearLayout>

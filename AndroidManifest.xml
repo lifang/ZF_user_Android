@@ -35,7 +35,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-               <service
+        <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
@@ -49,6 +49,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="nkkLCAqZUOLx3I0nlpNzfMDB" />
+
         <activity
             android:name=".Welcome"
             android:label="@string/app_name"
@@ -74,8 +75,8 @@
         </activity>
         <activity
             android:name=".activity.PosSelect"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".activity.LoginActivity"
@@ -207,18 +208,19 @@
             android:name=".trade.ApplyChooseActivity"
             android:screenOrientation="portrait" >
         </activity>
-	    <activity
-		    android:name=".trade.ApplyChannelActivity"
-		    android:screenOrientation="portrait" >
-	    </activity>
-	    <activity
-		    android:name=".trade.ApplyBankActivity"
-		    android:screenOrientation="portrait" >
-	    </activity>
-	    <activity
-		    android:name=".trade.ApplyOpenProgressActivity"
-		    android:screenOrientation="portrait" >
-	    </activity>
+        <activity
+            android:name=".trade.ApplyChannelActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".trade.ApplyBankActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".trade.ApplyOpenProgressActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
         <!-- ====================================================== -->
         <!-- Leo's Activities End -->
         <!-- ====================================================== -->
@@ -318,24 +320,23 @@
             android:name="com.example.zf_android.activity.ApplyNeed"
             android:screenOrientation="portrait" >
         </activity>
-                <activity
+        <activity
             android:name="com.example.zf_android.activity.LeaseInstruction"
             android:screenOrientation="portrait" >
         </activity>
-                        <activity
+        <activity
             android:name="com.example.zf_android.activity.MerchantEdit"
             android:screenOrientation="portrait" >
         </activity>
-                                <activity
+        <activity
             android:name="com.example.zf_android.activity.MerchantItemEdit"
             android:screenOrientation="portrait" >
         </activity>
-                        
-                             <activity
+        <activity
             android:name="com.example.zf_android.activity.JifenActivity"
             android:screenOrientation="portrait" >
         </activity>
-                                     <activity
+        <activity
             android:name="com.example.zf_android.activity.Exchange"
             android:screenOrientation="portrait" >
         </activity>
@@ -347,54 +348,51 @@
             android:name="com.example.zf_android.activity.TradeRate"
             android:screenOrientation="portrait" >
         </activity>
-                <activity
+        <activity
             android:name="com.example.zf_android.activity.LeaseConfirm"
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
-         
-        	<activity
+        <activity
             android:name="com.example.zf_android.activity.CreatMerchant"
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
-             	<activity
+        <activity
             android:name="com.example.zf_android.activity.Register3phone"
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
-        </activity> 
-                     	<activity
-            android:name="com.example.zf_android.activity.Regist4phoneSucces"
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
-        </activity><activity
-            android:name="com.example.zf_android.activity.Regist4mailSucces"
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
-             	  
-             <activity
+        <activity
+            android:name="com.example.zf_android.activity.Regist4phoneSucces"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name="com.example.zf_android.activity.Regist4mailSucces"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
             android:name="com.example.zf_android.activity.PassSucces"
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
-        </activity>	
-                          <activity
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
             android:name="com.example.zf_android.activity.FindpassmailSucces"
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
-        </activity>		
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
         <activity
             android:name="com.example.zf_android.activity.Adress4Edit"
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
-        </activity>	
-                <activity
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
             android:name="com.example.zf_android.activity.PosSelecSon"
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" >
-        </activity>	
-         	 
-         
-     </application>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+    </application>
 
 </manifest>
