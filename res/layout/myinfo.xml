@@ -18,7 +18,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/Viewc" />
     <LinearLayout
-        android:id="@+id/mi_r1"
+        android:id="@+id/mi_name"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
@@ -43,7 +43,7 @@
             android:textSize="17sp" />
 
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -68,7 +68,7 @@
         android:layout_height="1dp"
         android:background="@color/Viewc" />
      <LinearLayout
-         android:id="@+id/mi_r2"
+         android:id="@+id/mi_phone"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
@@ -93,7 +93,7 @@
             android:textSize="17sp" />
 
         <TextView
-           android:id="@+id/tv2"
+           android:id="@+id/tv_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -118,7 +118,7 @@
         android:layout_height="1dp"
         android:background="@color/Viewc" />
      <LinearLayout
-         android:id="@+id/mi_r3"
+         android:id="@+id/mi_email"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
@@ -143,7 +143,7 @@
             android:textSize="17sp" />
 
         <TextView
-           android:id="@+id/tv3"
+           android:id="@+id/tv_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -168,7 +168,7 @@
         android:layout_height="1dp"
         android:background="@color/Viewc" />
      <LinearLayout
-         android:id="@+id/mi_r4"
+         android:id="@+id/mi_location"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
@@ -193,7 +193,7 @@
             android:textSize="17sp" />
 
         <TextView
-           android:id="@+id/tv4"
+           android:id="@+id/tv_location"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -218,7 +218,7 @@
         android:layout_height="1dp"
         android:background="@color/Viewc" />
      <LinearLayout
-         android:id="@+id/mi_r5"
+         android:id="@+id/mi_point"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
@@ -243,7 +243,7 @@
             android:textSize="17sp" />
 
         <TextView
-              android:id="@+id/tv5"
+              android:id="@+id/tv_point"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

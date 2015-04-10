@@ -42,14 +42,14 @@ public class StringUtil {
 		if (T1.equals("01")) {
 			T1 = T1 + "st,";
 		}else 
-		if (T1.equals("02")) {
-			T1 = T1 + "nd,";
-		}
-		else if (T1.equals("03")) {
-			T1 = T1 + "rd,";
-		} else {
-			T1 = T1 + "th,";
-		}
+			if (T1.equals("02")) {
+				T1 = T1 + "nd,";
+			}
+			else if (T1.equals("03")) {
+				T1 = T1 + "rd,";
+			} else {
+				T1 = T1 + "th,";
+			}
 		String T2 = t.split("-")[0];
 		if (T2.equals("01")) {
 			T2 = "Jan";
@@ -72,7 +72,7 @@ public class StringUtil {
 		if (T2.equals("07")) {
 			T2 = "Jul";
 		}
- 
+
 		if (T2.equals("08")) {
 			T2 = "Aug";
 		}
@@ -147,7 +147,14 @@ public class StringUtil {
 		}
 		return dest;
 	}
-
+	
+	//判断是否为空
+	public static boolean isNull(String s) {
+		if (null == s || s.equals("") || s.equalsIgnoreCase("null")) {
+			return true;
+		}
+		return false;
+	}
 	/**
 	 * 密码加密
 	 * 
@@ -170,7 +177,7 @@ public class StringUtil {
 				.replaceAll("\r", "").replaceAll("\n", ""));
 		System.out.println("code```"
 				+ android.util.Base64.encodeToString(b, Base64.DEFAULT)
-						.replaceAll("\r", "").replaceAll("\n", ""));
+				.replaceAll("\r", "").replaceAll("\n", ""));
 		return android.util.Base64.encodeToString(b, Base64.DEFAULT)
 				.replaceAll("\r", "").replaceAll("\n", "");
 	}
@@ -211,15 +218,15 @@ public class StringUtil {
 		Log.e("sign", sign.toString());
 		return sign.toString();
 	}
-	
+
 	public static String getMoneyString(int money){
 		return String.format("%.2f", money/100f);
-		
+
 	}
 	public static String getBigImage(String url){
-		 return MessageFormat.format(Config.POS_PIC_URL, url);
+		return MessageFormat.format(Config.POS_PIC_URL, url);
 	}
 	public static String getImage(String url){
-		 return MessageFormat.format(Config.FILE_URL, url);
+		return MessageFormat.format(Config.FILE_URL, url);
 	}
 }

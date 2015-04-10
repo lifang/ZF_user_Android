@@ -27,8 +27,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import cn.trinea.android.common.util.StringUtils;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
@@ -44,13 +46,13 @@ import com.example.zf_android.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
 /**
  * 
-*    
-* 类名称：MerchantEdit   
-* 类描述：   编辑新建
-* 创建人： ljp 
-* 创建时间：2015-3-12 下午3:28:08   
-* @version    
-*
+ *    
+ * 类名称：MerchantEdit   
+ * 类描述：   编辑新建
+ * 创建人： ljp 
+ * 创建时间：2015-3-12 下午3:28:08   
+ * @version    
+ *
  */
 public class MerchantEdit extends BaseActivity implements OnClickListener{
 	private static final int TYPE_1 = 1;
@@ -83,13 +85,13 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.merchant_info);
 		id=getIntent().getIntExtra("ID", 0);
- 
+
 		new TitleMenuUtil(MerchantEdit.this, "编辑商户").show();
- 
+
 		if(id==0){
 			return;
 		}
-		
+
 		initView();
 		new TitleMenuUtil(MerchantEdit.this, getIntent().getStringExtra("name")).show();
 		getData();
@@ -118,7 +120,7 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 		layout10=(LinearLayout) findViewById(R.id.layout10);
 		layout10.setOnClickListener(new ItemOnClickListener(TYPE_10, ""));
 		linearLayout.put(TYPE_10, layout10);
-		
+
 		layout11=(LinearLayout) findViewById(R.id.layout11);
 		layout11.setOnClickListener(new ItemOnClickListener(TYPE_11, ""));
 		linearLayout.put(TYPE_11, layout11);
@@ -147,93 +149,92 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 	private void getData() {
 		getInfo();
 	}
-	
-	private void getInfo() {
-		 API.merchantInfo(MerchantEdit.this,id,
-	                new HttpCallback<MerchantEntity> (MerchantEdit.this) {
-						@Override
-						public void onSuccess(MerchantEntity data) {
-							merchantEntity = data;
-							tv1.setText(data.getTitle());
-							tv2.setText(data.getLegal_person_name());
-							tv3.setText(data.getLegal_person_card_id());
-							tv4.setText(data.getBusiness_license_no());
-							tv5.setText(data.getTax_registered_no());
-							tv6.setText(data.getOrganization_code_no());
-							tvkhyh.setText(data.getAccount_bank_name());
-							tv8.setText(data.getBank_open_account());
-							if(!StringUtils.isBlank(data.getCard_id_front_photo_path())){
-								layout10.findViewById(R.id.textView).setVisibility(View.GONE);
-								layout10.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
-							}else {
-								layout10.findViewById(R.id.textView).setVisibility(View.VISIBLE);
-								layout10.findViewById(R.id.imgView).setVisibility(View.GONE);
-							}
-							
-							if(!StringUtils.isBlank(data.getCard_id_back_photo_path())){
-								layout11.findViewById(R.id.textView).setVisibility(View.GONE);
-								layout11.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
-							}else {
-								layout11.findViewById(R.id.textView).setVisibility(View.VISIBLE);
-								layout11.findViewById(R.id.imgView).setVisibility(View.GONE);
-							}
-							if(!StringUtils.isBlank(data.getBody_photo_path())){
-								layout12.findViewById(R.id.textView).setVisibility(View.GONE);
-								layout12.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
-							}else {
-								layout12.findViewById(R.id.textView).setVisibility(View.VISIBLE);
-								layout12.findViewById(R.id.imgView).setVisibility(View.GONE);
-							}
-							if(!StringUtils.isBlank(data.getLicense_no_pic_path())){
-								layout13.findViewById(R.id.textView).setVisibility(View.GONE);
-								layout13.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
-							}else {
-								layout13.findViewById(R.id.textView).setVisibility(View.VISIBLE);
-								layout13.findViewById(R.id.imgView).setVisibility(View.GONE);
-							}
-							if(!StringUtils.isBlank(data.getTax_no_pic_path())){
-								layout14.findViewById(R.id.textView).setVisibility(View.GONE);
-								layout14.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
-							}else {
-								layout14.findViewById(R.id.textView).setVisibility(View.VISIBLE);
-								layout14.findViewById(R.id.imgView).setVisibility(View.GONE);
-							}
-							if(!StringUtils.isBlank(data.getOrg_code_no_pic_path())){
-								layout15.findViewById(R.id.textView).setVisibility(View.GONE);
-								layout15.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
-							}else {
-								layout15.findViewById(R.id.textView).setVisibility(View.VISIBLE);
-								layout15.findViewById(R.id.imgView).setVisibility(View.GONE);
-							}
-							if(!StringUtils.isBlank(data.getAccount_pic_path())){
-								layout16.findViewById(R.id.textView).setVisibility(View.GONE);
-								layout16.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
-							}else {
-								layout16.findViewById(R.id.textView).setVisibility(View.VISIBLE);
-								layout16.findViewById(R.id.imgView).setVisibility(View.GONE);
-							}
-							if(data.getCity_id() != 0){
-								List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
-								for (Province province : provinces) {
-									List<City> cities = province.getCities();
-									for (City city : cities) {
-										if(city.getId() == data.getCity_id()){
-											tv7.setText(province.getName()+city.getName());
-											return;
-										}
-									}
-								}
-							}
-							
-						
-						}
 
-						@Override
-						public TypeToken<MerchantEntity> getTypeToken() {
-							return new TypeToken<MerchantEntity>() {
-							};
+	private void getInfo() {
+		API.merchantInfo(MerchantEdit.this,id,
+				new HttpCallback<MerchantEntity> (MerchantEdit.this) {
+			@Override
+			public void onSuccess(MerchantEntity data) {
+				merchantEntity = data;
+				tv1.setText(data.getTitle());
+				tv2.setText(data.getLegal_person_name());
+				tv3.setText(data.getLegal_person_card_id());
+				tv4.setText(data.getBusiness_license_no());
+				tv5.setText(data.getTax_registered_no());
+				tv6.setText(data.getOrganization_code_no());
+				tvkhyh.setText(data.getAccount_bank_name());
+				tv8.setText(data.getBank_open_account());
+				if(!StringUtils.isBlank(data.getCard_id_front_photo_path())){
+					layout10.findViewById(R.id.textView).setVisibility(View.GONE);
+					layout10.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
+				}else {
+					layout10.findViewById(R.id.textView).setVisibility(View.VISIBLE);
+					layout10.findViewById(R.id.imgView).setVisibility(View.GONE);
+				}
+
+				if(!StringUtils.isBlank(data.getCard_id_back_photo_path())){
+					layout11.findViewById(R.id.textView).setVisibility(View.GONE);
+					layout11.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
+				}else {
+					layout11.findViewById(R.id.textView).setVisibility(View.VISIBLE);
+					layout11.findViewById(R.id.imgView).setVisibility(View.GONE);
+				}
+				if(!StringUtils.isBlank(data.getBody_photo_path())){
+					layout12.findViewById(R.id.textView).setVisibility(View.GONE);
+					layout12.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
+				}else {
+					layout12.findViewById(R.id.textView).setVisibility(View.VISIBLE);
+					layout12.findViewById(R.id.imgView).setVisibility(View.GONE);
+				}
+				if(!StringUtils.isBlank(data.getLicense_no_pic_path())){
+					layout13.findViewById(R.id.textView).setVisibility(View.GONE);
+					layout13.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
+				}else {
+					layout13.findViewById(R.id.textView).setVisibility(View.VISIBLE);
+					layout13.findViewById(R.id.imgView).setVisibility(View.GONE);
+				}
+				if(!StringUtils.isBlank(data.getTax_no_pic_path())){
+					layout14.findViewById(R.id.textView).setVisibility(View.GONE);
+					layout14.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
+				}else {
+					layout14.findViewById(R.id.textView).setVisibility(View.VISIBLE);
+					layout14.findViewById(R.id.imgView).setVisibility(View.GONE);
+				}
+				if(!StringUtils.isBlank(data.getOrg_code_no_pic_path())){
+					layout15.findViewById(R.id.textView).setVisibility(View.GONE);
+					layout15.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
+				}else {
+					layout15.findViewById(R.id.textView).setVisibility(View.VISIBLE);
+					layout15.findViewById(R.id.imgView).setVisibility(View.GONE);
+				}
+				if(!StringUtils.isBlank(data.getAccount_pic_path())){
+					layout16.findViewById(R.id.textView).setVisibility(View.GONE);
+					layout16.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
+				}else {
+					layout16.findViewById(R.id.textView).setVisibility(View.VISIBLE);
+					layout16.findViewById(R.id.imgView).setVisibility(View.GONE);
+				}
+				if(data.getCity_id() != 0){
+					List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
+					for (Province province : provinces) {
+						List<City> cities = province.getCities();
+						for (City city : cities) {
+							if(city.getId() == data.getCity_id()){
+								tv7.setText(province.getName()+city.getName());
+								return;
+							}
 						}
-	                });
+					}
+				}
+
+			}
+
+			@Override
+			public TypeToken<MerchantEntity> getTypeToken() {
+				return new TypeToken<MerchantEntity>() {
+				};
+			}
+		});
 
 	}
 	class ItemOnClickListener implements View.OnClickListener{
@@ -302,6 +303,7 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 				break;
 			case TYPE_8:
 				intent.putExtra("value", merchantEntity.getBank_open_account());
+				intent.setClass(MerchantEdit.this, MerchantItemEdit.class);
 				startActivityForResult(intent, type);
 				break;
 			case TYPE_10:
@@ -313,37 +315,37 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 			case TYPE_16:
 				AlertDialog.Builder builder = new AlertDialog.Builder(MerchantEdit.this);
 				final String[] items = getResources().getStringArray(R.array.apply_detail_upload);
-				
+
 				builder.setItems(items, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						MerchantEdit.this.type = type;
 						switch (which) {
-							case 0: {
-								Intent intent = new Intent();
-								intent.setType("image/*");
-								intent.setAction(Intent.ACTION_GET_CONTENT);
-								startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
-								break;
-							}
-							case 1: {
-								String state = Environment.getExternalStorageState();
-								if (state.equals(Environment.MEDIA_MOUNTED)) {
-									Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-									File outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-									if (!outDir.exists()) {
-										outDir.mkdirs();
-									}
-									File outFile = new File(outDir, System.currentTimeMillis() + ".jpg");
-									photoPath = outFile.getAbsolutePath();
-									intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile));
-									intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-									startActivityForResult(intent, REQUEST_TAKE_PHOTO);
-								} else {
-									CommonUtil.toastShort(MerchantEdit.this, getString(R.string.toast_no_sdcard));
+						case 0: {
+							Intent intent = new Intent();
+							intent.setType("image/*");
+							intent.setAction(Intent.ACTION_GET_CONTENT);
+							startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
+							break;
+						}
+						case 1: {
+							String state = Environment.getExternalStorageState();
+							if (state.equals(Environment.MEDIA_MOUNTED)) {
+								Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+								File outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+								if (!outDir.exists()) {
+									outDir.mkdirs();
 								}
-								break;
+								File outFile = new File(outDir, System.currentTimeMillis() + ".jpg");
+								photoPath = outFile.getAbsolutePath();
+								intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile));
+								intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+								startActivityForResult(intent, REQUEST_TAKE_PHOTO);
+							} else {
+								CommonUtil.toastShort(MerchantEdit.this, getString(R.string.toast_no_sdcard));
 							}
+							break;
+						}
 						}
 					}
 				});
@@ -399,7 +401,7 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 				merchantEntity.setCity_id(city.getId());
 				tv7.setText(province.getName()+city.getName());
 			}
-	
+
 			break;
 		case TYPE_KHYH:
 			merchantEntity.setAccount_bank_name(value);
@@ -409,7 +411,7 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 			merchantEntity.setBank_open_account(value);
 			tv8.setText(value);
 			break;
-			
+
 		case REQUEST_UPLOAD_IMAGE:
 		case REQUEST_TAKE_PHOTO: {
 			final LinearLayout layout = linearLayout.get(MerchantEdit.this.type);
@@ -512,24 +514,28 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		needFresh = true;
-		API.editMerchant(MerchantEdit.this,merchantEntity,
-                new HttpCallback<String> (MerchantEdit.this) {
+		if (StringUtil.isNull(tv1.getText().toString())) {
+			Toast.makeText(this, "商户名不能为空", Toast.LENGTH_SHORT).show();	
+		}else {
 
-					@Override
-					public void onSuccess(String data) {
-						CommonUtil.toastShort(MerchantEdit.this, "修改成功！");
-						Intent intent = new Intent();
-						intent.putExtra("needFresh", needFresh);
-						setResult(RESULT_OK, intent);
-						finish();
-					}
+			API.editMerchant(MerchantEdit.this,merchantEntity,
+					new HttpCallback<String> (MerchantEdit.this) {
 
-					@Override
-					public TypeToken getTypeToken() {
-						return  null;
-					}
-                });
-		
+				@Override
+				public void onSuccess(String data) {
+					CommonUtil.toastShort(MerchantEdit.this, "修改成功！");
+					Intent intent = new Intent();
+					intent.putExtra("needFresh", needFresh);
+					setResult(RESULT_OK, intent);
+					finish();
+				}
+
+				@Override
+				public TypeToken getTypeToken() {
+					return  null;
+				}
+			});
+		}
 	}
-	
+
 }

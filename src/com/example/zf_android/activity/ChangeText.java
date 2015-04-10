@@ -37,7 +37,6 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 	private int index;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.changetext);
 		new TitleMenuUtil(ChangeText.this, "请输入内容").show();
@@ -55,7 +54,6 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		
 		 switch (v.getId()) {
 		case R.id.btn_sub:

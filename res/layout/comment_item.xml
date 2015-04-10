@@ -4,17 +4,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-   
-     <View android:layout_height="0.5dp"
-         android:layout_width="fill_parent"
-         android:background="@color/Viewc2"/>
- 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/Viewc2" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="86dp"
         android:layout_marginBottom="10dp"
-   	android:layout_marginTop="6dp"
+        android:layout_marginTop="6dp"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -41,7 +40,6 @@
                 android:ellipsize="end"
                 android:gravity="top"
                 android:maxLines="1"
-                android:text="泰山POS机旗舰版"
                 android:textColor="@color/text292929"
                 android:textSize="11sp" />
 
@@ -53,110 +51,110 @@
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
-                 android:visibility="invisible"
                 android:text="$ 9999"
                 android:textColor="@color/bgtitle"
-                android:textSize="11sp" />
+                android:textSize="11sp"
+                android:visibility="invisible" />
 
             <TextView
+                android:id="@+id/tv_x"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
-                android:visibility="invisible"
                 android:text="X   2"
-                android:id="@+id/tv_x"
                 android:textColor="@color/text292929"
-                android:textSize="11sp" />
-				<RelativeLayout android:layout_width="wrap_content"
+                android:textSize="11sp"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="2">
-				    
-				                <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-              android:layout_alignParentTop="true"
-                android:gravity="bottom"
-                android:orientation="horizontal" >
+                android:layout_weight="2" >
 
-                <TextView
-                    android:id="@+id/content1"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
+                    android:layout_alignParentTop="true"
                     android:gravity="bottom"
-                    android:maxLines="1"
-                    android:text="品牌型号"
-                    android:textColor="@color/text6c6c6c6"
-                    android:textSize="11sp" />
+                    android:orientation="horizontal" >
 
-                <TextView
-                    android:id="@+id/content2"
+                    <TextView
+                        android:id="@+id/content1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="品牌型号"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/content2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:textColor="@color/text292929"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:ellipsize="end"
+                    android:layout_alignParentBottom="true"
                     android:gravity="bottom"
-                    android:maxLines="1"
-                    android:text="泰山TS900"
-                    android:textColor="@color/text292929"
-                    android:textSize="11sp" />
-            </LinearLayout>
+                    android:orientation="horizontal" >
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:gravity="bottom"
-                android:orientation="horizontal" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="支付通道"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="11sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:gravity="bottom"
-                    android:maxLines="1"
-                    android:text="支付通道"
-                    android:textColor="@color/text6c6c6c6"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:ellipsize="end"
-                    android:gravity="bottom"
-                    android:maxLines="1"
-                    android:text="支付宝"
-                    android:textColor="@color/text292929"
-                    android:textSize="11sp" />
-            </LinearLayout>
-				    
-				     
-				</RelativeLayout>
- 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:textColor="@color/text292929"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
-    
-   
-     <View android:layout_height="0.5dp"
-         android:layout_width="fill_parent"
-         android:background="@color/Viewc2"/>
-	<LinearLayout android:layout_width="fill_parent"
-	    android:layout_height="38dp"
-	    android:gravity="center_vertical"
-	    android:orientation="horizontal">
-	    <TextView android:layout_height="wrap_content"
-	        android:layout_width="86dp"
-	        android:text="评分："
-	        
-	                  android:layout_marginLeft="12dp"
-	        android:textSize="17sp"
-	        android:textColor="@color/text292929"/>
-	  <RatingBar
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/Viewc2" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="38dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="86dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="评分："
+            android:textColor="@color/text292929"
+            android:textSize="17sp" />
+
+        <RatingBar
             android:id="@+id/si_rt_msxf"
             style="@style/star_rating_bar_style1"
             android:layout_width="wrap_content"
@@ -166,18 +164,17 @@
             android:layout_marginTop="2dp"
             android:duplicateParentState="true"
             android:gravity="center_vertical"
-             
             android:numStars="5"
             android:rating="5"
             android:stepSize="1" />
-	    
-	</LinearLayout>
-     
-   
-     <View android:layout_height="0.5dp"
-         android:layout_width="fill_parent"
-         android:background="@color/Viewc2"/>
-<RelativeLayout
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/Viewc2" />
+
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
@@ -189,10 +186,10 @@
             android:layout_height="fill_parent"
             android:layout_marginLeft="@dimen/margin_left2"
             android:layout_marginRight="14dp"
-            android:gravity="top"
-            android:singleLine="true"
-            android:hint="请输入评价"
             android:background="@color/ffffff"
+            android:gravity="top"
+            android:hint="请输入评价"
+            android:singleLine="true"
             android:textColor="@color/text292929"
             android:textSize="10sp" />
 
@@ -201,18 +198,23 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="@dimen/margin_left2"
-            android:singleLine="true"
             android:layout_marginBottom="3dp"
-            android:text="最多填写200个汉字"
+            android:layout_marginLeft="@dimen/margin_left2"
             android:layout_marginRight="@dimen/margin_left2"
+            android:singleLine="true"
+            android:text="最多填写200个汉字"
             android:textColor="@color/text292929"
             android:textSize="10sp" />
     </RelativeLayout>
-    <View android:layout_height="0.5dp"
-         android:layout_width="fill_parent"
-         android:background="@color/Viewc2"/>
-    <View android:layout_height="5dp"
+
+    <View
         android:layout_width="fill_parent"
-        android:background="@color/F3F2F2"/>
+        android:layout_height="0.5dp"
+        android:background="@color/Viewc2" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="5dp"
+        android:background="@color/F3F2F2" />
+
 </LinearLayout>

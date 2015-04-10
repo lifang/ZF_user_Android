@@ -9,82 +9,73 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bgnotify"
         android:gravity="center"
-        android:orientation="vertical"
-          >
+        android:orientation="vertical" >
 
         <LinearLayout
-             android:id="@+id/ll_new"
+            android:id="@+id/ll_new"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:gravity="center"
             android:orientation="horizontal" >
 
-     
             <TextView
-                     android:id="@+id/tv_new"
-              
+                android:id="@+id/tv_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginLeft="5dp"
+                android:gravity="center"
                 android:text="全部"
                 android:textColor="@color/bgtitle"
-                
                 android:textSize="16sp" />
         </LinearLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-       		android:layout_marginLeft="12dp"
-       		android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:background="@color/adadad" />
 
         <LinearLayout
-             android:id="@+id/ll_re"
+            android:id="@+id/ll_re"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center"
             android:orientation="horizontal" >
-
-           
 
             <TextView
                 android:id="@+id/tv_re"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginLeft="5dp"
+                android:gravity="center"
                 android:text="购买"
-                 
                 android:textSize="16sp" />
         </LinearLayout>
-              <View
+
+        <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-       		android:layout_marginLeft="12dp"
-       		android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:background="@color/adadad" />
 
         <LinearLayout
-             android:id="@+id/ll_all"
+            android:id="@+id/ll_all"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center"
             android:orientation="horizontal" >
 
-           
-
             <TextView
                 android:id="@+id/tv_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginLeft="5dp"
+                android:gravity="center"
                 android:text="租赁"
-                 
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>

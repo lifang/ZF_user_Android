@@ -62,9 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-           
-            android:padding="20dp"
             android:layout_toLeftOf="@id/search"
+            android:padding="20dp"
             android:src="@drawable/delete_add" />
     </RelativeLayout>
 
@@ -100,18 +99,28 @@
             android:visibility="gone" >
         </com.examlpe.zf_android.util.XListView>
 
-		<ListView android:id="@+id/lv"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:visibility="gone"/>
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomView"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/bottomView"
+            android:layout_width="fill_parent"
+            android:layout_height="42dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
+
         <RelativeLayout
             android:id="@+id/mune_rl"
             android:layout_width="fill_parent"
             android:layout_height="42dp"
-            android:visibility="invisible"
             android:layout_alignParentBottom="true"
-            android:background="@color/F3F2F2" >
- 
+            android:background="@color/F3F2F2"
+            android:visibility="invisible" >
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height=" 0.5dp"
@@ -130,14 +139,14 @@
 
             <TextView
                 android:id="@+id/delete"
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:text="全选"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 

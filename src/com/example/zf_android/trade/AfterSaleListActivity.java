@@ -98,14 +98,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 				page++;
 				total = data.getTotal();
 				mAdapter.notifyDataSetChanged();
-			}
-
-			@Override
-			public void preLoad() {
-			}
-
-			@Override
-			public void postLoad() {
+				
 				loadFinished();
 			}
 
@@ -123,7 +116,8 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 			@Override
 			public void onClick(View v) {
 				final AfterSaleRecord record = (AfterSaleRecord) v.getTag();
-				API.cancelAfterSaleApply(AfterSaleListActivity.this, mRecordType, record.getId(), new HttpCallback(AfterSaleListActivity.this) {
+				API.cancelAfterSaleApply(AfterSaleListActivity.this, mRecordType, record.getId(), 
+						new HttpCallback(AfterSaleListActivity.this) {
 					@Override
 					public void onSuccess(Object data) {
 						record.setStatus(5);

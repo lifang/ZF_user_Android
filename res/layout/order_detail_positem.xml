@@ -39,7 +39,6 @@
                 android:ellipsize="end"
                 android:gravity="top"
                 android:maxLines="1"
-                android:text="泰山POS机旗舰版"
                 android:textColor="@color/text292929"
                 android:textSize="11sp" />
 
@@ -52,7 +51,6 @@
                 android:gravity="right"
                 android:maxLines="1"
                     
-                android:text="$ 9999"
                 android:textColor="@color/bgtitle"
                 android:textSize="11sp" />
 
@@ -63,7 +61,6 @@
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
-                android:text="X   2"
     
                 android:id="@+id/tv_x"
                 android:textColor="@color/text292929"
@@ -98,7 +95,6 @@
                     android:ellipsize="end"
                     android:gravity="bottom"
                     android:maxLines="1"
-                    android:text="泰山TS900"
                     android:textColor="@color/text292929"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -127,7 +123,6 @@
                     android:ellipsize="end"
                     android:gravity="bottom"
                     android:maxLines="1"
-                    android:text="支付宝"
                     android:textColor="@color/text292929"
                     android:textSize="11sp" />
             </LinearLayout>

@@ -1,12 +1,5 @@
 package com.example.zf_android.trade;
 
-import android.content.Context;
-
-import com.example.zf_android.Config;
-import com.example.zf_android.entity.MerchantEntity;
-import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.common.HttpRequest;
-import com.google.gson.Gson;
 import static com.example.zf_android.trade.Constants.AfterSaleType.CANCEL;
 import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
 import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
