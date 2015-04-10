@@ -22,8 +22,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
-import com.examlpe.zf_android.util.XListView;
-import com.examlpe.zf_android.util.XListView.IXListViewListener;
+import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -104,6 +104,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 			Xlistview=(XListView) findViewById(R.id.x_listview);
 			// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������");
+			Xlistview.initHeaderAndFooter();
 			Xlistview.setPullLoadEnable(true);
 			Xlistview.setXListViewListener(this);
 			Xlistview.setDivider(null);
