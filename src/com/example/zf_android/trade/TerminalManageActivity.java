@@ -19,6 +19,10 @@ import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
+import com.example.zf_android.MyApplication;
+import com.example.zf_android.MyApplication;
+import com.example.zf_android.MyApplication;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -162,6 +166,8 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 		API.getTerminalApplyList(this, Constants.CUSTOMER_ID, page + 1, Config.ROWS, new HttpCallback<Page<TerminalItem>>(this) {
 			@Override
 			public void onSuccess(Page<TerminalItem> data) {
+				loadFinished();
+				
 				if (null != data.getList()) {
 					if(pullType.equals("onRefresh")){
 						mTerminalItems.clear();
