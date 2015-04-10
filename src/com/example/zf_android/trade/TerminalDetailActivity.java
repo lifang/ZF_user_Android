@@ -151,7 +151,7 @@ public class TerminalDetailActivity extends Activity {
 	}
 
 	private void loadData() {
-		API.getTerminalDetail(this, mTerminalId, Constants.TEST_CUSTOMER, new HttpCallback<TerminalDetail>(this) {
+		API.getTerminalDetail(this, mTerminalId, Constants.CUSTOMER_ID, new HttpCallback<TerminalDetail>(this) {
 			@Override
 			public void onSuccess(TerminalDetail data) {
 				TerminalApply apply = data.getApplyDetails();

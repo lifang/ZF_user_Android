@@ -54,7 +54,7 @@ public class AfterSaleMarkActivity extends Activity {
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                API.addMark(AfterSaleMarkActivity.this, mRecordType, mRecordId, Constants.TEST_CUSTOMER,
+                API.addMark(AfterSaleMarkActivity.this, mRecordType, mRecordId, Constants.CUSTOMER_ID,
                         mCompanyEdit.getText().toString(), mNumberEdit.getText().toString(),
                         new HttpCallback(AfterSaleMarkActivity.this) {
                             @Override

@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
+import com.example.zf_android.Config;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -51,13 +53,14 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 
 	private int page = 0;
 	private int total = 0;
-	private final int rows = 10;
 
 	private View.OnClickListener mSyncListener;
 	private View.OnClickListener mOpenListener;
 	private View.OnClickListener mPosListener;
 	private View.OnClickListener mVideoListener;
-
+	
+	private String pullType = "loadData";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,15 +94,15 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 		mTerminalList.initHeaderAndFooter();
 		mTerminalList.setXListViewListener(this);
 		mTerminalList.setPullLoadEnable(true);
-
+		mTerminalList.setPullRefreshEnable(true);
 		mTerminalList.setAdapter(mAdapter);
 	}
 
 	private void initBtnListeners() {
 		mSyncListener = new View.OnClickListener() {
 			@Override
-			public void onClick(View view) {
-				CommonUtil.toastShort(TerminalManageActivity.this, "synchronising...");
+				public void onClick(View view) {
+					CommonUtil.toastShort(TerminalManageActivity.this, "synchronising...");
 			}
 		};
 		mOpenListener = new View.OnClickListener() {
@@ -156,10 +159,13 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 	}
 
 	private void loadData() {
-		API.getTerminalApplyList(this, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Page<TerminalItem>>(this) {
+		API.getTerminalApplyList(this, Constants.CUSTOMER_ID, page + 1, Config.ROWS, new HttpCallback<Page<TerminalItem>>(this) {
 			@Override
 			public void onSuccess(Page<TerminalItem> data) {
 				if (null != data.getList()) {
+					if(pullType.equals("onRefresh")){
+						mTerminalItems.clear();
+					}
 					mTerminalItems.addAll(data.getList());
 				}
 				total = data.getTotal();
@@ -169,11 +175,13 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 
 			@Override
 			public void preLoad() {
+				super.preLoad();
 			}
 
 			@Override
 			public void postLoad() {
 				loadFinished();
+				super.postLoad();
 			}
 
 			@Override
@@ -190,8 +198,9 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 		if (resultCode != RESULT_OK) return;
 		switch (requestCode) {
 			case REQUEST_ADD:
-				mTerminalItems.clear();
-				loadData();
+//				mTerminalItems.clear();
+//				loadData();
+				onRefresh();
 				break;
 			case REQUEST_DETAIL:
 
@@ -202,15 +211,21 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 	@Override
 	public void onRefresh() {
 		page = 0;
-		mTerminalItems.clear();
+		pullType = "onRefresh";
+//		mTerminalItems.clear();
+		mTerminalList.setPullLoadEnable(true);
 		loadData();
 	}
 
 	@Override
 	public void onLoadMore() {
+		
+		pullType = "onLoadMore";
+		
 		if (mTerminalItems.size() >= total) {
 			mTerminalList.stopLoadMore();
-			CommonUtil.toastShort(this, "no more data");
+			mTerminalList.setPullLoadEnable(false);
+			CommonUtil.toastShort(this, "没有更多数据");
 		} else {
 			loadData();
 		}

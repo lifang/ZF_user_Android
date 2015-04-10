@@ -3,6 +3,7 @@ package com.example.zf_android.trade;
 import android.content.Context;
 
 import com.example.zf_android.Config;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.entity.MerchantEntity;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
@@ -187,7 +188,7 @@ public class API {
                 throw new IllegalArgumentException("illegal argument [recordType], within [0-5]");
         }
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("customer_id", customId);
+        params.put("customer_id", MyApplication.getInstance().getCustomerId());
         params.put("page", page);
         params.put("rows", rows);
         new HttpRequest(context, callback).post(url, params);
@@ -295,7 +296,7 @@ public class API {
         }
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("id", recordId);
-        params.put("customer_id", customerId);
+        params.put("customer_id", MyApplication.getInstance().getCustomerId());
         params.put("computer_name", company);
         params.put("track_number", number);
         new HttpRequest(context, callback).post(url, params);

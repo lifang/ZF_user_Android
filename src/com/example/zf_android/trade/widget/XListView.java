@@ -119,8 +119,11 @@ public class XListView extends ListView implements OnScrollListener {
 	public void setAdapter(ListAdapter adapter) {
 		// make sure XListViewFooter is the last footer view, and only add once.
 		if (mIsFooterReady == false) {
-			mIsFooterReady = true;
-			addFooterView(mFooterView);
+			if (mEnablePullLoad) {
+				mIsFooterReady = true;
+				//addFooterView(mFooterView);
+				addFooterView(mFooterView, null, false);
+			}
 		}
 		super.setAdapter(adapter);
 	}
@@ -153,6 +156,7 @@ public class XListView extends ListView implements OnScrollListener {
 			mPullLoading = false;
 			mFooterView.show();
 			mFooterView.setState(XListViewFooter.STATE_NORMAL);
+			invalidate();
 			// both "pull up" and "click" will invoke load more.
 			mFooterView.setOnClickListener(new OnClickListener() {
 				@Override
