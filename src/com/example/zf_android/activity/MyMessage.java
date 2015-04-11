@@ -48,7 +48,7 @@ public class MyMessage extends BaseActivity implements IXListViewListener,
 OnClickListener {
 	private XListView Xlistview;
 	private int page = 1;
-	private RelativeLayout rl_sy, main_rl_gwc, rl_xx, rl_wd;
+	private RelativeLayout rl_sy, main_rl_gwc, rl_wd;
 	private int rows = Config.ROWS;
 	private LinearLayout eva_nodata;
 	private String ids[]=new String []{};
