@@ -38,7 +38,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 	private TextView tv_name,tv_phone,tv_email,tv_location,tv_point;
 	private SharedPreferences mySharedPreferences;
 	private Editor editor;
-	private int cityId=MyApplication.NewUser.getCityId();
+	private int cityId=MyApplication.getInstance().getCityId();
 	private int customerId;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,6 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		initView();
 
 	}
-
 
 	private void initView() {
 		btn_exit=(Button) findViewById(R.id.btn_exit);

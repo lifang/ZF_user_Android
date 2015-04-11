@@ -3,51 +3,34 @@ package com.example.zf_android.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.Header;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
- 
+
 import com.examlpe.zf_android.util.Tools;
-import com.examlpe.zf_android.util.XListView;
-import com.examlpe.zf_android.util.XListView.IXListViewListener;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
- 
 import com.example.zf_android.entity.NewPoslistEntity;
 import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.entity.PosItem;
-import com.example.zf_android.entity.PosSelectEntity;
-import com.example.zf_android.entity.TestEntitiy;
-import com.example.zf_android.entity.UserEntity;
 import com.example.zf_android.trade.API;
-import com.example.zf_android.trade.Constants;
 import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.entity.TerminalItem;
-import com.example.zf_zandroid.adapter.MessageAdapter;
+import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.PosAdapter;
- 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
  
 public class PosListActivity extends BaseActivity implements OnClickListener, IXListViewListener{
@@ -153,6 +136,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		myAdapter=new PosAdapter(PosListActivity.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview=(XListView) findViewById(R.id.x_listview);
+		Xlistview.initHeaderAndFooter();
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);

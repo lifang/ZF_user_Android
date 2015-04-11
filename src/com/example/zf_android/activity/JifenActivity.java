@@ -13,10 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
-import com.examlpe.zf_android.util.XListView;
-import com.examlpe.zf_android.util.XListView.IXListViewListener;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -24,8 +23,11 @@ import com.example.zf_android.R;
 import com.example.zf_android.entity.JifenEntity;
 import com.example.zf_android.entity.JifenTotalEntity;
 import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.Page;
+import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.JifenAdapter;
 import com.google.gson.reflect.TypeToken;
 
@@ -38,6 +40,7 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 	private JifenAdapter myAdapter;
 	private TextView next_sure,tv_jf;
 	private String price,jf;
+	private int total = 0;
 	List<JifenEntity>  myList = new ArrayList<JifenEntity>();
 	List<JifenEntity>  moreList = new ArrayList<JifenEntity>();
 	private Handler handler = new Handler() {
@@ -84,8 +87,16 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 
 			@Override
 			public void onSuccess(JifenTotalEntity data) {
-				price = data.getMoneyTotal();
-				jf= data.getQuantityTotal();
+				if (StringUtil.isNull(data.getMoneyTotal())) 
+					price= "0";
+				else 
+					price= data.getMoneyTotal();
+				
+				if (StringUtil.isNull(data.getQuantityTotal())) 
+					jf= "0";
+				else 
+					jf= data.getQuantityTotal();
+
 				tv_jf.setText(jf+"");
 			};
 			@Override
@@ -105,6 +116,8 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 		myAdapter=new JifenAdapter(JifenActivity.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview=(XListView) findViewById(R.id.x_listview);
+		
+		Xlistview.initHeaderAndFooter();
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -126,28 +139,20 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 	@Override
 	public void onRefresh() {
 		page = 1;
-		System.out.println("onRefresh1");
+		Xlistview.setPullLoadEnable(true);
 		myList.clear();
-		System.out.println("onRefresh2");
 		getData();
 	}
 
 
 	@Override
 	public void onLoadMore() {
-		if (onRefresh_number) {
-			page = page+1;
-
-			if (Tools.isConnect(getApplicationContext())) {
-				onRefresh_number = false;
-				getData();
-			} else {
-				onRefresh_number = true;
-				handler.sendEmptyMessage(2);
-			}
-		}
-		else {
-			handler.sendEmptyMessage(3);
+		if (myList.size() >= total) {
+			Xlistview.setPullLoadEnable(false);
+			Xlistview.stopLoadMore();
+			CommonUtil.toastShort(this, "no more data");
+		} else {
+			getData();
 		}
 	}
 	private void onLoad() {
@@ -168,12 +173,12 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 
 			@Override
 			public void onSuccess(Page<JifenEntity> data) {
-				moreList.clear();
-				moreList= data.getList();
 				
 				if (null != data.getList()) {
 					myList.addAll(data.getList());
 				}
+				page++;
+				total = data.getTotal();
 				handler.sendEmptyMessage(0);
 			};
 			@Override

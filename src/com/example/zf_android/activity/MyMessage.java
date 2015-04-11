@@ -3,16 +3,13 @@ package com.example.zf_android.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -24,22 +21,20 @@ import android.widget.Toast;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
-import com.examlpe.zf_android.util.XListView;
-import com.examlpe.zf_android.util.XListView.IXListViewListener;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MessageEntity;
-import com.example.zf_android.entity.OrderEntity;
 import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.Pageable;
+import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.MessageAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 /***
  * 
@@ -60,7 +55,6 @@ OnClickListener {
 	List<Integer> as = new ArrayList<Integer>();
 	List<String> Stringas = new ArrayList<String>();
 	JSONArray a;
-	private boolean onRefresh_number = true;
 	private MessageAdapter myAdapter;
 	private LinearLayout titleback_linear_back;
 	private TextView next_sure,tv_all,tv_dle;
@@ -79,7 +73,6 @@ OnClickListener {
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
-				onRefresh_number = true;
 				myAdapter.notifyDataSetChanged();
 				break;
 			case 1:
@@ -132,6 +125,7 @@ OnClickListener {
 		myAdapter = new MessageAdapter(MyMessage.this, myList);
 		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) findViewById(R.id.x_listview);
+		Xlistview.initHeaderAndFooter();
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -174,23 +168,21 @@ OnClickListener {
 	@Override
 	public void onRefresh() {
 		page = 1;
-		System.out.println("onRefresh1");
 		myList.clear();
-		System.out.println("onRefresh2");
+		Xlistview.setPullLoadEnable(true);
 		getData();
 	}
 
 	@Override
 	public void onLoadMore() {
-		if (onRefresh_number) {
-			page = page + 1;
-
-			onRefresh_number = false;
-			getData();
-
+		if (myList.size() >= total) {
+			Xlistview.setPullLoadEnable(false);
+			Xlistview.stopLoadMore();
+			CommonUtil.toastShort(this, "no more data");
 		} else {
-			handler.sendEmptyMessage(3);
+			getData();
 		}
+		
 	}
 
 	private void onLoad() {
@@ -215,6 +207,8 @@ OnClickListener {
 				if (null != data.getContent()) {
 					myList.addAll(data.getContent());
 				}
+				page++;
+				
 				total = data.getTotal();
 				handler.sendEmptyMessage(0);
 			}

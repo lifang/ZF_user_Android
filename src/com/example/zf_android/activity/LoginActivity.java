@@ -35,7 +35,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private TextView login_text_forget;
 	private EditText login_edit_name, login_edit_pass;
 	private LinearLayout login_linear_deletename, login_linear_deletepass,zhuche_ll,
-			login_linear_login, msg;
+	login_linear_login, msg;
 	private String usename, passsword;
 	private SharedPreferences mySharedPreferences;
 	private Editor editor;
@@ -45,9 +45,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-		
+
 		initView();
-		new TitleMenuUtil(LoginActivity.this, "登陆").show();
+		new TitleMenuUtil(LoginActivity.this, "登录").show();
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
 	}
@@ -56,25 +56,18 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
- 
-		login_text_forget = (TextView) findViewById(R.id.login_text_forget);
-		login_text_forget.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(),
-						FindPass.class);
-				startActivity(i);
-			}
-		});
+		login_text_forget = (TextView) findViewById(R.id.login_text_forget);
+		login_text_forget.setOnClickListener(this);
+		
 		msg = (LinearLayout) findViewById(R.id.msg);
-		 
+
 		zhuche_ll= (LinearLayout) findViewById(R.id.zhuche_ll);
 		zhuche_ll.setOnClickListener(this);
 
 		login_edit_name = (EditText) findViewById(R.id.login_edit_name);
 		login_edit_pass = (EditText) findViewById(R.id.login_edit_pass);
-		
+
 		login_linear_deletename = (LinearLayout) findViewById(R.id.login_linear_deletename);
 		login_linear_deletepass = (LinearLayout) findViewById(R.id.login_linear_deletepass);
 		login_linear_deletepass.setOnClickListener(this);
@@ -121,7 +114,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			public void afterTextChanged(Editable s) {
 			}
 		});
-		 
+
 		login_linear_login = (LinearLayout) findViewById(R.id.login_linear_login);
 		login_linear_login.setOnClickListener(this);
 		isFirst = mySharedPreferences.getBoolean("isRemeber", false);
@@ -139,18 +132,17 @@ public class LoginActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.login_text_forget: 
+			startActivity(new Intent(LoginActivity.this,FindPass.class));
+			break;
 		case R.id.login_linear_login: 
 			if(check()){
 				login();
 			}
-		 
-
 			break;
 		case R.id.zhuche_ll: 
-		startActivity(new Intent(LoginActivity.this,Register.class));
-	 
-
-		break;
+			startActivity(new Intent(LoginActivity.this,Register.class));
+			break;
 		case R.id.login_linear_deletename:
 			login_edit_name.setText("");
 			break;
@@ -163,28 +155,28 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 
 	private void login() {
-		 API.Login1(LoginActivity.this,usename,passsword,
-	                new HttpCallback<UserEntity> (LoginActivity.this) {
+		API.Login1(LoginActivity.this,usename,passsword,
+				new HttpCallback<UserEntity> (LoginActivity.this) {
 
-						@Override
-						public void onSuccess(UserEntity data) {
-							MyApplication.NewUser = data;
-		 					editor.putBoolean("islogin", true);
-			 				editor.putString("name", data.getUsername());
-			 				editor.putInt("id", data.getId());
-			 				MyApplication.getInstance().setCustomerId(data.getId());
-			 				editor.commit();
-							Intent i =new Intent(getApplicationContext(), Main.class);
-							startActivity(i);
-							finish();	
-						}
+			@Override
+			public void onSuccess(UserEntity data) {
+				MyApplication.setNewUser(data);
+				editor.putBoolean("islogin", true);
+				editor.putString("name", data.getUsername());
+				editor.putInt("id", data.getId());
+				editor.commit();
+				MyApplication.getInstance().setCustomerId(data.getId());
+				Intent i =new Intent(getApplicationContext(), Main.class);
+				startActivity(i);
+				finish();	
+			}
 
-						@Override
-						public TypeToken<UserEntity> getTypeToken() {
-							return  new TypeToken<UserEntity>() {
-							};
-						}
-	                });
+			@Override
+			public TypeToken<UserEntity> getTypeToken() {
+				return  new TypeToken<UserEntity>() {
+				};
+			}
+		});
 
 	}
 	private boolean check() {
@@ -200,7 +192,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
-	 	passsword=StringUtil.Md5(passsword);
+		passsword=StringUtil.Md5(passsword);
+		
+		if (!(StringUtil.isMobile(usename) || StringUtil
+				.checkEmail(usename))) {
+			Toast.makeText(getApplicationContext(), "请输入正确的手机号码或邮箱",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
 		return true;
 	}
 

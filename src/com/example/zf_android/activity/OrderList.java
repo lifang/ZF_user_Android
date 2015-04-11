@@ -20,8 +20,6 @@ import android.widget.Toast;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
-import com.examlpe.zf_android.util.XListView;
-import com.examlpe.zf_android.util.XListView.IXListViewListener;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
@@ -30,6 +28,8 @@ import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.Pageable;
+import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.OrderAdapter;
 import com.google.gson.reflect.TypeToken;
 /***
@@ -60,8 +60,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				onLoad( );
-
+				onLoad();
 				if(myList.size()==0){
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
@@ -107,6 +106,8 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		myAdapter=new OrderAdapter(OrderList.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview=(XListView) findViewById(R.id.x_listview);
+		
+		Xlistview.initHeaderAndFooter();
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -206,6 +207,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 	@Override
 	public void onRefresh() {
 		page = 1;
+		Xlistview.setPullLoadEnable(true);
 		myList.clear();
 		getData();
 	}
@@ -214,6 +216,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 	@Override
 	public void onLoadMore() {
 		if (myList.size() >= total) {
+			Xlistview.setPullLoadEnable(false);
 			Xlistview.stopLoadMore();
 			CommonUtil.toastShort(this, "no more data");
 		} else {
@@ -238,8 +241,6 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 				new HttpCallback<Pageable<OrderEntity>>(this) {
 			@Override
 			public void onSuccess(Pageable<OrderEntity> data) {
-				moreList.clear();
-				moreList= data.getContent();
 
 				if (null != data.getContent()) {
 					myList.addAll(data.getContent());

@@ -49,11 +49,13 @@ public class CityProvinceActivity extends Activity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra(SELECTED_PROVINCE, mSelectedProvince);
-                intent.putExtra(SELECTED_CITY, mSelectedCity);
-                setResult(RESULT_OK, intent);
-                finish();
+            	if (mSelectedCity != null) {
+            		Intent intent = new Intent();
+            		intent.putExtra(SELECTED_PROVINCE, mSelectedProvince);
+            		intent.putExtra(SELECTED_CITY, mSelectedCity);
+            		setResult(RESULT_OK, intent);
+            		finish();
+				}
             }
         });
         contentView.addView(titleBack, new LinearLayout.LayoutParams(

@@ -33,6 +33,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:background="@color/white"
+                android:layout_marginRight="10dp"
                 android:hint="@string/hintname"
                 android:maxWidth="20dp"
                 android:singleLine="true"

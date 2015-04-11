@@ -53,7 +53,8 @@
         <activity
             android:name=".Welcome"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -80,7 +81,9 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait" >
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name=".activity.FindLogin"
@@ -92,7 +95,9 @@
         </activity>
         <activity
             android:name=".activity.FindPassword"
-            android:screenOrientation="portrait" >
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name=".activity.MenuMine"
@@ -100,7 +105,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.OrderList"
+            android:name="com.example.zf_android.activity.OrderList"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -218,8 +223,7 @@
         </activity>
         <activity
             android:name=".trade.ApplyOpenProgressActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
         </activity>
         <!-- ====================================================== -->
         <!-- Leo's Activities End -->
@@ -247,7 +251,9 @@
         </activity>
         <activity
             android:name="com.example.zf_android.activity.WantBuy"
-            android:screenOrientation="portrait" >
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name="com.example.zf_android.activity.ShopCar"
@@ -288,11 +294,15 @@
         </activity>
         <activity
             android:name="com.example.zf_android.activity.RegistMail"
-            android:screenOrientation="portrait" >
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name="com.example.zf_android.activity.Register4phone"
-            android:screenOrientation="portrait" >
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name="com.example.zf_android.activity.PosSelecList"

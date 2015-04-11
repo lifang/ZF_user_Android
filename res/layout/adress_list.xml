@@ -89,15 +89,14 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
-        <com.examlpe.zf_android.util.XListView
+        <com.example.zf_android.trade.widget.XListView
             android:id="@+id/x_listview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/white"
             android:fadingEdge="none"
             android:scrollbars="none"
-            android:visibility="gone" >
-        </com.examlpe.zf_android.util.XListView>
+            android:visibility="gone" />
 
         <ListView
             android:id="@+id/lv"

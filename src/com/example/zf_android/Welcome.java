@@ -1,15 +1,12 @@
 package com.example.zf_android;
 
-import com.example.zf_android.activity.LoginActivity;
-import com.example.zf_android.activity.Main;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import com.example.zf_android.activity.LoginActivity;
+import com.example.zf_android.activity.Main;
 
 public class Welcome extends Activity {
 	private SharedPreferences mySharedPreferences;

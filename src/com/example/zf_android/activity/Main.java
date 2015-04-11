@@ -1,13 +1,12 @@
 package com.example.zf_android.activity;
  
-import java.util.ArrayList;
-import java.util.List;
- 
-import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
-import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
 import static com.example.zf_android.trade.Constants.CityIntent.CITY_ID;
 import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
- 
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
+import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -24,30 +23,24 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
- 
-  
+
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.examlpe.zf_android.util.ImageCacheUtil;
- 
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.PicEntity;
-import com.example.zf_android.entity.PosEntity;
-import com.example.zf_android.entity.User;
-import com.example.zf_android.entity.UserEntity;
 import com.example.zf_android.trade.ApplyListActivity;
-import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
@@ -56,8 +49,6 @@ import com.example.zf_android.trade.entity.Province;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
 
 
 public class Main extends BaseActivity implements OnClickListener{
@@ -163,9 +154,6 @@ public class Main extends BaseActivity implements OnClickListener{
 		mLocationClient.setLocOption(option);
 	}
 	private void getdata() {
-		// TODO Auto-generated method stub
-
-		// TODO Auto-generated method stub
 	 
 		MyApplication.getInstance().getClient().post( "http://114.215.149.242:18080/ZFMerchant/api/index/sysshufflingfigure/getList", new AsyncHttpResponseHandler() {
 
@@ -194,8 +182,6 @@ public class Main extends BaseActivity implements OnClickListener{
 							Toast.makeText(getApplicationContext(), code, 1000).show();
 						}
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						 ;	
 						e.printStackTrace();
 					}	  
 			}
@@ -203,7 +189,6 @@ public class Main extends BaseActivity implements OnClickListener{
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
-				// TODO Auto-generated method stub
 				 error.printStackTrace();
 			}
 		});
@@ -211,7 +196,6 @@ public class Main extends BaseActivity implements OnClickListener{
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 	 
         citySelect = findViewById(R.id.titleback_linear_back);
         cityTextView = (TextView) findViewById(R.id.tv_city);
@@ -254,7 +238,6 @@ public class Main extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 	 
         case R.id.titleback_linear_back:  
@@ -466,7 +449,6 @@ private void initIndicator(){
 
 		@Override
 		public void onPageScrollStateChanged(int state) {
-			// TODO Auto-generated method stub
 			if (state == 0) {
 				//new MyAdapter(null).notifyDataSetChanged();
 			}
@@ -475,7 +457,6 @@ private void initIndicator(){
 		
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
-			// TODO Auto-generated method stub
 			
 		}
 
@@ -498,7 +479,6 @@ private void initIndicator(){
 				
 				@Override
 				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
 					 
 				    Intent intent = new Intent();        
 		            intent.setAction("android.intent.action.VIEW");    

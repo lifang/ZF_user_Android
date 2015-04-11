@@ -126,12 +126,23 @@ public class AdressEdit extends BaseActivity{
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
+		if (!StringUtil.isMobile(tel)) {
+			Toast.makeText(getApplicationContext(), "请输入正确的手机号", 
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
 		stringcode=StringUtil.replaceBlank(tv_email.getText().toString());
 		if(stringcode.length()==0){
 			Toast.makeText(getApplicationContext(), "邮编不能为空",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
+		if (!StringUtil.isZipNO(stringcode)) {
+			Toast.makeText(getApplicationContext(), "请输入正确的邮编",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
 		address=StringUtil.replaceBlank(tv_addr.getText().toString());
 		if(address.length()==0){
 			Toast.makeText(getApplicationContext(), "请输入详细地址",

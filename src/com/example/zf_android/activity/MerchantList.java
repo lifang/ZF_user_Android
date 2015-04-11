@@ -22,16 +22,17 @@ import android.widget.Toast;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
-import com.examlpe.zf_android.util.XListView;
-import com.examlpe.zf_android.util.XListView.IXListViewListener;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MerchantEntity;
 import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.Page;
+import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.MerchanAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -45,12 +46,12 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata;
 	private RelativeLayout mune_rl; 
-	private boolean onRefresh_number = true;
 	private MerchanAdapter myAdapter;
 	private ImageView search,img_add;
 	private int ids[]=new int []{};
 	private TextView tv_delete;
 	private Integer customerId;
+	private int total = 0;
 	List<MerchantEntity>  myList = new ArrayList<MerchantEntity>();
 	List<MerchantEntity> idList = new ArrayList<MerchantEntity>();
 	List<MerchantEntity>  moreList = new ArrayList<MerchantEntity>();
@@ -66,7 +67,6 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 					myAdapter.notifyDataSetChanged();
 					xListview.setVisibility(View.VISIBLE);
 				}
-				onRefresh_number = true; 
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -103,8 +103,10 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		xListview=(XListView) findViewById(R.id.x_listview);
 		xListview.setVisibility(View.VISIBLE);
+		
+		xListview.initHeaderAndFooter();
 		xListview.setPullLoadEnable(true);
-		xListview.setPullRefreshEnable(false);
+		xListview.setPullRefreshEnable(true);
 		xListview.setXListViewListener(this);
 		xListview.setDivider(null);
 		tv_delete=(TextView) findViewById(R.id.tv_delete);
@@ -190,25 +192,19 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	@Override
 	public void onRefresh() {
 		page = 1;
+		xListview.setPullLoadEnable(true);
 		myList.clear();
-		getData();
+		getData();		
 	}
-
 
 	@Override
 	public void onLoadMore() {
-		if (onRefresh_number) {
-			page = page+1;
-			if (Tools.isConnect(getApplicationContext())) {
-				onRefresh_number = false;
-				getData();
-			} else {
-				onRefresh_number = true;
-				handler.sendEmptyMessage(2);
-			}
-		}
-		else {
-			handler.sendEmptyMessage(3);
+		if (myList.size() >= total) {
+			xListview.setPullLoadEnable(false);
+			xListview.stopLoadMore();
+			CommonUtil.toastShort(this, "no more data");
+		} else {
+			getData();
 		}
 	}
 	private void onLoad() {
@@ -222,6 +218,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		myList.clear();
 		getData();
 	}
+
 	private void getData() {
 		API.merchantGetList(this,customerId,page,rows,
 				new HttpCallback<Page<MerchantEntity>> (this) {
@@ -232,6 +229,8 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 				if (null != data.getList()) {
 					myList.addAll(data.getList());
 				}
+				page++;
+				total = data.getTotal();
 				handler.sendEmptyMessage(0);
 			};
 			@Override
@@ -253,7 +252,10 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		case CODE_CREATE:
 			boolean needFresh = data.getBooleanExtra("needFresh", false);
 			if(needFresh){
-				onRefresh();
+				page = 1;
+				xListview.setPullLoadEnable(true);
+				myList.clear();
+				getData();
 			}
 			break;
 

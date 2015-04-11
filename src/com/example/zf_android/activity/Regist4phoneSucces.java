@@ -20,7 +20,6 @@ public class Regist4phoneSucces extends BaseActivity implements OnClickListener{
 	private LinearLayout login_linear_signin;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.r4ps);
 		new TitleMenuUtil(Regist4phoneSucces.this, "注册").show();
@@ -33,7 +32,6 @@ public class Regist4phoneSucces extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.login_linear_signin:
 			Intent i =new Intent(getApplicationContext(), LoginActivity.class);

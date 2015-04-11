@@ -176,6 +176,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 	@Override
 	public void onRefresh() {
 		page = 0;
+		mListView.setPullLoadEnable(true);
 		mEntities.clear();
 		loadData();
 	}
@@ -183,6 +184,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 	@Override
 	public void onLoadMore() {
 		if (mEntities.size() >= total) {
+			mListView.setPullLoadEnable(false);
 			mListView.stopLoadMore();
 			CommonUtil.toastShort(this, "no more data");
 		} else {

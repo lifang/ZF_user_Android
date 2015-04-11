@@ -20,8 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.examlpe.zf_android.util.Tools;
-import com.examlpe.zf_android.util.XListView;
-import com.examlpe.zf_android.util.XListView.IXListViewListener;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -29,6 +27,8 @@ import com.example.zf_android.R;
 import com.example.zf_android.entity.MyShopCar;
 import com.example.zf_android.entity.MyShopCar.Good;
 import com.example.zf_android.entity.TestEntitiy;
+import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.ShopcarAdapter;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -122,6 +122,7 @@ public class ShopCar extends BaseActivity implements IXListViewListener,OnClickL
 		myAdapter = new ShopcarAdapter(ShopCar.this, myShopList);
 		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) findViewById(R.id.x_listview);
+		Xlistview.initHeaderAndFooter();
 		Xlistview.setPullLoadEnable(false);
 		Xlistview.setPullRefreshEnable(false);
 		Xlistview.setXListViewListener(this);

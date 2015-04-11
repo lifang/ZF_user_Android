@@ -69,7 +69,7 @@
         <include layout="@layout/include_norecord" />
     </LinearLayout>
 
-    <com.examlpe.zf_android.util.XListView
+    <com.example.zf_android.trade.widget.XListView
         android:id="@+id/x_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
