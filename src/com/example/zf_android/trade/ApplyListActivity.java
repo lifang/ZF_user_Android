@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
+import com.example.zf_android.Config;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -41,9 +42,8 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 	private ApplyListAdapter mAdapter;
 
 	private int page = 0;
-	private int total = 0;
-	private final int rows = 10;
 	private boolean noMoreData = false;
+	private String pullType = "loadData";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +72,16 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 	}
 
 	private void loadData() {
-		API.getApplyList(this, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<List<TerminalItem>>(this) {
+		API.getApplyList(this, Constants.CUSTOMER_ID, page + 1, Config.ROWS, new HttpCallback<List<TerminalItem>>(this) {
 			@Override
 			public void onSuccess(List<TerminalItem> data) {
-				if (null == data || data.size() <= 0) noMoreData = true;
-
+				//没有数据或者数据不够Config.ROWS个时说明后台没有更多数据 不需要上拉加载
+				if (null == data || data.size() < Config.ROWS) noMoreData = true;
+				
+				if(pullType.equals("onRefresh")){
+					mTerminalItems.clear();
+				}
+				
 				mTerminalItems.addAll(data);
 				page++;
 				mAdapter.notifyDataSetChanged();
@@ -84,11 +89,13 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 
 			@Override
 			public void preLoad() {
+				super.preLoad();
 			}
 
 			@Override
 			public void postLoad() {
 				loadFinished();
+				super.postLoad();
 			}
 
 			@Override
@@ -102,15 +109,19 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 	@Override
 	public void onRefresh() {
 		page = 0;
-		mTerminalItems.clear();
+		pullType = "onRefresh";
+		noMoreData = false;
+		mApplyList.setPullLoadEnable(true);
 		loadData();
 	}
 
 	@Override
 	public void onLoadMore() {
+		pullType = "onLoadMore";
 		if (noMoreData) {
 			mApplyList.stopLoadMore();
-			CommonUtil.toastShort(this, "no more data");
+			mApplyList.setPullLoadEnable(false);
+			CommonUtil.toastShort(this, "没有更多数据");
 		} else {
 			loadData();
 		}

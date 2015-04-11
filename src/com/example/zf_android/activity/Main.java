@@ -246,53 +246,53 @@ public class Main extends BaseActivity implements OnClickListener{
             startActivityForResult(intent, REQUEST_CITY);
             break;
 
-		case R.id.main_rl_pos1:  // 锟斤拷POS锟斤拷锟斤拷
+		case R.id.main_rl_pos1:  // 我的消息
 			 startActivity(new Intent(Main.this,MyMessage.class));
 			 
 			break;
  
  
-		case R.id.main_rl_my:  // ��POS����
+		case R.id.main_rl_my:  // 我的
  
 			 startActivity(new Intent(Main.this,MenuMine.class));
 			 
 			break;
  
-		case R.id.main_rl_pos:  // ��POS����
+		case R.id.main_rl_pos:  // 买POS机
  
 			 startActivity(new Intent(Main.this,PosListActivity.class));
 			 
 			break;
  
  
-		case R.id.main_rl_renzhen:  //��֤
+		case R.id.main_rl_renzhen:  //开通认证
 			 Intent i =new Intent(Main.this, ApplyListActivity.class);
 			 startActivity(i);
 			 
 			break;
-		case R.id.main_rl_zdgl: //�ն˹��� 
+		case R.id.main_rl_zdgl: //终端管理
 			startActivity(new Intent(Main.this, TerminalManageActivity.class));
 			break;
-		case R.id.main_rl_jyls: //锟斤拷锟斤拷锟斤拷水 
+		case R.id.main_rl_jyls: //交易流水
 			 
 			startActivity(new Intent(Main.this, TradeFlowActivity.class));
 			break;
-		case R.id.main_rl_Forum: //锟斤拷要锟斤拷锟�  
+		case R.id.main_rl_Forum: //健康服务
 			//startActivity(new Intent(Main.this, ChanceAdress.class));
 			break;
  
-		case R.id.main_rl_xtgg: //ϵͳ����   
+		case R.id.main_rl_xtgg: //系统公告
  
 			  
 			 startActivity(new Intent(Main.this,SystemMessage.class));
 			 
 			break;
  
-		case R.id.main_rl_lxwm: //��ϵ����
+		case R.id.main_rl_lxwm: //联系我们
  
 			 startActivity(new Intent(Main.this,ContentUs.class));
 			 break;
-		case R.id.main_rl_gwc:  
+		case R.id.main_rl_gwc:  //购物车
 			 startActivity(new Intent(Main.this,ShopCar.class));
 			break;
 		default:

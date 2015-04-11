@@ -89,8 +89,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 	}
 
 	private void loadData() {
-		API.getAfterSaleRecordList(this, mRecordType, MyApplication.getInstance().getCustomerId(), page + 1, rows, 
-				new HttpCallback<Pageable<AfterSaleRecord>>(this) {
+		API.getAfterSaleRecordList(this, mRecordType, Constants.CUSTOMER_ID, page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(this) {
 			@Override
 			public void onSuccess(Pageable<AfterSaleRecord> data) {
 				if (null != data.getContent()) {

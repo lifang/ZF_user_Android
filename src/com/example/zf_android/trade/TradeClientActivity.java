@@ -40,7 +40,7 @@ public class TradeClientActivity extends ListActivity {
 				new int[]{R.id.item_name, R.id.item_selected});
 		setListAdapter(adapter);
 
-		API.getTerminalList(this, Constants.TEST_CUSTOMER, new HttpCallback<List<TradeClient>>(this) {
+		API.getTerminalList(this, Constants.CUSTOMER_ID, new HttpCallback<List<TradeClient>>(this) {
 
 			@Override
 			public void onSuccess(List<TradeClient> data) {

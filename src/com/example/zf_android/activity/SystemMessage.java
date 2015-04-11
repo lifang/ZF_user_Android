@@ -21,18 +21,19 @@ import android.widget.Toast;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
-import com.example.zf_android.BaseActivity;
-import com.example.zf_android.Config;
-import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
-import com.example.zf_android.entity.MessageEntity;
-import com.example.zf_android.trade.widget.XListView;
-import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.MessageAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+//github.com/lifang/ZF_user_Android
+import com.example.zf_android.MyApplication;
+import com.example.zf_android.R;
+import com.example.zf_android.entity.MessageEntity;
+import com.example.zf_android.Config;
+import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.trade.widget.XListView.IXListViewListener;
+import com.example.zf_android.BaseActivity;
 /***
  * 
 *    

@@ -74,7 +74,7 @@ public class ApplyOpenProgressActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				API.queryApplyProgress(ApplyOpenProgressActivity.this,
-						Constants.TEST_CUSTOMER, mPhone.getText().toString(),
+						Constants.CUSTOMER_ID, mPhone.getText().toString(),
 						new HttpCallback<List<ApplyOpenProgress>>(ApplyOpenProgressActivity.this) {
 							@Override
 							public void onSuccess(List<ApplyOpenProgress> data) {

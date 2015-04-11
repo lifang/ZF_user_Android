@@ -47,17 +47,21 @@
 			style="@style/Divider"
 			android:layout_marginTop="4dp"/>
 
-		<FrameLayout style="@style/FrameItem">
+		<LinearLayout style="@style/FrameItem">
 
 			<TextView
+			    android:layout_weight="1"
 				style="@style/TextItem"
 				android:layout_gravity="left|center_vertical"
 				android:text="@string/terminal_add_number"/>
 
 			<EditText
-				android:id="@+id/terminal_number"
-				style="@style/EditTextItem"/>
-		</FrameLayout>
+			    android:layout_weight="1"
+			    android:id="@+id/terminal_number"
+			    style="@style/EditTextItem"
+			    android:layout_width="wrap_content" />
+
+		</LinearLayout>
 
 		<View style="@style/Divider"/>
 
@@ -65,17 +69,19 @@
 			style="@style/Divider"
 			android:layout_marginTop="4dp"/>
 
-		<FrameLayout style="@style/FrameItem">
+		<LinearLayout style="@style/FrameItem">
 
 			<TextView
+			    android:layout_weight="1"
 				style="@style/TextItem"
 				android:layout_gravity="left|center_vertical"
 				android:text="@string/terminal_add_name"/>
 
 			<EditText
+			    android:layout_weight="1"
 				android:id="@+id/terminal_merchant_name"
 				style="@style/EditTextItem"/>
-		</FrameLayout>
+		</LinearLayout>
 
 		<View style="@style/Divider"/>
 	</LinearLayout>

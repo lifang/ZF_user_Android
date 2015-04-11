@@ -776,7 +776,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 			case ITEM_VIEW: {
 				TextView tvKey = (TextView) item.findViewById(R.id.apply_detail_key);
 				ImageButton ibView = (ImageButton) item.findViewById(R.id.apply_detail_view);
-
+				
 				if (!TextUtils.isEmpty(key))
 					tvKey.setText(key);
 				ibView.setOnClickListener(new View.OnClickListener() {
