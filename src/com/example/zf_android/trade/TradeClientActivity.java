@@ -10,6 +10,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeClient;
@@ -40,7 +41,7 @@ public class TradeClientActivity extends ListActivity {
 				new int[]{R.id.item_name, R.id.item_selected});
 		setListAdapter(adapter);
 
-		API.getTerminalList(this, Constants.CUSTOMER_ID, new HttpCallback<List<TradeClient>>(this) {
+		API.getTerminalList(this, MyApplication.getInstance().getCustomerId(), new HttpCallback<List<TradeClient>>(this) {
 
 			@Override
 			public void onSuccess(List<TradeClient> data) {

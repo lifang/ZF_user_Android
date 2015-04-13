@@ -7,35 +7,26 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
- 
- 
- 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
-import com.examlpe.zf_android.util.XListView;
-import com.examlpe.zf_android.util.XListView.IXListViewListener;
- 
- 
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.GoodCommentEntity;
-import com.example.zf_android.entity.PosEntity;
-import com.example.zf_android.entity.TestEntitiy;
+import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.GoodCommentAdapter;
-import com.example.zf_zandroid.adapter.OrderAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -104,12 +95,13 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		
 		new TitleMenuUtil(GoodComment.this, "评论  ("+title+")").show();
 		myAdapter=new GoodCommentAdapter(GoodComment.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview=(XListView) findViewById(R.id.x_listview);
+		
+		Xlistview.initHeaderAndFooter();
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -119,7 +111,6 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 			//	Intent i = new Intent(GoodComment.this, OrderDetail.class);
 			//	startActivity(i);
 			}
@@ -129,23 +120,16 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
 		page = 1;
-		 System.out.println("onRefresh1");
 		myList.clear();
-		 System.out.println("onRefresh2");
 		getData();
 	}
 
 
 	@Override
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 		if (onRefresh_number) {
 			page = page+1;
-			
-		//	onRefresh_number = false;
-		//	getData();
 			
 			if (Tools.isConnect(getApplicationContext())) {
 				onRefresh_number = false;
@@ -217,8 +201,6 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 								Toast.makeText(getApplicationContext(), code, 1000).show();
 							}
 						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
 							e.printStackTrace();
 							
 						}

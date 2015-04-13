@@ -1,7 +1,5 @@
 package com.example.zf_android;
 
- 
- 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,15 +7,16 @@ import java.util.List;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Service;
-import android.graphics.Bitmap;
 import android.os.Vibrator;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
+import com.examlpe.zf_android.util.NetworkTools;
 import com.example.zf_android.entity.ApplyneedEntity;
 import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.GoodinfoEntity;
@@ -30,15 +29,7 @@ import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpClient;
-import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.utils.StorageUtils;
- 
- 
- 
 
 public class MyApplication extends Application{
 	public TextView mLocationResult,logMsg;
@@ -46,12 +37,13 @@ public class MyApplication extends Application{
 	public GeofenceClient mGeofenceClient;
 	public MyLocationListener mMyLocationListener;
 	public Vibrator mVibrator;
-	
+
 	private ImageLoader mImageLoader;
-	
+
 	private Integer customerId;
-	
+
 	private List<City> mCities = new ArrayList<City>();
+
 	/**
 	 * 实现实位回调监听
 	 */
@@ -60,27 +52,32 @@ public class MyApplication extends Application{
 		@Override
 		public void onReceiveLocation(BDLocation location) {
 			//Receive Location 
-			StringBuffer sb = new StringBuffer(256);
- 
-			sb.append(location.getAddrStr());
-			logMsg(location.getCity());
-			mCities.clear();
-	        List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
-            for (Province province : provinces) {
-                List<City> cities = province.getCities();
-                mCities.addAll(cities);
-                 
-            }
-			 for(City cc:mCities ){
-				 if(cc.getName().contains(location.getCity())){
-					 System.out.println(location.getCity()+"name<--当前城市 ID----"+cc.getId());
-					 setCityId(cc.getId());
-					 setCityName(cc.getName());
-				 }
-			 }
-			Log.i("BaiduLocationApiDem", sb.toString());
-		}
+			if (location != null) {
+				if (!NetworkTools.isNetworkAvailable(getApplicationContext())) {          //判断网络是否存在网络
+					Toast.makeText(getApplicationContext(), "没有连接到网络，请重新尝试连接网络",Toast.LENGTH_LONG).show();
+					return;
+				}
+				StringBuffer sb = new StringBuffer(256);
 
+				sb.append(location.getAddrStr());
+				logMsg(location.getCity());
+				mCities.clear();
+				List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
+				for (Province province : provinces) {
+					List<City> cities = province.getCities();
+					mCities.addAll(cities);
+
+				}
+				for(City cc:mCities ){
+					if(cc.getName().contains(location.getCity())){
+						System.out.println(location.getCity()+"name<--当前城市 ID----"+cc.getId());
+						setCityId(cc.getId());
+						setCityName(cc.getName());
+					}
+				}
+				Log.i("BaiduLocationApiDem", sb.toString());
+			}
+		}
 
 	}
 	/**
@@ -96,8 +93,8 @@ public class MyApplication extends Application{
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	private static MyApplication  mInstance=null;
 	//private ArrayList<Order> orderList = new ArrayList<Order>();
 	/**
@@ -107,7 +104,7 @@ public class MyApplication extends Application{
 	private static Boolean isSelect=false;
 	private int cityId=0;
 	private String   cityName="";
-	
+
 	public String getCityName() {
 		return cityName;
 	}
@@ -148,7 +145,7 @@ public class MyApplication extends Application{
 
 	private static String token="";
 	AsyncHttpClient client = new AsyncHttpClient(); //  
-	
+
 	public AsyncHttpClient getClient() {
 		//client.setTimeout(6000);
 		return client;
@@ -165,11 +162,11 @@ public class MyApplication extends Application{
 
 
 	public static PosSelectEntity pse = new PosSelectEntity();
-	
-	
-	
-	
-	
+
+
+
+
+
 	public static PosSelectEntity getPse() {
 		return pse;
 	}
@@ -177,7 +174,7 @@ public class MyApplication extends Application{
 		MyApplication.pse = pse;
 	}
 	public static List<Good> comfirmList=new LinkedList<Good>();
-	
+
 	public static List<Good> getComfirmList() {
 		return comfirmList;
 	}
@@ -185,7 +182,7 @@ public class MyApplication extends Application{
 		MyApplication.comfirmList = comfirmList;
 	}
 	public static List<ChanelEntitiy> celist = new LinkedList<ChanelEntitiy>();   
- 
+
 	public static List<ChanelEntitiy> getCelist() {
 		return celist;
 	}
@@ -196,9 +193,9 @@ public class MyApplication extends Application{
 
 	public static List<ApplyneedEntity> pub = new LinkedList<ApplyneedEntity>();   
 	public static List<ApplyneedEntity> single = new LinkedList<ApplyneedEntity>();   
-	 
+
 	public static List<Goodlist>  Goodlist = new LinkedList<Goodlist>();   
- 
+
 
 	public static List<Goodlist> getGoodlist() {
 		return Goodlist;
@@ -230,8 +227,8 @@ public class MyApplication extends Application{
 
 	public static User currentUser = new User();
 	public static GoodinfoEntity gfe=new GoodinfoEntity();
-	 
-    public static GoodinfoEntity getGfe() {
+
+	public static GoodinfoEntity getGfe() {
 		return gfe;
 	}
 	public static void setGfe(GoodinfoEntity gfe) {
@@ -240,22 +237,22 @@ public class MyApplication extends Application{
 
 
 	private List<Activity> mList = new LinkedList<Activity>();   
- // add Activity     
-    public void addActivity(Activity activity) {    
-        mList.add(activity);    
-    }    
-    public void exit() {    
-        try {    
-            for (Activity activity:mList) {    
-                if (activity != null)    
-                    activity.finish();    
-            }    
-        } catch (Exception e) {    
-            e.printStackTrace();    
-        } 
-        
-    }  
- 
+	// add Activity     
+	public void addActivity(Activity activity) {    
+		mList.add(activity);    
+	}    
+	public void exit() {    
+		try {    
+			for (Activity activity:mList) {    
+				if (activity != null)    
+					activity.finish();    
+			}    
+		} catch (Exception e) {    
+			e.printStackTrace();    
+		} 
+
+	}  
+
 
 	@Override
 	public void onCreate() {
@@ -267,34 +264,34 @@ public class MyApplication extends Application{
 		mGeofenceClient = new GeofenceClient(getApplicationContext());
 		mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
 		//设置全局imageload
-//		initImageLoaderConfig();
+		//		initImageLoaderConfig();
 	}
-	
+
 	public static MyApplication getInstance() {
 		return mInstance;
 	}
-	
-	
-//	private void initImageLoaderConfig(){
-//		DisplayImageOptions options = new DisplayImageOptions.Builder()
-//	        .cacheInMemory(true) 					// 设置下载的图片是否缓存在内存中  
-//	        .cacheOnDisk(true) 						// 设置下载的图片是否缓存在SD卡中 
-//	        .considerExifParams(true) 				// 是否考虑JPEG图像EXIF参数（旋转，翻转）
-//	        .bitmapConfig(Bitmap.Config.RGB_565) 	// default
-//	        .build();
-//		
-//		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-//			.threadPriority(Thread.NORM_PRIORITY - 2)
-//			.denyCacheImageMultipleSizesInMemory()
-//			.diskCacheFileNameGenerator(new HashCodeFileNameGenerator())
-//			.tasksProcessingOrder(QueueProcessingType.LIFO)
-//			.defaultDisplayImageOptions(options)
-//			.build();
-//		
-//		ImageLoader.getInstance().init(config);
-//	}
-	
-	
+
+
+	//	private void initImageLoaderConfig(){
+	//		DisplayImageOptions options = new DisplayImageOptions.Builder()
+	//	        .cacheInMemory(true) 					// 设置下载的图片是否缓存在内存中  
+	//	        .cacheOnDisk(true) 						// 设置下载的图片是否缓存在SD卡中 
+	//	        .considerExifParams(true) 				// 是否考虑JPEG图像EXIF参数（旋转，翻转）
+	//	        .bitmapConfig(Bitmap.Config.RGB_565) 	// default
+	//	        .build();
+	//		
+	//		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+	//			.threadPriority(Thread.NORM_PRIORITY - 2)
+	//			.denyCacheImageMultipleSizesInMemory()
+	//			.diskCacheFileNameGenerator(new HashCodeFileNameGenerator())
+	//			.tasksProcessingOrder(QueueProcessingType.LIFO)
+	//			.defaultDisplayImageOptions(options)
+	//			.build();
+	//		
+	//		ImageLoader.getInstance().init(config);
+	//	}
+
+
 	public ImageLoader getImageLoader(){
 		if (mImageLoader == null) {
 			mImageLoader = ImageLoader.getInstance();
@@ -302,12 +299,11 @@ public class MyApplication extends Application{
 		return mImageLoader;
 	}
 	public Integer getCustomerId() {
-		customerId = 80;
 		return customerId;
 	}
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
-	
- 
+
+
 }

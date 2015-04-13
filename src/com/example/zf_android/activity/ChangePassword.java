@@ -44,7 +44,7 @@ public class ChangePassword extends BaseActivity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		if(check ()){
-			API.ChangePass(ChangePassword.this,MyApplication.NewUser.getId(),passwordOld,passwordOld,
+			API.ChangePass(ChangePassword.this,MyApplication.getInstance().getCustomerId(),passwordOld,passwordOld,
 					new HttpCallback (ChangePassword.this) {
 
 				@Override

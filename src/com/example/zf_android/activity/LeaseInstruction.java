@@ -24,7 +24,6 @@ public class LeaseInstruction extends BaseActivity{
 	private TextView tv1,tv2,tv3,tv4,tv5;
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
-			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.act_leas_in);
 			gfe=MyApplication.getGfe();

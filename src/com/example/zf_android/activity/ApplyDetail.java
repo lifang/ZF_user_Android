@@ -49,17 +49,15 @@ public class ApplyDetail extends BaseActivity implements OnClickListener{
 			 
 		}
 		private void getData() {
-			// TODO Auto-generated method stub
 			msg_show.setText("无忧查询结果，请填写正确的手机号码！");
-			String url = "http://114.215.149.242:18080/ZFMerchant/api/terminal/openStatus";
 			RequestParams params = new RequestParams();
-			params.put("id", 80);
+			params.put("id", MyApplication.getInstance().getCustomerId());
 			params.put("phone", login_edit_name.getText().toString());
 			System.out.println("login_edit_name.getText().toString()"+login_edit_name.getText().toString());
 			params.setUseJsonStreamer(true);
 
 			MyApplication.getInstance().getClient()
-					.post(url, params, new AsyncHttpResponseHandler() {
+					.post(Config.URL_TERMINAL_OPENSTATUS, params, new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,

@@ -44,6 +44,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 
 	private int mRecordType;
 
+	private LinearLayout eva_nodata;
 	private XListView mListView;
 	private RecordListAdapter mAdapter;
 	private List<AfterSaleRecord> mEntities;
@@ -75,6 +76,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 
 		mInflater = LayoutInflater.from(this);
 		mEntities = new ArrayList<AfterSaleRecord>();
+		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
 		mListView = (XListView) findViewById(R.id.after_sale_list);
 		mAdapter = new RecordListAdapter();
 
@@ -89,11 +91,15 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 	}
 
 	private void loadData() {
-		API.getAfterSaleRecordList(this, mRecordType, Constants.CUSTOMER_ID, page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(this) {
+		API.getAfterSaleRecordList(this, mRecordType, MyApplication.getInstance().getCustomerId(), page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(this) {
 			@Override
 			public void onSuccess(Pageable<AfterSaleRecord> data) {
 				if (null != data.getContent()) {
 					mEntities.addAll(data.getContent());
+				}
+				if (mEntities.size() == 0) {
+					mListView.setVisibility(View.GONE);
+					eva_nodata.setVisibility(View.VISIBLE);
 				}
 				page++;
 				total = data.getTotal();
@@ -175,6 +181,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 	@Override
 	public void onRefresh() {
 		page = 0;
+		mListView.setPullLoadEnable(true);
 		mEntities.clear();
 		loadData();
 	}
@@ -182,6 +189,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 	@Override
 	public void onLoadMore() {
 		if (mEntities.size() >= total) {
+			mListView.setPullLoadEnable(false);
 			mListView.stopLoadMore();
 			CommonUtil.toastShort(this, "no more data");
 		} else {

@@ -2,31 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-  	android:orientation="vertical"
-  	android:background="@color/F3F2F2"
-  	 >
+    android:background="@color/F3F2F2"
+    android:orientation="vertical" >
 
- <include layout="@layout/title_back" />
+    <include layout="@layout/title_back" />
 
-	 <LinearLayout
+    <LinearLayout
         android:id="@+id/eva_nodata"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center"
         android:background="@color/ffffff"
-        android:orientation="horizontal" 
-        android:visibility="gone">
+        android:orientation="horizontal"
+        android:visibility="gone" >
 
         <include layout="@layout/include_norecord" />
     </LinearLayout>
- 		
-	 
-	 
-	 
-	 
-	 
-	 
-		<com.example.zf_android.trade.widget.XListView
+
+    <com.example.zf_android.trade.widget.XListView
         android:id="@+id/x_listview"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -34,47 +27,41 @@
         android:background="@color/white"
         android:fadingEdge="none"
         android:scrollbars="none" />
-		<RelativeLayout
-		android:id="@+id/rl_edit"
+
+    <RelativeLayout
+        android:id="@+id/rl_edit"
         android:layout_width="fill_parent"
         android:layout_height="57dp"
-    	android:visibility="gone"
-        android:orientation="horizontal" >
-		    	            
-		    	            <View android:layout_height="0.5dp"
-		    	                android:background="@color/Viewc2"
-		    	                android:layout_width="fill_parent"
-		    	                android:layout_alignParentTop="true"/>
-		    	            
-		    	                   <TextView
-                 	android:id="@+id/tv_all"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                 
-                  	android:layout_centerVertical="true"
-                    android:layout_marginLeft="7dp"
-                    android:layout_alignParentLeft="true"
-                    android:text="全部标记为已读"
-                    android:textColor="@color/text5a5a5a"
-                    android:textSize="11sp" />
-		    	    <TextView
-                 	android:id="@+id/tv_dle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                 
-                  	android:layout_centerVertical="true"
-                    android:layout_marginRight="7dp"
-                    android:layout_alignParentRight="true"
-                    android:text="删除"
-                    android:textColor="@color/text5a5a5a"
-                    android:textSize="11sp" />
-		    	            
-		    	        </RelativeLayout>
-		
-		 
-		
-		
-		
-		
-		 
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/Viewc2" />
+
+        <TextView
+            android:id="@+id/tv_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:text="全部标记为已读"
+            android:textColor="@color/text5a5a5a"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tv_dle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="7dp"
+            android:text="删除"
+            android:textColor="@color/text5a5a5a"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
 </LinearLayout>

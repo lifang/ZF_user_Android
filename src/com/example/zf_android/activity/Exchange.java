@@ -70,6 +70,10 @@ public class Exchange extends BaseActivity implements OnClickListener{
 			Toast.makeText(getApplicationContext(), "请输入手机号", 1000).show();
 			return;
 		}
+		if (!StringUtil.isMobile(phone)) {
+			Toast.makeText(getApplicationContext(), "请输入正确的手机号", 1000).show();
+			return;
+		}
 		if(StringUtil.replaceBlank(price).length()==0){
 			Toast.makeText(getApplicationContext(), "请输入金额", 1000).show();
 			return;

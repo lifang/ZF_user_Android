@@ -1,5 +1,19 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_ADD;
+import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
+import static com.example.zf_android.trade.Constants.TerminalStatus.CANCELED;
+import static com.example.zf_android.trade.Constants.TerminalStatus.OPENED;
+import static com.example.zf_android.trade.Constants.TerminalStatus.PART_OPENED;
+import static com.example.zf_android.trade.Constants.TerminalStatus.STOPPED;
+import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,7 +26,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
@@ -26,20 +39,6 @@ import com.example.zf_android.trade.common.Page;
 import com.example.zf_android.trade.entity.TerminalItem;
 import com.example.zf_android.trade.widget.XListView;
 import com.google.gson.reflect.TypeToken;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_ADD;
-import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
-import static com.example.zf_android.trade.Constants.TerminalStatus.CANCELED;
-import static com.example.zf_android.trade.Constants.TerminalStatus.OPENED;
-import static com.example.zf_android.trade.Constants.TerminalStatus.PART_OPENED;
-import static com.example.zf_android.trade.Constants.TerminalStatus.STOPPED;
-import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
 
 /**
  * Created by Leo on 2015/3/4.
@@ -159,7 +158,7 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 	}
 
 	private void loadData() {
-		API.getTerminalApplyList(this, Constants.CUSTOMER_ID, page + 1, Config.ROWS, new HttpCallback<Page<TerminalItem>>(this) {
+		API.getTerminalApplyList(this, MyApplication.getInstance().getCustomerId(), page + 1, Config.ROWS, new HttpCallback<Page<TerminalItem>>(this) {
 			@Override
 			public void onSuccess(Page<TerminalItem> data) {
 				loadFinished();

@@ -5,23 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
- 
+
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
  
 public class Regist4phoneSucces extends BaseActivity implements OnClickListener{
-	private int a;
-	private int index;
 	private TextView tv_tel;
 	private String tel;
 	private LinearLayout login_linear_signin;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.r4ps);
 		new TitleMenuUtil(Regist4phoneSucces.this, "注册").show();
 		tv_tel=(TextView) findViewById(R.id.tv_tel);
@@ -33,7 +31,6 @@ public class Regist4phoneSucces extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.login_linear_signin:
 			Intent i =new Intent(getApplicationContext(), LoginActivity.class);

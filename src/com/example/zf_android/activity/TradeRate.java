@@ -29,7 +29,6 @@ public class TradeRate extends BaseActivity{
 	private List<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState); 
 		setContentView(R.layout.act_tradereate);
 		lv=(ListView) findViewById(R.id.lv);

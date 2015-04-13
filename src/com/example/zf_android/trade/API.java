@@ -110,7 +110,7 @@ public class API {
 	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
 	public static final String WNATBUY = SCHEMA + HOST + "/ZFMerchant/api/paychannel/intention/add";
 	public static final String Add_ress = SCHEMA + HOST + "/ZFMerchant/api/customers/insertAddress/";
-	public static final String GETCODE4PHONE = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeReg";
+	public static final String REG_PHONECODE = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeReg";
 	public static final String ZHUCHE = SCHEMA + HOST + "/ZFMerchant/api/user/userRegistration";
 	public static final String GETPHONEPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeFind";
 	public static final String order_cart = SCHEMA + HOST + "/ZFMerchant/api/order/cart";
@@ -477,7 +477,7 @@ public class API {
 		System.out.println("--ccc----"+params);
 		new HttpRequest(context, callback).post(EDITADRESS, params);
 	}
-	public static void AddAdres1(
+	public static void reg_phoneCode(
 			Context context,
 			String  codeNumber,
 
@@ -485,7 +485,7 @@ public class API {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
-		new HttpRequest(context, callback).post(GETCODE4PHONE, params);
+		new HttpRequest(context, callback).post(REG_PHONECODE, params);
 	}
 	public static void getEmailPass(
 			Context context,
@@ -986,5 +986,24 @@ public class API {
 		params.put("id", id);
 		new HttpRequest(context, callback).post(Config.DELETEMSG, params);
 	}
+	//找回密码--获得手机验证码
+	public static void sendPhoneCode(
+			Context context,
+			String  codeNumber,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codeNumber", codeNumber);
+		new HttpRequest(context, callback).post(Config.URL_SEND_PHONECODE, params);
+	}
+	//购物车列表
+	public static void cartList(
+			Context context,
+			int customerId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", customerId);
+		new HttpRequest(context, callback).post(Config.URL_CART_LIST, params);
+	}
+	
 }
 

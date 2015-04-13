@@ -60,11 +60,32 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 				tv_content=login_edit_name.getText().toString();
 				 
 			 if(StringUtil.replaceBlank(tv_content).length()>0){
-				 
+				 if (index == 2) {
+					if (!StringUtil.isMobile(tv_content)) {
+						Toast.makeText(getApplicationContext(), "请输入正确的手机号", 
+								Toast.LENGTH_SHORT).show();
+					}else {
+						Intent intent2 = new Intent();
+						intent2.putExtra("text", tv_content);
+						ChangeText.this.setResult(index, intent2);
+						finish();
+					}
+				}else if (index == 3) {
+					if (!StringUtil.checkEmail(tv_content)) {
+						Toast.makeText(getApplicationContext(), "请输入正确的邮箱", 
+								Toast.LENGTH_SHORT).show();
+					}else {
+						Intent intent2 = new Intent();
+						intent2.putExtra("text", tv_content);
+						ChangeText.this.setResult(index, intent2);
+						finish();
+					}
+				}else {
 					Intent intent2 = new Intent();
 					intent2.putExtra("text", tv_content);
 					ChangeText.this.setResult(index, intent2);
 					finish();
+				}
 			 }else{
 				 Toast.makeText(ChangeText.this, "请输入要改变的内容", 1000).show();
 			 }
@@ -73,10 +94,5 @@ public class ChangeText extends BaseActivity implements OnClickListener{
 		default:
 			break;
 		}
-	 
 	}
-
- 
-	
-	 
 }

@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.ApplyOpenProgress;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -74,7 +75,7 @@ public class ApplyOpenProgressActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				API.queryApplyProgress(ApplyOpenProgressActivity.this,
-						Constants.CUSTOMER_ID, mPhone.getText().toString(),
+						MyApplication.getInstance().getCustomerId(), mPhone.getText().toString(),
 						new HttpCallback<List<ApplyOpenProgress>>(ApplyOpenProgressActivity.this) {
 							@Override
 							public void onSuccess(List<ApplyOpenProgress> data) {

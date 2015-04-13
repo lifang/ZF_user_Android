@@ -1,56 +1,29 @@
 package com.example.zf_android.activity;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.http.Header;
-import org.json.JSONException;
-import org.json.JSONObject;
- 
-
-import com.example.zf_android.R;
-import com.example.zf_zandroid.adapter.SearchAdapter;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
- 
-
- 
 
 import android.app.Activity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
- 
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
- 
-import android.widget.Button;
 import android.widget.EditText;
- 
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
- 
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import com.example.zf_android.R;
+import com.example.zf_zandroid.adapter.SearchAdapter;
 /***
  *   搜索
  * @author Lijinpeng
@@ -58,31 +31,22 @@ import android.widget.Toast;
  * comdo
  */
 public class PosSearch extends Activity implements OnEditorActionListener {
-	private String lat, lng, CName;
+	private String CName;
 	private EditText et;
 	private ListView lv;
-	private LinearLayout search_linear_yuyin, search_linear_delete;
-	private static int REQUEST_CODE = 0;
-	private Button back, titleright, etsbtn_clear;
  
 	private SharedPreferences mySharedPreferences = null;
 	private Editor editor;
 	private int a = 0;
-	private RelativeLayout ets_rl_r1, ets_rl_clear;
-	private TextView tvtv, ets_histvshow, ml_maplocation;
+	private TextView ml_maplocation;
 	String poiStr = "",sessionId,sign;// 搜索记录
 	List<String> data = new ArrayList<String>();
 	List<String> key = new ArrayList<String>();
 	List<String> city = new ArrayList<String>();
 	private String sss = "没有数据";
-	private String destinationLat, destinationLng;
 	private SearchAdapter searchAdapter;
-	private LinearLayout eva_nodata;
-	private long merchantId;
  
-	private int currentPage =1;
 	private String name;
-	private boolean onRefresh_number = true;
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			
@@ -91,7 +55,6 @@ public class PosSearch extends Activity implements OnEditorActionListener {
  
 				break;
 			case 1:
-
 
 				searchAdapter.notifyDataSetChanged();
 				lv.setOnItemClickListener(new OnItemClickListener() {
@@ -111,11 +74,9 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 						}
 						editor.commit();
 						sss = key.get(arg2);
-			 
 
 						System.out.println("模糊选择的地方 Name``" + sss
 								 ) ;
-				 
 					}
 
 				});
@@ -132,17 +93,10 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 			 
 				break;
 			}
-			
-			 
 		}
 	};
-	
-	
- 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pos_search);
 		mySharedPreferences = getSharedPreferences("pos_search", MODE_PRIVATE);
@@ -155,15 +109,10 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 		lv = (ListView) findViewById(R.id.lv);
 		searchAdapter = new SearchAdapter(PosSearch.this, data);
 		lv.setAdapter(searchAdapter);
-
-	 
- 
 	 
 		if (poiStr == "" || poiStr == null) {
 			// 没有历史记录 下面是刷新界面跳转代码
-	 
 			data.add("没有搜索记录");
-			
 
 		} else {
 			System.out.println("加载历史记录··4··");
@@ -184,8 +133,6 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 				data.add(poiStr);
 				data.add("清除搜索记录");
 			}
-		 
-		 
 
 			searchAdapter.notifyDataSetChanged();
 			lv.setOnItemClickListener(new OnItemClickListener() {
@@ -221,8 +168,6 @@ public class PosSearch extends Activity implements OnEditorActionListener {
  
 			}
 		});
- 
-
 	 
 	}
 	//add
@@ -238,8 +183,6 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 			 }  
 	}
  
-
- 
 	// 删除记录
 	public void DeletaData(){
 		editor = mySharedPreferences.edit();
@@ -250,16 +193,11 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 		searchAdapter.notifyDataSetChanged();
 	}
  
-	
-	
 	private void getData(String name) { 
 		
 		
 	}
 	
-	
- 
- 
 	@Override
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 		name = et.getText().toString();
@@ -283,9 +221,6 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 			return true;
 		 
 		}
-
 		return false;
-	
-	 
 	}
 }

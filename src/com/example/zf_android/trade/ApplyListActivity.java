@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.Config;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -72,7 +73,7 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 	}
 
 	private void loadData() {
-		API.getApplyList(this, Constants.CUSTOMER_ID, page + 1, Config.ROWS, new HttpCallback<List<TerminalItem>>(this) {
+		API.getApplyList(this, MyApplication.getInstance().getCustomerId(), page + 1, Config.ROWS, new HttpCallback<List<TerminalItem>>(this) {
 			@Override
 			public void onSuccess(List<TerminalItem> data) {
 				//没有数据或者数据不够Config.ROWS个时说明后台没有更多数据 不需要上拉加载

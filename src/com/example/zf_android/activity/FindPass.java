@@ -11,8 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -26,14 +28,13 @@ public class FindPass extends BaseActivity implements OnClickListener{
 	private Boolean isMail=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.findpass);
+		MyApplication.getInstance().addActivity(this);
 		new TitleMenuUtil(FindPass.this,"找回密码").show();
 		initView();
 	}
 	private void initView() {
-		// TODO Auto-generated method stub
 		tv_msg=(TextView) findViewById(R.id.tv_msg);
 		login_edit_name=(EditText) findViewById(R.id.login_edit_name);
 		login_linear_deletename=(LinearLayout) findViewById(R.id.login_linear_deletename);
@@ -44,7 +45,7 @@ public class FindPass extends BaseActivity implements OnClickListener{
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-			 
+
 				if (s.length() > 0) {
 					login_linear_deletename.setVisibility(View.VISIBLE);
 				} else {
@@ -57,7 +58,6 @@ public class FindPass extends BaseActivity implements OnClickListener{
 					tv_msg.setText("发送验证码到手机");
 					isMail=false;
 				}
-
 			}
 
 			@Override
@@ -69,59 +69,53 @@ public class FindPass extends BaseActivity implements OnClickListener{
 			public void afterTextChanged(Editable s) {
 			}
 		});
-		
-		
+
 	}
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.login_linear_deletename:
 			login_edit_name.setText("");
 			break;
 		case R.id.login_linear_in:
+			if (StringUtil.isNull(login_edit_name.getText().toString().trim())) {
+				Toast.makeText(getApplicationContext(), "手机号码或邮箱不能为空",
+						Toast.LENGTH_SHORT).show();
+				return;
+			}
+			if (!(StringUtil.isMobile(login_edit_name.getText().toString().trim()) || StringUtil
+					.checkEmail(login_edit_name.getText().toString().trim()))) {
+				Toast.makeText(getApplicationContext(), "请输入正确的手机号码或邮箱",
+						Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
 			if(isMail){
-				 
- 	 
 				System.out.println("-0--"+login_edit_name.getText().toString());
-				
-				 API.getEmailPass(FindPass.this, login_edit_name.getText().toString(),
-							
-					        new HttpCallback(FindPass.this) {	           
-								@Override
-								public void onSuccess(Object data) {
-									// TODO Auto-generated method stub
-						  
-						 	 
-						 		
-								Intent i = new Intent(getApplicationContext(),
-					 			FindpassmailSucces.class);
-					 			i.putExtra("tel", login_edit_name.getText().toString());
-					 			startActivity(i);
-								}
-								@Override
-								public TypeToken getTypeToken() {
-									// TODO Auto-generated method stub
-									return null;
-								}
-					        });
- 
-				
+
+				API.getEmailPass(FindPass.this, login_edit_name.getText().toString(),
+
+						new HttpCallback(FindPass.this) {	           
+					@Override
+					public void onSuccess(Object data) {
+
+						Intent i = new Intent(getApplicationContext(),
+								FindpassmailSucces.class);
+						i.putExtra("tel", login_edit_name.getText().toString());
+						startActivity(i);
+					}
+					@Override
+					public TypeToken getTypeToken() {
+						return null;
+					}
+				}); 
 			}else{
-				
-				
-				
-				
-				
-				
 				Intent i = new Intent(getApplicationContext(),
 						FindPassword.class);
 				i.putExtra("phone", login_edit_name.getText().toString());
 				startActivity(i);
 			}
-		 
-			
-			
+
 			break;
 		default:
 			break;

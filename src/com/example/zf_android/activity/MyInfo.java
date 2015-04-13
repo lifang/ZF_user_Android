@@ -38,18 +38,18 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 	private TextView tv_name,tv_phone,tv_email,tv_location,tv_point;
 	private SharedPreferences mySharedPreferences;
 	private Editor editor;
-	private int cityId=MyApplication.NewUser.getCityId();
+	private int cityId=MyApplication.getInstance().getCityId();
 	private int customerId;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.myinfo);
 		customerId = MyApplication.getInstance().getCustomerId();
 		new TitleMenuUtil(MyInfo.this, "我的信息").show();
 		initView();
 
 	}
-
 
 	private void initView() {
 		btn_exit=(Button) findViewById(R.id.btn_exit);
@@ -201,7 +201,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		editor.commit();
 		Toast.makeText(getApplicationContext(), "退出成功", 1000).show();
 		startActivity(new Intent(MyInfo.this,LoginActivity.class));
-		finish();
+		MyApplication.getInstance().exit();
 	}
 	private void change(){
 

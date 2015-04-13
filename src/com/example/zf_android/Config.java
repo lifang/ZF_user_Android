@@ -54,6 +54,8 @@ public class Config {
 	public static final String URL_ORDER_CART =PATHS+"order/cart";
 	public static final String URL_GOOD_LIST = PATHS+"good/list";
 	//niemin
+	public static String find_phoneCode = "";//找回密码的手机验证码
+	public static String reg_phoneCode = "";//注册的手机验证码
 	public static final String URL_ORDER_LIST =PATHS+"order/getMyOrderAll";
 	public static final String URL_CANCEL_MYORDER =PATHS+"order/cancelMyOrder";
 	public static final String URL_GET_MYORDERBYID =PATHS+"order/getMyOrderById";
@@ -62,4 +64,8 @@ public class Config {
 	public static final String URL_GET_INTEGRALLIST =PATHS+"customers/getIntegralList/{0}/{1}/{2}";
 	public static final String URL_GET_INTEGRALTOTAL =PATHS+"customers/getIntegralTotal/{0}";
 	public static final String URL_INSERT_INTEGRALCONVERT =PATHS+"customers/insertIntegralConvert";
+	public static final String URL_SEND_PHONECODE =PATHS+"user/sendPhoneVerificationCodeFind";
+	public static final String URL_FIGURE_GETLIST =PATHS+"index/sysshufflingfigure/getList";
+		public static final String URL_GOOD_SEARCH =PATHS+"good/search";
+		public static final String URL_TERMINAL_OPENSTATUS =PATHS+"terminal/openStatus";
 }

@@ -33,6 +33,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:background="@color/white"
+                 android:layout_marginRight="40dp"
                 android:hint="@string/hintname"
                 android:maxWidth="20dp"
                 android:singleLine="true"
@@ -54,35 +55,30 @@
                     android:background="@drawable/login_delete" />
             </LinearLayout>
         </RelativeLayout>
+
         <LinearLayout
-	    android:id="@+id/login_linear_in" 
-	    android:layout_width="wrap_content"
-	 android:paddingLeft="7dp"
-	 android:layout_marginTop="3dp"
-	 android:layout_marginBottom="3dp"
-	 android:paddingRight="7dp"
-	    android:layout_height="fill_parent"
-	    android:layout_marginLeft="7dp"
- 
-	    android:layout_marginRight="7dp"
- 
-	    android:background="@drawable/bg_blue_shape"
-	    android:gravity="center"
-	 
-	    android:orientation="horizontal"
-	    >
-	 
-	     
-	    	    <TextView 
-	     	android:id="@+id/tv_msg"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="7dp"
-	        android:text="发送验证码"
-	        android:textSize="16sp"
-	        android:textColor="@color/fffefe"
-	        />
-	</LinearLayout>
+            android:id="@+id/login_linear_in"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/bg_blue_shape"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp" >
+
+            <TextView
+                android:id="@+id/tv_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:text="发送验证码"
+                android:textColor="@color/fffefe"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <View

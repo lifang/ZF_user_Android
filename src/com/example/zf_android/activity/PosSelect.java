@@ -24,7 +24,6 @@ import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
-import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.entity.PosItem;
 import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.PrePosItem;
@@ -56,25 +55,18 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 	private TextView next_sure,tv_back,tv_pp,tv_type,tv_pay_type,tv_paycard_type,tv_jy_type,tv_qgd_type,tv_time,tv_zdj,tv_zgj;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) { 
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.posselect);
 		initView();
 		gateData();
 	}
 	private void gateData() {
-		// TODO Auto-generated method stub
-
-		// TODO Auto-generated method stub
-		String url = "http://114.215.149.242:18080/ZFMerchant/api/good/search";
-		RequestParams params = new RequestParams("city_id", 1);
-	 
-		 
+		RequestParams params = new RequestParams("city_id", MyApplication.getInstance().getCityId());
 		 
 		params.setUseJsonStreamer(true);
 
 		MyApplication.getInstance().getClient()
-				.post(url, params, new AsyncHttpResponseHandler() {
+				.post(Config.URL_GOOD_SEARCH, params, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
@@ -82,8 +74,6 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 						String responseMsg = new String(responseBody)
 								.toString();
 						Log.e("print", responseMsg);
-
-					 
 						 
 						Gson gson = new Gson();
 						
@@ -96,7 +86,6 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 							if(a==Config.CODE){  
 					 
 								String res =jsonobject.getString("result");
-								 
 								
 								pse= gson.fromJson(res, new TypeToken <PosSelectEntity> () {
 			 					}.getType());
@@ -105,36 +94,25 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 								
 //								myList.addAll(moreList);
 //				 				handler.sendEmptyMessage(0);
-//			 					  
-//			 				 
 			 			 
 							}else{
 								code = jsonobject.getString("message");
 								Toast.makeText(getApplicationContext(), code, 1000).show();
 							}
 						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
 							e.printStackTrace();
-							
 						}
-
 					}
 
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
 						System.out.println("-onFailure---");
 						Log.e("print", "-onFailure---" + error);
 					}
 				});
- 
-		 
-	
 	}
 	private void initView() {
-		
 		
 		mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
@@ -146,7 +124,6 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 		}
 		img_on_off.setOnClickListener(this);
 		
-		// TODO Auto-generated method stub
 		et1=(EditText) findViewById(R.id.et_zdj);
 		et2=(EditText) findViewById(R.id.et_zgj);
 		
@@ -184,7 +161,6 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 	}
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.next_sure:  // 
 			int a=0 ;int b=0;
@@ -231,9 +207,6 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 						finish();
 					}
 			 }
-		 
- 
-			
 			break;
 		case R.id.tv_back:  // next_sure
 			finish();
@@ -273,8 +246,6 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 			 
 			startActivityForResult(ll_jy_type, 104);
 			break;	
-			 
-			
 			
 		case R.id.ll_qgd_type:   
 			Intent ll_qgd_type=new Intent(PosSelect.this, PosSelecList.class);
@@ -309,8 +280,6 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 				editor.commit();
 				has_purchase=1;
 			}
-			
-			
 			
 			break;
 		default:

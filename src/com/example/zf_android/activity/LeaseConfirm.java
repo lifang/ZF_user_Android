@@ -59,7 +59,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lea_confirm);
 		new TitleMenuUtil(LeaseConfirm.this, "租赁订单确认").show();
@@ -134,7 +133,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				// TODO Auto-generated method stub
 				showCountText.setText(arg0.toString());
 				tv_count.setText("共计:   "+arg0+"件");
 				 if( buyCountEdit.getText().toString().equals("")){
@@ -154,7 +152,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -207,8 +204,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 									Toast.makeText(getApplicationContext(), code, 1000).show();
 								}
 							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								 ;	
 								e.printStackTrace();
 								
 							}
@@ -218,7 +213,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 						@Override
 						public void onFailure(int statusCode, Header[] headers,
 								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
 							System.out.println("-onFailure---");
 							Log.e("print", "-onFailure---" + error);
 						}
@@ -229,7 +223,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	}
 	@Override
 	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
 		switch (arg0.getId()) {
 		case R.id.ll_choose:
 			Intent i =new Intent(LeaseConfirm.this,ChanceAdress.class);
