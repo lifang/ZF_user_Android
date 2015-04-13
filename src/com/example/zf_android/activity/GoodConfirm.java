@@ -35,10 +35,8 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;
-import com.example.zf_android.entity.UserEntity;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_zandroid.adapter.ChooseAdressAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -62,18 +60,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	private int customerId;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_confirm);
 		new TitleMenuUtil(GoodConfirm.this, "订单确认").show();
 		customerId = MyApplication.getInstance().getCustomerId();
-		//			i2.putExtra("getTitle", gfe.getGood_brand());
-//		i2.putExtra("price", gfe.getPrice());
-//		i2.putExtra("model", gfe.getModel_number());
-//		i2.putExtra("chanel", chanel);
-//		i2.putExtra("chanelID", paychannelId);
-//		i2.putExtra("id", gfe.getId());
-//		startActivity(i2);
+		
 		System.out.println("进入订单确认····");
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
@@ -88,7 +79,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		add=(ImageView) findViewById(R.id.add);
 		reduce=(ImageView) findViewById(R.id.reduce);
 		reduce.setOnClickListener(this);
@@ -116,7 +106,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				// TODO Auto-generated method stub
 				if(arg1){
 					is_need_invoice=1;
 				}else{
@@ -128,7 +117,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				// TODO Auto-generated method stub
 				showCountText.setText(arg0.toString());
 				tv_count.setText("共计:   "+arg0+"件");
 				 if( buyCountEdit.getText().toString().equals("")){
@@ -144,13 +132,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				// TODO Auto-generated method stub
 				
 			}
 			
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -180,7 +166,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				invoice_type = 0;
 				tv_pop.setText("公司");
 				menuWindow.dismiss();
@@ -193,7 +178,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				invoice_type = 1;
 				tv_pop.setText("个人"); 
 				menuWindow.dismiss(); 
@@ -257,8 +241,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 									Toast.makeText(getApplicationContext(), code, 1000).show();
 								}
 							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								 ;	
 								e.printStackTrace();
 								
 							}
@@ -268,7 +250,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 						@Override
 						public void onFailure(int statusCode, Header[] headers,
 								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
 							System.out.println("-onFailure---");
 							Log.e("print", "-onFailure---" + error);
 						}
@@ -314,22 +295,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
  										tv_tel.setText( moreList.get(i).getMoblephone());
  									}
  								}
- 								
- 								
- 								
- 								
-// 							myList.addAll(moreList);
-// 				 				handler.sendEmptyMessage(0);
-			 					  
-			 				 
-			 			 
 							}else{
 								code = jsonobject.getString("message");
 								Toast.makeText(getApplicationContext(), code, 1000).show();
 							}
 						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
 							e.printStackTrace();
 							
 						}
@@ -339,19 +309,13 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
 						System.out.println("-onFailure---");
 						Log.e("print", "-onFailure---" + error);
 					}
 				});
- 
-		 
-	
-	
 	}
 	@Override
 	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
 		switch (arg0.getId()) {
 		case R.id.tv_pop:
 			menu_press();
@@ -380,7 +344,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode==11){
 			if(data!=null){
@@ -393,7 +356,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		}
 	}
 	private void confirmGood() {
-		// TODO Auto-generated method stub
 		 
 		 //quantity addressId comment is_need_invoice et_titel  
 		quantity= Integer.parseInt( buyCountEdit.getText().toString() );
@@ -426,11 +388,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 
 					@Override
 					public TypeToken getTypeToken() {
-						// TODO Auto-generated method stub
 						return  null;
 					}
                 });
-
- 
 	}
 }

@@ -1,5 +1,5 @@
 package com.example.zf_android.activity;
- 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +32,11 @@ import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.PosAdapter;
 import com.google.gson.reflect.TypeToken;
 
- 
+
 public class PosListActivity extends BaseActivity implements OnClickListener, IXListViewListener{
 	private ImageView pos_select,search2,img3;	
 	private XListView Xlistview;
+	private LinearLayout titleback_linear_back;
 	private int page=1;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata,ll_xxyx,ll_mr,ll_updown,ll_pj;
@@ -48,20 +49,16 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	private int orderType=0;
 	private int has_purchase=0;
 	private EditText et_search;
-	 List<PosItem> slist=new ArrayList<PosItem>();
-	 ArrayList<Integer>  category = new ArrayList<Integer>();
-	 ArrayList<Integer>  brands_id = new ArrayList<Integer>();
-	 ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
-	 ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
-	 ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
-	 
-	 ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
-	 ArrayList<Integer>  tDate = new ArrayList<Integer>();
- 
- 
+	List<PosItem> slist=new ArrayList<PosItem>();
+	ArrayList<Integer>  category = new ArrayList<Integer>();
+	ArrayList<Integer>  brands_id = new ArrayList<Integer>();
+	ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
+	ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
+	ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
 
-	 
-	 
+	ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
+	ArrayList<Integer>  tDate = new ArrayList<Integer>();
+
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
 	List<PosEntity>  moreList = new ArrayList<PosEntity>();
 	private Handler handler = new Handler() {
@@ -69,19 +66,19 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			switch (msg.what) {
 			case 0:
 				onLoad( );
-				
+
 				if(myList.size()==0){
-			 
+
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
 				onRefresh_number = true; 
-			 	myAdapter.notifyDataSetChanged();
+				myAdapter.notifyDataSetChanged();
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
 						Toast.LENGTH_SHORT).show();
-			 
+
 				break;
 			case 2: // 
 				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
@@ -94,24 +91,17 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			}
 		}
 	};
-	
-	
-	
-	
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.poslist_activity);
 		// MyApplication.pse=new PosSelectEntity();
- 
+
 		initView();
 		getData();
 	}
 	private void initView() {
-		// TODO Auto-generated method stub
 		ll_mr=(LinearLayout) findViewById(R.id.ll_mr);
 		ll_mr.setOnClickListener(this);
 		ll_xxyx=(LinearLayout) findViewById(R.id.ll_xxyx);
@@ -120,19 +110,21 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		ll_updown.setOnClickListener(this);
 		ll_pj=(LinearLayout) findViewById(R.id.ll_pj);
 		ll_pj.setOnClickListener(this);
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
+		titleback_linear_back.setOnClickListener(this);
 		tv_mr=(TextView) findViewById(R.id.tv_mr);
 		tv_2=(TextView) findViewById(R.id.tv_2);
 		tv_3=(TextView) findViewById(R.id.tv_3);
 		tv_4=(TextView) findViewById(R.id.tv_4);
 		img3=(ImageView) findViewById(R.id.img3);
-		
+
 		et_search=(EditText) findViewById(R.id.et_search);
 		et_search.setOnClickListener(this);
 		pos_select=(ImageView) findViewById(R.id.pos_select);
 		pos_select.setOnClickListener(this);
 		search2=(ImageView) findViewById(R.id.search2);
 		search2.setOnClickListener(this);
-		
+
 		myAdapter=new PosAdapter(PosListActivity.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		Xlistview=(XListView) findViewById(R.id.x_listview);
@@ -146,10 +138,8 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 				Intent i =new Intent (PosListActivity.this,GoodDeatail.class);
 				i.putExtra("id", myList.get(position-1).getId());
-				System.out.println("-Xlistview--"+id);
 				startActivity(i);
 			}
 		});
@@ -157,22 +147,23 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	}
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
+		case R.id.titleback_linear_back:
+			finish();
+			break;
 		case R.id.pos_select:
 			Intent i =new Intent(PosListActivity.this,PosSelect.class);
 			startActivityForResult(i, 1);
 			break;
 			//search2
 		case R.id.search2:
-		 
+
 			startActivity( new Intent(PosListActivity.this,ShopCar.class));
 			break;
 		case R.id.et_search:
 			Intent ii =  new Intent(PosListActivity.this,PosSearch.class);
 			startActivityForResult(ii, 2);
-			
-		 
+
 			break;	
 		case R.id.ll_mr:
 			orderType=0;
@@ -202,7 +193,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				isDown=true;
 				img3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ti_up));
 			}
-			 
+
 			tv_mr.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			tv_2.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			tv_3.setTextColor(getResources().getColor(R.color.bgtitle));
@@ -223,30 +214,22 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			break;
 		}
 	}	
-	
-	
-	
+
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
 		page = 1;
-		 System.out.println("onRefresh1");
 		myList.clear();
-		 System.out.println("onRefresh2");
 		getData();
 	}
 
 
 	@Override
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 		if (onRefresh_number) {
 			page = page+1;
-			
+
 			onRefresh_number = false;
 			getData();
-			
- 
 		}
 		else {
 			handler.sendEmptyMessage(3);
@@ -263,7 +246,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		myList.clear();
 		getData();
 	}
-	 
+
 	private void getData() {
 		API.postList(this, MyApplication.getInstance().getCityId(), orderType,
 				brands_id, null, null, null, null, null, null,
@@ -278,16 +261,12 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				handler.sendEmptyMessage(0);
 			}
 
-	 
-
 			@Override
 			public TypeToken   getTypeToken() {
 				return  new TypeToken<NewPoslistEntity>() {
 				};
 			}
 		});
- 
-		 
 	}
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -305,20 +284,18 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				trade_type_id=data.getIntegerArrayListExtra("trade_type_id");
 				sale_slip_id=data.getIntegerArrayListExtra("sale_slip_id");
 				tDate=data.getIntegerArrayListExtra("tDate");
-			 
-//				 ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
-//				 
-//				 ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
-//				 ArrayList<Integer>  tDate = new ArrayList<Integer>();
-				
-				
+
+				//				 ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
+				//				 ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
+				//				 ArrayList<Integer>  tDate = new ArrayList<Integer>();
+
 				System.out.println(trade_type_id.toString()+"<trade_type_id--sale_slip_id>"+sale_slip_id.toString()+"tDate-->"+tDate.toString()); 
-				
+
 				System.out.println(pay_channel_id+"<-->"+minPrice+brands_id.toString()+"pay_card_id"+pay_card_id.toString()); 
 				myList.clear();
 				getData();
 			}
-			
+
 			break;
 		case 2:
 			if(data!=null){
@@ -328,7 +305,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				myList.clear();
 				getData();
 			}
-			
+
 			break;
 		default:
 			break;

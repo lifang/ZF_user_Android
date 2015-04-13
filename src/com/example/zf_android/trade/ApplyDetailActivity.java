@@ -54,6 +54,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -257,7 +258,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 		mMaterialContainer.removeAllViews();
 		initMerchantDetailKeys();
 
-		API.getApplyDetail(this, 80, mTerminalId, applyType, new HttpCallback<ApplyDetail>(this) {
+		API.getApplyDetail(this, MyApplication.getInstance().getCustomerId(), mTerminalId, applyType,
+				new HttpCallback<ApplyDetail>(this) {
 			@Override
 			public void onSuccess(ApplyDetail data) {
 				ApplyTerminalDetail terminalDetail = data.getTerminalDetail();

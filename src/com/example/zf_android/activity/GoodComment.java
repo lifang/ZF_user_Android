@@ -95,7 +95,6 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		
 		new TitleMenuUtil(GoodComment.this, "评论  ("+title+")").show();
 		myAdapter=new GoodCommentAdapter(GoodComment.this, myList);
@@ -112,7 +111,6 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 			//	Intent i = new Intent(GoodComment.this, OrderDetail.class);
 			//	startActivity(i);
 			}
@@ -122,23 +120,16 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
 		page = 1;
-		 System.out.println("onRefresh1");
 		myList.clear();
-		 System.out.println("onRefresh2");
 		getData();
 	}
 
 
 	@Override
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 		if (onRefresh_number) {
 			page = page+1;
-			
-		//	onRefresh_number = false;
-		//	getData();
 			
 			if (Tools.isConnect(getApplicationContext())) {
 				onRefresh_number = false;
@@ -210,8 +201,6 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 								Toast.makeText(getApplicationContext(), code, 1000).show();
 							}
 						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
 							e.printStackTrace();
 							
 						}

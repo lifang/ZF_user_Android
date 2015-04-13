@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.AfterSaleGridActivity;
 import com.example.zf_android.trade.ApplyOpenProgressActivity;
@@ -20,6 +21,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.menu_mine);
 		initView();
 	}

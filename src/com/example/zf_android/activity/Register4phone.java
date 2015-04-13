@@ -68,6 +68,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		MyApplication.getInstance().addActivity(this);
 		cityid=MyApplication.getInstance().getCityId();
 		setContentView(R.layout.register_phone);
 		new TitleMenuUtil(Register4phone.this, "注册").show();
@@ -367,9 +368,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 	} 
 	public void zhuche(){ 
 		API.zhuche(Register4phone.this, email,pass,Config.reg_phoneCode, cityid,false,
-
 				new HttpCallback(Register4phone.this) {
-
 
 			@Override
 			public void onSuccess(Object data) {

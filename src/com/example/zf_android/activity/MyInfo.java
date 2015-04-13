@@ -43,6 +43,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.myinfo);
 		customerId = MyApplication.getInstance().getCustomerId();
 		new TitleMenuUtil(MyInfo.this, "我的信息").show();
@@ -200,7 +201,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		editor.commit();
 		Toast.makeText(getApplicationContext(), "退出成功", 1000).show();
 		startActivity(new Intent(MyInfo.this,LoginActivity.class));
-		finish();
+		MyApplication.getInstance().exit();
 	}
 	private void change(){
 

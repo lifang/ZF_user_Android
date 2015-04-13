@@ -9,38 +9,38 @@
         android:layout_width="fill_parent"
         android:layout_height="96dp"
         android:background="@drawable/bg_item" >
- 
-		
-		<LinearLayout android:layout_height="fill_parent"
-		    android:layout_width="wrap_content"
-		    android:gravity="center"
-		    android:id="@+id/ll_isshow"
-		    android:layout_marginLeft="7dp"
-		    android:orientation="vertical">
-		    
-		    		<CheckBox
-                    android:id="@+id/item_cb"
-                    style="@style/MyCheckBox"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                   	android:layout_marginLeft="7dp"
-                 	android:clickable="false"
-                 	android:focusable="false"
-                   	 android:layout_gravity="center_vertical"
-                    android:checked="true" />
-		    <TextView
+
+        <LinearLayout
+            android:id="@+id/ll_isshow"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="7dp"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:orientation="vertical" >
+
+            <CheckBox
+                android:id="@+id/item_cb"
+                style="@style/MyCheckBox"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="7dp"
+                android:checked="true"
+                android:clickable="false"
+                android:focusable="false" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-              
                 android:layout_marginTop="14dp"
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:text="{默认}"
                 android:textColor="@color/bgtitle"
                 android:textSize="13sp" />
-		</LinearLayout>
-		
-		
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -88,8 +88,6 @@
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
         </LinearLayout>
-
-         
     </LinearLayout>
 
     <View

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
@@ -90,7 +91,7 @@ public class TerminalAddActivity extends Activity implements View.OnClickListene
 				startActivityForResult(intent, 1);
 				break;
 			case R.id.terminal_submit:
-				API.addTerminal(TerminalAddActivity.this, 80, mChannelId,
+				API.addTerminal(TerminalAddActivity.this, MyApplication.getInstance().getCustomerId(), mChannelId,
 						mTerminalNumber.getText().toString(), mMerchantName.getText().toString(),
 						new HttpCallback(TerminalAddActivity.this) {
 							@Override

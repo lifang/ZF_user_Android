@@ -58,6 +58,7 @@ public class Register3phone extends BaseActivity   implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		MyApplication.getInstance().addActivity(this);
 		cityid=MyApplication.getInstance().getCityId();
 		setContentView(R.layout.register_checkcode);
 		new TitleMenuUtil(Register3phone.this, "注册").show();

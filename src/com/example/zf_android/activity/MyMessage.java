@@ -96,6 +96,7 @@ OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_message);
+		MyApplication.getInstance().addActivity(this);
 		MyApplication.setIsSelect(false);
 		initView();
 		getData();

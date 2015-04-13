@@ -14,10 +14,11 @@ import android.widget.Toast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 
 public class Register extends BaseActivity implements OnClickListener{
-	//�������������ʼ�
+	
 	private EditText login_edit_name;
 	private LinearLayout login_linear_deletename,login_linear_in;
 	private TextView tv_msg;
@@ -25,6 +26,7 @@ public class Register extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.register);
 		new TitleMenuUtil(Register.this,"注册").show();
 		initView();

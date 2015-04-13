@@ -45,7 +45,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-
+		MyApplication.getInstance().addActivity(this);
 		initView();
 		new TitleMenuUtil(LoginActivity.this, "登录").show();
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
@@ -168,7 +168,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 				MyApplication.getInstance().setCustomerId(data.getId());
 				Intent i =new Intent(getApplicationContext(), Main.class);
 				startActivity(i);
-				finish();	
+				finish();
+				//MyApplication.getInstance().exit();
 			}
 
 			@Override
@@ -194,12 +195,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 		}
 		passsword=StringUtil.Md5(passsword);
 		
-		if (!(StringUtil.isMobile(usename) || StringUtil
-				.checkEmail(usename))) {
-			Toast.makeText(getApplicationContext(), "请输入正确的手机号码或邮箱",
-					Toast.LENGTH_SHORT).show();
-			return false;
-		}
 		return true;
 	}
 

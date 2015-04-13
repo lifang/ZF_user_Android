@@ -31,7 +31,6 @@ public class ApplyNeed extends BaseActivity{
 	List<ApplyneedEntity>  singleList = new ArrayList<ApplyneedEntity>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.apply_need);
 		new TitleMenuUtil(ApplyNeed.this, "申请开通所需材料").show();

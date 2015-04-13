@@ -19,6 +19,7 @@ import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -68,6 +69,7 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.activity_findpass);
 		new TitleMenuUtil(FindPassword.this, "找回密码").show();
 		initView();

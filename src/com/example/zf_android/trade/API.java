@@ -995,5 +995,15 @@ public class API {
 		params.put("codeNumber", codeNumber);
 		new HttpRequest(context, callback).post(Config.URL_SEND_PHONECODE, params);
 	}
+	//购物车列表
+	public static void cartList(
+			Context context,
+			int customerId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", customerId);
+		new HttpRequest(context, callback).post(Config.URL_CART_LIST, params);
+	}
+	
 }
 

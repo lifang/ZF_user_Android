@@ -44,6 +44,8 @@ public class RegistMail extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.regist_mail);
 		String a=getIntent().getStringExtra("email");
 		initView();

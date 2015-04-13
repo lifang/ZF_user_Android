@@ -25,8 +25,9 @@
     <LinearLayout
         android:id="@+id/eva_nodata"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:background="@color/ffffff"
         android:orientation="horizontal"
         android:visibility="gone" >
@@ -77,9 +78,9 @@
             <TextView
                 android:id="@+id/howMoney"
                 android:layout_width="fill_parent"
-                android:gravity="right"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
+                android:gravity="right"
                 android:text="合计：￥0"
                 android:textColor="@color/text292929"
                 android:textSize="17sp" />

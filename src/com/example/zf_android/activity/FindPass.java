@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -29,6 +30,7 @@ public class FindPass extends BaseActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.findpass);
+		MyApplication.getInstance().addActivity(this);
 		new TitleMenuUtil(FindPass.this,"找回密码").show();
 		initView();
 	}

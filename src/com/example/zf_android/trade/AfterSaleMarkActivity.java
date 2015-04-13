@@ -2,7 +2,6 @@ package com.example.zf_android.trade;
 
 import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_ID;
 import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
@@ -54,7 +54,7 @@ public class AfterSaleMarkActivity extends Activity {
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                API.addMark(AfterSaleMarkActivity.this, mRecordType, mRecordId, Constants.CUSTOMER_ID,
+                API.addMark(AfterSaleMarkActivity.this, mRecordType, mRecordId, MyApplication.getInstance().getCustomerId(),
                         mCompanyEdit.getText().toString(), mNumberEdit.getText().toString(),
                         new HttpCallback(AfterSaleMarkActivity.this) {
                             @Override

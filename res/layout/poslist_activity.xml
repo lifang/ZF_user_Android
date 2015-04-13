@@ -16,8 +16,8 @@
             android:id="@+id/titleback_linear_back"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/titleback_height"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/d_7dp"
+            android:paddingLeft="@dimen/d_7dp"
+            android:paddingRight="7dp"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -33,7 +33,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
             android:layout_weight="1"
             android:hint="搜索商品"
             android:drawableLeft="@drawable/search_bg" />

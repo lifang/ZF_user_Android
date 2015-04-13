@@ -65,4 +65,7 @@ public class Config {
 	public static final String URL_GET_INTEGRALTOTAL =PATHS+"customers/getIntegralTotal/{0}";
 	public static final String URL_INSERT_INTEGRALCONVERT =PATHS+"customers/insertIntegralConvert";
 	public static final String URL_SEND_PHONECODE =PATHS+"user/sendPhoneVerificationCodeFind";
+	public static final String URL_FIGURE_GETLIST =PATHS+"index/sysshufflingfigure/getList";
+		public static final String URL_GOOD_SEARCH =PATHS+"good/search";
+		public static final String URL_TERMINAL_OPENSTATUS =PATHS+"terminal/openStatus";
 }
