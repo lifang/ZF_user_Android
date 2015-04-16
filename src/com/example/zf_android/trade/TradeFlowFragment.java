@@ -352,8 +352,20 @@ public class TradeFlowFragment extends Fragment implements
 										+ (month < 10 ? "0" + month : month)
 										+ "-" + (day < 10 ? "0" + day : day);
 								if (isStartDate) {
+									
+									if (!TextUtils.isEmpty(tradeEndDate)
+											&& dateStr
+													.compareTo(tradeEndDate) > 0) {
+										Toast.makeText(
+												getActivity(),"开始时间不能大于结束时间",
+												Toast.LENGTH_SHORT).show();
+										return;
+									}
+									
+									
 									mTradeStartDate.setText(dateStr);
 									tradeStartDate = dateStr;
+									
 								} else {
 									if (!TextUtils.isEmpty(tradeStartDate)
 											&& dateStr

@@ -172,6 +172,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			tv_3.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			tv_4.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			myList.clear();
+			page = 1;
 			getData();
 			break;	
 		case R.id.ll_xxyx:
@@ -181,6 +182,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			tv_3.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			tv_4.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			myList.clear();
+			page = 1;
 			getData();
 			break;	
 		case R.id.ll_updown:
@@ -199,6 +201,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			tv_3.setTextColor(getResources().getColor(R.color.bgtitle));
 			tv_4.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			myList.clear();
+			page = 1;
 			getData();
 			break;	
 		case R.id.ll_pj:
@@ -208,6 +211,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			tv_3.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			tv_4.setTextColor(getResources().getColor(R.color.bgtitle));
 			myList.clear();
+			page = 1;
 			getData();
 			break;	
 		default:

@@ -275,7 +275,6 @@
             android:layout_weight="1"
             android:gravity="right"
             android:singleLine="true"
-            
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
 

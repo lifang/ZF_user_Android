@@ -38,13 +38,15 @@ public class MymsgDetail extends BaseActivity{
 	private LinearLayout titleback_linear_back;
 	private String id;
 	private ImageView search;
+	private TextView titleback_text_title,tv_back;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.system_detail);
 		id=getIntent().getStringExtra("id");
 		initView();
-		new TitleMenuUtil(MymsgDetail.this, "消息详情").show();
 		getData();
 	}
 	private void getData() {
@@ -119,6 +121,33 @@ public class MymsgDetail extends BaseActivity{
 				dialog.show();
 			}
 		});
+		
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
+		titleback_text_title = (TextView)findViewById(R.id.titleback_text_title);
+		tv_back = (TextView) findViewById(R.id.tv_back);
+		titleback_text_title.setText("消息详情");
+		tv_back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.putExtra("flag", "read");
+				intent.putExtra("id", id);
+				setResult(Activity.RESULT_OK, intent);
+				finish();
+			}
+		});
+
+		titleback_linear_back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.putExtra("flag", "read");
+				intent.putExtra("id", id);
+				setResult(Activity.RESULT_OK, intent);
+				finish();
+			}
+		});
+		
 	}
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

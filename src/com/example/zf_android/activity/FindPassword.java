@@ -185,8 +185,8 @@ public class FindPassword extends BaseActivity   implements OnClickListener{
 
 	private void sure() {
 
-		System.out.println(pass+"-------"+email+"----"+Config.find_phoneCode);
-		API.PhonefindPass(FindPassword.this, pass,Config.find_phoneCode,email,
+		System.out.println(pass+"-------"+email+"----"+login_edit_code.getText().toString());
+		API.PhonefindPass(FindPassword.this, pass,login_edit_code.getText().toString(),email,
 				new HttpCallback(FindPassword.this) {	           
 			@Override
 			public void onSuccess(Object data) {
