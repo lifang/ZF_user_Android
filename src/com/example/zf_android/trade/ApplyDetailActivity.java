@@ -69,6 +69,7 @@ import com.example.zf_android.trade.entity.ApplyMaterial;
 import com.example.zf_android.trade.entity.ApplyTerminalDetail;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Merchant;
+import com.example.zf_android.trade.entity.OpeningInfos;
 import com.example.zf_android.trade.entity.Province;
 import com.example.zf_android.trade.widget.MyTabWidget;
 import com.google.gson.reflect.TypeToken;
@@ -266,7 +267,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				final List<ApplyChooseItem> merchants = data.getMerchants();
 				List<ApplyMaterial> materials = data.getMaterials();
 				List<ApplyCustomerDetail> customerDetails = data.getCustomerDetails();
-
+				final	OpeningInfos openingInfos = data.getOpeningInfos();
 				if (null != terminalDetail) {
 					mPosBrand.setText(terminalDetail.getBrandName());
 					mPosModel.setText(terminalDetail.getModelNumber());
@@ -283,7 +284,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				});
 				// set the customer details
 				setCustomerDetail(materials, customerDetails);
-
+				setData(openingInfos);
 			}
 
 			@Override
@@ -604,6 +605,34 @@ public class ApplyDetailActivity extends FragmentActivity {
 		setItemValue(mBankKeys[4], merchant.getOrganizationCodeNo());
 	}
 
+	private void setData(final OpeningInfos openingInfos){
+		final String[] items = getResources().getStringArray(R.array.apply_detail_gender);
+		setItemValue(mMerchantKeys[1], openingInfos.getName());
+		setItemValue(mMerchantKeys[2], openingInfos.getMerchant_name());
+		setItemValue(mMerchantKeys[3], items[openingInfos.getSex()]);
+		setItemValue(mMerchantKeys[4], openingInfos.getBirthday());
+		setItemValue(mMerchantKeys[5], openingInfos.getCard_id());
+		setItemValue(mMerchantKeys[6], openingInfos.getPhone());
+		setItemValue(mMerchantKeys[7], openingInfos.getEmail());
+		CommonUtil.findCityById(this, openingInfos.getCity_id(), new CommonUtil.OnCityFoundListener() {
+			@Override
+			public void onCityFound(Province province, City city) {
+				mMerchantProvince = province;
+				mMerchantCity = city;
+				setItemValue(mMerchantKeys[8], city.getName());
+			}
+		});
+
+		setItemValue(mBankKeys[0], openingInfos.getAccount_bank_name());
+		setItemValue(mBankKeys[1], openingInfos.getAccount_bank_num());
+		setItemValue(mBankKeys[2], openingInfos.getAccount_bank_code());
+		setItemValue(mBankKeys[3], openingInfos.getTax_registered_no());
+		setItemValue(mBankKeys[4], openingInfos.getOrganization_code_no());
+		setItemValue(mBankKeys[5], openingInfos.getChannelname());
+		
+	}
+	
+	
 	/**
 	 * start the {@link ApplyChooseActivity} to choose item
 	 *

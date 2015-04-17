@@ -141,7 +141,7 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 			}
 			switch (type) {
 			case TYPE_7:
-				intent.putExtra("value", merchantEntity.getCity_id());
+				intent.putExtra("value", merchantEntity.getCityId());
 				intent.setClass(CreatMerchant.this, CityProvinceActivity.class);
 				startActivityForResult(intent, type);
 				break;
@@ -206,10 +206,10 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 			Province province =  (Province)data.getSerializableExtra(Constants.CityIntent.SELECTED_PROVINCE);
 			City city = (City)data.getSerializableExtra(Constants.CityIntent.SELECTED_CITY);
 			if(province == null || city == null){
-				merchantEntity.setCity_id(0);
+				merchantEntity.setCityId(0);
 				tv7.setText("");
 			} else{
-				merchantEntity.setCity_id(city.getId());
+				merchantEntity.setCityId(city.getId());
 				tv7.setText(province.getName()+city.getName());
 			}
 	
@@ -231,25 +231,25 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 						layout.setClickable(true);
 						switch (type) {
 						case TYPE_10:
-							merchantEntity.setCard_id_front_photo_path(url);
+							merchantEntity.setCardIdFrontPhotoPath(url);
 							break;
 						case TYPE_11:
-							merchantEntity.setCard_id_back_photo_path(url);
+							merchantEntity.setCardIdBackPhotoPath(url);
 							break;
 						case TYPE_12:
-							merchantEntity.setBody_photo_path(url);
+							merchantEntity.setBodyPhotoPath(url);
 							break;
 						case TYPE_13:
-							merchantEntity.setLicense_no_pic_path(url);
+							merchantEntity.setLicenseNoPicPath(url);
 							break;
 						case TYPE_14:
-							merchantEntity.setTax_no_pic_path(url);
+							merchantEntity.setTaxNoPicPath(url);
 							break;
 						case TYPE_15:
-							merchantEntity.setOrg_code_no_pic_path(url);
+							merchantEntity.setOrgCodeNoPicPath(url);
 							break;
 						case TYPE_16:
-							merchantEntity.setAccount_pic_path(url);
+							merchantEntity.setAccountPicPath(url);
 							break;
 						default:
 							break;
@@ -322,13 +322,13 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.btn_save:
 			merchantEntity.setTitle(tv1.getText().toString());
-			merchantEntity.setLegal_person_name(tv2.getText().toString());
-			merchantEntity.setLegal_person_card_id(tv3.getText().toString());
-			merchantEntity.setBusiness_license_no(tv4.getText().toString());
-			merchantEntity.setTax_registered_no(tv5.getText().toString());
-			merchantEntity.setOrganization_code_no(tv6.getText().toString());
-			merchantEntity.setAccount_bank_name(tvkhyh.getText().toString());
-			merchantEntity.setBank_open_account(tv8.getText().toString());
+			merchantEntity.setLegalPersonName(tv2.getText().toString());
+			merchantEntity.setLegalPersonCardId(tv3.getText().toString());
+			merchantEntity.setBusinessLicenseNo(tv4.getText().toString());
+			merchantEntity.setTaxRegisteredNo(tv5.getText().toString());
+			merchantEntity.setOrganizationCodeNo(tv6.getText().toString());
+			merchantEntity.setAccountBankName(tvkhyh.getText().toString());
+			merchantEntity.setBankOpenAccount(tv8.getText().toString());
 			needFresh = true;
 			API.createMerchant(CreatMerchant.this,customerId,merchantEntity,
 	                new HttpCallback<String> (CreatMerchant.this) {

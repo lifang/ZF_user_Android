@@ -134,7 +134,7 @@ public class StringUtil {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		return md5Password.toUpperCase();
+		return md5Password;
 	}
 
 	// 去除所有空格

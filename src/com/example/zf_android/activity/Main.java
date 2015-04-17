@@ -7,6 +7,8 @@ import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINC
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -36,6 +38,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.examlpe.zf_android.util.ImageCacheUtil;
+import com.examlpe.zf_android.util.ScreenUtils;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -106,11 +109,20 @@ public class Main extends BaseActivity implements OnClickListener{
 
 				break;
 			case 4:
-
+				pagerIndex++;
+				pagerIndex = pagerIndex>list.size()?0:pagerIndex;
+				view_pager.setCurrentItem(pagerIndex);
 				break;
 			}
 		}
 	};
+	
+	private int pagerIndex = 0;
+	private static final int time = 5000;
+	private  Timer timer = null;
+	private  TimerTask task = null;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -154,7 +166,25 @@ public class Main extends BaseActivity implements OnClickListener{
 		islogin=mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
 		MyApplication.getInstance().setCustomerId(id);
+		
+		timer = new Timer();
+		task = new TimerTask()
+		{
+			public void run()
+			{
+				handler.sendEmptyMessage(4);
+			}
+		};
+		timer.schedule(task, time, time);
 	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		timer.cancel();
+		super.onPause();
+	}
+	
 	private void InitLocation(){
 		LocationClientOption option = new LocationClientOption();
 		option.setLocationMode(LocationMode.Hight_Accuracy);//设置定位模式
@@ -211,6 +241,7 @@ public class Main extends BaseActivity implements OnClickListener{
 
 		citySelect = findViewById(R.id.titleback_linear_back);
 		cityTextView = (TextView) findViewById(R.id.tv_city);
+		cityTextView.setMaxWidth(ScreenUtils.getScreenWidth(this)/5);
 		citySelect.setOnClickListener(this);
 		main_rl_gwc=(RelativeLayout) findViewById(R.id.main_rl_gwc);
 		main_rl_gwc.setOnClickListener(this);
@@ -476,7 +507,7 @@ public class Main extends BaseActivity implements OnClickListener{
 
 		@Override
 		public void onPageSelected(int position) {
-
+			pagerIndex = position;
 			// 改变所有导航的背景图片为：未选中
 			for (int i = 0; i < indicator_imgs.length; i++) {
 				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);

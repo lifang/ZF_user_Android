@@ -5,6 +5,9 @@ import static com.example.zf_android.trade.Constants.TradeIntent.END_DATE;
 import static com.example.zf_android.trade.Constants.TradeIntent.START_DATE;
 import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_TYPE;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,7 +48,9 @@ public class TradeStatisticActivity extends Activity {
                 new HttpCallback<TradeStatistic>(this) {
                     @Override
                     public void onSuccess(TradeStatistic data) {
-                        statisticAmount.setText("" + data.getAmountTotal());
+                    	DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+            			df.applyPattern("0.00");
+                        statisticAmount.setText(getString(R.string.notation_yuan) + df.format(data.getAmountTotal()*1.0f/100));
                         statisticCount.setText("" + data.getTradeTotal());
                         statisticTime.setText(mStartDate.replaceAll("-", "/") + " - " + mEndDate.replaceAll("-", "/"));
                         statisticClient.setText(data.getTerminalNumber());

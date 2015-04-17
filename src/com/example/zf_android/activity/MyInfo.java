@@ -36,8 +36,6 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 	private Button btn_exit;
 	private LinearLayout mi_name,mi_phone,mi_email,mi_location,mi_point,mi_r6,mi_r7;
 	private TextView tv_name,tv_phone,tv_email,tv_location,tv_point;
-	private SharedPreferences mySharedPreferences;
-	private Editor editor;
 	private int cityId=MyApplication.getInstance().getCityId();
 	private int customerId;
 	@Override
@@ -195,12 +193,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 
 
 	private void exit() {
-		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
-		editor = mySharedPreferences.edit();
-		editor.putBoolean("islogin", false);
-		editor.commit();
 		Toast.makeText(getApplicationContext(), "退出成功", 1000).show();
-		startActivity(new Intent(MyInfo.this,LoginActivity.class));
 		MyApplication.getInstance().exit();
 	}
 	private void change(){

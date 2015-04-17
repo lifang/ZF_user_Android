@@ -157,14 +157,14 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 			public void onSuccess(MerchantEntity data) {
 				merchantEntity = data;
 				tv1.setText(data.getTitle());
-				tv2.setText(data.getLegal_person_name());
-				tv3.setText(data.getLegal_person_card_id());
-				tv4.setText(data.getBusiness_license_no());
-				tv5.setText(data.getTax_registered_no());
-				tv6.setText(data.getOrganization_code_no());
-				tvkhyh.setText(data.getAccount_bank_name());
-				tv8.setText(data.getBank_open_account());
-				if(!StringUtils.isBlank(data.getCard_id_front_photo_path())){
+				tv2.setText(data.getLegalPersonName());
+				tv3.setText(data.getLegalPersonCardId());
+				tv4.setText(data.getBusinessLicenseNo());
+				tv5.setText(data.getTaxRegisteredNo());
+				tv6.setText(data.getOrganizationCodeNo());
+				tvkhyh.setText(data.getAccountBankName());
+				tv8.setText(data.getBankOpenAccount());
+				if(!StringUtils.isBlank(data.getCardIdFrontPhotoPath())){
 					layout10.findViewById(R.id.textView).setVisibility(View.GONE);
 					layout10.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 				}else {
@@ -172,54 +172,54 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 					layout10.findViewById(R.id.imgView).setVisibility(View.GONE);
 				}
 
-				if(!StringUtils.isBlank(data.getCard_id_back_photo_path())){
+				if(!StringUtils.isBlank(data.getCardIdBackPhotoPath())){
 					layout11.findViewById(R.id.textView).setVisibility(View.GONE);
 					layout11.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 				}else {
 					layout11.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 					layout11.findViewById(R.id.imgView).setVisibility(View.GONE);
 				}
-				if(!StringUtils.isBlank(data.getBody_photo_path())){
+				if(!StringUtils.isBlank(data.getBodyPhotoPath())){
 					layout12.findViewById(R.id.textView).setVisibility(View.GONE);
 					layout12.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 				}else {
 					layout12.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 					layout12.findViewById(R.id.imgView).setVisibility(View.GONE);
 				}
-				if(!StringUtils.isBlank(data.getLicense_no_pic_path())){
+				if(!StringUtils.isBlank(data.getLicenseNoPicPath())){
 					layout13.findViewById(R.id.textView).setVisibility(View.GONE);
 					layout13.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 				}else {
 					layout13.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 					layout13.findViewById(R.id.imgView).setVisibility(View.GONE);
 				}
-				if(!StringUtils.isBlank(data.getTax_no_pic_path())){
+				if(!StringUtils.isBlank(data.getTaxNoPicPath())){
 					layout14.findViewById(R.id.textView).setVisibility(View.GONE);
 					layout14.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 				}else {
 					layout14.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 					layout14.findViewById(R.id.imgView).setVisibility(View.GONE);
 				}
-				if(!StringUtils.isBlank(data.getOrg_code_no_pic_path())){
+				if(!StringUtils.isBlank(data.getOrgCodeNoPicPath())){
 					layout15.findViewById(R.id.textView).setVisibility(View.GONE);
 					layout15.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 				}else {
 					layout15.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 					layout15.findViewById(R.id.imgView).setVisibility(View.GONE);
 				}
-				if(!StringUtils.isBlank(data.getAccount_pic_path())){
+				if(!StringUtils.isBlank(data.getAccountPicPath())){
 					layout16.findViewById(R.id.textView).setVisibility(View.GONE);
 					layout16.findViewById(R.id.imgView).setVisibility(View.VISIBLE);
 				}else {
 					layout16.findViewById(R.id.textView).setVisibility(View.VISIBLE);
 					layout16.findViewById(R.id.imgView).setVisibility(View.GONE);
 				}
-				if(data.getCity_id() != 0){
+				if(data.getCityId() != 0){
 					List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
 					for (Province province : provinces) {
 						List<City> cities = province.getCities();
 						for (City city : cities) {
-							if(city.getId() == data.getCity_id()){
+							if(city.getId() == data.getCityId()){
 								tv7.setText(province.getName()+city.getName());
 								return;
 							}
@@ -261,48 +261,48 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 				startActivityForResult(intent, type);
 				break;
 			case TYPE_2:
-				intent.putExtra("value", merchantEntity.getLegal_person_name());
+				intent.putExtra("value", merchantEntity.getLegalPersonName());
 				intent.setClass(MerchantEdit.this, MerchantItemEdit.class);
 				startActivityForResult(intent, type);
 
 				break;
 			case TYPE_3:
-				intent.putExtra("value", merchantEntity.getLegal_person_card_id());
+				intent.putExtra("value", merchantEntity.getLegalPersonCardId());
 				intent.setClass(MerchantEdit.this, MerchantItemEdit.class);
 				startActivityForResult(intent, type);
 
 				break;
 			case TYPE_4:
-				intent.putExtra("value", merchantEntity.getBusiness_license_no());
+				intent.putExtra("value", merchantEntity.getBusinessLicenseNo());
 				intent.setClass(MerchantEdit.this, MerchantItemEdit.class);
 				startActivityForResult(intent, type);
 
 				break;
 			case TYPE_5:
-				intent.putExtra("value", merchantEntity.getTax_registered_no());
+				intent.putExtra("value", merchantEntity.getTaxRegisteredNo());
 				intent.setClass(MerchantEdit.this, MerchantItemEdit.class);
 				startActivityForResult(intent, type);
 
 				break;
 			case TYPE_6:
-				intent.putExtra("value", merchantEntity.getOrganization_code_no());
+				intent.putExtra("value", merchantEntity.getOrganizationCodeNo());
 				intent.setClass(MerchantEdit.this, MerchantItemEdit.class);
 				startActivityForResult(intent, type);
 
 				break;
 			case TYPE_7:
-				intent.putExtra("value", merchantEntity.getCity_id());
+				intent.putExtra("value", merchantEntity.getCityId());
 				intent.setClass(MerchantEdit.this, CityProvinceActivity.class);
 				startActivityForResult(intent, type);
 				break;
 			case TYPE_KHYH:
-				intent.putExtra("value", merchantEntity.getAccount_bank_name());
+				intent.putExtra("value", merchantEntity.getAccountBankName());
 				intent.setClass(MerchantEdit.this, MerchantItemEdit.class);
 				startActivityForResult(intent, type);
 
 				break;
 			case TYPE_8:
-				intent.putExtra("value", merchantEntity.getBank_open_account());
+				intent.putExtra("value", merchantEntity.getBankOpenAccount());
 				intent.setClass(MerchantEdit.this, MerchantItemEdit.class);
 				startActivityForResult(intent, type);
 				break;
@@ -372,43 +372,43 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 			tv1.setText(value);
 			break;
 		case TYPE_2:
-			merchantEntity.setLegal_person_name(value);
+			merchantEntity.setLegalPersonName(value);
 			tv2.setText(value);
 			break;
 		case TYPE_3:
-			merchantEntity.setLegal_person_card_id(value);
+			merchantEntity.setLegalPersonCardId(value);
 			tv3.setText(value);
 			break;
 		case TYPE_4:
-			merchantEntity.setBusiness_license_no(value);
+			merchantEntity.setBusinessLicenseNo(value);
 			tv4.setText(value);
 			break;
 		case TYPE_5:
-			merchantEntity.setTax_registered_no(value);
+			merchantEntity.setTaxRegisteredNo(value);
 			tv5.setText(value);
 			break;
 		case TYPE_6:
-			merchantEntity.setOrganization_code_no(value);
+			merchantEntity.setOrganizationCodeNo(value);
 			tv6.setText(value);
 			break;
 		case TYPE_7:
 			Province province =  (Province)data.getSerializableExtra(Constants.CityIntent.SELECTED_PROVINCE);
 			City city = (City)data.getSerializableExtra(Constants.CityIntent.SELECTED_CITY);
 			if(province == null || city == null){
-				merchantEntity.setCity_id(0);
+				merchantEntity.setCityId(0);
 				tv7.setText("");
 			} else{
-				merchantEntity.setCity_id(city.getId());
+				merchantEntity.setCityId(city.getId());
 				tv7.setText(province.getName()+city.getName());
 			}
 
 			break;
 		case TYPE_KHYH:
-			merchantEntity.setAccount_bank_name(value);
+			merchantEntity.setAccountBankName(value);
 			tvkhyh.setText(value);
 			break;
 		case TYPE_8:
-			merchantEntity.setBank_open_account(value);
+			merchantEntity.setBankOpenAccount(value);
 			tv8.setText(value);
 			break;
 
@@ -429,25 +429,25 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 						layout.setClickable(true);
 						switch (type) {
 						case TYPE_10:
-							merchantEntity.setCard_id_front_photo_path(url);
+							merchantEntity.setCardIdFrontPhotoPath(url);
 							break;
 						case TYPE_11:
-							merchantEntity.setCard_id_back_photo_path(url);
+							merchantEntity.setCardIdBackPhotoPath(url);
 							break;
 						case TYPE_12:
-							merchantEntity.setBody_photo_path(url);
+							merchantEntity.setBodyPhotoPath(url);
 							break;
 						case TYPE_13:
-							merchantEntity.setLicense_no_pic_path(url);
+							merchantEntity.setLicenseNoPicPath(url);
 							break;
 						case TYPE_14:
-							merchantEntity.setTax_no_pic_path(url);
+							merchantEntity.setTaxNoPicPath(url);
 							break;
 						case TYPE_15:
-							merchantEntity.setOrg_code_no_pic_path(url);
+							merchantEntity.setOrgCodeNoPicPath(url);
 							break;
 						case TYPE_16:
-							merchantEntity.setAccount_pic_path(url);
+							merchantEntity.setAccountPicPath(url);
 							break;
 						default:
 							break;

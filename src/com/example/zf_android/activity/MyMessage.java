@@ -211,6 +211,9 @@ OnClickListener {
 				page++;
 				
 				total = data.getTotal();
+				if(total<rows){
+					Xlistview.setPullLoadEnable(false);
+				}
 				handler.sendEmptyMessage(0);
 			}
 

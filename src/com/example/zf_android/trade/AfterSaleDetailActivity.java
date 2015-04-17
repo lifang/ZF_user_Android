@@ -174,6 +174,10 @@ public class AfterSaleDetailActivity extends Activity {
 		API.getAfterSaleRecordDetail(this, mRecordType, mRecordId, new HttpCallback<AfterSaleDetail>(this) {
 			@Override
 			public void onSuccess(AfterSaleDetail data) {
+				//startActivityForResul成功后回调getDATA前要移除之前加载的
+				mCategoryContainer.removeAllViews();
+				mCommentContainer.removeAllViews();
+				
 				mRecordStatus = data.getStatus();
 
 				// render terminal category

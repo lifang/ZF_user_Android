@@ -19,7 +19,7 @@ public class FindpassmailSucces extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		MyApplication.getInstance().addActivity(this);
+		MyApplication.getInstance().clearHistory();
 		setContentView(R.layout.findmailsuccess);
 		new TitleMenuUtil(FindpassmailSucces.this, "找回密码").show();
 		tv_tel=(TextView) findViewById(R.id.tv_tel);

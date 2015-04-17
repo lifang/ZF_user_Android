@@ -3,6 +3,9 @@ package com.example.zf_android.trade;
 import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_RECORD_ID;
 import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_TYPE;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -43,11 +46,14 @@ public class TradeDetailActivity extends Activity {
             @Override
             public void onSuccess(TradeDetail data) {
 
+            	DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+    			df.applyPattern("0.00");
+            	
                 Resources resources = getResources();
                 String[] tradeStatuses = resources.getStringArray(R.array.trade_status);
                 mTradeStatus.setText(tradeStatuses[data.getTradedStatus()]);
-                mTradeAmount.setText(getString(R.string.notation_yuan) + data.getAmount());
-                mTradePoundage.setText(getString(R.string.notation_yuan) + data.getPoundage());
+                mTradeAmount.setText(getString(R.string.notation_yuan) + df.format(data.getAmount()*1.0f/100));
+                mTradePoundage.setText(getString(R.string.notation_yuan) + df.format(data.getPoundage()*1.0f/100));
                 mTradeTime.setText(data.getTradedTimeStr());
 
                 String[] commercialKeys = resources.getStringArray(R.array.trade_item_commercial);
@@ -77,7 +83,7 @@ public class TradeDetailActivity extends Activity {
                             : i == 2 ? data.getPayIntoAccount()
                             : i == 3 ? data.getPayChannelName()
                             : i == 4 ? data.getProfitPrice() + ""
-                            : i == 5 ? data.getAmount() + ""
+                            : i == 5 ? df.format(data.getAmount()*1.0f/100) + ""
                             : i == 6 ? data.getTradedTimeStr()
                             : i == 7 ? tradeStatuses[data.getTradedStatus()]
                             : i == 8 ? data.getBatchNumber()

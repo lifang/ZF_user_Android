@@ -7,6 +7,10 @@ import java.util.List;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Service;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.widget.TextView;
@@ -17,6 +21,8 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
 import com.examlpe.zf_android.util.NetworkTools;
+import com.example.zf_android.activity.LoginActivity;
+import com.example.zf_android.activity.MyInfo;
 import com.example.zf_android.entity.ApplyneedEntity;
 import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.GoodinfoEntity;
@@ -241,6 +247,18 @@ public class MyApplication extends Application{
 	public void addActivity(Activity activity) {    
 		mList.add(activity);    
 	}    
+	
+	public void clearHistory(){
+		try {    
+			for (Activity activity:mList) {    
+				if (activity != null)    
+					activity.finish();    
+			}    
+		} catch (Exception e) {    
+			e.printStackTrace();    
+		} 
+	}
+	
 	public void exit() {    
 		try {    
 			for (Activity activity:mList) {    
@@ -250,7 +268,15 @@ public class MyApplication extends Application{
 		} catch (Exception e) {    
 			e.printStackTrace();    
 		} 
-
+		SharedPreferences	mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
+		Editor editor = mySharedPreferences.edit();
+		editor.putBoolean("islogin", false);
+		editor.commit();
+		
+		Intent intent = new Intent();
+		intent.setClass(MyApplication.getInstance(), LoginActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		MyApplication.getInstance().startActivity(intent);
 	}  
 
 

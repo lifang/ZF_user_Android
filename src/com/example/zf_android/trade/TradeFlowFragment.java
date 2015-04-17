@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.Config;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
@@ -32,6 +33,8 @@ import com.example.zf_android.trade.entity.TradeRecord;
 import com.example.zf_android.trade.widget.XListView;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -352,8 +355,20 @@ public class TradeFlowFragment extends Fragment implements
 										+ (month < 10 ? "0" + month : month)
 										+ "-" + (day < 10 ? "0" + day : day);
 								if (isStartDate) {
+									
+									if (!TextUtils.isEmpty(tradeEndDate)
+											&& dateStr
+													.compareTo(tradeEndDate) > 0) {
+										Toast.makeText(
+												getActivity(),"开始时间不能大于结束时间",
+												Toast.LENGTH_SHORT).show();
+										return;
+									}
+									
+									
 									mTradeStartDate.setText(dateStr);
 									tradeStartDate = dateStr;
+									
 								} else {
 									if (!TextUtils.isEmpty(tradeStartDate)
 											&& dateStr
@@ -456,6 +471,7 @@ public class TradeFlowFragment extends Fragment implements
 				holder.tvReceiveAccountKey
 						.setText(getString(R.string.trade_phone_number));
 
+//				holder.tvReceiveAccount.setText(StringUtil.mobileUtil(record.getPhone()));
 				holder.tvReceiveAccount.setText(record.getPhone());
 				break;
 			}
@@ -464,8 +480,12 @@ public class TradeFlowFragment extends Fragment implements
 					R.array.trade_status)[record.getTradedStatus()]);
 			holder.tvTime.setText(record.getTradedTimeStr());
 			holder.tvClientNumber.setText(record.getTerminalNumber());
+			
+			DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+			df.applyPattern("0.00");
+			
 			holder.tvAmount.setText(getString(R.string.notation_yuan)
-					+ record.getAmount());
+					+ df.format(record.getAmount()*1.0f/100));
 
 			return convertView;
 		}
