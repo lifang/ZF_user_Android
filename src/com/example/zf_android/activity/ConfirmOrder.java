@@ -159,7 +159,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 					byte[] responseBody) {
 				String responseMsg = new String(responseBody)
 				.toString();
-
+				Log.e("responseMsg", responseMsg);
 				Gson gson = new Gson();
 
 				JSONObject jsonobject = null;
