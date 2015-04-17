@@ -117,7 +117,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				showCountText.setText(arg0.toString());
+				showCountText.setText("X   "+arg0.toString());
 				tv_count.setText("共计:   "+arg0+"件");
 				 if( buyCountEdit.getText().toString().equals("")){
 					 quantity=0;
@@ -325,7 +325,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			startActivityForResult(i, 11);
 			break;
 		case R.id.btn_pay:
-		   confirmGood();
+			if (!StringUtil.isNull(addressId+"")) {
+				confirmGood();
+			}else {
+				Toast.makeText(this, "收件地址不能为空", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		case R.id.add:
 			quantity= Integer.parseInt( buyCountEdit.getText().toString() )+1;

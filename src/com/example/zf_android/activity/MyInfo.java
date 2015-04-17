@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -220,7 +218,6 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 
 
 		API.getinfo(MyInfo.this,customerId,
-
 				new HttpCallback<MyinfoEntity> (MyInfo.this) {
 
 			@Override
@@ -230,12 +227,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 				tv_email.setText(data.getEmail());
 				tv_point.setText(data.getIntegral()+"");
 
-				tv_location.setText(findcity(data.getCity_id()));
-			}
-			@Override
-			public void onFailure(String message) {
-				super.onFailure(message);
-				System.out.println("message:"+message);
+				tv_location.setText(findcity(Integer.valueOf(data.getCity_id())));
 			}
 			@Override
 			public TypeToken getTypeToken() {

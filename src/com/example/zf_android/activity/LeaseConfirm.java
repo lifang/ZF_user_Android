@@ -33,7 +33,6 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;
 import com.example.zf_android.entity.GoodinfoEntity;
-import com.example.zf_zandroid.adapter.ChooseAdressAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -133,7 +132,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				showCountText.setText(arg0.toString());
+				showCountText.setText("X   "+arg0.toString());
 				tv_count.setText("共计:   "+arg0+"件");
 				 if( buyCountEdit.getText().toString().equals("")){
 					 quantity=0;
@@ -233,7 +232,11 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			startActivity(tv_ins);
 			break;
 		case R.id.btn_pay:
-		   confirmGood();
+			if (!StringUtil.isNull(addressId+"")) {
+				confirmGood();
+			}else {
+				Toast.makeText(this, "收件地址不能为空", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		case R.id.add:
 			if(good.getReturn_time() > quantity){
