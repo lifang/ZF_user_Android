@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -70,6 +73,9 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 		mApplyList.setPullLoadEnable(true);
 
 		mApplyList.setAdapter(mAdapter);
+		
+			
+				
 	}
 
 	private void loadData() {
@@ -197,6 +203,18 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 					CommonUtil.toastShort(ApplyListActivity.this, "not yet completed...");
 				}
 			});
+			
+			convertView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(ApplyListActivity.this, TerminalDetailActivity.class);
+					intent.putExtra(TERMINAL_ID, item.getId());
+					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
+					intent.putExtra(TERMINAL_STATUS, item.getStatus());
+					startActivity(intent);
+				}
+			});
+			
 			return convertView;
 		}
 	}

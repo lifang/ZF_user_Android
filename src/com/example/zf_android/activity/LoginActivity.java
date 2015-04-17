@@ -45,7 +45,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-		MyApplication.getInstance().addActivity(this);
+//		MyApplication.getInstance().addActivity(this);
 		initView();
 		new TitleMenuUtil(LoginActivity.this, "登录").show();
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
@@ -134,6 +134,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.login_text_forget: 
 			startActivity(new Intent(LoginActivity.this,FindPass.class));
+			login_edit_pass.setText("");
 			break;
 		case R.id.login_linear_login: 
 			if(check()){
@@ -142,6 +143,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.zhuche_ll: 
 			startActivity(new Intent(LoginActivity.this,Register.class));
+			login_edit_pass.setText("");
 			break;
 		case R.id.login_linear_deletename:
 			login_edit_name.setText("");

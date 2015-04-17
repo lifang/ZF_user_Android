@@ -38,6 +38,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.examlpe.zf_android.util.ImageCacheUtil;
+import com.examlpe.zf_android.util.ScreenUtils;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -240,6 +241,7 @@ public class Main extends BaseActivity implements OnClickListener{
 
 		citySelect = findViewById(R.id.titleback_linear_back);
 		cityTextView = (TextView) findViewById(R.id.tv_city);
+		cityTextView.setMaxWidth(ScreenUtils.getScreenWidth(this)/5);
 		citySelect.setOnClickListener(this);
 		main_rl_gwc=(RelativeLayout) findViewById(R.id.main_rl_gwc);
 		main_rl_gwc.setOnClickListener(this);

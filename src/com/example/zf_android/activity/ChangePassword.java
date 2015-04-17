@@ -30,6 +30,7 @@ public class ChangePassword extends BaseActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.changepassword);
+		MyApplication.getInstance().addActivity(this);
 		new TitleMenuUtil(ChangePassword.this, "修改密码").show();
 		login_edit_name=(EditText) findViewById(R.id.login_edit_name);
 
@@ -51,12 +52,8 @@ public class ChangePassword extends BaseActivity implements OnClickListener{
 				public void onSuccess(Object data) {
 					Toast.makeText(getApplicationContext(), "修改成功,请重新登录", 1000).show();
 
-					editor.putBoolean("islogin", false);
-					editor.commit();
-
-					Intent i= new Intent(getApplicationContext(), LoginActivity.class);
-					startActivity(i);
-					finish();
+					MyApplication.getInstance().exit();
+					
 				}
 
 				@Override

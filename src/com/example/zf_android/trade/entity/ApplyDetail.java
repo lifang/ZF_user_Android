@@ -12,12 +12,25 @@ public class ApplyDetail {
 	@SerializedName("applyDetails")
 	private ApplyTerminalDetail terminalDetail;
 
+	@SerializedName("openingInfos")
+	private OpeningInfos openingInfos;
+	
+	public OpeningInfos getOpeningInfos() {
+		return openingInfos;
+	}
+
+	public void setOpeningInfos(OpeningInfos openingInfos) {
+		this.openingInfos = openingInfos;
+	}
+
 	@SerializedName("materialName")
 	private List<ApplyMaterial> materials;
 
 	@SerializedName("merchants")
 	private List<ApplyChooseItem> merchants;
 
+	
+	
 	@SerializedName("applyFor")
 	private List<ApplyCustomerDetail> customerDetails;
 
