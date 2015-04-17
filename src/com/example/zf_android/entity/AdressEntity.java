@@ -29,7 +29,7 @@ public class AdressEntity {
 	private int isDefault;
 	private String address;
 	private int cityId;
-	private int city_parent_id;
+	private String city_parent_id;
 	private String zipCode;
 	private String moblephone;
 	private String city;
@@ -76,10 +76,10 @@ public class AdressEntity {
 	public void setCityId(int cityId) {
 		this.cityId = cityId;
 	}
-	public int getCity_parent_id() {
+	public String getCity_parent_id() {
 		return city_parent_id;
 	}
-	public void setCity_parent_id(int city_parent_id) {
+	public void setCity_parent_id(String city_parent_id) {
 		this.city_parent_id = city_parent_id;
 	}
 	public String getZipCode() {

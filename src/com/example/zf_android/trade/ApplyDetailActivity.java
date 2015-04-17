@@ -609,7 +609,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 		final String[] items = getResources().getStringArray(R.array.apply_detail_gender);
 		setItemValue(mMerchantKeys[1], openingInfos.getName());
 		setItemValue(mMerchantKeys[2], openingInfos.getMerchant_name());
-		setItemValue(mMerchantKeys[3], items[openingInfos.getSex()]);
+		setItemValue(mMerchantKeys[3], items[openingInfos.getSex()%2]);
 		setItemValue(mMerchantKeys[4], openingInfos.getBirthday());
 		setItemValue(mMerchantKeys[5], openingInfos.getCard_id());
 		setItemValue(mMerchantKeys[6], openingInfos.getPhone());
@@ -628,7 +628,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 		setItemValue(mBankKeys[2], openingInfos.getAccount_bank_code());
 		setItemValue(mBankKeys[3], openingInfos.getTax_registered_no());
 		setItemValue(mBankKeys[4], openingInfos.getOrganization_code_no());
-		setItemValue(mBankKeys[5], openingInfos.getChannelname());
+		setItemValue(mBankKeys[5], openingInfos.getChannelname()+openingInfos.getBillingname());
 		
 	}
 	
