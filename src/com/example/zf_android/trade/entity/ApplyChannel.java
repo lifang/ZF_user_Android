@@ -40,5 +40,7 @@ public class ApplyChannel implements Serializable {
 	public class Billing implements Serializable {
 		public int id;
 		public String name;
+		public Billing() {
+		}
 	}
 }

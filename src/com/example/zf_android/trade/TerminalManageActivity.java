@@ -266,7 +266,9 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 				holder.tvTerminalNumber = (TextView) convertView.findViewById(R.id.terminal_number);
 				holder.tvTerminalStatus = (TextView) convertView.findViewById(R.id.terminal_status);
 				holder.llButtonContainer = (LinearLayout) convertView.findViewById(R.id.terminal_button_container);
+				holder.llButtonContainer2 = (LinearLayout) convertView.findViewById(R.id.terminal_button_container_2);
 				holder.llButtons = (LinearLayout) convertView.findViewById(R.id.terminal_buttons);
+				holder.llButtons2 = (LinearLayout) convertView.findViewById(R.id.terminal_buttons_2);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -278,26 +280,31 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 
 			// add buttons according to status
 			holder.llButtons.removeAllViews();
+			holder.llButtons2.removeAllViews();
 			switch (item.getStatus()) {
 				case OPENED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
+					holder.llButtonContainer2.setVisibility(View.GONE);
 					addButton(holder.llButtons, R.string.terminal_button_video, item, mVideoListener);
 					addButton(holder.llButtons, R.string.terminal_button_pos, item, mPosListener);
 					break;
 				case PART_OPENED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
+					holder.llButtonContainer2.setVisibility(View.VISIBLE);
 					addButton(holder.llButtons, R.string.terminal_button_sync, item, mSyncListener);
 					addButton(holder.llButtons, R.string.terminal_button_reopen, item, mOpenListener);
-					addButton(holder.llButtons, R.string.terminal_button_video, item, mVideoListener);
-					addButton(holder.llButtons, R.string.terminal_button_pos, item, mPosListener);
+					addButton(holder.llButtons2, R.string.terminal_button_video, item, mVideoListener);
+					addButton(holder.llButtons2, R.string.terminal_button_pos, item, mPosListener);
 					break;
 				case UNOPENED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
+					holder.llButtonContainer2.setVisibility(View.GONE);
 					addButton(holder.llButtons, R.string.terminal_button_open, item, mOpenListener);
 					addButton(holder.llButtons, R.string.terminal_button_video, item, mVideoListener);
 					break;
 				case CANCELED:
 					holder.llButtonContainer.setVisibility(View.GONE);
+					holder.llButtonContainer2.setVisibility(View.GONE);
 					break;
 				case STOPPED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
@@ -330,7 +337,7 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 				button.setOnClickListener(listener);
 			}
 			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-					0, CommonUtil.dip2px(TerminalManageActivity.this, 30), 1);
+					0, CommonUtil.dip2px(TerminalManageActivity.this, 40), 1);
 			if (ll.getChildCount() > 0) {
 				lp.setMargins(15, 0, 0, 0);
 			}
@@ -341,7 +348,7 @@ public class TerminalManageActivity extends Activity implements XListView.IXList
 	private static class ViewHolder {
 		public TextView tvTerminalNumber;
 		public TextView tvTerminalStatus;
-		public LinearLayout llButtonContainer;
-		public LinearLayout llButtons;
+		public LinearLayout llButtonContainer,llButtonContainer2;
+		public LinearLayout llButtons,llButtons2;
 	}
 }

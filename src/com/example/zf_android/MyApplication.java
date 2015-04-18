@@ -38,12 +38,11 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MyApplication extends Application {
-	public TextView mLocationResult, logMsg;
+	public TextView mLocationResult;
 	public LocationClient mLocationClient;
 	public GeofenceClient mGeofenceClient;
 	public MyLocationListener mMyLocationListener;
 	public Vibrator mVibrator;
-
 	private ImageLoader mImageLoader;
 
 	private Integer customerId;
