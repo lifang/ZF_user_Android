@@ -86,7 +86,10 @@ public class PosSelecSon extends BaseActivity implements OnClickListener{
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// 全部选择--
 				for(int i1 =0;i1<mylist.size();i1++){
-					// mylist.get(i1).setIsCheck(arg1);
+					mylist.get(i1).setIsCheck(arg1);
+					for(int ss=0;ss<mylist.get(i1).getSon().size();ss++){
+						mylist.get(i1).getSon().get(ss).setIsCheck(arg1);
+					}
 				}
 				handler.sendEmptyMessage(0);
 			}
@@ -102,27 +105,28 @@ public class PosSelecSon extends BaseActivity implements OnClickListener{
 			title="";
 			for(int i1 =0;i1<mylist.size();i1++){
 
-				//					if(title.equals("")){
-				//						title=mylist.get(i1).getValue();
-				//					}else{
-				//						title=title+"."+mylist.get(i1).getValue();
-				//					}
 				for(int ss=0;ss<mylist.get(i1).getSon().size();ss++){
+					if (mylist.get(i1).getSon().get(ss).getIsCheck()==null) {
+						mylist.get(i1).getSon().get(ss).setIsCheck(false);
+					}
 
 					if(mylist.get(i1).getSon().get(ss).getIsCheck()){
+						if(title.equals("")){
+							title=mylist.get(i1).getSon().get(ss).getValue();
+						}else{
+							title=title+"."+mylist.get(i1).getSon().get(ss).getValue();
+						}
+
 						ids.add(mylist.get(i1).getSon().get(ss).getId());
 						System.out.println("选择的ID--"+mylist.get(i1).getSon().get(ss).getId());
 					}
 				}
-
-
 			}
-			//				Intent intent2 = new Intent();
-			//				intent2.putExtra("text", title);
-			//				intent2.putIntegerArrayListExtra("ids", ids);
-			//				PosSelecSon.this.setResult(index, intent2);
-			//				finish();
-
+			Intent intent2 = new Intent();
+			intent2.putExtra("text", title);
+			intent2.putIntegerArrayListExtra("ids", ids);
+			PosSelecSon.this.setResult(index, intent2);
+			finish();
 
 			break;
 		default:

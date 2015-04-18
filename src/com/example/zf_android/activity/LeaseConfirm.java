@@ -55,6 +55,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	private int invoice_type=1;//发票类型（0公司  1个人）
 	private int customerId;
 	private GoodinfoEntity good;
+	private boolean isFirstCreate;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		new TitleMenuUtil(LeaseConfirm.this, "租赁订单确认").show();
 		customerId = MyApplication.getInstance().getCustomerId();
 		initView();
+		isFirstCreate=true;
 		good = (GoodinfoEntity)getIntent().getSerializableExtra("good");
 		if(good == null){
 			finish();
@@ -80,7 +82,16 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		computeMoney();
 		getData();
 	}
-	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(!isFirstCreate){
+			getData();
+		}else {
+			isFirstCreate=false;
+		}
+
+	}
 	private void computeMoney(){
 		tv_pay.setText("实付：￥ "+StringUtil.getMoneyString((price*quantity+yajin))); 
 		tv_totle.setText("合计：￥ "+StringUtil.getMoneyString((price*quantity+yajin))); 
@@ -114,7 +125,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		comment_et=(EditText) findViewById(R.id.comment_et);
 		item_cb=(CheckBox) findViewById(R.id.item_cb);
 		item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if(arg1){
@@ -129,96 +140,97 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			}
 		});
 		buyCountEdit.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 				showCountText.setText("X   "+arg0.toString());
 				tv_count.setText("共计:   "+arg0+"件");
-				 if( buyCountEdit.getText().toString().equals("")){
-					 quantity=0;
-				 }else{
-					 quantity= Integer.parseInt( buyCountEdit.getText().toString() );
-				 }
-				 computeMoney();
-			 
+				if( buyCountEdit.getText().toString().equals("")){
+					quantity=0;
+				}else{
+					quantity= Integer.parseInt( buyCountEdit.getText().toString() );
+				}
+				computeMoney();
+
 			}
-			
+
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				
+
 			}
-			
+
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				
+
 			}
 		});
 	}
 
 	private void getData() {
-			String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
-			System.out.println("---getData-");
-			MyApplication.getInstance().getClient()
-					.get(url, new AsyncHttpResponseHandler() {
+		myList.clear();
+		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
+		System.out.println("---getData-");
+		MyApplication.getInstance().getClient()
+		.post(url, new AsyncHttpResponseHandler() {
 
-						@Override
-						public void onSuccess(int statusCode, Header[] headers,
-								byte[] responseBody) {
-							String responseMsg = new String(responseBody)
-									.toString();
-							Log.e("print", responseMsg);
-							System.out.println("----"+responseMsg);
-						 
-							 
-							Gson gson = new Gson();
-							
-							JSONObject jsonobject = null;
-							String code = null;
-							try {
-								jsonobject = new JSONObject(responseMsg);
-								code = jsonobject.getString("code");
-								int a =jsonobject.getInt("code");
-								if(a==Config.CODE){  
-	 								String res =jsonobject.getString("result");
-//									jsonobject = new JSONObject(res);
-									
-	 								moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
-	 			 					}.getType());
-				 				 
-	 								myList.addAll(moreList);
-	 				 			 for(int i=0;i<myList.size();i++){
-	 				 				 if(myList.get(i).getIsDefault()==1){
-	 				 					tv_sjr.setText("收件人： "+myList.get(i).getReceiver());
-	 				 					tv_tel.setText(myList.get(i).getMoblephone());
-	 				 					tv_adress.setText("地址："+myList.get(i).getAddress());
-	 				 					addressId=myList.get(i).getId();
-	 				 				 }
-	 				 			 }
-				 					  
-				 				 
-				 			 
-								}else{
-									code = jsonobject.getString("message");
-									Toast.makeText(getApplicationContext(), code, 1000).show();
-								}
-							} catch (JSONException e) {
-								e.printStackTrace();
-								
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				String responseMsg = new String(responseBody)
+				.toString();
+				Log.e("print", responseMsg);
+				System.out.println("----"+responseMsg);
+
+
+				Gson gson = new Gson();
+
+				JSONObject jsonobject = null;
+				String code = null;
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					code = jsonobject.getString("code");
+					int a =jsonobject.getInt("code");
+					if(a==Config.CODE){  
+						String res =jsonobject.getString("result");
+						//									jsonobject = new JSONObject(res);
+
+						moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
+						}.getType());
+
+						myList.addAll(moreList);
+						for(int i=0;i<myList.size();i++){
+							if(myList.get(i).getIsDefault()==1){
+								tv_sjr.setText("收件人： "+myList.get(i).getReceiver());
+								tv_tel.setText(myList.get(i).getMoblephone());
+								tv_adress.setText("地址："+myList.get(i).getAddress());
+								addressId=myList.get(i).getId();
 							}
-
 						}
 
-						@Override
-						public void onFailure(int statusCode, Header[] headers,
-								byte[] responseBody, Throwable error) {
-							System.out.println("-onFailure---");
-							Log.e("print", "-onFailure---" + error);
-						}
-					});
-	 
-			 
-	 
+
+
+					}else{
+						code = jsonobject.getString("message");
+						Toast.makeText(getApplicationContext(), code, 1000).show();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+
+				}
+
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				System.out.println("-onFailure---");
+				Log.e("print", "-onFailure---" + error);
+			}
+		});
+
+
+
 	}
 	@Override
 	public void onClick(View arg0) {
@@ -232,44 +244,51 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			startActivity(tv_ins);
 			break;
 		case R.id.btn_pay:
-			if (!StringUtil.isNull(addressId+"")) {
-				confirmGood();
+			quantity= Integer.parseInt( buyCountEdit.getText().toString() );
+			if (addressId != 0) {
+				if (quantity > 0) {
+					confirmGood();
+				}else {
+					Toast.makeText(this, "请确认租赁数量", Toast.LENGTH_SHORT).show();
+				}
 			}else {
 				Toast.makeText(this, "收件地址不能为空", Toast.LENGTH_SHORT).show();
 			}
 			break;
 		case R.id.add:
-			if(good.getReturn_time() > quantity){
-				quantity= Integer.parseInt( buyCountEdit.getText().toString() )+1;
-				buyCountEdit.setText(quantity+"");
-			}
-				break;
+			//	if(good.getReturn_time() > quantity){
+			quantity= Integer.parseInt( buyCountEdit.getText().toString() )+1;
+			buyCountEdit.setText(quantity+"");
+			//}
+			break;
 		case R.id.reduce:
-			if(good.getLease_time() < quantity){
-				quantity= Integer.parseInt( buyCountEdit.getText().toString() )-1;
-				buyCountEdit.setText(quantity+"");
-			}
+			//	if(good.getLease_time() < quantity){
+			if(quantity==0){
 				break;
+			}
+			quantity= Integer.parseInt( buyCountEdit.getText().toString() )-1;
+			buyCountEdit.setText(quantity+"");
+			//}
+			break;
 		default:
 			break;
 		}
 	}
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode==11){
-			if(data!=null){
-
-				addressId=data.getIntExtra("id", addressId);
-				tv_adress.setText("收件地址 ： "+data.getStringExtra("adree"));
-				tv_sjr.setText("收件人 ： "+data.getStringExtra("name"));
-				tv_tel.setText( data.getStringExtra("tel"));
-			}
-		}
-	}
+	//	@Override
+	//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	//		super.onActivityResult(requestCode, resultCode, data);
+	//		if(requestCode==11){
+	//			if(data!=null){
+	//
+	//				addressId=data.getIntExtra("id", addressId);
+	//				tv_adress.setText("收件地址 ： "+data.getStringExtra("adree"));
+	//				tv_sjr.setText("收件人 ： "+data.getStringExtra("name"));
+	//				tv_tel.setText( data.getStringExtra("tel"));
+	//			}
+	//		}
+	//	}
 	private void confirmGood() {
-		quantity= Integer.parseInt( buyCountEdit.getText().toString() );
+		
 		comment=comment_et.getText().toString();
 		RequestParams params = new RequestParams();
 		params.put("customerId", customerId);
@@ -279,49 +298,49 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		params.put("quantity", quantity);
 		params.put("comment", comment);
 		params.put("is_need_invoice", is_need_invoice);
-//		params.put("invoice_type", invoice_type);
-//		params.put("invoice_info", et_titel.getText().toString());
+		//		params.put("invoice_type", invoice_type);
+		//		params.put("invoice_info", et_titel.getText().toString());
 		params.setUseJsonStreamer(true);
-		 
+
 		String Urla=Config.URL_ORDER_LEASE;
 		MyApplication.getInstance().getClient()
-				.post(Urla, params, new AsyncHttpResponseHandler() {
+		.post(Urla, params, new AsyncHttpResponseHandler() {
 
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg);
-						System.out.println("----"+responseMsg);
-					 
-						JSONObject jsonobject = null;
-						String code = null;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							code = jsonobject.getString("code");
-							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){  
-								Intent i1 =new Intent (LeaseConfirm.this,PayFromCar.class);
-								startActivity(i1);
-							}else{
-								code = jsonobject.getString("message");
-								Toast.makeText(getApplicationContext(), code, 1000).show();
-							}
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				String responseMsg = new String(responseBody)
+				.toString();
+				Log.e("print", responseMsg);
+				System.out.println("----"+responseMsg);
 
+				JSONObject jsonobject = null;
+				String code = null;
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					code = jsonobject.getString("code");
+					int a =jsonobject.getInt("code");
+					if(a==Config.CODE){  
+						Intent i1 =new Intent (LeaseConfirm.this,PayFromCar.class);
+						startActivity(i1);
+					}else{
+						code = jsonobject.getString("message");
+						Toast.makeText(getApplicationContext(), code, 1000).show();
 					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
-					}
-				});
- 
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				// TODO Auto-generated method stub
+				System.out.println("-onFailure---");
+				Log.e("print", "-onFailure---" + error);
+			}
+		});
+
 	}
 }

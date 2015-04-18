@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -42,22 +44,22 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	private LinearLayout eva_nodata,ll_xxyx,ll_mr,ll_updown,ll_pj;
 	private boolean onRefresh_number = true;
 	private PosAdapter myAdapter;
-	private String keys=null;
+	private String keys= "";
 	private int maxPrice=0,minPrice=0;
 	private TextView next_sure,tv_mr,tv_2,tv_3,tv_4;
 	private Boolean isDown=true;
 	private int orderType=0;
-	private int has_purchase=0;
+	private int has_purchase=1;
 	private EditText et_search;
 	List<PosItem> slist=new ArrayList<PosItem>();
-	ArrayList<Integer>  category = new ArrayList<Integer>();
-	ArrayList<Integer>  brands_id = new ArrayList<Integer>();
-	ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
-	ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
-	ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  category_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  brands_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
 
-	ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
-	ArrayList<Integer>  tDate = new ArrayList<Integer>();
+	private ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  tDate = new ArrayList<Integer>();
 
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
 	List<PosEntity>  moreList = new ArrayList<PosEntity>();
@@ -68,9 +70,11 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				onLoad( );
 
 				if(myList.size()==0){
-
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
+				}else {
+					eva_nodata.setVisibility(View.GONE);
+					Xlistview.setVisibility(View.VISIBLE);
 				}
 				onRefresh_number = true; 
 				myAdapter.notifyDataSetChanged();
@@ -97,7 +101,14 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.poslist_activity);
 		// MyApplication.pse=new PosSelectEntity();
-
+		SharedPreferences mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
+		Boolean isOpen_mineset = mySharedPreferences.getBoolean("isOpen_ps", true);
+		if (isOpen_mineset) {
+			has_purchase = 1;
+		}else {
+			has_purchase = 0;
+		}
+		
 		initView();
 		getData();
 	}
@@ -253,7 +264,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 
 	private void getData() {
 		API.postList(this, MyApplication.getInstance().getCityId(), orderType,
-				brands_id, null, null, null, null, null, null,
+				brands_id,category_id,pay_channel_id,pay_card_id,trade_type_id,sale_slip_id,tDate,
 				has_purchase, minPrice, maxPrice, keys, page, rows,
 
 				new HttpCallback<NewPoslistEntity>(this) {
@@ -277,21 +288,28 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 
 		switch (resultCode) {
 		case 1:
+			minPrice = 0;maxPrice = 0;
+			has_purchase = 1;
+			brands_id = null;
+			category_id = null;
+			pay_channel_id = null;
+			pay_card_id = null;
+			trade_type_id = null;
+			sale_slip_id = null;
+			tDate = null;
+			
 			if(data!=null){
 				System.out.println("进入条件选择回调···");
 				minPrice=data.getIntExtra("minPrice", 0);
 				maxPrice=data.getIntExtra("maxPrice", 1000000);
 				has_purchase=data.getIntExtra("has_purchase", 1);
 				brands_id=data.getIntegerArrayListExtra("brands_id");
+				category_id=data.getIntegerArrayListExtra("category_id");
 				pay_channel_id=data.getIntegerArrayListExtra("pay_channel_id");
 				pay_card_id=data.getIntegerArrayListExtra("pay_card_id");
 				trade_type_id=data.getIntegerArrayListExtra("trade_type_id");
 				sale_slip_id=data.getIntegerArrayListExtra("sale_slip_id");
 				tDate=data.getIntegerArrayListExtra("tDate");
-
-				//				 ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
-				//				 ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
-				//				 ArrayList<Integer>  tDate = new ArrayList<Integer>();
 
 				System.out.println(trade_type_id.toString()+"<trade_type_id--sale_slip_id>"+sale_slip_id.toString()+"tDate-->"+tDate.toString()); 
 

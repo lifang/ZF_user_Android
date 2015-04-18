@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="#F3F2F2"
     android:orientation="vertical" >
-	
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/titleback_height"
@@ -55,471 +55,462 @@
             android:textColor="@color/white"
             android:textSize="17sp" />
     </RelativeLayout>
-	<ScrollView android:layout_width="fill_parent"
-	    android:layout_height="wrap_content">
-	    
-	    
-	        <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-      android:orientation="vertical"
-        android:background="#F3F2F2" >
- 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/Viewc" />
-	
-    
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="#FFFFFF" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="只包含租赁"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
-             <View
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="1dp"
-      
-          />
-    
-
-        <ImageView
-            android:id="@+id/img_on_off"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-                	android:background="@drawable/pos_on"
-            />
-    </LinearLayout>
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-      
-        android:background="@color/Viewc" />
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/Viewc" />
-    <LinearLayout
-        android:id="@+id/ll_pp"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
+            android:background="#F3F2F2"
+            android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="选择POS品牌"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/Viewc" />
 
-        <TextView
-            android:id="@+id/tv_pp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLength="12"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="#FFFFFF" >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="只包含租赁"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-        android:id="@+id/ll_type"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-       android:background="@drawable/bg_item" >
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="选择POS类型"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <ImageView
+                    android:id="@+id/img_on_off"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/pos_on" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-           
-             
-                android:maxLength="12"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/Viewc" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-	 <LinearLayout
-	    android:id="@+id/ll_pay_type"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-       android:background="@drawable/bg_item" >
+            <LinearLayout
+                android:id="@+id/ll_pp"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="选择支付通道"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="选择POS品牌"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <TextView
-                android:id="@+id/tv_pay_type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-      
-            
-            android:maxLength="12"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <TextView
+                    android:id="@+id/tv_pp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLength="12"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-	    android:id="@+id/ll_paycard_type"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-      android:background="@drawable/bg_item" >
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="选择支付卡类型"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/ll_type"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <TextView
-                android:id="@+id/tv_paycard_type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-             android:maxLength="12"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="选择POS类型"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLength="12"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-	    android:id="@+id/ll_jy_type"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-     android:background="@drawable/bg_item" >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="选择支付交易类型"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <TextView
-                android:id="@+id/tv_jy_type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-                  android:maxLength="12"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <LinearLayout
+                android:id="@+id/ll_pay_type"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="选择支付通道"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-	    android:id="@+id/ll_qgd_type"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-      android:background="@drawable/bg_item" >
+                <TextView
+                    android:id="@+id/tv_pay_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLength="12"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="选择签购单方式"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-        <TextView
-                android:id="@+id/tv_qgd_type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-                 android:maxLength="12"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_paycard_type"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-	    android:id="@+id/ll_time"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="选择支付卡类型"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="选择对账日期"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/tv_paycard_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLength="12"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-        <TextView
-                android:id="@+id/tv_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-                  android:maxLength="12"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-        <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/Viewc" />
-          <LinearLayout
-	    android:id="@+id/ll_zdj"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
+            <LinearLayout
+                android:id="@+id/ll_jy_type"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="最低价 "
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="选择支付交易类型"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <EditText
-                android:id="@+id/et_zdj"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="0"
-            android:background="@color/ffffff"
-            android:singleLine="true"
-            android:inputType="number"
-            
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <TextView
+                    android:id="@+id/tv_jy_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLength="12"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:visibility="invisible"
-             android:src="@drawable/post_right" 
-             />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-      <LinearLayout
-	    android:id="@+id/ll_zgj"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="最高价"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/ll_qgd_type"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <EditText
-                android:id="@+id/et_zgj"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-                       android:text="0"
-            android:background="@color/ffffff"
-            android:singleLine="true"
-            android:inputType="number"
-   
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="选择签购单方式"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:visibility="invisible"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_qgd_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLength="12"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-	        </LinearLayout>
-	</ScrollView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/ll_time"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="选择对账日期"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLength="12"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/ll_zdj"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="最低价 "
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/et_zdj"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/ll_zgj"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="最高价"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/et_zgj"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

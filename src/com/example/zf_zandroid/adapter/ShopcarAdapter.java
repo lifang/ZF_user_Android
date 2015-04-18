@@ -49,7 +49,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		activity = (Activity) context;
 		currentHowMoney = 0;
 		howMoney = (TextView) activity.findViewById(R.id.howMoney);
-		
+
 		selectAll_cb = (CheckBox) activity.findViewById(R.id.item_cb);
 		selectAll_cb.setOnCheckedChangeListener(onCheckedChangeListener);
 	}
@@ -82,10 +82,10 @@ public class ShopcarAdapter extends BaseAdapter {
 			holder.Model_number = (TextView) convertView
 					.findViewById(R.id.Model_number);
 			// holder.title = (TextView) convertView.findViewById(R.id.title);
-			 holder.delete_img = (ImageView)
-			  convertView.findViewById(R.id.delete_img);
-			 
-			 
+			holder.delete_img = (ImageView)
+					convertView.findViewById(R.id.delete_img);
+
+
 			holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
 			holder.editBtn.setOnClickListener(onClick);
 			holder.ll_select = (LinearLayout) convertView
@@ -107,7 +107,7 @@ public class ShopcarAdapter extends BaseAdapter {
 			holder.add.setOnClickListener(onClick);
 			holder.retail_price = (TextView) convertView
 					.findViewById(R.id.retail_price);
-		 	holder.tv_changel = (TextView) convertView.findViewById(R.id.tv_changel);
+			holder.tv_changel = (TextView) convertView.findViewById(R.id.tv_changel);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -116,7 +116,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.checkBox.setTag(position);
 		Good good = list.get(position);
 		holder.checkBox.setChecked(good.isChecked());
-		 holder.tv_changel .setText(good.getName());
+		holder.tv_changel .setText(good.getName());
 		holder.title.setText(good.getTitle());
 		holder.showCountText.setText("X  " + good.getQuantity());
 		holder.buyCountEdit.setText("" + good.getQuantity());
@@ -124,6 +124,14 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.retail_price.setText("¥ " + StringUtil.getMoneyString(good.getRetail_price()));
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
+		
+		for (int i = 0; i < list.size(); i++) {
+			Boolean aBoolean = list.get(i).isChecked();
+			if (aBoolean == false) {
+				selectAll_cb.setChecked(false);
+			}
+		}
+		
 		return convertView;
 	}
 
@@ -131,12 +139,11 @@ public class ShopcarAdapter extends BaseAdapter {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			ViewHolder hoder = (ViewHolder) v.getTag();
-		 int position = hoder.position;
+			int position = hoder.position;
 			Good editGood = list.get(position);
-		  	int quantity = editGood.getQuantity();
-		 	//int quantity = Integer.parseInt(holder.buyCountEdit.getText().toString());
+			int quantity = editGood.getQuantity();
+			//int quantity = Integer.parseInt(holder.buyCountEdit.getText().toString());
 			switch (v.getId()) {
 			case R.id.editView:
 				LinearLayout ll_select = hoder.ll_select;
@@ -150,8 +157,8 @@ public class ShopcarAdapter extends BaseAdapter {
 						: View.INVISIBLE);
 				hoder.editBtn.setText(isEdit ? "编辑" : "完成");
 				if(isEdit){
-						System.out.println(position+"----"+Integer.parseInt( hoder.buyCountEdit.getText().toString()));
-					 changeContent(position, Integer.parseInt( hoder.buyCountEdit.getText().toString()));
+					System.out.println(position+"----"+Integer.parseInt( hoder.buyCountEdit.getText().toString()));
+					changeContent(position, Integer.parseInt( hoder.buyCountEdit.getText().toString()));
 				}
 				break;
 
@@ -159,37 +166,37 @@ public class ShopcarAdapter extends BaseAdapter {
 
 				RequestParams params = new RequestParams();
 				params.put("id", list.get(hoder.position).getId()); 
-				 final int index =hoder.position;
+				final int index =hoder.position;
 				params.setUseJsonStreamer(true);
 
 				MyApplication.getInstance().getClient()
-						.post(Config.URL_CART_DELETE, params, new AsyncHttpResponseHandler() {
+				.post(Config.URL_CART_DELETE, params, new AsyncHttpResponseHandler() {
 
-							@Override
-							public void onSuccess(int statusCode, Header[] headers,
-									byte[] responseBody) {
-								String responseMsg = new String(responseBody)
-										.toString();
-								Log.e("print", responseMsg);
+					@Override
+					public void onSuccess(int statusCode, Header[] headers,
+							byte[] responseBody) {
+						String responseMsg = new String(responseBody)
+						.toString();
+						Log.e("print", responseMsg);
 
-							 list.remove(index);
-							 computeMoney();
-							 notifyDataSetChanged();
+						list.remove(index);
+						computeMoney();
+						notifyDataSetChanged();
 
-							}
+					}
 
-							@Override
-							public void onFailure(int statusCode, Header[] headers,
-									byte[] responseBody, Throwable error) {
-								// TODO Auto-generated method stub
-								System.out.println("-onFailure---");
-								Log.e("print", "-onFailure---" + error);
-							}
-						});
-		 
-			 
-			 
-		
+					@Override
+					public void onFailure(int statusCode, Header[] headers,
+							byte[] responseBody, Throwable error) {
+						// TODO Auto-generated method stub
+						System.out.println("-onFailure---");
+						Log.e("print", "-onFailure---" + error);
+					}
+				});
+
+
+
+
 				break;
 			case R.id.reduce:
 
@@ -199,7 +206,7 @@ public class ShopcarAdapter extends BaseAdapter {
 					hoder.showCountText.setText("X  " + editGood.getQuantity());
 					computeMoney();
 					System.out.println("λ��---"+position+quantity);
-				    changeContent(position, quantity);
+					changeContent(position, quantity);
 				}
 				break;
 			case R.id.add:
@@ -220,12 +227,11 @@ public class ShopcarAdapter extends BaseAdapter {
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView,
 				boolean isChecked) {
-			// TODO Auto-generated method stub
 			if (selectAll_cb == buttonView) {
 				for (int index = 0; index < list.size(); index++) {
 					list.get(index).setChecked(isChecked);
 				}
- 
+
 				notifyDataSetChanged();
 			} else {
 				if(isChecked){
@@ -242,54 +248,54 @@ public class ShopcarAdapter extends BaseAdapter {
 				Good good = list.get(position);
 				good.setChecked(isChecked);
 				computeMoney();
+				notifyDataSetChanged();
+		
 				Log.e("print", "currentHowMoney:"+currentHowMoney);
 			}
 
 		}
 	};
 	public void changeContent(final int index,final int cont){
-		 
-			// TODO Auto-generated method stub
-			String url =  Config.Car_edit;
-			RequestParams params = new RequestParams();
-			params.put("id", list.get(index).getId());
-			params.put("quantity", cont);
-			params.setUseJsonStreamer(true);
 
-			MyApplication.getInstance().getClient()
-					.post(url, params, new AsyncHttpResponseHandler() {
+		String url =  Config.Car_edit;
+		RequestParams params = new RequestParams();
+		params.put("id", list.get(index).getId());
+		params.put("quantity", cont);
+		params.setUseJsonStreamer(true);
 
-						@Override
-						public void onSuccess(int statusCode, Header[] headers,
-								byte[] responseBody) {
-							String responseMsg = new String(responseBody)
-									.toString();
-							Log.e("print", responseMsg);
+		MyApplication.getInstance().getClient()
+		.post(url, params, new AsyncHttpResponseHandler() {
 
-						 list.get(index).setQuantity(cont);
-						 notifyDataSetChanged();
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				String responseMsg = new String(responseBody)
+				.toString();
+				Log.e("print", responseMsg);
 
-						}
+				list.get(index).setQuantity(cont);
+				notifyDataSetChanged();
 
-						@Override
-						public void onFailure(int statusCode, Header[] headers,
-								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
-							System.out.println("-onFailure---");
-							Log.e("print", "-onFailure---" + error);
-						}
-					});
-	 
-		 
-		 
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				System.out.println("-onFailure---");
+				Log.e("print", "-onFailure---" + error);
+			}
+		});
+
+
+
 	}
-	
+
 	public final class ViewHolder {
-	 	private int position;
+		private int position;
 		private CheckBox checkBox;
 		private TextView title;
 		private ImageView delete_img;
-	 
+
 		private TextView editBtn,tv_changel;
 		private LinearLayout ll_select;
 		private TextView retail_price;
@@ -301,7 +307,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		public TextView Model_number;
 		public TextView wayName;
 	}
-	
+
 	private void computeMoney(){
 		currentHowMoney = 0;
 		for(Good good: list){

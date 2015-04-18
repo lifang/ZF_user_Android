@@ -742,7 +742,13 @@ public class API {
 		params.put("keys", keys);
 		params.put("page", page);
 		params.put("rows", rows);
-
+		params.put("brands_id", brands_id);
+		params.put("category", category);
+		params.put("pay_channel_id", pay_channel_id);
+		params.put("pay_card_id", pay_card_id);
+		params.put("trade_type_id", trade_type_id);
+		params.put("sale_slip_id", sale_slip_id);
+		params.put("tDate", tDate);
 
 		System.out.println("--ccc----"+params);
 		new HttpRequest(context, callback).post(Config.URL_GOOD_LIST, params);

@@ -41,6 +41,7 @@ public class AdressList extends BaseActivity  {
 	private int customerId;
 	List<Integer> as = new ArrayList<Integer>();
 	private ImageView search,img_add;
+	private boolean isFirstCreate;
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 	private Handler handler = new Handler() {
@@ -52,6 +53,7 @@ public class AdressList extends BaseActivity  {
 					eva_nodata.setVisibility(View.VISIBLE);
 				} else{
 					lv.setVisibility(View.VISIBLE);
+					eva_nodata.setVisibility(View.GONE);
 				}
 				myAdapter.notifyDataSetChanged();
 				break;
@@ -75,12 +77,21 @@ public class AdressList extends BaseActivity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adress_list);
+		isFirstCreate=true;
 		customerId = MyApplication.getInstance().getCustomerId();
 		initView();
 		MyApplication.setIsSelect(false);
 		getData();
 	}
-
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(!isFirstCreate){
+			getData();
+		}else {
+			isFirstCreate=false;
+		}
+	}
 	private void initView() {
 		search=(ImageView) findViewById(R.id.search);
 		img_add=(ImageView) findViewById(R.id.img_add);
@@ -200,10 +211,5 @@ public class AdressList extends BaseActivity  {
 				};
 			}
 		});
-	}
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		getData();
 	}
 }
