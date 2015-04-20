@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -108,7 +107,6 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		}else {
 			has_purchase = 0;
 		}
-		
 		initView();
 		getData();
 	}
@@ -263,8 +261,69 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	}
 
 	private void getData() {
+		int[] arraybrands_id = null,arraycategory_id = null,arraypay_channel_id = null,arraypay_card_id = null,
+		arraytrade_type_id = null,arraysale_slip_id = null,arraystDate = null;
+		if (brands_id != null){ 
+			arraybrands_id = new int[brands_id.size()];  
+			if (brands_id.size() == 0) 
+				arraybrands_id = null;
+			
+			for(int i=0;i<brands_id.size();i++){  
+				arraybrands_id[i] = brands_id.get(i);  
+			}
+		}
+		if (category_id != null){
+			arraycategory_id = new int[category_id.size()];  
+			if (category_id.size() == 0) 
+				arraycategory_id = null;
+			for(int i=0;i<category_id.size();i++){  
+				arraycategory_id[i] = category_id.get(i);  
+			}
+		}
+		if (pay_channel_id != null){
+			arraypay_channel_id = new int[pay_channel_id.size()];  
+			if (pay_channel_id.size() == 0) 
+				arraypay_channel_id = null;
+			for(int i=0;i<pay_channel_id.size();i++){  
+				arraypay_channel_id[i] = pay_channel_id.get(i);  
+			}
+		}
+		if (pay_card_id != null){
+			arraypay_card_id = new int[pay_card_id.size()];
+			if (pay_card_id.size() == 0) 
+				arraypay_card_id = null;
+			for(int i=0;i<pay_card_id.size();i++){  
+				arraypay_card_id[i] = pay_card_id.get(i);  
+			}
+		}
+		if (trade_type_id != null){
+			arraytrade_type_id = new int[trade_type_id.size()];  
+			if (trade_type_id.size() == 0) 
+				arraytrade_type_id = null;
+			for(int i=0;i<trade_type_id.size();i++){  
+				arraytrade_type_id[i] = trade_type_id.get(i);  
+			}
+		}
+		if (sale_slip_id != null){
+			arraysale_slip_id = new int[sale_slip_id.size()];  
+			if (sale_slip_id.size() == 0) 
+				arraysale_slip_id = null;
+			for(int i=0;i<sale_slip_id.size();i++){  
+				arraysale_slip_id[i] = sale_slip_id.get(i);  
+			}
+		}
+		if (tDate != null){
+			arraystDate = new int[tDate.size()];  
+			if (tDate.size() == 0) 
+				arraystDate = null;
+			for(int i=0;i<tDate.size();i++){  
+				arraystDate[i] = tDate.get(i);  
+			}
+		}
+
 		API.postList(this, MyApplication.getInstance().getCityId(), orderType,
-				brands_id,category_id,pay_channel_id,pay_card_id,trade_type_id,sale_slip_id,tDate,
+				arraybrands_id,arraycategory_id,arraypay_channel_id,arraypay_card_id,
+				arraytrade_type_id,arraysale_slip_id,arraystDate,
 				has_purchase, minPrice, maxPrice, keys, page, rows,
 
 				new HttpCallback<NewPoslistEntity>(this) {
@@ -297,7 +356,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			trade_type_id = null;
 			sale_slip_id = null;
 			tDate = null;
-			
+
 			if(data!=null){
 				System.out.println("进入条件选择回调···");
 				minPrice=data.getIntExtra("minPrice", 0);
