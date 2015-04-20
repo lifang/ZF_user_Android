@@ -23,6 +23,7 @@ import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TerminalItem;
 import com.example.zf_android.trade.widget.XListView;
+import com.example.zf_android.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -201,6 +202,10 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 				@Override
 				public void onClick(View view) {
 					CommonUtil.toastShort(ApplyListActivity.this, "not yet completed...");
+					//添加视频审核
+					Intent intent = new Intent(ApplyListActivity.this, VideoActivity.class);
+					intent.putExtra(TERMINAL_ID, item.getId());
+					startActivity(intent);
 				}
 			});
 			

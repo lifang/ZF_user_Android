@@ -329,4 +329,6 @@
     <string name="update_imde">立即更新</string>
     <string name="updata_check">"正在下载更新！"</string>
     <string name="upload_fail">下载失败！</string>
+    
+    <string name="endCall1">结束视频</string>
 </resources>
