@@ -85,8 +85,34 @@
 				android:orientation="horizontal"
 				android:clickable="true"/>
 		</LinearLayout>
+		
+		
+		<LinearLayout
+			android:id="@+id/terminal_button_container_2"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:clickable="true"
+			android:visibility="gone">
+
+			<View style="@style/Divider"/>
+
+			<LinearLayout
+				android:id="@+id/terminal_buttons_2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="12dp"
+				android:layout_marginBottom="12dp"
+				android:layout_gravity="center"
+				android:orientation="horizontal"
+				android:clickable="true"/>
+		</LinearLayout>
+		
 	</LinearLayout>
 
+	
+	
+	
 	<View style="@style/Divider"/>
 
 </LinearLayout>

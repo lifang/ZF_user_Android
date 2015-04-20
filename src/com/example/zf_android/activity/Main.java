@@ -50,6 +50,7 @@ import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
+import com.example.zf_android.trade.widget.DepthPageTransformer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -110,7 +111,7 @@ public class Main extends BaseActivity implements OnClickListener{
 				break;
 			case 4:
 				pagerIndex++;
-				pagerIndex = pagerIndex>list.size()?0:pagerIndex;
+				pagerIndex = pagerIndex>list.size()-1?0:pagerIndex;
 				view_pager.setCurrentItem(pagerIndex);
 				break;
 			}
@@ -155,7 +156,7 @@ public class Main extends BaseActivity implements OnClickListener{
 		((MyApplication)getApplication()).mLocationResult = LocationResult;
 		InitLocation();
 		mLocationClient.start();
-
+		
 		System.out.println("当前城市 ID----" +MyApplication.getInstance().getCityId());
 
 	}	
@@ -175,7 +176,7 @@ public class Main extends BaseActivity implements OnClickListener{
 				handler.sendEmptyMessage(4);
 			}
 		};
-		timer.schedule(task, time, time);
+		timer.schedule(task, 0, time);
 	}
 	
 	@Override
@@ -268,7 +269,8 @@ public class Main extends BaseActivity implements OnClickListener{
 
 
 		view_pager = (ViewPager) findViewById(R.id.view_pager);
-
+		//allow use api level>11
+//		view_pager.setPageTransformer(true, new DepthPageTransformer());
 		inflater = LayoutInflater.from(this);
 		adapter = new MyAdapter(list);
 
@@ -285,6 +287,7 @@ public class Main extends BaseActivity implements OnClickListener{
 
 		case R.id.titleback_linear_back:  
 			Intent intent = new Intent(Main.this, CitySelectActivity.class);
+			cityName = cityTextView.getText().toString();
 			intent.putExtra(CITY_NAME, cityName);
 			startActivityForResult(intent, REQUEST_CITY);
 			break;
