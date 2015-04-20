@@ -44,6 +44,7 @@ public class ChanceAdress extends BaseActivity{
 	private ScrollViewWithListView   lv;
 	private int customerId;
 	private ChooseAdressAdapter myAdapter;
+	private boolean isFirstCreate;
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 	private Handler handler = new Handler() {
@@ -73,10 +74,21 @@ public class ChanceAdress extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chance_adress);
+		isFirstCreate=true;
 		customerId = MyApplication.getInstance().getCustomerId();
 		new TitleMenuUtil(ChanceAdress.this, "选择地址").show();
 		initView();
 		getData();
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(!isFirstCreate){
+			getData();
+		}else {
+			isFirstCreate=false;
+		}
+	
 	}
 	private void initView() {
 		lv=(ScrollViewWithListView) findViewById(R.id.lv);
@@ -106,6 +118,7 @@ public class ChanceAdress extends BaseActivity{
 		});
 	}
 	private void getData() {
+		myList.clear();
 		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
 		MyApplication.getInstance().getClient()
 		.post(url, new AsyncHttpResponseHandler() {

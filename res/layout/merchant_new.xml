@@ -5,445 +5,417 @@
     android:background="@color/F3F2F2"
     android:orientation="vertical" >
 
- <include layout="@layout/title_back" />
-   <ScrollView  android:layout_height="wrap_content"
-        android:layout_width="fill_parent">
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
-   <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
- 
-        android:background="@color/Viewc" />
-    <LinearLayout
-        android:id="@+id/mi_r1"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
- 
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-         android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="商铺名称（商户名）"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <EditText
-            android:background="@color/ffffff"
-            
-            android:id="@+id/tv1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-          
-            android:singleLine="true"
-           
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <LinearLayout
+                android:id="@+id/mi_r1"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="商铺名称（商户名）"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-         android:id="@+id/mi_r2"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
-         
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="商户法人姓名"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <EditText
+                    android:id="@+id/tv1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-         <EditText
-            android:background="@color/ffffff"
-           android:id="@+id/tv2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-          
-            android:singleLine="true"
-            
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-         android:id="@+id/mi_r3"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
-         
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-           android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="商户法人身份证号"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/mi_r2"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-         <EditText
-            android:background="@color/ffffff"
-           android:id="@+id/tv3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-  
-            android:singleLine="true"
-             
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="商户法人姓名"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/tv2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-         android:id="@+id/mi_r4"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
-         
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-          android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="营业执照登记号"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-       <EditText
-            android:background="@color/ffffff"
-           android:id="@+id/tv4"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:singleLine="true"
-            
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/mi_r3"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-     <LinearLayout
-         android:id="@+id/mi_r5"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
-         
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-           android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="税务证号"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="商户法人身份证号"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-         <EditText
-            android:background="@color/ffffff"
-              android:id="@+id/tv5"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:singleLine="true"
-            
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <EditText
+                    android:id="@+id/tv3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-      <LinearLayout
-         android:id="@+id/mi_r6"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
-         
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-           android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="组织机构代码证号"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <EditText
-            android:background="@color/ffffff"
-        	android:id="@+id/tv6"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:singleLine="true"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <LinearLayout
+                android:id="@+id/mi_r4"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="营业执照登记号"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-      <LinearLayout
-         
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
-         
-        
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-           android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="商户所在地"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <EditText
+                    android:id="@+id/tv4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-             <TextView
-        	android:id="@+id/tv7"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:singleLine="true"
-          
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/Viewc" />
-        
-            
-             <LinearLayout
-   
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	 
-        
-        
-      <TextView
-            android:background="@color/ffffff"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="开户银行"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/mi_r5"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-      
-    <EditText
-            android:background="@color/ffffff"
-            android:id="@+id/tvkhyh"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:singleLine="true"
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="税务证号"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/tv5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
- 
-            
-             <LinearLayout
- 
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
-	
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="@dimen/margin_left2"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="银行开户许可证号"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-            <EditText
-            android:background="@color/ffffff"
-        	android:id="@+id/tv8"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:singleLine="true"
-           
-            android:textColor="@color/text6c6c6c6"
-            android:textSize="13sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/mi_r6"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc" />
-                <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/Viewc" />
-        
-            
-             <LinearLayout
-		android:id="@+id/layout10"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" ><TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="组织机构代码证号"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/tv6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="商户所在地"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:background="@color/ffffff"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="开户银行"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/tvkhyh"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/margin_left2"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="银行开户许可证号"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/tv8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ffffff"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_right"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/Viewc" />
+
+            <LinearLayout
+                android:id="@+id/layout10"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="@dimen/margin_left2"
@@ -793,7 +765,10 @@
                 android:layout_height="1dp"
                 android:background="@color/Viewc" />
 
+
          　　　
+
+            
 
             <Button
                 android:id="@+id/btn_save"
@@ -806,8 +781,7 @@
                 android:text="创建"
                 android:textColor="@color/ffffff"
                 android:textSize="20sp" />
-</LinearLayout>
+        </LinearLayout>
     </ScrollView>
-    
-    
+
 </LinearLayout>

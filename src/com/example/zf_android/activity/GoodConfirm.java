@@ -53,6 +53,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	private ImageView reduce,add;
 	PopupWindow menuWindow;
 	private int pirce;
+	private boolean isFirstCreate;
 	private int goodId,paychannelId,quantity,addressId,is_need_invoice=0;
 	private EditText buyCountEdit,comment_et,et_titel;
 	private CheckBox item_cb;
@@ -64,7 +65,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		setContentView(R.layout.good_confirm);
 		new TitleMenuUtil(GoodConfirm.this, "订单确认").show();
 		customerId = MyApplication.getInstance().getCustomerId();
-		
+
+		isFirstCreate=true;
 		System.out.println("进入订单确认····");
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
@@ -75,9 +77,18 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		tv_pay.setText("实付：￥ "+StringUtil.getMoneyString(pirce)); 
 		tv_totle.setText("实付：￥ "+StringUtil.getMoneyString(pirce)); 
 		System.out.println("=paychannelId=="+paychannelId);
-		 getData1();
+		getData1();
 	}
-
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(!isFirstCreate){
+			getData1();
+		}else {
+			isFirstCreate=false;
+		}
+		
+	}
 	private void initView() {
 		add=(ImageView) findViewById(R.id.add);
 		reduce=(ImageView) findViewById(R.id.reduce);
@@ -103,7 +114,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		comment_et=(EditText) findViewById(R.id.comment_et);
 		item_cb=(CheckBox) findViewById(R.id.item_cb);
 		item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if(arg1){
@@ -114,37 +125,35 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			}
 		});
 		buyCountEdit.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				showCountText.setText(arg0.toString());
+				showCountText.setText("X   "+arg0.toString());
 				tv_count.setText("共计:   "+arg0+"件");
-				 if( buyCountEdit.getText().toString().equals("")){
-					 quantity=0;
-				 }else{
-					 quantity= Integer.parseInt( buyCountEdit.getText().toString() );
-				 }
-			 
-				 tv_totle.setText("实付：￥ "+StringUtil.getMoneyString(pirce*quantity)); 
+				if( buyCountEdit.getText().toString().equals("")){
+					quantity=0;
+				}else{
+					quantity= Integer.parseInt( buyCountEdit.getText().toString() );
+				}
+
+				tv_totle.setText("实付：￥ "+StringUtil.getMoneyString(pirce*quantity)); 
 				tv_pay.setText("实付：￥ "+StringUtil.getMoneyString(pirce*quantity)); 
 			}
-			
+
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				
+
 			}
-			
+
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				
+
 			}
 		});
 	}
 	public void menu_press() {
 		View view = getLayoutInflater().inflate(R.layout.popwindow, null);
-		// view.findViewById(R.id.todayorder_ordernumber).setOnClickListener(this);
-		// view.findViewById(R.id.todayorder_mobile).setOnClickListener(this);
 		menuWindow = new PopupWindow(view, LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
 		TextView tv_new = (TextView) view.findViewById(R.id.tv_new);
@@ -152,14 +161,14 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		TextView tv_re = (TextView) view.findViewById(R.id.tv_re);
 		if (invoice_type == 0) {
 			tv_new.setTextColor(getResources().getColor(R.color.bgtitle));
-			 
+
 			tv_re.setTextColor(getResources().getColor(R.color.black));
 
 		}
-	 
+
 		if (invoice_type == 1) {
 			tv_new.setTextColor(getResources().getColor(R.color.black));
-			 
+
 			tv_re.setTextColor(getResources().getColor(R.color.bgtitle));
 		}
 		tv_new.setOnClickListener(new OnClickListener() {
@@ -169,11 +178,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 				invoice_type = 0;
 				tv_pop.setText("公司");
 				menuWindow.dismiss();
-				 
-				 
+
+
 			}
 		});
-		 
+
 		tv_re.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -191,128 +200,65 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		// int hight = findViewById(R.id.main_top).getHeight()
 		// + Tools.getStatusBarHeight(getApplicationContext());
 		menuWindow.showAsDropDown(this.findViewById(R.id.tv_pop),0,0);
-//		menuWindow.showAtLocation(this.findViewById(R.id.next_sure),
-//				Gravity.TOP | Gravity.RIGHT, 50, 100);
-	}
-	private void getData() {
-		 String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
-
-			MyApplication.getInstance().getClient()
-					.get(url, new AsyncHttpResponseHandler() {
-
-						@Override
-						public void onSuccess(int statusCode, Header[] headers,
-								byte[] responseBody) {
-							String responseMsg = new String(responseBody)
-									.toString();
-							Log.e("print", responseMsg);
-							System.out.println("----"+responseMsg);
-						 
-							 
-							Gson gson = new Gson();
-							
-							JSONObject jsonobject = null;
-							String code = null;
-							try {
-								jsonobject = new JSONObject(responseMsg);
-								code = jsonobject.getString("code");
-								int a =jsonobject.getInt("code");
-								if(a==Config.CODE){  
-	 								String res =jsonobject.getString("result");
-//									jsonobject = new JSONObject(res);
-									
-	 								moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
-	 			 					}.getType());
-				 				 
-	 								myList.addAll(moreList);
-	 				 			 for(int i=0;i<myList.size();i++){
-	 				 				 if(myList.get(i).getIsDefault()==1){
-	 				 					tv_sjr.setText("收件人： "+myList.get(i).getReceiver());
-	 				 					tv_tel.setText(myList.get(i).getMoblephone());
-	 				 					tv_adress.setText("地址："+myList.get(i).getAddress());
-	 				 					addressId=myList.get(i).getId();
-	 				 				 }
-	 				 			 }
-				 					  
-				 				 
-				 			 
-								}else{
-									code = jsonobject.getString("message");
-									Toast.makeText(getApplicationContext(), code, 1000).show();
-								}
-							} catch (JSONException e) {
-								e.printStackTrace();
-								
-							}
-
-						}
-
-						@Override
-						public void onFailure(int statusCode, Header[] headers,
-								byte[] responseBody, Throwable error) {
-							System.out.println("-onFailure---");
-							Log.e("print", "-onFailure---" + error);
-						}
-					});
-	 
-			 
-	 
+		//		menuWindow.showAtLocation(this.findViewById(R.id.next_sure),
+		//				Gravity.TOP | Gravity.RIGHT, 50, 100);
 	}
 	private void getData1() { 
-		 String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
+		myList.clear();
+		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
 		MyApplication.getInstance().getClient()
-				.post(url, new AsyncHttpResponseHandler() {
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg);
-						System.out.println("----"+responseMsg);
-					 
-						 
-						Gson gson = new Gson();
-						
-						JSONObject jsonobject = null;
-						String code = null;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							code = jsonobject.getString("code");
-							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){  
- 								String res =jsonobject.getString("result");
+		.post(url, new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				String responseMsg = new String(responseBody)
+				.toString();
+				Log.e("print", responseMsg);
+				System.out.println("----"+responseMsg);
 
-								
- 								moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
- 			 					}.getType());
-			 				 
- 								for(int i =0;i<moreList.size();i++){
- 									if(moreList.get(i).getIsDefault()==1) {
- 										//tv_name,tv_tel,tv_adresss;
- 										addressId=moreList.get(i).getId();
- 										tv_adress.setText("收件地址 ： "+moreList.get(i).getAddress());
- 										tv_sjr.setText("收件人 ： "+moreList.get(i).getReceiver());
- 										tv_tel.setText( moreList.get(i).getMoblephone());
- 									}
- 								}
-							}else{
-								code = jsonobject.getString("message");
-								Toast.makeText(getApplicationContext(), code, 1000).show();
+
+				Gson gson = new Gson();
+
+				JSONObject jsonobject = null;
+				String code = null;
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					code = jsonobject.getString("code");
+					int a =jsonobject.getInt("code");
+					if(a==Config.CODE){  
+						String res =jsonobject.getString("result");
+
+
+						moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
+						}.getType());
+
+						for(int i =0;i<moreList.size();i++){
+							if(moreList.get(i).getIsDefault()==1) {
+								//tv_name,tv_tel,tv_adresss;
+								addressId=moreList.get(i).getId();
+								tv_adress.setText("收件地址 ： "+moreList.get(i).getAddress());
+								tv_sjr.setText("收件人 ： "+moreList.get(i).getReceiver());
+								tv_tel.setText( moreList.get(i).getMoblephone());
 							}
-						} catch (JSONException e) {
-							e.printStackTrace();
-							
 						}
-
+					}else{
+						code = jsonobject.getString("message");
+						Toast.makeText(getApplicationContext(), code, 1000).show();
 					}
+				} catch (JSONException e) {
+					e.printStackTrace();
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
-					}
-				});
+				}
+
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				System.out.println("-onFailure---");
+				Log.e("print", "-onFailure---" + error);
+			}
+		});
 	}
 	@Override
 	public void onClick(View arg0) {
@@ -325,40 +271,36 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			startActivityForResult(i, 11);
 			break;
 		case R.id.btn_pay:
-		   confirmGood();
+			quantity= Integer.parseInt( buyCountEdit.getText().toString() );
+			if (addressId != 0) {
+				if (quantity > 0) {
+					confirmGood();
+				}else {
+					Toast.makeText(this, "请确认购买数量", Toast.LENGTH_SHORT).show();
+				}
+			}else {
+				Toast.makeText(this, "收件地址不能为空", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		case R.id.add:
 			quantity= Integer.parseInt( buyCountEdit.getText().toString() )+1;
 			buyCountEdit.setText(quantity+"");
-				break;
+			break;
 		case R.id.reduce:
 			if(quantity==0){
 				break;
 			}
 			quantity= Integer.parseInt( buyCountEdit.getText().toString() )-1;
 			buyCountEdit.setText(quantity+"");
-				break;
+			break;
 		default:
 			break;
 		}
 	}
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode==11){
-			if(data!=null){
-
-				addressId=data.getIntExtra("id", addressId);
-				tv_adress.setText("收件地址 ： "+data.getStringExtra("adree"));
-				tv_sjr.setText("收件人 ： "+data.getStringExtra("name"));
-				tv_tel.setText( data.getStringExtra("tel"));
-			}
-		}
-	}
 	private void confirmGood() {
-		 
-		 //quantity addressId comment is_need_invoice et_titel  
-		quantity= Integer.parseInt( buyCountEdit.getText().toString() );
+
+		//quantity addressId comment is_need_invoice et_titel  
+	
 		comment=comment_et.getText().toString();
 		RequestParams params = new RequestParams();
 		params.put("customerId", customerId);
@@ -371,25 +313,25 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", et_titel.getText().toString());
 		params.setUseJsonStreamer(true);
- 
+
 		invoice_info=et_titel.getText().toString();
 		API.goodConfirm(GoodConfirm.this,customerId,goodId,paychannelId,
 				quantity,addressId,comment,is_need_invoice,invoice_type,invoice_info,
-        		
-                new HttpCallback  (GoodConfirm.this) {
-					@Override
-					public void onSuccess(Object data) {
-						Intent i1 =new Intent (GoodConfirm.this,PayFromCar.class);
-						String orderId = data.toString();
-						i1.putExtra("orderId", orderId);
-						startActivity(i1);	
-						finish();
-					}
 
-					@Override
-					public TypeToken getTypeToken() {
-						return  null;
-					}
-                });
+				new HttpCallback  (GoodConfirm.this) {
+			@Override
+			public void onSuccess(Object data) {
+				Intent i1 =new Intent (GoodConfirm.this,PayFromCar.class);
+				String orderId = data.toString();
+				i1.putExtra("orderId", orderId);
+				startActivity(i1);	
+				finish();
+			}
+
+			@Override
+			public TypeToken getTypeToken() {
+				return  null;
+			}
+		});
 	}
 }

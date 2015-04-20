@@ -718,13 +718,13 @@ public class API {
 			Context context,
 			int  city_id,
 			int  orderType,
-			ArrayList<Integer> 	brands_id,
-			ArrayList<Integer> 	category,
-			ArrayList<Integer> 	pay_channel_id,
-			ArrayList<Integer> pay_card_id,
-			ArrayList<Integer> trade_type_id,
-			ArrayList<Integer> sale_slip_id,
-			ArrayList<Integer> tDate,
+			int[] brands_id,
+			int[] category,
+			int[] pay_channel_id,
+			int[] pay_card_id,
+			int[] trade_type_id,
+			int[] sale_slip_id,
+			int[] tDate,
 			int has_purchase,
 			double minPrice,
 			double maxPrice,
@@ -742,7 +742,25 @@ public class API {
 		params.put("keys", keys);
 		params.put("page", page);
 		params.put("rows", rows);
-
+		Gson gson = new Gson();
+		try {
+			if (brands_id != null) 
+			params.put("brands_id", new JSONArray(gson.toJson(brands_id)));
+			if (category != null) 
+			params.put("category", new JSONArray(gson.toJson(category)));
+			if (pay_channel_id != null) 
+			params.put("pay_channel_id", new JSONArray(gson.toJson(pay_channel_id)));
+			if (pay_card_id != null) 
+			params.put("pay_card_id", new JSONArray(gson.toJson(pay_card_id)));
+			if (trade_type_id != null) 
+			params.put("trade_type_id", new JSONArray(gson.toJson(trade_type_id)));
+			if (sale_slip_id != null) 
+			params.put("sale_slip_id", new JSONArray(gson.toJson(sale_slip_id)));
+			if (tDate != null) 
+			params.put("tDate", new JSONArray(gson.toJson(tDate)));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 
 		System.out.println("--ccc----"+params);
 		new HttpRequest(context, callback).post(Config.URL_GOOD_LIST, params);

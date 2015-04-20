@@ -39,16 +39,17 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 	private Editor editor;
 	private EditText et1,et2;
 	private int 	has_purchase=0;
-	 ArrayList<Integer>  brands_id = new ArrayList<Integer>();
-	 ArrayList<Integer>  category = new ArrayList<Integer>();
-	 private List<PrePosItem> sonlist=new ArrayList<PrePosItem>();
-	 ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
-	 ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
-	 ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
-	 
-	 ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
-	 ArrayList<Integer>  tDate = new ArrayList<Integer>();
-	 
+	private List<PrePosItem> sonlist=new ArrayList<PrePosItem>();
+	
+	private ArrayList<Integer>  brands_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  category_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
+	
+	private ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
+	private ArrayList<Integer>  tDate = new ArrayList<Integer>();
+
 	private PosSelectEntity pse;
 	private List<PosItem> mylist=new ArrayList<PosItem>();
 	private LinearLayout ll_pp,ll_type, ll_pay_type,ll_paycard_type,ll_jy_type,ll_qgd_type,ll_time,ll_zdj,ll_zgj;
@@ -62,71 +63,71 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 	}
 	private void gateData() {
 		RequestParams params = new RequestParams("city_id", MyApplication.getInstance().getCityId());
-		 
+
 		params.setUseJsonStreamer(true);
 
 		MyApplication.getInstance().getClient()
-				.post(Config.URL_GOOD_SEARCH, params, new AsyncHttpResponseHandler() {
+		.post(Config.URL_GOOD_SEARCH, params, new AsyncHttpResponseHandler() {
 
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg);
-						 
-						Gson gson = new Gson();
-						
-						JSONObject jsonobject = null;
-						String code = null;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							code = jsonobject.getString("code");
-							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){  
-					 
-								String res =jsonobject.getString("result");
-								
-								pse= gson.fromJson(res, new TypeToken <PosSelectEntity> () {
-			 					}.getType());
-								MyApplication.pse = pse;
-								System.out.println(MyApplication.pse.getBrands().size()+"---"+pse.getBrands().size());
-								
-//								myList.addAll(moreList);
-//				 				handler.sendEmptyMessage(0);
-			 			 
-							}else{
-								code = jsonobject.getString("message");
-								Toast.makeText(getApplicationContext(), code, 1000).show();
-							}
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-					}
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				String responseMsg = new String(responseBody)
+				.toString();
+				Log.e("print", responseMsg);
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
+				Gson gson = new Gson();
+
+				JSONObject jsonobject = null;
+				String code = null;
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					code = jsonobject.getString("code");
+					int a =jsonobject.getInt("code");
+					if(a==Config.CODE){  
+
+						String res =jsonobject.getString("result");
+
+						pse= gson.fromJson(res, new TypeToken <PosSelectEntity> () {
+						}.getType());
+						MyApplication.pse = pse;
+						System.out.println(MyApplication.pse.getBrands().size()+"---"+pse.getBrands().size());
+
+						//								myList.addAll(moreList);
+						//				 				handler.sendEmptyMessage(0);
+
+					}else{
+						code = jsonobject.getString("message");
+						Toast.makeText(getApplicationContext(), code, 1000).show();
 					}
-				});
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				System.out.println("-onFailure---");
+				Log.e("print", "-onFailure---" + error);
+			}
+		});
 	}
 	private void initView() {
-		
+
 		mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
 		isOpen_mineset=mySharedPreferences.getBoolean("isOpen_ps", true);
 		img_on_off=(ImageView) findViewById(R.id.img_on_off);
 		if(!isOpen_mineset){
 			img_on_off.setBackgroundResource(R.drawable.pos_off);
-		 
+
 		}
 		img_on_off.setOnClickListener(this);
-		
+
 		et1=(EditText) findViewById(R.id.et_zdj);
 		et2=(EditText) findViewById(R.id.et_zgj);
-		
+
 		tv_time=(TextView) findViewById(R.id.tv_time);
 		tv_qgd_type=(TextView) findViewById(R.id.tv_qgd_type);
 		tv_jy_type=(TextView) findViewById(R.id.tv_jy_type);
@@ -150,10 +151,6 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 		ll_qgd_type.setOnClickListener(this);
 		ll_time=(LinearLayout) findViewById(R.id.ll_time);
 		ll_time.setOnClickListener(this);
-//		ll_zdj=(LinearLayout) findViewById(R.id.ll_zdj);
-//		ll_zdj.setOnClickListener(this);
-//		ll_zgj=(LinearLayout) findViewById(R.id.ll_zgj);
-//		ll_zgj.setOnClickListener(this);
 		next_sure=(TextView) findViewById(R.id.next_sure);
 		next_sure.setOnClickListener(this);
 		tv_back=(TextView) findViewById(R.id.tv_back);
@@ -165,48 +162,52 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 		case R.id.next_sure:  // 
 			int a=0 ;int b=0;
 			if(et1.getText().toString()==null){
-				  a=0;
+				a=0;
 			}else{
-				  a=Integer.parseInt(  et1.getText().toString());
+				a=Integer.parseInt(  et1.getText().toString());
 			}
 			if( et2.getText().toString()==null){
-				  b=0;
+				b=0;
 			}else{
-				  b=Integer.parseInt(  et2.getText().toString());
+				b=Integer.parseInt(  et2.getText().toString());
 			}
-			
-			 if(a==0||b==0){
+
+			if(a==0||b==0){
+				Intent intent2 = new Intent();
+				intent2.putExtra("minPrice", a);
+				intent2.putExtra("maxPrice", b);
+				intent2.putExtra("has_purchase", has_purchase);
+				intent2.putIntegerArrayListExtra("brands_id", brands_id);
+				intent2.putIntegerArrayListExtra("category_id", category_id);
+				intent2.putIntegerArrayListExtra("pay_channel_id", pay_channel_id);
+				
+				intent2.putIntegerArrayListExtra("pay_card_id", pay_card_id);
+				intent2.putIntegerArrayListExtra("trade_type_id", trade_type_id);
+				intent2.putIntegerArrayListExtra("sale_slip_id", sale_slip_id);
+				intent2.putIntegerArrayListExtra("tDate", tDate);
+				PosSelect.this.setResult(1, intent2);
+				finish();
+			}else{
+				if(a>b){
+					Toast.makeText(getApplicationContext(), "最低价必须比最高价低", 1000).show();
+					break;
+				}else{
 					Intent intent2 = new Intent();
 					intent2.putExtra("minPrice", a);
 					intent2.putExtra("maxPrice", b);
+					intent2.putExtra("has_purchase", has_purchase);
 					intent2.putIntegerArrayListExtra("brands_id", brands_id);
+					intent2.putIntegerArrayListExtra("category_id", category_id);
 					intent2.putIntegerArrayListExtra("pay_channel_id", pay_channel_id);
+					
 					intent2.putIntegerArrayListExtra("pay_card_id", pay_card_id);
 					intent2.putIntegerArrayListExtra("trade_type_id", trade_type_id);
 					intent2.putIntegerArrayListExtra("sale_slip_id", sale_slip_id);
 					intent2.putIntegerArrayListExtra("tDate", tDate);
 					PosSelect.this.setResult(1, intent2);
 					finish();
-			 }else{
-					if(a>b){
-						Toast.makeText(getApplicationContext(), "最低价必须比最高价低", 1000).show();
-						break;
-					}else{
-						Intent intent2 = new Intent();
-						intent2.putExtra("minPrice", a);
-						intent2.putExtra("maxPrice", b);
-						intent2.putExtra("has_purchase", has_purchase);
-						intent2.putIntegerArrayListExtra("pay_channel_id", pay_channel_id);
-						intent2.putIntegerArrayListExtra("pay_card_id", pay_card_id);
-						intent2.putIntegerArrayListExtra("brands_id", brands_id);
- 
-						intent2.putIntegerArrayListExtra("trade_type_id", trade_type_id);
-						intent2.putIntegerArrayListExtra("sale_slip_id", sale_slip_id);
-						intent2.putIntegerArrayListExtra("tDate", tDate);
-						PosSelect.this.setResult(1, intent2);
-						finish();
-					}
-			 }
+				}
+			}
 			break;
 		case R.id.tv_back:  // next_sure
 			finish();
@@ -215,64 +216,64 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 			Intent ll_pp=new Intent(PosSelect.this, PosSelecList.class);
 			ll_pp.putExtra("key", "选择POS品牌");
 			ll_pp.putExtra("index", 100);
-			 
+
 			startActivityForResult(ll_pp, 100);
 			break;
 		case R.id.ll_type:  //  
 			Intent ll_type=new Intent(PosSelect.this, PosSelecSon.class);
 			ll_type.putExtra("key", "选择POS类型");
 			ll_type.putExtra("index", 101);
-			 
+
 			startActivityForResult(ll_type, 101);
 			break;
 		case R.id.ll_pay_type:  //  
 			Intent ll_pay_type=new Intent(PosSelect.this, PosSelecList.class);
 			ll_pay_type.putExtra("key", "选择支付通道");
 			ll_pay_type.putExtra("index", 102);
-			 
+
 			startActivityForResult(ll_pay_type, 102);
 			break;
 		case R.id.ll_paycard_type:  
 			Intent ll_paycard_type=new Intent(PosSelect.this, PosSelecList.class);
 			ll_paycard_type.putExtra("key", "选择支付卡类型");
 			ll_paycard_type.putExtra("index", 103);
-			 
+
 			startActivityForResult(ll_paycard_type, 103);
 			break;
 		case R.id.ll_jy_type:  
 			Intent ll_jy_type=new Intent(PosSelect.this, PosSelecList.class);
 			ll_jy_type.putExtra("key", "选择支付交易类型");
 			ll_jy_type.putExtra("index", 104);
-			 
+
 			startActivityForResult(ll_jy_type, 104);
 			break;	
-			
+
 		case R.id.ll_qgd_type:   
 			Intent ll_qgd_type=new Intent(PosSelect.this, PosSelecList.class);
 			ll_qgd_type.putExtra("key", "选择签购单方式");
 			ll_qgd_type.putExtra("index", 105);
-			 
+
 			startActivityForResult(ll_qgd_type, 105 	);
-		 
+
 			break;
 		case R.id.ll_time:   
 			Intent ll_time=new Intent(PosSelect.this, PosSelecList.class);
 			ll_time.putExtra("key", "选择对账日期");
 			ll_time.putExtra("index", 106);
-			 
+
 			startActivityForResult(ll_time, 106);
 			break;	
-		 
+
 		case R.id.img_on_off:
-			
+
 			if(isOpen_mineset){
 				isOpen_mineset=false;
 				//img_on_off.setBackgroundDrawable(getResources().getDrawable(R.drawable.pos_off));
 				img_on_off.setBackgroundResource(R.drawable.pos_off);
 				editor.putBoolean("isOpen_ps",false);
-					editor.commit();
-					has_purchase=0;
-				
+				editor.commit();
+				has_purchase=0;
+
 			}else{
 				isOpen_mineset=true;
 				img_on_off.setBackgroundResource(R.drawable.pos_on);		 
@@ -280,7 +281,7 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 				editor.commit();
 				has_purchase=1;
 			}
-			
+
 			break;
 		default:
 			break;
@@ -292,7 +293,7 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 		switch (resultCode) {
 		case 100:
 			if(data!=null){
-			 
+
 				tv_pp.setText(data.getStringExtra("text"));
 				brands_id=data.getIntegerArrayListExtra("ids");
 				System.out.println("brands_id"+brands_id.toString());
@@ -300,10 +301,10 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 			break;
 		case 101:
 			if(data!=null){
-				 
+				category_id=data.getIntegerArrayListExtra("ids");
 				tv_type.setText(data.getStringExtra("text"));
 			}
-		 
+
 			break;
 		case 102: 
 			if(data!=null){
@@ -311,48 +312,48 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 				tv_pay_type.setText(data.getStringExtra("text"));
 				System.out.println("pay_channel_id"+pay_channel_id.toString());
 			}
-		 
+
 			break;
 		case 103: 
-		if(data!=null){
-			 
-			tv_paycard_type.setText(data.getStringExtra("text"));
-			 
-			pay_card_id=data.getIntegerArrayListExtra("ids");
-			System.out.println("pay_card_id"+pay_card_id.toString());
-		}
-	 
-		break;
+			if(data!=null){
+
+				tv_paycard_type.setText(data.getStringExtra("text"));
+
+				pay_card_id=data.getIntegerArrayListExtra("ids");
+				System.out.println("pay_card_id"+pay_card_id.toString());
+			}
+
+			break;
 		case 104: 
-		if(data!=null){
-			 
-			tv_jy_type.setText(data.getStringExtra("text"));
-			 
-			trade_type_id=data.getIntegerArrayListExtra("ids");
-			System.out.println("trade_type_id"+trade_type_id.toString());
-		}
-	 
-		break;
+			if(data!=null){
+
+				tv_jy_type.setText(data.getStringExtra("text"));
+
+				trade_type_id=data.getIntegerArrayListExtra("ids");
+				System.out.println("trade_type_id"+trade_type_id.toString());
+			}
+
+			break;
 		case 105: 
-		if(data!=null){
-			 
-			tv_qgd_type.setText(data.getStringExtra("text"));
-			 
-			sale_slip_id=data.getIntegerArrayListExtra("ids");
-			System.out.println("sale_slip_id"+sale_slip_id.toString());
-		}
-	 
-		break;
+			if(data!=null){
+
+				tv_qgd_type.setText(data.getStringExtra("text"));
+
+				sale_slip_id=data.getIntegerArrayListExtra("ids");
+				System.out.println("sale_slip_id"+sale_slip_id.toString());
+			}
+
+			break;
 		case 106: 
-		if(data!=null){
-			 
-			tv_time.setText(data.getStringExtra("text"));
-			 
-			tDate=data.getIntegerArrayListExtra("ids");
-			System.out.println("tDate"+tDate.toString());
-		}
-	 
-		break;
+			if(data!=null){
+
+				tv_time.setText(data.getStringExtra("text"));
+
+				tDate=data.getIntegerArrayListExtra("ids");
+				System.out.println("tDate"+tDate.toString());
+			}
+
+			break;
 		default:
 			break;
 

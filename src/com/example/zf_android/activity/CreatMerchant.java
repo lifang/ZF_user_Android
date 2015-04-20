@@ -27,7 +27,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
@@ -44,13 +46,13 @@ import com.example.zf_android.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
 /***
  * 
-*    
-* 类名称：CreatMerchant   
-* 类描述：   创建商户
-* 创建人： ljp 
-* 创建时间：2015-3-23 上午10:10:30   
-* @version    
-*
+ *    
+ * 类名称：CreatMerchant   
+ * 类描述：   创建商户
+ * 创建人： ljp 
+ * 创建时间：2015-3-23 上午10:10:30   
+ * @version    
+ *
  */
 public class CreatMerchant extends BaseActivity implements OnClickListener{
 	private static final int TYPE_7 = 7;
@@ -92,11 +94,11 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 		tv7.setOnClickListener(this);
 		tvkhyh=(EditText) findViewById(R.id.tvkhyh);
 		tv8=(EditText) findViewById(R.id.tv8);
-		
+
 		layout10=(LinearLayout) findViewById(R.id.layout10);
 		layout10.setOnClickListener(new ItemOnClickListener(TYPE_10, ""));
 		linearLayout.put(TYPE_10, layout10);
-		
+
 		layout11=(LinearLayout) findViewById(R.id.layout11);
 		layout11.setOnClickListener(new ItemOnClickListener(TYPE_11, ""));
 		linearLayout.put(TYPE_11, layout11);
@@ -154,37 +156,37 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 			case TYPE_16:
 				AlertDialog.Builder builder = new AlertDialog.Builder(CreatMerchant.this);
 				final String[] items = getResources().getStringArray(R.array.apply_detail_upload);
-				
+
 				builder.setItems(items, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						CreatMerchant.this.type = type;
 						switch (which) {
-							case 0: {
-								Intent intent = new Intent();
-								intent.setType("image/*");
-								intent.setAction(Intent.ACTION_GET_CONTENT);
-								startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
-								break;
-							}
-							case 1: {
-								String state = Environment.getExternalStorageState();
-								if (state.equals(Environment.MEDIA_MOUNTED)) {
-									Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-									File outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-									if (!outDir.exists()) {
-										outDir.mkdirs();
-									}
-									File outFile = new File(outDir, System.currentTimeMillis() + ".jpg");
-									photoPath = outFile.getAbsolutePath();
-									intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile));
-									intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-									startActivityForResult(intent, REQUEST_TAKE_PHOTO);
-								} else {
-									CommonUtil.toastShort(CreatMerchant.this, getString(R.string.toast_no_sdcard));
+						case 0: {
+							Intent intent = new Intent();
+							intent.setType("image/*");
+							intent.setAction(Intent.ACTION_GET_CONTENT);
+							startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
+							break;
+						}
+						case 1: {
+							String state = Environment.getExternalStorageState();
+							if (state.equals(Environment.MEDIA_MOUNTED)) {
+								Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+								File outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+								if (!outDir.exists()) {
+									outDir.mkdirs();
 								}
-								break;
+								File outFile = new File(outDir, System.currentTimeMillis() + ".jpg");
+								photoPath = outFile.getAbsolutePath();
+								intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile));
+								intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+								startActivityForResult(intent, REQUEST_TAKE_PHOTO);
+							} else {
+								CommonUtil.toastShort(CreatMerchant.this, getString(R.string.toast_no_sdcard));
 							}
+							break;
+						}
 						}
 					}
 				});
@@ -212,7 +214,7 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 				merchantEntity.setCityId(city.getId());
 				tv7.setText(province.getName()+city.getName());
 			}
-	
+
 			break;
 		case REQUEST_UPLOAD_IMAGE:
 		case REQUEST_TAKE_PHOTO: {
@@ -321,38 +323,91 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 			startActivityForResult(intent, TYPE_7);
 			break;
 		case R.id.btn_save:
-			merchantEntity.setTitle(tv1.getText().toString());
-			merchantEntity.setLegalPersonName(tv2.getText().toString());
-			merchantEntity.setLegalPersonCardId(tv3.getText().toString());
-			merchantEntity.setBusinessLicenseNo(tv4.getText().toString());
-			merchantEntity.setTaxRegisteredNo(tv5.getText().toString());
-			merchantEntity.setOrganizationCodeNo(tv6.getText().toString());
-			merchantEntity.setAccountBankName(tvkhyh.getText().toString());
-			merchantEntity.setBankOpenAccount(tv8.getText().toString());
-			needFresh = true;
-			API.createMerchant(CreatMerchant.this,customerId,merchantEntity,
-	                new HttpCallback<String> (CreatMerchant.this) {
+			if (canNext()) {
+				merchantEntity.setTitle(tv1.getText().toString());
+				merchantEntity.setLegalPersonName(tv2.getText().toString());
+				merchantEntity.setLegalPersonCardId(tv3.getText().toString());
+				merchantEntity.setBusinessLicenseNo(tv4.getText().toString());
+				merchantEntity.setTaxRegisteredNo(tv5.getText().toString());
+				merchantEntity.setOrganizationCodeNo(tv6.getText().toString());
+				merchantEntity.setAccountBankName(tvkhyh.getText().toString());
+				merchantEntity.setBankOpenAccount(tv8.getText().toString());
+				needFresh = true;
+				API.createMerchant(CreatMerchant.this,customerId,merchantEntity,
+						new HttpCallback<String> (CreatMerchant.this) {
 
-						@Override
-						public void onSuccess(String data) {
-							CommonUtil.toastShort(CreatMerchant.this, "创建成功！");
-							Intent intent = new Intent();
-							intent.putExtra("needFresh", needFresh);
-							setResult(RESULT_OK, intent);
-							finish();
-						}
+					@Override
+					public void onSuccess(String data) {
+						CommonUtil.toastShort(CreatMerchant.this, "创建成功！");
+						Intent intent = new Intent();
+						intent.putExtra("needFresh", needFresh);
+						setResult(RESULT_OK, intent);
+						finish();
+					}
 
-						@Override
-						public TypeToken getTypeToken() {
-							return  null;
-						}
-	                });
+					@Override
+					public TypeToken getTypeToken() {
+						return  null;
+					}
+				});
+			}
 			break;
 		default:
 			break;
 		}
-
-		
 	}
-	
+	private boolean canNext() {
+		if(StringUtil.isNull(tv1.getText().toString())){
+			Toast.makeText(this, "店铺名称（商户名）不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(tv2.getText().toString())){
+			Toast.makeText(this, "商户法人姓名不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if (StringUtil.isNull(tv3.getText().toString())) {
+			Toast.makeText(this, "商户法人身份证号不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(tv4.getText().toString())){
+			Toast.makeText(this, "营业执照登记号不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(tv5.getText().toString())){
+			Toast.makeText(this, "税务证号不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(tv6.getText().toString())){
+			Toast.makeText(this, "组织机构代码证号不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(tv7.getText().toString())){
+			Toast.makeText(this, "商户所在地市不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if (StringUtil.isNull(tvkhyh.getText().toString())) {
+			Toast.makeText(this, "开户银行不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(tv8.getText().toString())){
+			Toast.makeText(this, "银行开户许可证号不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(merchantEntity.getCardIdFrontPhotoPath())){
+			Toast.makeText(this, "商户法人身份证照片正面不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(merchantEntity.getCardIdBackPhotoPath())){
+			Toast.makeText(this, "商户法人身份证照片背面不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(merchantEntity.getBodyPhotoPath())){
+			Toast.makeText(this, "商户法人上半身照片不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if (StringUtil.isNull(merchantEntity.getLicenseNoPicPath())) {
+			Toast.makeText(this, "营业执照照片不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(merchantEntity.getTaxNoPicPath())){
+			Toast.makeText(this, "税务证照片不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(merchantEntity.getOrgCodeNoPicPath())){
+			Toast.makeText(this, "组织机构代码证照片不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}else if(StringUtil.isNull(merchantEntity.getAccountPicPath())){
+			Toast.makeText(this, "银行开户许可证照片不能为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
 }
