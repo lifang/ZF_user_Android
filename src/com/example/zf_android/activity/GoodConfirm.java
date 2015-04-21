@@ -3,11 +3,10 @@ package com.example.zf_android.activity;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -27,7 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -47,7 +45,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 	private TextView tv_sjr,tv_tel,tv_adress;
 	private LinearLayout ll_choose;
-	private TextView tv_pop,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count;
+	private TextView tv_pop,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count,channel_text,content2;
 	private Button btn_pay;
 	private String comment,invoice_info;
 	private ImageView reduce,add;
@@ -59,6 +57,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	private CheckBox item_cb;
 	private int invoice_type=0;//发票类型（0公司  1个人）
 	private int customerId;
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -75,7 +74,9 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		goodId=getIntent().getIntExtra("goodId", 1);
 		paychannelId=getIntent().getIntExtra("paychannelId", 1);
 		tv_pay.setText("实付：￥ "+StringUtil.getMoneyString(pirce)); 
+		channel_text.setText(getIntent().getExtras().getString("payChannelName", "")); 
 		tv_totle.setText("实付：￥ "+StringUtil.getMoneyString(pirce)); 
+		content2.setText(getIntent().getStringExtra("brand")+getIntent().getStringExtra("model"));
 		System.out.println("=paychannelId=="+paychannelId);
 		getData1();
 	}
@@ -112,6 +113,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		et_titel=(EditText) findViewById(R.id.et_titel);
 		buyCountEdit=(EditText) findViewById(R.id.buyCountEdit);
 		comment_et=(EditText) findViewById(R.id.comment_et);
+		content2 = (TextView) findViewById(R.id.content2);
+		channel_text = (TextView)findViewById(R.id.channel_text);
 		item_cb=(CheckBox) findViewById(R.id.item_cb);
 		item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -232,9 +235,12 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 						moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
 						}.getType());
 
+						tv_adress.setText("收件地址 ： ");
+						tv_sjr.setText("收件人 ： ");
+						tv_tel.setText("");
+						
 						for(int i =0;i<moreList.size();i++){
 							if(moreList.get(i).getIsDefault()==1) {
-								//tv_name,tv_tel,tv_adresss;
 								addressId=moreList.get(i).getId();
 								tv_adress.setText("收件地址 ： "+moreList.get(i).getAddress());
 								tv_sjr.setText("收件人 ： "+moreList.get(i).getReceiver());

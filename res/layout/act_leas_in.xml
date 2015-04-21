@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-  	android:orientation="vertical"
-  	android:background="@color/F3F2F2"
-  	 >
+    android:background="@color/F3F2F2"
+    android:orientation="vertical" >
 
- <include layout="@layout/title_back" />
- <ScrollView
+    <include layout="@layout/title_back" />
+
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
@@ -17,7 +17,6 @@
             android:orientation="vertical" >
 
             <TextView
-               
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
@@ -33,18 +32,18 @@
                 android:layout_marginRight="@dimen/margin_left2"
                 android:layout_marginTop="3dp"
                 android:background="@color/Viewc2" />
-	   <TextView
-	         android:id="@+id/tv1"
+
+            <TextView
+                android:id="@+id/tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+                android:layout_marginTop="10dp"
                 android:text="30天"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
- 
-        <TextView
-               
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
@@ -60,17 +59,18 @@
                 android:layout_marginRight="@dimen/margin_left2"
                 android:layout_marginTop="3dp"
                 android:background="@color/Viewc2" />
-	   <TextView
-	         android:id="@+id/tv2"
+
+            <TextView
+                android:id="@+id/tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+                android:layout_marginTop="10dp"
                 android:text="365天"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
-	           <TextView
-               
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
@@ -86,17 +86,18 @@
                 android:layout_marginRight="@dimen/margin_left2"
                 android:layout_marginTop="3dp"
                 android:background="@color/Viewc2" />
-	   <TextView
-	         android:id="@+id/tv3"
+
+            <TextView
+                android:id="@+id/tv3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+                android:layout_marginTop="10dp"
                 android:text="￥9999"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
-	           <TextView
-               
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
@@ -112,22 +113,23 @@
                 android:layout_marginRight="@dimen/margin_left2"
                 android:layout_marginTop="3dp"
                 android:background="@color/Viewc2" />
-	   <TextView
-	         android:id="@+id/tv4"
+
+            <TextView
+                android:id="@+id/tv4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+                android:layout_marginTop="10dp"
                 android:text="这里是租赁说明"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
-	           <TextView
-               
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginTop="30dp"
-                android:text="对个人开通"
+                android:text="《租赁协议》"
                 android:textColor="@color/text292929"
                 android:textSize="20sp" />
 
@@ -138,18 +140,16 @@
                 android:layout_marginRight="@dimen/margin_left2"
                 android:layout_marginTop="3dp"
                 android:background="@color/Viewc2" />
-	   <TextView
-	         android:id="@+id/tv5"
+
+            <TextView
+                android:id="@+id/tv5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+                android:layout_marginTop="10dp"
                 android:text="这里是租赁协议"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
-             
-
-          
         </LinearLayout>
     </ScrollView>
 

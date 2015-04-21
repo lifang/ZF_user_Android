@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -49,15 +50,18 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 	private List<OrderDetailEntity>  ode =new ArrayList<OrderDetailEntity>();
 	private TextView tv_status,tv_sjps,tv_psf,tv_reperson,tv_tel,tv_adress,tv_ly,tv_fplx,fptt,
 	tv_ddbh,tv_pay,tv_time,tv_gj,tv_money;
+	private LinearLayout titleback_linear_back;
 	private int status,id;
-
+	private boolean isComment = false;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
 				OrderDetailEntity entity= ode.get(0);
-				tv_sjps.setText("实际配送金额(含配送费) ：￥ "+entity.getOrder_totalprice());
-				tv_psf.setText("含配送费 ：￥ "+entity.getOrder_psf());
+				tv_sjps.setText("实际配送金额(含配送费) ：￥ "+
+						String.format("%.2f",Integer.valueOf(entity.getOrder_totalprice())/100f));
+				tv_psf.setText("含配送费 ：￥ "+
+						String.format("%.2f",Integer.valueOf(entity.getOrder_psf())/100f));
 				tv_reperson.setText("收件人  ：   "+entity.getOrder_receiver());
 				tv_tel.setText(entity.getOrder_receiver_phone());
 				tv_adress.setText("收货地址  ：   "+entity.getOrder_address());
@@ -66,8 +70,9 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 				fptt.setText("发票抬头  ：   "+entity.getOrder_invoce_info());
 				tv_ddbh.setText("订单编号  ：   "+entity.getOrder_number());
 				tv_pay.setText("支付方式  ：   "+entity.getOrder_payment_type());
-				tv_time.setText("实付金额  ：   ￥"+entity.getOrder_totalprice());
-				tv_money.setText("订单日期  ：   "+entity.getOrder_createTime());
+				tv_time.setText("订单日期  ：   "+entity.getOrder_createTime());
+				tv_money.setText("实付金额  ：   ￥"+
+						String.format("%.2f",Integer.valueOf(entity.getOrder_totalprice())/100f));
 				tv_gj.setText("共计  ：   "+entity.getOrder_totalNum()+"件");
 
 				break;
@@ -155,6 +160,8 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 		tv_sjps=(TextView) findViewById(R.id.tv_sjps);
 		tv_status=(TextView) findViewById(R.id.tv_status);
 		ll_ishow=(LinearLayout) findViewById(R.id.ll_ishow);
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
+		titleback_linear_back.setOnClickListener(this);
 		//			ll_ishow.setVisibility(status==1 ? View.INVISIBLE
 		//					: View.VISIBLE); // 只有状态是1 才有下面的按钮
 		pos_lv=(ScrollViewWithListView) findViewById(R.id.pos_lv1);
@@ -197,13 +204,24 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 	@Override
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
+		case R.id.titleback_linear_back:
+			if (isComment = true) {
+				Intent intent = new Intent();
+				setResult(Activity.RESULT_OK, intent);
+				finish();
+			}else {
+				finish();
+			}
+			break;
 		case R.id.btn_ishow:
 			Toast.makeText(getApplicationContext(), "请先付款···", 1000).show();
 			break;
-		case R.id.btn_pay:
 
+		case R.id.btn_pay:
 			Intent i = new Intent(getApplicationContext(),PayFromCar.class);
+			i.putExtra("orderId", id+"");
 			startActivity(i);
+			finish();
 			break;
 		case R.id.btn_cancle:
 			API.cancelMyOrder(this,id,new HttpCallback(this) {
@@ -237,11 +255,30 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == RESULT_OK) {
 			if (requestCode == 101) {
+				isComment = true;
+				status = 4;
+				initView();
 				ode.clear();
 				relist.clear();
 				goodlist.clear();
 				getData();
 			}
 		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getRepeatCount() == 0) {
+			if (isComment = true) {
+				Intent intent = new Intent();
+				setResult(Activity.RESULT_OK, intent);
+				finish();
+			}else {
+				finish();
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

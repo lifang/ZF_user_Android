@@ -82,8 +82,8 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 
 		// init the XListView
 		mListView.initHeaderAndFooter();
-		mListView.setXListViewListener(this);
 		mListView.setPullLoadEnable(true);
+		mListView.setXListViewListener(this);
 
 		mListView.setAdapter(mAdapter);
 		initButtonListeners();

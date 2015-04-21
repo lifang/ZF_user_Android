@@ -42,16 +42,27 @@ public class ShopCar extends BaseActivity implements OnClickListener {
 	private List<Good> myShopList = new ArrayList<Good>();
 	private List<Good> comfirmList = new ArrayList<Good>();
 	List<TestEntitiy> moreList = new ArrayList<TestEntitiy>();
-
+	private boolean isFirstCreate;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.acv_shopcat);
+		isFirstCreate=true;
 		initView();
 		getData();
 	}
-
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(!isFirstCreate){
+			getData();
+		}else {
+			isFirstCreate=false;
+		}
+		
+	}
 	private void initView() {
 		rl_wd = (RelativeLayout) findViewById(R.id.main_rl_my);
 		rl_wd.setOnClickListener(this);

@@ -3,11 +3,10 @@ package com.example.zf_android.activity;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -24,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -44,6 +42,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	private TextView tv_sjr,tv_tel,tv_adress;
 	private LinearLayout ll_choose,llll;
 	private TextView tv_yajin,tv_lkl,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count,channel_text,content2;
+	private TextView leasepact;
 	private Button btn_pay;
 	private String comment;
 	private ImageView reduce,add;
@@ -57,6 +56,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	private GoodinfoEntity good;
 	private boolean isFirstCreate;
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,8 +70,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			finish();
 		}
 		title2.setText(good.getTitle());
-		content2.setText(good.getModel_number());
-		channel_text.setText(getIntent().getStringExtra("chanel"));
+		content2.setText(good.getGood_brand()+good.getModel_number());
+		channel_text.setText(getIntent().getExtras().getString("payChannelName", ""));
 		buyCountEdit.setText(good.getLease_time()+"");
 		price=good.getLease_price();
 		retail_price.setText("￥"+ StringUtil.getMoneyString(price));
@@ -102,6 +102,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		reduce=(ImageView) findViewById(R.id.reduce);
 		reduce.setOnClickListener(this);
 		add.setOnClickListener(this);
+		leasepact = (TextView) findViewById(R.id.leasepact);
+		leasepact.setOnClickListener(this);
 		tv_totle=(TextView) findViewById(R.id.tv_totle);
 		showCountText=(TextView) findViewById(R.id.showCountText);
 		tv_sjr=(TextView) findViewById(R.id.tv_sjr);
@@ -199,6 +201,11 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 						}.getType());
 
 						myList.addAll(moreList);
+						
+						tv_sjr.setText("收件人： ");
+						tv_tel.setText("");
+						tv_adress.setText("地址：");
+						
 						for(int i=0;i<myList.size();i++){
 							if(myList.get(i).getIsDefault()==1){
 								tv_sjr.setText("收件人： "+myList.get(i).getReceiver());
@@ -235,6 +242,11 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	@Override
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
+		case R.id.leasepact:
+			Intent intent1 = new Intent(this,LeaseAgreementActivity.class);
+			intent1.putExtra("leasepact", good.getLease_agreement());
+			startActivity(intent1);
+			break;
 		case R.id.ll_choose:
 			Intent i =new Intent(LeaseConfirm.this,ChanceAdress.class);
 			startActivityForResult(i, 11);
@@ -274,19 +286,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			break;
 		}
 	}
-	//	@Override
-	//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	//		super.onActivityResult(requestCode, resultCode, data);
-	//		if(requestCode==11){
-	//			if(data!=null){
-	//
-	//				addressId=data.getIntExtra("id", addressId);
-	//				tv_adress.setText("收件地址 ： "+data.getStringExtra("adree"));
-	//				tv_sjr.setText("收件人 ： "+data.getStringExtra("name"));
-	//				tv_tel.setText( data.getStringExtra("tel"));
-	//			}
-	//		}
-	//	}
 	private void confirmGood() {
 		
 		comment=comment_et.getText().toString();
@@ -322,7 +321,9 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 					int a =jsonobject.getInt("code");
 					if(a==Config.CODE){  
 						Intent i1 =new Intent (LeaseConfirm.this,PayFromCar.class);
+						i1.putExtra("orderId", jsonobject.getString("result"));
 						startActivity(i1);
+						finish();
 					}else{
 						code = jsonobject.getString("message");
 						Toast.makeText(getApplicationContext(), code, 1000).show();

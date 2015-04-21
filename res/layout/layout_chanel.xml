@@ -22,7 +22,6 @@
             android:text="支付通道信息"
             android:textColor="@color/text6c6c6c6"
             android:textSize="15sp" />
-
     </LinearLayout>
 
     <View
@@ -125,16 +124,16 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
         android:layout_marginRight="@dimen/margin_left2"
-        android:background="@color/Viewc2"
-        android:padding="1dp"
         android:layout_marginTop="3dp"
-        android:orientation="horizontal" >
+        android:background="@color/Viewc2"
+        android:orientation="horizontal"
+        android:padding="1dp" >
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             android:background="@color/F3F3F3"
+            android:background="@color/F3F3F3"
             android:orientation="vertical" >
 
             <TextView
@@ -143,16 +142,18 @@
                 android:gravity="center"
                 android:text="商户类"
                 android:textColor="@color/text292929" />
-		 
         </LinearLayout>
-		<View android:layout_width="1dp"
-		    android:layout_height="fill_parent"
-		    android:background="@color/Viewc2"/>
-                   <LinearLayout
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/Viewc2" />
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             android:background="@color/F3F3F3"
+            android:background="@color/F3F3F3"
             android:orientation="vertical" >
 
             <TextView
@@ -161,17 +162,18 @@
                 android:gravity="center"
                 android:text="费率"
                 android:textColor="@color/text292929" />
-			 
-            
         </LinearLayout>
-		<View android:layout_width="1dp"
-		    android:layout_height="fill_parent"
-		    android:background="@color/Viewc2"/>
-		        <LinearLayout
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/Viewc2" />
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             android:background="@color/F3F3F3"
+            android:background="@color/F3F3F3"
             android:orientation="vertical" >
 
             <TextView
@@ -180,22 +182,19 @@
                 android:gravity="center"
                 android:text="说明"
                 android:textColor="@color/text292929" />
-			 
-          
         </LinearLayout>
- 
-		 
     </LinearLayout>
-    <com.examlpe.zf_android.util.ScrollViewWithListView  
-                  android:id="@+id/pos_lv1"
+
+    <com.examlpe.zf_android.util.ScrollViewWithListView
+        android:id="@+id/pos_lv1"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
         android:layout_marginRight="@dimen/margin_left2"
-        android:divider="@null"
-        android:layout_height="wrap_content">
-                  
-              </com.examlpe.zf_android.util.ScrollViewWithListView>
-              <LinearLayout
+        android:divider="@null" >
+    </com.examlpe.zf_android.util.ScrollViewWithListView>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
@@ -220,21 +219,22 @@
             android:textColor="@color/text292929"
             android:textSize="13sp" />
     </LinearLayout>
-	     <LinearLayout
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
         android:layout_marginRight="@dimen/margin_left2"
-        android:background="@color/Viewc2"
-        android:padding="1dp"
         android:layout_marginTop="3dp"
-        android:orientation="horizontal" >
+        android:background="@color/Viewc2"
+        android:orientation="horizontal"
+        android:padding="1dp" >
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             android:background="@color/F3F3F3"
+            android:background="@color/F3F3F3"
             android:orientation="vertical" >
 
             <TextView
@@ -243,16 +243,18 @@
                 android:gravity="center"
                 android:text="计算周期"
                 android:textColor="@color/text292929" />
-		 
         </LinearLayout>
-		<View android:layout_width="1dp"
-		    android:layout_height="fill_parent"
-		    android:background="@color/Viewc2"/>
-                   <LinearLayout
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/Viewc2" />
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             android:background="@color/F3F3F3"
+            android:background="@color/F3F3F3"
             android:orientation="vertical" >
 
             <TextView
@@ -261,17 +263,18 @@
                 android:gravity="center"
                 android:text="费率"
                 android:textColor="@color/text292929" />
-			 
-            
         </LinearLayout>
-		<View android:layout_width="1dp"
-		    android:layout_height="fill_parent"
-		    android:background="@color/Viewc2"/>
-		        <LinearLayout
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/Viewc2" />
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             android:background="@color/F3F3F3"
+            android:background="@color/F3F3F3"
             android:orientation="vertical" >
 
             <TextView
@@ -280,22 +283,19 @@
                 android:gravity="center"
                 android:text="说明"
                 android:textColor="@color/text292929" />
-			 
-          
         </LinearLayout>
- 
-		 
     </LinearLayout>
-    <com.examlpe.zf_android.util.ScrollViewWithListView  
-                  android:id="@+id/pos_lv2"
+
+    <com.examlpe.zf_android.util.ScrollViewWithListView
+        android:id="@+id/pos_lv2"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
         android:layout_marginRight="@dimen/margin_left2"
-        android:divider="@null"
-        android:layout_height="wrap_content">
-                  
-              </com.examlpe.zf_android.util.ScrollViewWithListView>
-              <LinearLayout
+        android:divider="@null" >
+    </com.examlpe.zf_android.util.ScrollViewWithListView>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
@@ -320,21 +320,22 @@
             android:textColor="@color/text292929"
             android:textSize="13sp" />
     </LinearLayout>
-                <LinearLayout
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
         android:layout_marginRight="@dimen/margin_left2"
-        android:background="@color/Viewc2"
-        android:padding="1dp"
         android:layout_marginTop="3dp"
-        android:orientation="horizontal" >
+        android:background="@color/Viewc2"
+        android:orientation="horizontal"
+        android:padding="1dp" >
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             android:background="@color/F3F3F3"
+            android:background="@color/F3F3F3"
             android:orientation="vertical" >
 
             <TextView
@@ -343,16 +344,18 @@
                 android:gravity="center"
                 android:text="交易类"
                 android:textColor="@color/text292929" />
-		 
         </LinearLayout>
-		<View android:layout_width="1dp"
-		    android:layout_height="fill_parent"
-		    android:background="@color/Viewc2"/>
-                   <LinearLayout
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/Viewc2" />
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             android:background="@color/F3F3F3"
+            android:background="@color/F3F3F3"
             android:orientation="vertical" >
 
             <TextView
@@ -361,17 +364,18 @@
                 android:gravity="center"
                 android:text="费率"
                 android:textColor="@color/text292929" />
-			 
-            
         </LinearLayout>
-		<View android:layout_width="1dp"
-		    android:layout_height="fill_parent"
-		    android:background="@color/Viewc2"/>
-		        <LinearLayout
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/Viewc2" />
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             android:background="@color/F3F3F3"
+            android:background="@color/F3F3F3"
             android:orientation="vertical" >
 
             <TextView
@@ -380,23 +384,16 @@
                 android:gravity="center"
                 android:text="说明"
                 android:textColor="@color/text292929" />
-			 
-          
         </LinearLayout>
- 
-		 
     </LinearLayout>
-    <com.examlpe.zf_android.util.ScrollViewWithListView  
-                  android:id="@+id/pos_lv3"
+
+    <com.examlpe.zf_android.util.ScrollViewWithListView
+        android:id="@+id/pos_lv3"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left2"
         android:layout_marginRight="@dimen/margin_left2"
-        android:divider="@null"
-        android:layout_height="wrap_content">
-                  
-              </com.examlpe.zf_android.util.ScrollViewWithListView>
- 
- 
-		 
-    
+        android:divider="@null" >
+    </com.examlpe.zf_android.util.ScrollViewWithListView>
+
 </LinearLayout>

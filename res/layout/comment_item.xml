@@ -51,7 +51,7 @@
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
-                android:text="$ 9999"
+                android:text="￥ 99.99"
                 android:textColor="@color/bgtitle"
                 android:textSize="11sp"
                 android:visibility="invisible" />
@@ -122,6 +122,7 @@
                         android:textSize="11sp" />
 
                     <TextView
+                              android:id="@+id/contentText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -176,14 +177,14 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/ffffff" >
 
         <EditText
             android:id="@+id/item_et"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="100dp"
             android:layout_marginLeft="@dimen/margin_left2"
             android:layout_marginRight="14dp"
             android:background="@color/ffffff"
@@ -194,9 +195,10 @@
             android:textSize="10sp" />
 
         <TextView
+                 android:id="@+id/maxCountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/item_et"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="3dp"
             android:layout_marginLeft="@dimen/margin_left2"

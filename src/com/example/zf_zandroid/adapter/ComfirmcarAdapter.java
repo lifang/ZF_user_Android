@@ -95,7 +95,7 @@ public class ComfirmcarAdapter extends BaseAdapter {
 		holder.title.setText(good.getTitle());
 		holder.showCountText.setText("X  " + good.getQuantity());
 		 
-		holder.retail_price.setText("$ " + StringUtil.getMoneyString(good.getRetail_price()));
+		holder.retail_price.setText("￥ " + StringUtil.getMoneyString(good.getRetail_price()));
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
 		return convertView;

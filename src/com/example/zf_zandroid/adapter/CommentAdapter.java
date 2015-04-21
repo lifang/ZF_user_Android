@@ -2,24 +2,21 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
-import com.example.zf_android.R;
-import com.example.zf_android.entity.Goodlist;
-import com.example.zf_android.entity.TestEntitiy;
-
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
-
 import android.widget.TextView;
+
+import com.examlpe.zf_android.util.StringUtil;
+import com.example.zf_android.R;
+import com.example.zf_android.entity.Goodlist;
 
 public class CommentAdapter extends BaseAdapter {
 	private Context context;
@@ -58,19 +55,20 @@ public class CommentAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.comment_item, null);
 			holder.content = (TextView) convertView
 					.findViewById(R.id.content_pp);
-
+			holder.contentText = (TextView) convertView
+					.findViewById(R.id.contentText);
 			holder.content2 = (TextView) convertView
 					.findViewById(R.id.content2);
 			holder.content1 = (TextView) convertView
 					.findViewById(R.id.content1);
-			 
-		 	holder.item_et = (EditText) convertView.findViewById(R.id.item_et);
+
+			holder.maxCountTextView = (TextView) convertView.findViewById(R.id.maxCountTextView);
+			holder.item_et = (EditText) convertView.findViewById(R.id.item_et);
 			holder.rb = (RatingBar) convertView.findViewById(R.id.si_rt_msxf);
 			holder.rb.setTag(position);
-			 
+
 			convertView.setTag(holder);
 		} else {
-			 
 			holder = (ViewHolder) convertView.getTag();
 		}
 		holder.item_et.setTag(position);
@@ -79,11 +77,13 @@ public class CommentAdapter extends BaseAdapter {
 		}else{
 			list.get(position).setScore(list.get(position).getScore());
 		}
-		  
-	 	list.get(position).setContent(list.get(position).getContent());
+
+		list.get(position).setContent(list.get(position).getContent());
 		holder.content.setText(list.get(position).getGood_name());
 		holder.content2.setText(list.get(position).getGood_brand());
-		holder.content1.setText(list.get(position).getGood_channel());
+		holder.contentText.setText(list.get(position).getGood_channel());
+
+		list.get(position).setScore((int)5 * 10 + "");
 		holder.rb.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
 
 			@Override
@@ -91,36 +91,48 @@ public class CommentAdapter extends BaseAdapter {
 				System.out.println(arg0.getTag() + "--`onRatingChanged`--"
 						+ arg1);
 				int index = Integer.parseInt(arg0.getTag().toString());
-				 
+
 				list.get(index).setScore((int)arg1 * 10 + "");
 
 			}
 		});
 		holder.item_et.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				//				if (s.length() > 0) {
+				//					holder.maxCountTextView.setText("还可填写"+(200-s.length())+"个汉字");
+				//				}else if (s.length() == 0) {
+				//					holder.maxCountTextView.setText("最多填写200个汉字");
+				//				}else if (s.length() > 200) {
+				//					holder.maxCountTextView.setText("已超出允许最多字数");
+				//				}
 			}
-			
 			@Override
-			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-					int arg3) {
-				
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
 			}
-			
+
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				System.out.println("```"+position+"--->"+arg0.toString());
 				list.get(position).setContent(arg0.toString());
 			}
 		});
-
+		if (!StringUtil.isNull(list.get(position).getContent())) {
+			if (list.get(position).getContent().length() > 0) {
+				holder.maxCountTextView.setText("还可填写"+(200-list.get(position).getContent().length())+"个汉字");
+			}else if (list.get(position).getContent().length() == 0) {
+				holder.maxCountTextView.setText("最多填写200个汉字");
+			}else if (list.get(position).getContent().length() > 200) {
+				holder.maxCountTextView.setText("已超出允许最多字数");
+			}
+		}
 		return convertView;
 	}
 
 	public final class ViewHolder {
-		public TextView content, content1, content2;
+		public TextView content, content1, content2,contentText,maxCountTextView;
 		public EditText item_et;
 		public RatingBar rb;
 	}

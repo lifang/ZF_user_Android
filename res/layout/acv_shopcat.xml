@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:gravity="right"
-                android:text="合计：￥0"
+                android:text="合计：￥0.00"
                 android:textColor="@color/text292929"
                 android:textSize="17sp" />
 

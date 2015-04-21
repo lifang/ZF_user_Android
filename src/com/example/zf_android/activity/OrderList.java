@@ -54,8 +54,8 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 
 	private int total = 0;
 	private OrderAdapter myAdapter;
-	List<OrderEntity>  myList = new ArrayList<OrderEntity>();
-	List<OrderEntity>  moreList = new ArrayList<OrderEntity>();
+	private List<OrderEntity>  myList = new ArrayList<OrderEntity>();
+	
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -77,7 +77,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 						Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				Toast.makeText(getApplicationContext(),  " refresh too much",
+				Toast.makeText(getApplicationContext(),  "no more data",
 						Toast.LENGTH_SHORT).show();
 				break;
 			}
@@ -120,10 +120,8 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent i = new Intent(OrderList.this, OrderDetail.class);
-				Bundle bundle = new Bundle();
-				bundle.putInt("status", myList.get(position-1).getOrder_status());
-				bundle.putString("id", myList.get(position-1).getOrder_id());
-				i.putExtras(bundle);
+				i.putExtra("status", myList.get(position-1).getOrder_status());
+				i.putExtra("id", myList.get(position-1).getOrder_id());
 				startActivityForResult(i, 101);
 			}
 		});

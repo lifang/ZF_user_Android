@@ -98,7 +98,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:maxLines="1"
-                    android:text="$ 1999"
+                    android:text="￥ 19.99"
                     android:textColor="@color/bgtitle"
                     android:textSize="17sp" />
 
