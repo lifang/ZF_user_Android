@@ -14,6 +14,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zf_android.R;
 
@@ -48,6 +50,28 @@ public class DialogUtil {
 
 	}
 
+	private Handler handler = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			
+			switch (msg.what) {
+			case 0:
+				Toast.makeText(context, "保存成功",
+						Toast.LENGTH_SHORT).show();
+				break;
+			case 1:
+				Toast.makeText(context, "保存失败",
+						Toast.LENGTH_SHORT).show();
+				break;
+
+			default:
+				break;
+			}
+			
+			
+		};
+	};
+	
+	
 	public Dialog getCheck(final CallBackChange call) {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		View v = inflater.inflate(R.layout.dialog, null);
@@ -74,7 +98,6 @@ public class DialogUtil {
 		yes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				dialog.dismiss();
 				new Thread() {
 					public void run() {
 						
@@ -100,7 +123,10 @@ public class DialogUtil {
 									bos.flush();
 								}
 							}
+							handler.sendEmptyMessage(0);
+							dialog.dismiss();
 						} catch (Exception e) {
+							handler.sendEmptyMessage(1);
 							e.printStackTrace();
 						} finally {
 							try {
