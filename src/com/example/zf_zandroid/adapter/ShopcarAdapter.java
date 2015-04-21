@@ -42,6 +42,7 @@ public class ShopcarAdapter extends BaseAdapter {
 	private Activity activity;
 	private int currentHowMoney;
 	private CheckBox selectAll_cb;
+	private boolean isSelectAll = false;
 
 	public ShopcarAdapter(Context context, List<Good> list) {
 		this.context = context;
@@ -51,7 +52,8 @@ public class ShopcarAdapter extends BaseAdapter {
 		howMoney = (TextView) activity.findViewById(R.id.howMoney);
 
 		selectAll_cb = (CheckBox) activity.findViewById(R.id.item_cb);
-		selectAll_cb.setOnCheckedChangeListener(onCheckedChangeListener);
+		selectAll_cb.setOnClickListener(onClickListenerAll);
+		//selectAll_cb.setOnCheckedChangeListener(onCheckedChangeListener);
 	}
 
 	@Override
@@ -221,19 +223,36 @@ public class ShopcarAdapter extends BaseAdapter {
 
 		}
 	};
+	private OnClickListener onClickListenerAll = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			if (isSelectAll == false) {
+				isSelectAll = true;
+				selectAll_cb.setChecked(true);
+			}else {
+				isSelectAll = false;
+				selectAll_cb.setChecked(false);
+			}
+			for (int index = 0; index < list.size(); index++) {
+				list.get(index).setChecked(isSelectAll);
+			}
+			notifyDataSetChanged();
+		}
+	};
 	private int flag=0;
 	private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
 
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView,
 				boolean isChecked) {
-			if (selectAll_cb == buttonView) {
-				for (int index = 0; index < list.size(); index++) {
-					list.get(index).setChecked(isChecked);
-				}
-
-				notifyDataSetChanged();
-			} else {
+//			if (selectAll_cb == buttonView) {
+//				for (int index = 0; index < list.size(); index++) {
+//					list.get(index).setChecked(isChecked);
+//				}
+//
+//				notifyDataSetChanged();
+//			} else {
 				if(isChecked){
 					flag++;
 				}else{
@@ -248,10 +267,15 @@ public class ShopcarAdapter extends BaseAdapter {
 				Good good = list.get(position);
 				good.setChecked(isChecked);
 				computeMoney();
-				notifyDataSetChanged();
-		
+				//notifyDataSetChanged();
+				for (int i = 0; i < list.size(); i++) {
+					Boolean aBoolean = list.get(i).isChecked();
+					if (aBoolean == false) {
+						selectAll_cb.setChecked(false);
+					}
+				}
 				Log.e("print", "currentHowMoney:"+currentHowMoney);
-			}
+		//	}
 
 		}
 	};
@@ -315,7 +339,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				currentHowMoney += good.getRetail_price()*good.getQuantity();
 			}
 		}
-		howMoney.setText("合计 ： " + StringUtil.getMoneyString(currentHowMoney) );
+		howMoney.setText("合计 ： ￥" + StringUtil.getMoneyString(currentHowMoney) );
 	}
 
 }

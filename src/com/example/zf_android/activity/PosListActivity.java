@@ -88,7 +88,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 						Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				Toast.makeText(getApplicationContext(),  " refresh too much",
+				Toast.makeText(getApplicationContext(),  "no more data",
 						Toast.LENGTH_SHORT).show();
 				break;
 			}
@@ -232,6 +232,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	public void onRefresh() {
 		page = 1;
 		myList.clear();
+		Xlistview.setPullLoadEnable(true);
 		getData();
 	}
 
@@ -245,6 +246,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			getData();
 		}
 		else {
+			Xlistview.setPullLoadEnable(false);
 			handler.sendEmptyMessage(3);
 		}
 	}

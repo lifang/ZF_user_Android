@@ -256,7 +256,7 @@
                     android:id="@+id/tv_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginRight="7dp"
                     android:text="订单日期  ："
                     android:textColor="@color/text292929"

@@ -76,16 +76,20 @@ public class OrderAdapter extends BaseAdapter{
 			holder = (ViewHolder)convertView.getTag();
 		}
 		if (list.get(position).getOrder_goodsList().size() > 0) {
-			holder.tv_price.setText("￥"+list.get(position).getOrder_goodsList().get(0).getGood_price());
+
+			holder.tv_price.setText("￥"+
+					String.format("%.2f",Integer.valueOf(list.get(position).getOrder_goodsList().get(0).getGood_price())/100f));
 			holder.content2.setText(list.get(position).getOrder_goodsList().get(0).getGood_brand());
 			holder.tv_gtd.setText(list.get(position).getOrder_goodsList().get(0).getGood_channel());
 			holder.content_pp.setText(list.get(position).getOrder_goodsList().get(0).getGood_name());
-			
+
 			holder.tv_goodnum.setText("X   "+list.get(position).getOrder_goodsList().get(0).getGood_num());
 		}
 
-		holder.tv_pay.setText("实付：￥"+list.get(position).getOrder_totalPrice()/100);
-		holder.tv_psf.setText("配送费：￥"+list.get(position).getOrder_psf()	);
+		holder.tv_pay.setText("实付：￥"+
+				String.format("%.2f",Integer.valueOf(list.get(position).getOrder_totalPrice())/100f));
+		holder.tv_psf.setText("配送费：￥"+
+				String.format("%.2f",Integer.valueOf(list.get(position).getOrder_psf())/100f));
 		holder.tv_ddbh.setText("订单编号: "+list.get(position).getOrder_number()	);
 		holder.tv_time.setText(list.get(position).getOrder_createTime()	);
 		holder.tv_sum.setText("共计:   "+list.get(position).getOrder_totalNum()	+"件");
@@ -121,8 +125,6 @@ public class OrderAdapter extends BaseAdapter{
 		}
 
 		holder.tv_ddbh.setText("订单编号: "+list.get(position).getOrder_number()	);
-		holder.tv_ddbh.setText("订单编号: "+list.get(position).getOrder_number()	);
-		holder.tv_ddbh.setText("订单编号: "+list.get(position).getOrder_number()	);
 		holder.btn_cancle.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -150,6 +152,7 @@ public class OrderAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View arg0) {
 				Intent i = new Intent(context,PayFromCar.class);
+				i.putExtra("orderId", list.get(position).getOrder_id());
 				context.startActivity(i);
 			}
 		});

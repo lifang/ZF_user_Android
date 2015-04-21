@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,6 +43,7 @@ import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.FactoryEntity;
 import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.PosEntity;
+import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.entity.GriviewEntity;
 import com.example.zf_zandroid.adapter.ButtonGridviewAdapter;
 import com.example.zf_zandroid.adapter.GridviewAdapter;
@@ -89,8 +91,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private ScrollViewWithGView gview,gview1 ;
 	List<GriviewEntity>  User_button = new ArrayList<GriviewEntity>();
 	private int paychannelId ,goodId,quantity;
+	private String payChannelName = "";
 	private ImageView img_see;
 	List<View> list = new ArrayList<View>();
+
+	private SharedPreferences mySharedPreferences;
+	private Boolean islogin;
+	private int customerId;
+
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -152,6 +160,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_detail);
+
+		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
+		islogin=mySharedPreferences.getBoolean("islogin", false);
+		customerId = mySharedPreferences.getInt("id", 0);
+		MyApplication.getInstance().setCustomerId(customerId);
 
 		id=getIntent().getIntExtra("id", 0);
 		innitView();
@@ -270,20 +283,34 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				Toast.makeText(getApplicationContext(), "请选择通道！",
 						Toast.LENGTH_SHORT).show();				
 			}else if(islea){ 
-				Intent i21 =new Intent(GoodDeatail.this, LeaseConfirm.class);
-				i21.putExtra("good", gfe);
-				i21.putExtra("chanel", chanel);
-				i21.putExtra("paychannelId", paychannelId);
-				startActivity(i21);
+				if (islogin && id != 0) {
+					Intent i21 =new Intent(GoodDeatail.this, LeaseConfirm.class);
+					i21.putExtra("good", gfe);
+					i21.putExtra("chanel", chanel);
+					i21.putExtra("payChannelName", payChannelName);
+					i21.putExtra("paychannelId", paychannelId);
+					startActivity(i21);
+				}else {
+					Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+					startActivity(new Intent(this,LoginActivity.class));
+				}
+
 			}else{
-				Intent i2 =new Intent(GoodDeatail.this, GoodConfirm.class);
-				i2.putExtra("getTitle", gfe.getTitle());
-				i2.putExtra("price", gfe.getRetail_price());
-				i2.putExtra("model", gfe.getModel_number());
-				i2.putExtra("chanel", chanel);
-				i2.putExtra("paychannelId", paychannelId);
-				i2.putExtra("goodId", gfe.getId());
-				startActivity(i2);
+				if (islogin && id != 0) {
+					Intent i2 =new Intent(GoodDeatail.this, GoodConfirm.class);
+					i2.putExtra("getTitle", gfe.getTitle());
+					i2.putExtra("price", gfe.getRetail_price());
+					i2.putExtra("model", gfe.getModel_number());
+					i2.putExtra("brand", gfe.getGood_brand());
+					i2.putExtra("chanel", chanel);
+					i2.putExtra("payChannelName", payChannelName);
+					i2.putExtra("paychannelId", paychannelId);
+					i2.putExtra("goodId", gfe.getId());
+					startActivity(i2);
+				}else {
+					Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+					startActivity(new Intent(this,LoginActivity.class));
+				}
 			}
 
 			break;
@@ -311,8 +338,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.img_see:
+			FactoryInfo.setFactory(factory);
 			Intent i1 =new Intent(GoodDeatail.this,FactoryInfo.class);
-			i1.putExtra("factory", factory);
+			//i1.putExtra("factory", factory);
 			startActivity(i1);
 			break;
 
@@ -355,7 +383,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						ma = piclist;
 						gfe=gson.fromJson(jsonobject.getString("goodinfo"), new TypeToken<GoodinfoEntity>() {
 						}.getType());
-						MyApplication.gfe=gfe;
+						MyApplication.setGfe(gfe);
 						goodId=gfe.getId();
 						factory=gson.fromJson(jsonobject.getString("factory"), new TypeToken<FactoryEntity>() {
 						}.getType());
@@ -363,6 +391,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						User_button = gson.fromJson(payChannelListStr, 
 								new TypeToken<List<GriviewEntity>>() {}.getType());
 
+						payChannelName = User_button.get(0).getName();
 						buttonAdapter=new ButtonGridviewAdapter(GoodDeatail.this, User_button,0);
 						gview1.setAdapter(buttonAdapter);
 						gview1.setOnItemClickListener(new OnItemClickListener() {
@@ -371,6 +400,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							public void onItemClick(AdapterView<?> arg0,
 									View arg1, int arg2, long arg3) {
 								buttonAdapter.setIndex(arg2);
+								payChannelName = User_button.get(arg2).getName();
 								getdataByChanel(User_button.get(arg2).getId());
 								buttonAdapter.notifyDataSetChanged();
 							}
@@ -406,9 +436,13 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 								}.getType());
 								String a="";
 								for(int i=0;i<arelist.size();i++){
-									a=a+arelist.get(i);
+									if (arelist.get(i) != null) {
+										a=a+arelist.get(i)+"/";
+									}
 								}
-								tvc_qy.setText(a);
+								if (arelist.size()>0) {
+									tvc_qy.setText(a.substring(0, a.length()-1));
+								}
 							}else{
 								tvc_qy.setText("不支持");
 							}
@@ -522,10 +556,13 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							}.getType());
 							String a="";
 							for(int i=0;i<arelist.size();i++){
-
-								a=a+arelist.get(i)+"/";
+								if (arelist.get(i) != null) {
+									a=a+arelist.get(i)+"/";
+								}
 							}
-							tvc_qy.setText(a);
+							if (arelist.size()>0) {
+								tvc_qy.setText(a.substring(0, a.length()-1));
+							}
 						}else{
 							tvc_qy.setText("不支持");
 						}

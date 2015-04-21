@@ -102,7 +102,7 @@
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
-                android:text="$ 1999"
+                android:text="￥ 19.99"
                 android:textColor="@color/text292929"
                 android:textSize="11sp" />
 
@@ -210,7 +210,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="配送费：￥1000"
+            android:text="配送费：￥0.00"
             android:textColor="@color/text6c6c6c6"
             android:textSize="8sp" />
 
@@ -220,7 +220,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="7dp"
-            android:text="实付：29999"
+            android:text="实付：      "
             android:textColor="@color/text6c6c6c6"
             android:textSize="13sp" />
     </LinearLayout>

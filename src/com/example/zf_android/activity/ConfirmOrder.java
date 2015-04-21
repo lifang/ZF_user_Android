@@ -59,6 +59,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 	private int  is_need_invoice=0;//否需要发票（1要，0不要
 	private int invoice_type=0;//发票类型（0公司  1个人）
 	private Button btn_pay;
+	private boolean isFirstCreate;
 	PopupWindow menuWindow;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -86,6 +87,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.comfirm_order);
+		isFirstCreate=true;
 		customerId = MyApplication.getInstance().getCustomerId();
 		index=getIntent().getIntExtra("index", 0);
 		howMoney=getIntent().getStringExtra("howMoney");
@@ -98,6 +100,17 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 		comfirmList=MyApplication.getComfirmList();
 		myAdapter=new ComfirmcarAdapter(ConfirmOrder.this, comfirmList);
 		pos_lv.setAdapter(myAdapter);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(!isFirstCreate){
+			getData1();
+		}else {
+			isFirstCreate=false;
+		}
+		
 	}
 	private void initView() {
 		new TitleMenuUtil(ConfirmOrder.this, "订单确定").show();
@@ -137,18 +150,6 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 			break;
 		}
 	}
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode==11){
-			if(data!=null){
-				addressId=data.getIntExtra("id", addressId);
-				tv_adresss.setText("收件地址 ： "+data.getStringExtra("adree"));
-				tv_name.setText("收件人 ： "+data.getStringExtra("name"));
-				tv_tel.setText( data.getStringExtra("tel"));
-			}
-		}
-	}
 	private void getData1() { 
 		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
 		MyApplication.getInstance().getClient()
@@ -173,6 +174,10 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 						moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
 						}.getType());
 
+						tv_adresss.setText("收件地址 ： ");
+						tv_name.setText("收件人 ： ");
+						tv_tel.setText("");
+						
 						for(int i =0;i<moreList.size();i++){
 							if(moreList.get(i).getIsDefault()==1) {
 								//tv_name,tv_tel,tv_adresss;
@@ -266,7 +271,9 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 			public void onSuccess(Object data) {
 				System.out.println(data);
 				Intent i1 =new Intent (ConfirmOrder.this,PayFromCar.class);
+				i1.putExtra("orderId", data.toString());
 				startActivity(i1);
+				finish();
 			}
 
 			@Override

@@ -3,40 +3,30 @@ package com.example.zf_android.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.examlpe.zf_android.util.ScrollViewWithListView;
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.Answer;
 import com.example.zf_android.entity.Goodlist;
-import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_zandroid.adapter.CommentAdapter;
-import com.example.zf_zandroid.adapter.OrderDetail_PosAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 /**
  * 
@@ -64,12 +54,12 @@ public class Comment extends BaseActivity{
 		goodlist=MyApplication.getGoodlist();
 
 		id = getIntent().getExtras().getInt("id");
-		
+
 		posAdapter=new CommentAdapter(Comment.this,goodlist);
 		lv.setAdapter(posAdapter);
 
 		new TitleMenuUtil(Comment.this, "评价").show();
-		
+
 		btn_pay=(Button) findViewById(R.id.btn_pay);
 		btn_pay.setOnClickListener(new OnClickListener() {
 
@@ -85,7 +75,10 @@ public class Comment extends BaseActivity{
 			Answer answer=new Answer();
 			answer.setContent(goodlist.get(i).getContent());
 			answer.setCustomer_id(MyApplication.getInstance().getCustomerId());
-			answer.setGood_id(Integer.parseInt( goodlist.get(i).getGood_id()));
+			
+			if (!StringUtil.isNull(goodlist.get(i).getGood_id())) 
+				answer.setGood_id(Integer.parseInt( goodlist.get(i).getGood_id()));
+			
 			answer.setScore(Integer.parseInt( goodlist.get(i).getScore()));
 			as.add(answer);
 			System.out.println(goodlist.get(i).getScore()+"---submit---"+goodlist.get(i).getContent()+"id-"+goodlist.get(i).getGood_id());
