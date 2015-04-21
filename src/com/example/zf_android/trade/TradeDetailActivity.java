@@ -82,8 +82,8 @@ public class TradeDetailActivity extends Activity {
                             : i == 1 ? data.getPayFromAccount()
                             : i == 2 ? data.getPayIntoAccount()
                             : i == 3 ? data.getPayChannelName()
-                            : i == 4 ? data.getProfitPrice() + ""
-                            : i == 5 ? df.format(data.getAmount()*1.0f/100) + ""
+                            : i == 4 ? getString(R.string.notation_yuan)+df.format(data.getProfitPrice()*1.0f/100)
+                            : i == 5 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)
                             : i == 6 ? data.getTradedTimeStr()
                             : i == 7 ? tradeStatuses[data.getTradedStatus()]
                             : i == 8 ? data.getBatchNumber()
