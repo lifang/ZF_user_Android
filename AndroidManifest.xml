@@ -29,6 +29,12 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    
+    
     <application
         android:name="com.example.zf_android.MyApplication"
         android:allowBackup="true"
@@ -402,6 +408,11 @@
             android:name="com.example.zf_android.activity.PosSelecSon"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
+        </activity>
+        
+        <activity
+            android:name=".video.VideoActivity"
+			android:screenOrientation="portrait" >
         </activity>
     </application>
 
