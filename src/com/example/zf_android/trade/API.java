@@ -33,6 +33,7 @@ public class API {
 	
 //	public static final String HOST = "114.215.149.242:18080";
 	//sit   
+//	public static final String HOST = "192.168.10.138:8080";
 	public static final String HOST = "121.40.84.2:8080";
 	public static final String EDITADRESS = SCHEMA + HOST + "/ZFMerchant/api/customers/updateAddress";
 

@@ -107,4 +107,7 @@
 
 	<color name="background_pressed">#dedede</color>
 
+    <color name="trans_white">#20ffffff</color>
+    <color name="trans">#00000000</color>
+    <color name="blue">#cc33b5e5</color>
 </resources>

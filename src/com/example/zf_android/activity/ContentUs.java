@@ -52,8 +52,7 @@ public class ContentUs extends BaseActivity implements OnClickListener{
 
 						@Override
 						public void change() {
-							Toast.makeText(getApplicationContext(), "保存成功",
-									Toast.LENGTH_SHORT).show();
+							
 						}
 
 					});
