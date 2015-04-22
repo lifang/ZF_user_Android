@@ -159,7 +159,8 @@ public class MineSet extends BaseActivity implements OnClickListener{
 
 	private void upgrading(String apkUrl) {
 		final ProgressDialog pd = new ProgressDialog(this);
-		pd.setCancelable(false);
+		pd.setCancelable(true);
+		pd.setCanceledOnTouchOutside(false);
 		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		pd.setMessage(getResources().getString(R.string.updata_check));
 		fileDownLoad(pd, apkUrl);

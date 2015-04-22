@@ -266,19 +266,16 @@
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
 
-                <com.examlpe.zf_android.util.ScrollViewWithGView
-                    android:id="@+id/gview1"
-                    android:layout_width="fill_parent"
+                <com.examlpe.zf_android.util.FlowLayout
+                    android:id="@+id/flowLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="@dimen/margin_left2"
-                    android:layout_toRightOf="@id/sign_tv"
-                    android:horizontalSpacing="10dip"
-                    android:numColumns="3"
-                    android:stretchMode="columnWidth"
-                    android:verticalSpacing="5dip" >
-                </com.examlpe.zf_android.util.ScrollViewWithGView>
+                    android:layout_toRightOf="@id/sign_tv" />
+
             </RelativeLayout>
 
             <LinearLayout
@@ -432,7 +429,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="17sp" />
 
                 <View
@@ -449,7 +446,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="交易费率"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="17sp" />
             </LinearLayout>
 
@@ -472,7 +469,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="开通所需材料"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="17sp" />
 
                 <View
@@ -489,7 +486,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="租赁说明"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="17sp" />
             </LinearLayout>
 
@@ -513,7 +510,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="POS信息"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -540,7 +537,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="品      牌     型     号"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="13sp" />
 
                 <TextView
@@ -552,7 +549,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text=""
-                    android:textColor="@color/text292929"
+                    android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -570,7 +567,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="外      壳     信     息"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="13sp" />
 
                 <TextView
@@ -582,7 +579,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="泰山TS9000"
-                    android:textColor="@color/text292929"
+                    android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -600,7 +597,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="电      池     信     息"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="13sp" />
 
                 <TextView
@@ -612,7 +609,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="泰山TS9000"
-                    android:textColor="@color/text292929"
+                    android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -630,7 +627,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="签约购单打印方式"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="13sp" />
 
                 <TextView
@@ -642,7 +639,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text=""
-                    android:textColor="@color/text292929"
+                    android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -660,7 +657,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="加    密   卡  方   式"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="13sp" />
 
                 <TextView
@@ -672,7 +669,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text=""
-                    android:textColor="@color/text292929"
+                    android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -693,7 +690,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="申请开通条件"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -713,7 +710,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="@dimen/margin_left2"
                 android:ellipsize="end"
-                android:textColor="@color/text6c6c6c6"
+                android:textColor="@color/text292929"
                 android:textSize="13sp" />
 
             <LinearLayout
@@ -731,7 +728,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="商品详细说明"
-                    android:textColor="@color/text6c6c6c6"
+                    android:textColor="@color/text292929"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -751,7 +748,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="@dimen/margin_left2"
                 android:ellipsize="end"
-                android:textColor="@color/text6c6c6c6"
+                android:textColor="@color/text292929"
                 android:textSize="13sp" />
 
             <LinearLayout

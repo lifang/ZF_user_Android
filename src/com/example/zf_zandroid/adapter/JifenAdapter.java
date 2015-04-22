@@ -66,8 +66,9 @@ public class JifenAdapter extends BaseAdapter {
 		}
 
 		 holder.tv_count.setText(list.get(position).getQuantity()+"  分");
-		 holder.adress_name.setText(list.get(position).getTypes()==1?"收入":"支出");
+		 holder.adress_name.setText(list.get(position).getTypes()==1?"获得":"支出");
 		 holder.tv_ddbh.setText(list.get(position).getOrder_number() );
+		 holder.tv_pay.setVisibility(View.GONE);
 		 holder.tv_pay.setText(list.get(position).getActual_price());
 		 holder.tv_time.setText(list.get(position).getPayedAt());
 		  

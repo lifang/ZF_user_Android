@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_left2"
             android:layout_marginTop="36dp"
-            android:text="付款金额"
+            android:text="付款金额："
             android:textColor="@color/ffffff"
             android:textSize="11sp" />
 

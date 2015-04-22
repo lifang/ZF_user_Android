@@ -55,12 +55,10 @@ public class DialogUtil {
 			
 			switch (msg.what) {
 			case 0:
-				Toast.makeText(context, "保存成功",
-						Toast.LENGTH_SHORT).show();
+			//	Toast.makeText(context, "保存成功",Toast.LENGTH_SHORT).show();
 				break;
 			case 1:
-				Toast.makeText(context, "保存失败",
-						Toast.LENGTH_SHORT).show();
+			//	Toast.makeText(context, "保存失败",Toast.LENGTH_SHORT).show();
 				break;
 
 			default:

@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.trinea.android.common.util.JSONUtils;
 
+import com.examlpe.zf_android.util.FlowLayout;
 import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.ScrollViewWithGView;
 import com.examlpe.zf_android.util.ScrollViewWithListView;
@@ -43,7 +44,6 @@ import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.FactoryEntity;
 import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.PosEntity;
-import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.entity.GriviewEntity;
 import com.example.zf_zandroid.adapter.ButtonGridviewAdapter;
 import com.example.zf_zandroid.adapter.GridviewAdapter;
@@ -86,9 +86,10 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private ArrayList<ChanelEntitiy> celist2 = new ArrayList<ChanelEntitiy>();
 	private ArrayList<ChanelEntitiy> celist3 = new ArrayList<ChanelEntitiy>();
 	private GridviewAdapter gadapter;
-	private ButtonGridviewAdapter buttonAdapter;
+	//private ButtonGridviewAdapter buttonAdapter;
 	private Boolean islea=false;
-	private ScrollViewWithGView gview,gview1 ;
+	private ScrollViewWithGView gview;
+	private FlowLayout flowLayout;
 	List<GriviewEntity>  User_button = new ArrayList<GriviewEntity>();
 	private int paychannelId ,goodId,quantity;
 	private String payChannelName = "";
@@ -98,6 +99,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private SharedPreferences mySharedPreferences;
 	private Boolean islogin;
 	private int customerId;
+
+	private List<Integer> labelIds = new ArrayList<Integer>();
+	private List<Integer> labelSelectIds = new ArrayList<Integer>();
 
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -120,7 +124,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
 				tv_lx.setText(gfe.getCategory() );
 				if(factoryEntity != null){
-					ImageCacheUtil.IMAGE_CACHE.get(StringUtil.getImage(factoryEntity.getLogo_file_path()),
+					ImageCacheUtil.IMAGE_CACHE.get(factoryEntity.getLogo_file_path(),
 							fac_img);
 					tv_sjhttp.setText(factoryEntity.getWebsite_url() );
 					fac_detai.setText(factoryEntity.getDescription() );
@@ -169,7 +173,6 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		id=getIntent().getIntExtra("id", 0);
 		innitView();
 		gview=(ScrollViewWithGView) findViewById(R.id.gview);
-		gview1=(ScrollViewWithGView) findViewById(R.id.gview1);
 		getdata();
 
 	}
@@ -193,6 +196,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		img_see.setOnClickListener(this);
 		view_pager = (ViewPager) findViewById(R.id.view_pager); 
 		inflater = LayoutInflater.from(this); 
+		flowLayout = (FlowLayout) findViewById(R.id.flowLayout);
 		adapter = new MyAdapter(list); 
 		view_pager.setAdapter(adapter);
 		view_pager.setOnPageChangeListener(new MyListener());
@@ -241,12 +245,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			islea=false;
 			setting_btn_clear1.setClickable(true);
 			setting_btn_clear.setText("立即购买");
-			setting_btn_clear1.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_shape) );
+			setting_btn_clear1.setBackgroundResource(R.drawable.bg_shape);
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bgtitle));
 			tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
-			tv_bug.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_shape));
+			tv_bug.setBackgroundResource(R.drawable.bg_shape);
 			tv_lea.setTextColor(getResources().getColor(R.color.text292929));
-			tv_lea.setBackgroundDrawable(getResources().getDrawable(R.drawable.send_out_goods_shape));
+			tv_lea.setBackgroundResource(R.drawable.send_out_goods_shape);
 			break;
 		case R.id.tv_lea:
 			//tv_bug  
@@ -254,11 +258,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			setting_btn_clear1.setClickable(false);
 			setting_btn_clear.setText("立即租赁");
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bg0etitle));
-			setting_btn_clear1.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg0e_shape) );
+			setting_btn_clear1.setBackgroundResource(R.drawable.bg0e_shape);
 			tv_bug.setTextColor(getResources().getColor(R.color.text292929));
-			tv_bug.setBackgroundDrawable(getResources().getDrawable(R.drawable.send_out_goods_shape));
+			tv_bug.setBackgroundResource(R.drawable.send_out_goods_shape);
 			tv_lea.setTextColor(getResources().getColor(R.color.bgtitle));
-			tv_lea.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_shape) );
+			tv_lea.setBackgroundResource(R.drawable.bg_shape);
 			break;
 
 		case R.id.tv_ins:
@@ -347,8 +351,39 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		default:
 			break;
 		}
-	}
 
+		if (labelIds.contains(Integer.valueOf(v.getId()))) {
+			setFlowLayout(v.getId());
+			for (int i = 0; i < User_button.size(); i++) {
+				if (v.getId() == User_button.get(i).getId()) {
+					payChannelName = User_button.get(i).getName();
+					getdataByChanel(User_button.get(i).getId());
+				}
+			}
+		}
+	}
+	private void setFlowLayout(int id) {
+		flowLayout.removeAllViews();
+		labelIds.clear();
+
+		for (int i = 0; i < User_button.size(); i++) {
+			TextView textView = (TextView) inflater.inflate(
+					R.layout.textview_label, flowLayout, false);
+			textView.setText(User_button.get(i).getName());
+
+			if (id == User_button.get(i).getId()) {
+				textView.setBackgroundResource(R.drawable.bg_shape);
+				textView.setTextColor(getResources().getColor(R.color.bgtitle));
+			}else {
+				textView.setBackgroundResource(R.drawable.send_out_goods_shape);
+				textView.setTextColor(getResources().getColor(R.color.text292929));
+			}
+			textView.setId(User_button.get(i).getId());
+			textView.setOnClickListener(this);
+			labelIds.add(User_button.get(i).getId());
+			flowLayout.addView(textView);
+		}
+	}
 	private void getdata() {
 
 		RequestParams params = new RequestParams();
@@ -392,19 +427,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 								new TypeToken<List<GriviewEntity>>() {}.getType());
 
 						payChannelName = User_button.get(0).getName();
-						buttonAdapter=new ButtonGridviewAdapter(GoodDeatail.this, User_button,0);
-						gview1.setAdapter(buttonAdapter);
-						gview1.setOnItemClickListener(new OnItemClickListener() {
-
-							@Override
-							public void onItemClick(AdapterView<?> arg0,
-									View arg1, int arg2, long arg3) {
-								buttonAdapter.setIndex(arg2);
-								payChannelName = User_button.get(arg2).getName();
-								getdataByChanel(User_button.get(arg2).getId());
-								buttonAdapter.notifyDataSetChanged();
-							}
-						});
+						
+						setFlowLayout(User_button.get(0).getId());//支付通道
 
 						myList=gson.fromJson(JSONUtils.getString(jsonobject,"relativeShopList","[]"), new TypeToken<List<PosEntity>>() {
 						}.getType());
@@ -436,11 +460,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 								}.getType());
 								String a="";
 								for(int i=0;i<arelist.size();i++){
-									if (arelist.get(i) != null) {
+									if (!StringUtil.isNull(arelist.get(i))) {
 										a=a+arelist.get(i)+"/";
 									}
 								}
-								if (arelist.size()>0) {
+								if (a.length()>1) {
 									tvc_qy.setText(a.substring(0, a.length()-1));
 								}
 							}else{
@@ -528,7 +552,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						factoryEntity = gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<FactoryEntity>() {
 						}.getType());
 						if(factoryEntity.getLogo_file_path() != null){
-							ImageCacheUtil.IMAGE_CACHE.get(StringUtil.getImage(factoryEntity.getLogo_file_path()),
+							ImageCacheUtil.IMAGE_CACHE.get(factoryEntity.getLogo_file_path(),
 									fac_img);
 						}
 						tv_sjhttp.setText(factoryEntity.getWebsite_url() );
@@ -556,11 +580,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							}.getType());
 							String a="";
 							for(int i=0;i<arelist.size();i++){
-								if (arelist.get(i) != null) {
+								if (!StringUtil.isNull(arelist.get(i))) {
 									a=a+arelist.get(i)+"/";
 								}
 							}
-							if (arelist.size()>0) {
+							if (a.length()>1) {
 								tvc_qy.setText(a.substring(0, a.length()-1));
 							}
 						}else{
@@ -712,7 +736,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
 
-			ImageCacheUtil.IMAGE_CACHE.get(StringUtil.getBigImage(ma.get(position)),
+			ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
 					image);
 			container.removeView(mList.get(position));
 			container.addView(mList.get(position));

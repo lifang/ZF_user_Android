@@ -1,5 +1,7 @@
 package com.example.zf_zandroid.adapter;
 
+import java.util.List;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zf_android.R;
-import com.example.zf_android.entity.PosEntity;
-import com.example.zf_android.entity.User;
 import com.example.zf_android.trade.entity.GriviewEntity;
-
-import java.util.List;
 
 public class ButtonGridviewAdapter extends BaseAdapter {
 	private Context context;
@@ -67,16 +65,13 @@ public class ButtonGridviewAdapter extends BaseAdapter {
 		}
  
 		holder.button_gri_tv.setTextColor(context.getResources().getColor(R.color.text292929));
-		holder.button_gri_tv.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.send_out_goods_shape));
+		holder.button_gri_tv.setBackgroundResource(R.drawable.send_out_goods_shape);
 		if(position==index){
 			holder.button_gri_tv.setTextColor(context.getResources().getColor(R.color.bgtitle));
-			holder.button_gri_tv.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_shape));
+			holder.button_gri_tv.setBackgroundResource(R.drawable.bg_shape);
 		}
 		holder.button_gri_tv.setText(list.get(position).getName());
 	 
-		
-	 
-		
 	 
 		return convertView;
 	}

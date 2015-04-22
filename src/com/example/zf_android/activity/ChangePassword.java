@@ -24,8 +24,6 @@ public class ChangePassword extends BaseActivity implements OnClickListener{
 	private EditText login_edit_name,login_edit_name2,login_edit_name3;
 	private Button btn_exit;
 	String passwordOld,password,password2;
-	private SharedPreferences mySharedPreferences;
-	private Editor editor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,8 +36,6 @@ public class ChangePassword extends BaseActivity implements OnClickListener{
 		login_edit_name3=(EditText) findViewById(R.id.login_edit_name3);
 		btn_exit=(Button) findViewById(R.id.btn_exit);
 		btn_exit.setOnClickListener(this);
-		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
-		editor = mySharedPreferences.edit();
 	}
 
 	@Override

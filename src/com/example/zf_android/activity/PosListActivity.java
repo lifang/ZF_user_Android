@@ -198,11 +198,13 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			if(isDown){
 				orderType=2;
 				isDown=false;
-				img3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ti_down));
+				tv_3.setText("价格降序");
+				img3.setBackgroundResource(R.drawable.ti_down);
 			}else{
 				orderType=3;
 				isDown=true;
-				img3.setBackgroundDrawable(getResources().getDrawable(R.drawable.ti_up));
+				tv_3.setText("价格升序");
+				img3.setBackgroundResource(R.drawable.ti_up);
 			}
 
 			tv_mr.setTextColor(getResources().getColor(R.color.bg_575D5F));

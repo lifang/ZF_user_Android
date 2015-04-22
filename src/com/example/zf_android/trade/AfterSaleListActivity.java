@@ -15,6 +15,8 @@ import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.activity.GoodConfirm;
+import com.example.zf_android.activity.PayFromCar;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.Pageable;
@@ -152,8 +154,11 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 
 		mPayMaintainListener = new View.OnClickListener() {
 			@Override
-			public void onClick(View view) {
-				startActivity(new Intent(AfterSaleListActivity.this, AfterSalePayActivity.class));
+			public void onClick(View v) {
+				final AfterSaleRecord record = (AfterSaleRecord) v.getTag();
+				Intent i1 =new Intent (AfterSaleListActivity.this,AfterSalePayActivity.class);
+				i1.putExtra("orderId", record.getId()+"");
+				startActivity(i1);	
 			}
 		};
 
@@ -273,6 +278,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 						holder.btnLeft.setOnClickListener(mCancelApplyListener);
 
 						holder.btnRight.setText(getString(R.string.button_pay));
+						holder.btnRight.setTag(data);
 						holder.btnRight.setOnClickListener(mPayMaintainListener);
 					} else if (data.getStatus() == 2) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);

@@ -16,10 +16,10 @@
             android:id="@+id/titleback_linear_back"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/titleback_height"
-            android:paddingLeft="@dimen/d_7dp"
-            android:paddingRight="7dp"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/d_7dp"
+            android:paddingRight="7dp" >
 
             <ImageView
                 android:id="@+id/titleback_image_back"
@@ -34,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:hint="搜索商品"
-            android:drawableLeft="@drawable/search_bg" />
+            android:drawableLeft="@drawable/search_bg"
+            android:hint="搜索商品" />
 
         <ImageView
             android:id="@+id/pos_select"
@@ -54,11 +54,12 @@
             android:layout_marginRight="7dp"
             android:background="@drawable/car22" />
     </LinearLayout>
+
     <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-          
-            android:background="#ADAEAF" />
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#ADAEAF" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/titleback_height"
@@ -78,8 +79,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="默认排序"
-                android:textSize="13sp"
-                android:textColor="@color/bgtitle" />
+                android:textColor="@color/bgtitle"
+                android:textSize="13sp" />
         </LinearLayout>
 
         <View
@@ -88,7 +89,8 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="#ADAEAF" />
-            <LinearLayout
+
+        <LinearLayout
             android:id="@+id/ll_xxyx"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -96,12 +98,12 @@
             android:gravity="center" >
 
             <TextView
+                android:id="@+id/tv_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="销量优先"
-                android:textSize="13sp"
-                  android:id="@+id/tv_2"
-                android:textColor="@color/bg_575D5F" />
+                android:textColor="@color/bg_575D5F"
+                android:textSize="13sp" />
         </LinearLayout>
 
         <View
@@ -110,26 +112,29 @@
             android:layout_marginBottom="12dp"
             android:layout_marginTop="12dp"
             android:background="#ADAEAF" />
-                <LinearLayout
-                    android:id="@+id/ll_updown"
+
+        <LinearLayout
+            android:id="@+id/ll_updown"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center" >
+            android:gravity="center"
+            android:orientation="horizontal" >
 
             <TextView
+                android:id="@+id/tv_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="价格降序"
-                android:textSize="13sp"
-                    android:id="@+id/tv_3"
-                android:textColor="@color/bg_575D5F" />
-            <ImageView android:layout_height="wrap_content"
+                android:textColor="@color/bg_575D5F"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/img3"
                 android:layout_width="wrap_content"
-                    android:id="@+id/img3"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="1dp"
-                android:background="@drawable/ti_down"/>
+                android:background="@drawable/ti_down" />
         </LinearLayout>
 
         <View
@@ -138,48 +143,49 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:background="#ADAEAF" />
-                <LinearLayout
-                    android:id="@+id/ll_pj"
+
+        <LinearLayout
+            android:id="@+id/ll_pj"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center" >
 
             <TextView
+                android:id="@+id/tv_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="评分最高"
-                    android:id="@+id/tv_4"
-                android:textSize="13sp"
-                android:textColor="@color/bg_575D5F" />
+                android:textColor="@color/bg_575D5F"
+                android:textSize="13sp" />
         </LinearLayout>
-
-     
-    
     </LinearLayout>
+
     <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-          
-            android:background="#ADAEAF" />
-     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#ADAEAF" />
+
+    <LinearLayout
         android:id="@+id/eva_nodata"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-      	android:visibility="gone"
         android:layout_gravity="center"
         android:background="@color/ffffff"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:visibility="gone" >
 
         <include layout="@layout/include_norecord" />
     </LinearLayout>
- <com.example.zf_android.trade.widget.XListView
+
+    <com.example.zf_android.trade.widget.XListView
         android:id="@+id/x_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/white"
         android:layout_marginLeft="17dp"
         android:layout_marginRight="17dp"
+        android:background="@color/white"
         android:fadingEdge="none"
         android:scrollbars="none" />
+
 </LinearLayout>

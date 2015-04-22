@@ -174,27 +174,30 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			tv_status.setText("未付款");
 			ll_ishow.setVisibility(View.VISIBLE);
 			ll_ishow2.setVisibility(View.GONE);
+			btn_ishow.setVisibility(View.GONE);
 			break;
 		case 2:
 			tv_status.setText("已付款");
 			ll_ishow.setVisibility(View.GONE);
 			ll_ishow2.setVisibility(View.VISIBLE);
+			btn_ishow.setVisibility(View.GONE);
 			break;
 		case 3:
 			tv_status.setText("已发货");
 			ll_ishow2.setVisibility(View.VISIBLE);
+			btn_ishow.setVisibility(View.VISIBLE);
 			break;
 		case 4:
 			tv_status.setText("已评价");
-
+			btn_ishow.setVisibility(View.VISIBLE);
 			break;
 		case 5:
 			tv_status.setText("已取消");
-
+			btn_ishow.setVisibility(View.GONE);
 			break;
 		case 6:
 			tv_status.setText("交易关闭");
-
+			btn_ishow.setVisibility(View.GONE);
 			break;
 
 		default:
@@ -214,7 +217,9 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			}
 			break;
 		case R.id.btn_ishow:
-			Toast.makeText(getApplicationContext(), "请先付款···", 1000).show();
+			Intent intent = new Intent(this,LookTerminalsActivity.class);
+			intent.putExtra("terminals", ode.get(0).getTerminals());
+			startActivity(intent);
 			break;
 
 		case R.id.btn_pay:

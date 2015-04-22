@@ -17,7 +17,11 @@ import com.loopj.android.http.RequestParams;
 
 import android.R.integer;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,14 +130,14 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.retail_price.setText("¥ " + StringUtil.getMoneyString(good.getRetail_price()));
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
-		
+
 		for (int i = 0; i < list.size(); i++) {
 			Boolean aBoolean = list.get(i).isChecked();
 			if (aBoolean == false) {
 				selectAll_cb.setChecked(false);
 			}
 		}
-		
+
 		return convertView;
 	}
 
@@ -141,7 +145,7 @@ public class ShopcarAdapter extends BaseAdapter {
 
 		@Override
 		public void onClick(View v) {
-			ViewHolder hoder = (ViewHolder) v.getTag();
+			final ViewHolder hoder = (ViewHolder) v.getTag();
 			int position = hoder.position;
 			Good editGood = list.get(position);
 			int quantity = editGood.getQuantity();
@@ -165,181 +169,192 @@ public class ShopcarAdapter extends BaseAdapter {
 				break;
 
 			case R.id.delete_img:
-
-				RequestParams params = new RequestParams();
-				params.put("id", list.get(hoder.position).getId()); 
-				final int index =hoder.position;
-				params.setUseJsonStreamer(true);
-
-				MyApplication.getInstance().getClient()
-				.post(Config.URL_CART_DELETE, params, new AsyncHttpResponseHandler() {
-
+				AlertDialog.Builder builder = new Builder(context);
+				builder.setMessage("确认删除？");
+				builder.setTitle("提示");
+				builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-						.toString();
-						Log.e("print", responseMsg);
+					public void onClick(final DialogInterface dialog, int which) {
+						
+						RequestParams params = new RequestParams();
+						params.put("id", list.get(hoder.position).getId()); 
+						final int index =hoder.position;
+						params.setUseJsonStreamer(true);
 
-						list.remove(index);
-						computeMoney();
-						notifyDataSetChanged();
+						MyApplication.getInstance().getClient()
+						.post(Config.URL_CART_DELETE, params, new AsyncHttpResponseHandler() {
 
-					}
+							@Override
+							public void onSuccess(int statusCode, Header[] headers,
+									byte[] responseBody) {
+								String responseMsg = new String(responseBody)
+								.toString();
+								Log.e("print", responseMsg);
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
+								dialog.dismiss();
+								list.remove(index);
+								computeMoney();
+								notifyDataSetChanged();
+							}
+
+							@Override
+							public void onFailure(int statusCode, Header[] headers,
+									byte[] responseBody, Throwable error) {
+								System.out.println("-onFailure---");
+								Log.e("print", "-onFailure---" + error);
+							}
+						});
+						
 					}
 				});
+				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+				builder.create().show();
 
+			break;
+		case R.id.reduce:
 
-
-
-				break;
-			case R.id.reduce:
-
-				if (quantity > 0) {
-					editGood.setQuantity(--quantity);
-					hoder.buyCountEdit.setText(editGood.getQuantity() + "");
-					hoder.showCountText.setText("X  " + editGood.getQuantity());
-					computeMoney();
-					System.out.println("λ��---"+position+quantity);
-					changeContent(position, quantity);
-				}
-				break;
-			case R.id.add:
-				editGood.setQuantity(++quantity);
+			if (quantity > 0) {
+				editGood.setQuantity(--quantity);
 				hoder.buyCountEdit.setText(editGood.getQuantity() + "");
 				hoder.showCountText.setText("X  " + editGood.getQuantity());
 				computeMoney();
+				System.out.println("λ��---"+position+quantity);
 				changeContent(position, quantity);
-				break;
-
 			}
+			break;
+		case R.id.add:
+			editGood.setQuantity(++quantity);
+			hoder.buyCountEdit.setText(editGood.getQuantity() + "");
+			hoder.showCountText.setText("X  " + editGood.getQuantity());
+			computeMoney();
+			changeContent(position, quantity);
+			break;
 
 		}
-	};
-	private OnClickListener onClickListenerAll = new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			if (isSelectAll == false) {
-				isSelectAll = true;
-				selectAll_cb.setChecked(true);
-			}else {
-				isSelectAll = false;
+
+	}
+};
+private OnClickListener onClickListenerAll = new OnClickListener() {
+
+	@Override
+	public void onClick(View v) {
+		if (isSelectAll == false) {
+			isSelectAll = true;
+			selectAll_cb.setChecked(true);
+		}else {
+			isSelectAll = false;
+			selectAll_cb.setChecked(false);
+		}
+		for (int index = 0; index < list.size(); index++) {
+			list.get(index).setChecked(isSelectAll);
+		}
+		notifyDataSetChanged();
+	}
+};
+private int flag=0;
+private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView,
+			boolean isChecked) {
+		//			if (selectAll_cb == buttonView) {
+		//				for (int index = 0; index < list.size(); index++) {
+		//					list.get(index).setChecked(isChecked);
+		//				}
+		//
+		//				notifyDataSetChanged();
+		//			} else {
+		if(isChecked){
+			flag++;
+		}else{
+			flag--;
+		}
+		if(flag==0){
+			selectAll_cb.setChecked(false);
+		}else if(flag==list.size()){
+			selectAll_cb.setChecked(true);
+		}
+		int position = (Integer) buttonView.getTag();
+		Good good = list.get(position);
+		good.setChecked(isChecked);
+		computeMoney();
+		for (int i = 0; i < list.size(); i++) {
+			Boolean aBoolean = list.get(i).isChecked();
+			if (aBoolean == false) {
 				selectAll_cb.setChecked(false);
 			}
-			for (int index = 0; index < list.size(); index++) {
-				list.get(index).setChecked(isSelectAll);
-			}
-			notifyDataSetChanged();
 		}
-	};
-	private int flag=0;
-	private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
-
-		@Override
-		public void onCheckedChanged(CompoundButton buttonView,
-				boolean isChecked) {
-//			if (selectAll_cb == buttonView) {
-//				for (int index = 0; index < list.size(); index++) {
-//					list.get(index).setChecked(isChecked);
-//				}
-//
-//				notifyDataSetChanged();
-//			} else {
-				if(isChecked){
-					flag++;
-				}else{
-					flag--;
-				}
-				if(flag==0){
-					selectAll_cb.setChecked(false);
-				}else if(flag==list.size()){
-					selectAll_cb.setChecked(true);
-				}
-				int position = (Integer) buttonView.getTag();
-				Good good = list.get(position);
-				good.setChecked(isChecked);
-				computeMoney();
-				//notifyDataSetChanged();
-				for (int i = 0; i < list.size(); i++) {
-					Boolean aBoolean = list.get(i).isChecked();
-					if (aBoolean == false) {
-						selectAll_cb.setChecked(false);
-					}
-				}
-				Log.e("print", "currentHowMoney:"+currentHowMoney);
+		Log.e("print", "currentHowMoney:"+currentHowMoney);
 		//	}
 
+	}
+};
+public void changeContent(final int index,final int cont){
+
+	String url =  Config.Car_edit;
+	RequestParams params = new RequestParams();
+	params.put("id", list.get(index).getId());
+	params.put("quantity", cont);
+	params.setUseJsonStreamer(true);
+
+	MyApplication.getInstance().getClient()
+	.post(url, params, new AsyncHttpResponseHandler() {
+
+		@Override
+		public void onSuccess(int statusCode, Header[] headers,
+				byte[] responseBody) {
+			String responseMsg = new String(responseBody)
+			.toString();
+			Log.e("print", responseMsg);
+
+			list.get(index).setQuantity(cont);
+			notifyDataSetChanged();
+
 		}
-	};
-	public void changeContent(final int index,final int cont){
 
-		String url =  Config.Car_edit;
-		RequestParams params = new RequestParams();
-		params.put("id", list.get(index).getId());
-		params.put("quantity", cont);
-		params.setUseJsonStreamer(true);
-
-		MyApplication.getInstance().getClient()
-		.post(url, params, new AsyncHttpResponseHandler() {
-
-			@Override
-			public void onSuccess(int statusCode, Header[] headers,
-					byte[] responseBody) {
-				String responseMsg = new String(responseBody)
-				.toString();
-				Log.e("print", responseMsg);
-
-				list.get(index).setQuantity(cont);
-				notifyDataSetChanged();
-
-			}
-
-			@Override
-			public void onFailure(int statusCode, Header[] headers,
-					byte[] responseBody, Throwable error) {
-				System.out.println("-onFailure---");
-				Log.e("print", "-onFailure---" + error);
-			}
-		});
-
-
-
-	}
-
-	public final class ViewHolder {
-		private int position;
-		private CheckBox checkBox;
-		private TextView title;
-		private ImageView delete_img;
-
-		private TextView editBtn,tv_changel;
-		private LinearLayout ll_select;
-		private TextView retail_price;
-		private View delete;
-		private EditText buyCountEdit;
-		private TextView showCountText;
-		private View reduce;
-		private View add;
-		public TextView Model_number;
-		public TextView wayName;
-	}
-
-	private void computeMoney(){
-		currentHowMoney = 0;
-		for(Good good: list){
-			if(good.isChecked()){
-				currentHowMoney += good.getRetail_price()*good.getQuantity();
-			}
+		@Override
+		public void onFailure(int statusCode, Header[] headers,
+				byte[] responseBody, Throwable error) {
+			System.out.println("-onFailure---");
+			Log.e("print", "-onFailure---" + error);
 		}
-		howMoney.setText("合计 ： ￥" + StringUtil.getMoneyString(currentHowMoney) );
+	});
+
+
+
+}
+
+public final class ViewHolder {
+	private int position;
+	private CheckBox checkBox;
+	private TextView title;
+	private ImageView delete_img;
+
+	private TextView editBtn,tv_changel;
+	private LinearLayout ll_select;
+	private TextView retail_price;
+	private View delete;
+	private EditText buyCountEdit;
+	private TextView showCountText;
+	private View reduce;
+	private View add;
+	public TextView Model_number;
+	public TextView wayName;
+}
+
+private void computeMoney(){
+	currentHowMoney = 0;
+	for(Good good: list){
+		if(good.isChecked()){
+			currentHowMoney += good.getRetail_price()*good.getQuantity();
+		}
 	}
+	howMoney.setText("合计 ： ￥" + StringUtil.getMoneyString(currentHowMoney) );
+}
 
 }

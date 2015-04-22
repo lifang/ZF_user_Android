@@ -3,44 +3,60 @@ package com.example.zf_android.entity;
 import java.util.List;
 
 public class OrderDetailEntity {
-//    "order_number": "020150206104427420",
+	//    "order_number": "020150206104427420",
 	private String order_number;
-//    "order_receiver_phone": "18352445051",\
+	//    "order_receiver_phone": "18352445051",\
 	private String order_receiver_phone;
-//    "order_payment_type": "",
+	//    "order_payment_type": "",
 	private String order_payment_type;//支付方式
-//    "order_comment": "nihao",
+	//    "order_comment": "nihao",
 	private String order_comment;//留言
-//    "order_address": "江苏省苏州市工业园区独墅湖高教区",
+	//    "order_address": "江苏省苏州市工业园区独墅湖高教区",
 	private String order_address;//收件人地址
-//    "order_invoce_type": "个人",
+	//    "order_invoce_type": "个人",
 	private String order_invoce_type;//发票类型
-//    "order_oldprice": "100",
+	//    "order_oldprice": "100",
 	private String order_oldprice;
-//    "order_id": 1,
-//    "order_totalNum": "5",
+	//    "order_id": 1,
+	//    "order_totalNum": "5",
 	private int order_id;
 	private String order_totalNum;//订单总件数
-//    "order_status": 1,
+	//    "order_status": 1,
 	private int order_status;//订单状态
-//    "order_receiver": "李长福",
+	//    "order_receiver": "李长福",
 	private String order_receiver;//收件人
-//    "order_createTime": "2015-02-05 19:53:31",
+	//    "order_createTime": "2015-02-05 19:53:31",
 	private String order_createTime;//订单日期
-//    "order_psf": "0",
+	//    "order_psf": "0",
 	private String order_psf;//配送费
-//    "good_merchant": "",
+	//    "good_merchant": "",
 	private String good_merchant;
-//    "order_invoce_info": "sad", 
+	//    "order_invoce_info": "sad", 
 	private String order_invoce_info;
-//    "order_totalprice": "120",//实付金额
+	//    "order_totalprice": "120",//实付金额
 	private String order_totalprice;
-	 private CommentG comments;
-	 private List <Goodlist> order_goodsList;
-	
-	
-	
-	
+	//         "terminals": " xfy000000020",//查看终端号
+	private String terminals;
+	private CommentG comments;
+	private List <Goodlist> order_goodsList;
+
+
+
+
+	public String getTerminals() {
+		return terminals;
+	}
+
+
+
+
+	public void setTerminals(String terminals) {
+		this.terminals = terminals;
+	}
+
+
+
+
 	public String getOrder_number() {
 		return order_number;
 	}
@@ -264,25 +280,25 @@ public class OrderDetailEntity {
 
 
 
- 
- 	public CommentG getComments() {
- 		return comments;
- 	}
- 
- 	public void setComments(CommentG comments) {
- 	this.comments = comments;
- 	}
+
+	public CommentG getComments() {
+		return comments;
+	}
+
+	public void setComments(CommentG comments) {
+		this.comments = comments;
+	}
 
 
 
 
- 	public List<Goodlist> getOrder_goodsList() {
- 		return order_goodsList;
- 	}
- 
- 	public void setOrder_goodsList(List<Goodlist> order_goodsList) {
- 	this.order_goodsList = order_goodsList;
- }
+	public List<Goodlist> getOrder_goodsList() {
+		return order_goodsList;
+	}
+
+	public void setOrder_goodsList(List<Goodlist> order_goodsList) {
+		this.order_goodsList = order_goodsList;
+	}
 
 
 
@@ -302,6 +318,6 @@ public class OrderDetailEntity {
 		public void setTotal(int total) {
 			this.total = total;
 		}
-		
+
 	}
 }
