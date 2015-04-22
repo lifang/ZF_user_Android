@@ -354,7 +354,6 @@ public class MyApplication extends Application {
 	}
 
 	public Integer getCustomerId() {
-		customerId = 80;
 		return customerId;
 	}
 
