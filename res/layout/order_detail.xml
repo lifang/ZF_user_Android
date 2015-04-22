@@ -215,6 +215,7 @@
                     android:layout_height="24dp"
                     android:background="@drawable/buttong_light"
                     android:text="查看终端号"
+                    android:visibility="gone"
                     android:textColor="@color/bgtitle"
                     android:textSize="9sp" />
             </LinearLayout>

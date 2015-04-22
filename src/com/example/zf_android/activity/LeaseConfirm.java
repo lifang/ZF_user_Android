@@ -85,11 +85,11 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(!isFirstCreate){
-			getData();
-		}else {
-			isFirstCreate=false;
-		}
+//		if(!isFirstCreate){
+//			getData();
+//		}else {
+//			isFirstCreate=false;
+//		}
 
 	}
 	private void computeMoney(){
@@ -342,6 +342,18 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 				Log.e("print", "-onFailure---" + error);
 			}
 		});
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==11){
+			if(data!=null){
 
+				addressId=data.getIntExtra("id", addressId);
+				tv_adress.setText("收件地址 ： "+data.getStringExtra("adree"));
+				tv_sjr.setText("收件人 ： "+data.getStringExtra("name"));
+				tv_tel.setText( data.getStringExtra("tel"));
+			}
+		}
 	}
 }

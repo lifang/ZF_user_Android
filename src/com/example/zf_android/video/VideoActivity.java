@@ -64,7 +64,8 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 		Intent intent = getIntent();
 		mSRoomID = intent.getIntExtra(TerminalIntent.TERMINAL_ID, 0);
 		mStrIP = Config.VIDEO_SERVER_IP;
-		mStrName = MyApplication.getInstance().getCustomerId()+"";
+//		mStrName = MyApplication.getInstance().getCustomerId()+"";
+		mStrName = 111+"";
 		mSPort = Config.VIDEO_SERVER_PORT;
 		InitSDK();
 		InitLayout();
@@ -90,9 +91,6 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 		AnyChatCoreSDK.mCameraHelper.SetContext(this);
 		
 		anychatSDK.Connect(mStrIP, mSPort);
-		anychatSDK.Login(mStrName, "x");
-
-		
 	}
 
 	private void InitLayout() {
@@ -465,6 +463,7 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 	@Override
 	public void OnAnyChatConnectMessage(boolean bSuccess) {
 		Log.i(TAG, "OnAnyChatConnectMessage:" + "bSuccess-" + bSuccess);
+		anychatSDK.Login(mStrName, "x");
 	}
 
 	@Override
@@ -537,9 +536,9 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 		}
 		int index = anychatSDK.mVideoHelper.bindVideo(mOtherView
 				.getHolder());
-		anychatSDK.mVideoHelper.SetVideoUser(index, userID);
+		anychatSDK.mVideoHelper.SetVideoUser(index, 80);
 
-		anychatSDK.UserCameraControl(userID, 1);
-		anychatSDK.UserSpeakControl(userID, 1);
+		anychatSDK.UserCameraControl(80, 1);
+		anychatSDK.UserSpeakControl(80, 1);
 	}
 }

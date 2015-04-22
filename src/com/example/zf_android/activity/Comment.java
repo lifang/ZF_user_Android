@@ -55,7 +55,7 @@ public class Comment extends BaseActivity{
 
 		id = getIntent().getExtras().getInt("id");
 
-		posAdapter=new CommentAdapter(Comment.this,goodlist);
+		posAdapter=new CommentAdapter(Comment.this,goodlist,new OnClickListen());
 		lv.setAdapter(posAdapter);
 
 		new TitleMenuUtil(Comment.this, "评价").show();
@@ -69,6 +69,14 @@ public class Comment extends BaseActivity{
 			}
 
 		});
+	}
+	private class OnClickListen implements CommentAdapter.AfterTextChangedListener{
+
+		@Override
+		public void onAfterTextChanged(int position) {
+			posAdapter.notifyDataSetChanged();
+		}
+		
 	}
 	public void submit(){
 		for(int i=0;i<goodlist.size();i++){

@@ -3,6 +3,8 @@ package com.example.zf_zandroid.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -23,11 +25,13 @@ public class CommentAdapter extends BaseAdapter {
 	private List<Goodlist> list;
 	private LayoutInflater inflater;
 	private int state;
+	private AfterTextChangedListener afterTextChangedListener;
 	private ViewHolder holder = null;
 
-	public CommentAdapter(Context context, List<Goodlist> list) {
+	public CommentAdapter(Context context, List<Goodlist> list,AfterTextChangedListener afterTextChangedListener) {
 		this.context = context;
 		this.list = list;
+		this.afterTextChangedListener = afterTextChangedListener;
 		this.state = state;
 	}
 
@@ -78,7 +82,7 @@ public class CommentAdapter extends BaseAdapter {
 			list.get(position).setScore(list.get(position).getScore());
 		}
 
-		list.get(position).setContent(list.get(position).getContent());
+		//list.get(position).setContent(list.get(position).getContent());
 		holder.content.setText(list.get(position).getGood_name());
 		holder.content2.setText(list.get(position).getGood_brand());
 		holder.contentText.setText(list.get(position).getGood_channel());
@@ -96,17 +100,24 @@ public class CommentAdapter extends BaseAdapter {
 
 			}
 		});
+		
+		
+		holder.item_et.setFocusable(true);
+		holder.item_et.setFocusableInTouchMode(true);
+		holder.item_et.requestFocus();
+		
 		holder.item_et.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				//				if (s.length() > 0) {
-				//					holder.maxCountTextView.setText("还可填写"+(200-s.length())+"个汉字");
-				//				}else if (s.length() == 0) {
-				//					holder.maxCountTextView.setText("最多填写200个汉字");
-				//				}else if (s.length() > 200) {
-				//					holder.maxCountTextView.setText("已超出允许最多字数");
-				//				}
+				//notifyDataSetChanged();
+				//								if (s.length() > 0) {
+				//									holder.maxCountTextView.setText("还可填写"+(200-s.length())+"个汉字");
+				//								}else if (s.length() == 0) {
+				//									holder.maxCountTextView.setText("最多填写200个汉字");
+				//								}else if (s.length() > 200) {
+				//									holder.maxCountTextView.setText("已超出允许最多字数");
+				//								}
 			}
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
@@ -117,8 +128,14 @@ public class CommentAdapter extends BaseAdapter {
 			@Override
 			public void afterTextChanged(Editable arg0) {
 				list.get(position).setContent(arg0.toString());
+				afterTextChangedListener.onAfterTextChanged(position);
 			}
 		});
+		
+		if (!StringUtil.isNull(list.get(position).getContent())) {
+			holder.item_et.setText(list.get(position).getContent());
+			holder.item_et.setSelection(list.get(position).getContent().length());
+		}
 		if (!StringUtil.isNull(list.get(position).getContent())) {
 			if (list.get(position).getContent().length() > 0) {
 				holder.maxCountTextView.setText("还可填写"+(200-list.get(position).getContent().length())+"个汉字");
@@ -128,12 +145,20 @@ public class CommentAdapter extends BaseAdapter {
 				holder.maxCountTextView.setText("已超出允许最多字数");
 			}
 		}
+
 		return convertView;
 	}
-
+	public interface AfterTextChangedListener {
+		public void onAfterTextChanged(int position);
+	}
 	public final class ViewHolder {
 		public TextView content, content1, content2,contentText,maxCountTextView;
 		public EditText item_et;
 		public RatingBar rb;
+	}
+	
+	@Override
+	public void notifyDataSetChanged() {
+		super.notifyDataSetChanged();
 	}
 }

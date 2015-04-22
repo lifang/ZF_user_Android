@@ -469,7 +469,7 @@ public class Main extends BaseActivity implements OnClickListener{
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
 
-			ImageCacheUtil.IMAGE_CACHE.get(  ma.get(position),
+			ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
 					image);
 
 			container.removeView(mList.get(position));

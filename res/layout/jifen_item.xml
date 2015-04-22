@@ -9,7 +9,8 @@
         android:layout_width="fill_parent"
         android:layout_height="68dp"
         android:background="@drawable/bg_item" >
-		 <LinearLayout
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -25,7 +26,7 @@
                     android:id="@+id/adress_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                             android:layout_marginLeft="@dimen/margin_left2"
+                    android:layout_marginLeft="@dimen/margin_left2"
                     android:gravity="center_vertical"
                     android:singleLine="true"
                     android:text="获得"
@@ -33,23 +34,24 @@
                     android:textSize="17sp" />
 
                 <TextView
+                    android:id="@+id/tv_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-             		android:id="@+id/tv_count"
                     android:gravity="center_vertical"
                     android:singleLine="true"
                     android:text="+10分"
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
             </LinearLayout>
-
-             
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center_vertical"
             android:orientation="vertical" >
 
@@ -61,10 +63,8 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                  
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-               
                     android:gravity="center_vertical"
                     android:singleLine="true"
                     android:text="订单编号: "
@@ -73,7 +73,6 @@
 
                 <TextView
                     android:id="@+id/tv_ddbh"
-                    
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -83,18 +82,17 @@
                     android:textColor="@color/text292929"
                     android:textSize="10sp" />
             </LinearLayout>
- <LinearLayout
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-        android:gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
                 <TextView
-                  
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-               
                     android:gravity="center_vertical"
                     android:singleLine="true"
                     android:text="交易时间: "
@@ -102,29 +100,28 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    
-                    android:id="@+id/tv_time"
                     android:text="13900010002"
                     android:textColor="@color/text292929"
                     android:textSize="10sp" />
             </LinearLayout>
-             <LinearLayout
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-           android:gravity="center_vertical"
+                android:visibility="gone"
+                android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
                 <TextView
-                  
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-               
                     android:gravity="center_vertical"
                     android:singleLine="true"
                     android:text="实付金额: "
@@ -142,10 +139,7 @@
                     android:textColor="@color/text292929"
                     android:textSize="10sp" />
             </LinearLayout>
-             
         </LinearLayout>
-
-         
     </LinearLayout>
 
     <View

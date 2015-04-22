@@ -83,12 +83,12 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(!isFirstCreate){
-			getData1();
-		}else {
-			isFirstCreate=false;
-		}
-		
+//		if(!isFirstCreate){
+//			getData1();
+//		}else {
+//			isFirstCreate=false;
+//		}
+
 	}
 	private void initView() {
 		add=(ImageView) findViewById(R.id.add);
@@ -122,8 +122,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if(arg1){
 					is_need_invoice=1;
+					et_titel.setEnabled(true);
 				}else{
 					is_need_invoice=0;
+					et_titel.setText("");
+					et_titel.setEnabled(false);
 				}
 			}
 		});
@@ -238,7 +241,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 						tv_adress.setText("收件地址 ： ");
 						tv_sjr.setText("收件人 ： ");
 						tv_tel.setText("");
-						
+
 						for(int i =0;i<moreList.size();i++){
 							if(moreList.get(i).getIsDefault()==1) {
 								addressId=moreList.get(i).getId();
@@ -304,23 +307,14 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		}
 	}
 	private void confirmGood() {
-
-		//quantity addressId comment is_need_invoice et_titel  
-	
 		comment=comment_et.getText().toString();
-		RequestParams params = new RequestParams();
-		params.put("customerId", customerId);
-		params.put("goodId", goodId);
-		params.put("paychannelId", paychannelId);
-		params.put("addressId", addressId);
-		params.put("quantity", quantity);
-		params.put("comment", comment);
-		params.put("is_need_invoice", is_need_invoice);
-		params.put("invoice_type", invoice_type);
-		params.put("invoice_info", et_titel.getText().toString());
-		params.setUseJsonStreamer(true);
-
 		invoice_info=et_titel.getText().toString();
+
+		if (is_need_invoice == 0) {
+			invoice_type = 0;
+			invoice_info = "";
+		}
+
 		API.goodConfirm(GoodConfirm.this,customerId,goodId,paychannelId,
 				quantity,addressId,comment,is_need_invoice,invoice_type,invoice_info,
 
@@ -339,5 +333,17 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 				return  null;
 			}
 		});
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==11){
+			if(data!=null){
+				addressId=data.getIntExtra("id", addressId);
+				tv_adress.setText("收件地址 ： "+data.getStringExtra("adree"));
+				tv_sjr.setText("收件人 ： "+data.getStringExtra("name"));
+				tv_tel.setText( data.getStringExtra("tel"));
+			}
+		}
 	}
 }
