@@ -83,11 +83,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onResume() {
 		super.onResume();
-//		if(!isFirstCreate){
-//			getData1();
-//		}else {
-//			isFirstCreate=false;
-//		}
 
 	}
 	private void initView() {
