@@ -4,9 +4,9 @@ package com.example.zf_android.alipay;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.alipay.sdk.app.PayTask;
 import com.example.zf_android.Config;
 
-public abstract class PayActivity extends FragmentActivity {
+public abstract class PayActivity extends Activity {
 
 	private static final int SDK_PAY_FLAG = 1;
 
@@ -35,7 +35,6 @@ public abstract class PayActivity extends FragmentActivity {
 					// “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
 					if (TextUtils.equals(resultStatus, "8000")) {
 						handling();
-
 					} else {
 						// 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
 						fail();
@@ -55,8 +54,11 @@ public abstract class PayActivity extends FragmentActivity {
 	};
 
 	/**
-	 * call alipay sdk pay. 调用SDK支付
-	 * 
+	 * 支付
+	 * @param outTradeNo 订单号
+	 * @param subject 	 商品名称
+	 * @param body 		 商品描述
+	 * @param price 	 商品金额
 	 */
 	public void pay(String outTradeNo, String subject, String body, String price) {
 		// 订单
@@ -205,8 +207,19 @@ public abstract class PayActivity extends FragmentActivity {
 		return "sign_type=\"RSA\"";
 	}
 	
+	/**
+	 * 支付成功
+	 */
 	public abstract void success();
+	
+	/**
+	 * 支付处理中
+	 */
 	public abstract void handling();
+	
+	/**
+	 * 支付失败
+	 */
 	public abstract void fail();
 
 }
