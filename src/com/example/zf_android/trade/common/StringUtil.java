@@ -3,6 +3,8 @@ package com.example.zf_android.trade.common;
 import java.text.MessageFormat;
 import java.util.List;
 
+import android.text.TextUtils;
+
 import com.example.zf_android.Config;
 
 
@@ -10,6 +12,7 @@ import com.example.zf_android.Config;
  * Created by Leo on 2015/3/5.
  */
 public class StringUtil {
+	
 
 	public static boolean isBlank(CharSequence cs) {
 		int strLen;
@@ -42,4 +45,9 @@ public class StringUtil {
 		return sb.toString();
 	}
 
+	public static String formatNull(String str){
+		if(TextUtils.isEmpty(str))
+			return "";
+		return "";
+	}
 }

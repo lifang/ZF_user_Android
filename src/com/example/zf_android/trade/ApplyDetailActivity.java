@@ -354,8 +354,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.getSerializableExtra(SELECTED_CHANNEL);
 			mChosenBilling = (ApplyChannel.Billing) data
 					.getSerializableExtra(SELECTED_BILLING);
+			Log.e("", mChosenChannel.getName()+mChosenBilling);
 			setItemValue(getString(R.string.apply_detail_channel),
-					mChosenChannel.getName() + mChosenBilling);
+					mChosenChannel.getName() + mChosenBilling.name);
 			break;
 		}
 		case REQUEST_CHOOSE_BANK: {
@@ -703,7 +704,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 		setItemValue(mBankKeys[3], openingInfos.getTax_registered_no());
 		setItemValue(mBankKeys[4], openingInfos.getOrganization_code_no());
 		setItemValue(mBankKeys[5],
-				openingInfos.getChannelname() + openingInfos.getBillingname());
+				StringUtil.formatNull(openingInfos.getChannelname()) + StringUtil.formatNull(openingInfos.getBillingname()));
 		mChosenChannel = new ApplyChannel();
 		mChosenChannel.setId(openingInfos.getPay_channel_id());
 		mChosenChannel.setName(openingInfos.getChannelname());
