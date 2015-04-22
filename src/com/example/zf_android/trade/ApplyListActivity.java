@@ -201,7 +201,6 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 			holder.btnVideo.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					CommonUtil.toastShort(ApplyListActivity.this, "not yet completed...");
 					//添加视频审核
 					Intent intent = new Intent(ApplyListActivity.this, VideoActivity.class);
 					intent.putExtra(TERMINAL_ID, item.getId());
