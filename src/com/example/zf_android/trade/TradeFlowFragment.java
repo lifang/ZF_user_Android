@@ -437,6 +437,10 @@ public class TradeFlowFragment extends Fragment implements
 			}
 			final TradeRecord record = getItem(i);
 			convertView.setTag(R.id.trade_status, record);
+			
+			DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+			df.applyPattern("0.00");
+			
 			switch (mTradeType) {
 			case TRANSFER:
 			case REPAYMENT:
@@ -455,7 +459,8 @@ public class TradeFlowFragment extends Fragment implements
 						.setText(getString(R.string.trade_poundage));
 
 				holder.tvAccount.setText(record.getTradedTimeStr());
-				holder.tvReceiveAccount.setText(record.getPoundage() + "");
+				holder.tvReceiveAccount.setText(getString(R.string.notation_yuan)
+						+ df.format(record.getPoundage()*1.0f/100));
 				break;
 			case LIFE_PAY:
 				holder.tvAccountKey
@@ -481,8 +486,7 @@ public class TradeFlowFragment extends Fragment implements
 			holder.tvTime.setText(record.getTradedTimeStr());
 			holder.tvClientNumber.setText(record.getTerminalNumber());
 			
-			DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
-			df.applyPattern("0.00");
+			
 			
 			holder.tvAmount.setText(getString(R.string.notation_yuan)
 					+ df.format(record.getAmount()*1.0f/100));

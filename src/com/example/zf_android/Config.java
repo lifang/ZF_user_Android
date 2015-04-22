@@ -15,8 +15,8 @@ public class Config {
 
 //	public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
 	//sit
-//	public final static String PATHS = "http://192.168.10.138:8080/ZFMerchant/api/";
-	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
+	public final static String PATHS = "http://192.168.10.109/ZFMerchant/api/";
+//	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
 	public final static String IMAGE_PATH = "";
 	public static String URL_CHECK_VERSION=PATHS+"comment/appVersion";
 	public static int ROWS=10;
