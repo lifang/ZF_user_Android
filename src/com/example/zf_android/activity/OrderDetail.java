@@ -69,7 +69,17 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 				tv_fplx.setText(entity.getOrder_invoce_type().equals("1")?"发票类型 : 个人":"发票类型 : 公司");
 				fptt.setText("发票抬头  ：   "+entity.getOrder_invoce_info());
 				tv_ddbh.setText("订单编号  ：   "+entity.getOrder_number());
-				tv_pay.setText("支付方式  ：   "+entity.getOrder_payment_type());
+				
+				if (entity.getOrder_payment_type().equals("1")) {
+					tv_pay.setText("支付方式  ：   "+"支付宝");
+				}else if (entity.getOrder_payment_type().equals("2")) {
+					tv_pay.setText("支付方式  ：   "+"银联");
+				}else if (entity.getOrder_payment_type().equals("3")) {
+					tv_pay.setText("支付方式  ：   "+"现金");
+				}else {
+					tv_pay.setText("支付方式  ：   "+"");
+				}
+				
 				tv_time.setText("订单日期  ：   "+entity.getOrder_createTime());
 				tv_money.setText("实付金额  ：   ￥"+
 						String.format("%.2f",Integer.valueOf(entity.getOrder_totalprice())/100f));

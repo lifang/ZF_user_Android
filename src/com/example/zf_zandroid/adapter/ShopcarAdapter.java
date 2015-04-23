@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.http.Header;
 
+import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -90,7 +91,7 @@ public class ShopcarAdapter extends BaseAdapter {
 			// holder.title = (TextView) convertView.findViewById(R.id.title);
 			holder.delete_img = (ImageView)
 					convertView.findViewById(R.id.delete_img);
-
+holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 
 			holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
 			holder.editBtn.setOnClickListener(onClick);
@@ -131,6 +132,10 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
 
+		if (!StringUtil.isNull(good.getUrl_path())) {
+			ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(),holder.evevt_img);
+		}
+		
 		for (int i = 0; i < list.size(); i++) {
 			Boolean aBoolean = list.get(i).isChecked();
 			if (aBoolean == false) {
@@ -333,7 +338,7 @@ public final class ViewHolder {
 	private int position;
 	private CheckBox checkBox;
 	private TextView title;
-	private ImageView delete_img;
+	private ImageView delete_img,evevt_img;
 
 	private TextView editBtn,tv_changel;
 	private LinearLayout ll_select;

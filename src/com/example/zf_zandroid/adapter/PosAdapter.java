@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.ImageCacheUtil;
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.PosEntity;
 
@@ -63,8 +64,10 @@ public class PosAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getUrl_path(),
-				holder.evevt_img);
+		if (!StringUtil.isNull(list.get(position).getUrl_path())) {
+			ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getUrl_path(),
+					holder.evevt_img);
+		}
 		
 		holder.title.setText(list.get(position).getTitle());
 		holder.tv_price.setText("￥"+String.format("%.2f", list.get(position).getRetail_price()/100f));

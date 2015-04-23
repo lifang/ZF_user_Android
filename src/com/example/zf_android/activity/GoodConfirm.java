@@ -72,7 +72,9 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		System.out.println("进入订单确认····");
 		initView();
 		String image_url = getIntent().getStringExtra("image_url");
-	//	ImageCacheUtil.IMAGE_CACHE.get(image_url,evevt_img);
+		if (!StringUtil.isNull(image_url)) {
+			ImageCacheUtil.IMAGE_CACHE.get(image_url,evevt_img);
+		}
 		
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce=getIntent().getIntExtra("price", 0);
