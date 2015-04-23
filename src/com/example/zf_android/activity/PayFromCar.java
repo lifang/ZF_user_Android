@@ -16,12 +16,17 @@ import com.examlpe.zf_android.util.DialogUtil.CallBackChange;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
+import com.example.zf_android.alipay.PayActivity;
 
 
-public class PayFromCar extends BaseActivity implements OnClickListener{
+public class PayFromCar extends PayActivity implements OnClickListener{
 	private TextView tv_pay;
-	private LinearLayout titleback_linear_back;
+	private LinearLayout titleback_linear_back, ll_sh;
 	private String orderId = "";
+	private String outTradeNo;
+	private String subject;
+	private String body;
+	private String price;
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,8 @@ public class PayFromCar extends BaseActivity implements OnClickListener{
 
 		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
 		titleback_linear_back.setOnClickListener(this);
-
+		ll_sh = (LinearLayout) findViewById(R.id.ll_sh);
+		ll_sh.setOnClickListener(this);
 	}
 	@Override
 	public void onClick(View v) {
@@ -47,7 +53,9 @@ public class PayFromCar extends BaseActivity implements OnClickListener{
 		case R.id.titleback_linear_back:
 				dialogIntent();
 			break;
-
+		case R.id.ll_sh:
+				pay(outTradeNo, subject, body, price);
+			break;
 		default:
 			break;
 		}
@@ -76,5 +84,20 @@ public class PayFromCar extends BaseActivity implements OnClickListener{
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+	@Override
+	public void success() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void handling() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void fail() {
+		// TODO Auto-generated method stub
+		
 	}
 }
