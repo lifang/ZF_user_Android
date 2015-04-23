@@ -536,9 +536,9 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 		}
 		int index = anychatSDK.mVideoHelper.bindVideo(mOtherView
 				.getHolder());
-		anychatSDK.mVideoHelper.SetVideoUser(index, 80);
+		anychatSDK.mVideoHelper.SetVideoUser(index, userID);
 
-		anychatSDK.UserCameraControl(80, 1);
-		anychatSDK.UserSpeakControl(80, 1);
+		anychatSDK.UserCameraControl(userID, 1);
+		anychatSDK.UserSpeakControl(userID, 1);
 	}
 }
