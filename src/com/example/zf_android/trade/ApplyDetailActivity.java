@@ -469,7 +469,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[2]))
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[3]))
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[4]))
-				&& (null != mChosenChannel && null != mChosenBilling);
+				&& (null != mChosenChannel.getName() && null != mChosenBilling.name);
 		mApplySubmit.setEnabled(enabled);
 	}
 
@@ -682,7 +682,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 		setItemValue(mMerchantKeys[2], openingInfos.getMerchant_name());
 		setItemValue(mMerchantKeys[3], items[openingInfos.getSex() % 2]);
 		mMerchantGender = openingInfos.getSex() % 2;
-		setItemValue(mMerchantKeys[4], openingInfos.getBirthday());
+		setItemValue(mMerchantKeys[4], openingInfos.getBirthdays());
 		setItemValue(mMerchantKeys[5], openingInfos.getCard_id());
 		setItemValue(mMerchantKeys[6], openingInfos.getPhone());
 		setItemValue(mMerchantKeys[7], openingInfos.getEmail());

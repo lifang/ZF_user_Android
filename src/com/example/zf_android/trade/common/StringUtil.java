@@ -48,6 +48,6 @@ public class StringUtil {
 	public static String formatNull(String str){
 		if(TextUtils.isEmpty(str))
 			return "";
-		return "";
+		return str;
 	}
 }

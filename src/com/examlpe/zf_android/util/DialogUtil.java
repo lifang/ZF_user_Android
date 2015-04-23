@@ -1,18 +1,15 @@
 package com.examlpe.zf_android.util;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.view.Gravity;
@@ -50,26 +47,37 @@ public class DialogUtil {
 
 	}
 
-	private Handler handler = new Handler(){
+	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
-			
+
 			switch (msg.what) {
 			case 0:
-			//	Toast.makeText(context, "保存成功",Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "保存成功", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(
+						Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+				Uri uri = Uri.fromFile(new File(new StringBuilder()
+						.append(Environment.getExternalStorageDirectory()
+								.getAbsolutePath()).append(File.separator)
+						.append("CODE").toString()
+						+ "/code.jpg"));
+				intent.setData(uri);
+				context.sendBroadcast(intent);
+				
+//				context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+//						Uri.parse("file://"
+//								+ Environment.getExternalStorageDirectory())));
 				break;
 			case 1:
-			//	Toast.makeText(context, "保存失败",Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "保存失败", Toast.LENGTH_SHORT).show();
 				break;
 
 			default:
 				break;
 			}
-			
-			
+
 		};
 	};
-	
-	
+
 	public Dialog getCheck(final CallBackChange call) {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		View v = inflater.inflate(R.layout.dialog, null);
@@ -98,19 +106,30 @@ public class DialogUtil {
 			public void onClick(View v) {
 				new Thread() {
 					public void run() {
-						
+
 						InputStream is = context.getResources()
-								.openRawResource(R.drawable.imagecode);		
-						BitmapFactory.decodeStream(is);
+								.openRawResource(R.drawable.imagecode);
 						FileOutputStream fos = null;
 						BufferedOutputStream bos = null;
+						File file = null;
 						File imageFile = null;
 						try {
-							imageFile = new File(
-									new StringBuilder()
-									.append(Environment.getExternalStorageDirectory().getAbsolutePath())
-									.append(File.separator).append("besttone").append(File.separator)
-									.append("imageCache").toString()+ "/code.png");
+							file = new File(new StringBuilder()
+									.append(Environment
+											.getExternalStorageDirectory()
+											.getAbsolutePath())
+									.append(File.separator).append("CODE")
+									.toString());
+							if (!file.exists()) {
+								file.mkdir();
+							}
+							imageFile = new File(new StringBuilder()
+									.append(Environment
+											.getExternalStorageDirectory()
+											.getAbsolutePath())
+									.append(File.separator).append("CODE")
+									.toString()
+									+ "/code.jpg");
 							if (!imageFile.exists()) {
 								fos = new FileOutputStream(imageFile);
 								bos = new BufferedOutputStream(fos);
@@ -120,9 +139,12 @@ public class DialogUtil {
 									bos.write(b, 0, length);
 									bos.flush();
 								}
+								handler.sendEmptyMessage(0);
+								dialog.dismiss();
+							} else {
+								handler.sendEmptyMessage(0);
+								dialog.dismiss();
 							}
-							handler.sendEmptyMessage(0);
-							dialog.dismiss();
 						} catch (Exception e) {
 							handler.sendEmptyMessage(1);
 							e.printStackTrace();
