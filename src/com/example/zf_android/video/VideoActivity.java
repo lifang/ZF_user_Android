@@ -64,8 +64,7 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 		Intent intent = getIntent();
 		mSRoomID = intent.getIntExtra(TerminalIntent.TERMINAL_ID, 0);
 		mStrIP = Config.VIDEO_SERVER_IP;
-//		mStrName = MyApplication.getInstance().getCustomerId()+"";
-		mStrName = 111+"";
+		mStrName = MyApplication.getInstance().getCustomerId()+"";
 		mSPort = Config.VIDEO_SERVER_PORT;
 		InitSDK();
 		InitLayout();
