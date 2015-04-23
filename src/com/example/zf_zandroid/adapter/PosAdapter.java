@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.PosEntity;
 
@@ -49,6 +50,7 @@ public class PosAdapter extends BaseAdapter {
 			holder.title = (TextView) convertView
 					.findViewById(R.id.title);
 			holder.img_type = (ImageView) convertView.findViewById(R.id.img_type);
+			holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 			holder.tv_price = (TextView) convertView
 					.findViewById(R.id.tv_price);
 			holder.ys = (TextView) convertView
@@ -61,6 +63,9 @@ public class PosAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
+		ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getUrl_path(),
+				holder.evevt_img);
+		
 		holder.title.setText(list.get(position).getTitle());
 		holder.tv_price.setText("￥"+String.format("%.2f", list.get(position).getRetail_price()/100f));
 		holder.content1.setText(list.get(position).getModel_number());
@@ -81,7 +86,7 @@ public class PosAdapter extends BaseAdapter {
 	public final class ViewHolder {
 		public TextView title, ys,tv_price,content1,tv_td;
 		public CheckBox item_cb;
-		public ImageView img_type;
+		public ImageView img_type,evevt_img;
 
 	}
 }

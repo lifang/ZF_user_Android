@@ -3,9 +3,11 @@ package com.example.zf_android.activity;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -26,6 +28,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -38,7 +42,6 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 public class GoodConfirm extends BaseActivity implements OnClickListener{
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
@@ -48,7 +51,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	private TextView tv_pop,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count,channel_text,content2;
 	private Button btn_pay;
 	private String comment,invoice_info;
-	private ImageView reduce,add;
+	private ImageView reduce,add,evevt_img;
 	PopupWindow menuWindow;
 	private int pirce;
 	private boolean isFirstCreate;
@@ -68,6 +71,9 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		isFirstCreate=true;
 		System.out.println("进入订单确认····");
 		initView();
+		String image_url = getIntent().getStringExtra("image_url");
+	//	ImageCacheUtil.IMAGE_CACHE.get(image_url,evevt_img);
+		
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce=getIntent().getIntExtra("price", 0);
 		retail_price.setText("￥"+ StringUtil.getMoneyString(pirce));
@@ -86,6 +92,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 
 	}
 	private void initView() {
+		evevt_img = (ImageView) findViewById(R.id.evevt_img);
 		add=(ImageView) findViewById(R.id.add);
 		reduce=(ImageView) findViewById(R.id.reduce);
 		reduce.setOnClickListener(this);
