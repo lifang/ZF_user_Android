@@ -85,11 +85,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onResume() {
 		super.onResume();
-//		if(!isFirstCreate){
-//			getData();
-//		}else {
-//			isFirstCreate=false;
-//		}
 
 	}
 	private void computeMoney(){
