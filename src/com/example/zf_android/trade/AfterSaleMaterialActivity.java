@@ -7,17 +7,21 @@ import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
 import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
 import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
 import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.examlpe.zf_android.util.URLImageParser;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.DialogUtil;
 
@@ -28,10 +32,10 @@ public class AfterSaleMaterialActivity extends Activity {
 
 	private int mRecordType;
 	private String mUrl;
-
+	private TextView content;
 	private WebView mWebView;
 	private Dialog loadingDialog;
-
+	private URLImageParser ReviewImgGetter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,27 +43,34 @@ public class AfterSaleMaterialActivity extends Activity {
 		mUrl = getIntent().getStringExtra(MATERIAL_URL);
 		String title = "";
 		switch (mRecordType) {
-			case RETURN:
-				title = getString(R.string.after_sale_return_material_title);
-				break;
-			case CANCEL:
-				title = getString(R.string.after_sale_cancel_material_title);
-				break;
-			case CHANGE:
-				title = getString(R.string.after_sale_change_material_title);
-				break;
-			case UPDATE:
-				title = getString(R.string.after_sale_update_material_title);
-				break;
-			case LEASE:
-				title = getString(R.string.after_sale_lease_material_title);
-				break;
+		case RETURN:
+			title = getString(R.string.after_sale_return_material_title);
+			break;
+		case CANCEL:
+			title = getString(R.string.after_sale_cancel_material_title);
+			break;
+		case CHANGE:
+			title = getString(R.string.after_sale_change_material_title);
+			break;
+		case UPDATE:
+			title = getString(R.string.after_sale_update_material_title);
+			break;
+		case LEASE:
+			title = getString(R.string.after_sale_lease_material_title);
+			break;
 		}
 		setContentView(R.layout.activity_after_sale_material);
 		new TitleMenuUtil(this, title).show();
 
-		initWebView();
-		mWebView.loadUrl(mUrl);
+		//	initWebView();
+		//mWebView.loadUrl(mUrl);
+
+		content = (TextView) findViewById(R.id.content);
+		content.setAutoLinkMask(Linkify.ALL);
+		content.setMovementMethod(LinkMovementMethod.getInstance());//加这句才能让里面的超链接生效
+		ReviewImgGetter = new URLImageParser(content,this);//实例化URLImageGetter类
+		content.setText(Html.fromHtml(mUrl,ReviewImgGetter,null));
+
 	}
 
 	private void initWebView() {

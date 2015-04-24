@@ -172,6 +172,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 		id=getIntent().getIntExtra("id", 0);
 		innitView();
+		
+		view_pager.setFocusable(true);
+		view_pager.setFocusableInTouchMode(true);
+		view_pager.requestFocus();
+		
 		gview=(ScrollViewWithGView) findViewById(R.id.gview);
 		getdata();
 
@@ -306,6 +311,15 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					i2.putExtra("price", gfe.getRetail_price());
 					i2.putExtra("model", gfe.getModel_number());
 					i2.putExtra("brand", gfe.getGood_brand());
+					if (ma.size() != 0) {
+						if (!StringUtil.isNull(ma.get(0))) {
+							i2.putExtra("image_url", ma.get(0));
+						}else {
+							i2.putExtra("image_url", "");
+						}
+					}else {
+						i2.putExtra("image_url", "");
+					}
 					i2.putExtra("chanel", chanel);
 					i2.putExtra("payChannelName", payChannelName);
 					i2.putExtra("paychannelId", paychannelId);

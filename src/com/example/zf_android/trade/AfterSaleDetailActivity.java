@@ -255,7 +255,7 @@ public class AfterSaleDetailActivity extends Activity {
 						renderCategoryTemplate(R.string.after_sale_return_title, returnPairs);
 
 						// render return material category
-						renderMaterialTemplate(R.string.after_sale_return_material_title, data.getResourceInfos());
+						renderMaterialTemplate(R.string.after_sale_return_material_title, data.getResource_info());
 						break;
 					case CANCEL:
 						String[] cancelStatus = getResources().getStringArray(R.array.cancel_status);
@@ -273,7 +273,7 @@ public class AfterSaleDetailActivity extends Activity {
 						}
 
 						// render cancel material category
-						renderMaterialTemplate(R.string.after_sale_cancel_material_title, data.getResourceInfos());
+						renderMaterialTemplate(R.string.after_sale_cancel_material_title, data.getResource_info());
 						break;
 					case CHANGE:
 						String[] changeStatus = getResources().getStringArray(R.array.change_status);
@@ -299,7 +299,7 @@ public class AfterSaleDetailActivity extends Activity {
 						renderCategoryTemplate(R.string.after_sale_change_title, changePairs);
 
 						// render change material category
-						renderMaterialTemplate(R.string.after_sale_change_material_title, data.getResourceInfos());
+						renderMaterialTemplate(R.string.after_sale_change_material_title, data.getResource_info());
 						break;
 					case UPDATE:
 						String[] updateStatus = getResources().getStringArray(R.array.update_status);
@@ -312,7 +312,7 @@ public class AfterSaleDetailActivity extends Activity {
 						}
 
 						// render update material category
-						renderMaterialTemplate(R.string.after_sale_update_material_title, data.getResourceInfos());
+						renderMaterialTemplate(R.string.after_sale_update_material_title, data.getResource_info());
 						break;
 					case LEASE:
 						String[] leaseStatus = getResources().getStringArray(R.array.lease_status);
@@ -339,7 +339,7 @@ public class AfterSaleDetailActivity extends Activity {
 						renderCategoryTemplate(R.string.after_sale_lease_title, leasePairs);
 
 						// render lease material category
-						renderMaterialTemplate(R.string.after_sale_lease_material_title, data.getResourceInfos());
+						renderMaterialTemplate(R.string.after_sale_lease_material_title, data.getResource_info());
 						break;
 				}
 
@@ -448,11 +448,11 @@ public class AfterSaleDetailActivity extends Activity {
 		title.setText(getString(titleRes));
 		for (final ResourceInfo resourceInfo : resourceInfos) {
 			TextView key = createKeyText();
-			key.setText(getString(R.string.after_sale_material_name));
+			key.setText(resourceInfo.getTitle());
 			keyContainer.addView(key);
 
 			TextView value = createValueText();
-			if (null == resourceInfo.getPath()) {
+			if (null == resourceInfo.getUpload_path()) {
 				value.setText(getString(R.string.after_sale_material_unsubmit));
 			} else {
 				value.setTextColor(getResources().getColor(R.color.blank_button_selector));
@@ -463,7 +463,7 @@ public class AfterSaleDetailActivity extends Activity {
 					public void onClick(View view) {
 						Intent intent = new Intent(AfterSaleDetailActivity.this, AfterSaleMaterialActivity.class);
 						intent.putExtra(RECORD_TYPE, mRecordType);
-						intent.putExtra(MATERIAL_URL, resourceInfo.getPath());
+						intent.putExtra(MATERIAL_URL, resourceInfo.getUpload_path());
 						startActivity(intent);
 					}
 				});
