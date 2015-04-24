@@ -87,17 +87,14 @@ public class PayFromCar extends PayActivity implements OnClickListener{
 	}
 	@Override
 	public void success() {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void handling() {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void fail() {
-		// TODO Auto-generated method stub
 		
 	}
 }

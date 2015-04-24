@@ -93,6 +93,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	List<GriviewEntity>  User_button = new ArrayList<GriviewEntity>();
 	private int paychannelId ,goodId,quantity;
 	private String payChannelName = "";
+	private int opening_cost;
 	private ImageView img_see;
 	List<View> list = new ArrayList<View>();
 
@@ -121,7 +122,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				tv_pp.setText(gfe.getGood_brand());
 				tv_xh.setText(gfe.getModel_number());
 				tv_ys.setText("已售"+gfe.getVolume_number());
-				tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
+				tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 				tv_lx.setText(gfe.getCategory() );
 				if(factoryEntity != null){
 					ImageCacheUtil.IMAGE_CACHE.get(factoryEntity.getLogo_file_path(),
@@ -247,6 +248,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			break;
 
 		case R.id.tv_bug:
+			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 			islea=false;
 			setting_btn_clear1.setClickable(true);
 			setting_btn_clear.setText("立即购买");
@@ -259,6 +261,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.tv_lea:
 			//tv_bug  
+			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_price()+opening_cost));
 			islea=true;
 			setting_btn_clear1.setClickable(false);
 			setting_btn_clear.setText("立即租赁");
@@ -490,6 +493,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							}else{
 								tvc_zx.setText("不支持");
 							}
+							opening_cost = jsonobject.getInt("opening_cost");
 							tv_sqkt.setText(jsonobject.getString("opening_requirement"));
 							publist=gson.fromJson(jsonobject.getString("requireMaterial_pub"), new TypeToken<List<ApplyneedEntity>>() {
 							}.getType());
@@ -559,6 +563,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						String res =jsonobject.getString("result");
 						System.out.println("pay--"+res);
 						jsonobject = new JSONObject(res);
+						opening_cost = jsonobject.getInt("opening_cost");
 						tv_sqkt.setText(jsonobject.getString("opening_requirement"));
 						publist=gson.fromJson(jsonobject.getString("requireMaterial_pub"), new TypeToken<List<ApplyneedEntity>>() {
 						}.getType());
@@ -610,6 +615,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						}else{
 							tvc_zx.setText("不支持");
 						}
+						if (islea == false) {
+							//购买
+							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+						}else {
+							//租赁
+							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_price()+opening_cost));
+						}
+						
 						//  					    handler.sendEmptyMessage(0);
 					}else{
 						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
