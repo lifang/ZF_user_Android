@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<litepal>  
+    <dbname value="zfdb" >  </dbname><!-- 数据库名 -->
+  
+    <version value="1" >  </version><!-- 版本号 -->
+  
+    <list>  <!-- 用于设定所有的映射模型 -->
+        <mapping class = "com.example.zf_android.entity.PicEntity"></mapping>
+    </list>  
+</litepal>  

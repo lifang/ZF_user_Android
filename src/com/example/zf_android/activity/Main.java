@@ -13,9 +13,13 @@ import java.util.TimerTask;
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +28,7 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,8 +84,11 @@ public class Main extends BaseActivity implements OnClickListener {
 	private City city;
 	public static final int REQUEST_CITY = 1;
 	public static final int REQUEST_CITY_WHEEL = 2;
+	public static final String TAG_BANNER = "banner";
+	public static final String TAG_BANNER_URL = "banner_url";
 	// vp
 	private ArrayList<PicEntity> myList = new ArrayList<PicEntity>();
+	private ArrayList<PicEntity> nativePicList = new ArrayList<PicEntity>();
 	private ViewPager view_pager;
 	private MyAdapter adapter;
 	private ImageView[] indicator_imgs;// 存放引到图片数组
@@ -97,11 +105,23 @@ public class Main extends BaseActivity implements OnClickListener {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
+				list.clear();
+				ma.clear();
+				
 				for (int i = 0; i < myList.size(); i++) {
 					item = inflater.inflate(R.layout.item, null);
 					list.add(item);
 					ma.add(myList.get(i).getPicture_url());
+					if(!nativePicList.contains(myList.get(i))&&i<nativePicList.size()){
+						nativePicList.get(i).setWebsite_url(myList.get(i).getWebsite_url());
+						nativePicList.get(i).setPicture_url(myList.get(i).getPicture_url());
+						nativePicList.get(i).update(nativePicList.get(i).getId());
+					}else{
+						myList.get(i).save();
+					}
+					
 				}
+
 				indicator_imgs = new ImageView[ma.size()];
 				initIndicator();
 				adapter.notifyDataSetChanged();
@@ -131,8 +151,7 @@ public class Main extends BaseActivity implements OnClickListener {
 	private Timer timer = null;
 	private TimerTask task = null;
 	DisplayImageOptions options = new DisplayImageOptions.Builder()
-			.showImageOnLoading(R.drawable.moren)
-			.resetViewBeforeLoading(true)
+			.showImageOnLoading(R.drawable.moren).resetViewBeforeLoading(true)
 			.cacheInMemory(false).cacheOnDisc(true)
 			.imageScaleType(ImageScaleType.EXACTLY)
 			.bitmapConfig(Bitmap.Config.RGB_565)
@@ -142,6 +161,8 @@ public class Main extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		SQLiteDatabase db = Connector.getDatabase();
 
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin = mySharedPreferences.getBoolean("islogin", false);
@@ -305,6 +326,20 @@ public class Main extends BaseActivity implements OnClickListener {
 		view_pager.setOnPageChangeListener(new MyListener());
 		// index_ima
 
+		list.clear();
+		ma.clear();
+		myList = (ArrayList<PicEntity>) DataSupport.findAll(PicEntity.class);
+		nativePicList = (ArrayList<PicEntity>) DataSupport.findAll(PicEntity.class);
+		if (myList.size() > 0) {
+			for (int i = 0; i < myList.size(); i++) {
+				item = inflater.inflate(R.layout.item, null);
+				list.add(item);
+				ma.add(myList.get(i).getPicture_url());
+			}
+			indicator_imgs = new ImageView[ma.size()];
+			initIndicator();
+			adapter.notifyDataSetChanged();
+		}
 	}
 
 	@Override
@@ -419,7 +454,7 @@ public class Main extends BaseActivity implements OnClickListener {
 
 		ImageView imgView;
 		View v = findViewById(R.id.indicator);// 线性水平布局，负责动态调整导航图标
-
+		((ViewGroup) v).removeAllViews();
 		for (int i = 0; i < ma.size(); i++) {
 			imgView = new ImageView(this);
 			LinearLayout.LayoutParams params_linear = new LinearLayout.LayoutParams(
@@ -567,4 +602,12 @@ public class Main extends BaseActivity implements OnClickListener {
 			});
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		MyApplication.getInstance().getImageLoader().clearMemoryCache();
+		super.onDestroy();
+	}
+	
 }

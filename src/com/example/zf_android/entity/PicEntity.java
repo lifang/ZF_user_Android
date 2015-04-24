@@ -1,6 +1,8 @@
 package com.example.zf_android.entity;
 
-public class PicEntity {
+import org.litepal.crud.DataSupport;
+
+public class PicEntity extends DataSupport{
 	//id":5,
 //	"picture_url":"http://file.youboy.com/a/142/67/57/6/660666.jpg",
 	//"website_url":"http://baidu.com"

@@ -8,10 +8,13 @@ import java.util.List;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Environment;
+import android.os.IBinder;
 import android.os.Vibrator;
 import android.util.Log;
 import android.widget.TextView;
@@ -31,6 +34,7 @@ import com.example.zf_android.entity.MyShopCar.Good;
 import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.User;
 import com.example.zf_android.entity.UserEntity;
+import com.example.zf_android.service.NetworkStateService;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
@@ -46,7 +50,7 @@ import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
-public class MyApplication extends Application {
+public class MyApplication extends org.litepal.LitePalApplication {
 	public TextView mLocationResult;
 	public LocationClient mLocationClient;
 	public GeofenceClient mGeofenceClient;
@@ -329,6 +333,19 @@ public class MyApplication extends Application {
 				Service.VIBRATOR_SERVICE);
 		// 设置全局imageload
 		initImageLoaderConfig();
+		
+		Intent i = new Intent(this, NetworkStateService.class);
+		ServiceConnection connection = new ServiceConnection() {
+			@Override
+			public void onServiceDisconnected(ComponentName name) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void onServiceConnected(ComponentName name, IBinder service) {
+				// TODO Auto-generated method stub
+			}
+		};
+		bindService(i, connection, BIND_AUTO_CREATE);
 	}
 
 	public static MyApplication getInstance() {
@@ -343,22 +360,22 @@ public class MyApplication extends Application {
 
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 				this)
-				.memoryCacheExtraOptions(200, 200)
+				.memoryCacheExtraOptions(720, 1280)
 				.threadPoolSize(3)
 				// 线程池内加载的数量
 				.threadPriority(Thread.NORM_PRIORITY - 2)	
 				.discCache(new UnlimitedDiscCache(cacheDir))
-				.discCacheSize(10)
+				.discCacheFileCount(10)
 				// 自定义缓存路径,图片缓存到sd卡
 				.tasksProcessingOrder(QueueProcessingType.FIFO)
 				.memoryCache(new LruMemoryCache(4 * 1024 * 1024))
 				.memoryCacheSizePercentage(10)
 				.imageDownloader(
-						new BaseImageDownloader(this, 5 * 1000, 30 * 1000))
+						new BaseImageDownloader(this, 5 * 1000, 10 * 1000))
 				// 超时时间 5秒
 				.imageDecoder(new BaseImageDecoder(true))
 				.defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
-				.writeDebugLogs().build();// 开始构建
+				.build();// 开始构建
 		ImageLoader.getInstance().init(config);
 
 	}
