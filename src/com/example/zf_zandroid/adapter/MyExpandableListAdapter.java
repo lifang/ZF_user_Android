@@ -41,7 +41,10 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		return list.get(groupPosition).getSon().size();
+		if (list.get(groupPosition).getSon() != null) 
+			return list.get(groupPosition).getSon().size();
+		else 
+			return 0;
 	}
 
 	@Override
@@ -51,7 +54,11 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
-		return list.get(groupPosition).getSon().get(childPosition);
+		if (list.get(groupPosition).getSon() != null) 
+			return list.get(groupPosition).getSon().get(childPosition);
+		else 
+			return null;
+
 	}
 
 	@Override
@@ -61,7 +68,10 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 
 	@Override
 	public long getChildId(int groupPosition, int childPosition) {
-		return childPosition;
+		if (list.get(groupPosition).getSon() != null) 
+			return childPosition;
+		else 
+			return 0;
 	}
 
 	@Override
@@ -95,9 +105,11 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				list.get(groupPosition).setIsCheck(arg1);
 				if(arg1){
+					if (list.get(groupPosition).getSon() != null) {
 
-					for(int i =0;i<list.get(groupPosition).getSon().size();i++){
-						list.get(groupPosition).getSon().get(i).setIsCheck(arg1);
+						for(int i =0;i<list.get(groupPosition).getSon().size();i++){
+							list.get(groupPosition).getSon().get(i).setIsCheck(arg1);
+						}
 					}
 					notifyDataSetChanged();}
 			}
@@ -109,17 +121,18 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 		}else{
 			menuview.item_cb.setChecked(list.get(groupPosition).getIsCheck());
 		}
-
-		if(list.get(groupPosition).getSon().size()==0||list.get(groupPosition).getSon().size()==1 ){
-			menuview.mune_img.setVisibility(View.GONE);
-		}else{
-
-			if(isExpanded){
-				menuview.mune_img.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.top));
+		if (list.get(groupPosition).getSon() != null) {
+			if(list.get(groupPosition).getSon().size()==0||list.get(groupPosition).getSon().size()==1 ){
+				menuview.mune_img.setVisibility(View.GONE);
 			}else{
-				menuview.mune_img.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.item_down));
+
+				if(isExpanded){
+					menuview.mune_img.setBackgroundResource(R.drawable.top);
+				}else{
+					menuview.mune_img.setBackgroundResource(R.drawable.item_down);
+				}
+				menuview.mune_img.setVisibility(View.VISIBLE);
 			}
-			menuview.mune_img.setVisibility(View.VISIBLE);
 		}
 		menuview.mune_title.setText(list.get(groupPosition).getValue());
 		System.out.println("list.get(groupPosition).getDirectoryName()"+list.get(groupPosition).getValue());
@@ -130,40 +143,41 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 	@Override
 	public View getChildView(final int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView1, ViewGroup parent) {
+		if (list.get(groupPosition).getSon() != null) {
 
-		convertView1 = menu_inflater.inflate(R.layout.expand_menu, null); 
-		TextView tv =(TextView) convertView1.findViewById(R.id.mune_title);
-		ImageView IVV=(ImageView) convertView1.findViewById(R.id.mune_img);
-		CheckBox cb=(CheckBox) convertView1.findViewById(R.id.cb_all);
-		RelativeLayout ll= (RelativeLayout) convertView1.findViewById(R.id.menu_rl_c);
-		IVV.setVisibility(View.GONE);
-		ll.setBackgroundColor(context.getResources().getColor(R.color.bg0etitle));
-		//	tv.setPadding(50,  0, 0,  0);
-		tv.setText(list.get(groupPosition).getSon().get(childPosition).getValue());
+			convertView1 = menu_inflater.inflate(R.layout.expand_menu, null); 
+			TextView tv =(TextView) convertView1.findViewById(R.id.mune_title);
+			ImageView IVV=(ImageView) convertView1.findViewById(R.id.mune_img);
+			CheckBox cb=(CheckBox) convertView1.findViewById(R.id.cb_all);
+			RelativeLayout ll= (RelativeLayout) convertView1.findViewById(R.id.menu_rl_c);
+			IVV.setVisibility(View.GONE);
+			ll.setBackgroundColor(context.getResources().getColor(R.color.bg0etitle));
+			//	tv.setPadding(50,  0, 0,  0);
 
+			tv.setText(list.get(groupPosition).getSon().get(childPosition).getValue());
 
-		if(list.get(groupPosition).getIsCheck()==null){
-			menuview.item_cb.setChecked(false);
-			list.get(groupPosition).setIsCheck(false);
-		}else{
-			menuview.item_cb.setChecked(list.get(groupPosition).getIsCheck());
-		}
-
-		cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				list.get(groupPosition).getSon().get(childPosition).setIsCheck(arg1);
+			if(list.get(groupPosition).getIsCheck()==null){
+				menuview.item_cb.setChecked(false);
+				list.get(groupPosition).setIsCheck(false);
+			}else{
+				menuview.item_cb.setChecked(list.get(groupPosition).getIsCheck());
 			}
-		});
 
-		if( list.get(groupPosition).getSon().get(childPosition).getIsCheck()==null){
-			cb.setChecked(false);
-			list.get(groupPosition).getSon().get(childPosition).setIsCheck(false);
-		}else{
-			cb.setChecked( list.get(groupPosition).getSon().get(childPosition).getIsCheck());
+			cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+				@Override
+				public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+					list.get(groupPosition).getSon().get(childPosition).setIsCheck(arg1);
+				}
+			});
+
+			if( list.get(groupPosition).getSon().get(childPosition).getIsCheck()==null){
+				cb.setChecked(false);
+				list.get(groupPosition).getSon().get(childPosition).setIsCheck(false);
+			}else{
+				cb.setChecked( list.get(groupPosition).getSon().get(childPosition).getIsCheck());
+			}
 		}
-
 		return convertView1;
 
 	}

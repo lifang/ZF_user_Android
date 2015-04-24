@@ -82,7 +82,7 @@ public class ChangePassword extends BaseActivity implements OnClickListener{
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		if (password.length() > 5) {
+		if (password.length() < 6) {
 			Toast.makeText(getApplicationContext(), "密码长度不能少于6位",
 					Toast.LENGTH_SHORT).show();
 			return false;

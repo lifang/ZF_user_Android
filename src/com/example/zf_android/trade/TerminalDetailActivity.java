@@ -23,8 +23,10 @@ import com.example.zf_android.trade.common.StringUtil;
 import com.example.zf_android.trade.entity.TerminalApply;
 import com.example.zf_android.trade.entity.TerminalComment;
 import com.example.zf_android.trade.entity.TerminalDetail;
+import com.example.zf_android.trade.entity.TerminalItem;
 import com.example.zf_android.trade.entity.TerminalOpen;
 import com.example.zf_android.trade.entity.TerminalRate;
+import com.example.zf_android.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -146,7 +148,10 @@ public class TerminalDetailActivity extends Activity {
 		mVideoListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				CommonUtil.toastShort(TerminalDetailActivity.this, "not yet completed...");
+				//添加视频审核
+				Intent intent = new Intent(TerminalDetailActivity.this, VideoActivity.class);
+				intent.putExtra(TERMINAL_ID, mTerminalId);
+				startActivity(intent);
 			}
 		};
 	}

@@ -4,7 +4,6 @@ package com.example.zf_android.alipay;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
