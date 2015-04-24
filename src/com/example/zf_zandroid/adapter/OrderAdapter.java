@@ -2,6 +2,7 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.R;
+import com.example.zf_android.activity.Comment;
 import com.example.zf_android.activity.OrderDetail;
 import com.example.zf_android.activity.PayFromCar;
 import com.example.zf_android.entity.OrderEntity;
@@ -74,6 +76,7 @@ public class OrderAdapter extends BaseAdapter{
 			holder.tv_goodnum = (TextView) convertView.findViewById(R.id.tv_goodnum);
 			holder.btn_cancle= (Button) convertView.findViewById(R.id.btn_cancle);
 			holder.btn_pay= (Button) convertView.findViewById(R.id.btn_pay);
+			holder.btn_pj = (Button) convertView.findViewById(R.id.btn_pj);
 			holder.btn_cancle.setTag(list.get(position).getOrder_id());
 			convertView.setTag(holder);
 		}else{
@@ -105,10 +108,16 @@ public class OrderAdapter extends BaseAdapter{
 		case 1:
 			holder.tv_status.setText("未付款");
 			holder.ll_ishow.setVisibility(View.VISIBLE);
+			holder.btn_pay.setVisibility(View.VISIBLE);
+			holder.btn_pj.setVisibility(View.GONE);
+			holder.btn_cancle.setVisibility(View.VISIBLE);
 			break;
 		case 2:
 			holder.tv_status.setText("已付款");
-			holder.ll_ishow.setVisibility(View.GONE);
+			holder.ll_ishow.setVisibility(View.VISIBLE);
+			holder.btn_pay.setVisibility(View.GONE);
+			holder.btn_pj.setVisibility(View.VISIBLE);
+			holder.btn_cancle.setVisibility(View.GONE);
 			break;
 		case 3:
 			holder.tv_status.setText("已发货");
@@ -164,7 +173,18 @@ public class OrderAdapter extends BaseAdapter{
 				context.startActivity(i);
 			}
 		});
+		holder.btn_pj.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View arg0) {
+				Intent btn_pj = new Intent(context,Comment.class);
+				Bundle bundle = new Bundle();
+				bundle.putInt("id", Integer.valueOf(list.get(position).getOrder_id()));
+				btn_pj.putExtras(bundle);
+				context.startActivityForResult(btn_pj, 101);
+				
+			}
+		});
 		return convertView;
 	}
 
@@ -172,7 +192,7 @@ public class OrderAdapter extends BaseAdapter{
 		public TextView tv_goodnum,tv_price,content,tv_ddbh,tv_time,tv_status,tv_sum,tv_psf,tv_pay,tv_gtd,content2,content_pp;
 		private LinearLayout ll_ishow;
 		private ImageView evevt_img;
-		public Button btn_cancle,btn_pay;
+		public Button btn_cancle,btn_pay,btn_pj;
 	}
 	@Override
 	public void notifyDataSetChanged() {

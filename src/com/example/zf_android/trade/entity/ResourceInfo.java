@@ -1,27 +1,36 @@
 package com.example.zf_android.trade.entity;
 
-/**
- * Created by Leo on 2015/3/2.
- */
 public class ResourceInfo {
 
-	private int id;
-
-	private String path;
-
-	public int getId() {
+	private String id;
+	private String title;
+	private String templet_path;
+	private String upload_path;
+	public String getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getPath() {
-		return path;
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getTemplet_path() {
+		return templet_path;
+	}
+	public void setTemplet_path(String templet_path) {
+		this.templet_path = templet_path;
+	}
+	public String getUpload_path() {
+		return upload_path;
+	}
+	public void setUpload_path(String upload_path) {
+		this.upload_path = upload_path;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
-	}
+	
+	
 }

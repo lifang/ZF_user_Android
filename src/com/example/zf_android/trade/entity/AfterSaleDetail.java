@@ -1,10 +1,9 @@
 package com.example.zf_android.trade.entity;
 
-import com.example.zf_android.trade.common.Page;
+import java.util.List;
+
 import com.example.zf_android.trade.common.Pageable;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 /**
  * Created by Leo on 2015/2/28.
@@ -39,7 +38,7 @@ public class AfterSaleDetail {
 	private Pageable<Comment> comments;
 
 	@SerializedName("resource_info")
-	private List<ResourceInfo> resourceInfos;
+	private List<ResourceInfo> resource_info;
 
 	public int getId() {
 		return id;
@@ -121,11 +120,12 @@ public class AfterSaleDetail {
 		this.comments = comments;
 	}
 
-	public List<ResourceInfo> getResourceInfos() {
-		return resourceInfos;
+	public List<ResourceInfo> getResource_info() {
+		return resource_info;
 	}
 
-	public void setResourceInfos(List<ResourceInfo> resourceInfos) {
-		this.resourceInfos = resourceInfos;
+	public void setResource_info(List<ResourceInfo> resource_info) {
+		this.resource_info = resource_info;
 	}
+
 }

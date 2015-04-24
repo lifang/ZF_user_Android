@@ -469,7 +469,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[2]))
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[3]))
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[4]))
-				&& (null != mChosenChannel.getName() && null != mChosenBilling.name);
+				&& ((null != mChosenChannel && null != mChosenChannel.getName()) && (null != mChosenBilling && null != mChosenBilling.name));
 		mApplySubmit.setEnabled(enabled);
 	}
 
