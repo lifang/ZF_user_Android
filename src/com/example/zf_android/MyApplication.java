@@ -1,5 +1,6 @@
 package com.example.zf_android;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,7 +11,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.os.Bundle;
+import android.os.Environment;
 import android.os.Vibrator;
 import android.util.Log;
 import android.widget.TextView;
@@ -22,7 +23,6 @@ import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
 import com.examlpe.zf_android.util.NetworkTools;
 import com.example.zf_android.activity.LoginActivity;
-import com.example.zf_android.activity.MyInfo;
 import com.example.zf_android.entity.ApplyneedEntity;
 import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.GoodinfoEntity;
@@ -35,7 +35,16 @@ import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpClient;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.nostra13.universalimageloader.utils.StorageUtils;
 
 public class MyApplication extends Application {
 	public TextView mLocationResult;
@@ -319,32 +328,40 @@ public class MyApplication extends Application {
 		mVibrator = (Vibrator) getApplicationContext().getSystemService(
 				Service.VIBRATOR_SERVICE);
 		// 设置全局imageload
-		// initImageLoaderConfig();
+		initImageLoaderConfig();
 	}
 
 	public static MyApplication getInstance() {
 		return mInstance;
 	}
 
-	// private void initImageLoaderConfig(){
-	// DisplayImageOptions options = new DisplayImageOptions.Builder()
-	// .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
-	// .cacheOnDisk(true) // 设置下载的图片是否缓存在SD卡中
-	// .considerExifParams(true) // 是否考虑JPEG图像EXIF参数（旋转，翻转）
-	// .bitmapConfig(Bitmap.Config.RGB_565) // default
-	// .build();
-	//
-	// ImageLoaderConfiguration config = new
-	// ImageLoaderConfiguration.Builder(this)
-	// .threadPriority(Thread.NORM_PRIORITY - 2)
-	// .denyCacheImageMultipleSizesInMemory()
-	// .diskCacheFileNameGenerator(new HashCodeFileNameGenerator())
-	// .tasksProcessingOrder(QueueProcessingType.LIFO)
-	// .defaultDisplayImageOptions(options)
-	// .build();
-	//
-	// ImageLoader.getInstance().init(config);
-	// }
+	private void initImageLoaderConfig() {
+
+		File cacheDir = StorageUtils.getOwnCacheDirectory(
+				this,
+				"imageloader/Cache");
+
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+				this)
+				.memoryCacheExtraOptions(200, 200)
+				.threadPoolSize(3)
+				// 线程池内加载的数量
+				.threadPriority(Thread.NORM_PRIORITY - 2)	
+				.discCache(new UnlimitedDiscCache(cacheDir))
+				.discCacheSize(10)
+				// 自定义缓存路径,图片缓存到sd卡
+				.tasksProcessingOrder(QueueProcessingType.FIFO)
+				.memoryCache(new LruMemoryCache(4 * 1024 * 1024))
+				.memoryCacheSizePercentage(10)
+				.imageDownloader(
+						new BaseImageDownloader(this, 5 * 1000, 30 * 1000))
+				// 超时时间 5秒
+				.imageDecoder(new BaseImageDecoder(true))
+				.defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
+				.writeDebugLogs().build();// 开始构建
+		ImageLoader.getInstance().init(config);
+
+	}
 
 	public ImageLoader getImageLoader() {
 		if (mImageLoader == null) {
