@@ -105,26 +105,26 @@ public class Main extends BaseActivity implements OnClickListener {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				list.clear();
-				ma.clear();
-				
-				for (int i = 0; i < myList.size(); i++) {
-					item = inflater.inflate(R.layout.item, null);
-					list.add(item);
-					ma.add(myList.get(i).getPicture_url());
-					if(!nativePicList.contains(myList.get(i))&&i<nativePicList.size()){
-						nativePicList.get(i).setWebsite_url(myList.get(i).getWebsite_url());
-						nativePicList.get(i).setPicture_url(myList.get(i).getPicture_url());
-						nativePicList.get(i).update(nativePicList.get(i).getId());
-					}else{
-						myList.get(i).save();
-					}
-					
-				}
-
-				indicator_imgs = new ImageView[ma.size()];
-				initIndicator();
-				adapter.notifyDataSetChanged();
+//				list.clear();
+//				ma.clear();
+//				
+//				for (int i = 0; i < myList.size(); i++) {
+//					item = inflater.inflate(R.layout.item, null);
+//					list.add(item);
+//					ma.add(myList.get(i).getPicture_url());
+//					if(!nativePicList.contains(myList.get(i))&&i<nativePicList.size()){
+//						nativePicList.get(i).setWebsite_url(myList.get(i).getWebsite_url());
+//						nativePicList.get(i).setPicture_url(myList.get(i).getPicture_url());
+//						nativePicList.get(i).update(nativePicList.get(i).getId());
+//					}else{
+//						myList.get(i).save();
+//					}
+//					
+//				}
+//
+//				indicator_imgs = new ImageView[ma.size()];
+//				initIndicator();
+//				adapter.notifyDataSetChanged();
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -151,7 +151,7 @@ public class Main extends BaseActivity implements OnClickListener {
 	private Timer timer = null;
 	private TimerTask task = null;
 	DisplayImageOptions options = new DisplayImageOptions.Builder()
-			.showImageOnLoading(R.drawable.moren).resetViewBeforeLoading(true)
+//			.showImageOnLoading(R.drawable.moren)
 			.cacheInMemory(false).cacheOnDisc(true)
 			.imageScaleType(ImageScaleType.EXACTLY)
 			.bitmapConfig(Bitmap.Config.RGB_565)
@@ -211,7 +211,7 @@ public class Main extends BaseActivity implements OnClickListener {
 				handler.sendEmptyMessage(4);
 			}
 		};
-		timer.schedule(task, 0, time);
+		timer.schedule(task, time, time);
 
 	}
 
@@ -329,7 +329,7 @@ public class Main extends BaseActivity implements OnClickListener {
 		list.clear();
 		ma.clear();
 		myList = (ArrayList<PicEntity>) DataSupport.findAll(PicEntity.class);
-		nativePicList = (ArrayList<PicEntity>) DataSupport.findAll(PicEntity.class);
+		nativePicList = myList;
 		if (myList.size() > 0) {
 			for (int i = 0; i < myList.size(); i++) {
 				item = inflater.inflate(R.layout.item, null);
