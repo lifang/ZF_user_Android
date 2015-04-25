@@ -59,6 +59,7 @@ OnClickListener {
 	private LinearLayout titleback_linear_back;
 	private TextView next_sure,tv_all,tv_dle;
 	private int total = 0;
+	private TextView countShopCar;
 	private RelativeLayout rl_edit, rl_editno;
 	List<MessageEntity> idList = new ArrayList<MessageEntity>();
 	List<MessageEntity> myList = new ArrayList<MessageEntity>();
@@ -102,8 +103,18 @@ OnClickListener {
 		getData();
 
 	}
-
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (Config.countShopCar != 0) {
+			countShopCar.setVisibility(View.VISIBLE);
+			countShopCar.setText(Config.countShopCar+"");
+		}else {
+			countShopCar.setVisibility(View.GONE);
+		}
+	}
 	private void initView() {
+		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		rl_edit = (RelativeLayout) findViewById(R.id.rl_edit);
 		rl_editno = (RelativeLayout) findViewById(R.id.rl_editno);
 		tv_all=(TextView) findViewById(R.id.tv_all);
@@ -183,7 +194,7 @@ OnClickListener {
 		} else {
 			getData();
 		}
-		
+
 	}
 
 	private void onLoad() {
@@ -209,7 +220,7 @@ OnClickListener {
 					myList.addAll(data.getContent());
 				}
 				page++;
-				
+
 				total = data.getTotal();
 				if(total<rows){
 					Xlistview.setPullLoadEnable(false);
@@ -251,7 +262,7 @@ OnClickListener {
 					Stringas.add(myList.get(i).getId());
 				}
 			}
-			
+
 			if (Stringas.size() > 0) {
 				Msgdelete1();
 			}else {
@@ -359,7 +370,7 @@ OnClickListener {
 					for (int i = 0; i < myList.size(); i++) {
 						if (idString.equals(myList.get(i).getId())) {
 							myList.get(i).setStatus(true);
-							
+
 						}
 					}
 				}else {

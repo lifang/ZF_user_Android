@@ -7,8 +7,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.AfterSaleGridActivity;
@@ -18,6 +20,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 	private ImageView search;
 	private LinearLayout  ll_dd,ll_shjl,ll_wdxx,ll_sh,ll_request;
 	private RelativeLayout  main_rl1, main_rl2, main_rl3;
+	private TextView countShopCar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,7 +29,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		initView();
 	}
 	private void initView() {
-
+		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		main_rl1=(RelativeLayout) findViewById(R.id.main_rl_sy);
 		main_rl1.setOnClickListener(this);
 		main_rl2=(RelativeLayout) findViewById(R.id.main_rl_gwc);
@@ -46,6 +49,16 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		ll_sh.setOnClickListener(this);
 		ll_request=(LinearLayout) findViewById(R.id.ll_request);
 		ll_request.setOnClickListener(this);
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (Config.countShopCar != 0) {
+			countShopCar.setVisibility(View.VISIBLE);
+			countShopCar.setText(Config.countShopCar+"");
+		}else {
+			countShopCar.setVisibility(View.GONE);
+		}
 	}
 	@Override
 	public void onClick(View v) {

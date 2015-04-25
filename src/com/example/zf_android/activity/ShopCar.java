@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MyShopCar.Good;
@@ -50,12 +51,14 @@ public class ShopCar extends BaseActivity implements OnClickListener {
 		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.acv_shopcat);
 		isFirstCreate=true;
+		Config.countShopCar = 0;
 		initView();
 		getData();
 	}
 	@Override
 	protected void onResume() {
 		super.onResume();
+		Config.countShopCar = 0;
 		if(!isFirstCreate){
 			getData();
 		}else {

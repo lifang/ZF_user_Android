@@ -3,9 +3,11 @@ package com.example.zf_android.activity;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -45,7 +49,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	private TextView leasepact;
 	private Button btn_pay;
 	private String comment;
-	private ImageView reduce,add;
+	private ImageView reduce,add,evevt_img;
 	private int price;
 	private int goodId,paychannelId,quantity,addressId,is_need_invoice=0;
 	private EditText buyCountEdit,comment_et,et_titel;
@@ -69,11 +73,17 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		if(good == null){
 			finish();
 		}
+		String image_url = getIntent().getStringExtra("image_url");
+		if (!StringUtil.isNull(image_url)) {
+			ImageCacheUtil.IMAGE_CACHE.get(image_url,evevt_img);
+		}
+		
 		title2.setText(good.getTitle());
 		content2.setText(good.getGood_brand()+good.getModel_number());
 		channel_text.setText(getIntent().getExtras().getString("payChannelName", ""));
 		buyCountEdit.setText(good.getLease_time()+"");
-		price=good.getLease_price();
+		//price=good.getLease_price();
+		price = getIntent().getIntExtra("price", 0);
 		retail_price.setText("￥"+ StringUtil.getMoneyString(price));
 		goodId=good.getId();
 		paychannelId=getIntent().getIntExtra("paychannelId", 0);
@@ -88,11 +98,12 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 
 	}
 	private void computeMoney(){
-		tv_pay.setText("实付：￥ "+StringUtil.getMoneyString((price*quantity+yajin))); 
-		tv_totle.setText("合计：￥ "+StringUtil.getMoneyString((price*quantity+yajin))); 
+		tv_pay.setText("实付：￥ "+StringUtil.getMoneyString(price*quantity)); 
+		tv_totle.setText("合计：￥ "+StringUtil.getMoneyString(price*quantity)); 
 	}
 
 	private void initView() {
+		evevt_img = (ImageView) findViewById(R.id.evevt_img);
 		add=(ImageView) findViewById(R.id.add);
 		reduce=(ImageView) findViewById(R.id.reduce);
 		reduce.setOnClickListener(this);
@@ -127,11 +138,11 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if(arg1){
 					btn_pay.setTextColor(getResources().getColor(R.color.ffffff));
-					btn_pay.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_blue_shape));
+					btn_pay.setBackgroundResource(R.drawable.bg_blue_shape);
 					btn_pay.setEnabled(true);
 				}else{
 					btn_pay.setTextColor(getResources().getColor(R.color.text292929));
-					btn_pay.setBackgroundDrawable(getResources().getDrawable(R.drawable.send_out_goods_shape));
+					btn_pay.setBackgroundResource(R.drawable.send_out_goods_shape);
 					btn_pay.setEnabled(false);
 				}
 			}

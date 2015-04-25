@@ -64,6 +64,7 @@ public class Main extends BaseActivity implements OnClickListener{
 	private ImageView testbutton;
 	private View citySelect;
 	private TextView cityTextView;
+	private TextView countShopCar;
 	private int cityId;
 	private String cityName;
 
@@ -117,25 +118,28 @@ public class Main extends BaseActivity implements OnClickListener{
 			}
 		}
 	};
-	
+
 	private int pagerIndex = 0;
 	private static final int time = 5000;
 	private  Timer timer = null;
 	private  TimerTask task = null;
-	
-	
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
+		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
+		
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin=mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
 		MyApplication.getInstance().setCustomerId(id);
 
 		MyApplication.getInstance().addActivity(this);
-		
+
 		initView();
 		testbutton=(ImageView) findViewById(R.id.testbutton);
 		testbutton.setOnClickListener(new OnClickListener() {
@@ -156,18 +160,30 @@ public class Main extends BaseActivity implements OnClickListener{
 		((MyApplication)getApplication()).mLocationResult = LocationResult;
 		InitLocation();
 		mLocationClient.start();
-		
+
 		System.out.println("当前城市 ID----" +MyApplication.getInstance().getCityId());
 
 	}	
 	@Override
 	protected void onResume() {
 		super.onResume();
+		mySharedPreferences = getSharedPreferences("CountShopCar",MODE_PRIVATE); 
+		SharedPreferences.Editor editor = mySharedPreferences.edit(); 
+		editor.putInt("countShopCar", Config.countShopCar); 
+		editor.commit(); 
+		
+		if (Config.countShopCar != 0) {
+			countShopCar.setVisibility(View.VISIBLE);
+			countShopCar.setText(Config.countShopCar+"");
+		}else {
+			countShopCar.setVisibility(View.GONE);
+		}
+
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin=mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
 		MyApplication.getInstance().setCustomerId(id);
-		
+
 		timer = new Timer();
 		task = new TimerTask()
 		{
@@ -178,14 +194,14 @@ public class Main extends BaseActivity implements OnClickListener{
 		};
 		timer.schedule(task, 0, time);
 	}
-	
+
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		timer.cancel();
 		super.onPause();
 	}
-	
+
 	private void InitLocation(){
 		LocationClientOption option = new LocationClientOption();
 		option.setLocationMode(LocationMode.Hight_Accuracy);//设置定位模式
@@ -239,7 +255,7 @@ public class Main extends BaseActivity implements OnClickListener{
 	}
 
 	private void initView() {
-
+		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		citySelect = findViewById(R.id.titleback_linear_back);
 		cityTextView = (TextView) findViewById(R.id.tv_city);
 		cityTextView.setMaxWidth(ScreenUtils.getScreenWidth(this)/5);
@@ -270,7 +286,7 @@ public class Main extends BaseActivity implements OnClickListener{
 
 		view_pager = (ViewPager) findViewById(R.id.view_pager);
 		//allow use api level>11
-//		view_pager.setPageTransformer(true, new DepthPageTransformer());
+		//		view_pager.setPageTransformer(true, new DepthPageTransformer());
 		inflater = LayoutInflater.from(this);
 		adapter = new MyAdapter(list);
 
