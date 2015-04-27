@@ -45,7 +45,6 @@ import com.example.zf_android.entity.FactoryEntity;
 import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.PosEntity;
 import com.example.zf_android.trade.entity.GriviewEntity;
-import com.example.zf_zandroid.adapter.ButtonGridviewAdapter;
 import com.example.zf_zandroid.adapter.GridviewAdapter;
 import com.example.zf_zandroid.adapter.HuilvAdapter;
 import com.example.zf_zandroid.adapter.HuilvAdapter1;
@@ -94,6 +93,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private int paychannelId ,goodId,quantity;
 	private String payChannelName = "";
 	private int opening_cost;
+	private int all_price;
 	private ImageView img_see;
 	List<View> list = new ArrayList<View>();
 
@@ -122,6 +122,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				tv_pp.setText(gfe.getGood_brand());
 				tv_xh.setText(gfe.getModel_number());
 				tv_ys.setText("已售"+gfe.getVolume_number());
+				all_price = gfe.getRetail_price()+opening_cost;
 				tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 				tv_lx.setText(gfe.getCategory() );
 				if(factoryEntity != null){
@@ -248,6 +249,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			break;
 
 		case R.id.tv_bug:
+			all_price = gfe.getRetail_price()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 			islea=false;
 			setting_btn_clear1.setClickable(true);
@@ -260,8 +262,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			tv_lea.setBackgroundResource(R.drawable.send_out_goods_shape);
 			break;
 		case R.id.tv_lea:
-			//tv_bug  
-			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_price()+opening_cost));
+			//tv_bug 
+			all_price = gfe.getLease_deposit()+opening_cost;
+			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 			islea=true;
 			setting_btn_clear1.setClickable(false);
 			setting_btn_clear.setText("立即租赁");
@@ -299,8 +302,18 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					Intent i21 =new Intent(GoodDeatail.this, LeaseConfirm.class);
 					i21.putExtra("good", gfe);
 					i21.putExtra("chanel", chanel);
+					i21.putExtra("price", all_price);
 					i21.putExtra("payChannelName", payChannelName);
 					i21.putExtra("paychannelId", paychannelId);
+					if (ma.size() != 0) {
+						if (!StringUtil.isNull(ma.get(0))) {
+							i21.putExtra("image_url", ma.get(0));
+						}else {
+							i21.putExtra("image_url", "");
+						}
+					}else {
+						i21.putExtra("image_url", "");
+					}
 					startActivity(i21);
 				}else {
 					Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
@@ -311,7 +324,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				if (islogin && id != 0) {
 					Intent i2 =new Intent(GoodDeatail.this, GoodConfirm.class);
 					i2.putExtra("getTitle", gfe.getTitle());
-					i2.putExtra("price", gfe.getRetail_price());
+					i2.putExtra("price", all_price);
 					i2.putExtra("model", gfe.getModel_number());
 					i2.putExtra("brand", gfe.getGood_brand());
 					if (ma.size() != 0) {
@@ -617,10 +630,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						}
 						if (islea == false) {
 							//购买
+							all_price = gfe.getRetail_price()+opening_cost;
 							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 						}else {
 							//租赁
-							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_price()+opening_cost));
+							all_price = gfe.getLease_deposit()+opening_cost;
+							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 						}
 						
 						//  					    handler.sendEmptyMessage(0);
@@ -669,6 +684,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						Intent i =new Intent(getApplication(),LoginActivity.class);
 						startActivity(i);
 					}else if(code==1){
+						Config.countShopCar = Config.countShopCar + 1;
 						Toast.makeText(getApplicationContext(), "添加商品成功",
 								Toast.LENGTH_SHORT).show();
 					}else{

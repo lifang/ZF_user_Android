@@ -77,6 +77,7 @@ public class Main extends BaseActivity implements OnClickListener {
 	private ImageView testbutton;
 	private View citySelect;
 	private TextView cityTextView;
+	private TextView countShopCar;
 	private int cityId;
 	private String cityName;
 
@@ -157,6 +158,7 @@ public class Main extends BaseActivity implements OnClickListener {
 			.bitmapConfig(Bitmap.Config.RGB_565)
 			.displayer(new FadeInBitmapDisplayer(300)).build();;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -164,6 +166,9 @@ public class Main extends BaseActivity implements OnClickListener {
 
 		SQLiteDatabase db = Connector.getDatabase();
 
+		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
+		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
+		
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
@@ -200,6 +205,18 @@ public class Main extends BaseActivity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		mySharedPreferences = getSharedPreferences("CountShopCar",MODE_PRIVATE); 
+		SharedPreferences.Editor editor = mySharedPreferences.edit(); 
+		editor.putInt("countShopCar", Config.countShopCar); 
+		editor.commit(); 
+		
+		if (Config.countShopCar != 0) {
+			countShopCar.setVisibility(View.VISIBLE);
+			countShopCar.setText(Config.countShopCar+"");
+		}else {
+			countShopCar.setVisibility(View.GONE);
+		}
+
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
@@ -222,7 +239,7 @@ public class Main extends BaseActivity implements OnClickListener {
 		super.onPause();
 	}
 
-	private void InitLocation() {
+	private void InitLocation(){
 		LocationClientOption option = new LocationClientOption();
 		option.setLocationMode(LocationMode.Hight_Accuracy);// 设置定位模式
 		option.setCoorType("gcj02");// 返回的定位结果是百度经纬度，默认值gcj02
@@ -287,7 +304,7 @@ public class Main extends BaseActivity implements OnClickListener {
 	}
 
 	private void initView() {
-
+		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		citySelect = findViewById(R.id.titleback_linear_back);
 		cityTextView = (TextView) findViewById(R.id.tv_city);
 		cityTextView.setMaxWidth(ScreenUtils.getScreenWidth(this) / 5);
