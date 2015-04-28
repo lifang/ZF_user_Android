@@ -1025,5 +1025,13 @@ public class API {
 		new HttpRequest(context, callback).post(Config.URL_CART_LIST, params);
 	}
 	
+	public static void noticeVideo(
+			Context context,
+			int terminalId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("terminalId", terminalId);
+		new HttpRequest(context, null).post(Config.URL_NOTICE_VIDEO, params);
+	}
+	
 }
 

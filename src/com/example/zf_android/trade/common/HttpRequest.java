@@ -34,12 +34,18 @@ public class HttpRequest {
 		this.responseHandler = new TextHttpResponseHandler() {
 			@Override
 			public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+				if(callback == null){
+					return;
+				}
 				callback.onFailure(context.getString(R.string.load_data_failed));
 			}
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, String responseString) {
 				Log.e("", responseString);
+				if(callback == null){
+					return;
+				}
 				Response data;
 				try {
 					data = null == callback.getTypeToken() ?
