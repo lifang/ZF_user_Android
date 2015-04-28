@@ -106,26 +106,26 @@ public class Main extends BaseActivity implements OnClickListener {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-//				list.clear();
-//				ma.clear();
-//				
-//				for (int i = 0; i < myList.size(); i++) {
-//					item = inflater.inflate(R.layout.item, null);
-//					list.add(item);
-//					ma.add(myList.get(i).getPicture_url());
-//					if(!nativePicList.contains(myList.get(i))&&i<nativePicList.size()){
-//						nativePicList.get(i).setWebsite_url(myList.get(i).getWebsite_url());
-//						nativePicList.get(i).setPicture_url(myList.get(i).getPicture_url());
-//						nativePicList.get(i).update(nativePicList.get(i).getId());
-//					}else{
-//						myList.get(i).save();
-//					}
-//					
-//				}
-//
-//				indicator_imgs = new ImageView[ma.size()];
-//				initIndicator();
-//				adapter.notifyDataSetChanged();
+				list.clear();
+				ma.clear();
+				
+				for (int i = 0; i < myList.size(); i++) {
+					item = inflater.inflate(R.layout.item, null);
+					list.add(item);
+					ma.add(myList.get(i).getPicture_url());
+					if(!nativePicList.contains(myList.get(i))&&i<nativePicList.size()){
+						nativePicList.get(i).setWebsite_url(myList.get(i).getWebsite_url());
+						nativePicList.get(i).setPicture_url(myList.get(i).getPicture_url());
+						nativePicList.get(i).update(nativePicList.get(i).getId());
+					}else{
+						myList.get(i).save();
+					}
+					
+				}
+
+				indicator_imgs = new ImageView[ma.size()];
+				initIndicator();
+				adapter.notifyDataSetChanged();
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
