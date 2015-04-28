@@ -315,6 +315,14 @@ public class API {
 		params.put("rows", rows);
 		new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, params);
 	}
+	public static void synchronous(
+			Context context,
+			int terminalId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("terminalId", terminalId);
+		new HttpRequest(context, callback).post(TERMINAL_SYNC, params);
+	}
 
 	public static void getChannelList(
 			Context context,

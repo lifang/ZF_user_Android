@@ -3,9 +3,9 @@
 
 	<string-array name="trade_status">
 		<item></item>
-		<item>待付款</item>
-		<item>交易完成</item>
+		<item>交易成功</item>
 		<item>交易失败</item>
+		<item>交易结果待确认</item>
 	</string-array>
 
 	<string-array name="maintain_status">

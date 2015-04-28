@@ -3,6 +3,7 @@ package com.example.zf_android.trade;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -327,6 +328,14 @@ public class TradeFlowFragment extends Fragment implements
 	 */
 	private void showDatePicker(final String date, final boolean isStartDate) {
 
+		final Calendar now = Calendar.getInstance();
+		now.setTime(new Date());
+		int nowyear = now.get(Calendar.YEAR);;
+		int nowmonth = now.get(Calendar.MONTH)+1;
+		int nowday = now.get(Calendar.DAY_OF_MONTH);
+		final String nowStr = nowyear + "-"
+				+ (nowmonth < 10 ? "0" + nowmonth : nowmonth)
+				+ "-" + (nowday < 10 ? "0" + nowday : nowday);
 		final Calendar c = Calendar.getInstance();
 		if (TextUtils.isEmpty(date)) {
 			c.setTime(new Date());
@@ -339,13 +348,14 @@ public class TradeFlowFragment extends Fragment implements
 			}
 		}
 
-		new DialogFragment() {
+		DialogFragment df =	new DialogFragment() {
 			@Override
 			public Dialog onCreateDialog(Bundle savedInstanceState) {
 				int year = c.get(Calendar.YEAR);
 				int month = c.get(Calendar.MONTH);
 				int day = c.get(Calendar.DAY_OF_MONTH);
-				return new DatePickerDialog(getActivity(),
+				
+				return new MyDatePickerDialog(getActivity(),
 						new DatePickerDialog.OnDateSetListener() {
 							@Override
 							public void onDateSet(DatePicker datePicker,
@@ -363,6 +373,12 @@ public class TradeFlowFragment extends Fragment implements
 												getActivity(),"开始时间不能大于结束时间",
 												Toast.LENGTH_SHORT).show();
 										return;
+									}else if(dateStr
+											.compareTo(nowStr) >= 0){
+										Toast.makeText(
+												getActivity(),"开始时间不能大于当前时间",
+												Toast.LENGTH_SHORT).show();
+										return;
 									}
 									
 									
@@ -378,7 +394,14 @@ public class TradeFlowFragment extends Fragment implements
 												getString(R.string.toast_end_date_error),
 												Toast.LENGTH_SHORT).show();
 										return;
+									}else if(dateStr
+											.compareTo(nowStr) > 0){
+										Toast.makeText(
+												getActivity(),"截止时间不能大于当前时间",
+												Toast.LENGTH_SHORT).show();
+										return;
 									}
+									
 									mTradeEndDate.setText(dateStr);
 									tradeEndDate = dateStr;
 								}
@@ -386,7 +409,9 @@ public class TradeFlowFragment extends Fragment implements
 							}
 						}, year, month, day);
 			}
-		}.show(getActivity().getSupportFragmentManager(), "DatePicker");
+		};
+//		df.setCancelable(false);
+		df.show(getActivity().getSupportFragmentManager(), "DatePicker");
 	}
 
 	private class TradeRecordListAdapter extends BaseAdapter {
@@ -524,4 +549,18 @@ public class TradeFlowFragment extends Fragment implements
 		}
 
 	}
+	
+    class MyDatePickerDialog extends DatePickerDialog {
+
+        public MyDatePickerDialog(Context context, OnDateSetListener callBack,
+                int year, int monthOfYear, int dayOfMonth) {
+            super(context, callBack, year, monthOfYear, dayOfMonth);
+        }
+        @Override
+        protected void onStop() {
+            //super.onStop();
+        	//DatePickerDialog 源码当中，onStop()生命周期当中，会调用tryNotifyDateSet();
+        	//然后调用onDateSet()会引以onDateSet()方法回调两次
+        }
+    }
 }
