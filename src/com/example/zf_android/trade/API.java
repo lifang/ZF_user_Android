@@ -22,6 +22,7 @@ import com.example.zf_android.entity.MerchantEntity;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.HttpRequest;
 import com.google.gson.Gson;
+import com.loopj.android.http.RequestParams;
 
 /**
  * Created by Leo on 2015/2/11.
@@ -1036,7 +1037,7 @@ public class API {
 	public static void noticeVideo(
 			Context context,
 			int terminalId) {
-		Map<String, Object> params = new HashMap<String, Object>();
+		RequestParams params = new RequestParams();
 		params.put("terminalId", terminalId);
 		new HttpRequest(context, null).post(Config.URL_NOTICE_VIDEO, params);
 	}

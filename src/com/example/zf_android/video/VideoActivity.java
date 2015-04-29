@@ -402,6 +402,8 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 
 	protected void onDestroy() {
 		super.onDestroy();
+		anychatSDK.LeaveRoom(-1);
+		anychatSDK.Logout();
 		handler.removeCallbacks(runnable);
 		anychatSDK.mSensorHelper.DestroySensor();
 		finish();

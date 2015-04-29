@@ -64,11 +64,17 @@ public class HttpRequest {
 
 			@Override
 			public void onFinish() {
+				if(callback == null){
+					return;
+				}
 				callback.postLoad();
 			}
 
 			@Override
 			public void onStart() {
+				if(callback == null){
+					return;
+				}
 				callback.preLoad();
 			}
 		};
@@ -76,6 +82,9 @@ public class HttpRequest {
 
 	public void get(String url) {
 		if (!NetworkUtil.isNetworkAvailable(context)) {
+			if(callback == null){
+				return;
+			}
 			callback.onFailure(context.getString(R.string.network_info));
 			return;
 		}
@@ -84,6 +93,9 @@ public class HttpRequest {
 
 	public void post(String url, RequestParams requestParams) {
 		if (!NetworkUtil.isNetworkAvailable(context)) {
+			if(callback == null){
+				return;
+			}
 			callback.onFailure(context.getString(R.string.network_info));
 			return;
 		}
@@ -92,6 +104,9 @@ public class HttpRequest {
 
 	public void post(String url, HttpEntity entity) {
 		if (!NetworkUtil.isNetworkAvailable(context)) {
+			if(callback == null){
+				return;
+			}
 			callback.onFailure(context.getString(R.string.network_info));
 			return;
 		}
@@ -105,6 +120,9 @@ public class HttpRequest {
 			entity = new StringEntity(jsonParams.toString(), "UTF-8");
 			entity.setContentType("application/json;charset=UTF-8");
 		} catch (UnsupportedEncodingException e) {
+			if(callback == null){
+				return;
+			}
 			callback.onFailure(context.getString(R.string.load_data_failed));
 			return;
 		}
