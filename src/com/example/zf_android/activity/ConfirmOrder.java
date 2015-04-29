@@ -277,12 +277,6 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 			}
 
 			@Override
-			public void onFailure(String message) {
-				super.onFailure(message);
-				Toast.makeText(getApplicationContext(), message, 1000).show();
-			}
-
-			@Override
 			public TypeToken getTypeToken() {
 				return  null;
 			}

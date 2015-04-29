@@ -387,6 +387,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			for (int i = 0; i < User_button.size(); i++) {
 				if (v.getId() == User_button.get(i).getId()) {
 					payChannelName = User_button.get(i).getName();
+					paychannelId = User_button.get(i).getId();
 					getdataByChanel(User_button.get(i).getId());
 				}
 			}

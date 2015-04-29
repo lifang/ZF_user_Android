@@ -114,10 +114,7 @@ public class OrderAdapter extends BaseAdapter{
 			break;
 		case 2:
 			holder.tv_status.setText("已付款");
-			holder.ll_ishow.setVisibility(View.VISIBLE);
-			holder.btn_pay.setVisibility(View.GONE);
-			holder.btn_pj.setVisibility(View.VISIBLE);
-			holder.btn_cancle.setVisibility(View.GONE);
+			holder.ll_ishow.setVisibility(View.GONE);
 			break;
 		case 3:
 			holder.tv_status.setText("已发货");

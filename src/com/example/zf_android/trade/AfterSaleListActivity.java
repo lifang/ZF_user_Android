@@ -1,32 +1,5 @@
 package com.example.zf_android.trade;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.examlpe.zf_android.util.TitleMenuUtil;
-import com.examlpe.zf_android.util.Tools;
-import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
-import com.example.zf_android.activity.GoodConfirm;
-import com.example.zf_android.activity.PayFromCar;
-import com.example.zf_android.trade.common.CommonUtil;
-import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.common.Pageable;
-import com.example.zf_android.trade.entity.AfterSaleRecord;
-import com.example.zf_android.trade.widget.XListView;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_ID;
 import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_STATUS;
 import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
@@ -38,6 +11,32 @@ import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
 import static com.example.zf_android.trade.Constants.AfterSaleType.MAINTAIN;
 import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
 import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.examlpe.zf_android.util.StringUtil;
+import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.examlpe.zf_android.util.Tools;
+import com.example.zf_android.MyApplication;
+import com.example.zf_android.R;
+import com.example.zf_android.trade.common.CommonUtil;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.common.Pageable;
+import com.example.zf_android.trade.entity.AfterSaleRecord;
+import com.example.zf_android.trade.widget.XListView;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * Created by Leo on 2015/2/26.
@@ -128,7 +127,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 						new HttpCallback(AfterSaleListActivity.this) {
 					@Override
 					public void onSuccess(Object data) {
-						record.setStatus(5);
+						record.setStatus(5+"");
 						mAdapter.notifyDataSetChanged();
 						CommonUtil.toastShort(AfterSaleListActivity.this, getString(R.string.toast_cancel_apply_success));
 					}
@@ -158,6 +157,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 				final AfterSaleRecord record = (AfterSaleRecord) v.getTag();
 				Intent i1 =new Intent (AfterSaleListActivity.this,AfterSalePayActivity.class);
 				i1.putExtra("orderId", record.getId()+"");
+				i1.putExtra(RECORD_TYPE, mRecordType);
 				startActivity(i1);	
 			}
 		};
@@ -169,7 +169,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 				API.resubmitCancel(AfterSaleListActivity.this, record.getId(), new HttpCallback(AfterSaleListActivity.this) {
 					@Override
 					public void onSuccess(Object obj) {
-						record.setStatus(1);
+						record.setStatus(1+"");
 						mAdapter.notifyDataSetChanged();
 						CommonUtil.toastShort(AfterSaleListActivity.this, getString(R.string.toast_resubmit_cancel_success));
 					}
@@ -262,11 +262,13 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 							: mRecordType == UPDATE ? R.array.update_status
 							: R.array.lease_status
 			);
-			holder.tvStatus.setText(status[data.getStatus()]);
+			if (!StringUtil.isNull(data.getStatus())) {
+				holder.tvStatus.setText(status[Integer.valueOf(data.getStatus())]);
+			}
 
 			switch (mRecordType) {
 				case MAINTAIN:
-					if (data.getStatus() == 1) {
+					if (data.getStatus().equals("1")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.VISIBLE);
 						holder.btnRight.setVisibility(View.VISIBLE);
@@ -280,7 +282,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 						holder.btnRight.setText(getString(R.string.button_pay));
 						holder.btnRight.setTag(data);
 						holder.btnRight.setOnClickListener(mPayMaintainListener);
-					} else if (data.getStatus() == 2) {
+					} else if (data.getStatus().equals("2")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -295,7 +297,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 					}
 					break;
 				case CANCEL:
-					if (data.getStatus() == 1) {
+					if (data.getStatus().equals("1")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -305,7 +307,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 						holder.btnCenterBlank.setText(R.string.button_cancel_apply);
 						holder.btnCenterBlank.setTag(data);
 						holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
-					} else if (data.getStatus() == 5) {
+					} else if (data.getStatus().equals("5")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -320,7 +322,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 					}
 					break;
 				case UPDATE:
-					if (data.getStatus() == 1) {
+					if (data.getStatus().equals("1")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -337,7 +339,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 				case RETURN:
 				case CHANGE:
 				case LEASE:
-					if (data.getStatus() == 1) {
+					if (data.getStatus().equals("1")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -347,7 +349,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 						holder.btnCenterBlank.setText(R.string.button_cancel_apply);
 						holder.btnCenterBlank.setTag(data);
 						holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
-					} else if (data.getStatus() == 2) {
+					} else if (data.getStatus().equals("2")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -401,7 +403,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 					if (id > 0 && status > 0) {
 						for (AfterSaleRecord record : mEntities) {
 							if (record.getId() == id) {
-								record.setStatus(status);
+								record.setStatus(status+"");
 								mAdapter.notifyDataSetChanged();
 							}
 						}
