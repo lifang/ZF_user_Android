@@ -64,11 +64,17 @@ public class HttpRequest {
 
 			@Override
 			public void onFinish() {
+				if(callback == null){
+					return;
+				}
 				callback.postLoad();
 			}
 
 			@Override
 			public void onStart() {
+				if(callback == null){
+					return;
+				}
 				callback.preLoad();
 			}
 		};
