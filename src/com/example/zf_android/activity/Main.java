@@ -13,9 +13,14 @@ import java.util.TimerTask;
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +28,7 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +39,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView.ScaleType;
 
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
@@ -54,13 +61,19 @@ import com.example.zf_android.trade.widget.DepthPageTransformer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
-
-public class Main extends BaseActivity implements OnClickListener{
+public class Main extends BaseActivity implements OnClickListener {
 	private LocationClient mLocationClient;
 	private TextView LocationResult;
-	private RelativeLayout  main_rl_pos,main_rl_renzhen,main_rl_zdgl,main_rl_jyls,
-	main_rl_Forum,main_rl_wylc,main_rl_xtgg,main_rl_lxwm,main_rl_my,main_rl_pos1,main_rl_gwc;
+	private RelativeLayout main_rl_pos, main_rl_renzhen, main_rl_zdgl,
+			main_rl_jyls, main_rl_Forum, main_rl_wylc, main_rl_xtgg,
+			main_rl_lxwm, main_rl_my, main_rl_pos1, main_rl_gwc;
 	private ImageView testbutton;
 	private View citySelect;
 	private TextView cityTextView;
@@ -72,15 +85,18 @@ public class Main extends BaseActivity implements OnClickListener{
 	private City city;
 	public static final int REQUEST_CITY = 1;
 	public static final int REQUEST_CITY_WHEEL = 2;
-	//vp
+	public static final String TAG_BANNER = "banner";
+	public static final String TAG_BANNER_URL = "banner_url";
+	// vp
 	private ArrayList<PicEntity> myList = new ArrayList<PicEntity>();
+	private ArrayList<PicEntity> nativePicList = new ArrayList<PicEntity>();
 	private ViewPager view_pager;
-	private MyAdapter adapter ;
-	private ImageView[] indicator_imgs  ;//存放引到图片数组
-	private View item ;
+	private MyAdapter adapter;
+	private ImageView[] indicator_imgs;// 存放引到图片数组
+	private View item;
 	private LayoutInflater inflater;
 	private ImageView image;
-	private int  index_ima=0;
+	private int index_ima = 0;
 	private ArrayList<String> ma = new ArrayList<String>();
 	List<View> list = new ArrayList<View>();
 	private SharedPreferences mySharedPreferences;
@@ -90,14 +106,26 @@ public class Main extends BaseActivity implements OnClickListener{
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				for (int i = 0; i <myList.size(); i++) {			 
+				list.clear();
+				ma.clear();
+				
+				for (int i = 0; i < myList.size(); i++) {
 					item = inflater.inflate(R.layout.item, null);
 					list.add(item);
 					ma.add(myList.get(i).getPicture_url());
+					if(!nativePicList.contains(myList.get(i))&&i<nativePicList.size()){
+						nativePicList.get(i).setWebsite_url(myList.get(i).getWebsite_url());
+						nativePicList.get(i).setPicture_url(myList.get(i).getPicture_url());
+						nativePicList.get(i).update(nativePicList.get(i).getId());
+					}else{
+						myList.get(i).save();
+					}
+					
 				}
-				indicator_imgs	= new ImageView[ma.size()];
+
+				indicator_imgs = new ImageView[ma.size()];
 				initIndicator();
-				adapter.notifyDataSetChanged();	
+				adapter.notifyDataSetChanged();
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -112,7 +140,7 @@ public class Main extends BaseActivity implements OnClickListener{
 				break;
 			case 4:
 				pagerIndex++;
-				pagerIndex = pagerIndex>list.size()-1?0:pagerIndex;
+				pagerIndex = pagerIndex > list.size() - 1 ? 0 : pagerIndex;
 				view_pager.setCurrentItem(pagerIndex);
 				break;
 			}
@@ -121,8 +149,14 @@ public class Main extends BaseActivity implements OnClickListener{
 
 	private int pagerIndex = 0;
 	private static final int time = 5000;
-	private  Timer timer = null;
-	private  TimerTask task = null;
+	private Timer timer = null;
+	private TimerTask task = null;
+	DisplayImageOptions options = new DisplayImageOptions.Builder()
+//			.showImageOnLoading(R.drawable.moren)
+			.cacheInMemory(false).cacheOnDisc(true)
+			.imageScaleType(ImageScaleType.EXACTLY)
+			.bitmapConfig(Bitmap.Config.RGB_565)
+			.displayer(new FadeInBitmapDisplayer(300)).build();;
 
 
 	@Override
@@ -130,40 +164,44 @@ public class Main extends BaseActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		SQLiteDatabase db = Connector.getDatabase();
+
 		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
 		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
 		
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
-		islogin=mySharedPreferences.getBoolean("islogin", false);
+		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
 		MyApplication.getInstance().setCustomerId(id);
 
 		MyApplication.getInstance().addActivity(this);
 
 		initView();
-		testbutton=(ImageView) findViewById(R.id.testbutton);
+		testbutton = (ImageView) findViewById(R.id.testbutton);
 		testbutton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent i =new Intent(Main.this,LoginActivity.class);
+				Intent i = new Intent(Main.this, LoginActivity.class);
 				startActivity(i);
 			}
 		});
 		getdata();
 
-		//地图功能
+		// 地图功能
 
-		mLocationClient = ((MyApplication)getApplication()).mLocationClient;
+		mLocationClient = ((MyApplication) getApplication()).mLocationClient;
 
-		LocationResult = (TextView)findViewById(R.id.tv_city);
-		((MyApplication)getApplication()).mLocationResult = LocationResult;
+		LocationResult = (TextView) findViewById(R.id.tv_city);
+		((MyApplication) getApplication()).mLocationResult = LocationResult;
 		InitLocation();
 		mLocationClient.start();
 
-		System.out.println("当前城市 ID----" +MyApplication.getInstance().getCityId());
+		System.out.println("当前城市 ID----"
+				+ MyApplication.getInstance().getCityId());
 
-	}	
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -180,19 +218,18 @@ public class Main extends BaseActivity implements OnClickListener{
 		}
 
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
-		islogin=mySharedPreferences.getBoolean("islogin", false);
+		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
 		MyApplication.getInstance().setCustomerId(id);
 
 		timer = new Timer();
-		task = new TimerTask()
-		{
-			public void run()
-			{
+		task = new TimerTask() {
+			public void run() {
 				handler.sendEmptyMessage(4);
 			}
 		};
-		timer.schedule(task, 0, time);
+		timer.schedule(task, time, time);
+
 	}
 
 	@Override
@@ -204,53 +241,65 @@ public class Main extends BaseActivity implements OnClickListener{
 
 	private void InitLocation(){
 		LocationClientOption option = new LocationClientOption();
-		option.setLocationMode(LocationMode.Hight_Accuracy);//设置定位模式
-		option.setCoorType("gcj02");//返回的定位结果是百度经纬度，默认值gcj02
-		int span=1000;
+		option.setLocationMode(LocationMode.Hight_Accuracy);// 设置定位模式
+		option.setCoorType("gcj02");// 返回的定位结果是百度经纬度，默认值gcj02
+		int span = 1000;
 
-		option.setScanSpan(span);//设置发起定位请求的间隔时间为5000ms
+		option.setScanSpan(span);// 设置发起定位请求的间隔时间为5000ms
 		option.setIsNeedAddress(true);
 		mLocationClient.setLocOption(option);
 	}
+
 	private void getdata() {
 
-		MyApplication.getInstance().getClient().post(Config.URL_FIGURE_GETLIST, new AsyncHttpResponseHandler() {
+		MyApplication
+				.getInstance()
+				.getClient()
+				.post(Config.URL_FIGURE_GETLIST,
+						new AsyncHttpResponseHandler() {
 
-			@Override
-			public void onSuccess(int statusCode, Header[] headers,
-					byte[] responseBody) { 
-				System.out.println("-onSuccess---");
-				String responseMsg = new String(responseBody).toString();
-				Log.e("LJP", responseMsg);
+							@Override
+							public void onSuccess(int statusCode,
+									Header[] headers, byte[] responseBody) {
+								System.out.println("-onSuccess---");
+								String responseMsg = new String(responseBody)
+										.toString();
+								Log.e("LJP", responseMsg);
 
-				Gson gson = new Gson();
+								Gson gson = new Gson();
 
-				JSONObject jsonobject = null;
-				String code = null;
-				try {
-					jsonobject = new JSONObject(responseMsg);
-					code = jsonobject.getString("code");
-					int a =jsonobject.getInt("code");
-					if(a==Config.CODE){  
-						String res =jsonobject.getString("result");
-						myList= gson.fromJson(res, new TypeToken<List<PicEntity>>() {
-						}.getType());
-						handler.sendEmptyMessage(0);
-					}else{
-						code = jsonobject.getString("message");
-						Toast.makeText(getApplicationContext(), code, 1000).show();
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}	  
-			}
+								JSONObject jsonobject = null;
+								String code = null;
+								try {
+									jsonobject = new JSONObject(responseMsg);
+									code = jsonobject.getString("code");
+									int a = jsonobject.getInt("code");
+									if (a == Config.CODE) {
+										String res = jsonobject
+												.getString("result");
+										myList = gson
+												.fromJson(
+														res,
+														new TypeToken<List<PicEntity>>() {
+														}.getType());
+										handler.sendEmptyMessage(0);
+									} else {
+										code = jsonobject.getString("message");
+										Toast.makeText(getApplicationContext(),
+												code, 1000).show();
+									}
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+							}
 
-			@Override
-			public void onFailure(int statusCode, Header[] headers,
-					byte[] responseBody, Throwable error) {
-				error.printStackTrace();
-			}
-		});
+							@Override
+							public void onFailure(int statusCode,
+									Header[] headers, byte[] responseBody,
+									Throwable error) {
+								error.printStackTrace();
+							}
+						});
 
 	}
 
@@ -258,128 +307,140 @@ public class Main extends BaseActivity implements OnClickListener{
 		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		citySelect = findViewById(R.id.titleback_linear_back);
 		cityTextView = (TextView) findViewById(R.id.tv_city);
-		cityTextView.setMaxWidth(ScreenUtils.getScreenWidth(this)/5);
+		cityTextView.setMaxWidth(ScreenUtils.getScreenWidth(this) / 5);
 		citySelect.setOnClickListener(this);
-		main_rl_gwc=(RelativeLayout) findViewById(R.id.main_rl_gwc);
+		main_rl_gwc = (RelativeLayout) findViewById(R.id.main_rl_gwc);
 		main_rl_gwc.setOnClickListener(this);
-		main_rl_pos=(RelativeLayout) findViewById(R.id.main_rl_pos);
+		main_rl_pos = (RelativeLayout) findViewById(R.id.main_rl_pos);
 		main_rl_pos.setOnClickListener(this);
-		main_rl_renzhen=(RelativeLayout) findViewById(R.id.main_rl_renzhen);
+		main_rl_renzhen = (RelativeLayout) findViewById(R.id.main_rl_renzhen);
 		main_rl_renzhen.setOnClickListener(this);
-		main_rl_zdgl=(RelativeLayout) findViewById(R.id.main_rl_zdgl);
+		main_rl_zdgl = (RelativeLayout) findViewById(R.id.main_rl_zdgl);
 		main_rl_zdgl.setOnClickListener(this);
-		main_rl_jyls=(RelativeLayout) findViewById(R.id.main_rl_jyls);
+		main_rl_jyls = (RelativeLayout) findViewById(R.id.main_rl_jyls);
 		main_rl_jyls.setOnClickListener(this);
-		main_rl_Forum=(RelativeLayout) findViewById(R.id.main_rl_Forum);
+		main_rl_Forum = (RelativeLayout) findViewById(R.id.main_rl_Forum);
 		main_rl_Forum.setOnClickListener(this);
-		main_rl_wylc=(RelativeLayout) findViewById(R.id.main_rl_wylc);
+		main_rl_wylc = (RelativeLayout) findViewById(R.id.main_rl_wylc);
 		main_rl_wylc.setOnClickListener(this);
-		main_rl_lxwm=(RelativeLayout) findViewById(R.id.main_rl_lxwm);
+		main_rl_lxwm = (RelativeLayout) findViewById(R.id.main_rl_lxwm);
 		main_rl_lxwm.setOnClickListener(this);
-		main_rl_xtgg=(RelativeLayout) findViewById(R.id.main_rl_xtgg);
+		main_rl_xtgg = (RelativeLayout) findViewById(R.id.main_rl_xtgg);
 		main_rl_xtgg.setOnClickListener(this);
-		main_rl_my=(RelativeLayout) findViewById(R.id.main_rl_my);
+		main_rl_my = (RelativeLayout) findViewById(R.id.main_rl_my);
 		main_rl_my.setOnClickListener(this);
-		main_rl_pos1=(RelativeLayout) findViewById(R.id.main_rl_pos1);
+		main_rl_pos1 = (RelativeLayout) findViewById(R.id.main_rl_pos1);
 		main_rl_pos1.setOnClickListener(this);
 
-
 		view_pager = (ViewPager) findViewById(R.id.view_pager);
-		//allow use api level>11
-		//		view_pager.setPageTransformer(true, new DepthPageTransformer());
+		// allow use api level>11
+		// view_pager.setPageTransformer(true, new DepthPageTransformer());
 		inflater = LayoutInflater.from(this);
 		adapter = new MyAdapter(list);
 
 		view_pager.setAdapter(adapter);
-		//绑定动作监听器：如翻页的动画
+		// 绑定动作监听器：如翻页的动画
 		view_pager.setOnPageChangeListener(new MyListener());
-		//index_ima
+		// index_ima
 
+		list.clear();
+		ma.clear();
+		myList = (ArrayList<PicEntity>) DataSupport.findAll(PicEntity.class);
+		nativePicList = myList;
+		if (myList.size() > 0) {
+			for (int i = 0; i < myList.size(); i++) {
+				item = inflater.inflate(R.layout.item, null);
+				list.add(item);
+				ma.add(myList.get(i).getPicture_url());
+			}
+			indicator_imgs = new ImageView[ma.size()];
+			initIndicator();
+			adapter.notifyDataSetChanged();
+		}
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 
-		case R.id.titleback_linear_back:  
+		case R.id.titleback_linear_back:
 			Intent intent = new Intent(Main.this, CitySelectActivity.class);
 			cityName = cityTextView.getText().toString();
 			intent.putExtra(CITY_NAME, cityName);
 			startActivityForResult(intent, REQUEST_CITY);
 			break;
 
-		case R.id.main_rl_pos1:  // 我的消息
+		case R.id.main_rl_pos1: // 我的消息
 			if (islogin && id != 0) {
-				startActivity(new Intent(Main.this,MyMessage.class));
-			}else {
+				startActivity(new Intent(Main.this, MyMessage.class));
+			} else {
 				Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
-				startActivity(new Intent(this,LoginActivity.class));
+				startActivity(new Intent(this, LoginActivity.class));
 			}
 
 			break;
 
-
-		case R.id.main_rl_my:  // 我的
+		case R.id.main_rl_my: // 我的
 			if (islogin && id != 0) {
-				startActivity(new Intent(Main.this,MenuMine.class));
-			}else {
+				startActivity(new Intent(Main.this, MenuMine.class));
+			} else {
 				Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
-				startActivity(new Intent(this,LoginActivity.class));
+				startActivity(new Intent(this, LoginActivity.class));
 			}
 
 			break;
-		case R.id.main_rl_pos:  // 买POS机
+		case R.id.main_rl_pos: // 买POS机
 
-			startActivity(new Intent(Main.this,PosListActivity.class));
+			startActivity(new Intent(Main.this, PosListActivity.class));
 
 			break;
-		case R.id.main_rl_renzhen:  //开通认证
+		case R.id.main_rl_renzhen: // 开通认证
 			if (islogin && id != 0) {
-				Intent i =new Intent(Main.this, ApplyListActivity.class);
+				Intent i = new Intent(Main.this, ApplyListActivity.class);
 				startActivity(i);
-			}else {
+			} else {
 				Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
-				startActivity(new Intent(this,LoginActivity.class));
+				startActivity(new Intent(this, LoginActivity.class));
 			}
 
 			break;
-		case R.id.main_rl_zdgl: //终端管理
+		case R.id.main_rl_zdgl: // 终端管理
 			if (islogin && id != 0) {
-				startActivity(new Intent(Main.this, TerminalManageActivity.class));
-			}else {
+				startActivity(new Intent(Main.this,
+						TerminalManageActivity.class));
+			} else {
 				Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
-				startActivity(new Intent(this,LoginActivity.class));
+				startActivity(new Intent(this, LoginActivity.class));
 			}
 			break;
-		case R.id.main_rl_jyls: //交易流水
+		case R.id.main_rl_jyls: // 交易流水
 			if (islogin && id != 0) {
 				startActivity(new Intent(Main.this, TradeFlowActivity.class));
-			}else {
+			} else {
 				Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
-				startActivity(new Intent(this,LoginActivity.class));
+				startActivity(new Intent(this, LoginActivity.class));
 			}
 			break;
-		case R.id.main_rl_Forum: //健康服务
-			//startActivity(new Intent(Main.this, ChanceAdress.class));
+		case R.id.main_rl_Forum: // 健康服务
+			// startActivity(new Intent(Main.this, ChanceAdress.class));
 			break;
 
-		case R.id.main_rl_xtgg: //系统公告
+		case R.id.main_rl_xtgg: // 系统公告
 
-
-			startActivity(new Intent(Main.this,SystemMessage.class));
+			startActivity(new Intent(Main.this, SystemMessage.class));
 
 			break;
 
-		case R.id.main_rl_lxwm: //联系我们
+		case R.id.main_rl_lxwm: // 联系我们
 
-			startActivity(new Intent(Main.this,ContentUs.class));
+			startActivity(new Intent(Main.this, ContentUs.class));
 			break;
-		case R.id.main_rl_gwc:  //购物车
+		case R.id.main_rl_gwc: // 购物车
 			if (islogin && id != 0) {
-				startActivity(new Intent(Main.this,ShopCar.class));
-			}else {
+				startActivity(new Intent(Main.this, ShopCar.class));
+			} else {
 				Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
-				startActivity(new Intent(this,LoginActivity.class));
+				startActivity(new Intent(this, LoginActivity.class));
 			}
 			break;
 		default:
@@ -390,7 +451,8 @@ public class Main extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode != RESULT_OK) return;
+		if (resultCode != RESULT_OK)
+			return;
 		switch (requestCode) {
 		case REQUEST_CITY:
 			cityId = data.getIntExtra(CITY_ID, 0);
@@ -405,39 +467,38 @@ public class Main extends BaseActivity implements OnClickListener{
 		}
 	}
 
-	private void initIndicator(){
+	private void initIndicator() {
 
 		ImageView imgView;
 		View v = findViewById(R.id.indicator);// 线性水平布局，负责动态调整导航图标
-
+		((ViewGroup) v).removeAllViews();
 		for (int i = 0; i < ma.size(); i++) {
 			imgView = new ImageView(this);
-			LinearLayout.LayoutParams params_linear = new LinearLayout.LayoutParams(10,10);
+			LinearLayout.LayoutParams params_linear = new LinearLayout.LayoutParams(
+					10, 10);
 			params_linear.setMargins(7, 10, 7, 10);
 			imgView.setLayoutParams(params_linear);
 			indicator_imgs[i] = imgView;
 
 			if (i == 0) { // 初始化第一个为选中状态
 
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator_focused);
+				indicator_imgs[i]
+						.setBackgroundResource(R.drawable.indicator_focused);
 			} else {
 				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
 			}
-			((ViewGroup)v).addView(indicator_imgs[i]);
+			((ViewGroup) v).addView(indicator_imgs[i]);
 		}
 
 	}
 
-
-
-
 	/**
-	 * 适配器，负责装配 、销毁  数据  和  组件 。
+	 * 适配器，负责装配 、销毁 数据 和 组件 。
 	 */
 	private class MyAdapter extends PagerAdapter {
 
 		private List<View> mList;
-		private int index ;
+		private int index;
 
 		public MyAdapter(List<View> list) {
 			mList = list;
@@ -460,10 +521,9 @@ public class Main extends BaseActivity implements OnClickListener{
 		}
 
 		/**
-		 * Remove a page for the given position.
-		 * 滑动过后就销毁 ，销毁当前页的前一个的前一个的页！
-		 * instantiateItem(View container, int position)
-		 * This method was deprecated in API level . Use instantiateItem(ViewGroup, int)
+		 * Remove a page for the given position. 滑动过后就销毁 ，销毁当前页的前一个的前一个的页！
+		 * instantiateItem(View container, int position) This method was
+		 * deprecated in API level . Use instantiateItem(ViewGroup, int)
 		 */
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
@@ -473,20 +533,24 @@ public class Main extends BaseActivity implements OnClickListener{
 
 		@Override
 		public boolean isViewFromObject(View arg0, Object arg1) {
-			return arg0==arg1;
+			return arg0 == arg1;
 		}
 
 		/**
 		 * Create the page for the given position.
 		 */
 		@Override
-		public Object instantiateItem(final ViewGroup container, final int position) {
+		public Object instantiateItem(final ViewGroup container,
+				final int position) {
 
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
+			image.setScaleType(ScaleType.FIT_XY);
+			// ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
+			// image);
 
-			ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
-					image);
+			MyApplication.getInstance().getImageLoader()
+					.displayImage(ma.get(position), image, options);
 
 			container.removeView(mList.get(position));
 			container.addView(mList.get(position));
@@ -495,10 +559,11 @@ public class Main extends BaseActivity implements OnClickListener{
 
 				@Override
 				public void onClick(View arg0) {
-					Intent intent = new Intent();        
-					intent.setAction("android.intent.action.VIEW");    
-					Uri content_url = Uri.parse(myList.get(position).getWebsite_url().toString());   
-					intent.setData(content_url);  
+					Intent intent = new Intent();
+					intent.setAction("android.intent.action.VIEW");
+					Uri content_url = Uri.parse(myList.get(position)
+							.getWebsite_url().toString());
+					intent.setData(content_url);
 					startActivity(intent);
 				}
 			});
@@ -508,14 +573,14 @@ public class Main extends BaseActivity implements OnClickListener{
 
 	/**
 	 * 动作监听器，可异步加载图片
-	 *
+	 * 
 	 */
-	private class MyListener implements OnPageChangeListener{
+	private class MyListener implements OnPageChangeListener {
 
 		@Override
 		public void onPageScrollStateChanged(int state) {
 			if (state == 0) {
-				//new MyAdapter(null).notifyDataSetChanged();
+				// new MyAdapter(null).notifyDataSetChanged();
 			}
 		}
 
@@ -533,22 +598,33 @@ public class Main extends BaseActivity implements OnClickListener{
 			}
 
 			// 改变当前背景图片为：选中
-			index_ima=position;
-			indicator_imgs[position].setBackgroundResource(R.drawable.indicator_focused);
-			System.out.println(index_ima+"```"+myList.get(index_ima).getWebsite_url());
-			View v = list.get(position );
+			index_ima = position;
+			indicator_imgs[position]
+					.setBackgroundResource(R.drawable.indicator_focused);
+			System.out.println(index_ima + "```"
+					+ myList.get(index_ima).getWebsite_url());
+			View v = list.get(position);
 			v.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View arg0) {
 
-					Intent intent = new Intent();        
-					intent.setAction("android.intent.action.VIEW");    
-					Uri content_url = Uri.parse(myList.get(index_ima).getWebsite_url().toString());   
-					intent.setData(content_url);  
+					Intent intent = new Intent();
+					intent.setAction("android.intent.action.VIEW");
+					Uri content_url = Uri.parse(myList.get(index_ima)
+							.getWebsite_url().toString());
+					intent.setData(content_url);
 					startActivity(intent);
 				}
 			});
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		MyApplication.getInstance().getImageLoader().clearMemoryCache();
+		super.onDestroy();
+	}
+	
 }

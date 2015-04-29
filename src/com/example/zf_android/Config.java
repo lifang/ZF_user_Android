@@ -6,9 +6,9 @@ public class Config {
 	//视频通话
 	public static final String VIDEO_SERVER_IP = "121.40.84.2";
 	public static final int VIDEO_SERVER_PORT = 8906;
-
-
-
+	
+	public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:8180/zfmanager/notice/video";
+	
 	public static final String FILE_PATH = "http://114.215.149.242:18080/ZFMerchant/";
 	public static final String POS_PIC_URL = FILE_PATH+"{0}/b.jpg";
 	public static final String FILE_URL = FILE_PATH+"{0}";
