@@ -2,9 +2,6 @@ package com.example.zf_android.trade;
 
 import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_ID;
 import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
-
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -22,11 +19,9 @@ import com.examlpe.zf_android.util.DialogUtil;
 import com.examlpe.zf_android.util.DialogUtil.CallBackChange;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
-import com.example.zf_android.activity.OrderDetail;
 import com.example.zf_android.alipay.RepairPayActivity;
-import com.example.zf_android.entity.Goodlist;
-import com.example.zf_android.entity.OrderDetailEntity;
 import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.entity.RepairPayEntity;
 import com.google.gson.reflect.TypeToken;
 
 /**
@@ -40,9 +35,9 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 	private String subject;
 	private String body;
 	private String price;
-	
+
 	private int mRecordType;
-	
+
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -72,17 +67,17 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 		titleback_linear_back.setOnClickListener(this);
 		ll_sh = (LinearLayout) findViewById(R.id.ll_sh);
 		ll_sh.setOnClickListener(this);
-		
+
 		getData();
 	}
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.titleback_linear_back:
-				dialogIntent();
+			dialogIntent();
 			break;
 		case R.id.ll_sh:
-				pay(outTradeNo, subject, body, price);
+			pay(outTradeNo, subject, body, price);
 			break;
 		default:
 			break;
@@ -108,39 +103,59 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK
 				&& event.getRepeatCount() == 0) {
-				dialogIntent();
+			dialogIntent();
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
+
 	private void getData() {
 
-		API.getMyOrderById(this, Integer.parseInt(orderId), 
-				new HttpCallback<List<OrderDetailEntity>>(this) {
+
+		API.getRepairPay(this, Integer.parseInt(orderId), 
+				new HttpCallback<RepairPayEntity>(this) {
 
 			@Override
-			public void onSuccess(List<OrderDetailEntity> data) {
-		 		OrderDetailEntity orderDetail = data.get(0);
-				List<Goodlist> goodlist= orderDetail.getOrder_goodsList();
-				if (goodlist.size()>0) {
-					subject = goodlist.get(0).getGood_name();
-					body = subject;
-				}
-				outTradeNo = orderDetail.getOrder_number();
-				price = orderDetail.getOrder_totalprice();
+			public void onSuccess(RepairPayEntity data) {
+				subject = data.getMiaoshu();
+				body = subject;
+				outTradeNo = data.getApply_num();
+				price = data.getRepair_price();
 				price = String.format("%.2f", Integer.parseInt(price)/100f);
 				handler.sendEmptyMessage(0);
 			}
 			@Override
-			public TypeToken<List<OrderDetailEntity>> getTypeToken() {
-				return new TypeToken<List<OrderDetailEntity>>() {
+			public TypeToken<RepairPayEntity> getTypeToken() {
+				return new TypeToken<RepairPayEntity>() {
 				};
 			}
 		});
+
+		//		API.getMyOrderById(this, Integer.parseInt(orderId), 
+		//				new HttpCallback<List<OrderDetailEntity>>(this) {
+		//
+		//			@Override
+		//			public void onSuccess(List<OrderDetailEntity> data) {
+		//		 		OrderDetailEntity orderDetail = data.get(0);
+		//				List<Goodlist> goodlist= orderDetail.getOrder_goodsList();
+		//				if (goodlist.size()>0) {
+		//					subject = goodlist.get(0).getGood_name();
+		//					body = subject;
+		//				}
+		//				outTradeNo = orderDetail.getOrder_number();
+		//				price = orderDetail.getOrder_totalprice();
+		//				price = String.format("%.2f", Integer.parseInt(price)/100f);
+		//				handler.sendEmptyMessage(0);
+		//			}
+		//			@Override
+		//			public TypeToken<List<OrderDetailEntity>> getTypeToken() {
+		//				return new TypeToken<List<OrderDetailEntity>>() {
+		//				};
+		//			}
+		//		});
 	}
 
-	
+
 	@Override
 	public void success() {
 		Intent intent = new Intent(AfterSalePayActivity.this,AfterSaleDetailActivity.class);

@@ -1040,6 +1040,13 @@ public class API {
 		params.put("terminalId", terminalId);
 		new HttpRequest(context, null).post(Config.URL_NOTICE_VIDEO, params);
 	}
-	
+	public static void getRepairPay(
+			Context context,
+			int id,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id); 
+		new HttpRequest(context, callback).post(Config.URL_REPAIRPAY, params);
+	}
 }
 

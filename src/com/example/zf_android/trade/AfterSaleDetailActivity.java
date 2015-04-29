@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
@@ -207,8 +208,18 @@ public class AfterSaleDetailActivity extends Activity {
 				terminalPairs.put(terminalKeys[5], data.getMerchantPhone());
 				if (mRecordType == LEASE) {
 					AfterSaleDetailLease lease = (AfterSaleDetailLease) data;
-					terminalPairs.put(terminalKeys[6], getString(R.string.notation_yuan) + lease.getLeasePrice());
-					terminalPairs.put(terminalKeys[7], getString(R.string.notation_yuan) + lease.getLeaseDeposit());
+					if (!StringUtil.isNull(lease.getLeasePrice()+"")) {
+						terminalPairs.put(terminalKeys[6], getString(R.string.notation_yuan) + 
+								String.format("%.2f",Integer.valueOf(lease.getLeasePrice())/100f));
+					}else {
+						terminalPairs.put(terminalKeys[6], "");
+					}
+					if (!StringUtil.isNull(lease.getLeaseDeposit()+"")) {
+						terminalPairs.put(terminalKeys[7], getString(R.string.notation_yuan) + 
+								String.format("%.2f",Integer.valueOf(lease.getLeaseDeposit())/100f));
+					}else {
+						terminalPairs.put(terminalKeys[7], "");
+					}
 					terminalPairs.put(terminalKeys[8], lease.getLeaseLength() + getString(R.string.notation_day));
 					terminalPairs.put(terminalKeys[9], lease.getLeaseMaxTime() + getString(R.string.notation_day));
 					terminalPairs.put(terminalKeys[10], lease.getLeaseMinTime() + getString(R.string.notation_day));
@@ -241,7 +252,13 @@ public class AfterSaleDetailActivity extends Activity {
 					LinkedHashMap<String, String> maintainPairs = new LinkedHashMap<String, String>();
 					String[] maintainKeys = getResources().getStringArray(R.array.after_sale_maintian);
 					maintainPairs.put(maintainKeys[0], maintainDetail.getReceiverAddr());
-					maintainPairs.put(maintainKeys[1], maintainDetail.getRepairPrice() + "");
+					if (!StringUtil.isNull(maintainDetail.getRepairPrice())) {
+						maintainPairs.put(maintainKeys[1], getString(R.string.notation_yuan) + 
+								String.format("%.2f",Integer.valueOf(maintainDetail.getRepairPrice())/100f));
+					}else {
+						maintainPairs.put(maintainKeys[1], "");
+					}
+					//maintainPairs.put(maintainKeys[1], maintainDetail.getRepairPrice() + "");
 					maintainPairs.put(maintainKeys[2], maintainDetail.getDescription());
 					renderCategoryTemplate(R.string.after_sale_maintain_title, maintainPairs);
 					break;
@@ -264,7 +281,13 @@ public class AfterSaleDetailActivity extends Activity {
 					AfterSaleDetailReturn returnDetail = (AfterSaleDetailReturn) data;
 					LinkedHashMap<String, String> returnPairs = new LinkedHashMap<String, String>();
 					String[] returnKeys = getResources().getStringArray(R.array.after_sale_return);
-					returnPairs.put(returnKeys[0], returnDetail.getReturnPrice() + "");
+					if (!StringUtil.isNull(returnDetail.getReturnPrice())) {
+						returnPairs.put(returnKeys[0], getString(R.string.notation_yuan) + 
+								String.format("%.2f",Integer.valueOf(returnDetail.getReturnPrice())/100f));
+					}else {
+						returnPairs.put(returnKeys[0], "");
+					}
+					//returnPairs.put(returnKeys[0], returnDetail.getReturnPrice() + "");
 					returnPairs.put(returnKeys[1], returnDetail.getBankName());
 					returnPairs.put(returnKeys[2], returnDetail.getBankAccount());
 					returnPairs.put(returnKeys[3], returnDetail.getReason());
@@ -349,7 +372,12 @@ public class AfterSaleDetailActivity extends Activity {
 					AfterSaleDetailLease leaseDetail = (AfterSaleDetailLease) data;
 					LinkedHashMap<String, String> leasePairs = new LinkedHashMap<String, String>();
 					String[] leaseKeys = getResources().getStringArray(R.array.after_sale_lease);
-					leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + leaseDetail.getLeasePrice());
+					if (!StringUtil.isNull(leaseDetail.getLeasePrice()+"")) {
+						leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
+								String.format("%.2f",Integer.valueOf(leaseDetail.getLeasePrice())/100f));
+					}else {
+						leasePairs.put(leaseKeys[0], "");
+					}
 					leasePairs.put(leaseKeys[1], leaseDetail.getReceiverName());
 					leasePairs.put(leaseKeys[2], leaseDetail.getReceiverPhone());
 					renderCategoryTemplate(R.string.after_sale_lease_title, leasePairs);

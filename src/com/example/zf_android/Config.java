@@ -82,7 +82,7 @@ public class Config {
 	public static final String URL_FIGURE_GETLIST =PATHS+"index/sysshufflingfigure/getList";
 	public static final String URL_GOOD_SEARCH =PATHS+"good/search";
 	public static final String URL_TERMINAL_OPENSTATUS =PATHS+"terminal/openStatus";
-
+	public static final String URL_REPAIRPAY =PATHS+"cs/repair/repairPay";
 	//商户PID
 	public static final String PARTNER = "2088811347108355";
 	//商户收款账号
