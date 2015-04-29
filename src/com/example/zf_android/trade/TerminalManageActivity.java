@@ -359,10 +359,12 @@ public class TerminalManageActivity extends Activity implements
 				break;
 			case UNOPENED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				holder.llButtonContainer2.setVisibility(View.GONE);
+				holder.llButtonContainer2.setVisibility(View.VISIBLE);
+				addButton(holder.llButtons, R.string.terminal_button_sync,
+						item, mSyncListener);
 				addButton(holder.llButtons, R.string.terminal_button_open,
 						item, mOpenListener);
-				addButton(holder.llButtons, R.string.terminal_button_video,
+				addButton(holder.llButtons2, R.string.terminal_button_video,
 						item, mVideoListener);
 				break;
 			case CANCELED:

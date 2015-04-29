@@ -99,7 +99,22 @@ public class TerminalDetailActivity extends Activity {
 		mSyncListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				CommonUtil.toastShort(TerminalDetailActivity.this, "synchronising...");
+				API.synchronous(TerminalDetailActivity.this, mTerminalId,
+						new HttpCallback(TerminalDetailActivity.this) {
+
+							@Override
+							public void onSuccess(Object data) {
+								// TODO Auto-generated method stub
+								CommonUtil.toastShort(TerminalDetailActivity.this,
+										data.toString());
+							}
+
+							@Override
+							public TypeToken getTypeToken() {
+								// TODO Auto-generated method stub
+								return null;
+							}
+						});
 			}
 		};
 		mOpenListener = new View.OnClickListener() {
