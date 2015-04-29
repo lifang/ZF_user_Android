@@ -128,7 +128,7 @@ holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 		holder.showCountText.setText("X  " + good.getQuantity());
 		holder.buyCountEdit.setText("" + good.getQuantity());
 		holder.buyCountEdit.getText();
-		holder.retail_price.setText("¥ " + StringUtil.getMoneyString(good.getRetail_price()));
+		holder.retail_price.setText("¥ " + StringUtil.getMoneyString(good.getRetail_price()+good.getOpening_cost()));
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
 

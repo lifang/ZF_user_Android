@@ -189,7 +189,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 		case 2:
 			tv_status.setText("已付款");
 			ll_ishow.setVisibility(View.GONE);
-			ll_ishow2.setVisibility(View.VISIBLE);
+			ll_ishow2.setVisibility(View.GONE);
 			btn_ishow.setVisibility(View.GONE);
 			break;
 		case 3:

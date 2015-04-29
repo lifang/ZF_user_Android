@@ -40,6 +40,16 @@ public class MyShopCar {
 		private int quantity;
 		private int retail_price;
 		private String Model_number;
+		private int opening_cost;
+		
+		
+		public int getOpening_cost() {
+			return opening_cost;
+		}
+
+		public void setOpening_cost(int opening_cost) {
+			this.opening_cost = opening_cost;
+		}
 
 		public int getId() {
 			return id;

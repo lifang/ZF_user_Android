@@ -71,7 +71,7 @@ public class PosAdapter extends BaseAdapter {
 		
 		holder.title.setText(list.get(position).getTitle());
 		holder.tv_price.setText("￥"+String.format("%.2f", list.get(position).getRetail_price()/100f));
-		holder.content1.setText(list.get(position).getModel_number());
+		holder.content1.setText(list.get(position).getGood_brand()+list.get(position).getModel_number());
 		holder.tv_td.setText(list.get(position).getPay_channe());
 		holder.ys.setText("已售"+list.get(position).getVolume_number());
 		

@@ -18,6 +18,6 @@ public class LookTerminalsActivity extends Activity{
 		
 		tv = (TextView) findViewById(R.id.tv);
 		
-		tv.setText(getIntent().getExtras().getString("leasepact"));
+		tv.setText(getIntent().getExtras().getString("terminals"));
 	}
 }
