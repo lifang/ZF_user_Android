@@ -151,7 +151,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 		}
 	}
 	private void getData1() { 
-		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
+		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId+"");
 		MyApplication.getInstance().getClient()
 		.post(url, new AsyncHttpResponseHandler() {
 

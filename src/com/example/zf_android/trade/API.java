@@ -34,90 +34,91 @@ public class API {
 	
 //	public static final String HOST = "114.215.149.242:18080";
 	//sit   
-	public static final String HOST = "121.40.84.2:8080";
-	public static final String EDITADRESS = SCHEMA + HOST + "/ZFMerchant/api/customers/updateAddress";
+	public final static String HOST = "www.ebank007.com/api/";
+//	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
+	public static final String EDITADRESS = SCHEMA + HOST + "customers/updateAddress";
 
 	// selection terminal list
-	public static final String TERMINAL_LIST = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTerminals/%d";
+	public static final String TERMINAL_LIST = SCHEMA + HOST + "trade/record/getTerminals/%d";
 	// trade record list
-	public static final String TRADE_RECORD_LIST = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecords/%d/%s/%s/%s/%d/%d";
+	public static final String TRADE_RECORD_LIST = SCHEMA + HOST + "trade/record/getTradeRecords/%d/%s/%s/%s/%d/%d";
 	// trade record statistic
-	public static final String TRADE_RECORD_STATISTIC = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecordTotal/%d/%s/%s/%s";
+	public static final String TRADE_RECORD_STATISTIC = SCHEMA + HOST + "trade/record/getTradeRecordTotal/%d/%s/%s/%s";
 	// trade record detail
-	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecord/%d/%d";
-	public static final String GETINFO = SCHEMA + HOST + "/ZFMerchant/api/customers/getOne/%d";
-	// After sale record list//http://114.215.149.242:18080/ZFMerchant/api/customers/getOne/
-	public static final String AFTER_SALE_MAINTAIN_LIST = SCHEMA + HOST + "/ZFMerchant/api/cs/repair/getAll";
-	public static final String AFTER_SALE_RETURN_LIST = SCHEMA + HOST + "/ZFMerchant/api/return/getAll";
-	public static final String AFTER_SALE_CANCEL_LIST = SCHEMA + HOST + "/ZFMerchant/api/cs/cancels/getAll";
-	public static final String AFTER_SALE_CHANGE_LIST = SCHEMA + HOST + "/ZFMerchant/api/cs/change/getAll";
-	public static final String AFTER_SALE_UPDATE_LIST = SCHEMA + HOST + "/ZFMerchant/api/update/info/getAll";
-	public static final String AFTER_SALE_LEASE_LIST = SCHEMA + HOST + "/ZFMerchant/api/cs/lease/returns/getAll";
+	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST + "trade/record/getTradeRecord/%d/%d";
+	public static final String GETINFO = SCHEMA + HOST + "customers/getOne/%d";
+	
+	public static final String AFTER_SALE_MAINTAIN_LIST = SCHEMA + HOST + "cs/repair/getAll";
+	public static final String AFTER_SALE_RETURN_LIST = SCHEMA + HOST + "return/getAll";
+	public static final String AFTER_SALE_CANCEL_LIST = SCHEMA + HOST + "cs/cancels/getAll";
+	public static final String AFTER_SALE_CHANGE_LIST = SCHEMA + HOST + "cs/change/getAll";
+	public static final String AFTER_SALE_UPDATE_LIST = SCHEMA + HOST + "update/info/getAll";
+	public static final String AFTER_SALE_LEASE_LIST = SCHEMA + HOST + "cs/lease/returns/getAll";
 
 	// After sale record detail
-	public static final String AFTER_SALE_MAINTAIN_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/cs/repair/getRepairById";
-	public static final String AFTER_SALE_RETURN_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/return/getReturnById";
-	public static final String AFTER_SALE_CANCEL_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/cs/cancels/getCanCelById";
-	public static final String AFTER_SALE_CHANGE_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/cs/change/getChangeById";
-	public static final String AFTER_SALE_UPDATE_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/update/info/getInfoById";
-	public static final String AFTER_SALE_LEASE_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/cs/lease/returns/getById";
+	public static final String AFTER_SALE_MAINTAIN_DETAIL = SCHEMA + HOST + "cs/repair/getRepairById";
+	public static final String AFTER_SALE_RETURN_DETAIL = SCHEMA + HOST + "return/getReturnById";
+	public static final String AFTER_SALE_CANCEL_DETAIL = SCHEMA + HOST + "cs/cancels/getCanCelById";
+	public static final String AFTER_SALE_CHANGE_DETAIL = SCHEMA + HOST + "cs/change/getChangeById";
+	public static final String AFTER_SALE_UPDATE_DETAIL = SCHEMA + HOST + "update/info/getInfoById";
+	public static final String AFTER_SALE_LEASE_DETAIL = SCHEMA + HOST + "cs/lease/returns/getById";
 
 	// After sale record cancel apply
-	public static final String AFTER_SALE_MAINTAIN_CANCEL = SCHEMA + HOST + "/ZFMerchant/api/cs/repair/cancelApply";
-	public static final String AFTER_SALE_RETURN_CANCEL = SCHEMA + HOST + "/ZFMerchant/api/return/cancelApply";
-	public static final String AFTER_SALE_CANCEL_CANCEL = SCHEMA + HOST + "/ZFMerchant/api/cs/cancels/cancelApply";
-	public static final String AFTER_SALE_CHANGE_CANCEL = SCHEMA + HOST + "/ZFMerchant/api/cs/change/cancelApply";
-	public static final String AFTER_SALE_UPDATE_CANCEL = SCHEMA + HOST + "/ZFMerchant/api/update/info/cancelApply";
-	public static final String AFTER_SALE_LEASE_CANCEL = SCHEMA + HOST + "/ZFMerchant/api/cs/lease/returns/cancelApply";
+	public static final String AFTER_SALE_MAINTAIN_CANCEL = SCHEMA + HOST + "cs/repair/cancelApply";
+	public static final String AFTER_SALE_RETURN_CANCEL = SCHEMA + HOST + "return/cancelApply";
+	public static final String AFTER_SALE_CANCEL_CANCEL = SCHEMA + HOST + "cs/cancels/cancelApply";
+	public static final String AFTER_SALE_CHANGE_CANCEL = SCHEMA + HOST + "cs/change/cancelApply";
+	public static final String AFTER_SALE_UPDATE_CANCEL = SCHEMA + HOST + "update/info/cancelApply";
+	public static final String AFTER_SALE_LEASE_CANCEL = SCHEMA + HOST + "cs/lease/returns/cancelApply";
 
 	// After sale resubmit cancel
-	public static final String AFTER_SALE_RESUBMIT_CANCEL = SCHEMA + HOST + "/ZFMerchant/api/cs/cancels/resubmitCancel";
+	public static final String AFTER_SALE_RESUBMIT_CANCEL = SCHEMA + HOST + "cs/cancels/resubmitCancel";
 
 	// After sale add mark
-	public static final String AFTER_SALE_MAINTAIN_ADD_MARK = SCHEMA + HOST + "/ZFMerchant/api/cs/repair/addMark";
-	public static final String AFTER_SALE_RETURN_ADD_MARK = SCHEMA + HOST + "/ZFMerchant/api/return/addMark";
-	public static final String AFTER_SALE_CHANGE_ADD_MARK = SCHEMA + HOST + "/ZFMerchant/api/cs/change/addMark";
-	public static final String AFTER_SALE_LEASE_ADD_MARK = SCHEMA + HOST + "/ZFMerchant/api/cs/lease/returns/addMark";
+	public static final String AFTER_SALE_MAINTAIN_ADD_MARK = SCHEMA + HOST + "cs/repair/addMark";
+	public static final String AFTER_SALE_RETURN_ADD_MARK = SCHEMA + HOST + "return/addMark";
+	public static final String AFTER_SALE_CHANGE_ADD_MARK = SCHEMA + HOST + "cs/change/addMark";
+	public static final String AFTER_SALE_LEASE_ADD_MARK = SCHEMA + HOST + "cs/lease/returns/addMark";
 
 	// Terminal list
-	public static final String TERMINAL_APPLY_LIST = SCHEMA + HOST + "/ZFMerchant/api/terminal/getApplyList";
+	public static final String TERMINAL_APPLY_LIST = SCHEMA + HOST + "terminal/getApplyList";
 	// Channel list
-	public static final String CHANNEL_LIST = SCHEMA + HOST + "/ZFMerchant/api/terminal/getFactories";
+	public static final String CHANNEL_LIST = SCHEMA + HOST + "terminal/getFactories";
 	// Terminal Add
-	public static final String TERMINAL_ADD = SCHEMA + HOST + "/ZFMerchant/api/terminal/addTerminal";
+	public static final String TERMINAL_ADD = SCHEMA + HOST + "terminal/addTerminal";
 	// Terminal detail
-	public static final String TERMINAL_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/terminal/getApplyDetails";
+	public static final String TERMINAL_DETAIL = SCHEMA + HOST + "terminal/getApplyDetails";
 
 	// synchronise terminal
-	public static final String TERMINAL_SYNC = SCHEMA + HOST + "/ZFMerchant/api/terminal/synchronous";
+	public static final String TERMINAL_SYNC = SCHEMA + HOST + "terminal/synchronous";
 	// find pos password
-	public static final String TERMINAL_FIND_POS = SCHEMA + HOST + "/ZFMerchant/api/terminal/Encryption";
+	public static final String TERMINAL_FIND_POS = SCHEMA + HOST + "terminal/Encryption";
 
 	// Apply List
-	public static final String APPLY_LIST = SCHEMA + HOST + "/ZFMerchant/api/apply/getApplyList";
+	public static final String APPLY_LIST = SCHEMA + HOST + "apply/getApplyList";
 	// Apply Detail
-	public static final String APPLY_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/apply/getApplyDetails";
+	public static final String APPLY_DETAIL = SCHEMA + HOST + "apply/getApplyDetails";
 	// Get the Merchant Detail
-	public static final String APPLY_MERCHANT_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/apply/getMerchant";
+	public static final String APPLY_MERCHANT_DETAIL = SCHEMA + HOST + "apply/getMerchant";
 	// Get the Channel List
-	public static final String APPLY_CHANNEL_LIST = SCHEMA + HOST + "/ZFMerchant/api/apply/getChannels";
+	public static final String APPLY_CHANNEL_LIST = SCHEMA + HOST + "apply/getChannels";
 	// Get the Bank List
-	public static final String APPLY_BANK_LIST = SCHEMA + HOST + "/ZFMerchant/api/apply/ChooseBank";
+	public static final String APPLY_BANK_LIST = SCHEMA + HOST + "apply/ChooseBank";
 
 	// upload image url
-	public static final String UPLOAD_IMAGE = SCHEMA + HOST + "/ZFMerchant/api/comment/upload/tempImage";
+	public static final String UPLOAD_IMAGE = SCHEMA + HOST + "comment/upload/tempImage";
 	// Apply Submit
-	public static final String APPLY_SUBMIT = SCHEMA + HOST + "/ZFMerchant/api/apply/addOpeningApply";
-	public static final String GETEMAILPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendEmailVerificationCode";
+	public static final String APPLY_SUBMIT = SCHEMA + HOST + "apply/addOpeningApply";
+	public static final String GETEMAILPASS = SCHEMA + HOST + "user/sendEmailVerificationCode";
 	// Apply Opening Progress Query  GETEMAILPASS
-	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
-	public static final String WNATBUY = SCHEMA + HOST + "/ZFMerchant/api/paychannel/intention/add";
-	public static final String Add_ress = SCHEMA + HOST + "/ZFMerchant/api/customers/insertAddress/";
-	public static final String REG_PHONECODE = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeReg";
-	public static final String ZHUCHE = SCHEMA + HOST + "/ZFMerchant/api/user/userRegistration";
-	public static final String GETPHONEPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeFind";
-	public static final String order_cart = SCHEMA + HOST + "/ZFMerchant/api/order/cart";
-	//http://114.215.149.242:18080/ZFMerchant/api/order/cart
+	public static final String APPLY_PROGRESS = SCHEMA + HOST + "terminal/openStatus";
+	public static final String WNATBUY = SCHEMA + HOST + "paychannel/intention/add";
+	public static final String Add_ress = SCHEMA + HOST + "customers/insertAddress/";
+	public static final String REG_PHONECODE = SCHEMA + HOST + "user/sendPhoneVerificationCodeReg";
+	public static final String ZHUCHE = SCHEMA + HOST + "user/userRegistration";
+	public static final String GETPHONEPASS = SCHEMA + HOST + "user/sendPhoneVerificationCodeFind";
+	public static final String order_cart = SCHEMA + HOST + "order/cart";
+	//http://114.215.149.242:18080order/cart
 
 
 	public static void getTerminalList(
@@ -563,7 +564,6 @@ public class API {
 
 
 		System.out.println("鍏ュ弬---"+params);
-		//	new HttpRequest(context, callback).post("http://114.215.149.242:18080/ZFMerchant/api/customers/update/", params);
 		new HttpRequest(context, callback).post(Config.URL_CUSTOMERS_UPDATE, params);
 	}
 
@@ -927,7 +927,7 @@ public class API {
 			Context context,
 			int customerId,
 			HttpCallback callback) {
-		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
+		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId+"");
 		new HttpRequest(context, callback).post(url);
 	}
 	//我的信息--删除地址

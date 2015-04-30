@@ -1,9 +1,14 @@
 package com.example.zf_android.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -160,16 +165,29 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
  
 	private void getData() {
 		String url = Config.goodcomment;
-		RequestParams params = new RequestParams();
+		
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("goodId", goodId);
 		params.put("indexPage", page);
 	 	params.put("rows", rows);
-	 	System.out.println("---"+page);
-		params.setUseJsonStreamer(true);
-
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+		
+//		RequestParams params = new RequestParams();
+//		params.put("goodId", goodId);
+//		params.put("indexPage", page);
+//	 	params.put("rows", rows);
+//		params.setUseJsonStreamer(true);
+//
+//		MyApplication.getInstance().getClient()
+//				.post(url, params, new AsyncHttpResponseHandler() {
 		MyApplication.getInstance().getClient()
-				.post(url, params, new AsyncHttpResponseHandler() {
-
+		.post(getApplicationContext(),url, null,entity,"application/json", new AsyncHttpResponseHandler(){
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {

@@ -1,9 +1,14 @@
 package com.example.zf_android.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,6 +49,7 @@ import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.FactoryEntity;
 import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.PosEntity;
+import com.example.zf_android.trade.common.HttpRequest;
 import com.example.zf_android.trade.entity.GriviewEntity;
 import com.example.zf_zandroid.adapter.GridviewAdapter;
 import com.example.zf_zandroid.adapter.HuilvAdapter;
@@ -174,11 +180,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 		id=getIntent().getIntExtra("id", 0);
 		innitView();
-		
+
 		view_pager.setFocusable(true);
 		view_pager.setFocusableInTouchMode(true);
 		view_pager.requestFocus();
-		
+
 		gview=(ScrollViewWithGView) findViewById(R.id.gview);
 		getdata();
 
@@ -416,14 +422,23 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		}
 	}
 	private void getdata() {
-
-		RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("goodId",id);
 		params.put("city_id",MyApplication.getInstance().getCityId());
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 
-		params.setUseJsonStreamer(true);
-		MyApplication.getInstance().getClient().post(Config.URL_GOOD_INFO, params, new AsyncHttpResponseHandler() {
-
+		//		RequestParams params = new RequestParams();
+		//		params.put("goodId",id);
+		//		params.put("city_id",MyApplication.getInstance().getCityId());
+		//	MyApplication.getInstance().getClient().post(Config.URL_GOOD_INFO, params, new AsyncHttpResponseHandler() {
+		MyApplication.getInstance().getClient()
+		.post(getApplicationContext(),Config.URL_GOOD_INFO, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
@@ -458,7 +473,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 								new TypeToken<List<GriviewEntity>>() {}.getType());
 
 						payChannelName = User_button.get(0).getName();
-						
+
 						setFlowLayout(User_button.get(0).getId());//支付通道
 
 						myList=gson.fromJson(JSONUtils.getString(jsonobject,"relativeShopList","[]"), new TypeToken<List<PosEntity>>() {
@@ -544,19 +559,28 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
-
+				System.out.println("");
 			}
 		});
 	}
 	private void getdataByChanel(int pcid) {
-
-		RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("pcid",pcid);
-		System.out.println("---支付通道ID--"+pcid);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+//		RequestParams params = new RequestParams();
+//		params.put("pcid",pcid);
+//		System.out.println("---支付通道ID--"+pcid);
 
-		params.setUseJsonStreamer(true);
-		MyApplication.getInstance().getClient().post(Config.URL_PAYCHANNEL_INFO, params, new AsyncHttpResponseHandler() {
-
+//		params.setUseJsonStreamer(true);
+//		MyApplication.getInstance().getClient().post(Config.URL_PAYCHANNEL_INFO, params, new AsyncHttpResponseHandler() {
+			MyApplication.getInstance().getClient()
+			.post(getApplicationContext(),Config.URL_PAYCHANNEL_INFO, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
@@ -638,7 +662,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							all_price = gfe.getLease_deposit()+opening_cost;
 							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 						}
-						
+
 						//  					    handler.sendEmptyMessage(0);
 					}else{
 						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
@@ -660,14 +684,27 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	}
 	private void addGood(){
 
-		RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customerId",MyApplication.getInstance().getCustomerId());
 		params.put("goodId",goodId);
-		//paychannelId
 		params.put("paychannelId",paychannelId);
-		params.setUseJsonStreamer(true);
-		MyApplication.getInstance().getClient().post(Config.URL_CART_ADD, params, new AsyncHttpResponseHandler() {
-
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+		
+//		RequestParams params = new RequestParams();
+//		params.put("customerId",MyApplication.getInstance().getCustomerId());
+//		params.put("goodId",goodId);
+//		//paychannelId
+//		params.put("paychannelId",paychannelId);
+//		params.setUseJsonStreamer(true);
+//		MyApplication.getInstance().getClient().post(Config.URL_CART_ADD, params, new AsyncHttpResponseHandler() {
+			MyApplication.getInstance().getClient()
+			.post(getApplicationContext(),Config.URL_CART_ADD, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {

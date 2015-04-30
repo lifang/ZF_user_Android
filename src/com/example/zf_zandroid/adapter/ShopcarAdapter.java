@@ -1,8 +1,14 @@
 package com.example.zf_zandroid.adapter;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
+import org.json.JSONObject;
 
 import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
@@ -180,15 +186,25 @@ holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 				builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(final DialogInterface dialog, int which) {
-						
-						RequestParams params = new RequestParams();
-						params.put("id", list.get(hoder.position).getId()); 
 						final int index =hoder.position;
-						params.setUseJsonStreamer(true);
+						
+						Map<String, Object> params = new HashMap<String, Object>();
+						params.put("id", list.get(hoder.position).getId());
+						JSONObject jsonParams = new JSONObject(params);
+						HttpEntity entity;
+						try {
+							entity = new StringEntity(jsonParams.toString(), "UTF-8");
+						} catch (UnsupportedEncodingException e) {
+							return;
+						}
+//						RequestParams params = new RequestParams();
+//						params.put("id", list.get(hoder.position).getId()); 
+//						params.setUseJsonStreamer(true);
 
-						MyApplication.getInstance().getClient()
-						.post(Config.URL_CART_DELETE, params, new AsyncHttpResponseHandler() {
-
+//						MyApplication.getInstance().getClient()
+//						.post(Config.URL_CART_DELETE, params, new AsyncHttpResponseHandler() {
+							MyApplication.getInstance().getClient()
+							.post(context,Config.URL_CART_DELETE, null,entity,"application/json", new AsyncHttpResponseHandler(){
 							@Override
 							public void onSuccess(int statusCode, Header[] headers,
 									byte[] responseBody) {
@@ -302,14 +318,26 @@ private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeLis
 public void changeContent(final int index,final int cont){
 
 	String url =  Config.Car_edit;
-	RequestParams params = new RequestParams();
+	
+	Map<String, Object> params = new HashMap<String, Object>();
 	params.put("id", list.get(index).getId());
 	params.put("quantity", cont);
-	params.setUseJsonStreamer(true);
+	JSONObject jsonParams = new JSONObject(params);
+	HttpEntity entity;
+	try {
+		entity = new StringEntity(jsonParams.toString(), "UTF-8");
+	} catch (UnsupportedEncodingException e) {
+		return;
+	}
+//	RequestParams params = new RequestParams();
+//	params.put("id", list.get(index).getId());
+//	params.put("quantity", cont);
+//	params.setUseJsonStreamer(true);
 
+//	MyApplication.getInstance().getClient()
+//	.post(url, params, new AsyncHttpResponseHandler() {
 	MyApplication.getInstance().getClient()
-	.post(url, params, new AsyncHttpResponseHandler() {
-
+	.post(context,url, null,entity,"application/json", new AsyncHttpResponseHandler(){
 		@Override
 		public void onSuccess(int statusCode, Header[] headers,
 				byte[] responseBody) {

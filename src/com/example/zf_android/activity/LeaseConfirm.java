@@ -1,10 +1,15 @@
 package com.example.zf_android.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -77,7 +82,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		if (!StringUtil.isNull(image_url)) {
 			ImageCacheUtil.IMAGE_CACHE.get(image_url,evevt_img);
 		}
-		
+
 		title2.setText(good.getTitle());
 		content2.setText(good.getGood_brand()+good.getModel_number());
 		channel_text.setText(getIntent().getExtras().getString("payChannelName", ""));
@@ -177,7 +182,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 
 	private void getData() {
 		myList.clear();
-		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId);
+		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId+"");
 		System.out.println("---getData-");
 		MyApplication.getInstance().getClient()
 		.post(url, new AsyncHttpResponseHandler() {
@@ -207,11 +212,11 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 						}.getType());
 
 						myList.addAll(moreList);
-						
+
 						tv_sjr.setText("收件人： ");
 						tv_tel.setText("");
 						tv_adress.setText("地址：");
-						
+
 						for(int i=0;i<myList.size();i++){
 							if(myList.get(i).getIsDefault()==1){
 								tv_sjr.setText("收件人： "+myList.get(i).getReceiver());
@@ -293,9 +298,10 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		}
 	}
 	private void confirmGood() {
-		
+
 		comment=comment_et.getText().toString();
-		RequestParams params = new RequestParams();
+
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customerId", customerId);
 		params.put("goodId", goodId);
 		params.put("paychannelId", paychannelId);
@@ -303,14 +309,29 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		params.put("quantity", quantity);
 		params.put("comment", comment);
 		params.put("is_need_invoice", is_need_invoice);
-		//		params.put("invoice_type", invoice_type);
-		//		params.put("invoice_info", et_titel.getText().toString());
-		params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+
+		//		RequestParams params = new RequestParams();
+		//		params.put("customerId", customerId);
+		//		params.put("goodId", goodId);
+		//		params.put("paychannelId", paychannelId);
+		//		params.put("addressId", addressId);
+		//		params.put("quantity", quantity);
+		//		params.put("comment", comment);
+		//		params.put("is_need_invoice", is_need_invoice);
+		//		params.setUseJsonStreamer(true);
 
 		String Urla=Config.URL_ORDER_LEASE;
+		//		MyApplication.getInstance().getClient()
+		//		.post(Urla, params, new AsyncHttpResponseHandler() {
 		MyApplication.getInstance().getClient()
-		.post(Urla, params, new AsyncHttpResponseHandler() {
-
+		.post(getApplicationContext(),Urla, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
