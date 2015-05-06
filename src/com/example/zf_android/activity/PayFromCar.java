@@ -5,6 +5,7 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,16 +30,18 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_zandroid.adapter.OrderDetail_PosAdapter;
 import com.example.zf_zandroid.adapter.RecordAdapter;
 import com.google.gson.reflect.TypeToken;
+import com.unionpay.uppayplugin.demo.APKActivity;
 
 
 public class PayFromCar extends PayActivity implements OnClickListener{
 	private TextView tv_pay;
-	private LinearLayout titleback_linear_back, ll_sh;
+	private LinearLayout titleback_linear_back, ll_sh,ll_request;
 	private String orderId = "";
 	private String outTradeNo;
 	private String subject;
 	private String body;
 	private String price;
+	private String unionprice;
 	
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -68,7 +71,9 @@ public class PayFromCar extends PayActivity implements OnClickListener{
 		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
 		titleback_linear_back.setOnClickListener(this);
 		ll_sh = (LinearLayout) findViewById(R.id.ll_sh);
+		ll_request = (LinearLayout) findViewById(R.id.ll_request);
 		ll_sh.setOnClickListener(this);
+		ll_request.setOnClickListener(this);
 		
 		getData();
 	}
@@ -79,7 +84,18 @@ public class PayFromCar extends PayActivity implements OnClickListener{
 				dialogIntent();
 			break;
 		case R.id.ll_sh:
-				pay(outTradeNo, subject, body, price);
+			pay(outTradeNo, subject, body, price);
+			break;
+		case R.id.ll_request:
+//				pay(outTradeNo, subject, body, price);
+			
+			Intent intent = new Intent();
+	        intent.setClass(this, APKActivity.class);
+	        intent.putExtra("orderId", orderId);
+	        intent.putExtra("outTradeNo", outTradeNo);
+	        intent.putExtra("price", unionprice);
+	        startActivity(intent);
+	        finish();
 			break;
 		default:
 			break;
@@ -126,6 +142,7 @@ public class PayFromCar extends PayActivity implements OnClickListener{
 				}
 				outTradeNo = orderDetail.getOrder_number();
 				price = orderDetail.getOrder_totalprice();
+				unionprice =price;
 				price = String.format("%.2f", Integer.parseInt(price)/100f);
 				handler.sendEmptyMessage(0);
 			}

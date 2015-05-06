@@ -440,6 +440,11 @@
             android:exported="false"
             android:screenOrientation="behind" >
         </activity>
+        <activity
+            android:name="com.unionpay.uppayplugin.demo.APKActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait" >
+        </activity>
 
     </application>
 

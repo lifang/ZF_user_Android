@@ -364,9 +364,9 @@ public class MyApplication extends org.litepal.LitePalApplication {
 				.threadPoolSize(3)
 				// 线程池内加载的数量
 				.threadPriority(Thread.NORM_PRIORITY - 2)	
+				// 自定义缓存路径
 				.discCache(new UnlimitedDiscCache(cacheDir))
 				.discCacheFileCount(10)
-				// 自定义缓存路径,图片缓存到sd卡
 				.tasksProcessingOrder(QueueProcessingType.FIFO)
 				.memoryCache(new LruMemoryCache(4 * 1024 * 1024))
 				.memoryCacheSizePercentage(10)
