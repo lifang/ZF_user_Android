@@ -18,6 +18,7 @@ import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.activity.OrderDetail;
 import com.example.zf_android.activity.PayFromCar;
 
@@ -53,8 +54,8 @@ public abstract class BaseActivity extends Activity implements Callback,
 	private final String mMode = "01";
 	// private static final String TN_URL_01 =
 	// "http://202.101.25.178:8080/sim/gettn";
-	private static final String TN_URL_01 = "http://192.168.10.120:8081/ZFMerchant/unionpay.do";
-	private static final String TN_URL_02 = "http://192.168.10.120:8081/ZFMerchant/api/pay/alipayback";
+	private static final String TN_URL_01 = "http://121.40.84.2:8080/ZFMerchant/unionpay.do";
+	private static final String TN_URL_02 = "http://121.40.84.2:8080/ZFMerchant/api/pay/alipayback";
 	protected String outTradeNo;
 	protected String price;
 	protected String orderId;
@@ -85,7 +86,6 @@ public abstract class BaseActivity extends Activity implements Callback,
 
 	}
 
-	public abstract void updateTextView(TextView tv);
 
 	@Override
 	public boolean handleMessage(Message msg) {
@@ -106,7 +106,8 @@ public abstract class BaseActivity extends Activity implements Callback,
 					dialog.dismiss();
 					// finish();
 					if (str.equalsIgnoreCase("success")) {
-
+						
+						MyApplication.getInstance().setHasOrderPaid(true);
 						Intent intent = new Intent(BaseActivity.this,
 								OrderDetail.class);
 						intent.putExtra("status", 2);
@@ -116,20 +117,20 @@ public abstract class BaseActivity extends Activity implements Callback,
 
 					} else if (str.equalsIgnoreCase("fail")) {
 
-						Intent intent = new Intent(BaseActivity.this,
-								OrderDetail.class);
-						intent.putExtra("status", 1);
-						intent.putExtra("id", orderId);
-						startActivity(intent);
+//						Intent intent = new Intent(BaseActivity.this,
+//								OrderDetail.class);
+//						intent.putExtra("status", 1);
+//						intent.putExtra("id", orderId);
+//						startActivity(intent);
 						finish();
 
 					} else if (str.equalsIgnoreCase("cancel")) {
 
-						Intent intent = new Intent(BaseActivity.this,
-								OrderDetail.class);
-						intent.putExtra("status", 1);
-						intent.putExtra("id", orderId);
-						startActivity(intent);
+//						Intent intent = new Intent(BaseActivity.this,
+//								OrderDetail.class);
+//						intent.putExtra("status", 1);
+//						intent.putExtra("id", orderId);
+//						startActivity(intent);
 						finish();
 
 					}
@@ -178,6 +179,10 @@ public abstract class BaseActivity extends Activity implements Callback,
 		 */
 		str = data.getExtras().getString("pay_result");
 		if (str.equalsIgnoreCase("success")) {
+			
+			//支付成功选择支付页面清除
+			MyApplication.getInstance().clearHistoryForPay();
+			
 			pay_result = "支付成功!";
 			mLoadingDialog = ProgressDialog.show(mContext, // context
 					"", // title
@@ -202,8 +207,14 @@ public abstract class BaseActivity extends Activity implements Callback,
 
 		} else if (str.equalsIgnoreCase("fail")) {
 			pay_result = "支付失败!";
+			Message msg = mHandler.obtainMessage();
+			msg.what = 1;
+			mHandler.sendMessage(msg);
 		} else if (str.equalsIgnoreCase("cancel")) {
 			pay_result = "支付取消!";
+			Message msg = mHandler.obtainMessage();
+			msg.what = 1;
+			mHandler.sendMessage(msg);
 		}
 		
 	}

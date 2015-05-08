@@ -17,8 +17,8 @@ public class Config {
 
 	//http://www.ebank007.com
 //	public final static String PATHS = "http://www.ebank007.com/api/";
-//	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
-	public final static String PATHS = "http://192.168.10.120:8081/ZFMerchant/api/";
+	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
+//	public final static String PATHS = "http://192.168.10.120:8081/ZFMerchant/api/";
 
 	public final static String IMAGE_PATH = "";
 	public static String URL_CHECK_VERSION=PATHS+"comment/appVersion";

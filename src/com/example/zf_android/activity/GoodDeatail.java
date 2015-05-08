@@ -12,6 +12,7 @@ import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -49,6 +50,7 @@ import com.example.zf_android.entity.ChanelEntitiy;
 import com.example.zf_android.entity.FactoryEntity;
 import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.entity.PosEntity;
+import com.example.zf_android.trade.common.DialogUtil;
 import com.example.zf_android.trade.common.HttpRequest;
 import com.example.zf_android.trade.entity.GriviewEntity;
 import com.example.zf_zandroid.adapter.GridviewAdapter;
@@ -437,11 +439,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		//		params.put("goodId",id);
 		//		params.put("city_id",MyApplication.getInstance().getCityId());
 		//	MyApplication.getInstance().getClient().post(Config.URL_GOOD_INFO, params, new AsyncHttpResponseHandler() {
+		loadingDialog = DialogUtil.getLoadingDialg(this);
+		loadingDialog.show();
 		MyApplication.getInstance().getClient()
 		.post(getApplicationContext(),Config.URL_GOOD_INFO, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
+				loadingDialog.dismiss();
 				String userMsg = new String(responseBody).toString();
 				Log.d("ljp", userMsg);
 				Gson gson = new Gson();
@@ -559,6 +564,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
+				loadingDialog.dismiss();
 				System.out.println("");
 			}
 		});

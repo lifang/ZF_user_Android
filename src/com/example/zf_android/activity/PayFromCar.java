@@ -95,7 +95,12 @@ public class PayFromCar extends PayActivity implements OnClickListener{
 	        intent.putExtra("outTradeNo", outTradeNo);
 	        intent.putExtra("price", unionprice);
 	        startActivity(intent);
-	        finish();
+	        
+	        if(!MyApplication.getInstance().getHistoryList().contains(this)){
+	        	MyApplication.getInstance().getHistoryList().add(this);	
+	        }
+	        
+//	        finish();
 			break;
 		default:
 			break;
@@ -157,6 +162,7 @@ public class PayFromCar extends PayActivity implements OnClickListener{
 	
 	@Override
 	public void success() {
+		MyApplication.getInstance().setHasOrderPaid(true);
 		Intent intent = new Intent(PayFromCar.this,OrderDetail.class);
 		intent.putExtra("status",2);
 		intent.putExtra("id", orderId);

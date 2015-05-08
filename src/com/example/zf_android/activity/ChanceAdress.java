@@ -26,6 +26,7 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;
+import com.example.zf_android.trade.common.DialogUtil;
 import com.example.zf_zandroid.adapter.ChooseAdressAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -119,6 +120,8 @@ public class ChanceAdress extends BaseActivity{
 	}
 	private void getData() {
 		myList.clear();
+		loadingDialog = DialogUtil.getLoadingDialg(this);
+		loadingDialog.show();
 		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId+"");
 		MyApplication.getInstance().getClient()
 		.post(url, new AsyncHttpResponseHandler() {
@@ -126,6 +129,8 @@ public class ChanceAdress extends BaseActivity{
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
+				
+				loadingDialog.dismiss();
 				String responseMsg = new String(responseBody)
 				.toString();
 				Log.e("print", responseMsg);
@@ -161,6 +166,7 @@ public class ChanceAdress extends BaseActivity{
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
+				loadingDialog.dismiss();
 				System.out.println("-onFailure---");
 				Log.e("print", "-onFailure---" + error);
 			}

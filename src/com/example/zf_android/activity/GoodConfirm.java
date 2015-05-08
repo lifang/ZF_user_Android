@@ -38,6 +38,7 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;
 import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.DialogUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -216,11 +217,15 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	private void getData1() { 
 		myList.clear();
 		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId+"");
+		loadingDialog = DialogUtil.getLoadingDialg(this);
+		loadingDialog.show();
+		
 		MyApplication.getInstance().getClient()
 		.post(url, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
+				loadingDialog.dismiss();
 				String responseMsg = new String(responseBody)
 				.toString();
 				Log.e("print", responseMsg);
@@ -268,6 +273,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
+				loadingDialog.dismiss();
 				System.out.println("-onFailure---");
 				Log.e("print", "-onFailure---" + error);
 			}

@@ -1,8 +1,14 @@
 package com.example.zf_android;
 
+import com.example.zf_android.trade.common.DialogUtil;
+
 import android.app.Activity;
+import android.app.Dialog;
 
 public class BaseActivity extends Activity{
+	
+	protected Dialog loadingDialog ;
+	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

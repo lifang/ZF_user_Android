@@ -270,4 +270,14 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		}
 	}
 
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		if(MyApplication.getInstance().isHasOrderPaid()){
+			onRefresh();
+			MyApplication.getInstance().setHasOrderPaid(false);
+		}
+		super.onResume();
+	}
+	
 }
