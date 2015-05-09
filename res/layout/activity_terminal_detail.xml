@@ -113,6 +113,9 @@
 					android:background="#e5e4e4"
 					android:paddingBottom="20dp"/>
 			</LinearLayout>
+			<View 
+			    android:layout_width="match_parent"
+			    android:layout_height="20dp"/>
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

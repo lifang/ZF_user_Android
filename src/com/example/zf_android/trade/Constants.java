@@ -6,6 +6,9 @@ public class Constants {
 	
 	public static Integer CUSTOMER_ID = MyApplication.getInstance().getCustomerId();
 
+	public static int CITY_ID_SEARCH = 0;
+	public static String CITY_NAME_SEARCH = "";
+	
 	public static class ShowWebImageIntent {
 		public static final String IMAGE_URLS = "image_urls";
 		public static final String IMAGE_NAMES = "image_names";

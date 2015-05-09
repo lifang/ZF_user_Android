@@ -17,7 +17,7 @@ import com.example.zf_android.trade.AfterSaleGridActivity;
 import com.example.zf_android.trade.ApplyOpenProgressActivity;
 
 public class MenuMine extends BaseActivity implements OnClickListener{
-	private ImageView search;
+	private RelativeLayout search;
 	private LinearLayout  ll_dd,ll_shjl,ll_wdxx,ll_sh,ll_request;
 	private RelativeLayout  main_rl1, main_rl2, main_rl3;
 	private TextView countShopCar;
@@ -37,7 +37,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		main_rl3=(RelativeLayout) findViewById(R.id.main_rl_pos1);
 		main_rl3.setOnClickListener(this);
 
-		search=(ImageView) findViewById(R.id.search);
+		search=(RelativeLayout) findViewById(R.id.search);
 		search.setOnClickListener(this);
 		ll_dd=(LinearLayout) findViewById(R.id.ll_dd);
 		ll_dd.setOnClickListener(this);

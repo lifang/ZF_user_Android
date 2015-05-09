@@ -79,11 +79,12 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/ffffff" >
+        >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+             android:background="@color/ffffff"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -372,7 +373,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_marginRight="7dp"
-                android:background="@drawable/edit_login"
                 android:hint="留言" />
 
             <View
@@ -453,7 +453,10 @@
                 android:background="@color/F3F2F2" />
         </LinearLayout>
     </ScrollView>
-
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Viewc2" />
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="74dp"

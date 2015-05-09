@@ -59,7 +59,7 @@
                         android:hint="先生/女士"
                         android:maxWidth="20dp"
                         android:singleLine="true"
-                        android:textSize="17sp" />
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:id="@+id/login_linear_deletename"
@@ -117,11 +117,10 @@
                         android:layout_marginLeft="10dp"
                         android:background="@color/white"
                         android:gravity="right"
-                        android:hint="请输入手机号"
                         android:inputType="number"
                         android:maxWidth="20dp"
                         android:singleLine="true"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:id="@+id/login_linear_deletename1"
@@ -181,7 +180,7 @@
                     android:singleLine="true"
                     android:text="最多填写200个汉字"
                     android:textColor="@color/text292929"
-                    android:textSize="17sp" />
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <Button
@@ -192,9 +191,9 @@
                 android:layout_marginBottom="30dp"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/bg_blue_shape"
-                android:text="保存"
+                android:text="提交"
                 android:textColor="@color/ffffff"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 

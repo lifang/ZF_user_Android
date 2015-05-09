@@ -29,6 +29,7 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.GoodCommentEntity;
+import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.widget.XListView;
 import com.example.zf_android.trade.widget.XListView.IXListViewListener;
 import com.example.zf_zandroid.adapter.GoodCommentAdapter;
@@ -55,6 +56,7 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 	private String title;
 	private LinearLayout eva_nodata;
 	private boolean onRefresh_number = true;
+	private int total = 0;
 	private GoodCommentAdapter myAdapter;
 	List<GoodCommentEntity>  myList = new ArrayList<GoodCommentEntity>();
 	List<GoodCommentEntity>  moreList = new ArrayList<GoodCommentEntity>();
@@ -129,26 +131,20 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 	@Override
 	public void onRefresh() {
 		page = 1;
+		Xlistview.setPullLoadEnable(true);
 		myList.clear();
-		getData();
+		getData();  
 	}
 
 
 	@Override
 	public void onLoadMore() {
-		if (onRefresh_number) {
-			page = page+1;
-			
-			if (Tools.isConnect(getApplicationContext())) {
-				onRefresh_number = false;
-				getData();
-			} else {
-				onRefresh_number = true;
-				handler.sendEmptyMessage(2);
-			}
-		}
-		else {
-			handler.sendEmptyMessage(3);
+		if (myList.size() >= total) {
+			Xlistview.setPullLoadEnable(false);
+			Xlistview.stopLoadMore();
+			CommonUtil.toastShort(this, "no more data");
+		} else {
+			getData();
 		}
 	}
 	private void onLoad() {
@@ -178,14 +174,6 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 			return;
 		}
 		
-//		RequestParams params = new RequestParams();
-//		params.put("goodId", goodId);
-//		params.put("indexPage", page);
-//	 	params.put("rows", rows);
-//		params.setUseJsonStreamer(true);
-//
-//		MyApplication.getInstance().getClient()
-//				.post(url, params, new AsyncHttpResponseHandler() {
 		MyApplication.getInstance().getClient()
 		.post(getApplicationContext(),url, null,entity,"application/json", new AsyncHttpResponseHandler(){
 					@Override
@@ -194,8 +182,6 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 						String responseMsg = new String(responseBody)
 								.toString();
 						Log.e("print", responseMsg);
-
-					 
 						 
 						Gson gson = new Gson();
 						
@@ -209,14 +195,12 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 								String res =jsonobject.getString("result");
 								jsonobject = new JSONObject(res);
 								
+								total = jsonobject.getInt("total");
 								moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<GoodCommentEntity>>() {
 			 					}.getType());
 			 				 
 								myList.addAll(moreList);
 				 				handler.sendEmptyMessage(0);
- 		 					  
-			 				 
-			 			 
 							}else{
 								code = jsonobject.getString("message");
 								Toast.makeText(getApplicationContext(), code, 1000).show();

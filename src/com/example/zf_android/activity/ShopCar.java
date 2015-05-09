@@ -126,6 +126,7 @@ public class ShopCar extends BaseActivity implements OnClickListener {
 	}
 
 	private void getData() {
+		myShopList.clear();
 		API.cartList(this, MyApplication.getInstance().getCustomerId(),
 				new HttpCallback<List<Good>>(this) {
 

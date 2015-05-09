@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.ScrollViewWithListView;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -87,17 +88,13 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 
 				break;
 			case 1:
-				Toast.makeText(getApplicationContext(), (String) msg.obj,
-						Toast.LENGTH_SHORT).show();
-
+				MyToast.showToast(getApplicationContext(),(String) msg.obj);
 				break;
 			case 2: // ����������
-				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),"no 3g or wifi content");
 				break;
 			case 3:
-				Toast.makeText(getApplicationContext(),  " refresh too much",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext()," refresh too much");
 				break;
 			}
 		}
@@ -242,7 +239,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			API.cancelMyOrder(this,id,new HttpCallback(this) {
 				@Override
 				public void onSuccess(Object data) {
-					Toast.makeText(getApplicationContext(), "取消成功", 1000).show();
+					MyToast.showToast(getApplicationContext(),"取消成功");
 					Intent intent = new Intent();
 					setResult(Activity.RESULT_OK, intent);
 					finish();

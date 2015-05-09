@@ -28,14 +28,53 @@
                 android:background="@drawable/back" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/et_search"
+        <RelativeLayout
+            android:id="@+id/searchEditLayout"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:drawableLeft="@drawable/search_bg"
-            android:hint="搜索商品" />
+            android:layout_height="match_parent"
+            android:layout_marginLeft="7dp"
+            android:layout_weight="1" >
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@null"
+                android:drawableLeft="@drawable/search_bg"
+                android:drawablePadding="5dp"
+                android:hint="搜索商品"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <View
+                android:id="@+id/view_x"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/et_search"
+                android:layout_marginTop="5dp"
+                android:background="@color/white" />
+
+            <View
+                android:id="@+id/view_y1"
+                android:layout_width="1dp"
+                android:layout_height="5dp"
+                android:layout_alignBottom="@+id/view_x"
+                android:layout_marginRight="-1dp"
+                android:layout_toLeftOf="@+id/view_x"
+                android:background="@color/white" />
+
+            <View
+                android:id="@+id/view_y2"
+                android:layout_width="1dp"
+                android:layout_height="5dp"
+                android:layout_alignBottom="@+id/view_x"
+                android:layout_marginLeft="-1dp"
+                android:layout_toRightOf="@+id/view_x"
+                android:background="@color/white" />
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/pos_select"
@@ -50,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="11dp"
             android:layout_marginRight="7dp"
             android:background="@drawable/car22" />
     </LinearLayout>

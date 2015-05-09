@@ -49,7 +49,6 @@ public class ContentUs extends BaseActivity implements OnClickListener{
 		case R.id.ll_wx:
 			Dialog dialog = new DialogUtil(ContentUs.this,
 					"保存到本地").getCheck(new CallBackChange() {
-
 						@Override
 						public void change() {
 							
@@ -62,4 +61,5 @@ public class ContentUs extends BaseActivity implements OnClickListener{
 			break;
 		}
 	}
+
 }

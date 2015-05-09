@@ -133,7 +133,14 @@
             android:name="com.example.zf_android.activity.AdressEdit"
             android:screenOrientation="portrait" >
         </activity>
-
+           <activity
+            android:name="com.example.zf_android.activity.FianceActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+       <activity
+            android:name="com.example.zf_android.activity.LoanActivity"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- ====================================================== -->
         <!-- Leo's Activities -->
         <!-- ====================================================== -->
@@ -155,6 +162,10 @@
         </activity>
         <activity
             android:name=".trade.CitySelectActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+              <activity
+            android:name=".trade.CitySearchActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity

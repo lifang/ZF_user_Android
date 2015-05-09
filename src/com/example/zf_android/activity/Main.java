@@ -53,6 +53,7 @@ import com.example.zf_android.R;
 import com.example.zf_android.entity.PicEntity;
 import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CitySelectActivity;
+import com.example.zf_android.trade.Constants;
 import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
 import com.example.zf_android.trade.entity.City;
@@ -72,8 +73,8 @@ public class Main extends BaseActivity implements OnClickListener {
 	private LocationClient mLocationClient;
 	private TextView LocationResult;
 	private RelativeLayout main_rl_pos, main_rl_renzhen, main_rl_zdgl,
-			main_rl_jyls, main_rl_Forum, main_rl_wylc, main_rl_xtgg,
-			main_rl_lxwm, main_rl_my, main_rl_pos1, main_rl_gwc;
+	main_rl_jyls, main_rl_Forum, main_rl_wylc, main_rl_xtgg,
+	main_rl_lxwm, main_rl_my, main_rl_pos1, main_rl_gwc;
 	private ImageView testbutton;
 	private View citySelect;
 	private TextView cityTextView;
@@ -108,7 +109,7 @@ public class Main extends BaseActivity implements OnClickListener {
 			case 0:
 				list.clear();
 				ma.clear();
-				
+
 				for (int i = 0; i < myList.size(); i++) {
 					item = inflater.inflate(R.layout.item, null);
 					list.add(item);
@@ -120,7 +121,7 @@ public class Main extends BaseActivity implements OnClickListener {
 					}else{
 						myList.get(i).save();
 					}
-					
+
 				}
 
 				indicator_imgs = new ImageView[ma.size()];
@@ -152,11 +153,11 @@ public class Main extends BaseActivity implements OnClickListener {
 	private Timer timer = null;
 	private TimerTask task = null;
 	DisplayImageOptions options = new DisplayImageOptions.Builder()
-//			.showImageOnLoading(R.drawable.moren)
-			.cacheInMemory(false).cacheOnDisc(true)
-			.imageScaleType(ImageScaleType.EXACTLY)
-			.bitmapConfig(Bitmap.Config.RGB_565)
-			.displayer(new FadeInBitmapDisplayer(300)).build();;
+	//			.showImageOnLoading(R.drawable.moren)
+	.cacheInMemory(false).cacheOnDisc(true)
+	.imageScaleType(ImageScaleType.EXACTLY)
+	.bitmapConfig(Bitmap.Config.RGB_565)
+	.displayer(new FadeInBitmapDisplayer(300)).build();;
 
 
 	@Override
@@ -168,7 +169,7 @@ public class Main extends BaseActivity implements OnClickListener {
 
 		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
 		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
-		
+
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
@@ -209,12 +210,18 @@ public class Main extends BaseActivity implements OnClickListener {
 		SharedPreferences.Editor editor = mySharedPreferences.edit(); 
 		editor.putInt("countShopCar", Config.countShopCar); 
 		editor.commit(); 
-		
+
 		if (Config.countShopCar != 0) {
 			countShopCar.setVisibility(View.VISIBLE);
 			countShopCar.setText(Config.countShopCar+"");
 		}else {
 			countShopCar.setVisibility(View.GONE);
+		}
+		
+		if (Constants.CITY_ID_SEARCH != 0) {
+			cityId = Constants.CITY_ID_SEARCH;
+			cityName = Constants.CITY_NAME_SEARCH;
+			cityTextView.setText(cityName);
 		}
 
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
@@ -253,53 +260,53 @@ public class Main extends BaseActivity implements OnClickListener {
 	private void getdata() {
 
 		MyApplication
-				.getInstance()
-				.getClient()
-				.post(Config.URL_FIGURE_GETLIST,
-						new AsyncHttpResponseHandler() {
+		.getInstance()
+		.getClient()
+		.post(Config.URL_FIGURE_GETLIST,
+				new AsyncHttpResponseHandler() {
 
-							@Override
-							public void onSuccess(int statusCode,
-									Header[] headers, byte[] responseBody) {
-								System.out.println("-onSuccess---");
-								String responseMsg = new String(responseBody)
-										.toString();
-								Log.e("LJP", responseMsg);
+			@Override
+			public void onSuccess(int statusCode,
+					Header[] headers, byte[] responseBody) {
+				System.out.println("-onSuccess---");
+				String responseMsg = new String(responseBody)
+				.toString();
+				Log.e("LJP", responseMsg);
 
-								Gson gson = new Gson();
+				Gson gson = new Gson();
 
-								JSONObject jsonobject = null;
-								String code = null;
-								try {
-									jsonobject = new JSONObject(responseMsg);
-									code = jsonobject.getString("code");
-									int a = jsonobject.getInt("code");
-									if (a == Config.CODE) {
-										String res = jsonobject
-												.getString("result");
-										myList = gson
-												.fromJson(
-														res,
-														new TypeToken<List<PicEntity>>() {
-														}.getType());
-										handler.sendEmptyMessage(0);
-									} else {
-										code = jsonobject.getString("message");
-										Toast.makeText(getApplicationContext(),
-												code, 1000).show();
-									}
-								} catch (JSONException e) {
-									e.printStackTrace();
-								}
-							}
+				JSONObject jsonobject = null;
+				String code = null;
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					code = jsonobject.getString("code");
+					int a = jsonobject.getInt("code");
+					if (a == Config.CODE) {
+						String res = jsonobject
+								.getString("result");
+						myList = gson
+								.fromJson(
+										res,
+										new TypeToken<List<PicEntity>>() {
+										}.getType());
+						handler.sendEmptyMessage(0);
+					} else {
+						code = jsonobject.getString("message");
+						Toast.makeText(getApplicationContext(),
+								code, 1000).show();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
 
-							@Override
-							public void onFailure(int statusCode,
-									Header[] headers, byte[] responseBody,
-									Throwable error) {
-								error.printStackTrace();
-							}
-						});
+			@Override
+			public void onFailure(int statusCode,
+					Header[] headers, byte[] responseBody,
+					Throwable error) {
+				error.printStackTrace();
+			}
+		});
 
 	}
 
@@ -421,10 +428,12 @@ public class Main extends BaseActivity implements OnClickListener {
 				startActivity(new Intent(this, LoginActivity.class));
 			}
 			break;
-		case R.id.main_rl_Forum: // 健康服务
-			// startActivity(new Intent(Main.this, ChanceAdress.class));
+		case R.id.main_rl_Forum: // 我要贷款
+			 startActivity(new Intent(Main.this, LoanActivity.class));
 			break;
-
+		case R.id.main_rl_wylc: // 我要理财
+			 startActivity(new Intent(Main.this, FianceActivity.class));
+			break;
 		case R.id.main_rl_xtgg: // 系统公告
 
 			startActivity(new Intent(Main.this, SystemMessage.class));
@@ -483,9 +492,9 @@ public class Main extends BaseActivity implements OnClickListener {
 			if (i == 0) { // 初始化第一个为选中状态
 
 				indicator_imgs[i]
-						.setBackgroundResource(R.drawable.indicator_focused);
+						.setBackgroundResource(R.drawable.white_solid_point);
 			} else {
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
+				indicator_imgs[i].setBackgroundResource(R.drawable.white_hollow_point);
 			}
 			((ViewGroup) v).addView(indicator_imgs[i]);
 		}
@@ -550,7 +559,7 @@ public class Main extends BaseActivity implements OnClickListener {
 			// image);
 
 			MyApplication.getInstance().getImageLoader()
-					.displayImage(ma.get(position), image, options);
+			.displayImage(ma.get(position), image, options);
 
 			container.removeView(mList.get(position));
 			container.addView(mList.get(position));
@@ -594,13 +603,13 @@ public class Main extends BaseActivity implements OnClickListener {
 			pagerIndex = position;
 			// 改变所有导航的背景图片为：未选中
 			for (int i = 0; i < indicator_imgs.length; i++) {
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
+				indicator_imgs[i].setBackgroundResource(R.drawable.white_hollow_point);
 			}
 
 			// 改变当前背景图片为：选中
 			index_ima = position;
 			indicator_imgs[position]
-					.setBackgroundResource(R.drawable.indicator_focused);
+					.setBackgroundResource(R.drawable.white_solid_point);
 			System.out.println(index_ima + "```"
 					+ myList.get(index_ima).getWebsite_url());
 			View v = list.get(position);
@@ -619,12 +628,12 @@ public class Main extends BaseActivity implements OnClickListener {
 			});
 		}
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		MyApplication.getInstance().getImageLoader().clearMemoryCache();
 		super.onDestroy();
 	}
-	
+
 }

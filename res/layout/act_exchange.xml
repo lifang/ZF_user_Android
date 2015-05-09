@@ -173,9 +173,9 @@
                 android:layout_marginBottom="30dp"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/bg_blue_shape"
-                android:text="保存"
+                android:text="提交"
                 android:textColor="@color/ffffff"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 

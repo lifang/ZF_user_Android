@@ -50,8 +50,8 @@
 
                 <ImageView
                     android:id="@+id/img_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="37dp"
+                    android:layout_height="16dp"
                     android:layout_marginBottom="3dp"
                     android:background="@drawable/test_zl" />
 
@@ -85,7 +85,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:text="已售99"
-                        android:textColor="@color/text292929"
+                        android:textColor="#b0afaf"
                         android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>

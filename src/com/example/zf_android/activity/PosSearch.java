@@ -10,6 +10,8 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,11 +19,13 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.R;
 import com.example.zf_zandroid.adapter.SearchAdapter;
 /***
@@ -34,7 +38,7 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 	private String CName;
 	private EditText et;
 	private ListView lv;
- 
+	private LinearLayout linear_deletename;
 	private SharedPreferences mySharedPreferences = null;
 	private Editor editor;
 	private int a = 0;
@@ -105,7 +109,8 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 		et.setOnEditorActionListener(this);
 	 
 		poiStr = mySharedPreferences.getString("poiStr", "");
-
+		
+		linear_deletename = (LinearLayout) findViewById(R.id.linear_deletename);
 		lv = (ListView) findViewById(R.id.lv);
 		searchAdapter = new SearchAdapter(PosSearch.this, data);
 		lv.setAdapter(searchAdapter);
@@ -158,14 +163,48 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 				}
 			});
 		}
+		linear_deletename.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				et.setText("");
+			}
+		});
+		et.addTextChangedListener(new TextWatcher() {
 
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				if (s.length() > 0) {
+					linear_deletename.setVisibility(View.VISIBLE);
+				} else {
+					linear_deletename.setVisibility(View.GONE);
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+			}
+		});
 		ml_maplocation = (TextView) findViewById(R.id.delete);
 		ml_maplocation.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) { 
-			 finish();
- 
+				if (StringUtil.isNull(et.getText().toString())) {
+					Intent intent2 = new Intent();
+					intent2.putExtra("text", "");
+					PosSearch.this.setResult(2, intent2);
+					finish();
+				}else {
+					finish();
+				}
 			}
 		});
 	 
@@ -188,13 +227,17 @@ public class PosSearch extends Activity implements OnEditorActionListener {
 		editor = mySharedPreferences.edit();
 		editor.putString("poiStr", "");
 		editor.commit();// 提交
+		poiStr = "";
 		data.clear();
 		data.add("没有搜索记录");
 		searchAdapter.notifyDataSetChanged();
 	}
  
 	private void getData(String name) { 
-		
+		Intent intent2 = new Intent();
+		intent2.putExtra("text", name);
+		PosSearch.this.setResult(2, intent2);
+		finish();
 		
 	}
 	

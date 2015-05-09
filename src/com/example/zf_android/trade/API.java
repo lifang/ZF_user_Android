@@ -31,11 +31,12 @@ import com.loopj.android.http.RequestParams;
 public class API {
 
 	public static final String SCHEMA = "http://";
-	
-//	public static final String HOST = "114.215.149.242:18080";
+
+	//	public static final String HOST = "114.215.149.242:18080";
 	//sit   
-	public final static String HOST = "www.ebank007.com/api/";
-//	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
+	//	public final static String HOST = "www.ebank007.com/api/";
+	//	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
+	public final static String HOST = "121.40.64.167:8080/api/";
 	public static final String EDITADRESS = SCHEMA + HOST + "customers/updateAddress";
 
 	// selection terminal list
@@ -47,7 +48,7 @@ public class API {
 	// trade record detail
 	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST + "trade/record/getTradeRecord/%d/%d";
 	public static final String GETINFO = SCHEMA + HOST + "customers/getOne/%d";
-	
+
 	public static final String AFTER_SALE_MAINTAIN_LIST = SCHEMA + HOST + "cs/repair/getAll";
 	public static final String AFTER_SALE_RETURN_LIST = SCHEMA + HOST + "return/getAll";
 	public static final String AFTER_SALE_CANCEL_LIST = SCHEMA + HOST + "cs/cancels/getAll";
@@ -754,19 +755,19 @@ public class API {
 		Gson gson = new Gson();
 		try {
 			if (brands_id != null) 
-			params.put("brands_id", new JSONArray(gson.toJson(brands_id)));
+				params.put("brands_id", new JSONArray(gson.toJson(brands_id)));
 			if (category != null) 
-			params.put("category", new JSONArray(gson.toJson(category)));
+				params.put("category", new JSONArray(gson.toJson(category)));
 			if (pay_channel_id != null) 
-			params.put("pay_channel_id", new JSONArray(gson.toJson(pay_channel_id)));
+				params.put("pay_channel_id", new JSONArray(gson.toJson(pay_channel_id)));
 			if (pay_card_id != null) 
-			params.put("pay_card_id", new JSONArray(gson.toJson(pay_card_id)));
+				params.put("pay_card_id", new JSONArray(gson.toJson(pay_card_id)));
 			if (trade_type_id != null) 
-			params.put("trade_type_id", new JSONArray(gson.toJson(trade_type_id)));
+				params.put("trade_type_id", new JSONArray(gson.toJson(trade_type_id)));
 			if (sale_slip_id != null) 
-			params.put("sale_slip_id", new JSONArray(gson.toJson(sale_slip_id)));
+				params.put("sale_slip_id", new JSONArray(gson.toJson(sale_slip_id)));
 			if (tDate != null) 
-			params.put("tDate", new JSONArray(gson.toJson(tDate)));
+				params.put("tDate", new JSONArray(gson.toJson(tDate)));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -788,7 +789,7 @@ public class API {
 			int  id,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		String url = MessageFormat.format(Config.URL_MERCHANT_INFO, id);
+		String url = MessageFormat.format(Config.URL_MERCHANT_INFO, id+"");
 		new HttpRequest(context, callback).post(url);
 	}
 
@@ -896,7 +897,7 @@ public class API {
 			int page,
 			int rows,
 			HttpCallback callback) {
-		String url = MessageFormat.format(Config.URL_GET_INTEGRALLIST,customerId, page, rows);
+		String url = MessageFormat.format(Config.URL_GET_INTEGRALLIST,customerId+"", page, rows);
 		new HttpRequest(context, callback).post(url);
 	}
 	//我的信息--我的积分总计
@@ -904,7 +905,7 @@ public class API {
 			Context context,
 			int customerId,
 			HttpCallback callback) {
-		String url = MessageFormat.format(Config.URL_GET_INTEGRALTOTAL,customerId);
+		String url = MessageFormat.format(Config.URL_GET_INTEGRALTOTAL,customerId+"");
 		new HttpRequest(context, callback).post(url);
 	}
 	//我的信息--提交积分兑换
@@ -946,7 +947,7 @@ public class API {
 			int page,
 			int rows,
 			HttpCallback callback) {
-		String url = MessageFormat.format(Config.URL_MERCHANT_LIST,customerId, page, rows);
+		String url = MessageFormat.format(Config.URL_MERCHANT_LIST,customerId+"", page, rows);
 		new HttpRequest(context, callback).post(url);
 	}
 	//我的商户--删除商户
@@ -1033,7 +1034,7 @@ public class API {
 		params.put("customerId", customerId);
 		new HttpRequest(context, callback).post(Config.URL_CART_LIST, params);
 	}
-	
+
 	public static void noticeVideo(
 			Context context,
 			int terminalId) {

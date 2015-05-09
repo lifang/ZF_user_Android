@@ -37,6 +37,7 @@ import cn.trinea.android.common.util.JSONUtils;
 
 import com.examlpe.zf_android.util.FlowLayout;
 import com.examlpe.zf_android.util.ImageCacheUtil;
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.ScrollViewWithGView;
 import com.examlpe.zf_android.util.ScrollViewWithListView;
 import com.examlpe.zf_android.util.StringUtil;
@@ -152,12 +153,10 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				//	lvAdapter.notifyDataSetChanged();
 				break;
 			case 1:
-				Toast.makeText(getApplicationContext(), (String) msg.obj,
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),(String) msg.obj);
 				break;
 			case 2: // 网络有问题
-				Toast.makeText(getApplicationContext(), "网络未连接",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),"网络未连接");
 				break;
 			case 3:
 
@@ -301,8 +300,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.setting_btn_clear:  
 			if(paychannelId == 0){
-				Toast.makeText(getApplicationContext(), "请选择通道！",
-						Toast.LENGTH_SHORT).show();				
+				MyToast.showToast(getApplicationContext(),"请选择通道！");
 			}else if(islea){ 
 				if (islogin && id != 0) {
 					Intent i21 =new Intent(GoodDeatail.this, LeaseConfirm.class);
@@ -322,7 +320,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					}
 					startActivity(i21);
 				}else {
-					Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+					MyToast.showToast(getApplicationContext(),"请先登录");
 					startActivity(new Intent(this,LoginActivity.class));
 				}
 
@@ -348,7 +346,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					i2.putExtra("goodId", gfe.getId());
 					startActivity(i2);
 				}else {
-					Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+					MyToast.showToast(getApplicationContext(),"请先登录");
 					startActivity(new Intent(this,LoginActivity.class));
 				}
 			}
@@ -357,8 +355,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 		case R.id.setting_btn_clear1:  
 			if(paychannelId == 0){
-				Toast.makeText(getApplicationContext(), "请选择通道！",
-						Toast.LENGTH_SHORT).show();				
+				MyToast.showToast(getApplicationContext(),"请选择通道！");
 			}else {
 				addGood();
 			}
@@ -548,8 +545,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						}
 						handler.sendEmptyMessage(0);
 					}else{
-						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-								Toast.LENGTH_SHORT).show();
+						MyToast.showToast(getApplicationContext(),jsonobject.getString("message"));
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -665,8 +661,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 						//  					    handler.sendEmptyMessage(0);
 					}else{
-						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-								Toast.LENGTH_SHORT).show();
+						MyToast.showToast(getApplicationContext(),jsonobject.getString("message"));
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -723,11 +718,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						startActivity(i);
 					}else if(code==1){
 						Config.countShopCar = Config.countShopCar + 1;
-						Toast.makeText(getApplicationContext(), "添加商品成功",
-								Toast.LENGTH_SHORT).show();
+						MyToast.showToast(getApplicationContext(),"添加商品成功");
 					}else{
-						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-								Toast.LENGTH_SHORT).show();
+						MyToast.showToast(getApplicationContext(),jsonobject.getString("message"));
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -754,9 +747,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 			if (i == 0) { // 初始化第一个为选中状态
 
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator_focused);
+				indicator_imgs[i].setBackgroundResource(R.drawable.white_solid_point);
 			} else {
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
+				indicator_imgs[i].setBackgroundResource(R.drawable.white_hollow_point);
 			}
 			((ViewGroup)v).addView(indicator_imgs[i]);
 		}
@@ -861,12 +854,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 			// 改变所有导航的背景图片为：未选中
 			for (int i = 0; i < indicator_imgs.length; i++) {
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
+				indicator_imgs[i].setBackgroundResource(R.drawable.white_hollow_point);
 			}
 
 			// 改变当前背景图片为：选中
 			index_ima=position;
-			indicator_imgs[position].setBackgroundResource(R.drawable.indicator_focused);
+			indicator_imgs[position].setBackgroundResource(R.drawable.white_solid_point);
 		}
 	}
 }

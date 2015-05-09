@@ -133,6 +133,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 				}
 				menuview.mune_img.setVisibility(View.VISIBLE);
 			}
+		}else {
+			menuview.mune_img.setVisibility(View.GONE);
 		}
 		menuview.mune_title.setText(list.get(groupPosition).getValue());
 		System.out.println("list.get(groupPosition).getDirectoryName()"+list.get(groupPosition).getValue());
@@ -151,7 +153,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 			CheckBox cb=(CheckBox) convertView1.findViewById(R.id.cb_all);
 			RelativeLayout ll= (RelativeLayout) convertView1.findViewById(R.id.menu_rl_c);
 			IVV.setVisibility(View.GONE);
-			ll.setBackgroundColor(context.getResources().getColor(R.color.bg0etitle));
+			ll.setBackgroundColor(context.getResources().getColor(R.color.F3F2F2));
 			//	tv.setPadding(50,  0, 0,  0);
 
 			tv.setText(list.get(groupPosition).getSon().get(childPosition).getValue());
