@@ -1051,4 +1051,3 @@ public class API {
 		new HttpRequest(context, callback).post(Config.URL_REPAIRPAY, params);
 	}
 }
-

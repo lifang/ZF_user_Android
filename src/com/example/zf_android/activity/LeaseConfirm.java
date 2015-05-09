@@ -40,6 +40,7 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;  
 import com.example.zf_android.entity.GoodinfoEntity;
+import com.example.zf_android.trade.common.DialogUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -184,12 +185,15 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		myList.clear();
 		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId+"");
 		System.out.println("---getData-");
+		loadingDialog = DialogUtil.getLoadingDialg(this);
+		loadingDialog.show();
 		MyApplication.getInstance().getClient()
 		.post(url, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
+				loadingDialog.dismiss();
 				String responseMsg = new String(responseBody)
 				.toString();
 				Log.e("print", responseMsg);
@@ -242,6 +246,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
+				loadingDialog.dismiss();
 				System.out.println("-onFailure---");
 				Log.e("print", "-onFailure---" + error);
 			}
@@ -332,11 +337,14 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		String Urla=Config.URL_ORDER_LEASE;
 		//		MyApplication.getInstance().getClient()
 		//		.post(Urla, params, new AsyncHttpResponseHandler() {
+		loadingDialog = DialogUtil.getLoadingDialg(this);
+		loadingDialog.show();
 		MyApplication.getInstance().getClient()
 		.post(getApplicationContext(),Urla, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
+				loadingDialog.dismiss();
 				String responseMsg = new String(responseBody)
 				.toString();
 				Log.e("print", responseMsg);
@@ -367,6 +375,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
 				// TODO Auto-generated method stub
+				loadingDialog.dismiss();
 				System.out.println("-onFailure---");
 				Log.e("print", "-onFailure---" + error);
 			}

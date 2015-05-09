@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.app.Service;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -364,9 +365,9 @@ public class MyApplication extends org.litepal.LitePalApplication {
 				.threadPoolSize(3)
 				// 线程池内加载的数量
 				.threadPriority(Thread.NORM_PRIORITY - 2)	
+				// 自定义缓存路径
 				.discCache(new UnlimitedDiscCache(cacheDir))
 				.discCacheFileCount(10)
-				// 自定义缓存路径,图片缓存到sd卡
 				.tasksProcessingOrder(QueueProcessingType.FIFO)
 				.memoryCache(new LruMemoryCache(4 * 1024 * 1024))
 				.memoryCacheSizePercentage(10)
@@ -395,4 +396,34 @@ public class MyApplication extends org.litepal.LitePalApplication {
 		this.customerId = customerId;
 	}
 
+	private boolean hasOrderPaid;
+
+	public boolean isHasOrderPaid() {
+		return hasOrderPaid;
+	}
+
+	public void setHasOrderPaid(boolean hasOrderPaid) {
+		this.hasOrderPaid = hasOrderPaid;
+	}
+	private ArrayList<Context> historyList = new ArrayList<Context>();
+
+	public ArrayList<Context> getHistoryList() {
+		return historyList;
+	}
+
+	public void setHistoryList(ArrayList<Context> historyList) {
+		this.historyList = historyList;
+	}
+	
+	public void clearHistoryForPay(){
+		try {
+			for (Context activity : historyList) {
+				if (activity != null)
+					((Activity)activity).finish();
+			}
+			historyList.clear();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
