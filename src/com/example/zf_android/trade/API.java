@@ -776,8 +776,9 @@ public class API {
 		try {
 			if (brands_id != null) 
 				params.put("brands_id", new JSONArray(gson.toJson(brands_id)));
-			if (category != null) 
-				params.put("category", new JSONArray(gson.toJson(category)));
+			if (category != null){ 
+				params.put("category", category[0]);
+			}
 			if (pay_channel_id != null) 
 				params.put("pay_channel_id", new JSONArray(gson.toJson(pay_channel_id)));
 			if (pay_card_id != null) 

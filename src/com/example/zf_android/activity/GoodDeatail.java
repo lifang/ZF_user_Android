@@ -27,11 +27,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.trinea.android.common.util.JSONUtils;
@@ -67,6 +69,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private Button setting_btn_clear1,setting_btn_clear;
 	private int id;
 	private LinearLayout titleback_linear_back;
+	private RelativeLayout setting_rl_exit,setting_rl_exit2;
 	private ImageView image,search2,fac_img;
 	private List<String> ma = new ArrayList<String>();
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
@@ -191,6 +194,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 	}
 	private void innitView() {
+		setting_rl_exit = (RelativeLayout) findViewById(R.id.setting_rl_exit);
+		setting_rl_exit2 = (RelativeLayout) findViewById(R.id.setting_rl_exit2);
 		tvc_zx=(TextView) findViewById(R.id.tvc_zx);
 		tvc_qy=(TextView) findViewById(R.id.tvc_qy);
 		tv_lea=(TextView) findViewById(R.id.tv_lea);
@@ -259,6 +264,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			all_price = gfe.getRetail_price()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 			islea=false;
+			
+			setting_rl_exit.setVisibility(View.VISIBLE);
+			LayoutParams lp1=setting_btn_clear.getLayoutParams();
+			setting_btn_clear.setLayoutParams(lp1);
+			
 			setting_btn_clear1.setClickable(true);
 			setting_btn_clear.setText("立即购买");
 			setting_btn_clear1.setBackgroundResource(R.drawable.bg_shape);
@@ -273,6 +283,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			all_price = gfe.getLease_deposit()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 			islea=true;
+			
+			setting_rl_exit.setVisibility(View.GONE);
+			LayoutParams lp=setting_btn_clear.getLayoutParams();
+			lp.width=480;
+			setting_btn_clear.setLayoutParams(lp);
+			
 			setting_btn_clear1.setClickable(false);
 			setting_btn_clear.setText("立即租赁");
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bg0etitle));
@@ -575,14 +591,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		} catch (UnsupportedEncodingException e) {
 			return;
 		}
-//		RequestParams params = new RequestParams();
-//		params.put("pcid",pcid);
-//		System.out.println("---支付通道ID--"+pcid);
+		//		RequestParams params = new RequestParams();
+		//		params.put("pcid",pcid);
+		//		System.out.println("---支付通道ID--"+pcid);
 
-//		params.setUseJsonStreamer(true);
-//		MyApplication.getInstance().getClient().post(Config.URL_PAYCHANNEL_INFO, params, new AsyncHttpResponseHandler() {
-			MyApplication.getInstance().getClient()
-			.post(getApplicationContext(),Config.URL_PAYCHANNEL_INFO, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		//		params.setUseJsonStreamer(true);
+		//		MyApplication.getInstance().getClient().post(Config.URL_PAYCHANNEL_INFO, params, new AsyncHttpResponseHandler() {
+		MyApplication.getInstance().getClient()
+		.post(getApplicationContext(),Config.URL_PAYCHANNEL_INFO, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
@@ -696,16 +712,16 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		} catch (UnsupportedEncodingException e) {
 			return;
 		}
-		
-//		RequestParams params = new RequestParams();
-//		params.put("customerId",MyApplication.getInstance().getCustomerId());
-//		params.put("goodId",goodId);
-//		//paychannelId
-//		params.put("paychannelId",paychannelId);
-//		params.setUseJsonStreamer(true);
-//		MyApplication.getInstance().getClient().post(Config.URL_CART_ADD, params, new AsyncHttpResponseHandler() {
-			MyApplication.getInstance().getClient()
-			.post(getApplicationContext(),Config.URL_CART_ADD, null,entity,"application/json", new AsyncHttpResponseHandler(){
+
+		//		RequestParams params = new RequestParams();
+		//		params.put("customerId",MyApplication.getInstance().getCustomerId());
+		//		params.put("goodId",goodId);
+		//		//paychannelId
+		//		params.put("paychannelId",paychannelId);
+		//		params.setUseJsonStreamer(true);
+		//		MyApplication.getInstance().getClient().post(Config.URL_CART_ADD, params, new AsyncHttpResponseHandler() {
+		MyApplication.getInstance().getClient()
+		.post(getApplicationContext(),Config.URL_CART_ADD, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {

@@ -264,6 +264,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		getData();
 	}
 
+	@SuppressWarnings("null")
 	private void getData() {
 		int[] arraybrands_id = null,arraycategory_id = null,arraypay_channel_id = null,arraypay_card_id = null,
 		arraytrade_type_id = null,arraysale_slip_id = null,arraystDate = null;
@@ -284,6 +285,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				arraycategory_id[i] = category_id.get(i);  
 			}
 		}
+		
 		if (pay_channel_id != null){
 			arraypay_channel_id = new int[pay_channel_id.size()];  
 			if (pay_channel_id.size() == 0) 

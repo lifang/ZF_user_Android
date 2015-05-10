@@ -71,11 +71,12 @@ public class HuilvAdapter extends BaseAdapter {
 		 
 		System.out.println("list.get(position).getName()---"+list.get(position).getName());
 		if(list.get(position).getService_rate()==0){
-			holder.tv_price.setText(list.get(position).getTerminal_rate()+"%");
+			
+			holder.tv_price.setText(String.format("%.1f", list.get(position).getTerminal_rate()/10f)+"%");
 		}else{
-			holder.tv_price.setText(list.get(position).getService_rate()+"%");
+			holder.tv_price.setText(String.format("%.1f", list.get(position).getService_rate()/10f)+"%");
 		}
-		holder.tv_price.setText(list.get(position).getStandard_rate()+"%");
+		holder.tv_price.setText(String.format("%.1f", list.get(position).getStandard_rate()/10f)+"%");
 		holder.tv_dec.setText(list.get(position).getDescription());
 	  
 		return convertView;
