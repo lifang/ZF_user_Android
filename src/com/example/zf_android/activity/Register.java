@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -49,7 +50,7 @@ public class Register extends BaseActivity implements OnClickListener{
 					login_linear_deletename.setVisibility(View.GONE);
 				}
 				if(s.toString().contains("@")){
-					tv_msg.setText("获取验证码");
+					tv_msg.setText("密码设置");
 					isMail=true;
 				}else{
 					tv_msg.setText("获取验证码");
@@ -77,14 +78,12 @@ public class Register extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.login_linear_in:
 			if (StringUtil.isNull(login_edit_name.getText().toString().trim())) {
-				Toast.makeText(getApplicationContext(), "手机号码或邮箱不能为空",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),"手机号码或邮箱不能为空");
 				return;
 			}
 			if (!(StringUtil.isMobile(login_edit_name.getText().toString().trim()) || StringUtil
 					.checkEmail(login_edit_name.getText().toString().trim()))) {
-				Toast.makeText(getApplicationContext(), "请输入正确的手机号码或邮箱",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),"请输入正确的手机号码或邮箱");
 				return;
 			}
 			

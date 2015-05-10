@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -190,25 +191,21 @@ public class RegistMail extends BaseActivity implements OnClickListener{
 	private boolean check() {
 		username=StringUtil.replaceBlank(login_edit_code.getText().toString());
 		if(username.length()==0){
-			Toast.makeText(getApplicationContext(), "请输入邮箱",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"请输入邮箱");
 			return false;
 		}
 		password=StringUtil.replaceBlank(login_edit_pass.getText().toString());
 		String password2=StringUtil.replaceBlank(login_edit_pass2.getText().toString());
 		if(password.length()<4){
-			Toast.makeText(getApplicationContext(), "密码不能为空",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"密码不能为空");
 			return false;
 		}
 		if(password.length() < 6){
-			Toast.makeText(getApplicationContext(), "密码长度最少6个字符",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"密码长度最少6个字符");
 			return false;
 		}
 		if(!password.equals(password2)){
-			Toast.makeText(getApplicationContext(), "二次密码不一样",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"二次密码不一样");
 			return false;
 		}
 		password=StringUtil.Md5(password);
@@ -220,7 +217,7 @@ public class RegistMail extends BaseActivity implements OnClickListener{
 
 			@Override
 			public void onSuccess(Object data) {
-				Toast.makeText(RegistMail.this, "注册成功", 1000).show();
+				MyToast.showToast(getApplicationContext(),"注册成功");
 
 				Intent i =new Intent(getApplicationContext(), Regist4phoneSucces.class);
 				i.putExtra("tel", username);

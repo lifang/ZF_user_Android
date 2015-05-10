@@ -88,18 +88,28 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 			startActivityForResult(intent, 1);
 
 			break;
-		case  R.id.mi_phone: // �ֻ�
-			intent =new Intent(MyInfo.this,ChangeText.class);
+		case  R.id.mi_phone: // �ֻ� 
+			
+			intent =new Intent(MyInfo.this,ChangePhone.class);
 			intent.putExtra("key", 2);
 			intent.putExtra("name", tv_phone.getText().toString());
 			startActivityForResult(intent, 2);
+//			intent =new Intent(MyInfo.this,ChangeText.class);
+//			intent.putExtra("key", 2);
+//			intent.putExtra("name", tv_phone.getText().toString());
+//			startActivityForResult(intent, 2);
 
 			break;
 		case  R.id.mi_email: 
-			intent =new Intent(MyInfo.this,ChangeText.class);
+			intent =new Intent(MyInfo.this,ChangeEmail.class);
 			intent.putExtra("key",3);
 			intent.putExtra("name", tv_email.getText().toString());
 			startActivityForResult(intent, 3);
+			
+//			intent =new Intent(MyInfo.this,ChangeText.class);
+//			intent.putExtra("key",3);
+//			intent.putExtra("name", tv_email.getText().toString());
+//			startActivityForResult(intent, 3);
 
 			break;
 		case  R.id.mi_location: 

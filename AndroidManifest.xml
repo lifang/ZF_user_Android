@@ -121,6 +121,14 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
+         <activity
+            android:name="com.example.zf_android.activity.ChangePhone"
+            android:screenOrientation="portrait" >
+        </activity>
+              <activity
+            android:name="com.example.zf_android.activity.ChangeEmail"
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="com.example.zf_android.activity.OrderDetail"
             android:screenOrientation="portrait" >

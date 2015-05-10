@@ -48,23 +48,36 @@
             android:textColor="@color/white"
             android:textSize="17sp" />
 
-        <ImageView
+        <RelativeLayout
             android:id="@+id/search"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="11dp"
-            android:src="@drawable/delete_sure" />
+            android:layout_toLeftOf="@id/search"
+            android:paddingLeft="10dp"
+            android:paddingRight="11dp" >
 
-        <ImageView
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/delete_sure" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/img_add"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_height="match_parent"
             android:layout_toLeftOf="@id/search"
-            android:padding="20dp"
-            android:src="@drawable/delete_add" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/delete_add" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <LinearLayout

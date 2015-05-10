@@ -44,6 +44,7 @@
                 android:drawableLeft="@drawable/search_bg"
                 android:drawablePadding="5dp"
                 android:hint="搜索商品"
+                android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
 

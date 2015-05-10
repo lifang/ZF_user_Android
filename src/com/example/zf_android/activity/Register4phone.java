@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -136,8 +137,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 			System.out.println("vcode"+Config.reg_phoneCode);
 			
 			if(StringUtil.replaceBlank(login_edit_code.getText().toString()).length()==0){
-				Toast.makeText(getApplicationContext(), "请输入验证码",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),"请输入验证码");
 				return;
 			}
 			
@@ -178,41 +178,34 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 	private boolean check() {
 		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
 		if(email.length()==0){
-			Toast.makeText(getApplicationContext(), "手机号不能为空",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"手机号不能为空");
 			return false;
 		}
 
 		if(StringUtil.replaceBlank(login_edit_code.getText().toString()).length()==0){
-			Toast.makeText(getApplicationContext(), "请输入验证码",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"请输入验证码");
 			return false;
 		}
 		if(!login_edit_code.getText().toString().equals(Config.reg_phoneCode)){
-			Toast.makeText(getApplicationContext(), "验证码错误",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"验证码错误");
 			return false;
 		}
 
 		pass=StringUtil.replaceBlank(login_edit_pass.getText().toString());
 		if(pass.length()==0){
-			Toast.makeText(getApplicationContext(), "密码不能为空",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"密码不能为空");
 			return false;
 		}
 		if(pass.length() < 6){
-			Toast.makeText(getApplicationContext(), "密码长度最少6个字符",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"密码长度最少6个字符");
 			return false;
 		}
 		if(!login_edit_pass2.getText().toString().equals(pass)){
-			Toast.makeText(getApplicationContext(), "二次密码不一样",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"二次密码不一样");
 			return false;
 		}
 		if( tv_jy_type.getText().toString().equals("请选择地区")){
-			Toast.makeText(getApplicationContext(), "请选择地区",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"请选择地区");
 			return false;
 		}
 
@@ -372,7 +365,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 
 			@Override
 			public void onSuccess(Object data) {
-				Toast.makeText(Register4phone.this, "注册成功", 1000).show();
+				MyToast.showToast(getApplicationContext(),"注册成功");
 				Intent i =new Intent(getApplicationContext(), Regist4phoneSucces.class);
 				i.putExtra("tel", email);
 				startActivity(i);
@@ -391,7 +384,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 			@Override
 			public void onSuccess(Object data) {
 				handler.postDelayed(runnable, 1000);
-				Toast.makeText(Register4phone.this, "验证码发送成功", 1000).show();
+				MyToast.showToast(getApplicationContext(),"验证码发送成功");
 				Config.reg_phoneCode= data.toString();
 			}
 

@@ -119,6 +119,8 @@ public class API {
 	public static final String ZHUCHE = SCHEMA + HOST + "user/userRegistration";
 	public static final String GETPHONEPASS = SCHEMA + HOST + "user/sendPhoneVerificationCodeFind";
 	public static final String order_cart = SCHEMA + HOST + "order/cart";
+	public static final String GET_PHONECODE = SCHEMA + HOST + "index/getPhoneCode";
+	public static final String GET_UPDATEEMAILDENTCODE = SCHEMA + HOST + "customers/getUpdateEmailDentcode";
 	//http://114.215.149.242:18080order/cart
 
 
@@ -499,6 +501,24 @@ public class API {
 		params.put("codeNumber", codeNumber);
 
 		new HttpRequest(context, callback).post(REG_PHONECODE, params);
+	}
+	public static void getUpdateEmailDentcode(
+			Context context,
+			int  id,
+			String  email,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("email", email);
+		new HttpRequest(context, callback).post(GET_UPDATEEMAILDENTCODE, params);
+	}
+	public static void getPhoneCode(
+			Context context,
+			String  phone,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("phone", phone);
+		new HttpRequest(context, callback).post(GET_PHONECODE, params);
 	}
 	public static void getEmailPass(
 			Context context,

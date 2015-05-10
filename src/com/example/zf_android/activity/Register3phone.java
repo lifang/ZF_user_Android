@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -100,13 +101,11 @@ public class Register3phone extends BaseActivity   implements OnClickListener{
 		case R.id.login_linear_signin: 
 
 			if(StringUtil.replaceBlank(login_edit_code.getText().toString()).length()==0){
-				Toast.makeText(getApplicationContext(), "请输入验证码",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),"请输入验证码");
 				break;
 			}
-			if(!login_edit_code.getText().toString().endsWith(Config.reg_phoneCode)){
-				Toast.makeText(getApplicationContext(), "验证码错误",
-						Toast.LENGTH_SHORT).show();
+			if(!login_edit_code.getText().toString().trim().endsWith(Config.reg_phoneCode)){
+				MyToast.showToast(getApplicationContext(),"验证码错误");
 				break;
 			}else{
 				Intent i = new Intent(getApplicationContext(),
@@ -130,13 +129,11 @@ public class Register3phone extends BaseActivity   implements OnClickListener{
 	private boolean check() {
 		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
 		if(email.length()==0){
-			Toast.makeText(getApplicationContext(), "手机号不能为空",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"手机号不能为空");
 			return false;
 		}
 		if (!StringUtil.isMobile(email)) {
-			Toast.makeText(getApplicationContext(), "请输入正确的手机号码",
-					Toast.LENGTH_SHORT).show();
+			MyToast.showToast(getApplicationContext(),"请输入正确的手机号码");
 			return false;
 		}
 		return true;
@@ -240,9 +237,9 @@ public class Register3phone extends BaseActivity   implements OnClickListener{
 				new HttpCallback(Register3phone.this) {		       
 			@Override
 			public void onSuccess(Object data) {
+				Config.reg_phoneCode = data+"";
 				handler.postDelayed(runnable, 1000); 
-				Toast.makeText(Register3phone.this, "验证码发送成功", 1000).show();
-				Config.reg_phoneCode= data.toString();
+				MyToast.showToast(getApplicationContext(),"验证码发送成功");
 			}
 			@Override
 			public TypeToken getTypeToken() {

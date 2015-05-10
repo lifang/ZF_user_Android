@@ -9,8 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:scrollbars="none"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,6 +74,8 @@
                     android:hint="@string/hintname"
                     android:maxWidth="20dp"
                     android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="#e0ffffff"
                     android:textSize="17sp" />
 
                 <LinearLayout
@@ -123,6 +125,8 @@
                     android:hint="@string/hintpass"
                     android:inputType="textPassword"
                     android:singleLine="true"
+                    android:textColorHint="#e0ffffff"
+                    android:textColor="@color/white"
                     android:textSize="17sp" />
 
                 <LinearLayout
@@ -146,8 +150,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/bg_blue_shape"
                 android:gravity="center"
