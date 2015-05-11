@@ -1,17 +1,11 @@
 package com.example.zf_android.trade;
 
-import static com.example.zf_android.trade.Constants.CityIntent.CITY_ID;
-import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;

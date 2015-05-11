@@ -134,7 +134,7 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 					}
 					@Override
 					public TypeToken getTypeToken() {
-						return new TypeToken<MyinfoEntity>() {
+						return new TypeToken<ChangeEmailEntity>() {
 						};
 					}
 				});

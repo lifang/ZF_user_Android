@@ -467,6 +467,9 @@ public class Main extends BaseActivity implements OnClickListener {
 			cityId = data.getIntExtra(CITY_ID, 0);
 			cityName = data.getStringExtra(CITY_NAME);
 			cityTextView.setText(cityName);
+			
+			Constants.CITY_ID_SEARCH = cityId;
+			Constants.CITY_NAME_SEARCH = cityName;
 			break;
 		case REQUEST_CITY_WHEEL:
 			province = (Province) data.getSerializableExtra(SELECTED_PROVINCE);
