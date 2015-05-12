@@ -100,5 +100,4 @@ public class Config {
 	//支付成功跳转页面
 	public static final String RETURN_URL = "http://www.ebank007.com/return_url.jsp"; 
 	//public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp"; 
-
 }

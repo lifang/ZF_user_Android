@@ -7,202 +7,89 @@
 
     <include layout="@layout/title_back" />
 
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="我们已经发送验证码短信到"
+        android:textColor="@color/black"
+        android:textSize="@dimen/s_17sp" />
+
+    <TextView
+        android:id="@+id/phoneText"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:gravity="center"
+        android:textColor="@color/bgtitle"
+        android:textSize="@dimen/s_17sp" />
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-         android:layout_marginTop="20dp"
+        android:layout_marginTop="20dp"
         android:background="@color/Viewc2" />
-    <LinearLayout
-        android:layout_width="fill_parent"
-         android:background="@color/ffffff"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="@dimen/d_48dp"
-            android:layout_weight="1"
-            android:background="@color/ffffff" >
 
-            <LinearLayout
-                android:id="@+id/login_img_pass"
-                android:layout_width="48dp"
-                android:layout_height="fill_parent" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_48dp"
+        android:background="@color/ffffff" >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/login_delete"
-                    android:visibility="invisible" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="horizontal" >
 
             <EditText
-                android:id="@+id/login_edit_email"
-                android:layout_width="match_parent"
+                android:id="@+id/edit_code"
+                android:layout_width="120dp"
                 android:layout_height="fill_parent"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/login_img_pass"
                 android:background="@color/ffffff"
-                android:hint="138000000"
+                android:hint="请输入六位验证码"
                 android:maxWidth="20dp"
-               
                 android:singleLine="true"
+                android:maxLength="6"
+            	android:numeric="integer"
                 android:textColor="@color/t333333"
-                android:textColorHint="@color/edithinit"
-                android:textSize="@dimen/s_17sp" />
+                android:textColorHint="@color/hintB5"
+                android:textSize="@dimen/s_14sp" />
 
-            <LinearLayout
-                android:id="@+id/login_linear_deletemali"
-                android:layout_width="@dimen/d_36dp"
-                android:layout_height="@dimen/d_36dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="2dp"
-                android:gravity="center"
-                android:visibility="gone" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/login_delete" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_code"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:background="@color/ffffff"
-            android:gravity="center"
-           	android:layout_marginLeft="7dp"
-            android:paddingRight="10dp"
-            android:text="发送验证码"
-            android:textSize="@dimen/s_17sp" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_delete"
+                android:visibility="gone" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/Viewc2" />
 
-     
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/adadad" />
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/countText"
+        android:layout_marginTop="20dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-         android:background="@color/ffffff"
-        android:orientation="horizontal" >
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="@dimen/d_48dp"
-            android:layout_weight="1"
-             android:background="@color/ffffff"
-            >
-
-            <LinearLayout
-                android:id="@+id/login_img_passcode"
-                android:layout_width="48dp"
-                android:layout_height="fill_parent"
-                android:gravity="center" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/login_edit_code"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/login_img_passcode"
-           android:background="@color/ffffff"
-                android:hint="请输入验证码"
-                android:maxWidth="20dp"
-                android:singleLine="true"
-                android:textColor="@color/t333333"
-                android:textColorHint="@color/edithinit"
-                android:textSize="@dimen/s_17sp" />
-
-            <LinearLayout
-                android:id="@+id/login_linear_deletcode"
-                android:layout_width="@dimen/d_36dp"
-                android:layout_height="@dimen/d_36dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="2dp"
-                android:gravity="center"
-                android:visibility="gone" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/login_delete" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/d_48dp"
-            android:layout_marginRight="@dimen/margin_left2"
-           android:background="@color/ffffff" >
-
-            <ImageView
-                android:id="@+id/img_check"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_centerInParent="true"
-                android:src="@drawable/check_y"
-                android:visibility="invisible" />
-
-            <ImageView
-                android:id="@+id/img_check_n"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_centerInParent="true"
-                android:src="@drawable/check_n"
-                android:visibility="invisible" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_check"
-            android:layout_width="110dp"
-            android:layout_height="fill_parent"
-            android:background="@color/ffffff"
-            android:gravity="center"
-            android:text="点击验证"
-           	android:visibility="gone"
-            android:textSize="@dimen/s_17sp"
-            />
-    </LinearLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/adadad" />
-
-     
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/adadad" />
-
-     
- 
+        android:gravity="center"
+        android:text="接收短信大约需要120秒"
+        android:textColor="@color/hint6C"
+        android:textSize="@dimen/s_14sp" />
+    
     <LinearLayout
-        android:id="@+id/login_linear_signin"
+        android:id="@+id/checkCode"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-     	android:layout_gravity="center_horizontal"
-        android:layout_marginTop="42dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
         android:background="@drawable/bg_blue_shape"
         android:gravity="center"
         android:orientation="horizontal" >
@@ -212,9 +99,33 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            android:text="核对验证码"
+            android:text="提交"
             android:textColor="@color/fffefe"
             android:textSize="@dimen/s_17sp" />
     </LinearLayout>
 
+    
+    <TextView
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="轻触上面的“提交”按钮注册完成,即代表您同意"
+        android:textColor="@color/hint6C"
+        android:textSize="@dimen/s_14sp" />
+    
+    <TextView
+        android:id="@+id/agreementText"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="《华尔街金融平台用户协议》"
+        android:textColor="@color/hint6C"
+        android:textSize="@dimen/s_14sp" />
+    
 </LinearLayout>

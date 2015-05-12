@@ -53,7 +53,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 
 	private void initView() {
-
+		MyApplication.getInstance().getHistoryList().add(this);
 		mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
 

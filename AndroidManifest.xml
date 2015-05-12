@@ -446,6 +446,12 @@
             android:screenOrientation="portrait" >
         </activity>
 
+         <activity
+            android:name="com.example.zf_android.activity.AgreementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        
     </application>
 
 </manifest>

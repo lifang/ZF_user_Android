@@ -13,8 +13,6 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
  
 public class Regist4phoneSucces extends BaseActivity implements OnClickListener{
-	private TextView tv_tel;
-	private String tel;
 	private LinearLayout login_linear_signin;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +20,9 @@ public class Regist4phoneSucces extends BaseActivity implements OnClickListener{
 		MyApplication.getInstance().addActivity(this);
 		setContentView(R.layout.r4ps);
 		new TitleMenuUtil(Regist4phoneSucces.this, "注册").show();
-		tv_tel=(TextView) findViewById(R.id.tv_tel);
-		tel=getIntent().getStringExtra("tel");
-		tv_tel.setText(tel);
 		login_linear_signin=(LinearLayout) findViewById(R.id.login_linear_signin);
 		login_linear_signin.setOnClickListener(this);
+		MyApplication.getInstance().clearHistoryForPay();
 	}
 
 	@Override
