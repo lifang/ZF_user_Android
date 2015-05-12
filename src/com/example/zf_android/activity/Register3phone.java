@@ -26,6 +26,7 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.google.gson.reflect.TypeToken;
 
 public class Register3phone extends BaseActivity   implements OnClickListener{
+	private LinearLayout tv_codeLayout;
 	private TextView tv_code,tv_check;
 	private EditText login_edit_email,login_edit_code;
 	private LinearLayout login_linear_deletemali,login_linear_deletcode ,login_linear_signin ;
@@ -42,7 +43,7 @@ public class Register3phone extends BaseActivity   implements OnClickListener{
 				if(Countmun==0){
 
 					isRun=false;
-					tv_code.setClickable(true);
+					tv_codeLayout.setClickable(true);
 
 					tv_code.setText("发送验证码");
 					System.out.println("destroy`"+Countmun);
@@ -72,7 +73,7 @@ public class Register3phone extends BaseActivity   implements OnClickListener{
 				if(Countmun==0){
 
 					Countmun=120;
-					tv_code.setClickable(true);
+					tv_codeLayout.setClickable(true);
 					tv_code.setText("发送验证码");
 				}else{
 
@@ -84,17 +85,17 @@ public class Register3phone extends BaseActivity   implements OnClickListener{
 			}  
 		};
 		getCode();
-		tv_code.setClickable(false);
+		tv_codeLayout.setClickable(false);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch ( v.getId()) {
 
-		case R.id.tv_code:  
+		case R.id.tv_codeLayout:  
 			if(check())
 				getCode();
-			tv_code.setClickable(false);
+			tv_codeLayout.setClickable(false);
 
 			break;
 
@@ -148,8 +149,9 @@ public class Register3phone extends BaseActivity   implements OnClickListener{
 	private void initView() {
 		tv_check=(TextView) findViewById(R.id.tv_check);
 		tv_check.setOnClickListener(this);
+		tv_codeLayout = (LinearLayout) findViewById(R.id.tv_codeLayout);
 		tv_code=(TextView) findViewById(R.id.tv_code);
-		tv_code.setOnClickListener(this);
+		tv_codeLayout.setOnClickListener(this);
 
 
 		login_linear_signin=(LinearLayout) findViewById(R.id.login_linear_signin);

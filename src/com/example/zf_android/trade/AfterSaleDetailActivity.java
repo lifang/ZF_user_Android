@@ -220,9 +220,9 @@ public class AfterSaleDetailActivity extends Activity {
 					}else {
 						terminalPairs.put(terminalKeys[7], "");
 					}
-					terminalPairs.put(terminalKeys[8], lease.getLeaseLength() + getString(R.string.notation_day));
-					terminalPairs.put(terminalKeys[9], lease.getLeaseMaxTime() + getString(R.string.notation_day));
-					terminalPairs.put(terminalKeys[10], lease.getLeaseMinTime() + getString(R.string.notation_day));
+					terminalPairs.put(terminalKeys[8], lease.getLeaseLength() + getString(R.string.notation_mouth));
+					terminalPairs.put(terminalKeys[9], lease.getLeaseMaxTime() + getString(R.string.notation_mouth));
+					terminalPairs.put(terminalKeys[10], lease.getLeaseMinTime() + getString(R.string.notation_mouth));
 				}
 				renderCategoryTemplate(R.string.after_sale_terminal_title, terminalPairs);
 

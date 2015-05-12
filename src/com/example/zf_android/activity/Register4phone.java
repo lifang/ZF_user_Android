@@ -33,6 +33,7 @@ import com.example.zf_android.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
 
 public class Register4phone extends BaseActivity   implements OnClickListener{
+	private LinearLayout tv_codeLayout;
 	private TextView tv_code,tv_check,tv_jy_type;
 	private EditText login_edit_email,login_edit_code,login_edit_pass,login_edit_pass2;
 	private LinearLayout login_linear_deletemali,login_linear_deletcode,login_linear_deletpass 
@@ -51,7 +52,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 				if(Countmun==0){
 
 					isRun=false;
-					tv_code.setClickable(true);
+					tv_codeLayout.setClickable(true);
 
 					tv_code.setText("发送验证码");
 					System.out.println("destroy`"+Countmun);
@@ -87,7 +88,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 				if(Countmun==0){
 
 					Countmun=120;
-					tv_code.setClickable(true);
+					tv_codeLayout.setClickable(true);
 					tv_code.setText("发送验证码");
 				}else{
 
@@ -128,9 +129,9 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 			Intent intent = new Intent(Register4phone.this, CityProvinceActivity.class);
 			startActivityForResult(intent, REQUEST_CHOOSE_CITY);
 			break;
-		case R.id.tv_code:  // ��ȡ��֤��tv_check
+		case R.id.tv_codeLayout:  // ��ȡ��֤��tv_check
 
-			tv_code.setClickable(false);
+			tv_codeLayout.setClickable(false);
 			getCode();
 			break;
 		case R.id.tv_check:  // ��ȡ��֤�� 
@@ -225,7 +226,8 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 		img_check=(ImageView) findViewById(R.id.img_check);
 		img_check_n=(ImageView) findViewById(R.id.img_check_n);
 		tv_code=(TextView) findViewById(R.id.tv_code);
-		tv_code.setOnClickListener(this);
+		tv_codeLayout = (LinearLayout) findViewById(R.id.tv_codeLayout);
+		tv_codeLayout.setOnClickListener(this);
 		tv_jy_type=(TextView) findViewById(R.id.tv_jy_type);
 		ll_jy_type=(LinearLayout) findViewById(R.id.ll_jy_type);
 		ll_jy_type.setOnClickListener(this);

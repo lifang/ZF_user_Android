@@ -131,28 +131,6 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 			}
 		});
 
-		//		API.getMyOrderById(this, Integer.parseInt(orderId), 
-		//				new HttpCallback<List<OrderDetailEntity>>(this) {
-		//
-		//			@Override
-		//			public void onSuccess(List<OrderDetailEntity> data) {
-		//		 		OrderDetailEntity orderDetail = data.get(0);
-		//				List<Goodlist> goodlist= orderDetail.getOrder_goodsList();
-		//				if (goodlist.size()>0) {
-		//					subject = goodlist.get(0).getGood_name();
-		//					body = subject;
-		//				}
-		//				outTradeNo = orderDetail.getOrder_number();
-		//				price = orderDetail.getOrder_totalprice();
-		//				price = String.format("%.2f", Integer.parseInt(price)/100f);
-		//				handler.sendEmptyMessage(0);
-		//			}
-		//			@Override
-		//			public TypeToken<List<OrderDetailEntity>> getTypeToken() {
-		//				return new TypeToken<List<OrderDetailEntity>>() {
-		//				};
-		//			}
-		//		});
 	}
 
 
@@ -174,10 +152,10 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 	}
 	@Override
 	public void fail() {
-		Intent intent = new Intent(AfterSalePayActivity.this,AfterSaleDetailActivity.class);
-		intent.putExtra(RECORD_TYPE, mRecordType);
-		intent.putExtra(RECORD_ID, Integer.valueOf(orderId));
-		startActivity(intent);
-		finish();
+//		Intent intent = new Intent(AfterSalePayActivity.this,AfterSaleDetailActivity.class);
+//		intent.putExtra(RECORD_TYPE, mRecordType);
+//		intent.putExtra(RECORD_ID, Integer.valueOf(orderId));
+//		startActivity(intent);
+//		finish();
 	}
 }

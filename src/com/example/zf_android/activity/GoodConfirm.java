@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -76,7 +78,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		if (!StringUtil.isNull(image_url)) {
 			ImageCacheUtil.IMAGE_CACHE.get(image_url,evevt_img);
 		}
-		
+
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce=getIntent().getIntExtra("price", 0);
 		retail_price.setText("￥"+ StringUtil.getMoneyString(pirce));
@@ -88,6 +90,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		content2.setText(getIntent().getStringExtra("brand")+getIntent().getStringExtra("model"));
 		System.out.println("=paychannelId=="+paychannelId);
 		getData1();
+
 	}
 	@Override
 	protected void onResume() {
@@ -121,6 +124,51 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		content2 = (TextView) findViewById(R.id.content2);
 		channel_text = (TextView)findViewById(R.id.channel_text);
 		item_cb=(CheckBox) findViewById(R.id.item_cb);
+		//过滤前后的空格
+		et_titel.setFilters(new InputFilter[]{
+				new InputFilter.LengthFilter(16),
+				new InputFilter(){    
+					public CharSequence filter(CharSequence src, int start, int end, Spanned dst, int dstart, int dend) {   
+						if(src.length()<1){
+							return null;
+						}else{
+							char temp [] = (src.toString()).toCharArray();
+							char result [] = new char[temp.length];
+							for(int i = 0,j=0; i< temp.length; i++){
+								if(temp[i] == ' '){
+									continue;
+								}else{
+									result[j++] = temp[i];
+								}
+							}
+							return String.valueOf(result).trim();
+						}
+					}
+				}          
+		}); 
+		//过滤前后的空格
+		comment_et.setFilters(new InputFilter[]{
+				new InputFilter.LengthFilter(16),
+				new InputFilter(){    
+					public CharSequence filter(CharSequence src, int start, int end, Spanned dst, int dstart, int dend) {   
+						if(src.length()<1){
+							return null;
+						}else{
+							char temp [] = (src.toString()).toCharArray();
+							char result [] = new char[temp.length];
+							for(int i = 0,j=0; i< temp.length; i++){
+								if(temp[i] == ' '){
+									continue;
+								}else{
+									result[j++] = temp[i];
+								}
+							}
+							return String.valueOf(result).trim();
+						}
+					}
+				}          
+		});  
+
 		item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
@@ -219,7 +267,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId+"");
 		loadingDialog = DialogUtil.getLoadingDialg(this);
 		loadingDialog.show();
-		
+
 		MyApplication.getInstance().getClient()
 		.post(url, new AsyncHttpResponseHandler() {
 			@Override
@@ -317,8 +365,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		}
 	}
 	private void confirmGood() {
-		comment=comment_et.getText().toString();
-		invoice_info=et_titel.getText().toString();
+		comment=comment_et.getText().toString().trim();
+		invoice_info=et_titel.getText().toString().trim();
 
 		if (is_need_invoice == 0) {
 			invoice_type = 0;

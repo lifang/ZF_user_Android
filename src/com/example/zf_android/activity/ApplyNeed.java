@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.examlpe.zf_android.util.ScrollViewWithListView;
 import com.examlpe.zf_android.util.TitleMenuUtil;
@@ -27,12 +28,15 @@ import com.example.zf_zandroid.adapter.AppleNeedAdapter;
 public class ApplyNeed extends BaseActivity{
 	private AppleNeedAdapter myAdapter,myAdapter2;
 	private ScrollViewWithListView   pos_lv1,pos_lv2;
+	private String opening_datum = "";
+	private TextView adress_name;
 	List<ApplyneedEntity>  pubList = new ArrayList<ApplyneedEntity>();
 	List<ApplyneedEntity>  singleList = new ArrayList<ApplyneedEntity>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.apply_need);
+		opening_datum = getIntent().getExtras().getString("opening_datum");
 		new TitleMenuUtil(ApplyNeed.this, "申请开通所需材料").show();
 		pos_lv1=(ScrollViewWithListView) findViewById(R.id.pos_lv1);
 		pos_lv2=(ScrollViewWithListView) findViewById(R.id.pos_lv2);
@@ -44,6 +48,9 @@ public class ApplyNeed extends BaseActivity{
 		myAdapter2=new AppleNeedAdapter(ApplyNeed.this, singleList);
 		pos_lv1.setAdapter(myAdapter);
 		pos_lv2.setAdapter(myAdapter2);
+		
+		adress_name = (TextView) findViewById(R.id.adress_name);
+		adress_name.setText(opening_datum);
 		
 	}
 }

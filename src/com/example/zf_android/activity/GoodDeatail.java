@@ -104,6 +104,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	List<GriviewEntity>  User_button = new ArrayList<GriviewEntity>();
 	private int paychannelId ,goodId,quantity;
 	private String payChannelName = "";
+	private String opening_datum = "";
 	private int opening_cost;
 	private int all_price;
 	private ImageView img_see;
@@ -307,6 +308,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		case R.id.tv_appneed:  
 			//tv_appneed
 			Intent tv_appneed =new Intent(GoodDeatail.this, ApplyNeed.class);
+			tv_appneed.putExtra("opening_datum", opening_datum);
 			startActivity(tv_appneed);
 			break;
 		case R.id.tv_comment:   
@@ -516,6 +518,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						String res2=	 JSONUtils.getString(jsonobject, "paychannelinfo", null);
 						if(res2 != null){
 							jsonobject = new JSONObject(res2);
+							
+							opening_datum = jsonobject.getString("opening_datum");
 							paychannelId=jsonobject.getInt("id");
 							factoryEntity=gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<FactoryEntity>() {
 							}.getType());

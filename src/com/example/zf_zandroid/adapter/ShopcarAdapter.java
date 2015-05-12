@@ -29,7 +29,10 @@ import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +40,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -83,7 +87,7 @@ public class ShopcarAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		inflater = LayoutInflater.from(context);
 		if (convertView == null) {
 			holder = new ViewHolder();
@@ -97,7 +101,7 @@ public class ShopcarAdapter extends BaseAdapter {
 			// holder.title = (TextView) convertView.findViewById(R.id.title);
 			holder.delete_img = (ImageView)
 					convertView.findViewById(R.id.delete_img);
-holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
+			holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 
 			holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
 			holder.editBtn.setOnClickListener(onClick);
@@ -141,14 +145,32 @@ holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 		if (!StringUtil.isNull(good.getUrl_path())) {
 			ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(),holder.evevt_img);
 		}
-		
+
 		for (int i = 0; i < list.size(); i++) {
 			Boolean aBoolean = list.get(i).isChecked();
 			if (aBoolean == false) {
 				selectAll_cb.setChecked(false);
 			}
 		}
+		holder.buyCountEdit.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+			}
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+			@Override
+			public void afterTextChanged(Editable s) {
+				String text = s.toString();
+				int len = s.toString().length(); 
+				if (len == 1 && text.equals("0")) { 
+					s.clear(); 
+				}
+			}
+		});
 		return convertView;
 	}
 
@@ -187,7 +209,7 @@ holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 					@Override
 					public void onClick(final DialogInterface dialog, int which) {
 						final int index =hoder.position;
-						
+
 						Map<String, Object> params = new HashMap<String, Object>();
 						params.put("id", list.get(hoder.position).getId());
 						JSONObject jsonParams = new JSONObject(params);
@@ -197,14 +219,9 @@ holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 						} catch (UnsupportedEncodingException e) {
 							return;
 						}
-//						RequestParams params = new RequestParams();
-//						params.put("id", list.get(hoder.position).getId()); 
-//						params.setUseJsonStreamer(true);
-
-//						MyApplication.getInstance().getClient()
-//						.post(Config.URL_CART_DELETE, params, new AsyncHttpResponseHandler() {
-							MyApplication.getInstance().getClient()
-							.post(context,Config.URL_CART_DELETE, null,entity,"application/json", new AsyncHttpResponseHandler(){
+						
+						MyApplication.getInstance().getClient()
+						.post(context,Config.URL_CART_DELETE, null,entity,"application/json", new AsyncHttpResponseHandler(){
 							@Override
 							public void onSuccess(int statusCode, Header[] headers,
 									byte[] responseBody) {
@@ -215,6 +232,12 @@ holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 								dialog.dismiss();
 								list.remove(index);
 								computeMoney();
+								
+								hoder.ll_select.setVisibility(View.INVISIBLE);
+								hoder.delete_img.setVisibility(View.INVISIBLE);
+								hoder.retail_price.setVisibility(View.INVISIBLE);
+								hoder.editBtn.setText("编辑");
+								
 								notifyDataSetChanged();
 							}
 
@@ -225,7 +248,7 @@ holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 								Log.e("print", "-onFailure---" + error);
 							}
 						});
-						
+
 					}
 				});
 				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -236,151 +259,151 @@ holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 				});
 				builder.create().show();
 
-			break;
-		case R.id.reduce:
+				break;
+			case R.id.reduce:
 
-			if (quantity > 0) {
-				editGood.setQuantity(--quantity);
+				if (quantity > 0) {
+					editGood.setQuantity(--quantity);
+					hoder.buyCountEdit.setText(editGood.getQuantity() + "");
+					hoder.showCountText.setText("X  " + editGood.getQuantity());
+					computeMoney();
+					System.out.println("λ��---"+position+quantity);
+					changeContent(position, quantity);
+				}
+				break;
+			case R.id.add:
+				editGood.setQuantity(++quantity);
 				hoder.buyCountEdit.setText(editGood.getQuantity() + "");
 				hoder.showCountText.setText("X  " + editGood.getQuantity());
 				computeMoney();
-				System.out.println("λ��---"+position+quantity);
 				changeContent(position, quantity);
+				break;
+
 			}
-			break;
-		case R.id.add:
-			editGood.setQuantity(++quantity);
-			hoder.buyCountEdit.setText(editGood.getQuantity() + "");
-			hoder.showCountText.setText("X  " + editGood.getQuantity());
-			computeMoney();
-			changeContent(position, quantity);
-			break;
 
 		}
+	};
+	private OnClickListener onClickListenerAll = new OnClickListener() {
 
-	}
-};
-private OnClickListener onClickListenerAll = new OnClickListener() {
-
-	@Override
-	public void onClick(View v) {
-		if (isSelectAll == false) {
-			isSelectAll = true;
-			selectAll_cb.setChecked(true);
-		}else {
-			isSelectAll = false;
-			selectAll_cb.setChecked(false);
-		}
-		for (int index = 0; index < list.size(); index++) {
-			list.get(index).setChecked(isSelectAll);
-		}
-		notifyDataSetChanged();
-	}
-};
-private int flag=0;
-private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
-
-	@Override
-	public void onCheckedChanged(CompoundButton buttonView,
-			boolean isChecked) {
-		//			if (selectAll_cb == buttonView) {
-		//				for (int index = 0; index < list.size(); index++) {
-		//					list.get(index).setChecked(isChecked);
-		//				}
-		//
-		//				notifyDataSetChanged();
-		//			} else {
-		if(isChecked){
-			flag++;
-		}else{
-			flag--;
-		}
-		if(flag==0){
-			selectAll_cb.setChecked(false);
-		}else if(flag==list.size()){
-			selectAll_cb.setChecked(true);
-		}
-		int position = (Integer) buttonView.getTag();
-		Good good = list.get(position);
-		good.setChecked(isChecked);
-		computeMoney();
-		for (int i = 0; i < list.size(); i++) {
-			Boolean aBoolean = list.get(i).isChecked();
-			if (aBoolean == false) {
+		@Override
+		public void onClick(View v) {
+			if (isSelectAll == false) {
+				isSelectAll = true;
+				selectAll_cb.setChecked(true);
+			}else {
+				isSelectAll = false;
 				selectAll_cb.setChecked(false);
 			}
-		}
-		Log.e("print", "currentHowMoney:"+currentHowMoney);
-		//	}
-
-	}
-};
-public void changeContent(final int index,final int cont){
-
-	String url =  Config.Car_edit;
-	
-	Map<String, Object> params = new HashMap<String, Object>();
-	params.put("id", list.get(index).getId());
-	params.put("quantity", cont);
-	JSONObject jsonParams = new JSONObject(params);
-	HttpEntity entity;
-	try {
-		entity = new StringEntity(jsonParams.toString(), "UTF-8");
-	} catch (UnsupportedEncodingException e) {
-		return;
-	}
-	MyApplication.getInstance().getClient()
-	.post(context,url, null,entity,"application/json", new AsyncHttpResponseHandler(){
-		@Override
-		public void onSuccess(int statusCode, Header[] headers,
-				byte[] responseBody) {
-			String responseMsg = new String(responseBody)
-			.toString();
-			Log.e("print", responseMsg);
-
-			list.get(index).setQuantity(cont);
+			for (int index = 0; index < list.size(); index++) {
+				list.get(index).setChecked(isSelectAll);
+			}
+			computeMoney();
 			notifyDataSetChanged();
-
 		}
+	};
+	private int flag=0;
+	private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
 
 		@Override
-		public void onFailure(int statusCode, Header[] headers,
-				byte[] responseBody, Throwable error) {
-			System.out.println("-onFailure---");
-			Log.e("print", "-onFailure---" + error);
+		public void onCheckedChanged(CompoundButton buttonView,
+				boolean isChecked) {
+			if(isChecked){
+				flag++;
+			}else{
+				flag--;
+			}
+			if(flag==0){
+				selectAll_cb.setChecked(false);
+			}else if(flag==list.size()){
+				selectAll_cb.setChecked(true);
+			}
+			int position = (Integer) buttonView.getTag();
+			Good good = list.get(position);
+			good.setChecked(isChecked);
+			computeMoney();
+			int mflag = 0;
+			for (int i = 0; i < list.size(); i++) {
+				Boolean aBoolean = list.get(i).isChecked();
+				if (aBoolean == false) {
+					selectAll_cb.setChecked(false);
+				}else {
+					mflag++;
+				}
+			}
+			if (mflag == list.size()) {
+				selectAll_cb.setChecked(true);
+			}
+			Log.e("print", "currentHowMoney:"+currentHowMoney);
+			//	}
+
 		}
-	});
+	};
+	public void changeContent(final int index,final int cont){
 
+		String url =  Config.Car_edit;
 
-
-}
-
-public final class ViewHolder {
-	private int position;
-	private CheckBox checkBox;
-	private TextView title;
-	private ImageView delete_img,evevt_img;
-
-	private TextView editBtn,tv_changel;
-	private LinearLayout ll_select;
-	private TextView retail_price;
-	private View delete;
-	private EditText buyCountEdit;
-	private TextView showCountText;
-	private View reduce;
-	private View add;
-	public TextView content2;
-	public TextView wayName;
-}
-
-private void computeMoney(){
-	currentHowMoney = 0;
-	for(Good good: list){
-		if(good.isChecked()){
-			currentHowMoney += (good.getRetail_price()+good.getOpening_cost())*good.getQuantity();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", list.get(index).getId());
+		params.put("quantity", cont);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
 		}
+		MyApplication.getInstance().getClient()
+		.post(context,url, null,entity,"application/json", new AsyncHttpResponseHandler(){
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				String responseMsg = new String(responseBody)
+				.toString();
+				Log.e("print", responseMsg);
+
+				list.get(index).setQuantity(cont);
+				notifyDataSetChanged();
+
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				System.out.println("-onFailure---");
+				Log.e("print", "-onFailure---" + error);
+			}
+		});
+
+
+
 	}
-	howMoney.setText("合计 ： ￥" + StringUtil.getMoneyString(currentHowMoney) );
-}
+
+	public final class ViewHolder {
+		private int position;
+		private CheckBox checkBox;
+		private TextView title;
+		private ImageView delete_img,evevt_img;
+
+		private TextView editBtn,tv_changel;
+		private LinearLayout ll_select;
+		private TextView retail_price;
+		private View delete;
+		private EditText buyCountEdit;
+		private TextView showCountText;
+		private View reduce;
+		private View add;
+		public TextView content2;
+		public TextView wayName;
+	}
+
+	private void computeMoney(){
+		currentHowMoney = 0;
+		for(Good good: list){
+			if(good.isChecked()){
+				currentHowMoney += (good.getRetail_price()+good.getOpening_cost())*good.getQuantity();
+			}
+		}
+		howMoney.setText("合计 ： ￥" + StringUtil.getMoneyString(currentHowMoney) );
+	}
 
 }

@@ -189,6 +189,7 @@
             android:layout_marginRight="14dp"
             android:background="@color/ffffff"
             android:gravity="top"
+            android:maxLength="200"
             android:hint="请输入评价"
             android:textColor="@color/text292929"
             android:textSize="10sp" />
