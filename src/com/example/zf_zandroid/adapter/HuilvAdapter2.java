@@ -67,8 +67,7 @@ public class HuilvAdapter2 extends BaseAdapter {
 			holder.tv_name.setText(list.get(position).getTrade_value());
 	  
 		System.out.println("list.get(position).getName()---"+list.get(position).getName());
- 
-		holder.tv_price.setText(list.get(position).getTerminal_rate()+"%");
+		holder.tv_price.setText(String.format("%.1f", list.get(position).getTerminal_rate()/10f)+"%");
 		holder.tv_dec.setText(list.get(position).getDescription());
 	  
 		return convertView;

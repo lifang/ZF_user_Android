@@ -275,7 +275,6 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="@dimen/margin_left2"
                     android:layout_toRightOf="@id/sign_tv" />
-
             </RelativeLayout>
 
             <LinearLayout
@@ -283,7 +282,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="@dimen/margin_left2"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -306,7 +305,7 @@
                     <TextView
                         android:id="@+id/tv_bug"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="28dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_shape"
                         android:gravity="center"
@@ -393,7 +392,7 @@
                     android:maxLines="1"
                     android:text=""
                     android:textColor="@color/text6c6c6c6"
-                    android:textSize="11sp" />
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <TextView
@@ -791,6 +790,10 @@
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="10dip" >
             </com.examlpe.zf_android.util.ScrollViewWithGView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
         </LinearLayout>
     </ScrollView>
 

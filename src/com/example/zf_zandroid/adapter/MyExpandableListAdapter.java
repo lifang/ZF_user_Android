@@ -83,35 +83,51 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 	public View getGroupView(final int groupPosition, boolean isExpanded,
 			View convertView, ViewGroup parent) {
 		menu_inflater = LayoutInflater.from(context);
-		if (convertView == null) {
-			menuview = new menuView();
-			convertView = menu_inflater
-					.inflate(R.layout.expand_menu, null);
+		menuview = new menuView();
+		convertView = menu_inflater
+				.inflate(R.layout.expand_menu, null);
 
-			menuview.mune_title = (TextView) convertView
-					.findViewById(R.id.mune_title);	
-			menuview.item_cb = (CheckBox) convertView
-					.findViewById(R.id.cb_all);	
+		menuview.mune_title = (TextView) convertView
+				.findViewById(R.id.mune_title);	
+		menuview.item_cb = (CheckBox) convertView
+				.findViewById(R.id.cb_all);	
 
-			menuview.mune_img=(ImageView) convertView.findViewById(R.id.mune_img);
-			convertView.setTag(menuview);
-		} else {
-			menuview = (menuView) convertView.getTag();
-		}
+		menuview.mune_img=(ImageView) convertView.findViewById(R.id.mune_img);
+		convertView.setTag(menuview);
+
 
 		menuview.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				list.get(groupPosition).setIsCheck(arg1);
-				if(arg1){
-					if (list.get(groupPosition).getSon() != null) {
 
-						for(int i =0;i<list.get(groupPosition).getSon().size();i++){
-							list.get(groupPosition).getSon().get(i).setIsCheck(arg1);
+				if (arg1 == true) {
+					for (int i = 0; i < list.size(); i++) {
+						if (i == groupPosition) {
+							list.get(i).setIsCheck(true);
+						}else {
+							list.get(i).setIsCheck(false);
+						}
+						if (list.get(i).getSon() != null) {
+							for(int  j=0;j<list.get(i).getSon().size();j++){
+								list.get(i).getSon().get(j).setIsCheck(false);
+							}
 						}
 					}
-					notifyDataSetChanged();}
+				}else {
+					for (int i = 0; i < list.size(); i++) {
+						list.get(i).setIsCheck(false);
+						if (list.get(i).getSon() != null) {
+
+							for(int  j=0;j<list.get(i).getSon().size();j++){
+								list.get(i).getSon().get(j).setIsCheck(false);
+							}
+						}
+					}
+				}
+				list.get(groupPosition).setIsCheck(arg1);
+				notifyDataSetChanged();
+
 			}
 		});
 
@@ -121,8 +137,9 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 		}else{
 			menuview.item_cb.setChecked(list.get(groupPosition).getIsCheck());
 		}
+
 		if (list.get(groupPosition).getSon() != null) {
-			if(list.get(groupPosition).getSon().size()==0||list.get(groupPosition).getSon().size()==1 ){
+			if(list.get(groupPosition).getSon().size()==0){
 				menuview.mune_img.setVisibility(View.GONE);
 			}else{
 
@@ -133,6 +150,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 				}
 				menuview.mune_img.setVisibility(View.VISIBLE);
 			}
+		}else {
+			menuview.mune_img.setVisibility(View.GONE);
 		}
 		menuview.mune_title.setText(list.get(groupPosition).getValue());
 		System.out.println("list.get(groupPosition).getDirectoryName()"+list.get(groupPosition).getValue());
@@ -151,7 +170,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 			CheckBox cb=(CheckBox) convertView1.findViewById(R.id.cb_all);
 			RelativeLayout ll= (RelativeLayout) convertView1.findViewById(R.id.menu_rl_c);
 			IVV.setVisibility(View.GONE);
-			ll.setBackgroundColor(context.getResources().getColor(R.color.bg0etitle));
+			ll.setBackgroundColor(context.getResources().getColor(R.color.F3F2F2));
 			//	tv.setPadding(50,  0, 0,  0);
 
 			tv.setText(list.get(groupPosition).getSon().get(childPosition).getValue());
@@ -167,7 +186,40 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter{
 
 				@Override
 				public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+
+					if (arg1 == true) {
+						for (int i = 0; i < list.size(); i++) {
+
+							list.get(i).setIsCheck(false);
+							if (list.get(i).getSon() != null) {
+								for(int j =0;j<list.get(i).getSon().size();j++){
+									if (i == groupPosition) {
+										if (j == childPosition) {
+											list.get(groupPosition).getSon().get(j).setIsCheck(true);
+										}else {
+											list.get(groupPosition).getSon().get(j).setIsCheck(false);
+										}
+									}else {
+										list.get(i).getSon().get(j).setIsCheck(false);
+									}
+
+								}
+							}
+						}
+					}else {
+						for (int i = 0; i < list.size(); i++) {
+
+							list.get(i).setIsCheck(false);
+							if (list.get(i).getSon() != null) {
+								for(int j =0;j<list.get(i).getSon().size();j++){
+									list.get(i).getSon().get(j).setIsCheck(false);
+								}
+							}
+						}
+					}
 					list.get(groupPosition).getSon().get(childPosition).setIsCheck(arg1);
+					notifyDataSetChanged();
+
 				}
 			});
 

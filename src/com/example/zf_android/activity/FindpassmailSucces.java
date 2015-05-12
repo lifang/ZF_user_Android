@@ -15,7 +15,7 @@ import com.example.zf_android.R;
 public class FindpassmailSucces extends BaseActivity implements OnClickListener{
 	private TextView tv_tel;
 	private String tel;
-	private LinearLayout login_linear_signin;
+	private LinearLayout login_linear_signin,titleback_linear_back;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,6 +26,8 @@ public class FindpassmailSucces extends BaseActivity implements OnClickListener{
 		tel=getIntent().getStringExtra("tel");
 		tv_tel.setText(tel);
 		login_linear_signin=(LinearLayout) findViewById(R.id.login_linear_signin);
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
+		titleback_linear_back.setVisibility(View.GONE);
 		login_linear_signin.setOnClickListener(this);
 	}
 

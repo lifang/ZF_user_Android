@@ -177,7 +177,8 @@
                                 android:maxLines="1"
                                 android:text=""
                                 android:textColor="@color/bgtitle"
-                                android:textSize="17sp" />
+                                android:textSize="17sp"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/showCountText"
@@ -405,7 +406,8 @@
                     android:gravity="center"
                     android:text="查看租赁说明"
                     android:textColor="@color/bgtitle"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -468,7 +470,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_marginRight="7dp"
-                android:background="@drawable/edit_login"
                 android:hint="留言" />
 
             <View
@@ -513,6 +514,11 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Viewc2" />
 
     <LinearLayout
         android:layout_width="fill_parent"

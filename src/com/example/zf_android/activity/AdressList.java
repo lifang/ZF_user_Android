@@ -40,7 +40,7 @@ public class AdressList extends BaseActivity  {
 	private Integer ids[]=new Integer []{};
 	private int customerId;
 	List<Integer> as = new ArrayList<Integer>();
-	private ImageView search,img_add;
+	private RelativeLayout search,img_add;
 	private boolean isFirstCreate;
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
@@ -93,8 +93,8 @@ public class AdressList extends BaseActivity  {
 		}
 	}
 	private void initView() {
-		search=(ImageView) findViewById(R.id.search);
-		img_add=(ImageView) findViewById(R.id.img_add);
+		search=(RelativeLayout) findViewById(R.id.search);
+		img_add=(RelativeLayout) findViewById(R.id.img_add);
 		bottomView = findViewById(R.id.bottomView);
 		img_add.setOnClickListener(new OnClickListener() {
 

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@color/ffffff" 
     android:orientation="vertical" >
 
     <View
@@ -54,7 +55,6 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:text="泰山TS900"
                     android:textColor="@color/text292929"
                     android:textSize="11sp" />
 
@@ -98,7 +98,6 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:maxLines="1"
-                    android:text="￥ 19.99"
                     android:textColor="@color/bgtitle"
                     android:textSize="17sp" />
 
@@ -152,7 +151,6 @@
                         android:ellipsize="end"
                         android:gravity="bottom"
                         android:maxLines="1"
-                        android:text="支付宝"
                         android:textColor="@color/text292929"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -184,7 +182,6 @@
                         android:ellipsize="end"
                         android:gravity="bottom"
                         android:maxLines="1"
-                        android:text="泰山TS9000"
                         android:textColor="@color/text292929"
                         android:textSize="11sp" />
                 </LinearLayout>

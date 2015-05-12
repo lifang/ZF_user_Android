@@ -48,6 +48,7 @@ public class ChanceAdress extends BaseActivity{
 	private boolean isFirstCreate;
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
+	List<AdressEntity>  otherList = new ArrayList<AdressEntity>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -120,6 +121,7 @@ public class ChanceAdress extends BaseActivity{
 	}
 	private void getData() {
 		myList.clear();
+		otherList.clear();
 		loadingDialog = DialogUtil.getLoadingDialg(this);
 		loadingDialog.show();
 		String url = MessageFormat.format(Config.URL_ADDRESS_LIST, customerId+"");
@@ -150,8 +152,15 @@ public class ChanceAdress extends BaseActivity{
 
 						moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
 						}.getType());
-
-						myList.addAll(moreList);
+						
+						for (int i = 0; i < moreList.size(); i++) {
+							if (moreList.get(i).getIsDefault()==1) {
+								myList.add(moreList.get(i));
+							}else {
+								otherList.add(moreList.get(i));
+							}
+						}
+						myList.addAll(otherList);
 						handler.sendEmptyMessage(0);
 
 					}else{

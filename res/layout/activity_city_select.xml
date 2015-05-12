@@ -1,20 +1,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="@color/F3F2F2">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/F3F2F2"
+    android:orientation="vertical" >
 
-    <include layout="@layout/title_back"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/titleback_height"
+        android:background="@color/bgtitle"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/titleback_linear_back"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_left" >
+
+            <ImageView
+                android:id="@+id/titleback_image_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/titleback_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:text="@string/title_city_select"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/delete_sure"
+            android:layout_marginRight="11dp"
+            android:visibility="visible" />
+    </RelativeLayout>
 
     <View
         style="@style/Divider"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/white"
-        android:paddingLeft="24dp">
+        android:paddingLeft="24dp" >
 
         <TextView
             android:id="@+id/current"
@@ -23,31 +62,29 @@
             android:layout_centerVertical="true"
             android:text="@string/city_current"
             android:textColor="@color/text6c6c6c6"
-            android:textSize="@dimen/s_13sp"/>
+            android:textSize="@dimen/s_13sp" />
 
         <TextView
             android:id="@+id/city_current"
             style="@style/TextCity"
-            android:layout_toRightOf="@+id/current"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="12dp"/>
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@+id/current" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="24dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/city_location"/>
-
+            android:layout_marginRight="24dp"
+            android:src="@drawable/city_location" />
     </RelativeLayout>
 
-    <View
-        style="@style/Divider"/>
+    <View style="@style/Divider" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
         <ListView
             android:id="@+id/city_list_view"
@@ -55,18 +92,17 @@
             android:layout_height="match_parent"
             android:divider="@color/Viewc2"
             android:dividerHeight="1px"
-            android:scrollbars="none"/>
+            android:scrollbars="none" />
 
         <com.example.zf_android.trade.widget.LetterListView
             android:id="@+id/letter_list_view"
-            android:background="@android:color/transparent"
             android:layout_width="30dip"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
+            android:layout_marginBottom="6dp"
             android:layout_marginRight="12dp"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="6dp"/>
-
+            android:background="@android:color/transparent" />
     </RelativeLayout>
 
 </LinearLayout>

@@ -38,7 +38,7 @@ import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
-import com.example.zf_android.entity.AdressEntity;
+import com.example.zf_android.entity.AdressEntity;  
 import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.trade.common.DialogUtil;
 import com.google.gson.Gson;
@@ -159,10 +159,10 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 				showCountText.setText("X   "+arg0.toString());
 				tv_count.setText("共计:   "+arg0+"件");
-				if( buyCountEdit.getText().toString().equals("")){
+				if( buyCountEdit.getText().toString().trim().equals("")){
 					quantity=0;
 				}else{
-					quantity= Integer.parseInt( buyCountEdit.getText().toString() );
+					quantity= Integer.parseInt( buyCountEdit.getText().toString().trim() );
 				}
 				computeMoney();
 
@@ -259,20 +259,22 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.leasepact:
-			Intent intent1 = new Intent(this,LeaseAgreementActivity.class);
-			intent1.putExtra("leasepact", good.getLease_agreement());
-			startActivity(intent1);
+//			Intent intent1 = new Intent(this,LeaseAgreementActivity.class);
+//			intent1.putExtra("leasepact", good.getLease_agreement());
+//			startActivity(intent1);
+			Intent tv_ins =new Intent(LeaseConfirm.this, LeaseInstruction.class); 
+			startActivity(tv_ins);
 			break;
 		case R.id.ll_choose:
 			Intent i =new Intent(LeaseConfirm.this,ChanceAdress.class);
 			startActivityForResult(i, 11);
 			break;
 		case R.id.tv_lkl:
-			Intent tv_ins =new Intent(LeaseConfirm.this, LeaseInstruction.class); 
-			startActivity(tv_ins);
+//			Intent tv_ins =new Intent(LeaseConfirm.this, LeaseInstruction.class); 
+//			startActivity(tv_ins);
 			break;
 		case R.id.btn_pay:
-			quantity= Integer.parseInt( buyCountEdit.getText().toString() );
+			quantity= Integer.parseInt( buyCountEdit.getText().toString().trim() );
 			if (addressId != 0) {
 				if (quantity > 0) {
 					confirmGood();
@@ -285,7 +287,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.add:
 			//	if(good.getReturn_time() > quantity){
-			quantity= Integer.parseInt( buyCountEdit.getText().toString() )+1;
+			quantity= Integer.parseInt( buyCountEdit.getText().toString().trim() )+1;
 			buyCountEdit.setText(quantity+"");
 			//}
 			break;
@@ -294,7 +296,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 			if(quantity==0){
 				break;
 			}
-			quantity= Integer.parseInt( buyCountEdit.getText().toString() )-1;
+			quantity= Integer.parseInt( buyCountEdit.getText().toString().trim() )-1;
 			buyCountEdit.setText(quantity+"");
 			//}
 			break;
@@ -304,7 +306,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	}
 	private void confirmGood() {
 
-		comment=comment_et.getText().toString();
+		comment=comment_et.getText().toString().trim();
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customerId", customerId);

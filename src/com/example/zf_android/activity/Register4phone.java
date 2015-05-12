@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -171,7 +172,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 
 			@Override
 			public void onSuccess(Object data) {
-				Toast.makeText(Register4phone.this, "注册成功", 1000).show();
+				MyToast.showToast(getApplicationContext(),"注册成功");
 				Intent i =new Intent(getApplicationContext(), Regist4phoneSucces.class);
 				startActivity(i);
 			}

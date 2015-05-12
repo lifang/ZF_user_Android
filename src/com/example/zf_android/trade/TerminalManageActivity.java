@@ -347,25 +347,33 @@ public class TerminalManageActivity extends Activity implements
 				break;
 			case PART_OPENED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				holder.llButtonContainer2.setVisibility(View.VISIBLE);
+				//holder.llButtonContainer2.setVisibility(View.VISIBLE);
+				holder.llButtonContainer2.setVisibility(View.GONE);
 				addButton(holder.llButtons, R.string.terminal_button_sync,
 						item, mSyncListener);
 				addButton(holder.llButtons, R.string.terminal_button_reopen,
 						item, mOpenListener);
-				addButton(holder.llButtons2, R.string.terminal_button_video,
+				addButton(holder.llButtons, R.string.terminal_button_video,
 						item, mVideoListener);
-				addButton(holder.llButtons2, R.string.terminal_button_pos,
+				addButton(holder.llButtons, R.string.terminal_button_pos,
 						item, mPosListener);
+//				addButton(holder.llButtons2, R.string.terminal_button_video,
+//						item, mVideoListener);
+//				addButton(holder.llButtons2, R.string.terminal_button_pos,
+//						item, mPosListener);
 				break;
 			case UNOPENED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				holder.llButtonContainer2.setVisibility(View.VISIBLE);
+				//holder.llButtonContainer2.setVisibility(View.VISIBLE);
+				holder.llButtonContainer2.setVisibility(View.GONE);
 				addButton(holder.llButtons, R.string.terminal_button_sync,
 						item, mSyncListener);
 				addButton(holder.llButtons, R.string.terminal_button_open,
 						item, mOpenListener);
-				addButton(holder.llButtons2, R.string.terminal_button_video,
+				addButton(holder.llButtons, R.string.terminal_button_video,
 						item, mVideoListener);
+//				addButton(holder.llButtons2, R.string.terminal_button_video,
+//						item, mVideoListener);
 				break;
 			case CANCELED:
 				holder.llButtonContainer.setVisibility(View.GONE);
@@ -394,8 +402,7 @@ public class TerminalManageActivity extends Activity implements
 		private void addButton(LinearLayout ll, int res, Object tag,
 				View.OnClickListener listener) {
 			Button button = new Button(TerminalManageActivity.this);
-			button.setBackgroundDrawable(getResources().getDrawable(
-					R.drawable.blank_button_selector));
+			button.setBackgroundResource(R.drawable.blank_button_selector);
 			button.setText(res);
 			button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
 			button.setTextColor(getResources().getColorStateList(

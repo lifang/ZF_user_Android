@@ -92,8 +92,8 @@ public class ShopcarAdapter extends BaseAdapter {
 			holder.checkBox.setOnCheckedChangeListener(onCheckedChangeListener);
 			holder.title = (TextView) convertView.findViewById(R.id.title);
 			holder.wayName = (TextView) convertView.findViewById(R.id.wayName);
-			holder.Model_number = (TextView) convertView
-					.findViewById(R.id.Model_number);
+			holder.content2 = (TextView) convertView
+					.findViewById(R.id.content2);
 			// holder.title = (TextView) convertView.findViewById(R.id.title);
 			holder.delete_img = (ImageView)
 					convertView.findViewById(R.id.delete_img);
@@ -135,8 +135,8 @@ holder.evevt_img = (ImageView) convertView.findViewById(R.id.evevt_img);
 		holder.buyCountEdit.setText("" + good.getQuantity());
 		holder.buyCountEdit.getText();
 		holder.retail_price.setText("¥ " + StringUtil.getMoneyString(good.getRetail_price()+good.getOpening_cost()));
-		holder.wayName.setText(good.getName());
-		holder.Model_number.setText(good.getModel_number());
+		//holder.wayName.setText(good.getName());
+		holder.content2.setText(good.getModel_number());
 
 		if (!StringUtil.isNull(good.getUrl_path())) {
 			ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(),holder.evevt_img);
@@ -329,13 +329,6 @@ public void changeContent(final int index,final int cont){
 	} catch (UnsupportedEncodingException e) {
 		return;
 	}
-//	RequestParams params = new RequestParams();
-//	params.put("id", list.get(index).getId());
-//	params.put("quantity", cont);
-//	params.setUseJsonStreamer(true);
-
-//	MyApplication.getInstance().getClient()
-//	.post(url, params, new AsyncHttpResponseHandler() {
 	MyApplication.getInstance().getClient()
 	.post(context,url, null,entity,"application/json", new AsyncHttpResponseHandler(){
 		@Override
@@ -376,7 +369,7 @@ public final class ViewHolder {
 	private TextView showCountText;
 	private View reduce;
 	private View add;
-	public TextView Model_number;
+	public TextView content2;
 	public TextView wayName;
 }
 
@@ -384,7 +377,7 @@ private void computeMoney(){
 	currentHowMoney = 0;
 	for(Good good: list){
 		if(good.isChecked()){
-			currentHowMoney += good.getRetail_price()*good.getQuantity();
+			currentHowMoney += (good.getRetail_price()+good.getOpening_cost())*good.getQuantity();
 		}
 	}
 	howMoney.setText("合计 ： ￥" + StringUtil.getMoneyString(currentHowMoney) );

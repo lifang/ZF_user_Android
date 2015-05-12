@@ -215,9 +215,9 @@
                     android:layout_height="24dp"
                     android:background="@drawable/buttong_light"
                     android:text="查看终端号"
-                    android:visibility="gone"
                     android:textColor="@color/bgtitle"
-                    android:textSize="9sp" />
+                    android:textSize="9sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <View
@@ -269,11 +269,16 @@
                 android:layout_height="1dp"
                 android:background="@color/Viewc2" />
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="20dp" />
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/F3F2F2"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="gone" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -299,10 +304,10 @@
 
     <LinearLayout
         android:id="@+id/ll_ishow"
-         android:visibility="gone"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:visibility="gone" >
 
         <View
             android:layout_width="fill_parent"
@@ -355,8 +360,8 @@
         android:id="@+id/ll_ishow2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:visibility="gone" >
 
         <View
             android:layout_width="fill_parent"

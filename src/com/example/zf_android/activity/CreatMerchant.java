@@ -176,7 +176,7 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 								File outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 								if (!outDir.exists()) {
 									outDir.mkdirs();
-								}
+								} 
 								File outFile = new File(outDir, System.currentTimeMillis() + ".jpg");
 								photoPath = outFile.getAbsolutePath();
 								intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile));

@@ -164,6 +164,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 				p=null;
 				tv_tyyp.setText("全部");
 				type = 1;
+				page = 1;
 				menuWindow.dismiss();
 				myList.clear();
 				getData();
@@ -176,7 +177,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 				type = 2;
 				p="2";
 				tv_tyyp.setText("租赁");
-
+				page = 1;
 				menuWindow.dismiss();
 				myList.clear();
 				getData();
@@ -189,7 +190,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 				type = 3;
 				p="1";
 				tv_tyyp.setText("购买");
-
+				page = 1;
 				menuWindow.dismiss();
 				myList.clear();
 				getData();

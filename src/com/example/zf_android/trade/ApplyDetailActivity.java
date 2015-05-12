@@ -678,6 +678,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private void setData(final OpeningInfos openingInfos) {
 		final String[] items = getResources().getStringArray(
 				R.array.apply_detail_gender);
+		setItemValue(mMerchantKeys[0], openingInfos.getMerchant_name());
 		setItemValue(mMerchantKeys[1], openingInfos.getName());
 		setItemValue(mMerchantKeys[2], openingInfos.getMerchant_name());
 		setItemValue(mMerchantKeys[3], items[openingInfos.getSex() % 2]);

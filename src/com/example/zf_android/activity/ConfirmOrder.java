@@ -101,7 +101,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 		myAdapter=new ComfirmcarAdapter(ConfirmOrder.this, comfirmList);
 		pos_lv.setAdapter(myAdapter);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -110,7 +110,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 		}else {
 			isFirstCreate=false;
 		}
-		
+
 	}
 	private void initView() {
 		new TitleMenuUtil(ConfirmOrder.this, "订单确定").show();
@@ -177,7 +177,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 						tv_adresss.setText("收件地址 ： ");
 						tv_name.setText("收件人 ： ");
 						tv_tel.setText("");
-						
+
 						for(int i =0;i<moreList.size();i++){
 							if(moreList.get(i).getIsDefault()==1) {
 								//tv_name,tv_tel,tv_adresss;
@@ -259,8 +259,8 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 		for(int i=0;i<comfirmList.size();i++){
 			inn[i]=comfirmList.get(i).getId();
 		}
-		comment=et_comment.getText().toString();
-		invoice_info =et_info.getText().toString();
+		comment=et_comment.getText().toString().trim();
+		invoice_info =et_info.getText().toString().trim();
 
 		API.CARTFIRM(ConfirmOrder.this, customerId,inn,
 				addressId,comment,is_need_invoice,invoice_type,invoice_info,

@@ -13,7 +13,9 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
  
 public class Regist4phoneSucces extends BaseActivity implements OnClickListener{
+	
 	private LinearLayout login_linear_signin;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

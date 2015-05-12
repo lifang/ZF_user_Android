@@ -27,17 +27,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.trinea.android.common.util.JSONUtils;
 
 import com.examlpe.zf_android.util.FlowLayout;
 import com.examlpe.zf_android.util.ImageCacheUtil;
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.ScrollViewWithGView;
 import com.examlpe.zf_android.util.ScrollViewWithListView;
 import com.examlpe.zf_android.util.StringUtil;
@@ -66,6 +69,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private Button setting_btn_clear1,setting_btn_clear;
 	private int id;
 	private LinearLayout titleback_linear_back;
+	private RelativeLayout setting_rl_exit,setting_rl_exit2;
 	private ImageView image,search2,fac_img;
 	private List<String> ma = new ArrayList<String>();
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
@@ -154,12 +158,10 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				//	lvAdapter.notifyDataSetChanged();
 				break;
 			case 1:
-				Toast.makeText(getApplicationContext(), (String) msg.obj,
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),(String) msg.obj);
 				break;
 			case 2: // 网络有问题
-				Toast.makeText(getApplicationContext(), "网络未连接",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),"网络未连接");
 				break;
 			case 3:
 
@@ -192,6 +194,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 	}
 	private void innitView() {
+		setting_rl_exit = (RelativeLayout) findViewById(R.id.setting_rl_exit);
+		setting_rl_exit2 = (RelativeLayout) findViewById(R.id.setting_rl_exit2);
 		tvc_zx=(TextView) findViewById(R.id.tvc_zx);
 		tvc_qy=(TextView) findViewById(R.id.tvc_qy);
 		tv_lea=(TextView) findViewById(R.id.tv_lea);
@@ -260,6 +264,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			all_price = gfe.getRetail_price()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 			islea=false;
+			
+			setting_rl_exit.setVisibility(View.VISIBLE);
+			LayoutParams lp1=setting_btn_clear.getLayoutParams();
+			setting_btn_clear.setLayoutParams(lp1);
+			
 			setting_btn_clear1.setClickable(true);
 			setting_btn_clear.setText("立即购买");
 			setting_btn_clear1.setBackgroundResource(R.drawable.bg_shape);
@@ -274,6 +283,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			all_price = gfe.getLease_deposit()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 			islea=true;
+			
+			setting_rl_exit.setVisibility(View.GONE);
+			LayoutParams lp=setting_btn_clear.getLayoutParams();
+			lp.width=480;
+			setting_btn_clear.setLayoutParams(lp);
+			
 			setting_btn_clear1.setClickable(false);
 			setting_btn_clear.setText("立即租赁");
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bg0etitle));
@@ -303,8 +318,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.setting_btn_clear:  
 			if(paychannelId == 0){
-				Toast.makeText(getApplicationContext(), "请选择通道！",
-						Toast.LENGTH_SHORT).show();				
+				MyToast.showToast(getApplicationContext(),"请选择通道！");
 			}else if(islea){ 
 				if (islogin && id != 0) {
 					Intent i21 =new Intent(GoodDeatail.this, LeaseConfirm.class);
@@ -324,7 +338,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					}
 					startActivity(i21);
 				}else {
-					Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+					MyToast.showToast(getApplicationContext(),"请先登录");
 					startActivity(new Intent(this,LoginActivity.class));
 				}
 
@@ -350,7 +364,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					i2.putExtra("goodId", gfe.getId());
 					startActivity(i2);
 				}else {
-					Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+					MyToast.showToast(getApplicationContext(),"请先登录");
 					startActivity(new Intent(this,LoginActivity.class));
 				}
 			}
@@ -359,8 +373,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 		case R.id.setting_btn_clear1:  
 			if(paychannelId == 0){
-				Toast.makeText(getApplicationContext(), "请选择通道！",
-						Toast.LENGTH_SHORT).show();				
+				MyToast.showToast(getApplicationContext(),"请选择通道！");
 			}else {
 				addGood();
 			}
@@ -553,8 +566,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						}
 						handler.sendEmptyMessage(0);
 					}else{
-						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-								Toast.LENGTH_SHORT).show();
+						MyToast.showToast(getApplicationContext(),jsonobject.getString("message"));
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -579,14 +591,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		} catch (UnsupportedEncodingException e) {
 			return;
 		}
-//		RequestParams params = new RequestParams();
-//		params.put("pcid",pcid);
-//		System.out.println("---支付通道ID--"+pcid);
+		//		RequestParams params = new RequestParams();
+		//		params.put("pcid",pcid);
+		//		System.out.println("---支付通道ID--"+pcid);
 
-//		params.setUseJsonStreamer(true);
-//		MyApplication.getInstance().getClient().post(Config.URL_PAYCHANNEL_INFO, params, new AsyncHttpResponseHandler() {
-			MyApplication.getInstance().getClient()
-			.post(getApplicationContext(),Config.URL_PAYCHANNEL_INFO, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		//		params.setUseJsonStreamer(true);
+		//		MyApplication.getInstance().getClient().post(Config.URL_PAYCHANNEL_INFO, params, new AsyncHttpResponseHandler() {
+		MyApplication.getInstance().getClient()
+		.post(getApplicationContext(),Config.URL_PAYCHANNEL_INFO, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
@@ -671,8 +683,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 						//  					    handler.sendEmptyMessage(0);
 					}else{
-						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-								Toast.LENGTH_SHORT).show();
+						MyToast.showToast(getApplicationContext(),jsonobject.getString("message"));
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -701,16 +712,16 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		} catch (UnsupportedEncodingException e) {
 			return;
 		}
-		
-//		RequestParams params = new RequestParams();
-//		params.put("customerId",MyApplication.getInstance().getCustomerId());
-//		params.put("goodId",goodId);
-//		//paychannelId
-//		params.put("paychannelId",paychannelId);
-//		params.setUseJsonStreamer(true);
-//		MyApplication.getInstance().getClient().post(Config.URL_CART_ADD, params, new AsyncHttpResponseHandler() {
-			MyApplication.getInstance().getClient()
-			.post(getApplicationContext(),Config.URL_CART_ADD, null,entity,"application/json", new AsyncHttpResponseHandler(){
+
+		//		RequestParams params = new RequestParams();
+		//		params.put("customerId",MyApplication.getInstance().getCustomerId());
+		//		params.put("goodId",goodId);
+		//		//paychannelId
+		//		params.put("paychannelId",paychannelId);
+		//		params.setUseJsonStreamer(true);
+		//		MyApplication.getInstance().getClient().post(Config.URL_CART_ADD, params, new AsyncHttpResponseHandler() {
+		MyApplication.getInstance().getClient()
+		.post(getApplicationContext(),Config.URL_CART_ADD, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
@@ -729,11 +740,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						startActivity(i);
 					}else if(code==1){
 						Config.countShopCar = Config.countShopCar + 1;
-						Toast.makeText(getApplicationContext(), "添加商品成功",
-								Toast.LENGTH_SHORT).show();
+						MyToast.showToast(getApplicationContext(),"添加商品成功");
 					}else{
-						Toast.makeText(getApplicationContext(), jsonobject.getString("message"),
-								Toast.LENGTH_SHORT).show();
+						MyToast.showToast(getApplicationContext(),jsonobject.getString("message"));
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -760,9 +769,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 			if (i == 0) { // 初始化第一个为选中状态
 
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator_focused);
+				indicator_imgs[i].setBackgroundResource(R.drawable.white_solid_point);
 			} else {
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
+				indicator_imgs[i].setBackgroundResource(R.drawable.white_hollow_point);
 			}
 			((ViewGroup)v).addView(indicator_imgs[i]);
 		}
@@ -867,12 +876,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 			// 改变所有导航的背景图片为：未选中
 			for (int i = 0; i < indicator_imgs.length; i++) {
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
+				indicator_imgs[i].setBackgroundResource(R.drawable.white_hollow_point);
 			}
 
 			// 改变当前背景图片为：选中
 			index_ima=position;
-			indicator_imgs[position].setBackgroundResource(R.drawable.indicator_focused);
+			indicator_imgs[position].setBackgroundResource(R.drawable.white_solid_point);
 		}
 	}
 }

@@ -4,96 +4,88 @@
     android:layout_height="fill_parent"
     android:background="@color/F3F2F2"
     android:orientation="vertical" >
- <RelativeLayout
-    
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/bgtitle"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-          <TextView
+        <TextView
             android:id="@+id/delete1"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-       		android:layout_alignParentLeft="true"
-            android:text="取消"
-            android:gravity="center_vertical"
+            android:layout_alignParentLeft="true"
             android:layout_marginLeft="7dp"
+            android:gravity="center_vertical"
+            android:text="取消"
             android:textColor="@color/fffefe"
             android:textSize="@dimen/s_17sp" />
-               <TextView
+
+        <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-       		android:layout_centerHorizontal="true"
+            android:layout_centerHorizontal="true"
             android:text="title"
             android:textColor="@color/fffefe"
             android:textSize="@dimen/s_17sp" />
-         <TextView
+
+        <TextView
             android:id="@+id/sure"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-       		android:layout_alignParentRight="true"
-       		android:layout_marginRight="7dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="7dp"
             android:text="确定"
             android:textColor="@color/fffefe"
             android:textSize="@dimen/s_17sp" />
     </RelativeLayout>
-    <LinearLayout 
-      
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-       	android:orientation="horizontal"
-        android:background="@drawable/bg_item" >
-		<CheckBox
-                    android:id="@+id/cb_all"
-                    style="@style/MyCheckBox"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                   	android:layout_marginLeft="7dp"
-                 
-                   	 android:layout_gravity="center_vertical"
-                    android:checked="false" />
-        
-        <LinearLayout android:layout_height="fill_parent"
-            android:layout_width="0dp"
-            android:orientation="vertical"
-            	android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:layout_weight="1">
- 
-        <TextView
-            
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-         
-        	
-            
-            android:singleLine="true"
-            android:text="全部"
-            android:textColor="@color/text292929"
-            android:textSize="13sp" />
-            
-            
-            
-            
-            
-        </LinearLayout>
-        
- 
+        android:visibility="gone"
+        android:background="@drawable/bg_item"
+        android:orientation="horizontal" >
 
-         
+        <CheckBox
+            android:id="@+id/cb_all"
+            style="@style/MyCheckBox"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:checked="false" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="14dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="全部"
+                android:textColor="@color/text292929"
+                android:textSize="13sp" />
+        </LinearLayout>
     </LinearLayout>
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
         android:background="@color/Viewc2" />
-      	<ExpandableListView
- 	    android:layout_height="wrap_content"
- 	    android:layout_width="wrap_content"
- 	    android:id="@+id/lv"
- 	     ></ExpandableListView>
- 	
+
+    <ExpandableListView
+        android:id="@+id/lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    </ExpandableListView>
 
 </LinearLayout>

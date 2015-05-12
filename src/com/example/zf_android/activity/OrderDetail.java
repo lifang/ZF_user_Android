@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.ScrollViewWithListView;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
@@ -58,46 +59,42 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			switch (msg.what) {
 			case 0:
 				OrderDetailEntity entity= ode.get(0);
-				tv_sjps.setText("实际配送金额(含配送费) ：￥ "+
+				tv_sjps.setText("实际配送金额(含配送费) :￥ "+
 						String.format("%.2f",Integer.valueOf(entity.getOrder_totalprice())/100f));
-				tv_psf.setText("含配送费 ：￥ "+
+				tv_psf.setText("含配送费 :￥ "+
 						String.format("%.2f",Integer.valueOf(entity.getOrder_psf())/100f));
-				tv_reperson.setText("收件人  ：   "+entity.getOrder_receiver());
+				tv_reperson.setText("收件人 :   "+entity.getOrder_receiver());
 				tv_tel.setText(entity.getOrder_receiver_phone());
-				tv_adress.setText("收货地址  ：   "+entity.getOrder_address());
-				tv_ly.setText("留言  ：   "+entity.getOrder_comment());
+				tv_adress.setText("收货地址 :   "+entity.getOrder_address());
+				tv_ly.setText("留言 :   "+entity.getOrder_comment());
 				tv_fplx.setText(entity.getOrder_invoce_type().equals("1")?"发票类型 : 个人":"发票类型 : 公司");
-				fptt.setText("发票抬头  ：   "+entity.getOrder_invoce_info());
-				tv_ddbh.setText("订单编号  ：   "+entity.getOrder_number());
+				fptt.setText("发票抬头 :   "+entity.getOrder_invoce_info());
+				tv_ddbh.setText("订单编号 :   "+entity.getOrder_number());
 				
 				if (entity.getOrder_payment_type().equals("1")) {
-					tv_pay.setText("支付方式  ：   "+"支付宝");
+					tv_pay.setText("支付方式 :   "+"支付宝");
 				}else if (entity.getOrder_payment_type().equals("2")) {
-					tv_pay.setText("支付方式  ：   "+"银联");
+					tv_pay.setText("支付方式 :   "+"银联");
 				}else if (entity.getOrder_payment_type().equals("3")) {
-					tv_pay.setText("支付方式  ：   "+"现金");
+					tv_pay.setText("支付方式 :   "+"现金");
 				}else {
-					tv_pay.setText("支付方式  ：   "+"");
+					tv_pay.setText("支付方式 :   "+"");
 				}
 				
-				tv_time.setText("订单日期  ：   "+entity.getOrder_createTime());
-				tv_money.setText("实付金额  ：   ￥"+
+				tv_time.setText("订单日期 :   "+entity.getOrder_createTime());
+				tv_money.setText("实付金额 :   ￥"+
 						String.format("%.2f",Integer.valueOf(entity.getOrder_totalprice())/100f));
-				tv_gj.setText("共计  ：   "+entity.getOrder_totalNum()+"件");
+				tv_gj.setText("共计 :   "+entity.getOrder_totalNum()+"件商品");
 
 				break;
 			case 1:
-				Toast.makeText(getApplicationContext(), (String) msg.obj,
-						Toast.LENGTH_SHORT).show();
-
+				MyToast.showToast(getApplicationContext(),(String) msg.obj);
 				break;
 			case 2: // ����������
-				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext(),"no 3g or wifi content");
 				break;
 			case 3:
-				Toast.makeText(getApplicationContext(),  " refresh too much",
-						Toast.LENGTH_SHORT).show();
+				MyToast.showToast(getApplicationContext()," refresh too much");
 				break;
 			}
 		}
@@ -242,7 +239,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			API.cancelMyOrder(this,id,new HttpCallback(this) {
 				@Override
 				public void onSuccess(Object data) {
-					Toast.makeText(getApplicationContext(), "取消成功", 1000).show();
+					MyToast.showToast(getApplicationContext(),"取消成功");
 					Intent intent = new Intent();
 					setResult(Activity.RESULT_OK, intent);
 					finish();

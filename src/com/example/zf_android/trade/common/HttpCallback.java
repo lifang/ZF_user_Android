@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.MyToast;
 import com.google.gson.reflect.TypeToken;
 
 /**
@@ -30,7 +31,7 @@ public abstract class HttpCallback<T> {
     }
 
     public void onFailure(String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    	MyToast.showToast(context,message);
     }
 
     public abstract void onSuccess(T data);

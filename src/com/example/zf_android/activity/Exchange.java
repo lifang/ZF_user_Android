@@ -28,7 +28,7 @@ import com.google.gson.reflect.TypeToken;
  */
 public class Exchange extends BaseActivity implements OnClickListener{
 	private TextView tv_xyjf;
-	private TextView moneyTextView;
+	private TextView moneyTextView,next_sure;
 	private EditText et_name,et_tel,t_y;
 	private String name,phone,price;
 	private Button btn_exit;
@@ -53,6 +53,10 @@ public class Exchange extends BaseActivity implements OnClickListener{
 		btn_exit=(Button) findViewById(R.id.btn_exit);
 		moneyTextView = (TextView) findViewById(R.id.moneyTextView);
 		btn_exit.setOnClickListener(this);
+		next_sure = (TextView) findViewById(R.id.next_sure);
+		next_sure.setVisibility(View.VISIBLE);
+		next_sure.setText("提交");
+		next_sure.setOnClickListener(this);
 		new TitleMenuUtil(Exchange.this, "兑换积分").show();
 
 	}
@@ -102,6 +106,9 @@ public class Exchange extends BaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_exit:
+			getData();
+			break;
+		case R.id.next_sure:
 			getData();
 			break;
 		default:

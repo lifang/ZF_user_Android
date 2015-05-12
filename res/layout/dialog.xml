@@ -1,85 +1,69 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-  
- 	  >  
-    
- 
-    
-    
- 	<LinearLayout
-	    android:id="@+id/login_linear_no" 
-	    android:layout_width="match_parent"
-	    android:layout_height="44dp"
-	    android:layout_alignParentBottom="true"
-	    	    android:layout_marginLeft="18dp"
-	    android:layout_marginRight="18dp"
-	    android:layout_marginBottom="20dp"
-	    android:background="@color/line_color"
-	    android:gravity="center" 
-	    android:orientation="horizontal"
-	    >
-	 
-	    <TextView 
-	         
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="取消"
-	         android:textColor="#FC1C2D"
-	        android:textSize="@dimen/s_17sp"
-	       
-	        />
- 
-	</LinearLayout>
-	     <LinearLayout
-	    android:id="@+id/login_linear_yes" 
-	    android:layout_width="match_parent"
-	    android:layout_height="44dp"
-	    android:layout_above="@id/login_linear_no"
-	  android:layout_marginLeft="18dp"
-	    android:layout_marginRight="18dp"
-	    android:layout_marginBottom="20dp"
-	 	android:background="@color/line_color"
-	    android:gravity="center" 
-	    android:orientation="horizontal"
-	    >
-	 
-	    <TextView 
-	         
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="确认"
-	        android:id="@+id/tv_yes"
-	         android:textColor="@color/C0075FF"
-	        android:textSize="@dimen/s_17sp"
-	       
-	        />
- 
-	</LinearLayout>
-		    <TextView 
-	            android:layout_above="@id/login_linear_yes"
-	            android:id="@+id/title"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="确认删除？"
-	        android:layout_marginBottom="20dp"
-	        android:gravity="center_horizontal"
-	         android:textColor="@color/white"
-	        android:textSize="@dimen/s_17sp"
-	       
-	        />
+    android:layout_height="fill_parent" >
 
-		    <ImageView
-		        android:id="@+id/is_show"
-		        android:visibility="gone"
-		        android:layout_width="fill_parent"
-		        android:layout_height="200dp"
-		     	android:layout_marginTop="80dp"
-		        android:layout_marginLeft="@dimen/margin_left2"
-		        android:layout_marginRight="@dimen/margin_left2"
-		        android:background="@drawable/imagecode"
-		        />
-		    
+    <LinearLayout
+        android:id="@+id/login_linear_no"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:background="@color/line_color"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:textColor="#FC1C2D"
+            android:textSize="@dimen/s_17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_linear_yes"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_above="@id/login_linear_no"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:background="@color/line_color"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认"
+            android:textColor="@color/C0075FF"
+            android:textSize="@dimen/s_17sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/login_linear_yes"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:text="确认删除？"
+        android:textColor="@color/white"
+        android:textSize="@dimen/s_17sp" />
+
+    <ImageView
+        android:id="@+id/is_show"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/margin_left2"
+        android:layout_marginRight="@dimen/margin_left2"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/imagecode"
+        android:visibility="gone" />
+
 </RelativeLayout>
-    

@@ -34,14 +34,20 @@
             android:textColor="@color/white"
             android:textSize="17sp" />
 
-        <ImageView
-            android:id="@+id/search"
+        <RelativeLayout
+               android:id="@+id/search"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/d_7dp"
-            android:background="@drawable/mine_g" />
+            android:layout_height="match_parent"
+            android:paddingRight="@dimen/d_7dp"
+            android:paddingLeft="@dimen/d_7dp"
+            android:layout_alignParentRight="true" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/mine_g" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/next_sure"

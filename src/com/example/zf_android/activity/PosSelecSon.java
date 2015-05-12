@@ -106,6 +106,19 @@ public class PosSelecSon extends BaseActivity implements OnClickListener{
 		case R.id.sure:
 			title="";
 			for(int i1 =0;i1<mylist.size();i1++){
+
+				if(mylist.get(i1).getIsCheck()==null){
+					mylist.get(i1).setIsCheck(false);
+				}
+				if(mylist.get(i1).getIsCheck()){
+					if(title.equals("")){
+						title=mylist.get(i1).getValue();
+					}else{
+						title=title+"."+mylist.get(i1).getValue();
+					}
+					ids.add(mylist.get(i1).getId());
+				}
+				
 				if (mylist.get(i1).getSon() != null) {
 					for(int ss=0;ss<mylist.get(i1).getSon().size();ss++){
 						if (mylist.get(i1).getSon().get(ss).getIsCheck()==null) {

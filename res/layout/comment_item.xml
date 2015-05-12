@@ -190,7 +190,6 @@
             android:background="@color/ffffff"
             android:gravity="top"
             android:hint="请输入评价"
-            android:singleLine="true"
             android:textColor="@color/text292929"
             android:textSize="10sp" />
 
