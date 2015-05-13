@@ -1,5 +1,6 @@
 package com.example.zf_android.trade.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -46,6 +47,7 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
 		init(context);
 	}
 
+	@SuppressLint("NewApi")
 	protected void init(Context context) {
 		this.mContext = context;
 		resources = mContext.getResources();
@@ -86,6 +88,7 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
 	 */
 	public void addTab(String tab, int size) {
 		TextView tv = new TextView(mContext);
+		tv.setWidth((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 120, getResources().getDisplayMetrics()));
 		tv.setText(tab);
 		tv.setTextColor(mBaseColor);
 		tv.setGravity(Gravity.CENTER);
@@ -126,7 +129,11 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
 		TextView tv = mTabViews.get(position);
 		tv.setTextColor(Color.WHITE);
 		if (mTabViews.indexOf(tv) == 0) {
-			tv.setBackgroundDrawable(resources.getDrawable(R.drawable.tab_left_bg));
+			if(mTabViews.size() ==1){
+				tv.setBackgroundDrawable(resources.getDrawable(R.drawable.tab_widget_bg_one));
+			}else{
+				tv.setBackgroundDrawable(resources.getDrawable(R.drawable.tab_left_bg));
+			}
 		} else if (mTabViews.indexOf(tv) == mTabViews.size() - 1) {
 			tv.setBackgroundDrawable(resources.getDrawable(R.drawable.tab_right_bg));
 		} else {

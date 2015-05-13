@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,6 +31,8 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 	ArrayList<Integer>  ids = new ArrayList<Integer>();
 	private int index;
 	private CheckBox cb_all;
+	private LinearLayout all_Layout;
+	private boolean isAllChoose = false;
 	private TextView tv_title,title1,title2;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -91,23 +94,46 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 			break;
 		}
 
+		int mflag = 0;
+		if (mylist.size() != 0) {
+			for(int i1 =0;i1<mylist.size();i1++){
+				if (mylist.get(i1).getIsCheck() == null) {
+					mylist.get(i1).setIsCheck(false);
+				}
+
+				if (mylist.get(i1).getIsCheck() == false) {
+					isAllChoose = false;
+					cb_all.setChecked(false);
+				}else {
+					mflag++;
+				}
+			}
+			if (mflag == mylist.size()) {
+				isAllChoose = true;
+				cb_all.setChecked(true);
+			}
+		}
 		myAdapter=new PositmeAdapter(PosSelecList.this, mylist);
 		lv.setAdapter(myAdapter);
 	}
 	private void initView() {
+		all_Layout = (LinearLayout) findViewById(R.id.all_Layout);
 		tv_title=(TextView) findViewById(R.id.title);
 		title1=(TextView) findViewById(R.id.delete1);
 		title2=(TextView) findViewById(R.id.sure);
 		title1.setOnClickListener(this);
 		title2.setOnClickListener(this);
+		all_Layout.setOnClickListener(this);
 		lv=(ListView) findViewById(R.id.lv);
 
 		cb_all=(CheckBox) findViewById(R.id.cb_all);
+		//	cb_all.setEnabled(false);
 		cb_all.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// 全部选择--
+				isAllChoose = arg1;
 				for(int i1 =0;i1<mylist.size();i1++){
 					mylist.get(i1).setIsCheck(arg1);
 				}
@@ -118,6 +144,22 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.all_Layout:
+			if (isAllChoose == false) {
+				isAllChoose = true;
+				cb_all.setChecked(true);
+				for(int i1 =0;i1<mylist.size();i1++){
+					mylist.get(i1).setIsCheck(true);
+				}
+			}else {
+				isAllChoose = false;
+				cb_all.setChecked(false);
+				for(int i1 =0;i1<mylist.size();i1++){
+					mylist.get(i1).setIsCheck(false);
+				}
+			}
+			handler.sendEmptyMessage(0);
+			break;
 		case R.id.delete1:
 			finish();
 			break;
@@ -127,7 +169,7 @@ public class PosSelecList extends BaseActivity implements OnClickListener{
 				if (mylist.get(i1).getIsCheck()==null) {
 					mylist.get(i1).setIsCheck(false);
 				}
-				
+
 				if(mylist.get(i1).getIsCheck()){
 					if(title.equals("")){
 						title=mylist.get(i1).getValue();

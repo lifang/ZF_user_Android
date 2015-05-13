@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="未付款"
-                    android:textColor="@color/text5a5a5a"
+                    android:textColor="@color/text292929"
                     android:textSize="17sp" />
             </LinearLayout>
 
@@ -58,7 +58,7 @@
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="5dp"
                 android:text="实际金额（含配送费）："
-                android:textColor="@color/text292929"
+                android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="3dp"
                 android:text="含配送费 ："
-                android:textColor="@color/text292929"
+                android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
 
             <View
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="收件人："
-                    android:textColor="@color/text292929"
+                    android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
 
                 <TextView
@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/text292929"
+                    android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -110,7 +110,7 @@
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="3dp"
                 android:text="收件地址："
-                android:textColor="@color/text292929"
+                android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
 
             <View
@@ -128,7 +128,7 @@
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="5dp"
                 android:text="留言："
-                android:textColor="@color/text292929"
+                android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
 
             <TextView
@@ -138,7 +138,7 @@
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="3dp"
                 android:text="发票类型 ："
-                android:textColor="@color/text292929"
+                android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
 
             <TextView
@@ -148,7 +148,7 @@
                 android:layout_marginLeft="@dimen/margin_title"
                 android:layout_marginTop="3dp"
                 android:text="发票抬头："
-                android:textColor="@color/text292929"
+                android:textColor="@color/text6c6c6c6"
                 android:textSize="13sp" />
 
             <View
@@ -176,6 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
                     android:orientation="vertical" >
 
                     <TextView
@@ -209,15 +210,32 @@
                         android:textSize="10sp" />
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btn_ishow"
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:background="@drawable/buttong_light"
-                    android:text="查看终端号"
-                    android:textColor="@color/bgtitle"
-                    android:textSize="9sp"
-                    android:visibility="gone" />
+                    android:layout_height="wrap_content" >
+
+                    <Button
+                        android:id="@+id/btn_ishow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:background="@drawable/buttong_light"
+                        android:text="查看终端号"
+                        android:textColor="@color/bgtitle"
+                        android:textSize="9sp"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btn_ishow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_below="@+id/btn_ishow"
+                        android:background="@drawable/buttong_light"
+                        android:text="查看物流"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/bgtitle"
+                        android:textSize="9sp"
+                        android:visibility="gone" />
+                </RelativeLayout>
             </LinearLayout>
 
             <View

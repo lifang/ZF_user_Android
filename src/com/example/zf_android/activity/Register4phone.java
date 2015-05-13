@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -27,144 +28,40 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.CityProvinceActivity;
+import com.example.zf_android.trade.common.CustomDialog;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
 
 public class Register4phone extends BaseActivity   implements OnClickListener{
-	private LinearLayout tv_codeLayout;
-	private TextView tv_code,tv_check,tv_jy_type;
-	private EditText login_edit_email,login_edit_code,login_edit_pass,login_edit_pass2;
-	private LinearLayout login_linear_deletemali,login_linear_deletcode,login_linear_deletpass 
-	,login_linear_deletpass2,login_linear_signin,ll_jy_type;
-	private int Countmun=120;
-	private Boolean isRun=true;
-	private ImageView img_check,img_check_n;
-	public  int cityid=80;
-	private String email,pass;
-	private Boolean chenckcode=false;
-	private Runnable runnable;
-	final Handler handler = new Handler(){          // handle  
-		public void handleMessage(Message msg){  
-			switch (msg.what) {  
-			case 1:  
-				if(Countmun==0){
-
-					isRun=false;
-					tv_codeLayout.setClickable(true);
-
-					tv_code.setText("发送验证码");
-					System.out.println("destroy`"+Countmun);
-				}else{
-					Countmun--;  
-					tv_code.setText(  Countmun+"秒后重新发送");  
-					System.out.println("Countmun`D2`"+Countmun);
-				}
-
-			}  
-			super.handleMessage(msg);  
-		}  
-	};  
-
+	
+	private TextView phoneText,register_hint;
+	private EditText login_edit_pass,login_edit_pass2;
+	private LinearLayout login_linear_deletpass ,login_linear_deletpass2,login_linear_signin,msgLayout;
+	private String phoneStr,pass;
+	private LinearLayout titleback_linear_back;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		MyApplication.getInstance().addActivity(this);
-		cityid=MyApplication.getInstance().getCityId();
 		setContentView(R.layout.register_phone);
 		new TitleMenuUtil(Register4phone.this, "注册").show();
 		System.out.println("Register4phone---");
 
 		initView();
-		tv_jy_type.setText("请选择地区");
-		login_edit_code.setText(Config.reg_phoneCode);
-		img_check.setVisibility(View.VISIBLE);
-		img_check_n.setVisibility(View.GONE);
-		chenckcode=true;
-		runnable = new Runnable() {  
-			@Override  
-			public void run() {  
-				if(Countmun==0){
-
-					Countmun=120;
-					tv_codeLayout.setClickable(true);
-					tv_code.setText("发送验证码");
-				}else{
-
-					Countmun--;  
-					tv_code.setText( Countmun+"秒后重新发送");  
-
-					handler.postDelayed(this, 1000);  
-				}
-
-			}  
-		};
 	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode != RESULT_OK) return;
-		switch (requestCode) {
-		case REQUEST_CHOOSE_CITY:
-			if (data != null) {
-				Province	mMerchantProvince = (Province) data.getSerializableExtra(SELECTED_PROVINCE);
-				City	mMerchantCity = (City) data.getSerializableExtra(SELECTED_CITY);
-				System.out.println(mMerchantCity.getId()+"mMerchantCity"+mMerchantCity.toString());
-				tv_jy_type.setText(mMerchantCity.getName());
-				cityid=mMerchantCity.getId();
-			}
-			break;
-
-		default:
-			break;
-		}
-	}
+	
 	@Override
 	public void onClick(View v) {
 		switch ( v.getId()) {
-
-		case R.id.ll_jy_type: 
-			Intent intent = new Intent(Register4phone.this, CityProvinceActivity.class);
-			startActivityForResult(intent, REQUEST_CHOOSE_CITY);
-			break;
-		case R.id.tv_codeLayout:  // ��ȡ��֤��tv_check
-
-			tv_codeLayout.setClickable(false);
-			getCode();
-			break;
-		case R.id.tv_check:  // ��ȡ��֤�� 
-			System.out.println("vcode"+Config.reg_phoneCode);
-			
-			if(StringUtil.replaceBlank(login_edit_code.getText().toString()).length()==0){
-				MyToast.showToast(getApplicationContext(),"请输入验证码");
-				return;
-			}
-			
-			if(login_edit_code.getText().toString().equals(Config.reg_phoneCode)){
-				img_check.setVisibility(View.VISIBLE);
-				img_check_n.setVisibility(View.GONE);
-				chenckcode=true;
-			}else{
-				img_check.setVisibility(View.GONE);
-				img_check_n.setVisibility(View.VISIBLE);
-				chenckcode=false;
-			}
-
-			break;
-		case R.id.login_linear_signin:  // ��ȡ��֤�� 
+		case R.id.login_linear_signin: 
 
 			if(check()){
 				zhuche();
 			}
 
-			break;
-		case R.id.login_linear_deletemali:
-			login_edit_email.setText("");
-			break;
-		case R.id.login_linear_deletcode:
-			login_edit_code.setText("");
 			break;
 		case R.id.login_linear_deletpass:
 			login_edit_pass.setText("");
@@ -172,124 +69,46 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 		case R.id.login_linear_deletpass2:
 			login_edit_pass2.setText("");
 			break;
+		case R.id.titleback_linear_back:
+			showCustomDialog();
+			break;
 		default : 
 			break;
 		}
 	}
 	private boolean check() {
-		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
-		if(email.length()==0){
-			MyToast.showToast(getApplicationContext(),"手机号不能为空");
-			return false;
-		}
-
-		if(StringUtil.replaceBlank(login_edit_code.getText().toString()).length()==0){
-			MyToast.showToast(getApplicationContext(),"请输入验证码");
-			return false;
-		}
-		if(!login_edit_code.getText().toString().equals(Config.reg_phoneCode)){
-			MyToast.showToast(getApplicationContext(),"验证码错误");
-			return false;
-		}
 
 		pass=StringUtil.replaceBlank(login_edit_pass.getText().toString());
 		if(pass.length()==0){
-			MyToast.showToast(getApplicationContext(),"密码不能为空");
+			msgLayout.setVisibility(View.VISIBLE);
+			register_hint.setText("密码不能为空");
 			return false;
 		}
 		if(pass.length() < 6){
-			MyToast.showToast(getApplicationContext(),"密码长度最少6个字符");
+			msgLayout.setVisibility(View.VISIBLE);
+			register_hint.setText("密码长度最少6个字符");
 			return false;
 		}
 		if(!login_edit_pass2.getText().toString().equals(pass)){
-			MyToast.showToast(getApplicationContext(),"二次密码不一样");
+			msgLayout.setVisibility(View.VISIBLE);
+			register_hint.setText("密码输入不一致，请重新填写");
 			return false;
 		}
-		if( tv_jy_type.getText().toString().equals("请选择地区")){
-			MyToast.showToast(getApplicationContext(),"请选择地区");
-			return false;
-		}
-
+		msgLayout.setVisibility(View.GONE);
 		pass=StringUtil.Md5(pass);
 		System.out.println("pass"+pass);
 		return true;
 	}
 
-	private void getCode() {
-		email=StringUtil.replaceBlank(login_edit_email.getText().toString()); 
-		registerPhoneCode(email);
-
-	}
 	private void initView() {
-		tv_check=(TextView) findViewById(R.id.tv_check);
-		tv_check.setOnClickListener(this);
-		img_check=(ImageView) findViewById(R.id.img_check);
-		img_check_n=(ImageView) findViewById(R.id.img_check_n);
-		tv_code=(TextView) findViewById(R.id.tv_code);
-		tv_codeLayout = (LinearLayout) findViewById(R.id.tv_codeLayout);
-		tv_codeLayout.setOnClickListener(this);
-		tv_jy_type=(TextView) findViewById(R.id.tv_jy_type);
-		ll_jy_type=(LinearLayout) findViewById(R.id.ll_jy_type);
-		ll_jy_type.setOnClickListener(this);
+		MyApplication.getInstance().getHistoryList().add(this);
+		phoneText=(TextView) findViewById(R.id.phoneText);
+		register_hint=(TextView) findViewById(R.id.register_hint);
 		login_linear_signin=(LinearLayout) findViewById(R.id.login_linear_signin);
+		msgLayout=(LinearLayout) findViewById(R.id.msgLayout);
 		login_linear_signin.setOnClickListener(this);
-		login_linear_deletemali=(LinearLayout) findViewById(R.id.login_linear_deletemali);
-		login_linear_deletemali.setOnClickListener(this);
-		login_edit_email=(EditText) findViewById(R.id.login_edit_email);
-		String s=getIntent().getStringExtra("phone");
-		login_edit_email.setText(s);
-		Config.reg_phoneCode=getIntent().getStringExtra("vcode");
-		login_edit_email.addTextChangedListener(new TextWatcher() {
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				if (s.length() > 0) {
-
-					login_linear_deletemali.setVisibility(View.VISIBLE);
-				} else {
-					login_linear_deletemali.setVisibility(View.GONE);
-				}
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-
-			}
-		});
-
-		//	login_linear_deletpass
-		login_linear_deletcode=(LinearLayout) findViewById(R.id.login_linear_deletcode);
-		login_linear_deletcode.setOnClickListener(this);
-		login_edit_code=(EditText) findViewById(R.id.login_edit_code);
-		login_edit_code.addTextChangedListener(new TextWatcher() {
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				if (s.length() > 0) {
-
-					login_linear_deletcode.setVisibility(View.VISIBLE);
-				} else {
-					login_linear_deletcode.setVisibility(View.GONE);
-				}
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-
-			}
-		});
+		phoneStr = getIntent().getStringExtra("phone");
+		phoneText.setText(phoneStr);
 		//	login_linear_deletpass
 		login_linear_deletpass=(LinearLayout) findViewById(R.id.login_linear_deletpass);
 		login_linear_deletpass.setOnClickListener(this);
@@ -302,6 +121,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 
 					login_linear_deletpass.setVisibility(View.VISIBLE);
 				} else {
+					msgLayout.setVisibility(View.GONE);
 					login_linear_deletpass.setVisibility(View.GONE);
 				}
 			}
@@ -343,33 +163,18 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 
 			}
 		});
+		
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
+		titleback_linear_back.setOnClickListener(this);
 	}
-	public class MyThread implements Runnable{      // thread  
-		@Override  
-		public void run(){  
-
-			while(isRun){  
-				System.out.println("run``"+Countmun);
-				try{  
-					Thread.sleep(1000);     // sleep 1000ms  
-					Message message = new Message();  
-					message.what = 1;  
-					handler.sendMessage(message);  
-				}catch (Exception e) {  
-
-				}
-			}
-		}  
-	} 
 	public void zhuche(){ 
-		API.zhuche(Register4phone.this, email,pass,Config.reg_phoneCode, cityid,false,
+		API.zhuche(Register4phone.this, phoneStr,pass,Config.reg_phoneCode, MyApplication.getInstance().getReg_cityId(),false,
 				new HttpCallback(Register4phone.this) {
 
 			@Override
 			public void onSuccess(Object data) {
 				MyToast.showToast(getApplicationContext(),"注册成功");
 				Intent i =new Intent(getApplicationContext(), Regist4phoneSucces.class);
-				i.putExtra("tel", email);
 				startActivity(i);
 			}
 
@@ -379,21 +184,41 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 			}
 		});
 	}
-	public void registerPhoneCode(String phonenumber){ 
-		API.reg_phoneCode(Register4phone.this, phonenumber,
-				new HttpCallback(Register4phone.this) {
+	
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+
+			showCustomDialog();
+
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	private void showCustomDialog() {
+		final CustomDialog dialog = new CustomDialog(this);
+		dialog.setSoftKeyValue("取消注册", "继续填写");
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(false);
+		dialog.setContent("不填写登录密码将无法在APP上登录，是否取消注册？");
+		dialog.setLeftListener(new android.view.View.OnClickListener() {
 
 			@Override
-			public void onSuccess(Object data) {
-				handler.postDelayed(runnable, 1000);
-				MyToast.showToast(getApplicationContext(),"验证码发送成功");
-				Config.reg_phoneCode= data.toString();
+			public void onClick(View v) {
+				dialog.dismiss();
+				Register4phone.this.finish();
 			}
 
+		});
+		dialog.setRightListener(new android.view.View.OnClickListener() {
+
 			@Override
-			public TypeToken getTypeToken() {
-				return null;
+			public void onClick(View v) {
+				dialog.dismiss();
 			}
 		});
+		dialog.show();
 	}
 }

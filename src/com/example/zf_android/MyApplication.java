@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.Application;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
@@ -14,7 +13,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.os.Environment;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.util.Log;
@@ -334,7 +332,10 @@ public class MyApplication extends org.litepal.LitePalApplication {
 				Service.VIBRATOR_SERVICE);
 		// 设置全局imageload
 		initImageLoaderConfig();
-		
+		/*
+		 * niemin
+		*/
+		initImageLoader(mInstance);
 		Intent i = new Intent(this, NetworkStateService.class);
 		ServiceConnection connection = new ServiceConnection() {
 			@Override
@@ -352,7 +353,30 @@ public class MyApplication extends org.litepal.LitePalApplication {
 	public static MyApplication getInstance() {
 		return mInstance;
 	}
-
+	/*
+	 * niemin
+	*/
+	public static void initImageLoader(Context context) {
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+				context).threadPriority(Thread.NORM_PRIORITY - 2)
+				.denyCacheImageMultipleSizesInMemory()
+				.discCacheFileNameGenerator(new Md5FileNameGenerator())
+				.tasksProcessingOrder(QueueProcessingType.LIFO)
+				.writeDebugLogs() // Remove for release app
+				.build();
+		ImageLoader.getInstance().init(config);
+	}
+	@SuppressWarnings("deprecation")
+	public static DisplayImageOptions getDisplayOption() {
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+		.showStubImage(R.drawable.moren)			// 设置图片下载期间显示的图片
+		.showImageForEmptyUri(R.drawable.moren)	// 设置图片Uri为空或是错误的时候显示的图片
+		.showImageOnFail(R.drawable.moren)		// 设置图片加载或解码过程中发生错误显示的图片	
+		.cacheInMemory(true)						// 设置下载的图片是否缓存在内存中
+		.cacheOnDisc(true)							// 设置下载的图片是否缓存在SD卡中
+		.build();									// 创建配置过得DisplayImageOption对象	
+		return options;
+	}
 	private void initImageLoaderConfig() {
 
 		File cacheDir = StorageUtils.getOwnCacheDirectory(
@@ -426,4 +450,15 @@ public class MyApplication extends org.litepal.LitePalApplication {
 			e.printStackTrace();
 		}
 	}
+	
+	private int reg_cityId;
+
+	public int getReg_cityId() {
+		return reg_cityId;
+	}
+
+	public void setReg_cityId(int reg_cityId) {
+		this.reg_cityId = reg_cityId;
+	}
+	
 }

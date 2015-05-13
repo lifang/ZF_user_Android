@@ -51,12 +51,16 @@ public class ApplyChannelActivity extends Activity {
 		channelList.addFooterView(new View(this));
 		channelAdapter = new ChannelListAdapter();
 		channelList.setAdapter(channelAdapter);
-
+		
+		if(chosenChannel != null && chosenChannel.getId() > 0){
+			channelList.setSelection(chosenChannel.getId());
+		}
+		
 		billingList = (ListView) findViewById(R.id.apply_billing_list);
 		billingList.addFooterView(new View(this));
 		billingAdapter = new BillingListAdapter();
 		billingList.setAdapter(billingAdapter);
-
+		
 		channelList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -110,9 +114,23 @@ public class ApplyChannelActivity extends Activity {
 							break;
 						}
 					}
-
 					channelAdapter.notifyDataSetChanged();
 					billingAdapter.notifyDataSetChanged();
+					
+					if(chosenChannel != null && chosenChannel.getId() > 0){
+						billings.clear();
+						ApplyChannel channel = channels.get(chosenChannel.getId()-1);
+						if (null != channel) {
+							for (ApplyChannel.Billing billing : channel.getBillings()) {
+								if (null != billing) {
+									billings.add(billing);
+								}
+							}
+						}
+						if(chosenBilling != null && chosenBilling.id > 0){
+							billingList.setSelection(chosenBilling.id);
+						}
+					}
 				}
 
 			}

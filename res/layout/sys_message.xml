@@ -22,8 +22,7 @@
     <com.example.zf_android.trade.widget.XListView
         android:id="@+id/x_listview"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/margin_left"
         android:paddingRight="@dimen/margin_left"
         android:background="@color/white"

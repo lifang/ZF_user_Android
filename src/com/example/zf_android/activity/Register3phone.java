@@ -1,15 +1,18 @@
 package com.example.zf_android.activity;
 
-
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,231 +25,222 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.CityProvinceActivity;
+import com.example.zf_android.trade.common.CustomDialog;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.google.gson.reflect.TypeToken;
 
-public class Register3phone extends BaseActivity   implements OnClickListener{
-	private LinearLayout tv_codeLayout;
-	private TextView tv_code,tv_check;
-	private EditText login_edit_email,login_edit_code;
-	private LinearLayout login_linear_deletemali,login_linear_deletcode ,login_linear_signin ;
-	private int Countmun=120;
-	private Boolean isRun=true;
-	public  int cityid = 0;
-	private String email;
-	private Runnable runnable;
-	private String s;
-	final Handler handler = new Handler(){          // handle  
-		public void handleMessage(Message msg){  
-			switch (msg.what) {  
-			case 1:  
-				if(Countmun==0){
+public class Register3phone extends BaseActivity implements OnClickListener {
 
-					isRun=false;
-					tv_codeLayout.setClickable(true);
+	private int countNun = 120;
+	public int cityid = 0;
+	Handler handler = new Handler() { // handle
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 1:
+				if (countNun == 0) {
 
-					tv_code.setText("发送验证码");
-					System.out.println("destroy`"+Countmun);
-				}else{
-					Countmun--;  
-					tv_code.setText(  Countmun+"秒后重新发送");  
-					System.out.println("Countmun`D2`"+Countmun);
+					countText.setEnabled(true);
+					countText.setText("点此重新发送验证码");
+					countText.setTextColor(getResources().getColor(
+							R.color.bgtitle));
+					System.out.println("destroy`" + countNun);
+				} else {
+					countNun--;
+					// countText.setTextColor(getResources().getColor(R.color.hint6C));
+					countText.setText("接受短信大约需要" + countNun + "秒");
+					System.out.println("countNun`D2`" + countNun);
+					Message message = new Message();
+					message.what = 1;
+					handler.sendMessageDelayed(message, 1000);
 				}
-			}  
-			super.handleMessage(msg);  
-		}  
-	};  
+			}
+			super.handleMessage(msg);
+		}
+	};
 
+	private EditText edit_code;
+	private TextView countText, agreementText, phoneText,register_hint;
+	private LinearLayout checkCode;
+	private ImageView del;
+	private String phoneStr;
+	private LinearLayout titleback_linear_back,msgLayout;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		MyApplication.getInstance().addActivity(this);
-		cityid=MyApplication.getInstance().getCityId();
+		cityid = MyApplication.getInstance().getCityId();
 		setContentView(R.layout.register_checkcode);
 		new TitleMenuUtil(Register3phone.this, "注册").show();
-
+		phoneStr = this.getIntent().getExtras().getString("phone");
 		initView();
 
-		runnable = new Runnable() {  
-			@Override  
-			public void run() {  
-				if(Countmun==0){
-
-					Countmun=120;
-					tv_codeLayout.setClickable(true);
-					tv_code.setText("发送验证码");
-				}else{
-
-					Countmun--;  
-					tv_code.setText( Countmun+"秒后重新发送");  
-
-					handler.postDelayed(this, 1000);  
-				}
-			}  
-		};
-		getCode();
-		tv_codeLayout.setClickable(false);
 	}
 
 	@Override
 	public void onClick(View v) {
-		switch ( v.getId()) {
 
-		case R.id.tv_codeLayout:  
-			if(check())
-				getCode();
-			tv_codeLayout.setClickable(false);
+		Intent intent = null;
+		switch (v.getId()) {
 
+		case R.id.countText:
+
+			API.reg_phoneCode(this, phoneStr, new HttpCallback(this) {
+				@Override
+				public void onSuccess(Object data) {
+					Config.reg_phoneCode = data.toString();
+					countText.setTextColor(getResources().getColor(
+							R.color.hint6C));
+					countNun = 120;
+					Message message = new Message();
+					message.what = 1;
+					handler.sendMessageDelayed(message, 1000);
+				}
+
+				public TypeToken getTypeToken() {
+					return null;
+				}
+			});
+
+			countText.setEnabled(false);
 			break;
-
-		case R.id.login_linear_signin: 
-
-			if(StringUtil.replaceBlank(login_edit_code.getText().toString()).length()==0){
-				MyToast.showToast(getApplicationContext(),"请输入验证码");
-				break;
+		case R.id.agreementText:
+			intent = new Intent(this, AgreementActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.checkCode:
+			if (edit_code.getText().toString()
+					.equalsIgnoreCase(Config.reg_phoneCode)) {
+				intent = new Intent(this, Register4phone.class);
+				intent.putExtra("phone", phoneStr);
+				startActivity(intent);
+				finish();
+			} else {
+				msgLayout.setVisibility(View.VISIBLE);
+				register_hint.setText("验证码错误");
 			}
-			if(!login_edit_code.getText().toString().trim().endsWith(Config.reg_phoneCode)){
-				MyToast.showToast(getApplicationContext(),"验证码错误");
-				break;
-			}else{
-				Intent i = new Intent(getApplicationContext(),
-						Register4phone.class);
-				i.putExtra("phone",s);
-				i.putExtra("vcode",Config.reg_phoneCode);
-				startActivity(i);
-			}
 			break;
-		case R.id.login_linear_deletemali:
-			login_edit_email.setText("");
+		case R.id.del:
+			edit_code.setText("");
+			msgLayout.setVisibility(View.GONE);
 			break;
-		case R.id.login_linear_deletcode:
-			login_edit_code.setText("");
+		case R.id.titleback_linear_back:
+			showCustomDialog();
 			break;
 
-		default : 
+		default:
 			break;
 		}
 	}
-	private boolean check() {
-		email=StringUtil.replaceBlank(login_edit_email.getText().toString());
-		if(email.length()==0){
-			MyToast.showToast(getApplicationContext(),"手机号不能为空");
-			return false;
-		}
-		if (!StringUtil.isMobile(email)) {
-			MyToast.showToast(getApplicationContext(),"请输入正确的手机号码");
-			return false;
-		}
-		return true;
-	}
 
-	private void getCode() {
-
-		email=StringUtil.replaceBlank(login_edit_email.getText().toString()); 
-		registerPhoneCode(email);
-
-	}
 	private void initView() {
-		tv_check=(TextView) findViewById(R.id.tv_check);
-		tv_check.setOnClickListener(this);
-		tv_codeLayout = (LinearLayout) findViewById(R.id.tv_codeLayout);
-		tv_code=(TextView) findViewById(R.id.tv_code);
-		tv_codeLayout.setOnClickListener(this);
-
-
-		login_linear_signin=(LinearLayout) findViewById(R.id.login_linear_signin);
-		login_linear_signin.setOnClickListener(this);
-
-		login_linear_deletemali=(LinearLayout) findViewById(R.id.login_linear_deletemali);
-		login_linear_deletemali.setOnClickListener(this);
-		login_edit_email=(EditText) findViewById(R.id.login_edit_email);
-		s=getIntent().getStringExtra("phone");
-		login_edit_email.setText(s);
-		login_edit_email.addTextChangedListener(new TextWatcher() {
-
+		MyApplication.getInstance().getHistoryList().add(this);
+		edit_code = (EditText) this.findViewById(R.id.edit_code);
+		phoneText = (TextView) this.findViewById(R.id.phoneText);
+		countText = (TextView) this.findViewById(R.id.countText);
+		agreementText = (TextView) this.findViewById(R.id.agreementText);
+		checkCode = (LinearLayout) this.findViewById(R.id.checkCode);
+		del = (ImageView) this.findViewById(R.id.del);
+		edit_code.addTextChangedListener(new TextWatcher() {
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				if (s.length() > 0) {
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
 
-					login_linear_deletemali.setVisibility(View.VISIBLE);
+				if (s.length() > 0) {
+					del.setVisibility(View.VISIBLE);
 				} else {
-					login_linear_deletemali.setVisibility(View.GONE);
+					msgLayout.setVisibility(View.GONE);
+					del.setVisibility(View.INVISIBLE);
 				}
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
-
 			}
 		});
-
-		//	login_linear_deletpass
-		login_linear_deletcode=(LinearLayout) findViewById(R.id.login_linear_deletcode);
-		login_linear_deletcode.setOnClickListener(this);
-		login_edit_code=(EditText) findViewById(R.id.login_edit_code);
-		login_edit_code.addTextChangedListener(new TextWatcher() {
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				if (s.length() > 0) {
-
-					login_linear_deletcode.setVisibility(View.VISIBLE);
-				} else {
-					login_linear_deletcode.setVisibility(View.GONE);
-				}
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-
-			}
-		});
-
+		phoneText.setText(phoneStr);
+		countText.setOnClickListener(this);
+		countText.setEnabled(false);
+		agreementText.setOnClickListener(this);
+		del.setOnClickListener(this);
+		checkCode.setOnClickListener(this);
+		Message message = new Message();
+		message.what = 1;
+		handler.sendMessageDelayed(message, 1000);
+		
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
+		titleback_linear_back.setOnClickListener(this);
+		msgLayout=(LinearLayout) findViewById(R.id.msgLayout);
+		register_hint=(TextView) findViewById(R.id.register_hint);
 	}
-	public class MyThread implements Runnable{      // thread  
-		@Override  
-		public void run(){  
 
-			while(isRun){  
-				System.out.println("run``"+Countmun);
-
-				try{  
-					Thread.sleep(1000);     // sleep 1000ms  
-					Message message = new Message();  
-					message.what = 1;  
-					handler.sendMessage(message);  
-				}catch (Exception e) {  
-
-				}
-			}
-		}  
-	} 
-
-	public void registerPhoneCode(String phonenumber){ 
-		API.reg_phoneCode(Register3phone.this, phonenumber,
-				new HttpCallback(Register3phone.this) {		       
+	public void registerPhoneCode(String phonenumber) {
+		API.reg_phoneCode(Register3phone.this, phonenumber, new HttpCallback(
+				Register3phone.this) {
 			@Override
 			public void onSuccess(Object data) {
-				Config.reg_phoneCode = data+"";
-				handler.postDelayed(runnable, 1000); 
-				MyToast.showToast(getApplicationContext(),"验证码发送成功");
+				Message message = new Message();
+				message.what = 1;
+				handler.sendMessageDelayed(message, 1000);
+				Toast.makeText(Register3phone.this, "验证码发送成功", 1000).show();
+				Config.reg_phoneCode = data.toString();
 			}
+
 			@Override
 			public TypeToken getTypeToken() {
 				return null;
 			}
 		});
 	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+
+			showCustomDialog();
+
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	private void showCustomDialog() {
+		final CustomDialog dialog = new CustomDialog(this);
+		dialog.setSoftKeyValue("返回", "等待");
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(false);
+		dialog.setContent("验证短信可能略有延迟，确定返回并重新开始注册？");
+		dialog.setLeftListener(new android.view.View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+				Register3phone.this.finish();
+			}
+
+		});
+		dialog.setRightListener(new android.view.View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		countNun = 0;
+		handler.removeMessages(1);
+	}
+
 }

@@ -221,15 +221,25 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 						tv_tel.setText("");
 						tv_adress.setText("地址：");
 
-						for(int i=0;i<myList.size();i++){
-							if(myList.get(i).getIsDefault()==1){
-								tv_sjr.setText("收件人： "+myList.get(i).getReceiver());
-								tv_tel.setText(myList.get(i).getMoblephone());
-								tv_adress.setText("地址："+myList.get(i).getAddress());
-								addressId=myList.get(i).getId();
+						int mflag = 0;
+						if (moreList.size() != 0) {
+							for(int i =0;i<moreList.size();i++){
+								if(moreList.get(i).getIsDefault()==1) {
+									addressId=moreList.get(i).getId();
+									tv_adress.setText("收件地址 ： "+moreList.get(i).getAddress());
+									tv_sjr.setText("收件人 ： "+moreList.get(i).getReceiver());
+									tv_tel.setText( moreList.get(i).getMoblephone());
+								}else {
+									mflag ++;
+								}
+							}
+							if (mflag == moreList.size()) {
+								addressId=moreList.get(0).getId();
+								tv_adress.setText("收件地址 ： "+moreList.get(0).getAddress());
+								tv_sjr.setText("收件人 ： "+moreList.get(0).getReceiver());
+								tv_tel.setText( moreList.get(0).getMoblephone());
 							}
 						}
-
 
 
 					}else{

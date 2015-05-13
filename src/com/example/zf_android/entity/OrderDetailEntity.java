@@ -37,8 +37,38 @@ public class OrderDetailEntity {
 	private String order_totalprice;
 	//         "terminals": " xfy000000020",//查看终端号
 	private String terminals;
+	private String logistics_name;//物流名称
+	private String logistics_number;//物流单号
 	private CommentG comments;
 	private List <Goodlist> order_goodsList;
+
+
+
+
+	public String getLogistics_name() {
+		return logistics_name;
+	}
+
+
+
+
+	public void setLogistics_name(String logistics_name) {
+		this.logistics_name = logistics_name;
+	}
+
+
+
+
+	public String getLogistics_number() {
+		return logistics_number;
+	}
+
+
+
+
+	public void setLogistics_number(String logistics_number) {
+		this.logistics_number = logistics_number;
+	}
 
 
 
