@@ -45,11 +45,11 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 	private EditText et1,et2;
 	private int 	has_purchase=0;
 	private List<PrePosItem> sonlist=new ArrayList<PrePosItem>();
-	
+
 	private ArrayList<Integer>  brands_id = new ArrayList<Integer>();
 	private ArrayList<Integer>  category_id = new ArrayList<Integer>();
 	private ArrayList<Integer>  pay_channel_id = new ArrayList<Integer>();
-	
+
 	private ArrayList<Integer>  pay_card_id = new ArrayList<Integer>();
 	private ArrayList<Integer>  trade_type_id = new ArrayList<Integer>();
 	private ArrayList<Integer>  sale_slip_id = new ArrayList<Integer>();
@@ -76,15 +76,9 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 		} catch (UnsupportedEncodingException e) {
 			return;
 		}
-		
-//		RequestParams params = new RequestParams("city_id", MyApplication.getInstance().getCityId());
-//
-//		params.setUseJsonStreamer(true);
 
-//		MyApplication.getInstance().getClient()
-//		.post(Config.URL_GOOD_SEARCH, params, new AsyncHttpResponseHandler() {
-			MyApplication.getInstance().getClient()
-			.post(getApplicationContext(),Config.URL_GOOD_SEARCH, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		MyApplication.getInstance().getClient()
+		.post(getApplicationContext(),Config.URL_GOOD_SEARCH, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
@@ -108,9 +102,6 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 						}.getType());
 						MyApplication.pse = pse;
 						System.out.println(MyApplication.pse.getBrands().size()+"---"+pse.getBrands().size());
-
-						//								myList.addAll(moreList);
-						//				 				handler.sendEmptyMessage(0);
 
 					}else{
 						code = jsonobject.getString("message");
@@ -196,7 +187,7 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 				intent2.putIntegerArrayListExtra("brands_id", brands_id);
 				intent2.putIntegerArrayListExtra("category_id", category_id);
 				intent2.putIntegerArrayListExtra("pay_channel_id", pay_channel_id);
-				
+
 				intent2.putIntegerArrayListExtra("pay_card_id", pay_card_id);
 				intent2.putIntegerArrayListExtra("trade_type_id", trade_type_id);
 				intent2.putIntegerArrayListExtra("sale_slip_id", sale_slip_id);
@@ -215,7 +206,7 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 					intent2.putIntegerArrayListExtra("brands_id", brands_id);
 					intent2.putIntegerArrayListExtra("category_id", category_id);
 					intent2.putIntegerArrayListExtra("pay_channel_id", pay_channel_id);
-					
+
 					intent2.putIntegerArrayListExtra("pay_card_id", pay_card_id);
 					intent2.putIntegerArrayListExtra("trade_type_id", trade_type_id);
 					intent2.putIntegerArrayListExtra("sale_slip_id", sale_slip_id);

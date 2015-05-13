@@ -177,17 +177,26 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 						tv_adresss.setText("收件地址 ： ");
 						tv_name.setText("收件人 ： ");
 						tv_tel.setText("");
-
-						for(int i =0;i<moreList.size();i++){
-							if(moreList.get(i).getIsDefault()==1) {
-								//tv_name,tv_tel,tv_adresss;
-								addressId=moreList.get(i).getId();
-								tv_adresss.setText("收件地址 ： "+moreList.get(i).getAddress());
-								tv_name.setText("收件人 ： "+moreList.get(i).getReceiver());
-								tv_tel.setText( moreList.get(i).getMoblephone());
+						int mflag = 0;
+						if (moreList.size() != 0) {
+							for(int i =0;i<moreList.size();i++){
+								if(moreList.get(i).getIsDefault()==1) {
+									//tv_name,tv_tel,tv_adresss;
+									addressId=moreList.get(i).getId();
+									tv_adresss.setText("收件地址 ： "+moreList.get(i).getAddress());
+									tv_name.setText("收件人 ： "+moreList.get(i).getReceiver());
+									tv_tel.setText( moreList.get(i).getMoblephone());
+								}else {
+									mflag ++;
+								}
+							}
+							if (mflag == moreList.size()) {
+								addressId=moreList.get(0).getId();
+								tv_adresss.setText("收件地址 ： "+moreList.get(0).getAddress());
+								tv_name.setText("收件人 ： "+moreList.get(0).getReceiver());
+								tv_tel.setText( moreList.get(0).getMoblephone());
 							}
 						}
-
 					}else{
 						code = jsonobject.getString("message");
 						Toast.makeText(getApplicationContext(  ), code, 1000).show();

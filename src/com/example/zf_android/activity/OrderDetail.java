@@ -47,7 +47,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 	private OrderDetail_PosAdapter posAdapter;
 	private RecordAdapter reAdapter;
 	private LinearLayout ll_ishow,ll_ishow2;
-	private Button btn_ishow,btn_pay,btn_cancle,btn_pj;
+	private Button btn_ishow,btn_ishow2,btn_pay,btn_cancle,btn_pj;
 	private List<OrderDetailEntity>  ode =new ArrayList<OrderDetailEntity>();
 	private TextView tv_status,tv_sjps,tv_psf,tv_reperson,tv_tel,tv_adress,tv_ly,tv_fplx,fptt,
 	tv_ddbh,tv_pay,tv_time,tv_gj,tv_money;
@@ -70,7 +70,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 				tv_fplx.setText(entity.getOrder_invoce_type().equals("1")?"发票类型 : 个人":"发票类型 : 公司");
 				fptt.setText("发票抬头 :   "+entity.getOrder_invoce_info());
 				tv_ddbh.setText("订单编号 :   "+entity.getOrder_number());
-				
+
 				if (entity.getOrder_payment_type().equals("1")) {
 					tv_pay.setText("支付方式 :   "+"支付宝");
 				}else if (entity.getOrder_payment_type().equals("2")) {
@@ -80,7 +80,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 				}else {
 					tv_pay.setText("支付方式 :   "+"");
 				}
-				
+
 				tv_time.setText("订单日期 :   "+entity.getOrder_createTime());
 				tv_money.setText("实付金额 :   ￥"+
 						String.format("%.2f",Integer.valueOf(entity.getOrder_totalprice())/100f));
@@ -153,6 +153,8 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 		ll_ishow2=(LinearLayout) findViewById(R.id.ll_ishow2);
 		tv_gj=(TextView) findViewById(R.id.tv_gj);
 		btn_ishow=(Button) findViewById(R.id.btn_ishow);
+		btn_ishow2=(Button) findViewById(R.id.btn_ishow2);
+		btn_ishow2.setOnClickListener(this);
 		btn_ishow.setOnClickListener(this);
 		tv_ddbh=(TextView) findViewById(R.id.tv_ddbh);
 		fptt=(TextView) findViewById(R.id.fptt);
@@ -182,29 +184,35 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			ll_ishow.setVisibility(View.VISIBLE);
 			ll_ishow2.setVisibility(View.GONE);
 			btn_ishow.setVisibility(View.GONE);
+			btn_ishow2.setVisibility(View.GONE);
 			break;
 		case 2:
 			tv_status.setText("已付款");
 			ll_ishow.setVisibility(View.GONE);
 			ll_ishow2.setVisibility(View.GONE);
 			btn_ishow.setVisibility(View.GONE);
+			btn_ishow2.setVisibility(View.GONE);
 			break;
 		case 3:
 			tv_status.setText("已发货");
 			ll_ishow2.setVisibility(View.VISIBLE);
 			btn_ishow.setVisibility(View.VISIBLE);
+			btn_ishow2.setVisibility(View.VISIBLE);
 			break;
 		case 4:
 			tv_status.setText("已评价");
 			btn_ishow.setVisibility(View.VISIBLE);
+			btn_ishow2.setVisibility(View.VISIBLE);
 			break;
 		case 5:
 			tv_status.setText("已取消");
 			btn_ishow.setVisibility(View.GONE);
+			btn_ishow2.setVisibility(View.GONE);
 			break;
 		case 6:
 			tv_status.setText("交易关闭");
-			btn_ishow.setVisibility(View.GONE);
+			btn_ishow.setVisibility(View.GONE);	
+			btn_ishow2.setVisibility(View.GONE);
 			break;
 
 		default:
@@ -228,7 +236,12 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			intent.putExtra("terminals", ode.get(0).getTerminals());
 			startActivity(intent);
 			break;
-
+		case R.id.btn_ishow2:
+			Intent intent2 = new Intent(this,LookLogisticsActivity.class);
+			intent2.putExtra("logistics_name", ode.get(0).getLogistics_name());
+			intent2.putExtra("logistics_number", ode.get(0).getLogistics_number());
+			startActivity(intent2);
+			break;
 		case R.id.btn_pay:
 			Intent i = new Intent(getApplicationContext(),PayFromCar.class);
 			i.putExtra("orderId", id+"");

@@ -72,13 +72,26 @@ public class PositmeAdapter extends BaseAdapter {
 		}else{
 			holder.item_cb.setChecked(list.get(position).getIsCheck());
 		}
-	 
+		//holder.item_cb.setEnabled(false);
 		holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
 				list.get(position).setIsCheck(isChecked);
+			}
+		});
+		
+		convertView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (list.get(position).getIsCheck() == false) {
+					list.get(position).setIsCheck(true);
+				}else {
+					list.get(position).setIsCheck(false);
+				}
+				notifyDataSetChanged();
 			}
 		});
 		//holder.item_cb.toggle();

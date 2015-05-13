@@ -109,7 +109,7 @@ public class CommentAdapter extends BaseAdapter {
 
 			}
 		});
-	
+		
 		holder.item_et.addTextChangedListener(new TextWatcher() {
 
 			@Override

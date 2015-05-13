@@ -1,67 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
     android:layout_width="fill_parent"
-    android:orientation="vertical">
-    
-    <LinearLayout 
-      
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-       	android:orientation="horizontal"
-        android:background="@drawable/bg_item" >
-		<CheckBox
-                    android:id="@+id/item_cb"
-                    style="@style/MyCheckBox"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                   	android:layout_marginLeft="7dp"
-                 
-                   	 android:layout_gravity="center_vertical"
-                    android:checked="false" />
-        
-        <LinearLayout android:layout_height="fill_parent"
-            android:layout_width="0dp"
-            android:orientation="vertical"
-            	android:layout_marginLeft="14dp"
-            android:gravity="center_vertical"
-            android:layout_weight="1">
- 
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-         
-        	
-            
-            android:singleLine="true"
-            android:text="2014-1-1 12:00:00"
-            android:textColor="@color/text292929"
-            android:textSize="13sp" />
-            
-            
-            
-            
-            
-        </LinearLayout>
-        
- 
+        android:background="@drawable/bg_item"
+        android:orientation="horizontal" >
 
-         
+        <CheckBox
+            android:id="@+id/item_cb"
+            style="@style/MyCheckBox"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="14dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="2014-1-1 12:00:00"
+                android:textColor="@color/text292929"
+                android:textSize="13sp" />
+        </LinearLayout>
     </LinearLayout>
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
         android:background="@color/Viewc2" />
-    
-    
-    
-    
-    
-    
-    
+
 </LinearLayout>
-
-
-     
- 

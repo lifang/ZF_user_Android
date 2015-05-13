@@ -22,6 +22,7 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,12 +65,15 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private Button setting_btn_clear1,setting_btn_clear;
 	private int id;
 	private LinearLayout titleback_linear_back;
 	private RelativeLayout setting_rl_exit,setting_rl_exit2;
+	private TextView countShopCar;
 	private ImageView image,search2,fac_img;
 	private List<String> ma = new ArrayList<String>();
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
@@ -113,9 +117,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private SharedPreferences mySharedPreferences;
 	private Boolean islogin;
 	private int customerId;
-
+	DisplayImageOptions options = MyApplication.getDisplayOption();
 	private List<Integer> labelIds = new ArrayList<Integer>();
 	private List<Integer> labelSelectIds = new ArrayList<Integer>();
+
+	public static int screenWidth;
+	public static int screenHeight;
 
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -123,7 +130,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			case 0:
 				list.clear();
 				for (int i = 0; i <ma.size(); i++) {			 
-					item = inflater.inflate(R.layout.item, null);
+					item = inflater.inflate(R.layout.item_gooddetail, null);
 					list.add(item);
 				}
 				indicator_imgs	= new ImageView[ma.size()];
@@ -178,6 +185,13 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_detail);
 
+		DisplayMetrics dm = new DisplayMetrics();  
+		this.getWindowManager().getDefaultDisplay().getMetrics(dm); 
+
+		// 得到屏幕的长和宽  
+		screenWidth = dm.widthPixels;                //水平分辨率  
+		screenHeight = dm.heightPixels;              //垂直分辨率 
+
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin=mySharedPreferences.getBoolean("islogin", false);
 		customerId = mySharedPreferences.getInt("id", 0);
@@ -193,8 +207,16 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		gview=(ScrollViewWithGView) findViewById(R.id.gview);
 		getdata();
 
+		if (Config.countShopCar == 0) {
+			countShopCar.setVisibility(View.GONE);
+		}else {
+			countShopCar.setVisibility(View.VISIBLE);
+			countShopCar.setText(Config.countShopCar+"");
+		}
+
 	}
 	private void innitView() {
+		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		setting_rl_exit = (RelativeLayout) findViewById(R.id.setting_rl_exit);
 		setting_rl_exit2 = (RelativeLayout) findViewById(R.id.setting_rl_exit2);
 		tvc_zx=(TextView) findViewById(R.id.tvc_zx);
@@ -265,11 +287,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			all_price = gfe.getRetail_price()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 			islea=false;
-			
+
 			setting_rl_exit.setVisibility(View.VISIBLE);
 			LayoutParams lp1=setting_btn_clear.getLayoutParams();
 			setting_btn_clear.setLayoutParams(lp1);
-			
+
 			setting_btn_clear1.setClickable(true);
 			setting_btn_clear.setText("立即购买");
 			setting_btn_clear1.setBackgroundResource(R.drawable.bg_shape);
@@ -284,12 +306,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			all_price = gfe.getLease_deposit()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 			islea=true;
-			
+
 			setting_rl_exit.setVisibility(View.GONE);
 			LayoutParams lp=setting_btn_clear.getLayoutParams();
 			lp.width=480;
 			setting_btn_clear.setLayoutParams(lp);
-			
+
 			setting_btn_clear1.setClickable(false);
 			setting_btn_clear.setText("立即租赁");
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bg0etitle));
@@ -449,11 +471,6 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		} catch (UnsupportedEncodingException e) {
 			return;
 		}
-
-		//		RequestParams params = new RequestParams();
-		//		params.put("goodId",id);
-		//		params.put("city_id",MyApplication.getInstance().getCityId());
-		//	MyApplication.getInstance().getClient().post(Config.URL_GOOD_INFO, params, new AsyncHttpResponseHandler() {
 		loadingDialog = DialogUtil.getLoadingDialg(this);
 		loadingDialog.show();
 		MyApplication.getInstance().getClient()
@@ -518,7 +535,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						String res2=	 JSONUtils.getString(jsonobject, "paychannelinfo", null);
 						if(res2 != null){
 							jsonobject = new JSONObject(res2);
-							
+
 							opening_datum = jsonobject.getString("opening_datum");
 							paychannelId=jsonobject.getInt("id");
 							factoryEntity=gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<FactoryEntity>() {
@@ -595,12 +612,6 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		} catch (UnsupportedEncodingException e) {
 			return;
 		}
-		//		RequestParams params = new RequestParams();
-		//		params.put("pcid",pcid);
-		//		System.out.println("---支付通道ID--"+pcid);
-
-		//		params.setUseJsonStreamer(true);
-		//		MyApplication.getInstance().getClient().post(Config.URL_PAYCHANNEL_INFO, params, new AsyncHttpResponseHandler() {
 		MyApplication.getInstance().getClient()
 		.post(getApplicationContext(),Config.URL_PAYCHANNEL_INFO, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
@@ -744,6 +755,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						startActivity(i);
 					}else if(code==1){
 						Config.countShopCar = Config.countShopCar + 1;
+
+						if (Config.countShopCar == 0) {
+							countShopCar.setVisibility(View.GONE);
+						}else {
+							countShopCar.setVisibility(View.VISIBLE);
+							countShopCar.setText(Config.countShopCar+"");
+						}
+
 						MyToast.showToast(getApplicationContext(),"添加商品成功");
 					}else{
 						MyToast.showToast(getApplicationContext(),jsonobject.getString("message"));
@@ -835,7 +854,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		public Object instantiateItem(final ViewGroup container, final int position) {
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
-
+			ViewGroup.LayoutParams lp = image.getLayoutParams();
+			lp.width = screenWidth;
+			lp.height = screenWidth;
+			image.setLayoutParams(lp);
+			image.setMaxWidth(screenWidth);
+			image.setMaxHeight(screenWidth);
+			
+			//ImageLoader.getInstance().displayImage(ma.get(position), image, options);
 			ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
 					image);
 			container.removeView(mList.get(position));
@@ -845,6 +871,10 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 				@Override
 				public void onClick(View v) {
+					Intent intent = new Intent(GoodDeatail.this,GoodDetailImgs.class);
+					intent.putStringArrayListExtra("ma", (ArrayList<String>) ma);
+					intent.putExtra("position_detail", position);
+					startActivity(intent);
 					//			 
 					//					 Intent i=new Intent(AroundDetail.this,VPImage.class);
 					//				 
@@ -876,7 +906,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		}
 
 		@Override
-		public void onPageSelected(int position) {
+		public void onPageSelected(final int position) {
 
 			// 改变所有导航的背景图片为：未选中
 			for (int i = 0; i < indicator_imgs.length; i++) {
@@ -886,6 +916,17 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			// 改变当前背景图片为：选中
 			index_ima=position;
 			indicator_imgs[position].setBackgroundResource(R.drawable.white_solid_point);
+			View v = list.get(position);
+			v.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					Intent intent = new Intent(GoodDeatail.this,GoodDetailImgs.class);
+					intent.putStringArrayListExtra("ma", (ArrayList<String>) ma);
+					intent.putExtra("position_detail", position);
+					startActivity(intent);
+				}
+			});
 		}
 	}
 }
