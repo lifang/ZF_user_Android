@@ -8,6 +8,7 @@ import android.app.Dialog;
 public class BaseActivity extends Activity{
 	
 	protected Dialog loadingDialog ;
+	protected String error;
 	
 	@Override
 	protected void onDestroy() {

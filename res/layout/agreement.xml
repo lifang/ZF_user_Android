@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/F3F3F3"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_back" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:text="华尔街金融平台用户使用协议"
+        android:textColor="@color/hint6C"
+        android:textSize="@dimen/s_20sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:text="版本生效时间:2015年5月1日"
+        android:textColor="@color/hint6C"
+        android:textSize="@dimen/s_14sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/bgtitle" />
+	
+    <WebView 
+        android:id="@+id/webview"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+    
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp" >
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:text="@string/agreement"
+            android:textColor="@color/hint6C"
+            android:textSize="@dimen/s_14sp" />
+    </ScrollView>
+
+</LinearLayout>

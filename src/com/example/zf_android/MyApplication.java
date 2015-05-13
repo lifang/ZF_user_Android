@@ -450,4 +450,15 @@ public class MyApplication extends org.litepal.LitePalApplication {
 			e.printStackTrace();
 		}
 	}
+	
+	private int reg_cityId;
+
+	public int getReg_cityId() {
+		return reg_cityId;
+	}
+
+	public void setReg_cityId(int reg_cityId) {
+		this.reg_cityId = reg_cityId;
+	}
+	
 }

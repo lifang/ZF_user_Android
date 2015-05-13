@@ -58,7 +58,11 @@ public class HttpRequest {
 				if (data.getCode() == 1) {
 					callback.onSuccess(data.getResult());
 				} else if (!TextUtils.isEmpty(data.getMessage())) {
+					if(data.getMessage().equals("该用户已注册！")){
+						callback.onSuccess("registered");
+					}else{
 					callback.onFailure(data.getMessage());
+					}
 				}
 			}
 
