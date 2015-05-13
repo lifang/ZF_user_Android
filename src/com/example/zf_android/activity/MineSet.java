@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.examlpe.zf_android.util.DataCleanManager;
 import com.examlpe.zf_android.util.DownloadUtils;
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
@@ -130,7 +131,7 @@ public class MineSet extends BaseActivity implements OnClickListener{
 				img_on_off.setBackgroundResource(R.drawable.pos_off);
 				editor.putBoolean("isOpen_mineset",false);
 				editor.commit();
-
+				MyToast.showToast(this, "您已成功关闭推送消息，在应用进入后台时您将不会收到推送消息！");
 			}else{
 				isOpen_mineset=true;
 				img_on_off.setBackgroundResource(R.drawable.pos_on);		 

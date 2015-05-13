@@ -179,10 +179,10 @@ public class PayFromCar extends PayActivity implements OnClickListener{
 	}
 	@Override
 	public void fail() {
-		Intent intent = new Intent(PayFromCar.this,OrderDetail.class);
-		intent.putExtra("status",1);
-		intent.putExtra("id", orderId);
-		startActivity(intent);
-		finish();
+//		Intent intent = new Intent(PayFromCar.this,OrderDetail.class);
+//		intent.putExtra("status",1);
+//		intent.putExtra("id", orderId);
+//		startActivity(intent);
+//		finish();
 	}
 }

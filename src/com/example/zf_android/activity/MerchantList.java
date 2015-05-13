@@ -47,7 +47,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	private LinearLayout eva_nodata;
 	private RelativeLayout mune_rl; 
 	private MerchanAdapter myAdapter;
-	private ImageView search,img_add;
+	private RelativeLayout search,img_add;
 	private int ids[]=new int []{};
 	private TextView tv_delete;
 	private Integer customerId;
@@ -96,9 +96,9 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 
 	private void initView() {
 		new TitleMenuUtil(MerchantList.this, "我的商户").show();
-		search=(ImageView) findViewById(R.id.search);
+		search=(RelativeLayout) findViewById(R.id.search);
 		mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
-		img_add=(ImageView) findViewById(R.id.img_add);
+		img_add=(RelativeLayout) findViewById(R.id.img_add);
 		myAdapter=new MerchanAdapter(MerchantList.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		xListview=(XListView) findViewById(R.id.x_listview);

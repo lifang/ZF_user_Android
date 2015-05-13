@@ -84,6 +84,8 @@ public class ComfirmcarAdapter extends BaseAdapter {
 					.findViewById(R.id.wayName);
 			holder.Model_number = (TextView) convertView
 					.findViewById(R.id.Model_number);
+			holder.content2 = (TextView) convertView
+					.findViewById(R.id.content2);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -95,9 +97,9 @@ public class ComfirmcarAdapter extends BaseAdapter {
 		holder.title.setText(good.getTitle());
 		holder.showCountText.setText("X  " + good.getQuantity());
 		 
-		holder.retail_price.setText("￥ " + StringUtil.getMoneyString(good.getRetail_price()));
+		holder.retail_price.setText("￥ " + StringUtil.getMoneyString(good.getRetail_price()+good.getOpening_cost()));
 		holder.wayName.setText(good.getName());
-		holder.Model_number.setText(good.getModel_number());
+		holder.content2.setText(good.getModel_number());
 		return convertView;
 	}
  
@@ -118,7 +120,7 @@ public class ComfirmcarAdapter extends BaseAdapter {
 		private TextView showCountText;
 		private View reduce;
 		private View add;
-		public TextView Model_number;
+		public TextView Model_number,content2;
 		public TextView wayName;
 	}
 }

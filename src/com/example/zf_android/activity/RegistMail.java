@@ -219,7 +219,7 @@ public class RegistMail extends BaseActivity implements OnClickListener{
 			public void onSuccess(Object data) {
 				MyToast.showToast(getApplicationContext(),"注册成功");
 
-				Intent i =new Intent(getApplicationContext(), Regist4phoneSucces.class);
+				Intent i =new Intent(getApplicationContext(), Regist4mailSucces.class);
 				i.putExtra("tel", username);
 				startActivity(i);
 			}

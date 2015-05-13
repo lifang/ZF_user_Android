@@ -41,10 +41,32 @@ public class Exchange extends BaseActivity implements OnClickListener{
 		priceMax=getIntent().getStringExtra("price");
 		point = getIntent().getStringExtra("point");
 		tv_xyjf.setText(point);
-		moneyTextView.setText("最高可以兑换金额：" + priceMax);
+		moneyTextView.setText("最高可以兑换金额：" + formateRate(priceMax));
 	}
+	// 保留小数点后两位  
+	public String formateRate(String rateStr){  
+		if(rateStr.indexOf(".") != -1){  
+			//获取小数点的位置  
+			int num = 0;  
+			num = rateStr.indexOf(".");  
 
-
+			//获取小数点后面的数字 是否有两位 不足两位补足两位  
+			String dianAfter = rateStr.substring(0,num+1);  
+			String afterData = rateStr.replace(dianAfter, "");  
+			if(afterData.length() < 2){  
+				afterData = afterData + "0" ;  
+			}else{  
+				afterData = afterData;  
+			}  
+			return rateStr.substring(0,num) + "." + afterData.substring(0,2);  
+		}else{  
+			if(rateStr == "1"){  
+				return "100";  
+			}else{  
+				return rateStr;  
+			}  
+		}  
+	}
 	private void initView() {
 		tv_xyjf=(TextView) findViewById(R.id.tv_xyjf);
 		et_name=(EditText) findViewById(R.id.et_name1);

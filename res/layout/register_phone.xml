@@ -264,16 +264,30 @@
                     </LinearLayout>
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tv_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="7dp"
-                    android:background="@color/ffffff"
-                    android:gravity="center"
-                    android:paddingRight="10dp"
-                    android:text="发送验证码"
-                    android:textSize="@dimen/s_17sp" />
+              <LinearLayout
+            android:id="@+id/tv_codeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/bg_blue_shape"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp" >
+
+            <TextView
+                android:id="@+id/tv_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:text="发送验证码"
+                android:textColor="@color/fffefe"
+                android:textSize="16sp" />
+        </LinearLayout>
             </LinearLayout>
 
             <View

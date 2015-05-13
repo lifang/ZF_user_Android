@@ -52,11 +52,11 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
             mTabWidget.addTab(tabs[i]);
         }
         // add fragments according to the order
-        TradeFlowFragment transferFragment = TradeFlowFragment.newInstance(TRANSFER);
-        TradeFlowFragment consumeFragment = TradeFlowFragment.newInstance(CONSUME);
-        TradeFlowFragment repaymentFragment = TradeFlowFragment.newInstance(REPAYMENT);
-        TradeFlowFragment lifePayFragment = TradeFlowFragment.newInstance(LIFE_PAY);
-        TradeFlowFragment phonePayFragment = TradeFlowFragment.newInstance(PHONE_PAY);
+        TradeFlowFragment transferFragment = TradeFlowFragment.newInstance(2);//2
+        TradeFlowFragment consumeFragment = TradeFlowFragment.newInstance(1);//1
+        TradeFlowFragment repaymentFragment = TradeFlowFragment.newInstance(3);//3
+        TradeFlowFragment lifePayFragment = TradeFlowFragment.newInstance(5);//5
+        TradeFlowFragment phonePayFragment = TradeFlowFragment.newInstance(4);//4
         mFragments.add(transferFragment);
         mFragments.add(consumeFragment);
         mFragments.add(repaymentFragment);

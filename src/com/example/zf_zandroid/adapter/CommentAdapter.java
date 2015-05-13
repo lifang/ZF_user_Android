@@ -3,12 +3,12 @@ package com.example.zf_zandroid.adapter;
 import java.util.List;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -27,7 +27,16 @@ public class CommentAdapter extends BaseAdapter {
 	private int state;
 	private AfterTextChangedListener afterTextChangedListener;
 	private ViewHolder holder = null;
-
+	
+	private int selectPosition = -1;
+	
+	public int getSelectPosition() {
+		return selectPosition;
+	}
+	public void setSelectPosition(int selectPosition) {
+		this.selectPosition = selectPosition;
+	}
+	
 	public CommentAdapter(Context context, List<Goodlist> list,AfterTextChangedListener afterTextChangedListener) {
 		this.context = context;
 		this.list = list;
@@ -54,7 +63,7 @@ public class CommentAdapter extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		inflater = LayoutInflater.from(context);
 		System.out.println("--`getView`--" + position);
-		if (convertView == null) {
+		//if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.comment_item, null);
 			holder.content = (TextView) convertView
@@ -71,10 +80,10 @@ public class CommentAdapter extends BaseAdapter {
 			holder.rb = (RatingBar) convertView.findViewById(R.id.si_rt_msxf);
 			holder.rb.setTag(position);
 
-			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}
+//			convertView.setTag(holder);
+//		} else {
+//			holder = (ViewHolder) convertView.getTag();
+//		}
 		holder.item_et.setTag(position);
 		if(list.get(position).getScore()==null){
 			list.get(position).setScore(50+"");
@@ -100,24 +109,12 @@ public class CommentAdapter extends BaseAdapter {
 
 			}
 		});
-		
-		
-		holder.item_et.setFocusable(true);
-		holder.item_et.setFocusableInTouchMode(true);
-		holder.item_et.requestFocus();
-		
+	
 		holder.item_et.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				//notifyDataSetChanged();
-				//								if (s.length() > 0) {
-				//									holder.maxCountTextView.setText("还可填写"+(200-s.length())+"个汉字");
-				//								}else if (s.length() == 0) {
-				//									holder.maxCountTextView.setText("最多填写200个汉字");
-				//								}else if (s.length() > 200) {
-				//									holder.maxCountTextView.setText("已超出允许最多字数");
-				//								}
+		
 			}
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
@@ -127,6 +124,7 @@ public class CommentAdapter extends BaseAdapter {
 
 			@Override
 			public void afterTextChanged(Editable arg0) {
+		
 				list.get(position).setContent(arg0.toString());
 				afterTextChangedListener.onAfterTextChanged(position);
 			}
@@ -134,6 +132,7 @@ public class CommentAdapter extends BaseAdapter {
 		
 		if (!StringUtil.isNull(list.get(position).getContent())) {
 			holder.item_et.setText(list.get(position).getContent());
+			holder.item_et.getText();
 			holder.item_et.setSelection(list.get(position).getContent().length());
 		}
 		if (!StringUtil.isNull(list.get(position).getContent())) {

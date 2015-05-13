@@ -14,7 +14,15 @@ public class AfterSaleDetailMaintain extends AfterSaleDetail {
     private String repairPrice;
 
     private String description;
+	private String change_reason;
+	
+	public String getChange_reason() {
+		return change_reason;
+	}
 
+	public void setChange_reason(String change_reason) {
+		this.change_reason = change_reason;
+	}
     public String getReceiverAddr() {
         return receiverAddr;
     }

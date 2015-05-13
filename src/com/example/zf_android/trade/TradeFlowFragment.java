@@ -374,7 +374,7 @@ public class TradeFlowFragment extends Fragment implements
 												Toast.LENGTH_SHORT).show();
 										return;
 									}else if(dateStr
-											.compareTo(nowStr) >= 0){
+											.compareTo(nowStr) > 0){
 										Toast.makeText(
 												getActivity(),"开始时间不能大于当前时间",
 												Toast.LENGTH_SHORT).show();
@@ -467,8 +467,8 @@ public class TradeFlowFragment extends Fragment implements
 			df.applyPattern("0.00");
 			
 			switch (mTradeType) {
-			case TRANSFER:
-			case REPAYMENT:
+			case 2:
+			case 3:
 				holder.tvAccountKey
 						.setText(getString(R.string.trade_pay_account));
 				holder.tvReceiveAccountKey
@@ -477,17 +477,17 @@ public class TradeFlowFragment extends Fragment implements
 				holder.tvAccount.setText(record.getPayFromAccount());
 				holder.tvReceiveAccount.setText(record.getPayIntoAccount());
 				break;
-			case CONSUME:
-				holder.tvAccountKey
-						.setText(getString(R.string.trade_close_time));
+			case 1:
+				holder.tvAccountKey.setVisibility(View.INVISIBLE);
+						//.setText(getString(R.string.trade_close_time));
 				holder.tvReceiveAccountKey
 						.setText(getString(R.string.trade_poundage));
 
-				holder.tvAccount.setText(record.getTradedTimeStr());
+				//holder.tvAccount.setText(record.getTradedTimeStr());
 				holder.tvReceiveAccount.setText(getString(R.string.notation_yuan)
 						+ df.format(record.getPoundage()*1.0f/100));
 				break;
-			case LIFE_PAY:
+			case 5:
 				holder.tvAccountKey
 						.setText(getString(R.string.trade_account_name));
 				holder.tvReceiveAccountKey
@@ -496,7 +496,7 @@ public class TradeFlowFragment extends Fragment implements
 				holder.tvAccount.setText(record.getAccountName());
 				holder.tvReceiveAccount.setText(record.getAccountNumber());
 				break;
-			case PHONE_PAY:
+			case 4:
 				holder.tvAccountKey.setVisibility(View.INVISIBLE);
 				holder.tvReceiveAccountKey
 						.setText(getString(R.string.trade_phone_number));
