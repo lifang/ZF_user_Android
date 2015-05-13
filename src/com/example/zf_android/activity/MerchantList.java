@@ -6,6 +6,8 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,33 +39,33 @@ import com.example.zf_zandroid.adapter.MerchanAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class MerchantList extends BaseActivity implements  IXListViewListener{
+public class MerchantList extends BaseActivity implements IXListViewListener {
 	private static final int CODE_EDIT = 1;
 	private static final int CODE_CREATE = 2;
 
 	private XListView xListview;
-	private int page=1;
-	private int rows=Config.ROWS;
+	private int page = 1;
+	private int rows = Config.ROWS;
 	private LinearLayout eva_nodata;
-	private RelativeLayout mune_rl; 
+	private RelativeLayout mune_rl;
 	private MerchanAdapter myAdapter;
-	private RelativeLayout search,img_add;
-	private int ids[]=new int []{};
+	private RelativeLayout search, img_add;
+	private int ids[] = new int[] {};
 	private TextView tv_delete;
 	private Integer customerId;
 	private int total = 0;
-	List<MerchantEntity>  myList = new ArrayList<MerchantEntity>();
+	List<MerchantEntity> myList = new ArrayList<MerchantEntity>();
 	List<MerchantEntity> idList = new ArrayList<MerchantEntity>();
-	List<MerchantEntity>  moreList = new ArrayList<MerchantEntity>();
+	List<MerchantEntity> moreList = new ArrayList<MerchantEntity>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
 				onLoad();
 				xListview.setVisibility(View.GONE);
-				if(myList.size()==0){
+				if (myList.size() == 0) {
 					eva_nodata.setVisibility(View.VISIBLE);
-				} else{
+				} else {
 					myAdapter.notifyDataSetChanged();
 					xListview.setVisibility(View.VISIBLE);
 				}
@@ -73,17 +75,18 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 						Toast.LENGTH_SHORT).show();
 
 				break;
-			case 2: 
-				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
-						Toast.LENGTH_SHORT).show();
+			case 2:
+				Toast.makeText(getApplicationContext(),
+						"no 3g or wifi content", Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				Toast.makeText(getApplicationContext(),  " refresh too much",
+				Toast.makeText(getApplicationContext(), " refresh too much",
 						Toast.LENGTH_SHORT).show();
 				break;
 			}
 		}
 	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -96,20 +99,20 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 
 	private void initView() {
 		new TitleMenuUtil(MerchantList.this, "我的商户").show();
-		search=(RelativeLayout) findViewById(R.id.search);
-		mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
-		img_add=(RelativeLayout) findViewById(R.id.img_add);
-		myAdapter=new MerchanAdapter(MerchantList.this, myList);
-		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
-		xListview=(XListView) findViewById(R.id.x_listview);
+		search = (RelativeLayout) findViewById(R.id.search);
+		mune_rl = (RelativeLayout) findViewById(R.id.mune_rl);
+		img_add = (RelativeLayout) findViewById(R.id.img_add);
+		myAdapter = new MerchanAdapter(MerchantList.this, myList);
+		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
+		xListview = (XListView) findViewById(R.id.x_listview);
 		xListview.setVisibility(View.VISIBLE);
-		
+
 		xListview.initHeaderAndFooter();
 		xListview.setPullLoadEnable(true);
 		xListview.setPullRefreshEnable(true);
 		xListview.setXListViewListener(this);
 		xListview.setDivider(null);
-		tv_delete=(TextView) findViewById(R.id.tv_delete);
+		tv_delete = (TextView) findViewById(R.id.tv_delete);
 		xListview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -117,8 +120,8 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 					int position, long arg3) {
 				System.out.println("```onItemClick``");
 				Intent i = new Intent(MerchantList.this, MerchantEdit.class);
-				i.putExtra("ID", myList.get(position-1).getId());
-				i.putExtra("name", myList.get(position-1).getTitle()+"");
+				i.putExtra("ID", myList.get(position - 1).getId());
+				i.putExtra("name", myList.get(position - 1).getTitle() + "");
 				startActivityForResult(i, CODE_EDIT);
 			}
 
@@ -129,11 +132,11 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 
 			@Override
 			public void onClick(View v) {
-				if(MyApplication.getIsSelect()){
+				if (MyApplication.getIsSelect()) {
 					MyApplication.setIsSelect(false);
 					myAdapter.notifyDataSetChanged();
 					mune_rl.setVisibility(View.GONE);
-				}else{
+				} else {
 					mune_rl.setVisibility(View.VISIBLE);
 					MyApplication.setIsSelect(true);
 					myAdapter.notifyDataSetChanged();
@@ -152,38 +155,79 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		tv_delete.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+
 				for (int i = 0; i < myList.size(); i++) {
 					if (myList.get(i).getIscheck()) {
 						idList.add(myList.get(i));
 					}
 				}
-				ids=new int[idList.size()];
-				for (int i = 0; i < idList.size(); i++) {
-					ids[i]=idList.get(i).getId();
-				}
-				Gson gson = new Gson();
-				try {
-					API.merchantDelete(MerchantList.this,new JSONArray(gson.toJson(ids)),
-							new HttpCallback(MerchantList.this) {
-						@Override
-						public void onSuccess(Object data) {
-							moreList.clear();
-							for (int i = 0; i < myList.size(); i++) {
-								if (myList.get(i).getIscheck()) {
-									moreList.add( myList.get(i));
-								}
-							}
-							myList.removeAll(moreList);
-							myAdapter.notifyDataSetChanged();
-						}
-						@Override
-						public TypeToken getTypeToken() {
-							return null;
-						}
+				if (idList.size() > 0) {
+					final AlertDialog.Builder builder = new AlertDialog.Builder(
+							MerchantList.this);
+					final AlertDialog dialog = builder.create();
+					builder.setTitle("提示");
+					builder.setMessage("确定要删除吗？");
+					builder.setPositiveButton("确认",
+							new DialogInterface.OnClickListener() {
 
-					});
-				} catch (JSONException e) {
-					e.printStackTrace();
+								@Override
+								public void onClick(DialogInterface arg0,
+										int arg1) {
+
+									ids = new int[idList.size()];
+									for (int i = 0; i < idList.size(); i++) {
+										ids[i] = idList.get(i).getId();
+									}
+									Gson gson = new Gson();
+									try {
+										API.merchantDelete(
+												MerchantList.this,
+												new JSONArray(gson.toJson(ids)),
+												new HttpCallback(
+														MerchantList.this) {
+													@Override
+													public void onSuccess(
+															Object data) {
+														moreList.clear();
+														for (int i = 0; i < myList
+																.size(); i++) {
+															if (myList
+																	.get(i)
+																	.getIscheck()) {
+																moreList.add(myList
+																		.get(i));
+															}
+														}
+														myList.removeAll(moreList);
+														myAdapter
+																.notifyDataSetChanged();
+													}
+
+													@Override
+													public TypeToken getTypeToken() {
+														return null;
+													}
+
+												});
+									} catch (JSONException e) {
+										e.printStackTrace();
+									}
+								}
+							});
+					builder.setNegativeButton("取消",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface arg0,
+										int arg1) {
+									dialog.dismiss();
+								}
+
+							});
+
+					builder.create().show();
+				} else {
+					CommonUtil.toastShort(MerchantList.this, "请先选择要删除的商户");
 				}
 			}
 		});
@@ -194,7 +238,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 		page = 1;
 		xListview.setPullLoadEnable(true);
 		myList.clear();
-		getData();		
+		getData();
 	}
 
 	@Override
@@ -207,6 +251,7 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 			getData();
 		}
 	}
+
 	private void onLoad() {
 		xListview.stopRefresh();
 		xListview.stopLoadMore();
@@ -220,38 +265,41 @@ public class MerchantList extends BaseActivity implements  IXListViewListener{
 	}
 
 	private void getData() {
-		API.merchantGetList(this,customerId,page,rows,
-				new HttpCallback<Page<MerchantEntity>> (this) {
+		API.merchantGetList(this, customerId, page, rows,
+				new HttpCallback<Page<MerchantEntity>>(this) {
 
-			@Override
-			public void onSuccess(Page<MerchantEntity> data) {
+					@Override
+					public void onSuccess(Page<MerchantEntity> data) {
 
-				if (null != data.getList()) {
-					myList.addAll(data.getList());
-				}
-				page++;
-				total = data.getTotal();
-				handler.sendEmptyMessage(0);
-			};
-			@Override
-			public TypeToken<Page<MerchantEntity>> getTypeToken() {
-				return new TypeToken<Page<MerchantEntity>>() {
-				};
-			}
-		});
+						if (null != data.getList()) {
+							myList.addAll(data.getList());
+						}
+						page++;
+						total = data.getTotal();
+						handler.sendEmptyMessage(0);
+					};
+
+					@Override
+					public TypeToken<Page<MerchantEntity>> getTypeToken() {
+						return new TypeToken<Page<MerchantEntity>>() {
+						};
+					}
+				});
 
 	}
+
 	@Override
-	protected void onActivityResult(final int requestCode, int resultCode, final Intent data) {
+	protected void onActivityResult(final int requestCode, int resultCode,
+			final Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode!=RESULT_OK) {
+		if (resultCode != RESULT_OK) {
 			return;
 		}
 		switch (requestCode) {
 		case CODE_EDIT:
 		case CODE_CREATE:
 			boolean needFresh = data.getBooleanExtra("needFresh", false);
-			if(needFresh){
+			if (needFresh) {
 				page = 1;
 				xListview.setPullLoadEnable(true);
 				myList.clear();

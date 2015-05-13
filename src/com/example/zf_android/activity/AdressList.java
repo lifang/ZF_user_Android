@@ -6,6 +6,9 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,32 +29,33 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;
 import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_zandroid.adapter.AdressAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class AdressList extends BaseActivity  {
+public class AdressList extends BaseActivity {
 	private View bottomView;
 	private LinearLayout eva_nodata;
 	private RelativeLayout mune_rl;
 	private AdressAdapter myAdapter;
 	private ListView lv;
-	private Integer ids[]=new Integer []{};
+	private Integer ids[] = new Integer[] {};
 	private int customerId;
 	List<Integer> as = new ArrayList<Integer>();
-	private RelativeLayout search,img_add;
+	private RelativeLayout search, img_add;
 	private boolean isFirstCreate;
-	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
-	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
+	List<AdressEntity> myList = new ArrayList<AdressEntity>();
+	List<AdressEntity> moreList = new ArrayList<AdressEntity>();
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				if(myList.size()==0){
+				if (myList.size() == 0) {
 					lv.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
-				} else{
+				} else {
 					lv.setVisibility(View.VISIBLE);
 					eva_nodata.setVisibility(View.GONE);
 				}
@@ -62,66 +66,70 @@ public class AdressList extends BaseActivity  {
 						Toast.LENGTH_SHORT).show();
 
 				break;
-			case 2:  
-				Toast.makeText(getApplicationContext(), "no 3g or wifi content",
-						Toast.LENGTH_SHORT).show();
+			case 2:
+				Toast.makeText(getApplicationContext(),
+						"no 3g or wifi content", Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				Toast.makeText(getApplicationContext(),  " refresh too much",
+				Toast.makeText(getApplicationContext(), " refresh too much",
 						Toast.LENGTH_SHORT).show();
 				break;
 			}
 		}
 	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adress_list);
-		isFirstCreate=true;
+		isFirstCreate = true;
 		customerId = MyApplication.getInstance().getCustomerId();
 		initView();
 		MyApplication.setIsSelect(false);
 		getData();
 	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(!isFirstCreate){
+		if (!isFirstCreate) {
 			getData();
-		}else {
-			isFirstCreate=false;
+		} else {
+			isFirstCreate = false;
 		}
 	}
+
 	private void initView() {
-		search=(RelativeLayout) findViewById(R.id.search);
-		img_add=(RelativeLayout) findViewById(R.id.img_add);
+		search = (RelativeLayout) findViewById(R.id.search);
+		img_add = (RelativeLayout) findViewById(R.id.img_add);
 		bottomView = findViewById(R.id.bottomView);
 		img_add.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-				Intent i =new Intent(AdressList.this,AdressEdit.class);
+				Intent i = new Intent(AdressList.this, AdressEdit.class);
 				startActivityForResult(i, 1);
 			}
 		});
-		mune_rl=(RelativeLayout) findViewById(R.id.mune_rl);
+		mune_rl = (RelativeLayout) findViewById(R.id.mune_rl);
 
 		new TitleMenuUtil(AdressList.this, "地址管理").show();
-		myAdapter=new AdressAdapter(AdressList.this, myList);
-		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
+		myAdapter = new AdressAdapter(AdressList.this, myList);
+		eva_nodata = (LinearLayout) findViewById(R.id.eva_nodata);
 
-		lv=(ListView) findViewById(R.id.lv);
+		lv = (ListView) findViewById(R.id.lv);
 		lv.setAdapter(myAdapter);
 		lv.setVisibility(View.VISIBLE);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				Intent i =new Intent(getApplicationContext(), Adress4Edit.class);
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Intent i = new Intent(getApplicationContext(),
+						Adress4Edit.class);
 
 				i.putExtra("id", myList.get(arg2).getId());
-				i.putExtra("cityId", myList.get(arg2).getCityId()+"");
+				i.putExtra("cityId", myList.get(arg2).getCityId() + "");
 				i.putExtra("receiver", myList.get(arg2).getReceiver());
 				i.putExtra("moblephone", myList.get(arg2).getMoblephone());
 				i.putExtra("zipCode", myList.get(arg2).getZipCode());
@@ -135,13 +143,13 @@ public class AdressList extends BaseActivity  {
 
 			@Override
 			public void onClick(View v) {
-				if(MyApplication.getIsSelect()){
+				if (MyApplication.getIsSelect()) {
 					MyApplication.setIsSelect(false);
 					myAdapter.notifyDataSetChanged();
 					mune_rl.setVisibility(View.GONE);
 					bottomView.setVisibility(View.GONE);
 
-				}else{
+				} else {
 					mune_rl.setVisibility(View.VISIBLE);
 					bottomView.setVisibility(View.VISIBLE);
 					MyApplication.setIsSelect(true);
@@ -153,63 +161,106 @@ public class AdressList extends BaseActivity  {
 
 			@Override
 			public void onClick(View arg0) {
-				ids=new Integer[myList.size()];
+
+				ids = new Integer[myList.size()];
 				for (int i = 0; i < myList.size(); i++) {
-					if(myList.get(i).getIscheck()){
-						ids[i]=myList.get(i).getId();
-						as.add( myList.get(i).getId() );
+					if (myList.get(i).getIscheck()) {
+						ids[i] = myList.get(i).getId();
+						as.add(myList.get(i).getId());
 					}
 				}
-				Gson gson = new Gson();
-				try {
-					API.deleteAddress(AdressList.this,new JSONArray(gson.toJson(as)),
-							new HttpCallback(AdressList.this) {
-						@Override
-						public void onSuccess(Object data) {
-							moreList.clear();
-							for (int i = 0; i < myList.size(); i++) {
-								if (!myList.get(i).getIscheck()) {
-									moreList.add(myList.get(i));
+
+				if (as.size() > 0) {
+					final AlertDialog.Builder builder = new AlertDialog.Builder(
+							AdressList.this);
+					final AlertDialog dialog = builder.create();
+					builder.setTitle("提示");
+					builder.setMessage("确定要删除吗？");
+					builder.setPositiveButton("确认",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface arg0,
+										int arg1) {
+
+									Gson gson = new Gson();
+									try {
+										API.deleteAddress(AdressList.this,
+												new JSONArray(gson.toJson(as)),
+												new HttpCallback(
+														AdressList.this) {
+													@Override
+													public void onSuccess(
+															Object data) {
+														moreList.clear();
+														for (int i = 0; i < myList
+																.size(); i++) {
+															if (!myList
+																	.get(i)
+																	.getIscheck()) {
+																moreList.add(myList
+																		.get(i));
+															}
+														}
+														myList.clear();
+
+														myList.addAll(moreList);
+														myAdapter
+																.notifyDataSetChanged();
+													}
+
+													@Override
+													public TypeToken getTypeToken() {
+														return null;
+													}
+
+												});
+									} catch (JSONException e) {
+										e.printStackTrace();
+									}
 								}
-							}
-							myList.clear();
+							});
+					builder.setNegativeButton("取消",
+							new DialogInterface.OnClickListener() {
 
-							myList.addAll(moreList);
-							myAdapter.notifyDataSetChanged();
-						}
-						@Override
-						public TypeToken getTypeToken() {
-							return null;
-						}
+								@Override
+								public void onClick(DialogInterface arg0,
+										int arg1) {
+									dialog.dismiss();
+								}
 
-					});
-				} catch (JSONException e) {
-					e.printStackTrace();
+							});
+
+					builder.create().show();
+				} else {
+
+					CommonUtil.toastShort(AdressList.this, "请先选择要删除的地址");
 				}
 			}
 		});
 	}
 
-	private void getData() { 
+	private void getData() {
 		myList.clear();
-		API.getAddressList(this,customerId,
-				new HttpCallback<List<AdressEntity>> (this) {
+		API.getAddressList(this, customerId,
+				new HttpCallback<List<AdressEntity>>(this) {
 
-			@Override
-			public void onSuccess(List<AdressEntity> data) {
-				moreList.clear();
-				moreList= data;
+					@Override
+					public void onSuccess(List<AdressEntity> data) {
+						moreList.clear();
+						moreList = data;
 
-				if (null != data) {
-					myList.addAll(data);
-				}
-				handler.sendEmptyMessage(0);
-			};
-			@Override
-			public TypeToken<List<AdressEntity>> getTypeToken() {
-				return new TypeToken<List<AdressEntity>>() {
-				};
-			}
-		});
+						if (null != data) {
+							myList.addAll(data);
+						}
+						handler.sendEmptyMessage(0);
+					};
+
+					@Override
+					public TypeToken<List<AdressEntity>> getTypeToken() {
+						return new TypeToken<List<AdressEntity>>() {
+						};
+					}
+				});
 	}
 }

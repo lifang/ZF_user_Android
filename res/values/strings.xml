@@ -334,8 +334,12 @@
         <item>选择照片</item>
         <item>拍照上传</item>
     </string-array>
-
-    <string name="apply_upload_photo">上传图片</string>
+    <string-array name="apply_detail_view">
+        <item>查看图片</item>
+        <item>选择照片</item>
+        <item>拍照上传</item>
+    </string-array>
+    <string name="apply_upload_photo">上传图片</string>
     <string name="apply_uploading">上传中...</string>
     <string name="apply_upload_again">重新上传</string>
     <string name="apply_upload_success">上传成功</string>

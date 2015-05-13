@@ -23,8 +23,10 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -113,14 +115,13 @@ public class TerminalManageActivity extends Activity implements
 
 							@Override
 							public void onSuccess(Object data) {
-								// TODO Auto-generated method stub
-								CommonUtil.toastShort(TerminalManageActivity.this,
+								CommonUtil.toastShort(
+										TerminalManageActivity.this,
 										data.toString());
 							}
 
 							@Override
 							public TypeToken getTypeToken() {
-								// TODO Auto-generated method stub
 								return null;
 							}
 						});
@@ -131,12 +132,19 @@ public class TerminalManageActivity extends Activity implements
 			@Override
 			public void onClick(View view) {
 				TerminalItem item = (TerminalItem) view.getTag();
-				Intent intent = new Intent(TerminalManageActivity.this,
-						ApplyDetailActivity.class);
-				intent.putExtra(TERMINAL_ID, item.getId());
-				intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
-				intent.putExtra(TERMINAL_STATUS, item.getStatus());
-				startActivity(intent);
+
+				if (item.getStatus() == UNOPENED && "".equals(item.getAppid())) {
+
+					openDialog(item);
+
+				} else {
+					Intent intent = new Intent(TerminalManageActivity.this,
+							ApplyDetailActivity.class);
+					intent.putExtra(TERMINAL_ID, item.getId());
+					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
+					intent.putExtra(TERMINAL_STATUS, item.getStatus());
+					startActivity(intent);
+				}
 			}
 		};
 		mPosListener = new View.OnClickListener() {
@@ -317,83 +325,121 @@ public class TerminalManageActivity extends Activity implements
 						.findViewById(R.id.terminal_status);
 				holder.llButtonContainer = (LinearLayout) convertView
 						.findViewById(R.id.terminal_button_container);
-				holder.llButtonContainer2 = (LinearLayout) convertView
-						.findViewById(R.id.terminal_button_container_2);
+				// holder.llButtonContainer2 = (LinearLayout) convertView
+				// .findViewById(R.id.terminal_button_container_2);
 				holder.llButtons = (LinearLayout) convertView
 						.findViewById(R.id.terminal_buttons);
-				holder.llButtons2 = (LinearLayout) convertView
-						.findViewById(R.id.terminal_buttons_2);
+				// holder.llButtons2 = (LinearLayout) convertView
+				// .findViewById(R.id.terminal_buttons_2);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
 			final TerminalItem item = getItem(i);
 			holder.tvTerminalNumber.setText(item.getTerminalNumber());
+			if ("00123".equals(item.getTerminalNumber())) {
+
+				System.out.println("");
+			}
 			String[] status = getResources().getStringArray(
 					R.array.terminal_status);
 			holder.tvTerminalStatus.setText(status[item.getStatus()]);
 
 			// add buttons according to status
+
+			holder.llButtonContainer.setVisibility(View.GONE);
 			holder.llButtons.removeAllViews();
-			holder.llButtons2.removeAllViews();
-			switch (item.getStatus()) {
-			case OPENED:
-				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				holder.llButtonContainer2.setVisibility(View.GONE);
-				addButton(holder.llButtons, R.string.terminal_button_video,
-						item, mVideoListener);
-				addButton(holder.llButtons, R.string.terminal_button_pos, item,
-						mPosListener);
-				break;
-			case PART_OPENED:
-				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				//holder.llButtonContainer2.setVisibility(View.VISIBLE);
-				holder.llButtonContainer2.setVisibility(View.GONE);
-				addButton(holder.llButtons, R.string.terminal_button_sync,
-						item, mSyncListener);
-				addButton(holder.llButtons, R.string.terminal_button_reopen,
-						item, mOpenListener);
-				addButton(holder.llButtons, R.string.terminal_button_video,
-						item, mVideoListener);
-				addButton(holder.llButtons, R.string.terminal_button_pos,
-						item, mPosListener);
-//				addButton(holder.llButtons2, R.string.terminal_button_video,
-//						item, mVideoListener);
-//				addButton(holder.llButtons2, R.string.terminal_button_pos,
-//						item, mPosListener);
-				break;
-			case UNOPENED:
-				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				//holder.llButtonContainer2.setVisibility(View.VISIBLE);
-				holder.llButtonContainer2.setVisibility(View.GONE);
-				addButton(holder.llButtons, R.string.terminal_button_sync,
-						item, mSyncListener);
-				addButton(holder.llButtons, R.string.terminal_button_open,
-						item, mOpenListener);
-				addButton(holder.llButtons, R.string.terminal_button_video,
-						item, mVideoListener);
-//				addButton(holder.llButtons2, R.string.terminal_button_video,
-//						item, mVideoListener);
-				break;
-			case CANCELED:
-				holder.llButtonContainer.setVisibility(View.GONE);
-				holder.llButtonContainer2.setVisibility(View.GONE);
-				break;
-			case STOPPED:
-				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				addButton(holder.llButtons, R.string.terminal_button_sync,
-						item, mSyncListener);
-				break;
+			// holder.llButtons2.removeAllViews();
+			// 通过添加其他终端 进来的终端(type=1)，是没有详情，也没有操作按钮
+			if (!"1".equals(item.getType())) {
+
+				switch (item.getStatus()) {
+				// 除了已停用，其余状态都有同步功能
+				case OPENED:
+					holder.llButtonContainer.setVisibility(View.VISIBLE);
+					// holder.llButtonContainer2.setVisibility(View.GONE);
+					addButton(holder.llButtons, R.string.terminal_button_sync,
+							item, mSyncListener);
+					addButton(holder.llButtons, R.string.terminal_button_video,
+							item, mVideoListener);
+					addButton(holder.llButtons, R.string.terminal_button_pos,
+							item, mPosListener);
+					break;
+				case PART_OPENED:
+					holder.llButtonContainer.setVisibility(View.VISIBLE);
+					// holder.llButtonContainer2.setVisibility(View.VISIBLE);
+					// holder.llButtonContainer2.setVisibility(View.GONE);
+					addButton(holder.llButtons, R.string.terminal_button_sync,
+							item, mSyncListener);
+					addButton(holder.llButtons,
+							R.string.terminal_button_reopen, item,
+							mOpenListener);
+					addButton(holder.llButtons, R.string.terminal_button_video,
+							item, mVideoListener);
+					addButton(holder.llButtons, R.string.terminal_button_pos,
+							item, mPosListener);
+					// addButton(holder.llButtons2,
+					// R.string.terminal_button_video,
+					// item, mVideoListener);
+					// addButton(holder.llButtons2,
+					// R.string.terminal_button_pos,
+					// item, mPosListener);
+					break;
+				case UNOPENED:
+					holder.llButtonContainer.setVisibility(View.VISIBLE);
+					// holder.llButtonContainer2.setVisibility(View.VISIBLE);
+					// holder.llButtonContainer2.setVisibility(View.GONE);
+					addButton(holder.llButtons, R.string.terminal_button_sync,
+							item, mSyncListener);
+					if (!"".equals(item.getAppid())) {
+						addButton(holder.llButtons,
+								R.string.terminal_button_reopen, item,
+								mOpenListener);
+					} else {
+						addButton(holder.llButtons,
+								R.string.terminal_button_open, item,
+								mOpenListener);
+					}
+					addButton(holder.llButtons, R.string.terminal_button_video,
+							item, mVideoListener);
+					// addButton(holder.llButtons2,
+					// R.string.terminal_button_video,
+					// item, mVideoListener);
+					break;
+				case CANCELED:
+					holder.llButtonContainer.setVisibility(View.VISIBLE);
+					// holder.llButtonContainer.setVisibility(View.GONE);
+					// holder.llButtonContainer2.setVisibility(View.GONE);
+					addButton(holder.llButtons, R.string.terminal_button_sync,
+							item, mSyncListener);
+					break;
+				case STOPPED:
+					// holder.llButtonContainer.setVisibility(View.VISIBLE);
+					// addButton(holder.llButtons,
+					// R.string.terminal_button_sync,
+					// item, mSyncListener);
+
+					holder.llButtonContainer.setVisibility(View.GONE);
+					// holder.llButtonContainer2.setVisibility(View.GONE);
+					break;
+				}
 			}
 			convertView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					Intent intent = new Intent(TerminalManageActivity.this,
-							TerminalDetailActivity.class);
-					intent.putExtra(TERMINAL_ID, item.getId());
-					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
-					intent.putExtra(TERMINAL_STATUS, item.getStatus());
-					startActivityForResult(intent, REQUEST_DETAIL);
+					if ("1".equals(item.getType())) {
+						// 通过添加其他终端 进来的终端，是没有详情，也没有操作按钮
+						return;
+					} else {
+
+						Intent intent = new Intent(TerminalManageActivity.this,
+								TerminalDetailActivity.class);
+						intent.putExtra(TERMINAL_ID, item.getId());
+						intent.putExtra(TERMINAL_NUMBER,
+								item.getTerminalNumber());
+						intent.putExtra(TERMINAL_STATUS, item.getStatus());
+						startActivityForResult(intent, REQUEST_DETAIL);
+					}
 				}
 			});
 			return convertView;
@@ -425,7 +471,59 @@ public class TerminalManageActivity extends Activity implements
 	private static class ViewHolder {
 		public TextView tvTerminalNumber;
 		public TextView tvTerminalStatus;
-		public LinearLayout llButtonContainer, llButtonContainer2;
-		public LinearLayout llButtons, llButtons2;
+		public LinearLayout llButtonContainer;
+		// public LinearLayout llButtonContainer2;
+		public LinearLayout llButtons;
+		// public LinearLayout llButtons2;
+	}
+
+	private void openDialog(final TerminalItem item) {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(
+				TerminalManageActivity.this);
+
+		LayoutInflater factory = LayoutInflater.from(this);
+		View view = factory.inflate(R.layout.protocoldialog, null);
+		builder.setView(view);
+
+		final AlertDialog dialog = builder.create();
+		dialog.show();
+		final CheckBox cb = (CheckBox) view.findViewById(R.id.cb);
+
+		Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
+
+		Button btn_confirm = (Button) view.findViewById(R.id.btn_confirm);
+
+		btn_cancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		btn_confirm.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				if (!cb.isChecked()) {
+
+					CommonUtil.toastShort(TerminalManageActivity.this,
+							"请仔细阅读开通协议，并接受协议");
+
+				} else {
+
+					dialog.dismiss();
+					Intent intent = new Intent(TerminalManageActivity.this,
+							ApplyDetailActivity.class);
+					intent.putExtra(TERMINAL_ID, item.getId());
+					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
+					intent.putExtra(TERMINAL_STATUS, item.getStatus());
+					startActivityForResult(intent, REQUEST_DETAIL);
+				}
+
+			}
+		});
+		// dialog.show();
+
 	}
 }

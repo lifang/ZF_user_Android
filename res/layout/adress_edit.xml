@@ -256,7 +256,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/margin_left2"
-                    android:checked="true" />
+                    android:checked="false" />
 
                 <TextView
                     android:layout_width="wrap_content"
