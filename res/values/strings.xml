@@ -65,9 +65,9 @@
     <string name="trade_item_commercial_info">商户信息</string>
 
     <string-array name="trade_item_commercial">
-        <item>编    号</item>
-        <item>代理商ID</item>
-        <item>商 户 ID</item>
+        <item>商户编号</item>
+        <item>所属代理商</item>
+        <item>商户名称</item>
     </string-array>
 
     <string name="trade_item_bank_info">银行信息</string>
