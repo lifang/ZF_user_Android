@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -322,9 +323,15 @@ public class MerchantEdit extends BaseActivity implements OnClickListener{
 						MerchantEdit.this.type = type;
 						switch (which) {
 						case 0: {
-							Intent intent = new Intent();
-							intent.setType("image/*");
-							intent.setAction(Intent.ACTION_GET_CONTENT);
+							Intent intent;
+							if (Build.VERSION.SDK_INT < 19) {
+								intent = new Intent(Intent.ACTION_GET_CONTENT);
+								intent.setType("image/*");
+							} else {
+								intent = new Intent(
+										Intent.ACTION_PICK,
+										android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+							}
 							startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
 							break;
 						}

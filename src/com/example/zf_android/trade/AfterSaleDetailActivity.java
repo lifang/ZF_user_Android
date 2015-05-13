@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,10 +30,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
+import com.example.zf_android.activity.MyMessage;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.AfterSaleDetail;
@@ -82,7 +86,7 @@ public class AfterSaleDetailActivity extends Activity {
 		setContentView(R.layout.activity_after_sale_detail);
 		String[] titles = getResources().getStringArray(R.array.title_after_sale_detail);
 		new TitleMenuUtil(this, titles[mRecordType]).show();
-
+		Toast.makeText(getApplicationContext(), "111", 1000).show();
 		initViews();
 		initButtonListeners();
 		getData();
@@ -120,26 +124,51 @@ public class AfterSaleDetailActivity extends Activity {
 		mCancelApplyListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				API.cancelAfterSaleApply(AfterSaleDetailActivity.this, mRecordType, mRecordId, new HttpCallback(AfterSaleDetailActivity.this) {
-					@Override
-					public void onSuccess(Object data) {
-						mRecordStatus = 5;
-						String status = getResources().getStringArray(R.array.maintain_status)[5];
-						mStatus.setText(status);
-						if (mRecordType == CANCEL) {
-							mButton1.setText(getString(R.string.button_submit_cancel));
-							mButton1.setOnClickListener(mSubmitCancelListener);
-						} else {
-							mButton1.setVisibility(View.GONE);
-						}
-						CommonUtil.toastShort(AfterSaleDetailActivity.this, getString(R.string.toast_cancel_apply_success));
-					}
+				final AlertDialog.Builder builder = new AlertDialog.Builder(
+						AfterSaleDetailActivity.this);
+				final AlertDialog dialog = builder.create();
+				builder.setTitle("提示");
+				builder.setMessage("确定要删除吗？");
+				builder.setPositiveButton("确认",
+						new DialogInterface.OnClickListener() {
 
-					@Override
-					public TypeToken getTypeToken() {
-						return null;
-					}
-				});
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								
+								API.cancelAfterSaleApply(AfterSaleDetailActivity.this, mRecordType, mRecordId, new HttpCallback(AfterSaleDetailActivity.this) {
+									@Override
+									public void onSuccess(Object data) {
+										mRecordStatus = 5;
+										String status = getResources().getStringArray(R.array.maintain_status)[5];
+										mStatus.setText(status);
+										if (mRecordType == CANCEL) {
+											mButton1.setText(getString(R.string.button_submit_cancel));
+											mButton1.setOnClickListener(mSubmitCancelListener);
+										} else {
+											mButton1.setVisibility(View.GONE);
+										}
+										CommonUtil.toastShort(AfterSaleDetailActivity.this, getString(R.string.toast_cancel_apply_success));
+									}
+
+									@Override
+									public TypeToken getTypeToken() {
+										return null;
+									}
+								});
+							}
+						});
+				builder.setNegativeButton("取消",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								dialog.dismiss();
+							}
+
+						});
+
+				builder.create().show();
+			
 			}
 		};
 
