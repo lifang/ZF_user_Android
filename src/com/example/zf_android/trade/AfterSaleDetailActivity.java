@@ -259,7 +259,7 @@ public class AfterSaleDetailActivity extends Activity {
 						maintainPairs.put(maintainKeys[1], "");
 					}
 					//maintainPairs.put(maintainKeys[1], maintainDetail.getRepairPrice() + "");
-					maintainPairs.put(maintainKeys[2], maintainDetail.getDescription());
+					maintainPairs.put(maintainKeys[2], maintainDetail.getChange_reason());
 					renderCategoryTemplate(R.string.after_sale_maintain_title, maintainPairs);
 					break;
 				case RETURN:

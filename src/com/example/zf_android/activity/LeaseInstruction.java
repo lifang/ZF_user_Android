@@ -3,6 +3,7 @@ package com.example.zf_android.activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
@@ -36,7 +37,7 @@ public class LeaseInstruction extends BaseActivity{
 			
 			tv5.setText(gfe.getLease_agreement()+"");
 			tv4.setText(gfe.getDescription()+"");
-			tv3.setText(gfe.getLease_price()+"");
+			tv3.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_price()));
 			tv2.setText(gfe.getReturn_time()+"");
 			tv1.setText(gfe.getLease_time()+"");
 			new TitleMenuUtil(LeaseInstruction.this, "租赁说明").show();

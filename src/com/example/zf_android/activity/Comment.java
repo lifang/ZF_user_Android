@@ -74,6 +74,11 @@ public class Comment extends BaseActivity{
 
 		@Override
 		public void onAfterTextChanged(int position) {
+			if (posAdapter.getSelectPosition() == position) {
+				posAdapter.setSelectPosition(-1);
+			} else {
+				posAdapter.setSelectPosition(position);
+			}
 			posAdapter.notifyDataSetChanged();
 		}
 		
