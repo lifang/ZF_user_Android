@@ -121,6 +121,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 
 					login_linear_deletpass.setVisibility(View.VISIBLE);
 				} else {
+					msgLayout.setVisibility(View.GONE);
 					login_linear_deletpass.setVisibility(View.GONE);
 				}
 			}

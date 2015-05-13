@@ -82,8 +82,8 @@
                     android:hint="@string/hintname"
                     android:maxWidth="20dp"
                     android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="#e0ffffff"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint6C"
                     android:textSize="17sp" />
 
                 <LinearLayout
@@ -132,8 +132,8 @@
                     android:hint="@string/hintpass"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:textColorHint="#e0ffffff"
-                    android:textColor="@color/white"
+                    android:textColorHint="@color/hint6C"
+                    android:textColor="@color/black"
                     android:textSize="17sp" />
 
                 <LinearLayout

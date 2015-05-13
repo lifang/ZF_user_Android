@@ -16,6 +16,24 @@ public class ApplyTerminalDetail {
 	private String serialNumber;
 
 	private String channelName;
+	
+	/**
+	 * 支持开通：1对公 2 对私 3 全部
+	 * 
+	 */
+	private int supportRequirementType;
+	
+	/**
+	 * 支持开通：1对公 2 对私 3 全部
+	 * 
+	 */
+	public int getSupportRequirementType() {
+		return supportRequirementType;
+	}
+
+	public void setSupportRequirementType(int supportRequirementType) {
+		this.supportRequirementType = supportRequirementType;
+	}
 
 	public String getBrandName() {
 		return brandName;

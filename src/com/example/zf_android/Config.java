@@ -17,6 +17,7 @@ public class Config {
 
 	//http://www.ebank007.com
 //	public final static String PATHS = "http://www.ebank007.com/api/";
+//	public final static String PATHS = "http://121.40.64.167:8080/api/";
 	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
 //	public final static String PATHS = "http://192.168.10.120:8081/ZFMerchant/api/";
 

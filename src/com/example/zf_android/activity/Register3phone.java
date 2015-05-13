@@ -32,24 +32,24 @@ import com.google.gson.reflect.TypeToken;
 
 public class Register3phone extends BaseActivity implements OnClickListener {
 
-	private int Countmun = 120;
+	private int countNun = 120;
 	public int cityid = 0;
 	Handler handler = new Handler() { // handle
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
-				if (Countmun == 0) {
+				if (countNun == 0) {
 
 					countText.setEnabled(true);
 					countText.setText("点此重新发送验证码");
 					countText.setTextColor(getResources().getColor(
 							R.color.bgtitle));
-					System.out.println("destroy`" + Countmun);
+					System.out.println("destroy`" + countNun);
 				} else {
-					Countmun--;
+					countNun--;
 					// countText.setTextColor(getResources().getColor(R.color.hint6C));
-					countText.setText("接受短信大约需要" + Countmun + "秒");
-					System.out.println("Countmun`D2`" + Countmun);
+					countText.setText("接受短信大约需要" + countNun + "秒");
+					System.out.println("countNun`D2`" + countNun);
 					Message message = new Message();
 					message.what = 1;
 					handler.sendMessageDelayed(message, 1000);
@@ -60,11 +60,11 @@ public class Register3phone extends BaseActivity implements OnClickListener {
 	};
 
 	private EditText edit_code;
-	private TextView countText, agreementText, phoneText;
+	private TextView countText, agreementText, phoneText,register_hint;
 	private LinearLayout checkCode;
 	private ImageView del;
 	private String phoneStr;
-	private LinearLayout titleback_linear_back;
+	private LinearLayout titleback_linear_back,msgLayout;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,7 @@ public class Register3phone extends BaseActivity implements OnClickListener {
 					Config.reg_phoneCode = data.toString();
 					countText.setTextColor(getResources().getColor(
 							R.color.hint6C));
-					Countmun = 120;
+					countNun = 120;
 					Message message = new Message();
 					message.what = 1;
 					handler.sendMessageDelayed(message, 1000);
@@ -117,11 +117,13 @@ public class Register3phone extends BaseActivity implements OnClickListener {
 				startActivity(intent);
 				finish();
 			} else {
-				Toast.makeText(Register3phone.this, "验证码错误", 1000).show();
+				msgLayout.setVisibility(View.VISIBLE);
+				register_hint.setText("验证码错误");
 			}
 			break;
 		case R.id.del:
 			edit_code.setText("");
+			msgLayout.setVisibility(View.GONE);
 			break;
 		case R.id.titleback_linear_back:
 			showCustomDialog();
@@ -148,6 +150,7 @@ public class Register3phone extends BaseActivity implements OnClickListener {
 				if (s.length() > 0) {
 					del.setVisibility(View.VISIBLE);
 				} else {
+					msgLayout.setVisibility(View.GONE);
 					del.setVisibility(View.INVISIBLE);
 				}
 			}
@@ -173,6 +176,8 @@ public class Register3phone extends BaseActivity implements OnClickListener {
 		
 		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
 		titleback_linear_back.setOnClickListener(this);
+		msgLayout=(LinearLayout) findViewById(R.id.msgLayout);
+		register_hint=(TextView) findViewById(R.id.register_hint);
 	}
 
 	public void registerPhoneCode(String phonenumber) {
@@ -230,5 +235,12 @@ public class Register3phone extends BaseActivity implements OnClickListener {
 		dialog.show();
 	}
 	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		countNun = 0;
+		handler.removeMessages(1);
+	}
 
 }

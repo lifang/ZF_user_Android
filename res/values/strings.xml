@@ -288,12 +288,19 @@
 		<item>邮箱</item>
 		<item>选择所在地</item>
 	</string-array>
-	<string-array name="apply_detail_bank_keys">
+	<string-array name="apply_detail_bank_keys_public">
 		<item>结算银行名称</item>
 		<item>结算银行代码</item>
 		<item>结算银行账户</item>
-		<item>税务登记证号</item>
+		<item>税务登记号</item>
 		<item>组织机构号</item>
+		<item>支付通道</item>
+	</string-array>
+	
+	<string-array name="apply_detail_bank_keys_private">
+		<item>结算银行名称</item>
+		<item>结算银行代码</item>
+		<item>结算银行账户</item>
 		<item>支付通道</item>
 	</string-array>
 
