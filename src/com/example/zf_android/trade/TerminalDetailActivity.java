@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,6 +30,8 @@ import com.example.zf_android.trade.entity.TerminalRate;
 import com.example.zf_android.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -283,7 +286,15 @@ public class TerminalDetailActivity extends Activity {
 			TextView statusTv = (TextView) column.findViewById(R.id.terminal_column_status);
 			String[] status = getResources().getStringArray(R.array.terminal_status);
 			typeTv.setText(rate.getType());
-			rateTv.setText(rate.getBaseRate() + getString(R.string.notation_percent));
+			
+			DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+			df.applyPattern("0.0");
+			
+			if(rate.getType().equals("消费/消费撤销")){
+				rateTv.setText(df.format((rate.getTerminalRate()+rate.getServiceRate())/10) + getString(R.string.notation_percent));
+			}else{
+				rateTv.setText(df.format(rate.getTerminalRate()/10) + getString(R.string.notation_percent));
+			}
 			statusTv.setText(status[rate.getStatus()]);
 			category.addView(column);
 		}

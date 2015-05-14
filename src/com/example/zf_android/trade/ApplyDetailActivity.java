@@ -505,8 +505,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 	}
 
 	private void updateUIWithValidation() {
-		final boolean enabled = mMerchantId > 0
-				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[1]))
+		final boolean enabled = 
+				mMerchantId > 0&& 
+				!TextUtils.isEmpty(getItemValue(mMerchantKeys[1]))
 				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[2]))
 				&& (mMerchantGender == 0 || mMerchantGender == 1)
 				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[4]))
