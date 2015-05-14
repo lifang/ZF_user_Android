@@ -17,6 +17,16 @@ public class ApplyTerminalDetail {
 
 	private String channelName;
 	
+	private int channelId;
+	
+	public int getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(int channelId) {
+		this.channelId = channelId;
+	}
+
 	/**
 	 * 支持开通：1对公 2 对私 3 全部
 	 * 

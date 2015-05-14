@@ -123,7 +123,9 @@ public class API {
 	// Terminal detail
 	public static final String TERMINAL_DETAIL = SCHEMA + HOST
 			+ "terminal/getApplyDetails";
-
+	// termianl bank
+	public static final String TERMINAL_BANK = SCHEMA + HOST
+			+ "terminal/ChooseBank";
 	// synchronise terminal
 	public static final String TERMINAL_SYNC = SCHEMA + HOST
 			+ "terminal/synchronous";
@@ -1014,5 +1016,16 @@ public class API {
 		}
 		new HttpRequest(context, callback).post(TERMINAL_UPLOAD_IMAGE
 				+ termianlId, params);
+	}
+
+	public static void getApplyBankList(Context context, int page,
+			String keyword, int pageSize, String terminalId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("page", page);
+		params.put("keyword", keyword);
+		params.put("pageSize", pageSize);
+		params.put("terminalId", terminalId);
+		new HttpRequest(context, callback).post(TERMINAL_BANK, params);
 	}
 }

@@ -55,7 +55,7 @@
 
 		<View style="@style/Divider"/>
 
-		<ListView
+		<com.example.zf_android.trade.widget.XListView
 			android:id="@+id/apply_bank_list"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
