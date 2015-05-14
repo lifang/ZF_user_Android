@@ -11,6 +11,24 @@ public class TerminalItem {
 	@SerializedName("serial_num")
 	private String terminalNumber;
 	private int status;
+	private String type;
+	private String appid;
+
+	public String getAppid() {
+		return appid;
+	}
+
+	public void setAppid(String appid) {
+		this.appid = appid;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public int getId() {
 		return id;

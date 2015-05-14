@@ -334,6 +334,11 @@
         <item>选择照片</item>
         <item>拍照上传</item>
     </string-array>
+    <string-array name="apply_detail_view">
+        <item>查看图片</item>
+        <item>选择照片</item>
+        <item>拍照上传</item>
+    </string-array>
 
     <string name="apply_upload_photo">上传图片</string>
     <string name="apply_uploading">上传中...</string>
@@ -345,24 +350,22 @@
     <string name="apply_progress_no_data">无查询结果,请填写正确的手机号码!</string>
     <string name="apply_progress_terminal">终端号</string>
 
-	<string-array name="apply_detail_bank_keys_public">
-		<item>结算银行名称</item>
-		<item>结算银行代码</item>
-		<item>结算银行账户</item>
-		<item>税务登记号</item>
-		<item>组织机构号</item>
-		<item>支付通道</item>
-	</string-array>
-	
-	<string-array name="apply_detail_bank_keys_private">
-		<item>结算银行名称</item>
-		<item>结算银行代码</item>
-		<item>结算银行账户</item>
-		<item>支付通道</item>
-	</string-array>
+    <string-array name="apply_detail_bank_keys_public">
+        <item>结算银行名称</item>
+        <item>结算银行代码</item>
+        <item>结算银行账户</item>
+        <item>税务登记号</item>
+        <item>组织机构号</item>
+        <item>支付通道</item>
+    </string-array>
+    <string-array name="apply_detail_bank_keys_private">
+        <item>结算银行名称</item>
+        <item>结算银行代码</item>
+        <item>结算银行账户</item>
+        <item>支付通道</item>
+    </string-array>
 
-
-	<!-- 版本更新 -->
+    <!-- 版本更新 -->
     <string name="version_check_tip">正在检测中&#8230;</string>
     <string name="check_version">版本检测</string>
     <string name="no_check_version">未检测到新版本！</string>
@@ -402,7 +405,6 @@
 本协议受中国法律管辖并依据中国法律解释，且不适用冲突规范。因履行本协议或与本协议相关的任何诉讼或法律程序应由我们法定地址所在地法院管辖。\n
 在使用本网站过程中，如果您遇到任何您认为侵犯了您权利的内容、主题、题材、或信息（下称"材料"），您可以立即向我们及该材料的上传方 或发布方发 出声明侵权的书面通知，该通知应包含足够的具体细节以使我们能够据以查找到该上传或发布情况。在我们调查结束前您可以要求上传方、发布方移除该材料。您应 该依据法律法规的规定同时在侵权通知中向公司提供您据以主张的证据、您的权利来源、您的姓名或名称、身份证明、您的地址、联系方式及主张的真实性承诺。根 据您的通知，该上传方或发布方可以向我们书面提出对于您侵权通知的抗辩。根据收到的您的证据信息，我们将开始着手调查。在调查期间，我们可以暂时移除该争 议材料或采取措施拒绝网站用户对该争议材料的访问，来保护相关的所有权利。如果我们判断您的主张合法，我们将继续拒绝网站用户对该争议材料的访问；如果我 们判断您的主张不成立，我们将恢复对该争议材料的访问。根据本条款您可以发送电子邮件至以下地址来对我们发出声明侵权的书面通 知：ebank007@epalmpay.cn\n
 本协议构成您与我们之间就您使用本网站事宜的全部协议。您就使用本网站产生的争议而采取的任何主张或法律诉讼及其他法律措施须在该争议发生之日起两年内提出。如果因任何原因，任一有合法管辖权的法院裁决本协议的任何条款或本协议部分没有强制执行力，该条款或部分应由您和我们在合法的最大范围内执行， 以尽可能达到本协议目的；同时本协议其余部分或其余条款应继续有效且严格被执行。\n
-我们对于任何第三方通过本网站链接提供的任何资料及其中包含的内容不承担任何责任。\n
+我们对于任何第三方通过本网站链接提供的任何资料及其中包含的内容不承担任何责任。\n</string>
 
-</string>
 </resources>

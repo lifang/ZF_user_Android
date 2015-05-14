@@ -23,8 +23,7 @@
     <com.example.zf_android.trade.widget.XListView
         android:id="@+id/x_listview"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:fadingEdge="none"
         android:scrollbars="none" />
@@ -48,10 +47,10 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:gravity="center_vertical"
-            android:paddingLeft="7dp"
+            android:paddingLeft="10dp"
             android:text="标记为已读"
             android:textColor="@color/text5a5a5a"
-            android:textSize="11sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/tv_dle"
@@ -60,10 +59,10 @@
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
-            android:paddingRight="7dp"
+            android:paddingRight="10dp"
             android:text="删除"
             android:textColor="@color/text5a5a5a"
-            android:textSize="11sp" />
+            android:textSize="17sp" />
     </RelativeLayout>
 
     <RelativeLayout

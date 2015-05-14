@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:layout_gravity="center_horizontal"
-        android:text="正在呼叫客户，请耐心等待"
+        android:text="正在呼叫客服中心，请耐心等待"
         android:textColor="@color/white" />
 
     <LinearLayout

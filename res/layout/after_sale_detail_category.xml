@@ -10,6 +10,7 @@
 
 	<TextView
 		android:id="@+id/category_title"
+		android:textSize="13sp"
 		style="@style/TextDetail.Title"/>
 
 	<View

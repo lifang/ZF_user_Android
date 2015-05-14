@@ -114,7 +114,9 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 		tv_jf=(TextView) findViewById(R.id.tv_jf);
 		next_sure=(TextView) findViewById(R.id.next_sure);
 		next_sure.setText("兑换");
-		next_sure.setVisibility(View.VISIBLE);
+		// 我的积分 --> 兑换 按钮隐藏
+//		next_sure.setVisibility(View.VISIBLE);
+		next_sure.setVisibility(View.GONE);
 		new TitleMenuUtil(JifenActivity.this, "我的积分").show();
 		myAdapter=new JifenAdapter(JifenActivity.this, myList);
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
