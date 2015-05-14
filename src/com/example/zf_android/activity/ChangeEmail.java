@@ -60,7 +60,7 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.changephone);
+		setContentView(R.layout.changeemail);
 		MyApplication.getInstance().addActivity(this);
 		index=getIntent().getIntExtra("key", 1);
 		 name =getIntent().getStringExtra("name");
