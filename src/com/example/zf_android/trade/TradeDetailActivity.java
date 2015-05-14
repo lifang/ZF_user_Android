@@ -68,7 +68,7 @@ public class TradeDetailActivity extends Activity {
 					value.setTextColor(getResources().getColor(R.color.text6c6c6c6));
 					value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 					value.setText(i == 0 ? data.getMerchantNumber()
-							: i == 1 ? data.getAgentId() + ""
+							: i == 1 ? data.getAgentName() + ""
 							: i == 2 ? data.getMerchantName()
 							: "");
 					mCommercialValueContainer.addView(value);

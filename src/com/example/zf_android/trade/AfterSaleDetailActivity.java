@@ -86,7 +86,6 @@ public class AfterSaleDetailActivity extends Activity {
 		setContentView(R.layout.activity_after_sale_detail);
 		String[] titles = getResources().getStringArray(R.array.title_after_sale_detail);
 		new TitleMenuUtil(this, titles[mRecordType]).show();
-		Toast.makeText(getApplicationContext(), "111", 1000).show();
 		initViews();
 		initButtonListeners();
 		getData();

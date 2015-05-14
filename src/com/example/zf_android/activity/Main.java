@@ -46,6 +46,7 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.ScreenUtils;
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -166,7 +167,6 @@ public class Main extends BaseActivity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 
 		SQLiteDatabase db = Connector.getDatabase();
-
 		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
 		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
 
@@ -174,7 +174,6 @@ public class Main extends BaseActivity implements OnClickListener {
 		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
 		MyApplication.getInstance().setCustomerId(id);
-
 		MyApplication.getInstance().addActivity(this);
 
 		initView();
