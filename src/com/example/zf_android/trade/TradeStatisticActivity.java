@@ -70,7 +70,7 @@ public class TradeStatisticActivity extends Activity {
 							tradeType.setText("还款");
 							break;
 						case 4:
-							tradeType.setText("花费充值");
+							tradeType.setText("话费充值");
 							break;
 						case 5:
 							tradeType.setText("生活充值");
