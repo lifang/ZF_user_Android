@@ -58,11 +58,11 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent" >
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#F3F2F2"
             android:orientation="vertical" >
 
@@ -447,7 +447,7 @@
                     android:gravity="right"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:text="0"
+                    android:hint="0"
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
 
@@ -492,7 +492,7 @@
                     android:gravity="right"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:text="0"
+                    android:hint="0"
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
 

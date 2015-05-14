@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +33,7 @@ import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.activity.MyMessage;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.Pageable;
@@ -123,20 +126,45 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 			@Override
 			public void onClick(View v) {
 				final AfterSaleRecord record = (AfterSaleRecord) v.getTag();
-				API.cancelAfterSaleApply(AfterSaleListActivity.this, mRecordType, record.getId(), 
-						new HttpCallback(AfterSaleListActivity.this) {
-					@Override
-					public void onSuccess(Object data) {
-						record.setStatus(5+"");
-						mAdapter.notifyDataSetChanged();
-						CommonUtil.toastShort(AfterSaleListActivity.this, getString(R.string.toast_cancel_apply_success));
-					}
+				final AlertDialog.Builder builder = new AlertDialog.Builder(
+						AfterSaleListActivity.this);
+				final AlertDialog dialog = builder.create();
+				builder.setTitle("提示");
+				builder.setMessage("确定要删除吗？");
+				builder.setPositiveButton("确认",
+						new DialogInterface.OnClickListener() {
 
-					@Override
-					public TypeToken getTypeToken() {
-						return null;
-					}
-				});
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								
+								API.cancelAfterSaleApply(AfterSaleListActivity.this, mRecordType, record.getId(), 
+										new HttpCallback(AfterSaleListActivity.this) {
+									@Override
+									public void onSuccess(Object data) {
+										record.setStatus(5+"");
+										mAdapter.notifyDataSetChanged();
+										CommonUtil.toastShort(AfterSaleListActivity.this, getString(R.string.toast_cancel_apply_success));
+									}
+
+									@Override
+									public TypeToken getTypeToken() {
+										return null;
+									}
+								});
+							}
+						});
+				builder.setNegativeButton("取消",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								dialog.dismiss();
+							}
+
+						});
+
+				builder.create().show();
+				
 			}
 		};
 

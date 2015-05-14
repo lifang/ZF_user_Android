@@ -36,6 +36,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class PosListActivity extends BaseActivity implements OnClickListener, IXListViewListener{
 	private ImageView pos_select,search2,img3;	
+	private TextView countShopCar;
 	private XListView Xlistview;
 	private LinearLayout titleback_linear_back;
 	private int page=1;
@@ -111,6 +112,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		getData();
 	}
 	private void initView() {
+		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		ll_mr=(LinearLayout) findViewById(R.id.ll_mr);
 		ll_mr.setOnClickListener(this);
 		ll_xxyx=(LinearLayout) findViewById(R.id.ll_xxyx);
@@ -229,7 +231,16 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			break;
 		}
 	}	
-
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (Config.countShopCar == 0) {
+			countShopCar.setVisibility(View.GONE);
+		}else {
+			countShopCar.setVisibility(View.VISIBLE);
+			countShopCar.setText(Config.countShopCar+"");
+		}
+	}
 	@Override
 	public void onRefresh() {
 		page = 1;
@@ -267,12 +278,12 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 	@SuppressWarnings("null")
 	private void getData() {
 		int[] arraybrands_id = null,arraycategory_id = null,arraypay_channel_id = null,arraypay_card_id = null,
-		arraytrade_type_id = null,arraysale_slip_id = null,arraystDate = null;
+				arraytrade_type_id = null,arraysale_slip_id = null,arraystDate = null;
 		if (brands_id != null){ 
 			arraybrands_id = new int[brands_id.size()];  
 			if (brands_id.size() == 0) 
 				arraybrands_id = null;
-			
+
 			for(int i=0;i<brands_id.size();i++){  
 				arraybrands_id[i] = brands_id.get(i);  
 			}
@@ -285,7 +296,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 				arraycategory_id[i] = category_id.get(i);  
 			}
 		}
-		
+
 		if (pay_channel_id != null){
 			arraypay_channel_id = new int[pay_channel_id.size()];  
 			if (pay_channel_id.size() == 0) 

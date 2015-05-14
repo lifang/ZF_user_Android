@@ -6,6 +6,8 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
@@ -164,8 +165,11 @@ OnClickListener {
 				if (MyApplication.getIsSelect()) {
 					next_sure.setText("编辑");
 					MyApplication.setIsSelect(false);
+					
 					myAdapter.notifyDataSetChanged();
-
+					for (int i = 0; i < myList.size(); i++) {
+						myList.get(i).setIscheck(false);
+					}
 					rl_editno.setVisibility(View.VISIBLE);
 					rl_edit.setVisibility(View.GONE);
 
@@ -267,7 +271,33 @@ OnClickListener {
 			}
 
 			if (Stringas.size() > 0) {
-				Msgdelete1();
+				final AlertDialog.Builder builder = new AlertDialog.Builder(
+						MyMessage.this);
+				final AlertDialog dialog = builder.create();
+				builder.setTitle("提示");
+				builder.setMessage("确定要删除吗？");
+				builder.setPositiveButton("确认",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								Msgdelete1();
+								
+							}
+						});
+				builder.setNegativeButton("取消",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								dialog.dismiss();
+							}
+
+						});
+
+				builder.create().show();
+				
+				
 			}else {
 				Toast.makeText(this, "请选择消息后，再执行此操作", Toast.LENGTH_SHORT).show();
 			}

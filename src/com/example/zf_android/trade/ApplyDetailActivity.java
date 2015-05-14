@@ -37,6 +37,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -155,7 +156,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 		mInflater = LayoutInflater.from(this);
 
 		mTab = (MyTabWidget) findViewById(R.id.apply_detail_tab);
-		
+
 		mPosBrand = (TextView) findViewById(R.id.apply_detail_brand);
 		mPosModel = (TextView) findViewById(R.id.apply_detail_model);
 		mSerialNum = (TextView) findViewById(R.id.apply_detail_serial);
@@ -192,10 +193,10 @@ public class ApplyDetailActivity extends FragmentActivity {
 				params.put("bankName", getItemValue(mBankKeys[0]));
 				params.put("bankCode", getItemValue(mBankKeys[1]));
 				params.put("bankNum", getItemValue(mBankKeys[2]));
-				
-				if(mApplyType == 1){
-				params.put("registeredNo", getItemValue(mBankKeys[3]));
-				params.put("organizationNo", getItemValue(mBankKeys[4]));
+
+				if (mApplyType == 1) {
+					params.put("registeredNo", getItemValue(mBankKeys[3]));
+					params.put("organizationNo", getItemValue(mBankKeys[4]));
 				}
 				if (null != mChosenChannel)
 					params.put("channel", mChosenChannel.getId());
@@ -254,10 +255,10 @@ public class ApplyDetailActivity extends FragmentActivity {
 	}
 
 	private void loadData(int applyType) {
-//		mMerchantContainer.removeAllViews();
-//		mCustomerContainer.removeAllViews();
-//		mMaterialContainer.removeAllViews();
-//		initMerchantDetailKeys();
+		// mMerchantContainer.removeAllViews();
+		// mCustomerContainer.removeAllViews();
+		// mMaterialContainer.removeAllViews();
+		// initMerchantDetailKeys();
 
 		API.getApplyDetail(this, MyApplication.getInstance().getCustomerId(),
 				mTerminalId, applyType, new HttpCallback<ApplyDetail>(this) {
@@ -277,57 +278,64 @@ public class ApplyDetailActivity extends FragmentActivity {
 							mPosModel.setText(terminalDetail.getModelNumber());
 							mSerialNum.setText(terminalDetail.getSerialNumber());
 							mPayChannel.setText(terminalDetail.getChannelName());
-							
-//							terminalDetail.setSupportRequirementType(1);
-							
-//							mApplyType = terminalDetail.getSupportRequirementType();
-							
-							if(terminalDetail.getSupportRequirementType() == 1){
-								
+
+							// terminalDetail.setSupportRequirementType(1);
+
+							// mApplyType =
+							// terminalDetail.getSupportRequirementType();
+
+							if (terminalDetail.getSupportRequirementType() == 1) {
+
 								mApplyType = 1;
-								mTab.addTab(getString(R.string.apply_public), 17);
+								mTab.addTab(getString(R.string.apply_public),
+										17);
 								mTab.setOnTabSelectedListener(new MyTabWidget.OnTabSelectedListener() {
 									@Override
 									public void onTabSelected(int position) {
 									}
 								});
 								mTab.updateTabs(0);
-							}else if(terminalDetail.getSupportRequirementType() == 2){
+							} else if (terminalDetail
+									.getSupportRequirementType() == 2) {
 								mApplyType = 2;
-								mTab.addTab(getString(R.string.apply_private), 17);
+								mTab.addTab(getString(R.string.apply_private),
+										17);
 								mTab.setOnTabSelectedListener(new MyTabWidget.OnTabSelectedListener() {
 									@Override
 									public void onTabSelected(int position) {
 									}
 								});
 								mTab.updateTabs(0);
-							}else if(terminalDetail.getSupportRequirementType() == 3){
-								
-								if(!isLoaded){
+							} else if (terminalDetail
+									.getSupportRequirementType() == 3) {
+
+								if (!isLoaded) {
 									isLoaded = true;
-//								mTab.removeAllViews();
-								mTab.addTab(getString(R.string.apply_public), 17);
-								mTab.addTab(getString(R.string.apply_private), 17);
-								mTab.setOnTabSelectedListener(new MyTabWidget.OnTabSelectedListener() {
-									@Override
-									public void onTabSelected(int position) {
-										mApplyType = position + 1;
-										loadData(mApplyType);
-									}
-								});
-								mTab.updateTabs(0);
+									// mTab.removeAllViews();
+									mTab.addTab(
+											getString(R.string.apply_public),
+											17);
+									mTab.addTab(
+											getString(R.string.apply_private),
+											17);
+									mTab.setOnTabSelectedListener(new MyTabWidget.OnTabSelectedListener() {
+										@Override
+										public void onTabSelected(int position) {
+											mApplyType = position + 1;
+											loadData(mApplyType);
+										}
+									});
+									mTab.updateTabs(0);
 								}
 							}
-							
+
 						}
-						
+
 						mMerchantContainer.removeAllViews();
 						mCustomerContainer.removeAllViews();
 						mMaterialContainer.removeAllViews();
 						initMerchantDetailKeys();
-						
-						
-						
+
 						// set the choosing merchant listener
 						View merchantChoose = mMerchantContainer
 								.findViewWithTag(mMerchantKeys[0]);
@@ -396,7 +404,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.getSerializableExtra(SELECTED_CHANNEL);
 			mChosenBilling = (ApplyChannel.Billing) data
 					.getSerializableExtra(SELECTED_BILLING);
-			Log.e("", mChosenChannel.getName()+mChosenBilling);
+			Log.e("", mChosenChannel.getName() + mChosenBilling);
 			setItemValue(getString(R.string.apply_detail_channel),
 					mChosenChannel.getName() + mChosenBilling.name);
 			break;
@@ -509,8 +517,10 @@ public class ApplyDetailActivity extends FragmentActivity {
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[0]))
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[1]))
 				&& !TextUtils.isEmpty(getItemValue(mBankKeys[2]))
-				&& ((mApplyType == 2)||((mApplyType == 1)&&!TextUtils.isEmpty(getItemValue(mBankKeys[3]))))
-				&& ((mApplyType == 2)||((mApplyType == 1)&&!TextUtils.isEmpty(getItemValue(mBankKeys[4]))))
+				&& ((mApplyType == 2) || ((mApplyType == 1) && !TextUtils
+						.isEmpty(getItemValue(mBankKeys[3]))))
+				&& ((mApplyType == 2) || ((mApplyType == 1) && !TextUtils
+						.isEmpty(getItemValue(mBankKeys[4]))))
 				&& ((null != mChosenChannel && null != mChosenChannel.getName()) && (null != mChosenBilling && null != mChosenBilling.name));
 		mApplySubmit.setEnabled(enabled);
 	}
@@ -585,7 +595,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 					public void onClick(DialogInterface dialog, int which) {
 						setItemValue(mMerchantKeys[3], items[which]);
 						mMerchantGender = which;
-						Log.e("", "---"+mMerchantGender);
+						Log.e("", "---" + mMerchantGender);
 						updateUIWithValidation();
 					}
 				});
@@ -629,13 +639,13 @@ public class ApplyDetailActivity extends FragmentActivity {
 			}
 		});
 		mMerchantContainer.addView(merchantCity);
-		
+
 		// the second category 开通申请第二段
-		if(mApplyType == 1){
-		
-		mBankKeys = getResources().getStringArray(
-				R.array.apply_detail_bank_keys_public);
-		}else{
+		if (mApplyType == 1) {
+
+			mBankKeys = getResources().getStringArray(
+					R.array.apply_detail_bank_keys_public);
+		} else {
 			mBankKeys = getResources().getStringArray(
 					R.array.apply_detail_bank_keys_private);
 		}
@@ -645,8 +655,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 				.addView(getDetailItem(ITEM_EDIT, mBankKeys[1], null));
 		mCustomerContainer
 				.addView(getDetailItem(ITEM_EDIT, mBankKeys[2], null));
-		
-		if(mApplyType == 1){
+
+		if (mApplyType == 1) {
 			mCustomerContainer.addView(getDetailItem(ITEM_EDIT, mBankKeys[3],
 					null));
 			mCustomerContainer.addView(getDetailItem(ITEM_EDIT, mBankKeys[4],
@@ -721,9 +731,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 		setItemValue(mBankKeys[0], merchant.getAccountBankName());
 		setItemValue(mBankKeys[1], merchant.getAccountBankNum());
 		setItemValue(mBankKeys[2], merchant.getBankOpenAccount());
-		if(mApplyType == 1){
+		if (mApplyType == 1) {
 			setItemValue(mBankKeys[3], merchant.getTaxRegisteredNo());
-			setItemValue(mBankKeys[4], merchant.getOrganizationCodeNo());		
+			setItemValue(mBankKeys[4], merchant.getOrganizationCodeNo());
 		}
 
 	}
@@ -755,14 +765,20 @@ public class ApplyDetailActivity extends FragmentActivity {
 		setItemValue(mBankKeys[0], openingInfos.getAccount_bank_name());
 		setItemValue(mBankKeys[1], openingInfos.getAccount_bank_num());
 		setItemValue(mBankKeys[2], openingInfos.getAccount_bank_code());
-		if(mApplyType == 1){
-		setItemValue(mBankKeys[3], openingInfos.getTax_registered_no());
-		setItemValue(mBankKeys[4], openingInfos.getOrganization_code_no());
-			setItemValue(mBankKeys[5],
-					StringUtil.formatNull(openingInfos.getChannelname()) + StringUtil.formatNull(openingInfos.getBillingname()));
-		}else{
-		setItemValue(mBankKeys[3],
-				StringUtil.formatNull(openingInfos.getChannelname()) + StringUtil.formatNull(openingInfos.getBillingname()));
+		if (mApplyType == 1) {
+			setItemValue(mBankKeys[3], openingInfos.getTax_registered_no());
+			setItemValue(mBankKeys[4], openingInfos.getOrganization_code_no());
+			setItemValue(
+					mBankKeys[5],
+					StringUtil.formatNull(openingInfos.getChannelname())
+							+ StringUtil.formatNull(openingInfos
+									.getBillingname()));
+		} else {
+			setItemValue(
+					mBankKeys[3],
+					StringUtil.formatNull(openingInfos.getChannelname())
+							+ StringUtil.formatNull(openingInfos
+									.getBillingname()));
 		}
 		mChosenChannel = new ApplyChannel();
 		mChosenChannel.setId(openingInfos.getPay_channel_id());
@@ -939,9 +955,16 @@ public class ApplyDetailActivity extends FragmentActivity {
 									mUploadKey = key;
 									switch (which) {
 									case 0: {
-										Intent intent = new Intent();
-										intent.setType("image/*");
-										intent.setAction(Intent.ACTION_GET_CONTENT);
+										Intent intent;
+										if (Build.VERSION.SDK_INT < 19) {
+											intent = new Intent(
+													Intent.ACTION_GET_CONTENT);
+											intent.setType("image/*");
+										} else {
+											intent = new Intent(
+													Intent.ACTION_PICK,
+													android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+										}
 										startActivityForResult(intent,
 												REQUEST_UPLOAD_IMAGE);
 										break;

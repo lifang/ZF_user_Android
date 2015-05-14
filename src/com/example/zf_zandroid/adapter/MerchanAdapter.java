@@ -62,35 +62,35 @@ public class MerchanAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		//holder.tv_title.setText(list.get(position).getLegal_person_name());
+		// holder.tv_title.setText(list.get(position).getLegal_person_name());
 		holder.tv_title.setText(list.get(position).getTitle());
-		if(MyApplication.getIsSelect()){
-			 
+		holder.tv_name.setText(list.get(position).getLegal_person_name());
+		if (MyApplication.getIsSelect()) {
+
 			holder.item_cb.setVisibility(View.VISIBLE);
-			
-		}else{
+
+		} else {
 			holder.item_cb.setVisibility(View.GONE);
 		}
-		
-		//list.get(position).setIscheck(holder.item_cb.isChecked());
-		holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
-				list.get(position).setIscheck(isChecked);
-			}
-		});
-		 
-		if(list.get(position).getIscheck()==null){
+
+		// list.get(position).setIscheck(holder.item_cb.isChecked());
+		holder.item_cb
+				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						list.get(position).setIscheck(isChecked);
+					}
+				});
+
+		if (list.get(position).getIscheck() == null) {
 			holder.item_cb.setChecked(false);
 			list.get(position).setIscheck(false);
-		}else{
+		} else {
 			holder.item_cb.setChecked(list.get(position).getIscheck());
 		}
-		
-		
-		
+
 		return convertView;
 	}
 

@@ -1,17 +1,26 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
+import static com.example.zf_android.trade.Constants.TerminalStatus.PART_OPENED;
+import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
@@ -26,20 +35,11 @@ import com.example.zf_android.trade.widget.XListView;
 import com.example.zf_android.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
-import static com.example.zf_android.trade.Constants.TerminalStatus.PART_OPENED;
-import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
-
 /**
  * Created by Leo on 2015/3/5.
  */
-public class ApplyListActivity extends Activity implements XListView.IXListViewListener {
+public class ApplyListActivity extends Activity implements
+		XListView.IXListViewListener {
 
 	private LayoutInflater mInflater;
 	private XListView mApplyList;
@@ -74,44 +74,45 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 		mApplyList.setPullLoadEnable(true);
 
 		mApplyList.setAdapter(mAdapter);
-		
-			
-				
+
 	}
 
 	private void loadData() {
-		API.getApplyList(this, MyApplication.getInstance().getCustomerId(), page + 1, Config.ROWS, new HttpCallback<List<TerminalItem>>(this) {
-			@Override
-			public void onSuccess(List<TerminalItem> data) {
-				//没有数据或者数据不够Config.ROWS个时说明后台没有更多数据 不需要上拉加载
-				if (null == data || data.size() < Config.ROWS) noMoreData = true;
-				
-				if(pullType.equals("onRefresh")){
-					mTerminalItems.clear();
-				}
-				
-				mTerminalItems.addAll(data);
-				page++;
-				mAdapter.notifyDataSetChanged();
-			}
+		API.getApplyList(this, MyApplication.getInstance().getCustomerId(),
+				page + 1, Config.ROWS, new HttpCallback<List<TerminalItem>>(
+						this) {
+					@Override
+					public void onSuccess(List<TerminalItem> data) {
+						// 没有数据或者数据不够Config.ROWS个时说明后台没有更多数据 不需要上拉加载
+						if (null == data || data.size() < Config.ROWS)
+							noMoreData = true;
 
-			@Override
-			public void preLoad() {
-				super.preLoad();
-			}
+						if (pullType.equals("onRefresh")) {
+							mTerminalItems.clear();
+						}
 
-			@Override
-			public void postLoad() {
-				loadFinished();
-				super.postLoad();
-			}
+						mTerminalItems.addAll(data);
+						page++;
+						mAdapter.notifyDataSetChanged();
+					}
 
-			@Override
-			public TypeToken<List<TerminalItem>> getTypeToken() {
-				return new TypeToken<List<TerminalItem>>() {
-				};
-			}
-		});
+					@Override
+					public void preLoad() {
+						super.preLoad();
+					}
+
+					@Override
+					public void postLoad() {
+						loadFinished();
+						super.postLoad();
+					}
+
+					@Override
+					public TypeToken<List<TerminalItem>> getTypeToken() {
+						return new TypeToken<List<TerminalItem>>() {
+						};
+					}
+				});
 	}
 
 	@Override
@@ -166,22 +167,33 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 			if (convertView == null) {
 				convertView = mInflater.inflate(R.layout.apply_list_item, null);
 				holder = new ViewHolder();
-				holder.tvTerminalNumber = (TextView) convertView.findViewById(R.id.apply_terminal_number);
-				holder.tvTerminalStatus = (TextView) convertView.findViewById(R.id.apply_terminal_status);
-				holder.btnOpen = (Button) convertView.findViewById(R.id.apply_button_open);
-				holder.btnVideo = (Button) convertView.findViewById(R.id.apply_button_video);
+				holder.tvTerminalNumber = (TextView) convertView
+						.findViewById(R.id.apply_terminal_number);
+				holder.tvTerminalStatus = (TextView) convertView
+						.findViewById(R.id.apply_terminal_status);
+				holder.btnOpen = (Button) convertView
+						.findViewById(R.id.apply_button_open);
+				holder.btnVideo = (Button) convertView
+						.findViewById(R.id.apply_button_video);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
 			final TerminalItem item = getItem(i);
 			holder.tvTerminalNumber.setText(item.getTerminalNumber());
-			String[] status = getResources().getStringArray(R.array.terminal_status);
+			String[] status = getResources().getStringArray(
+					R.array.terminal_status);
 			holder.tvTerminalStatus.setText(status[item.getStatus()]);
 
 			if (item.getStatus() == UNOPENED) {
 				holder.btnOpen.setEnabled(true);
-				holder.btnOpen.setText(getString(R.string.apply_button_open));
+				if (!"".equals(item.getAppid())) {
+					holder.btnOpen
+							.setText(getString(R.string.apply_button_reopen));
+				} else {
+					holder.btnOpen
+							.setText(getString(R.string.apply_button_open));
+				}
 			} else if (item.getStatus() == PART_OPENED) {
 				holder.btnOpen.setEnabled(true);
 				holder.btnOpen.setText(getString(R.string.apply_button_reopen));
@@ -191,34 +203,46 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 			holder.btnOpen.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					Intent intent = new Intent(ApplyListActivity.this, ApplyDetailActivity.class);
-					intent.putExtra(TERMINAL_ID, item.getId());
-					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
-					intent.putExtra(TERMINAL_STATUS, item.getStatus());
-					startActivityForResult(intent, REQUEST_DETAIL);
+					if (item.getStatus() == UNOPENED
+							&& "".equals(item.getAppid())) {
+
+						openDialog(item);
+
+					} else {
+
+						Intent intent = new Intent(ApplyListActivity.this,
+								ApplyDetailActivity.class);
+						intent.putExtra(TERMINAL_ID, item.getId());
+						intent.putExtra(TERMINAL_NUMBER,
+								item.getTerminalNumber());
+						intent.putExtra(TERMINAL_STATUS, item.getStatus());
+						startActivityForResult(intent, REQUEST_DETAIL);
+					}
 				}
 			});
 			holder.btnVideo.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					//添加视频审核
-					Intent intent = new Intent(ApplyListActivity.this, VideoActivity.class);
+					// 添加视频审核
+					Intent intent = new Intent(ApplyListActivity.this,
+							VideoActivity.class);
 					intent.putExtra(TERMINAL_ID, item.getId());
 					startActivity(intent);
 				}
 			});
-			
+
 			convertView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					Intent intent = new Intent(ApplyListActivity.this, TerminalDetailActivity.class);
+					Intent intent = new Intent(ApplyListActivity.this,
+							TerminalDetailActivity.class);
 					intent.putExtra(TERMINAL_ID, item.getId());
 					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
 					intent.putExtra(TERMINAL_STATUS, item.getStatus());
 					startActivity(intent);
 				}
 			});
-			
+
 			return convertView;
 		}
 	}
@@ -228,5 +252,55 @@ public class ApplyListActivity extends Activity implements XListView.IXListViewL
 		public TextView tvTerminalStatus;
 		public Button btnOpen;
 		public Button btnVideo;
+	}
+
+	private void openDialog(final TerminalItem item) {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(
+				ApplyListActivity.this);
+
+		LayoutInflater factory = LayoutInflater.from(this);
+		View view = factory.inflate(R.layout.protocoldialog, null);
+		builder.setView(view);
+
+		final AlertDialog dialog = builder.create();
+		dialog.show();
+		final CheckBox cb = (CheckBox) view.findViewById(R.id.cb);
+
+		Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
+
+		Button btn_confirm = (Button) view.findViewById(R.id.btn_confirm);
+
+		btn_cancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		btn_confirm.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				if (!cb.isChecked()) {
+
+					CommonUtil.toastShort(ApplyListActivity.this,
+							"请仔细阅读开通协议，并接受协议");
+
+				} else {
+
+					dialog.dismiss();
+					Intent intent = new Intent(ApplyListActivity.this,
+							ApplyDetailActivity.class);
+					intent.putExtra(TERMINAL_ID, item.getId());
+					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
+					intent.putExtra(TERMINAL_STATUS, item.getStatus());
+					startActivityForResult(intent, REQUEST_DETAIL);
+				}
+
+			}
+		});
+		// dialog.show();
+
 	}
 }

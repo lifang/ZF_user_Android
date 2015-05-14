@@ -48,9 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:paddingRight="11dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/delete_sure"
-        android:visibility="gone" />
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/next_sure"

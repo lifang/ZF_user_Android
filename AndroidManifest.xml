@@ -81,7 +81,7 @@
         <activity
             android:name=".activity.PosSelect"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name=".activity.LoginActivity"
@@ -340,6 +340,10 @@
             android:name="com.example.zf_android.activity.GoodDeatail"
             android:screenOrientation="portrait" >
         </activity>
+           <activity
+            android:name="com.example.zf_android.activity.GoodDetailImgs"
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="com.example.zf_android.activity.GoodConfirm"
             android:screenOrientation="portrait"
@@ -439,6 +443,11 @@
         </activity>
              <activity
             android:name="com.example.zf_android.activity.LookTerminalsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+            <activity
+            android:name="com.example.zf_android.activity.LookLogisticsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>

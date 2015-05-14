@@ -60,8 +60,8 @@
                 android:layout_gravity="left"/>
 
             <TextView
+                android:id="@+id/tradeType"
                 style="@style/TextTrace.Statistic"
-                android:text="转账"
                 android:layout_gravity="right"/>
         </FrameLayout>
 

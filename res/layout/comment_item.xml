@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <View
@@ -65,7 +66,7 @@
                 android:gravity="right"
                 android:maxLines="1"
                 android:text="X   2"
-                android:textColor="@color/text292929"
+                android:textColor="@color/text6c6c6c6"
                 android:textSize="11sp"
                 android:visibility="invisible" />
 
@@ -122,7 +123,7 @@
                         android:textSize="11sp" />
 
                     <TextView
-                              android:id="@+id/contentText"
+                        android:id="@+id/contentText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -189,24 +190,25 @@
             android:layout_marginRight="14dp"
             android:background="@color/ffffff"
             android:gravity="top"
+            android:hint="在这里可以评论"
             android:maxLength="200"
-            android:hint="请输入评价"
             android:textColor="@color/text292929"
-            android:textSize="10sp" />
+            android:textSize="14sp" />
 
         <TextView
-                 android:id="@+id/maxCountTextView"
+            android:id="@+id/maxCountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/item_et"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="3dp"
+            android:layout_below="@+id/item_et"
+            android:layout_marginTop="3dp"
+            android:paddingBottom="3dp"
             android:layout_marginLeft="@dimen/margin_left2"
             android:layout_marginRight="@dimen/margin_left2"
             android:singleLine="true"
             android:text="最多填写200个汉字"
             android:textColor="@color/text292929"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
     </RelativeLayout>
 
     <View

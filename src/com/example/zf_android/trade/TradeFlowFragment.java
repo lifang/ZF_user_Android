@@ -533,7 +533,6 @@ public class TradeFlowFragment extends Fragment implements
 
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
 
 	}
 

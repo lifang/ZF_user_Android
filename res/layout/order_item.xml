@@ -92,7 +92,7 @@
                 android:maxLines="1"
                 android:text="品牌型号"
                 android:textColor="@color/text292929"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tv_price"
@@ -104,7 +104,7 @@
                 android:maxLines="1"
                 android:text="￥ 19.99"
                 android:textColor="@color/text292929"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tv_goodnum"
@@ -115,7 +115,7 @@
                 android:gravity="right"
                 android:maxLines="1"
                 android:text="X   2"
-                android:textColor="@color/text292929"
+                android:textColor="@color/text6c6c6c6"
                 android:textSize="11sp" />
 
             <LinearLayout
@@ -202,7 +202,7 @@
             android:layout_marginLeft="7dp"
             android:text="共计:   10件"
             android:textColor="@color/text6c6c6c6"
-            android:textSize="8sp" />
+            android:textSize="9sp" />
 
         <TextView
             android:id="@+id/tv_psf"
@@ -212,7 +212,7 @@
             android:layout_weight="1"
             android:text="配送费：￥0.00"
             android:textColor="@color/text6c6c6c6"
-            android:textSize="8sp" />
+            android:textSize="9sp" />
 
         <TextView
             android:id="@+id/tv_pay"

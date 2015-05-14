@@ -121,6 +121,13 @@ public class MerchantEntity {
 	private String orgCodeNoPicPath;
 	private String accountBankName;
 	private Boolean Ischeck;
+	private String legal_person_name;
+	public String getLegal_person_name() {
+		return legal_person_name;
+	}
+	public void setLegal_person_name(String legal_person_name) {
+		this.legal_person_name = legal_person_name;
+	}
 	public Boolean getIscheck() {
 		return Ischeck;
 	}
