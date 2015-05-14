@@ -73,6 +73,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private int id;
 	private LinearLayout titleback_linear_back;
 	private RelativeLayout setting_rl_exit,setting_rl_exit2;
+	private RelativeLayout rl_imgs;
 	private TextView countShopCar;
 	private ImageView image,search2,fac_img;
 	private List<String> ma = new ArrayList<String>();
@@ -88,6 +89,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private int  	commentsCount;
 	FactoryEntity factoryEntity;
 	FactoryEntity factory;
+	private TextView good_description;
 	private  TextView tvc_zx,tvc_qy,tv_sqkt,tv_bug,tv_lea,tv_title,content1,tv_pp,tv_xh,tv_ys,tv_price,tv_lx,tv_sjhttp
 	,tv_spxx,fac_detai,ppxx,wkxx,dcxx,tv_qgd,tv_jm,tv_comment,tv_appneed,tv_ins,tv_huilv;
 	private ScrollViewWithListView  pos_lv1,pos_lv2,pos_lv3;
@@ -195,8 +197,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin=mySharedPreferences.getBoolean("islogin", false);
 		customerId = mySharedPreferences.getInt("id", 0);
+		String username = mySharedPreferences.getString("name", "");
+		MyApplication.getInstance().setUsername(username);
 		MyApplication.getInstance().setCustomerId(customerId);
 
+		
 		id=getIntent().getIntExtra("id", 0);
 		innitView();
 
@@ -216,6 +221,13 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 	}
 	private void innitView() {
+		rl_imgs = (RelativeLayout) findViewById(R.id.rl_imgs);
+		
+		ViewGroup.LayoutParams lp = rl_imgs.getLayoutParams();
+		lp.width = screenWidth;
+		lp.height = screenWidth;
+		rl_imgs.setLayoutParams(lp);
+		
 		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		setting_rl_exit = (RelativeLayout) findViewById(R.id.setting_rl_exit);
 		setting_rl_exit2 = (RelativeLayout) findViewById(R.id.setting_rl_exit2);
@@ -230,6 +242,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		tv_huilv.setOnClickListener(this);
 		tv_ins=(TextView) findViewById(R.id.tv_ins);
 		tv_ins.setOnClickListener(this);
+		good_description = (TextView) findViewById(R.id.good_description);
+		good_description.setOnClickListener(this);
 		tv_appneed=(TextView) findViewById(R.id.tv_appneed);
 		tv_appneed.setOnClickListener(this);
 		tv_comment=(TextView) findViewById(R.id.tv_comment);
@@ -327,6 +341,13 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			Intent tv_ins =new Intent(GoodDeatail.this, LeaseInstruction.class);
 			startActivity(tv_ins);
 			break;
+		case R.id.good_description:
+			//tv_appneed tv_huilv
+			Intent good_description =new Intent(GoodDeatail.this, GoodDescription.class);
+			good_description.putExtra("goodId", goodId);
+			startActivity(good_description);
+			break;
+			
 		case R.id.tv_appneed:  
 			//tv_appneed
 			Intent tv_appneed =new Intent(GoodDeatail.this, ApplyNeed.class);
@@ -727,14 +748,6 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		} catch (UnsupportedEncodingException e) {
 			return;
 		}
-
-		//		RequestParams params = new RequestParams();
-		//		params.put("customerId",MyApplication.getInstance().getCustomerId());
-		//		params.put("goodId",goodId);
-		//		//paychannelId
-		//		params.put("paychannelId",paychannelId);
-		//		params.setUseJsonStreamer(true);
-		//		MyApplication.getInstance().getClient().post(Config.URL_CART_ADD, params, new AsyncHttpResponseHandler() {
 		MyApplication.getInstance().getClient()
 		.post(getApplicationContext(),Config.URL_CART_ADD, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			@Override
@@ -857,14 +870,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			
 			ViewGroup.LayoutParams lp = image.getLayoutParams();
 			lp.width = screenWidth;
-			lp.height = LayoutParams.FILL_PARENT;
+			lp.height = screenWidth;
 			image.setLayoutParams(lp);
 			image.setMaxWidth(screenWidth);
 			image.setMaxHeight(screenWidth);
 			
 			ImageLoader.getInstance().displayImage(ma.get(position), image, options);
-			ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
-					image);
+//			ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
+//					image);
 			container.removeView(mList.get(position));
 			container.addView(mList.get(position));
 			setIndex(position);

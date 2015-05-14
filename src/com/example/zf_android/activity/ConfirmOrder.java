@@ -177,24 +177,65 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 						tv_adresss.setText("收件地址 ： ");
 						tv_name.setText("收件人 ： ");
 						tv_tel.setText("");
-						int mflag = 0;
 						if (moreList.size() != 0) {
-							for(int i =0;i<moreList.size();i++){
-								if(moreList.get(i).getIsDefault()==1) {
-									//tv_name,tv_tel,tv_adresss;
-									addressId=moreList.get(i).getId();
-									tv_adresss.setText("收件地址 ： "+moreList.get(i).getAddress());
-									tv_name.setText("收件人 ： "+moreList.get(i).getReceiver());
-									tv_tel.setText( moreList.get(i).getMoblephone());
-								}else {
-									mflag ++;
+							/*
+							 * 判断是否有新增地址
+							*/
+							if (Config.newAddAddressId != 0) {
+								//有新增地址，显示新增地址
+								
+								int flag = 0;
+								for(int i =0;i<moreList.size();i++){
+									if (Config.newAddAddressId==moreList.get(i).getId()) {
+										addressId=moreList.get(i).getId();
+										tv_adresss.setText("收件地址 ： "+moreList.get(i).getAddress());
+										tv_name.setText("收件人 ： "+moreList.get(i).getReceiver());
+										tv_tel.setText( moreList.get(i).getMoblephone());
+									}else {
+										flag ++;
+									}
 								}
-							}
-							if (mflag == moreList.size()) {
-								addressId=moreList.get(0).getId();
-								tv_adresss.setText("收件地址 ： "+moreList.get(0).getAddress());
-								tv_name.setText("收件人 ： "+moreList.get(0).getReceiver());
-								tv_tel.setText( moreList.get(0).getMoblephone());
+								Config.newAddAddressId = 0;
+								//有新增地址，但是新增后又被删除，先选取默认地址，若无默认地址选择第一个地址
+								if (flag == moreList.size()) {
+									int flag2 = 0;
+									for(int i =0;i<moreList.size();i++){
+										if(moreList.get(i).getIsDefault()==1) {
+											addressId=moreList.get(i).getId();
+											tv_adresss.setText("收件地址 ： "+moreList.get(i).getAddress());
+											tv_name.setText("收件人 ： "+moreList.get(i).getReceiver());
+											tv_tel.setText( moreList.get(i).getMoblephone());
+										}else {
+											flag2 ++;
+										}
+									}
+									if (flag2 == moreList.size()) {
+										addressId=moreList.get(0).getId();
+										tv_adresss.setText("收件地址 ： "+moreList.get(0).getAddress());
+										tv_name.setText("收件人 ： "+moreList.get(0).getReceiver());
+										tv_tel.setText( moreList.get(0).getMoblephone());
+									}
+								}
+
+							}else {
+								//无新增地址，先选取默认地址，若无默认地址选择第一个地址
+								int mflag = 0;
+								for(int i =0;i<moreList.size();i++){
+									if(moreList.get(i).getIsDefault()==1) {
+										addressId=moreList.get(i).getId();
+										tv_adresss.setText("收件地址 ： "+moreList.get(i).getAddress());
+										tv_name.setText("收件人 ： "+moreList.get(i).getReceiver());
+										tv_tel.setText( moreList.get(i).getMoblephone());
+									}else {
+										mflag ++;
+									}
+								}
+								if (mflag == moreList.size()) {
+									addressId=moreList.get(0).getId();
+									tv_adresss.setText("收件地址 ： "+moreList.get(0).getAddress());
+									tv_name.setText("收件人 ： "+moreList.get(0).getReceiver());
+									tv_tel.setText( moreList.get(0).getMoblephone());
+								}
 							}
 						}
 					}else{
@@ -290,5 +331,33 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 				return  null;
 			}
 		});
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==11){
+			if(data!=null){
+				/*
+				 * 点击地址列表返回，id非0
+				 * 不是点击地址列表返回的，需要重新访问接口更新数据；目的：防止地址修改，新增，删除后，此activity数据没有更新
+				 * 若回调的id不在原地址列表内，也需要重新访问接口，显示数据
+				*/
+				addressId=data.getIntExtra("id", addressId);
+				int mflag = 0;
+				for(int i =0;i<moreList.size();i++){
+					if(addressId==moreList.get(i).getId()) {
+						addressId=moreList.get(i).getId();
+						tv_adresss.setText("收件地址 ： "+moreList.get(i).getAddress());
+						tv_name.setText("收件人 ： "+moreList.get(i).getReceiver());
+						tv_tel.setText( moreList.get(i).getMoblephone());
+					}else {
+						mflag ++;
+					}
+				}
+				if (mflag == moreList.size()) {
+					getData1();
+				}
+			}
+		}
 	}
 }

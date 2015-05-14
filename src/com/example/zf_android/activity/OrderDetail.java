@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -249,19 +251,41 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			finish();
 			break;
 		case R.id.btn_cancle:
-			API.cancelMyOrder(this,id,new HttpCallback(this) {
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(OrderDetail.this);
+			final AlertDialog dialog = builder.create();
+			builder.setTitle("提示");
+			builder.setMessage("确定要取消订单吗？");
+			builder.setPositiveButton("确认",new DialogInterface.OnClickListener() {
+
 				@Override
-				public void onSuccess(Object data) {
-					MyToast.showToast(getApplicationContext(),"取消成功");
-					Intent intent = new Intent();
-					setResult(Activity.RESULT_OK, intent);
-					finish();
-				}
-				@Override
-				public TypeToken getTypeToken() {
-					return null;
+				public void onClick(DialogInterface dialogInterface,int arg1) {
+					API.cancelMyOrder(OrderDetail.this,id,new HttpCallback(OrderDetail.this) {
+						@Override
+						public void onSuccess(Object data) {
+							dialog.dismiss();
+							MyToast.showToast(getApplicationContext(),"取消成功");
+							Intent intent = new Intent();
+							setResult(Activity.RESULT_OK, intent);
+							finish();
+						}
+						@Override
+						public TypeToken getTypeToken() {
+							return null;
+						}
+					});
+
 				}
 			});
+			builder.setNegativeButton("取消",new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface arg0,int arg1) {
+					dialog.dismiss();
+				}
+
+			});
+			builder.create().show();
 			break;
 		case R.id.btn_pj:
 			//Comment

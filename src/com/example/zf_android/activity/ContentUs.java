@@ -42,7 +42,7 @@ public class ContentUs extends BaseActivity implements OnClickListener{
 
 			break;
 		case R.id.ll_kf:
-			Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4000908760"));
+			Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4000090876"));
 			//通知activtity处理传入的call服务
 			startActivity(intent);
 			break;

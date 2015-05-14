@@ -71,6 +71,10 @@ public class Config {
 	public static String find_phoneCode = "";//找回密码的手机验证码
 	public static String reg_phoneCode = "";//注册的手机验证码
 	public static int countShopCar = 0;//新添加购物车的数量
+	public static int newAddAddressId = 0;//，下订单时新增地址id
+	public static String changePhoneNum = "";//，修改手机号
+	public static String changeemail = "";//，修改邮箱号
+	
 	public static final String URL_ORDER_LIST =PATHS+"order/getMyOrderAll";
 	public static final String URL_CANCEL_MYORDER =PATHS+"order/cancelMyOrder";
 	public static final String URL_GET_MYORDERBYID =PATHS+"order/getMyOrderById";
@@ -84,6 +88,7 @@ public class Config {
 	public static final String URL_GOOD_SEARCH =PATHS+"good/search";
 	public static final String URL_TERMINAL_OPENSTATUS =PATHS+"terminal/openStatus";
 	public static final String URL_REPAIRPAY =PATHS+"cs/repair/repairPay";
+	public static final String URL_GETGOODIMGURL =PATHS+"good/getGoodImgUrl";
 	//商户PID
 	public static final String PARTNER = "2088811347108355";
 	//商户收款账号

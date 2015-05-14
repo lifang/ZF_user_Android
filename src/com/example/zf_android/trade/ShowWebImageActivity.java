@@ -100,7 +100,9 @@ public class ShowWebImageActivity extends Activity {
 		String names = intent.getStringExtra(IMAGE_NAMES);
 		position = intent.getIntExtra(POSITION, 0);
 		imageArray = urls.split(",");
-		
+		for (int i = 0; i < imageArray.length; i++) {
+			Log.e("==imageArray==", imageArray[i]);
+		}
 		imageNames = names.split(",");
 		count = imageArray.length;
 	}
