@@ -84,9 +84,6 @@ public class MerchantEdit extends BaseActivity implements OnClickListener {
 	private String photoPath;
 	private int type;
 	private boolean needFresh = false;
-	private AlertDialog myDialog1;
-	private AlertDialog myDialog2;
-	// private boolean pic1, pic2, pic3, pic4, pic5, pic6, pic7;
 	private String path1, path2, path3, path4, path5, path6, path7;
 
 	@Override
@@ -685,10 +682,6 @@ public class MerchantEdit extends BaseActivity implements OnClickListener {
 						handler.sendEmptyMessage(0);
 						return;
 					}
-					if (myDialog1 != null)
-						myDialog1.dismiss();
-					if (myDialog2 != null)
-						myDialog2.dismiss();
 					CommonUtil.uploadFile(realPath, "img",
 							new CommonUtil.OnUploadListener() {
 								@Override

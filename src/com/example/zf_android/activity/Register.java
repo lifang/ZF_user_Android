@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -87,6 +88,8 @@ public class Register extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void afterTextChanged(Editable s) {
+				hintLayout.setVisibility(View.GONE);
+				login.setVisibility(View.VISIBLE);
 			}
 		});
 

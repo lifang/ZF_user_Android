@@ -165,8 +165,11 @@ OnClickListener {
 				if (MyApplication.getIsSelect()) {
 					next_sure.setText("编辑");
 					MyApplication.setIsSelect(false);
+					
 					myAdapter.notifyDataSetChanged();
-
+					for (int i = 0; i < myList.size(); i++) {
+						myList.get(i).setIscheck(false);
+					}
 					rl_editno.setVisibility(View.VISIBLE);
 					rl_edit.setVisibility(View.GONE);
 
@@ -254,6 +257,20 @@ OnClickListener {
 			}
 
 			if (idList.size() > 0) {
+				MsgRead();
+			}else {
+				Toast.makeText(this, "请选择消息后，再执行此操作", Toast.LENGTH_SHORT).show();
+			}
+			break;
+		case R.id.tv_dle: 
+
+			for (int i = 0; i < myList.size(); i++) {
+				if (myList.get(i).getIscheck()) {
+					Stringas.add(myList.get(i).getId());
+				}
+			}
+
+			if (Stringas.size() > 0) {
 				final AlertDialog.Builder builder = new AlertDialog.Builder(
 						MyMessage.this);
 				final AlertDialog dialog = builder.create();
@@ -264,8 +281,8 @@ OnClickListener {
 
 							@Override
 							public void onClick(DialogInterface arg0, int arg1) {
+								Msgdelete1();
 								
-								MsgRead();
 							}
 						});
 				builder.setNegativeButton("取消",
@@ -280,20 +297,7 @@ OnClickListener {
 
 				builder.create().show();
 				
-			}else {
-				Toast.makeText(this, "请选择消息后，再执行此操作", Toast.LENGTH_SHORT).show();
-			}
-			break;
-		case R.id.tv_dle: 
-
-			for (int i = 0; i < myList.size(); i++) {
-				if (myList.get(i).getIscheck()) {
-					Stringas.add(myList.get(i).getId());
-				}
-			}
-
-			if (Stringas.size() > 0) {
-				Msgdelete1();
+				
 			}else {
 				Toast.makeText(this, "请选择消息后，再执行此操作", Toast.LENGTH_SHORT).show();
 			}
