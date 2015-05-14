@@ -15,9 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.MyToast;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.API;
@@ -41,7 +43,7 @@ public class AdressEdit extends BaseActivity{
 	private int id=MyApplication.getInstance().getCustomerId();
 	private int Cityid=MyApplication.getInstance().getCityId();
 	private String name,tel,stringcode ,address;
-	private int isDefault=1;
+	private int isDefault=2;
 	private TextView tv_city;
 	private CheckBox item_cb;
 	private LinearLayout mi_r4;
@@ -59,8 +61,8 @@ public class AdressEdit extends BaseActivity{
 
 			@Override
 			public void onSuccess(Object data) {
-				Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show();
-
+				MyToast.showToast(AdressEdit.this, "添加地址成功");
+				Config.newAddAddressId = Integer.parseInt(data+"");
 				Intent intent2 = new Intent();
 				AdressEdit.this.setResult(1, intent2);
 				finish();
@@ -142,7 +144,7 @@ public class AdressEdit extends BaseActivity{
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		
+
 		address=StringUtil.replaceBlank(tv_addr.getText().toString());
 		if(address.length()==0){
 			Toast.makeText(getApplicationContext(), "请输入详细地址",

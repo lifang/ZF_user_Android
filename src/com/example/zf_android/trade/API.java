@@ -1071,4 +1071,12 @@ public class API {
 		params.put("id", id); 
 		new HttpRequest(context, callback).post(Config.URL_REPAIRPAY, params);
 	}
+	public static void getGoodImgUrl(
+			Context context,
+			int id,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id); 
+		new HttpRequest(context, callback).post(Config.URL_GETGOODIMGURL, params);
+	}
 }

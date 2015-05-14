@@ -78,7 +78,7 @@
             <RelativeLayout
                 android:id="@+id/rl_imgs"
                 android:layout_width="fill_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:background="@color/F3F3F3" >
 
                 <android.support.v4.view.ViewPager
@@ -357,6 +357,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="@dimen/margin_left2"
                 android:layout_marginTop="5dp"
+                android:visibility="gone"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -382,11 +383,12 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
-                android:layout_marginTop="3dp"
+                  android:layout_marginTop="5dp"
                 android:background="@color/bgtitle" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
+                 android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="@dimen/margin_left2"
@@ -415,6 +417,7 @@
                 android:id="@+id/fac_detai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                 android:visibility="gone"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="@dimen/margin_left2"
@@ -501,6 +504,44 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="租赁说明"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc2" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="38dp"
+                android:background="@color/ffffff"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/good_description"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="商品详细说明"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/Viewc2" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:textColor="@color/text292929"
                     android:textSize="17sp" />
             </LinearLayout>
@@ -734,7 +775,8 @@
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="@dimen/margin_left2"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:visibility="gone" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -754,7 +796,8 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="3dp"
-                android:background="@color/bgtitle" />
+                android:background="@color/bgtitle"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_spxx"
@@ -764,13 +807,15 @@
                 android:layout_marginRight="@dimen/margin_left2"
                 android:ellipsize="end"
                 android:textColor="@color/text292929"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:visibility="gone" >
 
                 <View
                     android:layout_width="0dp"
@@ -804,7 +849,8 @@
                 android:horizontalSpacing="20dip"
                 android:numColumns="2"
                 android:stretchMode="columnWidth"
-                android:verticalSpacing="10dip" >
+                android:verticalSpacing="10dip"
+                android:visibility="gone" >
             </com.examlpe.zf_android.util.ScrollViewWithGView>
 
             <View

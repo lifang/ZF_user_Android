@@ -173,8 +173,10 @@ public class Main extends BaseActivity implements OnClickListener {
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
+		String username = mySharedPreferences.getString("name", "");
 		MyApplication.getInstance().setCustomerId(id);
-
+		MyApplication.getInstance().setUsername(username);
+		
 		MyApplication.getInstance().addActivity(this);
 
 		initView();
@@ -217,7 +219,7 @@ public class Main extends BaseActivity implements OnClickListener {
 		}else {
 			countShopCar.setVisibility(View.GONE);
 		}
-		
+
 		if (Constants.CITY_ID_SEARCH != 0) {
 			cityId = Constants.CITY_ID_SEARCH;
 			cityName = Constants.CITY_NAME_SEARCH;
@@ -227,8 +229,11 @@ public class Main extends BaseActivity implements OnClickListener {
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
+		String username = mySharedPreferences.getString("name", "");
+		MyApplication.getInstance().setUsername(username);
 		MyApplication.getInstance().setCustomerId(id);
 
+		
 		timer = new Timer();
 		task = new TimerTask() {
 			public void run() {
@@ -429,10 +434,10 @@ public class Main extends BaseActivity implements OnClickListener {
 			}
 			break;
 		case R.id.main_rl_Forum: // 我要贷款
-			 startActivity(new Intent(Main.this, LoanActivity.class));
+			startActivity(new Intent(Main.this, LoanActivity.class));
 			break;
 		case R.id.main_rl_wylc: // 我要理财
-			 startActivity(new Intent(Main.this, FianceActivity.class));
+			startActivity(new Intent(Main.this, FianceActivity.class));
 			break;
 		case R.id.main_rl_xtgg: // 系统公告
 
@@ -467,7 +472,7 @@ public class Main extends BaseActivity implements OnClickListener {
 			cityId = data.getIntExtra(CITY_ID, 0);
 			cityName = data.getStringExtra(CITY_NAME);
 			cityTextView.setText(cityName);
-			
+
 			Constants.CITY_ID_SEARCH = cityId;
 			Constants.CITY_NAME_SEARCH = cityName;
 			break;
