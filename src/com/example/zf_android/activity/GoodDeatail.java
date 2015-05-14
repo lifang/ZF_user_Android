@@ -854,14 +854,15 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		public Object instantiateItem(final ViewGroup container, final int position) {
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
+			
 			ViewGroup.LayoutParams lp = image.getLayoutParams();
 			lp.width = screenWidth;
-			lp.height = screenWidth;
+			lp.height = LayoutParams.FILL_PARENT;
 			image.setLayoutParams(lp);
 			image.setMaxWidth(screenWidth);
 			image.setMaxHeight(screenWidth);
 			
-			//ImageLoader.getInstance().displayImage(ma.get(position), image, options);
+			ImageLoader.getInstance().displayImage(ma.get(position), image, options);
 			ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
 					image);
 			container.removeView(mList.get(position));
