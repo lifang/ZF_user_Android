@@ -337,10 +337,6 @@ public class TerminalManageActivity extends Activity implements
 			}
 			final TerminalItem item = getItem(i);
 			holder.tvTerminalNumber.setText(item.getTerminalNumber());
-			if ("00123".equals(item.getTerminalNumber())) {
-
-				System.out.println("");
-			}
 			String[] status = getResources().getStringArray(
 					R.array.terminal_status);
 			holder.tvTerminalStatus.setText(status[item.getStatus()]);
@@ -350,8 +346,8 @@ public class TerminalManageActivity extends Activity implements
 			holder.llButtonContainer.setVisibility(View.GONE);
 			holder.llButtons.removeAllViews();
 			// holder.llButtons2.removeAllViews();
-			// 通过添加其他终端 进来的终端(type=1)，是没有详情，也没有操作按钮
-			if (!"1".equals(item.getType())) {
+			// 通过添加其他终端 进来的终端(type=2)，是没有详情，也没有操作按钮
+			if (!"2".equals(item.getType())) {
 
 				switch (item.getStatus()) {
 				// 除了已停用，其余状态都有同步功能
@@ -427,7 +423,7 @@ public class TerminalManageActivity extends Activity implements
 			convertView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					if ("1".equals(item.getType())) {
+					if ("2".equals(item.getType())) {
 						// 通过添加其他终端 进来的终端，是没有详情，也没有操作按钮
 						return;
 					} else {
