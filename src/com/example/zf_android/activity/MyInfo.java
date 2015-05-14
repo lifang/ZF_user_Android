@@ -16,8 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MyinfoEntity;
@@ -33,7 +35,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 	private List<City> mCities = new ArrayList<City>();
 	private Button btn_exit;
 	private LinearLayout mi_name,mi_phone,mi_email,mi_location,mi_point,mi_r6,mi_r7;
-	private TextView tv_name,tv_phone,tv_email,tv_location,tv_point;
+	private TextView tv_username,tv_name,tv_phone,tv_email,tv_location,tv_point;
 	private int cityId=MyApplication.getInstance().getCityId();
 	private int customerId;
 	@Override
@@ -46,8 +48,24 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		initView();
 
 	}
-
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Config.newAddAddressId = 0;
+		
+		if(!StringUtil.isNull(Config.changePhoneNum)){
+			tv_phone.setText(Config.changePhoneNum);
+			change();
+			Config.changePhoneNum = "";
+		}
+		if(!StringUtil.isNull(Config.changeemail)){
+			tv_email.setText(Config.changeemail);
+			change();
+			Config.changeemail = "";
+		}
+	}
 	private void initView() {
+		tv_username = (TextView) findViewById(R.id.tv_username);
 		btn_exit=(Button) findViewById(R.id.btn_exit);
 		btn_exit.setOnClickListener(this);
 		mi_name=(LinearLayout) findViewById(R.id.mi_name);
@@ -71,6 +89,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 		tv_point=(TextView) findViewById(R.id.tv_point);
 		tv_location.setText("");
 
+		tv_username.setText(MyApplication.getNewUser().getUsername());
 		getdata();
 	}
 
@@ -89,15 +108,15 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 
 			break;
 		case  R.id.mi_phone: // �ֻ� 
-			
+
 			intent =new Intent(MyInfo.this,ChangePhone.class);
 			intent.putExtra("key", 2);
 			intent.putExtra("name", tv_phone.getText().toString());
 			startActivityForResult(intent, 2);
-//			intent =new Intent(MyInfo.this,ChangeText.class);
-//			intent.putExtra("key", 2);
-//			intent.putExtra("name", tv_phone.getText().toString());
-//			startActivityForResult(intent, 2);
+			//			intent =new Intent(MyInfo.this,ChangeText.class);
+			//			intent.putExtra("key", 2);
+			//			intent.putExtra("name", tv_phone.getText().toString());
+			//			startActivityForResult(intent, 2);
 
 			break;
 		case  R.id.mi_email: 
@@ -105,11 +124,11 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 			intent.putExtra("key",3);
 			intent.putExtra("name", tv_email.getText().toString());
 			startActivityForResult(intent, 3);
-			
-//			intent =new Intent(MyInfo.this,ChangeText.class);
-//			intent.putExtra("key",3);
-//			intent.putExtra("name", tv_email.getText().toString());
-//			startActivityForResult(intent, 3);
+
+			//			intent =new Intent(MyInfo.this,ChangeText.class);
+			//			intent.putExtra("key",3);
+			//			intent.putExtra("name", tv_email.getText().toString());
+			//			startActivityForResult(intent, 3);
 
 			break;
 		case  R.id.mi_location: 
@@ -147,7 +166,7 @@ public class MyInfo extends BaseActivity implements OnClickListener{
 				City mMerchantCity = (City) data.getSerializableExtra(SELECTED_CITY);
 				tv_location.setText(mMerchantCity.getName());
 				cityId=mMerchantCity.getId();
-				
+
 				change();
 			}
 

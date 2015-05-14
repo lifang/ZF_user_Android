@@ -58,6 +58,8 @@ public class MyApplication extends org.litepal.LitePalApplication {
 	private ImageLoader mImageLoader;
 
 	private Integer customerId;
+	private String username;
+
 
 	private List<City> mCities = new ArrayList<City>();
 	private boolean haveShowHint = false;
@@ -334,7 +336,7 @@ public class MyApplication extends org.litepal.LitePalApplication {
 		initImageLoaderConfig();
 		/*
 		 * niemin
-		*/
+		 */
 		initImageLoader(mInstance);
 		Intent i = new Intent(this, NetworkStateService.class);
 		ServiceConnection connection = new ServiceConnection() {
@@ -355,7 +357,7 @@ public class MyApplication extends org.litepal.LitePalApplication {
 	}
 	/*
 	 * niemin
-	*/
+	 */
 	public static void initImageLoader(Context context) {
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 				context).threadPriority(Thread.NORM_PRIORITY - 2)
@@ -385,18 +387,18 @@ public class MyApplication extends org.litepal.LitePalApplication {
 
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 				this)
-				.memoryCacheExtraOptions(720, 1280)
-				.threadPoolSize(3)
-				// 线程池内加载的数量
-				.threadPriority(Thread.NORM_PRIORITY - 2)	
-				// 自定义缓存路径
-				.discCache(new UnlimitedDiscCache(cacheDir))
-				.discCacheFileCount(10)
-				.tasksProcessingOrder(QueueProcessingType.FIFO)
-				.memoryCache(new LruMemoryCache(4 * 1024 * 1024))
-				.memoryCacheSizePercentage(10)
-				.imageDownloader(
-						new BaseImageDownloader(this, 5 * 1000, 10 * 1000))
+		.memoryCacheExtraOptions(720, 1280)
+		.threadPoolSize(3)
+		// 线程池内加载的数量
+		.threadPriority(Thread.NORM_PRIORITY - 2)	
+		// 自定义缓存路径
+		.discCache(new UnlimitedDiscCache(cacheDir))
+		.discCacheFileCount(10)
+		.tasksProcessingOrder(QueueProcessingType.FIFO)
+		.memoryCache(new LruMemoryCache(4 * 1024 * 1024))
+		.memoryCacheSizePercentage(10)
+		.imageDownloader(
+				new BaseImageDownloader(this, 5 * 1000, 10 * 1000))
 				// 超时时间 5秒
 				.imageDecoder(new BaseImageDecoder(true))
 				.defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
@@ -420,6 +422,14 @@ public class MyApplication extends org.litepal.LitePalApplication {
 		this.customerId = customerId;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	private boolean hasOrderPaid;
 
 	public boolean isHasOrderPaid() {
@@ -438,7 +448,7 @@ public class MyApplication extends org.litepal.LitePalApplication {
 	public void setHistoryList(ArrayList<Context> historyList) {
 		this.historyList = historyList;
 	}
-	
+
 	public void clearHistoryForPay(){
 		try {
 			for (Context activity : historyList) {
@@ -450,7 +460,7 @@ public class MyApplication extends org.litepal.LitePalApplication {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private int reg_cityId;
 
 	public int getReg_cityId() {
@@ -460,5 +470,5 @@ public class MyApplication extends org.litepal.LitePalApplication {
 	public void setReg_cityId(int reg_cityId) {
 		this.reg_cityId = reg_cityId;
 	}
-	
+
 }

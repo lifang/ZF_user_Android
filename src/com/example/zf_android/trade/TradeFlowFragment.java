@@ -474,8 +474,8 @@ public class TradeFlowFragment extends Fragment implements
 				holder.tvReceiveAccountKey
 						.setText(getString(R.string.trade_receive_account));
 
-				holder.tvAccount.setText(record.getPayFromAccount());
-				holder.tvReceiveAccount.setText(record.getPayIntoAccount());
+				holder.tvAccount.setText(StringUtil.replaceNum(record.getPayFromAccount()));
+				holder.tvReceiveAccount.setText(StringUtil.replaceNum(record.getPayIntoAccount()));
 				break;
 			case 1:
 				holder.tvAccountKey.setVisibility(View.INVISIBLE);
@@ -493,7 +493,7 @@ public class TradeFlowFragment extends Fragment implements
 				holder.tvReceiveAccountKey
 						.setText(getString(R.string.trade_account_number));
 
-				holder.tvAccount.setText(record.getAccountName());
+				holder.tvAccount.setText(StringUtil.replaceName(record.getAccountName()));
 				holder.tvReceiveAccount.setText(record.getAccountNumber());
 				break;
 			case 4:
@@ -502,7 +502,7 @@ public class TradeFlowFragment extends Fragment implements
 						.setText(getString(R.string.trade_phone_number));
 
 //				holder.tvReceiveAccount.setText(StringUtil.mobileUtil(record.getPhone()));
-				holder.tvReceiveAccount.setText(record.getPhone());
+				holder.tvReceiveAccount.setText(StringUtil.replaceNum(record.getPhone()));
 				break;
 			}
 

@@ -86,7 +86,6 @@ public class AfterSaleDetailActivity extends Activity {
 		setContentView(R.layout.activity_after_sale_detail);
 		String[] titles = getResources().getStringArray(R.array.title_after_sale_detail);
 		new TitleMenuUtil(this, titles[mRecordType]).show();
-		Toast.makeText(getApplicationContext(), "111", 1000).show();
 		initViews();
 		initButtonListeners();
 		getData();
@@ -403,7 +402,7 @@ public class AfterSaleDetailActivity extends Activity {
 					String[] leaseKeys = getResources().getStringArray(R.array.after_sale_lease);
 					if (!StringUtil.isNull(leaseDetail.getLeasePrice()+"")) {
 						leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
-								String.format("%.2f",Integer.valueOf(leaseDetail.getLeasePrice())/100f));
+								String.format("%.2f",Integer.valueOf(leaseDetail.getLeaseDeposit()-leaseDetail.getLeasePrice())/100f));
 					}else {
 						leasePairs.put(leaseKeys[0], "");
 					}

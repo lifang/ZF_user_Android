@@ -2,8 +2,13 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import android.R.integer;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,11 +25,13 @@ import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.R;
 import com.example.zf_android.activity.Comment;
+import com.example.zf_android.activity.MerchantList;
 import com.example.zf_android.activity.OrderDetail;
 import com.example.zf_android.activity.PayFromCar;
 import com.example.zf_android.entity.OrderEntity;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class OrderAdapter extends BaseAdapter{
@@ -142,23 +149,41 @@ public class OrderAdapter extends BaseAdapter{
 		holder.btn_cancle.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {
-
-				API.cancelMyOrder(context,Integer.valueOf(arg0.getTag()+""), 
-						new HttpCallback(context) {
+			public void onClick(final View arg0) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				final AlertDialog dialog = builder.create();
+				builder.setTitle("提示");
+				builder.setMessage("确定要取消订单吗？");
+				builder.setPositiveButton("确认",new DialogInterface.OnClickListener() {
 
 					@Override
-					public void onSuccess(Object data) {
-						list.get(position).setOrder_status(5);
-						notifyDataSetChanged();
-					}
-					@Override
-					public TypeToken getTypeToken() {
-						return null;
+					public void onClick(DialogInterface dialogInterface,int arg1) {
+						API.cancelMyOrder(context,Integer.valueOf(arg0.getTag()+""), 
+								new HttpCallback(context) {
+
+							@Override
+							public void onSuccess(Object data) {
+								dialog.dismiss();
+								list.get(position).setOrder_status(5);
+								notifyDataSetChanged();
+							}
+							@Override
+							public TypeToken getTypeToken() {
+								return null;
+							}
+						});
+
 					}
 				});
+				builder.setNegativeButton("取消",new DialogInterface.OnClickListener() {
 
+					@Override
+					public void onClick(DialogInterface arg0,int arg1) {
+						dialog.dismiss();
+					}
 
+				});
+				builder.create().show();
 			}
 		});
 		holder.btn_pay.setOnClickListener(new OnClickListener() {
@@ -179,7 +204,7 @@ public class OrderAdapter extends BaseAdapter{
 				bundle.putInt("id", Integer.valueOf(list.get(position).getOrder_id()));
 				btn_pj.putExtras(bundle);
 				context.startActivityForResult(btn_pj, 101);
-				
+
 			}
 		});
 		return convertView;

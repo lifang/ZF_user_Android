@@ -167,6 +167,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 				editor.putString("name", data.getUsername());
 				editor.putInt("id", data.getId());
 				editor.commit();
+				MyApplication.getInstance().setUsername(data.getUsername());
 				MyApplication.getInstance().setCustomerId(data.getId());
 				Intent i =new Intent(getApplicationContext(), Main.class);
 				startActivity(i);

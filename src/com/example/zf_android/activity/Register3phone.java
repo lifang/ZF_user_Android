@@ -162,6 +162,7 @@ public class Register3phone extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void afterTextChanged(Editable s) {
+				msgLayout.setVisibility(View.GONE);
 			}
 		});
 		phoneText.setText(phoneStr);

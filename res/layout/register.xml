@@ -71,6 +71,8 @@
         android:background="#FFFFFF"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:paddingLeft="10dp" >
 
         <TextView
@@ -163,6 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
+                android:textColor="@color/hint6C"
                 android:text="忘记密码"
                 android:textSize="@dimen/s_13sp" />
         </LinearLayout>
@@ -180,6 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:textColor="@color/hint6C"
                 android:text="马上登录"
                 android:textSize="@dimen/s_13sp" />
         </LinearLayout>

@@ -125,6 +125,18 @@
             android:name="com.example.zf_android.activity.ChangePhone"
             android:screenOrientation="portrait" >
         </activity>
+             <activity
+            android:name="com.example.zf_android.activity.ChangePhoneTwo"
+            android:screenOrientation="portrait" >
+        </activity>
+             <activity
+            android:name="com.example.zf_android.activity.ChangeEmailTwo"
+            android:screenOrientation="portrait" >
+        </activity>
+               <activity
+            android:name="com.example.zf_android.activity.GoodDescription"
+            android:screenOrientation="portrait" >
+        </activity>
               <activity
             android:name="com.example.zf_android.activity.ChangeEmail"
             android:screenOrientation="portrait" >

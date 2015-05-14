@@ -30,7 +30,7 @@
     <string name="parse_data_failed">解析数据失败</string>
     <string name="network_info">无法连接到网络</string>
     <string name="notation_yuan">￥</string>
-    <string name="notation_percent">%</string>
+    <string name="notation_percent">‰</string>
     <string name="notation_day">天</string>
     <string name="notation_mouth">个月</string>
 

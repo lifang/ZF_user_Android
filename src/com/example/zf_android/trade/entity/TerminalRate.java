@@ -13,7 +13,7 @@ public class TerminalRate {
     private String type;
 
     @SerializedName("terminal_rate")
-    private String terminalRate;
+    private int terminalRate;
 
     @SerializedName("service_rate")
     private int serviceRate;
@@ -39,11 +39,11 @@ public class TerminalRate {
         this.type = type;
     }
 
-    public String getTerminalRate() {
+    public int getTerminalRate() {
         return terminalRate;
     }
 
-    public void setTerminalRate(String terminalRate) {
+    public void setTerminalRate(int terminalRate) {
         this.terminalRate = terminalRate;
     }
 
