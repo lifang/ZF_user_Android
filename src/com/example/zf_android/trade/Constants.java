@@ -3,12 +3,13 @@ package com.example.zf_android.trade;
 import com.example.zf_android.MyApplication;
 
 public class Constants {
-	
-	public static Integer CUSTOMER_ID = MyApplication.getInstance().getCustomerId();
+
+	public static Integer CUSTOMER_ID = MyApplication.getInstance()
+			.getCustomerId();
 
 	public static int CITY_ID_SEARCH = 0;
 	public static String CITY_NAME_SEARCH = "";
-	
+
 	public static class ShowWebImageIntent {
 		public static final String IMAGE_URLS = "image_urls";
 		public static final String IMAGE_NAMES = "image_names";
@@ -98,6 +99,7 @@ public class Constants {
 		public static final String TERMINAL_STATUS = "terminal_status";
 		public static final String CHANNEL_ID = "channel_id";
 		public static final String CHANNEL_NAME = "channel_name";
+		public static final String HAVE_VIDEO = "have_video";
 	}
 
 	/**
@@ -116,6 +118,7 @@ public class Constants {
 		public static final String SELECTED_ID = "selected_id";
 		public static final String SELECTED_TITLE = "selected_title";
 
+		public static final String SELECTED_CHANNEL_ID = "selected_channel_id";
 		public static final String SELECTED_CHANNEL = "selected_channel";
 		public static final String SELECTED_BILLING = "selected_billing";
 

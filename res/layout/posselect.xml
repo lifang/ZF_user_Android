@@ -84,7 +84,7 @@
                     android:layout_marginLeft="14dp"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:text="只包含租赁"
+                    android:text="支持租赁"
                     android:textColor="@color/text292929"
                     android:textSize="17sp" />
 

@@ -24,6 +24,7 @@ import java.util.List;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BILLING;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL_ID;
 
 /**
  * Created by Leo on 2015/3/16.
@@ -39,108 +40,137 @@ public class ApplyChannelActivity extends Activity {
 	private ApplyChannel chosenChannel;
 	private ApplyChannel.Billing chosenBilling;
 
+	private int mPayChannelID;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_apply_channel);
-		new TitleMenuUtil(this, getString(R.string.title_apply_choose_channel)).show();
-		chosenChannel = (ApplyChannel) getIntent().getSerializableExtra(SELECTED_CHANNEL);
-		chosenBilling = (ApplyChannel.Billing) getIntent().getSerializableExtra(SELECTED_BILLING);
-
+		new TitleMenuUtil(this, getString(R.string.title_apply_choose_channel))
+				.show();
+		chosenChannel = (ApplyChannel) getIntent().getSerializableExtra(
+				SELECTED_CHANNEL);
+		chosenBilling = (ApplyChannel.Billing) getIntent()
+				.getSerializableExtra(SELECTED_BILLING);
+		mPayChannelID = getIntent().getIntExtra(SELECTED_CHANNEL_ID, 0);
 		channelList = (ListView) findViewById(R.id.apply_channel_list);
 		channelList.addFooterView(new View(this));
 		channelAdapter = new ChannelListAdapter();
 		channelList.setAdapter(channelAdapter);
-		
-		if(chosenChannel != null && chosenChannel.getId() > 0){
-			channelList.setSelection(chosenChannel.getId());
-		}
-		
+
+//		if (chosenChannel != null && chosenChannel.getId() > 0) {
+//			channelList.setSelection(chosenChannel.getId());
+//		}
+		channelList.setSelection(0);
 		billingList = (ListView) findViewById(R.id.apply_billing_list);
 		billingList.addFooterView(new View(this));
 		billingAdapter = new BillingListAdapter();
 		billingList.setAdapter(billingAdapter);
-		
-		channelList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-				chosenChannel = (ApplyChannel) view.getTag(R.id.item_id);
-				billings.clear();
-				if (null != chosenChannel.getBillings()) {
-					for (ApplyChannel.Billing billing : chosenChannel.getBillings()) {
-						if (null != billing) {
-							billings.add(billing);
-						}
-					}
-				}
 
-				channelAdapter.notifyDataSetChanged();
-				billingAdapter.notifyDataSetChanged();
-			}
-		});
-		billingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-				chosenBilling = (ApplyChannel.Billing) view.getTag(R.id.item_id);
-
-				Intent intent = new Intent();
-				intent.putExtra(SELECTED_CHANNEL, chosenChannel);
-				intent.putExtra(SELECTED_BILLING, chosenBilling);
-				setResult(RESULT_OK, intent);
-				finish();
-			}
-		});
-
-		API.getApplyChannelList(this, new HttpCallback<List<ApplyChannel>>(this) {
-			@Override
-			public void onSuccess(List<ApplyChannel> data) {
-				channels.clear();
-				billings.clear();
-
-				if (null != data && data.size() > 0) {
-					channels.addAll(data);
-
-					if (null == chosenBilling) {
-						chosenChannel = channels.get(0);
-						if (null != chosenChannel.getBillings() && chosenChannel.getBillings().size() > 0) {
-							chosenBilling = chosenChannel.getBillings().get(0);
-						}
-					}
-
-					for (ApplyChannel channel : channels) {
-						if (channel.getId() == chosenChannel.getId()
-								&& null != chosenChannel.getBillings()) {
-							billings.addAll(chosenChannel.getBillings());
-							break;
-						}
-					}
-					channelAdapter.notifyDataSetChanged();
-					billingAdapter.notifyDataSetChanged();
-					
-					if(chosenChannel != null && chosenChannel.getId() > 0){
+		channelList
+				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> adapterView,
+							View view, int i, long l) {
+						chosenChannel = (ApplyChannel) view
+								.getTag(R.id.item_id);
 						billings.clear();
-						ApplyChannel channel = channels.get(chosenChannel.getId()-1);
-						if (null != channel) {
-							for (ApplyChannel.Billing billing : channel.getBillings()) {
+						if (null != chosenChannel.getBillings()) {
+							for (ApplyChannel.Billing billing : chosenChannel
+									.getBillings()) {
 								if (null != billing) {
 									billings.add(billing);
 								}
 							}
+						} else {
+							Intent intent = new Intent();
+							intent.putExtra(SELECTED_CHANNEL, chosenChannel);
+							intent.putExtra(SELECTED_BILLING, chosenBilling);
+							setResult(RESULT_OK, intent);
+							finish();
 						}
-						if(chosenBilling != null && chosenBilling.id > 0){
-							billingList.setSelection(chosenBilling.id);
-						}
+
+						channelAdapter.notifyDataSetChanged();
+						billingAdapter.notifyDataSetChanged();
 					}
-				}
+				});
+		billingList
+				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> adapterView,
+							View view, int i, long l) {
+						chosenBilling = (ApplyChannel.Billing) view
+								.getTag(R.id.item_id);
+						chosenChannel=channels.get(0);
+						Intent intent = new Intent();
+						intent.putExtra(SELECTED_CHANNEL, chosenChannel);
+						intent.putExtra(SELECTED_BILLING, chosenBilling);
+						setResult(RESULT_OK, intent);
+						finish();
+					}
+				});
 
-			}
+		API.getApplyChannelList(this,
+				new HttpCallback<List<ApplyChannel>>(this) {
+					@Override
+					public void onSuccess(List<ApplyChannel> data) {
+						channels.clear();
+						billings.clear();
 
-			@Override
-			public TypeToken<List<ApplyChannel>> getTypeToken() {
-				return new TypeToken<List<ApplyChannel>>() {
-				};
-			}
-		});
+						if (null != data && data.size() > 0) {
+							for (int i = 0; i < data.size(); i++) {
+
+								if (data.get(i).getId() == mPayChannelID)
+									channels.add(data.get(i));
+							}
+
+//							if (null == chosenBilling) {
+								chosenChannel = channels.get(0);
+								if (null != chosenChannel.getBillings()
+										&& chosenChannel.getBillings().size() > 0) {
+									chosenBilling = chosenChannel.getBillings()
+											.get(0);
+								}
+//							}
+
+							for (ApplyChannel channel : channels) {
+								if (channel.getId() == chosenChannel.getId()
+										&& null != chosenChannel.getBillings()) {
+									billings.addAll(chosenChannel.getBillings());
+									break;
+								}
+							}
+							channelAdapter.notifyDataSetChanged();
+							billingAdapter.notifyDataSetChanged();
+
+//							if (chosenChannel != null
+//									&& chosenChannel.getId() > 0) {
+//								billings.clear();
+//								ApplyChannel channel = channels
+//										.get(chosenChannel.getId() - 1);
+//								if (null != channel) {
+//									for (ApplyChannel.Billing billing : channel
+//											.getBillings()) {
+//										if (null != billing) {
+//											billings.add(billing);
+//										}
+//									}
+//								}
+								if (chosenBilling != null
+										&& chosenBilling.id > 0) {
+									billingList.setSelection(chosenBilling.id);
+								}
+//							}
+						}
+
+					}
+
+					@Override
+					public TypeToken<List<ApplyChannel>> getTypeToken() {
+						return new TypeToken<List<ApplyChannel>>() {
+						};
+					}
+				});
 	}
 
 	private class BillingListAdapter extends BaseAdapter {
@@ -166,9 +196,12 @@ public class ApplyChannelActivity extends Activity {
 		public View getView(int i, View convertView, ViewGroup viewGroup) {
 			ViewHolder holder = new ViewHolder();
 			if (null == convertView) {
-				convertView = LayoutInflater.from(ApplyChannelActivity.this).inflate(R.layout.simple_list_item, null);
-				holder.icon = (ImageView) convertView.findViewById(R.id.item_selected);
-				holder.name = (TextView) convertView.findViewById(R.id.item_name);
+				convertView = LayoutInflater.from(ApplyChannelActivity.this)
+						.inflate(R.layout.simple_list_item, null);
+				holder.icon = (ImageView) convertView
+						.findViewById(R.id.item_selected);
+				holder.name = (TextView) convertView
+						.findViewById(R.id.item_name);
 				holder.id = (TextView) convertView.findViewById(R.id.item_id);
 				convertView.setTag(holder);
 			} else {
@@ -182,7 +215,8 @@ public class ApplyChannelActivity extends Activity {
 				holder.name.setText(billing.name);
 				if (null != chosenBilling && billing.id == chosenBilling.id) {
 					holder.icon.setVisibility(View.VISIBLE);
-					holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.icon_selected));
+					holder.icon.setImageDrawable(getResources().getDrawable(
+							R.drawable.icon_selected));
 				} else {
 					holder.icon.setVisibility(View.INVISIBLE);
 				}
@@ -216,9 +250,12 @@ public class ApplyChannelActivity extends Activity {
 		public View getView(int i, View convertView, ViewGroup viewGroup) {
 			ViewHolder holder = new ViewHolder();
 			if (null == convertView) {
-				convertView = LayoutInflater.from(ApplyChannelActivity.this).inflate(R.layout.simple_list_item, null);
-				holder.icon = (ImageView) convertView.findViewById(R.id.item_selected);
-				holder.name = (TextView) convertView.findViewById(R.id.item_name);
+				convertView = LayoutInflater.from(ApplyChannelActivity.this)
+						.inflate(R.layout.simple_list_item, null);
+				holder.icon = (ImageView) convertView
+						.findViewById(R.id.item_selected);
+				holder.name = (TextView) convertView
+						.findViewById(R.id.item_name);
 				holder.id = (TextView) convertView.findViewById(R.id.item_id);
 				convertView.setTag(holder);
 			} else {
@@ -231,12 +268,17 @@ public class ApplyChannelActivity extends Activity {
 				holder.icon.setVisibility(View.GONE);
 				holder.id.setText(channel.getId() + "");
 				holder.name.setText(channel.getName());
-				if (null != chosenChannel && channel.getId() == chosenChannel.getId()) {
-					holder.name.setTextColor(getResources().getColor(R.color.bgtitle));
-					convertView.setBackgroundColor(getResources().getColor(R.color.white));
+				if (null != chosenChannel
+						&& channel.getId() == chosenChannel.getId()) {
+					holder.name.setTextColor(getResources().getColor(
+							R.color.bgtitle));
+					convertView.setBackgroundColor(getResources().getColor(
+							R.color.white));
 				} else {
-					holder.name.setTextColor(getResources().getColor(R.color.text292929));
-					convertView.setBackgroundColor(getResources().getColor(R.color.F3F2F2));
+					holder.name.setTextColor(getResources().getColor(
+							R.color.text292929));
+					convertView.setBackgroundColor(getResources().getColor(
+							R.color.F3F2F2));
 				}
 				convertView.setTag(R.id.item_id, channel);
 			}
