@@ -1010,7 +1010,7 @@ public class API {
 			int id,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("id", id); 
+		params.put("goodId", id); 
 		new HttpRequest(context, callback).post(Config.URL_GETGOODIMGURL, params);
 	}
 	public static void uploadPic(Context context, File img, int termianlId,
