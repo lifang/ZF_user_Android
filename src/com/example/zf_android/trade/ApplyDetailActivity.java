@@ -16,9 +16,6 @@ import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_TITLE;
 import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
 import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
@@ -53,9 +50,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
@@ -64,7 +63,6 @@ import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.StringUtil;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
-import com.example.zf_android.trade.entity.ApplyBank;
 import com.example.zf_android.trade.entity.ApplyChannel;
 import com.example.zf_android.trade.entity.ApplyChooseItem;
 import com.example.zf_android.trade.entity.ApplyCustomerDetail;
@@ -100,7 +98,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private int mTerminalStatus;
 	private int mPayChannelID = 0;
 
-	private Merchant mMerchant;
+	private Merchant mMerchant = new Merchant();
 
 	private LayoutInflater mInflater;
 
@@ -133,6 +131,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 
 	private String photoPath;
 	private TextView uploadingTextView;
+	private ImageButton uploadingImageButton;
 
 	private ArrayList<ApplyChooseItem> mChannelItems = new ArrayList<ApplyChooseItem>();
 
@@ -143,6 +142,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 
 	private Boolean isBankName = false;
 	private Boolean isShopName = false;
+	private String shopName;
+	private String mUploadUri;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -248,6 +249,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 							public void onSuccess(Object data) {
 								CommonUtil.toastShort(ApplyDetailActivity.this,
 										data.toString());
+								finish();
 							}
 
 							@Override
@@ -431,18 +433,28 @@ public class ApplyDetailActivity extends FragmentActivity {
 				@Override
 				public void handleMessage(Message msg) {
 					if (msg.what == 1) {
+
 						CommonUtil.toastShort(ApplyDetailActivity.this,
 								(String) msg.obj);
+						mUploadUri = (String) msg.obj;
 						if (null != uploadingTextView) {
-							uploadingTextView
-									.setText(getString(R.string.apply_upload_success));
-							uploadingTextView.setClickable(false);
+							// uploadingTextView
+							// .setText(getString(R.string.apply_upload_success));
+							// uploadingTextView.setClickable(false);
+							// uploadingTextView
+							// .setOnClickListener(new onWatchListener());
+
+							uploadingTextView.setVisibility(View.GONE);
+							uploadingImageButton.setVisibility(View.VISIBLE);
+							uploadingImageButton
+									.setOnClickListener(new onWatchListener());
 						}
-						String url = (String) msg.obj;
+						// String url = (String) msg.obj;
 						for (ApplyMaterial material : mMaterials.values()) {
 							if (material.getTypes() == TYPE_IMAGE
 									&& material.getName().equals(mUploadKey)) {
-								material.setValue(url);
+								// material.setValue(url);
+								material.setValue(mUploadUri);
 								break;
 							}
 						}
@@ -463,45 +475,65 @@ public class ApplyDetailActivity extends FragmentActivity {
 				uploadingTextView.setText(getString(R.string.apply_uploading));
 				uploadingTextView.setClickable(false);
 			}
-			new Thread() {
-				@Override
-				public void run() {
-					String realPath = "";
-					if (requestCode == REQUEST_TAKE_PHOTO) {
-						realPath = photoPath;
-					} else {
-						Uri uri = data.getData();
-						if (uri != null) {
-							realPath = getRealPathFromURI(uri);
-						}
-					}
-					if (TextUtils.isEmpty(realPath)) {
-						handler.sendEmptyMessage(0);
-						return;
-					}
-					CommonUtil.uploadFile(realPath, "img",
-							new CommonUtil.OnUploadListener() {
-								@Override
-								public void onSuccess(String result) {
-									try {
-										JSONObject jo = new JSONObject(result);
-										String url = jo.getString("result");
-										Message msg = new Message();
-										msg.what = 1;
-										msg.obj = url;
-										handler.sendMessage(msg);
-									} catch (JSONException e) {
-										handler.sendEmptyMessage(0);
-									}
-								}
 
-								@Override
-								public void onFailed(String message) {
-									handler.sendEmptyMessage(0);
-								}
-							});
+			String realPath = "";
+			if (requestCode == REQUEST_TAKE_PHOTO) {
+				realPath = photoPath;
+			} else {
+				Uri uri = data.getData();
+				if (uri != null) {
+					realPath = getRealPathFromURI(uri);
 				}
-			}.start();
+			}
+			if (TextUtils.isEmpty(realPath)) {
+				handler.sendEmptyMessage(0);
+				return;
+			}
+
+			File file = new File(realPath);
+			API.uploadPic(ApplyDetailActivity.this, file, mTerminalId,
+					new HttpCallback(ApplyDetailActivity.this) {
+
+						@Override
+						public void onSuccess(Object data) {
+							Message msg = new Message();
+							msg.what = 1;
+							msg.obj = data.toString();
+							handler.sendMessage(msg);
+						}
+
+						@Override
+						public void onFailure(String message) {
+							handler.sendEmptyMessage(0);
+						}
+
+						@Override
+						public TypeToken getTypeToken() {
+							return null;
+						}
+					});
+			// CommonUtil.uploadFile(realPath, "img",
+			// new CommonUtil.OnUploadListener() {
+			// @Override
+			// public void onSuccess(String result) {
+			// try {
+			// JSONObject jo = new JSONObject(result);
+			// String url = jo.getString("result");
+			// Message msg = new Message();
+			// msg.what = 1;
+			// msg.obj = url;
+			// handler.sendMessage(msg);
+			// } catch (JSONException e) {
+			// handler.sendEmptyMessage(0);
+			// }
+			// }
+			//
+			// @Override
+			// public void onFailed(String message) {
+			// handler.sendEmptyMessage(0);
+			// }
+			// });
+
 			break;
 		}
 		}
@@ -510,9 +542,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 	}
 
 	private void updateUIWithValidation() {
-		final boolean enabled = 
-				mMerchantId > 0&& 
-				!TextUtils.isEmpty(getItemValue(mMerchantKeys[1]))
+		final boolean enabled = !TextUtils
+				.isEmpty(getItemValue(mMerchantKeys[1]))
 				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[2]))
 				&& (mMerchantGender == 0 || mMerchantGender == 1)
 				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[4]))
@@ -932,12 +963,12 @@ public class ApplyDetailActivity extends FragmentActivity {
 			EditText etValue = (EditText) item
 					.findViewById(R.id.apply_detail_value);
 			if (isBankName) {
-				isBankName = false;
 				etValue.setFocusable(false);
 				etValue.setEnabled(false);
 
 			}
 			if (isShopName) {
+				shopName = value;
 				isShopName = false;
 				etValue.addTextChangedListener(new TextWatcherAdapter() {
 					public void afterTextChanged(final Editable gitDirEditText) {
@@ -963,7 +994,13 @@ public class ApplyDetailActivity extends FragmentActivity {
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
 			if (!TextUtils.isEmpty(value))
-				etValue.setText(value);
+
+				if (isBankName) {
+					isBankName = false;
+					etValue.setText(shopName);
+				} else {
+					etValue.setText(value);
+				}
 			break;
 		}
 		case ITEM_CHOOSE: {
@@ -983,6 +1020,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.findViewById(R.id.apply_detail_key);
 			final TextView tvValue = (TextView) item
 					.findViewById(R.id.apply_detail_value);
+			final ImageButton uploadingSuccess = (ImageButton) item
+					.findViewById(R.id.apply_detail_view);
 
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
@@ -990,6 +1029,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				@Override
 				public void onClick(View view) {
 					uploadingTextView = tvValue;
+					uploadingImageButton = uploadingSuccess;
 					AlertDialog.Builder builder = new AlertDialog.Builder(
 							ApplyDetailActivity.this);
 					final String[] items = getResources().getStringArray(
@@ -1064,24 +1104,99 @@ public class ApplyDetailActivity extends FragmentActivity {
 			ImageButton ibView = (ImageButton) item
 					.findViewById(R.id.apply_detail_view);
 
+			mUploadUri = value;
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
-			ibView.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					int position = mImageNames.indexOf(key);
-					Intent intent = new Intent(ApplyDetailActivity.this,
-							ShowWebImageActivity.class);
-					intent.putExtra(IMAGE_NAMES,
-							StringUtil.join(mImageNames, ","));
-					intent.putExtra(IMAGE_URLS,
-							StringUtil.join(mImageUrls, ","));
-					intent.putExtra(POSITION, position);
-					startActivity(intent);
-				}
-			});
+			ibView.setOnClickListener(new onWatchListener());
+			// new View.OnClickListener() {
+			// @Override
+			// public void onClick(View view) {
+			// int position = mImageNames.indexOf(key);
+			// Intent intent = new Intent(ApplyDetailActivity.this,
+			// ShowWebImageActivity.class);
+			// intent.putExtra(IMAGE_NAMES,
+			// StringUtil.join(mImageNames, ","));
+			// intent.putExtra(IMAGE_URLS,
+			// StringUtil.join(mImageUrls, ","));
+			// intent.putExtra(POSITION, position);
+			// startActivity(intent);
+
+			// }
+			// });
+
 		}
 		}
 	}
 
+	private class onWatchListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View arg0) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					ApplyDetailActivity.this);
+			final String[] items = getResources().getStringArray(
+					R.array.apply_detail_view);
+			builder.setItems(items, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					switch (which) {
+					case 0: {
+
+						AlertDialog.Builder build = new AlertDialog.Builder(
+								ApplyDetailActivity.this);
+						LayoutInflater factory = LayoutInflater
+								.from(ApplyDetailActivity.this);
+						final View textEntryView = factory.inflate(
+								R.layout.show_view, null);
+						build.setView(textEntryView);
+						final ImageView view = (ImageView) textEntryView
+								.findViewById(R.id.imag);
+						ImageCacheUtil.IMAGE_CACHE.get(mUploadUri, view);
+						build.create().show();
+						break;
+					}
+					case 1: {
+						Intent intent = new Intent();
+						if (Build.VERSION.SDK_INT < 19) {
+							intent = new Intent(Intent.ACTION_GET_CONTENT);
+							intent.setType("image/*");
+						} else {
+							intent = new Intent(
+									Intent.ACTION_PICK,
+									android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+						}
+						startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
+						break;
+					}
+					case 2: {
+						String state = Environment.getExternalStorageState();
+						if (state.equals(Environment.MEDIA_MOUNTED)) {
+							Intent intent = new Intent(
+									MediaStore.ACTION_IMAGE_CAPTURE);
+							File outDir = Environment
+									.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+							if (!outDir.exists()) {
+								outDir.mkdirs();
+							}
+							File outFile = new File(outDir, System
+									.currentTimeMillis() + ".jpg");
+							photoPath = outFile.getAbsolutePath();
+							intent.putExtra(MediaStore.EXTRA_OUTPUT,
+									Uri.fromFile(outFile));
+							intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+							startActivityForResult(intent, REQUEST_TAKE_PHOTO);
+						} else {
+							CommonUtil.toastShort(ApplyDetailActivity.this,
+									getString(R.string.toast_no_sdcard));
+						}
+						break;
+					}
+					}
+				}
+			});
+			builder.show();
+
+		}
+
+	}
 }

@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-	<FrameLayout
-		style="@style/FrameItem">
+    <FrameLayout style="@style/FrameItem" >
 
-		<TextView
-			android:id="@+id/apply_detail_key"
-			style="@style/TextItem"
-			android:layout_gravity="left|center_vertical"/>
+        <TextView
+            android:id="@+id/apply_detail_key"
+            style="@style/TextItem"
+            android:layout_gravity="left|center_vertical" />
 
-		<TextView
-			android:id="@+id/apply_detail_value"
-			style="@style/TextItem"
-			android:background="@android:color/transparent"
-			android:layout_gravity="right|center_vertical"
-			android:textColor="@color/blank_button_selector"
-			android:clickable="true"
-			android:text="@string/apply_upload_photo"/>
-	</FrameLayout>
+        <TextView
+            android:id="@+id/apply_detail_value"
+            style="@style/TextItem"
+            android:layout_gravity="right|center_vertical"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:text="@string/apply_upload_photo"
+            android:textColor="@color/blank_button_selector" />
 
-	<View style="@style/Divider"/>
+        <ImageButton
+            android:id="@+id/apply_detail_view"
+            style="@style/TextItem"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginLeft="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_open"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <View style="@style/Divider" />
 
 </LinearLayout>

@@ -365,6 +365,7 @@ public class TerminalManageActivity extends Activity implements
 
 			holder.llButtonContainer.setVisibility(View.GONE);
 			holder.llButtons.removeAllViews();
+			holder.llButtons.setVisibility(View.VISIBLE);
 			// holder.llButtons2.removeAllViews();
 			// 通过添加其他终端 进来的终端(type=2)，是没有详情，也没有操作按钮
 			if (!"2".equals(item.getType())) {
@@ -475,15 +476,24 @@ public class TerminalManageActivity extends Activity implements
 			} else {
 
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
+				holder.llButtons.setVisibility(View.GONE);
+				holder.llButtonContainer.removeAllViews();
+				View view = new View(TerminalManageActivity.this);
+				view.setBackgroundColor(getResources().getColor(R.color.Viewc2));
+				LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(
+						LayoutParams.MATCH_PARENT, 1, 0);
+				l.setMargins(0, 10, 0, 0);
+				holder.llButtonContainer.addView(view, l);
 				TextView tv = new TextView(TerminalManageActivity.this);
 				tv.setText("-自助开通终端-");
 				tv.setTextColor(getResources().getColorStateList(
 						R.color.text6c6c6c6));
 				tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
 				tv.setGravity(Gravity.LEFT);
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1);
-				lp.setMargins(0, 0, 0, 0);
-				holder.llButtons.addView(tv, lp);
+				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0);
+				lp.setMargins(0, 10, 0, 10);
+				holder.llButtonContainer.addView(tv, lp);
 			}
 			convertView.setOnClickListener(new View.OnClickListener() {
 				@Override
