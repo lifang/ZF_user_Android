@@ -46,6 +46,7 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.ScreenUtils;
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -166,7 +167,6 @@ public class Main extends BaseActivity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 
 		SQLiteDatabase db = Connector.getDatabase();
-
 		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
 		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
 
@@ -175,14 +175,14 @@ public class Main extends BaseActivity implements OnClickListener {
 		id = mySharedPreferences.getInt("id", 0);
 		String username = mySharedPreferences.getString("name", "");
 		MyApplication.getInstance().setCustomerId(id);
+
 		MyApplication.getInstance().setUsername(username);
-		
+
 		MyApplication.getInstance().addActivity(this);
 
 		initView();
 		testbutton = (ImageView) findViewById(R.id.testbutton);
 		testbutton.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(Main.this, LoginActivity.class);
@@ -246,7 +246,7 @@ public class Main extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
+		
 		timer.cancel();
 		super.onPause();
 	}

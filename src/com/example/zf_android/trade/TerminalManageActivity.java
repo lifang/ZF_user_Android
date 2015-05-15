@@ -3,6 +3,7 @@ package com.example.zf_android.trade;
 import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_ADD;
 import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
 import static com.example.zf_android.trade.Constants.TerminalStatus.CANCELED;
@@ -20,10 +21,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -95,7 +98,7 @@ public class TerminalManageActivity extends Activity implements
 		});
 
 		// add the custom header view
-		mTerminalList.addHeaderView(listHeader);
+		// mTerminalList.addHeaderView(listHeader);
 
 		// init the XListView
 		mTerminalList.initHeaderAndFooter();
@@ -138,12 +141,20 @@ public class TerminalManageActivity extends Activity implements
 					openDialog(item);
 
 				} else {
-					Intent intent = new Intent(TerminalManageActivity.this,
-							ApplyDetailActivity.class);
-					intent.putExtra(TERMINAL_ID, item.getId());
-					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
-					intent.putExtra(TERMINAL_STATUS, item.getStatus());
-					startActivity(intent);
+					if (!"".equals(item.getAppid())
+							&& Integer.parseInt(item.getOpenstatus()) == 6) {
+						CommonUtil.toastShort(TerminalManageActivity.this,
+								"正在第三方审核,请耐心等待...");
+
+					} else {
+						Intent intent = new Intent(TerminalManageActivity.this,
+								ApplyDetailActivity.class);
+						intent.putExtra(TERMINAL_ID, item.getId());
+						intent.putExtra(TERMINAL_NUMBER,
+								item.getTerminalNumber());
+						intent.putExtra(TERMINAL_STATUS, item.getStatus());
+						startActivity(intent);
+					}
 				}
 			}
 		};
@@ -201,10 +212,19 @@ public class TerminalManageActivity extends Activity implements
 			public void onClick(View view) {
 				// 添加视频审核
 				TerminalItem item = (TerminalItem) view.getTag();
-				Intent intent = new Intent(TerminalManageActivity.this,
-						VideoActivity.class);
-				intent.putExtra(TERMINAL_ID, item.getId());
-				startActivity(intent);
+				if (item.getStatus() == UNOPENED && "".equals(item.getAppid())) {
+
+					CommonUtil
+							.toastShort(TerminalManageActivity.this, "请先申请开通");
+
+				} else {
+
+					Intent intent = new Intent(TerminalManageActivity.this,
+							VideoActivity.class);
+					intent.putExtra(TERMINAL_ID, item.getId());
+					startActivity(intent);
+				}
+
 			}
 		};
 	}
@@ -349,29 +369,44 @@ public class TerminalManageActivity extends Activity implements
 			// 通过添加其他终端 进来的终端(type=2)，是没有详情，也没有操作按钮
 			if (!"2".equals(item.getType())) {
 
+				Boolean appidBoolean = !"".equals(item.getAppid());
+				Boolean videoBoolean = 1 == item.getHasVideoVerify();
+
 				switch (item.getStatus()) {
 				// 除了已停用，其余状态都有同步功能
 				case OPENED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
 					// holder.llButtonContainer2.setVisibility(View.GONE);
-					addButton(holder.llButtons, R.string.terminal_button_sync,
-							item, mSyncListener);
-					addButton(holder.llButtons, R.string.terminal_button_video,
-							item, mVideoListener);
+					if (appidBoolean)
+						addButton(holder.llButtons,
+								R.string.terminal_button_sync, item,
+								mSyncListener);
+					// addButton(holder.llButtons,
+					// R.string.terminal_button_video,
+					// item, mVideoListener);
 					addButton(holder.llButtons, R.string.terminal_button_pos,
 							item, mPosListener);
+					if (videoBoolean)
+						addButton(holder.llButtons,
+								R.string.terminal_button_video, item,
+								mVideoListener);
 					break;
 				case PART_OPENED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
 					// holder.llButtonContainer2.setVisibility(View.VISIBLE);
 					// holder.llButtonContainer2.setVisibility(View.GONE);
-					addButton(holder.llButtons, R.string.terminal_button_sync,
-							item, mSyncListener);
+
+					if (appidBoolean)
+						addButton(holder.llButtons,
+								R.string.terminal_button_sync, item,
+								mSyncListener);
 					addButton(holder.llButtons,
 							R.string.terminal_button_reopen, item,
 							mOpenListener);
-					addButton(holder.llButtons, R.string.terminal_button_video,
-							item, mVideoListener);
+					if (videoBoolean)
+						addButton(holder.llButtons,
+								R.string.terminal_button_video, item,
+								mVideoListener);
 					addButton(holder.llButtons, R.string.terminal_button_pos,
 							item, mPosListener);
 					// addButton(holder.llButtons2,
@@ -385,29 +420,47 @@ public class TerminalManageActivity extends Activity implements
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
 					// holder.llButtonContainer2.setVisibility(View.VISIBLE);
 					// holder.llButtonContainer2.setVisibility(View.GONE);
-					addButton(holder.llButtons, R.string.terminal_button_sync,
-							item, mSyncListener);
-					if (!"".equals(item.getAppid())) {
+
+					if (appidBoolean) {
+						addButton(holder.llButtons,
+								R.string.terminal_button_sync, item,
+								mSyncListener);
+
 						addButton(holder.llButtons,
 								R.string.terminal_button_reopen, item,
 								mOpenListener);
 					} else {
+
 						addButton(holder.llButtons,
 								R.string.terminal_button_open, item,
 								mOpenListener);
 					}
-					addButton(holder.llButtons, R.string.terminal_button_video,
-							item, mVideoListener);
+
+					if (videoBoolean)
+						addButton(holder.llButtons,
+								R.string.terminal_button_video, item,
+								mVideoListener);
 					// addButton(holder.llButtons2,
 					// R.string.terminal_button_video,
 					// item, mVideoListener);
 					break;
 				case CANCELED:
+
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
 					// holder.llButtonContainer.setVisibility(View.GONE);
 					// holder.llButtonContainer2.setVisibility(View.GONE);
-					addButton(holder.llButtons, R.string.terminal_button_sync,
-							item, mSyncListener);
+					if (appidBoolean)
+						addButton(holder.llButtons,
+								R.string.terminal_button_sync, item,
+								mSyncListener);
+
+					addButton(holder.llButtons,
+							R.string.terminal_button_reopen, item,
+							mOpenListener);
+					if (videoBoolean)
+						addButton(holder.llButtons,
+								R.string.terminal_button_video, item,
+								mVideoListener);
 					break;
 				case STOPPED:
 					// holder.llButtonContainer.setVisibility(View.VISIBLE);
@@ -419,6 +472,18 @@ public class TerminalManageActivity extends Activity implements
 					// holder.llButtonContainer2.setVisibility(View.GONE);
 					break;
 				}
+			} else {
+
+				holder.llButtonContainer.setVisibility(View.VISIBLE);
+				TextView tv = new TextView(TerminalManageActivity.this);
+				tv.setText("-自助开通终端-");
+				tv.setTextColor(getResources().getColorStateList(
+						R.color.text6c6c6c6));
+				tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
+				tv.setGravity(Gravity.LEFT);
+				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1);
+				lp.setMargins(0, 0, 0, 0);
+				holder.llButtons.addView(tv, lp);
 			}
 			convertView.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -430,6 +495,7 @@ public class TerminalManageActivity extends Activity implements
 
 						Intent intent = new Intent(TerminalManageActivity.this,
 								TerminalDetailActivity.class);
+						intent.putExtra(HAVE_VIDEO, item.getHasVideoVerify());
 						intent.putExtra(TERMINAL_ID, item.getId());
 						intent.putExtra(TERMINAL_NUMBER,
 								item.getTerminalNumber());

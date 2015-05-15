@@ -23,10 +23,18 @@ public class TradeDetail {
     private String account_number;
     private String account_name;
     private String phone;
+    private String agentName;
     
     
-    
-    public String getTrade_number() {
+    public String getAgentName() {
+		return agentName;
+	}
+
+	public void setAgentName(String agentName) {
+		this.agentName = agentName;
+	}
+
+	public String getTrade_number() {
 		return trade_number;
 	}
 

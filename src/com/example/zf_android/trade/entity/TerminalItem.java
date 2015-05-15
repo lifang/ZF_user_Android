@@ -1,5 +1,7 @@
 package com.example.zf_android.trade.entity;
 
+import android.R.integer;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -13,6 +15,33 @@ public class TerminalItem {
 	private int status;
 	private String type;
 	private String appid;
+	private String openingProtocol;
+	private int hasVideoVerify;
+	private String openstatus;
+
+	public String getOpenstatus() {
+		return openstatus;
+	}
+
+	public void setOpenstatus(String openstatus) {
+		this.openstatus = openstatus;
+	}
+
+	public int getHasVideoVerify() {
+		return hasVideoVerify;
+	}
+
+	public void setHasVideoVerify(int hasVideoVerify) {
+		this.hasVideoVerify = hasVideoVerify;
+	}
+
+	public String getOpeningProtocol() {
+		return openingProtocol;
+	}
+
+	public void setOpeningProtocol(String openingProtocol) {
+		this.openingProtocol = openingProtocol;
+	}
 
 	public String getAppid() {
 		return appid;

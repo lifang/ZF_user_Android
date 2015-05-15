@@ -11,6 +11,7 @@ import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BANK;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BILLING;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL_ID;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_TITLE;
 import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
@@ -58,13 +59,13 @@ import android.widget.TextView;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.BankEntity.Bank;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.StringUtil;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
 import com.example.zf_android.trade.entity.ApplyBank;
 import com.example.zf_android.trade.entity.ApplyChannel;
-import com.example.zf_android.trade.entity.ApplyChannel.Billing;
 import com.example.zf_android.trade.entity.ApplyChooseItem;
 import com.example.zf_android.trade.entity.ApplyCustomerDetail;
 import com.example.zf_android.trade.entity.ApplyDetail;
@@ -97,6 +98,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private int mTerminalId;
 	private String mTerminalNumber;
 	private int mTerminalStatus;
+	private int mPayChannelID = 0;
 
 	private Merchant mMerchant;
 
@@ -125,7 +127,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private int mMerchantGender = 3;
 	private ApplyChannel mChosenChannel;
 	private ApplyChannel.Billing mChosenBilling;
-	private ApplyBank mChosenBank;
+	private Bank mChosenBank;
 	private String mBankKey;
 	private String mUploadKey;
 
@@ -138,6 +140,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private List<String> mImageNames = new ArrayList<String>();
 
 	private LinkedHashMap<Integer, ApplyMaterial> mMaterials = new LinkedHashMap<Integer, ApplyMaterial>();
+
+	private Boolean isBankName = false;
+	private Boolean isShopName = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -278,7 +283,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 							mPosModel.setText(terminalDetail.getModelNumber());
 							mSerialNum.setText(terminalDetail.getSerialNumber());
 							mPayChannel.setText(terminalDetail.getChannelName());
-
+							mPayChannelID = terminalDetail.getChannelId();
 							// terminalDetail.setSupportRequirementType(1);
 
 							// mApplyType =
@@ -410,12 +415,12 @@ public class ApplyDetailActivity extends FragmentActivity {
 			break;
 		}
 		case REQUEST_CHOOSE_BANK: {
-			mChosenBank = (ApplyBank) data.getSerializableExtra(SELECTED_BANK);
+			mChosenBank = (Bank) data.getSerializableExtra(SELECTED_BANK);
 			if (null != mChosenBank) {
 				LinearLayout item = (LinearLayout) mContainer
-						.findViewWithTag(mBankKey);
-				item.setTag(R.id.apply_detail_key, mChosenBank.getCode());
-				setItemValue(mBankKey, mChosenBank.getName());
+						.findViewWithTag(mBankKeys[2]);
+				item.setTag(R.id.apply_detail_key, mChosenBank.getNo());
+				setItemValue(mBankKeys[2], mChosenBank.getName());
 			}
 
 			break;
@@ -579,6 +584,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				null));
 		mMerchantContainer.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[1],
 				null));
+		isShopName = true;
 		mMerchantContainer.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[2],
 				null));
 
@@ -652,10 +658,23 @@ public class ApplyDetailActivity extends FragmentActivity {
 		}
 		mCustomerContainer
 				.addView(getDetailItem(ITEM_EDIT, mBankKeys[0], null));
+		isBankName = true;
 		mCustomerContainer
 				.addView(getDetailItem(ITEM_EDIT, mBankKeys[1], null));
-		mCustomerContainer
-				.addView(getDetailItem(ITEM_EDIT, mBankKeys[2], null));
+		View chooseBank = getDetailItem(ITEM_CHOOSE, mBankKeys[2], null);
+		chooseBank.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(ApplyDetailActivity.this,
+						ApplyBankActivity.class);
+				intent.putExtra(TERMINAL_ID, mTerminalId);
+				intent.putExtra(SELECTED_BANK, mChosenBank);
+				startActivityForResult(intent, REQUEST_CHOOSE_BANK);
+			}
+		});
+		mCustomerContainer.addView(chooseBank);
+		// mCustomerContainer
+		// .addView(getDetailItem(ITEM_EDIT, mBankKeys[2], null));
 
 		if (mApplyType == 1) {
 			mCustomerContainer.addView(getDetailItem(ITEM_EDIT, mBankKeys[3],
@@ -669,8 +688,11 @@ public class ApplyDetailActivity extends FragmentActivity {
 		chooseChannel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				// mChosenChannel = new ApplyChannel();
+				// mChosenBilling = mChosenChannel.new Billing();
 				Intent intent = new Intent(ApplyDetailActivity.this,
 						ApplyChannelActivity.class);
+				intent.putExtra(SELECTED_CHANNEL_ID, mPayChannelID);
 				intent.putExtra(SELECTED_CHANNEL, mChosenChannel);
 				intent.putExtra(SELECTED_BILLING, mChosenBilling);
 				startActivityForResult(intent, REQUEST_CHOOSE_CHANNEL);
@@ -861,7 +883,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 						mBankKey = material.getName();
 						Intent intent = new Intent(ApplyDetailActivity.this,
 								ApplyBankActivity.class);
-						intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
+						intent.putExtra(TERMINAL_ID, mTerminalId);
 						intent.putExtra(SELECTED_BANK, mChosenBank);
 						startActivityForResult(intent, REQUEST_CHOOSE_BANK);
 					}
@@ -909,11 +931,35 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.findViewById(R.id.apply_detail_key);
 			EditText etValue = (EditText) item
 					.findViewById(R.id.apply_detail_value);
-			etValue.addTextChangedListener(new TextWatcherAdapter() {
-				public void afterTextChanged(final Editable gitDirEditText) {
-					updateUIWithValidation();
-				}
-			});
+			if (isBankName) {
+				isBankName = false;
+				etValue.setFocusable(false);
+				etValue.setEnabled(false);
+
+			}
+			if (isShopName) {
+				isShopName = false;
+				etValue.addTextChangedListener(new TextWatcherAdapter() {
+					public void afterTextChanged(final Editable gitDirEditText) {
+
+						updateUIWithValidation();
+
+						LinearLayout item = (LinearLayout) mContainer
+								.findViewWithTag(mBankKeys[1]);
+						EditText etBankName = (EditText) item
+								.findViewById(R.id.apply_detail_value);
+						etBankName.setText(gitDirEditText.toString());
+
+					}
+				});
+			} else {
+				etValue.addTextChangedListener(new TextWatcherAdapter() {
+					public void afterTextChanged(final Editable gitDirEditText) {
+
+						updateUIWithValidation();
+					}
+				});
+			}
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
 			if (!TextUtils.isEmpty(value))
