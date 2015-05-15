@@ -239,7 +239,7 @@ public class TerminalDetailActivity extends Activity {
 				R.array.terminal_status);
 		mStatus.setText(terminalStatus[status]);
 
-		appidBoolean = !"".equals(apply.getAppId());
+		appidBoolean = !"".equals(apply.getAppId()) && apply.getAppId() != 0;
 		videoBoolean = 1 == isVideo;
 
 		switch (status) {
@@ -440,14 +440,16 @@ public class TerminalDetailActivity extends Activity {
 					R.array.terminal_status);
 			typeTv.setText(rate.getType());
 
-			
-			DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+			DecimalFormat df = (DecimalFormat) NumberFormat.getInstance();
 			df.applyPattern("0.0");
-			
-			if(rate.getType().equals("消费/消费撤销")){
-				rateTv.setText(df.format((rate.getTerminalRate()+rate.getServiceRate())/10) + getString(R.string.notation_percent));
-			}else{
-				rateTv.setText(df.format(rate.getTerminalRate()/10) + getString(R.string.notation_percent));
+
+			if (rate.getType().equals("消费/消费撤销")) {
+				rateTv.setText(df.format((rate.getTerminalRate() + rate
+						.getServiceRate()) / 10)
+						+ getString(R.string.notation_percent));
+			} else {
+				rateTv.setText(df.format(rate.getTerminalRate() / 10)
+						+ getString(R.string.notation_percent));
 			}
 			statusTv.setText(status[rate.getStatus()]);
 			category.addView(column);

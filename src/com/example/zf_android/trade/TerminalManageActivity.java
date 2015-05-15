@@ -21,10 +21,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -470,6 +472,18 @@ public class TerminalManageActivity extends Activity implements
 					// holder.llButtonContainer2.setVisibility(View.GONE);
 					break;
 				}
+			} else {
+
+				holder.llButtonContainer.setVisibility(View.VISIBLE);
+				TextView tv = new TextView(TerminalManageActivity.this);
+				tv.setText("-自助开通终端-");
+				tv.setTextColor(getResources().getColorStateList(
+						R.color.text6c6c6c6));
+				tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
+				tv.setGravity(Gravity.LEFT);
+				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1);
+				lp.setMargins(0, 0, 0, 0);
+				holder.llButtons.addView(tv, lp);
 			}
 			convertView.setOnClickListener(new View.OnClickListener() {
 				@Override
