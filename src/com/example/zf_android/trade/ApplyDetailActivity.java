@@ -249,6 +249,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 							public void onSuccess(Object data) {
 								CommonUtil.toastShort(ApplyDetailActivity.this,
 										data.toString());
+								Intent intent = new Intent(ApplyDetailActivity.this,
+										TerminalDetailActivity.class);
+								startActivity(intent);
 								finish();
 							}
 
@@ -434,8 +437,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 				public void handleMessage(Message msg) {
 					if (msg.what == 1) {
 
-						CommonUtil.toastShort(ApplyDetailActivity.this,
-								(String) msg.obj);
+//						CommonUtil.toastShort(ApplyDetailActivity.this,
+//								(String) msg.obj);
 						mUploadUri = (String) msg.obj;
 						if (null != uploadingTextView) {
 							// uploadingTextView
@@ -963,6 +966,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 			EditText etValue = (EditText) item
 					.findViewById(R.id.apply_detail_value);
 			if (isBankName) {
+				isBankName = false;
 				etValue.setFocusable(false);
 				etValue.setEnabled(false);
 
@@ -996,7 +1000,6 @@ public class ApplyDetailActivity extends FragmentActivity {
 			if (!TextUtils.isEmpty(value))
 
 				if (isBankName) {
-					isBankName = false;
 					etValue.setText(shopName);
 				} else {
 					etValue.setText(value);

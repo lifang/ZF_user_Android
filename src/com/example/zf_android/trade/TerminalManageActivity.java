@@ -351,6 +351,8 @@ public class TerminalManageActivity extends Activity implements
 						.findViewById(R.id.terminal_buttons);
 				// holder.llButtons2 = (LinearLayout) convertView
 				// .findViewById(R.id.terminal_buttons_2);
+				holder.llText = (LinearLayout) convertView
+						.findViewById(R.id.terminal_text);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -365,13 +367,16 @@ public class TerminalManageActivity extends Activity implements
 
 			holder.llButtonContainer.setVisibility(View.GONE);
 			holder.llButtons.removeAllViews();
-			holder.llButtons.setVisibility(View.VISIBLE);
+			holder.llText.removeAllViews();
+			// holder.llButtons.setVisibility(View.VISIBLE);
 			// holder.llButtons2.removeAllViews();
 			// 通过添加其他终端 进来的终端(type=2)，是没有详情，也没有操作按钮
 			if (!"2".equals(item.getType())) {
 
 				Boolean appidBoolean = !"".equals(item.getAppid());
 				Boolean videoBoolean = 1 == item.getHasVideoVerify();
+				holder.llButtons.setVisibility(View.VISIBLE);
+				holder.llText.setVisibility(View.GONE);
 
 				switch (item.getStatus()) {
 				// 除了已停用，其余状态都有同步功能
@@ -476,14 +481,18 @@ public class TerminalManageActivity extends Activity implements
 			} else {
 
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
+
 				holder.llButtons.setVisibility(View.GONE);
-				holder.llButtonContainer.removeAllViews();
-				View view = new View(TerminalManageActivity.this);
-				view.setBackgroundColor(getResources().getColor(R.color.Viewc2));
-				LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(
-						LayoutParams.MATCH_PARENT, 1, 0);
-				l.setMargins(0, 10, 0, 0);
-				holder.llButtonContainer.addView(view, l);
+				holder.llText.setVisibility(View.VISIBLE);
+				// .setGravity(Gravity.LEFT);
+				// holder.llButtonContainer.removeAllViews();
+				// View view = new View(TerminalManageActivity.this);
+				// view.setBackgroundColor(getResources().getColor(R.color.Viewc2));
+				// LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(
+				// LayoutParams.MATCH_PARENT, 1, 0);
+				// l.setMargins(0, 10, 0, 0);
+				// holder.llButtons.addView(view, l);
+
 				TextView tv = new TextView(TerminalManageActivity.this);
 				tv.setText("-自助开通终端-");
 				tv.setTextColor(getResources().getColorStateList(
@@ -491,9 +500,8 @@ public class TerminalManageActivity extends Activity implements
 				tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
 				tv.setGravity(Gravity.LEFT);
 				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0);
-				lp.setMargins(0, 10, 0, 10);
-				holder.llButtonContainer.addView(tv, lp);
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+				holder.llText.addView(tv, lp);
 			}
 			convertView.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -547,6 +555,7 @@ public class TerminalManageActivity extends Activity implements
 		// public LinearLayout llButtonContainer2;
 		public LinearLayout llButtons;
 		// public LinearLayout llButtons2;
+		public LinearLayout llText;
 	}
 
 	private void openDialog(final TerminalItem item) {
