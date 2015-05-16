@@ -35,8 +35,8 @@
     <string name="notation_mouth">个月</string>
 
     <string-array name="trade_flow_tabs">
-        <item>转账</item>
         <item>消费</item>
+        <item>转账</item>
         <item>还款</item>
         <item>生活充值</item>
         <item>话费充值</item>

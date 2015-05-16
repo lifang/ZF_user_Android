@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <FrameLayout
         style="@style/FrameItem"
-        android:background="@drawable/item_white_pressed">
+        android:background="@drawable/item_white_pressed" >
 
         <TextView
             android:id="@+id/apply_detail_key"
             style="@style/TextItem"
-            android:layout_gravity="left|center_vertical"/>
+            android:layout_gravity="left|center_vertical" />
 
         <TextView
             android:id="@+id/apply_detail_value"
             style="@style/TextItem"
-            android:layout_marginRight="20dp"
             android:layout_gravity="right|center_vertical"
-            android:textColor="@color/text6c6c6c6"/>
+            android:layout_marginRight="20dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:maxEms="8"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="15sp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
-            android:src="@drawable/post_right"/>
+            android:src="@drawable/post_right" />
     </FrameLayout>
 
-    <View style="@style/Divider"/>
+    <View style="@style/Divider" />
 
 </LinearLayout>

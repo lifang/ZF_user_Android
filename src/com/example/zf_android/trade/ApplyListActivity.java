@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
@@ -175,6 +176,12 @@ public class ApplyListActivity extends Activity implements
 						.findViewById(R.id.apply_button_open);
 				holder.btnVideo = (Button) convertView
 						.findViewById(R.id.apply_button_video);
+				holder.terminal_buttons = (LinearLayout) convertView
+						.findViewById(R.id.terminal_buttons);
+				holder.tvfill1 = (TextView) convertView
+						.findViewById(R.id.tv_fill1);
+				holder.tvfill2 = (TextView) convertView
+						.findViewById(R.id.tv_fill2);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -220,6 +227,14 @@ public class ApplyListActivity extends Activity implements
 					}
 				}
 			});
+
+			Boolean videoBoolean = 1 == item.getHasVideoVerify();
+			if (videoBoolean) {
+				holder.btnVideo.setVisibility(View.GONE);
+				holder.tvfill1.setVisibility(View.VISIBLE);
+				holder.tvfill2.setVisibility(View.VISIBLE);
+			}
+
 			holder.btnVideo.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
@@ -250,6 +265,9 @@ public class ApplyListActivity extends Activity implements
 	private static class ViewHolder {
 		public TextView tvTerminalNumber;
 		public TextView tvTerminalStatus;
+		public TextView tvfill1;
+		public TextView tvfill2;
+		public LinearLayout terminal_buttons;
 		public Button btnOpen;
 		public Button btnVideo;
 	}

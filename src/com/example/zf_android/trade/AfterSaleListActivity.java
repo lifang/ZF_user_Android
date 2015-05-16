@@ -105,6 +105,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 					mListView.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
+		
 				page++;
 				total = data.getTotal();
 				mAdapter.notifyDataSetChanged();
@@ -224,7 +225,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 		if (mEntities.size() >= total) {
 			mListView.setPullLoadEnable(false);
 			mListView.stopLoadMore();
-			CommonUtil.toastShort(this, "no more data");
+			CommonUtil.toastShort(this, "没有更多数据");
 		} else {
 			loadData();
 		}

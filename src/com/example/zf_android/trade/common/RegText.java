@@ -31,7 +31,7 @@ public class RegText {
 
 		return m.matches();
 	}
-
+	
 	public static boolean isYingYeZhiZhao(String yingyezhizhao) {
 		String str = "^[A-Za-z0-9]+$";
 		Pattern p = Pattern.compile(str);
@@ -39,7 +39,13 @@ public class RegText {
 
 		return m.matches();
 	}
+	public static boolean isShuiWuZhengHao(String shuiwuzhenghao) {
+		String str = "\\d{15}";
+		Pattern p = Pattern.compile(str);
+		Matcher m = p.matcher(shuiwuzhenghao);
 
+		return m.matches();
+	}
 	public static boolean isIdentityCard(String IDStr) {
 		String errorInfo = "";// 记录错误信息
 		String[] ValCodeArr = { "1", "0", "x", "9", "8", "7", "6", "5", "4",

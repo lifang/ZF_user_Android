@@ -41,7 +41,6 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
 
     private void initViews() {
         new TitleMenuUtil(this, getString(R.string.title_trade_flow)).show();
-
         mTabWidget = (MyTabWidget) findViewById(R.id.tab_widget);
         mViewPager = (MyViewPager) findViewById(R.id.view_pager);
         mFragments = new ArrayList<TradeFlowFragment>();
@@ -52,8 +51,8 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
             mTabWidget.addTab(tabs[i]);
         }
         // add fragments according to the order
-        TradeFlowFragment transferFragment = TradeFlowFragment.newInstance(2);//2
-        TradeFlowFragment consumeFragment = TradeFlowFragment.newInstance(1);//1
+        TradeFlowFragment transferFragment = TradeFlowFragment.newInstance(1);//1
+        TradeFlowFragment consumeFragment = TradeFlowFragment.newInstance(2);//2
         TradeFlowFragment repaymentFragment = TradeFlowFragment.newInstance(3);//3
         TradeFlowFragment lifePayFragment = TradeFlowFragment.newInstance(5);//5
         TradeFlowFragment phonePayFragment = TradeFlowFragment.newInstance(4);//4
