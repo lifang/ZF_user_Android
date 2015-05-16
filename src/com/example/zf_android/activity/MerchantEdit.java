@@ -11,7 +11,6 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.integer;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,11 +32,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.trinea.android.common.util.StringUtils;
 
-import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MerchantEntity;
 import com.example.zf_android.trade.API;
@@ -48,6 +47,8 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * 
@@ -85,6 +86,8 @@ public class MerchantEdit extends BaseActivity implements OnClickListener {
 	private int type;
 	private boolean needFresh = false;
 	private String path1, path2, path3, path4, path5, path6, path7;
+
+	DisplayImageOptions options = MyApplication.getDisplayOption();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -494,7 +497,8 @@ public class MerchantEdit extends BaseActivity implements OnClickListener {
 					build.setView(textEntryView);
 					final ImageView view = (ImageView) textEntryView
 							.findViewById(R.id.imag);
-					ImageCacheUtil.IMAGE_CACHE.get(uri, view);
+//					ImageCacheUtil.IMAGE_CACHE.get(uri, view);
+					ImageLoader.getInstance().displayImage(uri, view, options);
 					build.create().show();
 					break;
 				}

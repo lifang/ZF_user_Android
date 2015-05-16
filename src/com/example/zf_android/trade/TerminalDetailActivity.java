@@ -1,57 +1,6 @@
 package com.example.zf_android.trade;
 
-import android.R.integer;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.examlpe.zf_android.util.ImageCacheUtil;
-import com.examlpe.zf_android.util.TitleMenuUtil;
-import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
-import com.example.zf_android.trade.common.CommonUtil;
-import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.common.StringUtil;
-import com.example.zf_android.trade.entity.TerminalApply;
-import com.example.zf_android.trade.entity.TerminalComment;
-import com.example.zf_android.trade.entity.TerminalDetail;
-import com.example.zf_android.trade.entity.TerminalItem;
-import com.example.zf_android.trade.entity.TerminalOpen;
-import com.example.zf_android.trade.entity.TerminalRate;
-import com.example.zf_android.video.VideoActivity;
-import com.google.gson.reflect.TypeToken;
-import com.unionpay.mobile.android.widgets.v;
-
-import java.io.File;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
+import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
@@ -60,7 +9,43 @@ import static com.example.zf_android.trade.Constants.TerminalStatus.OPENED;
 import static com.example.zf_android.trade.Constants.TerminalStatus.PART_OPENED;
 import static com.example.zf_android.trade.Constants.TerminalStatus.STOPPED;
 import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
-import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.MyApplication;
+import com.example.zf_android.R;
+import com.example.zf_android.trade.common.CommonUtil;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.entity.TerminalApply;
+import com.example.zf_android.trade.entity.TerminalComment;
+import com.example.zf_android.trade.entity.TerminalDetail;
+import com.example.zf_android.trade.entity.TerminalOpen;
+import com.example.zf_android.trade.entity.TerminalRate;
+import com.example.zf_android.video.VideoActivity;
+import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by Leo on 2015/3/4.
@@ -87,6 +72,7 @@ public class TerminalDetailActivity extends Activity {
 
 	private int isVideo, status;
 	private Boolean appidBoolean, videoBoolean;
+	DisplayImageOptions options = MyApplication.getDisplayOption();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -495,12 +481,13 @@ public class TerminalDetailActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				final int position = (Integer) view.getTag();
-//				Intent intent = new Intent(TerminalDetailActivity.this,
-//						ShowWebImageActivity.class);
-//				intent.putExtra(IMAGE_NAMES, StringUtil.join(imageNames, ","));
-//				intent.putExtra(IMAGE_URLS, StringUtil.join(imageUrls, ","));
-//				intent.putExtra(POSITION, position);
-//				startActivity(intent);
+				// Intent intent = new Intent(TerminalDetailActivity.this,
+				// ShowWebImageActivity.class);
+				// intent.putExtra(IMAGE_NAMES, StringUtil.join(imageNames,
+				// ","));
+				// intent.putExtra(IMAGE_URLS, StringUtil.join(imageUrls, ","));
+				// intent.putExtra(POSITION, position);
+				// startActivity(intent);
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						TerminalDetailActivity.this);
@@ -521,9 +508,11 @@ public class TerminalDetailActivity extends Activity {
 							build.setView(textEntryView);
 							final ImageView view = (ImageView) textEntryView
 									.findViewById(R.id.imag);
-							System.out.println((Integer)view.getTag()+"");
-							ImageCacheUtil.IMAGE_CACHE.get(
-									imageUrls.get(position), view);
+							System.out.println((Integer) view.getTag() + "");
+							// ImageCacheUtil.IMAGE_CACHE.get(
+							// imageUrls.get(position), view);
+							ImageLoader.getInstance().displayImage(
+									imageUrls.get(position), view, options);
 							build.create().show();
 							break;
 						}

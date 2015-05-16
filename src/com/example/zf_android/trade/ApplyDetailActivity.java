@@ -73,6 +73,8 @@ import com.example.zf_android.trade.entity.OpeningInfos;
 import com.example.zf_android.trade.entity.Province;
 import com.example.zf_android.trade.widget.MyTabWidget;
 import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by Leo on 2015/3/5.
@@ -131,6 +133,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private TextView uploadingTextView;
 	private ImageButton uploadingImageButton;
 	private View clickView;
+	private ImageView rightview;
 	private ArrayList<ApplyChooseItem> mChannelItems = new ArrayList<ApplyChooseItem>();
 
 	private List<String> mImageUrls = new ArrayList<String>();
@@ -141,6 +144,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private Boolean isBankName = false;
 	private Boolean isShopName = false;
 	private String shopName;
+
+	DisplayImageOptions options = MyApplication.getDisplayOption();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -248,10 +253,12 @@ public class ApplyDetailActivity extends FragmentActivity {
 						String key = material.getName();
 						LinearLayout item = (LinearLayout) mContainer
 								.findViewWithTag(key);
-						if (item.findViewById(R.id.apply_detail_value) != null) {
-							material.setValue((String) item.findViewById(
-									R.id.apply_detail_value).getTag());
-						} else if (item.findViewById(R.id.apply_detail_view) != null) {
+						// if (item.findViewById(R.id.apply_detail_value) !=
+						// null) {
+						// material.setValue((String) item.findViewById(
+						// R.id.apply_detail_value).getTag());
+						// } else
+						if (item.findViewById(R.id.apply_detail_view) != null) {
 							material.setValue((String) item.findViewById(
 									R.id.apply_detail_view).getTag());
 						} else {
@@ -315,8 +322,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 								.getCustomerDetails();
 						final OpeningInfos openingInfos = data
 								.getOpeningInfos();
-						mMerchantId = openingInfos.getMerchant_id();
-						bankCode = openingInfos.getAccount_bank_code();
+
 						if (null != terminalDetail) {
 							mPosBrand.setText(terminalDetail.getBrandName());
 							mPosModel.setText(terminalDetail.getModelNumber());
@@ -397,6 +403,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 						// set the customer details
 						setCustomerDetail(materials, customerDetails);
 						if (openingInfos != null) {
+
+							mMerchantId = openingInfos.getMerchant_id();
+							bankCode = openingInfos.getAccount_bank_code();
 							setData(openingInfos);
 						}
 						updateUIWithValidation();
@@ -483,6 +492,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 
 							uploadingTextView.setVisibility(View.GONE);
 							uploadingImageButton.setVisibility(View.VISIBLE);
+							rightview.setVisibility(View.VISIBLE);
 							uploadingImageButton.setTag(uri);
 							uploadingImageButton
 									.setOnClickListener(new onWatchListener());
@@ -1064,7 +1074,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.findViewById(R.id.apply_detail_value);
 			final ImageButton uploadingSuccess = (ImageButton) item
 					.findViewById(R.id.apply_detail_view);
-
+			final ImageView right_view = (ImageView) item
+					.findViewById(R.id.right_view);
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
 			tvValue.setOnClickListener(new View.OnClickListener() {
@@ -1072,6 +1083,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				public void onClick(View view) {
 					uploadingTextView = tvValue;
 					uploadingImageButton = uploadingSuccess;
+					rightview = right_view;
 					AlertDialog.Builder builder = new AlertDialog.Builder(
 							ApplyDetailActivity.this);
 					final String[] items = getResources().getStringArray(
@@ -1194,7 +1206,11 @@ public class ApplyDetailActivity extends FragmentActivity {
 						build.setView(textEntryView);
 						final ImageView view = (ImageView) textEntryView
 								.findViewById(R.id.imag);
-						ImageCacheUtil.IMAGE_CACHE.get(uri, view);
+						Log.e("onWatchListener-----------", uri);
+						ImageLoader.getInstance().displayImage(uri, view,
+								options);
+
+						// ImageCacheUtil.IMAGE_CACHE.get(uri, view);
 						build.create().show();
 						break;
 					}

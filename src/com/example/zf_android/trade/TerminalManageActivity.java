@@ -607,4 +607,14 @@ public class TerminalManageActivity extends Activity implements
 		// dialog.show();
 
 	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		page = 0;
+		pullType = "onRefresh";
+		// mTerminalItems.clear();
+		mTerminalList.setPullLoadEnable(true);
+		loadData();
+	}
 }
