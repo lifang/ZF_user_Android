@@ -657,6 +657,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						jsonobject = new JSONObject(res);
 						opening_cost = jsonobject.getInt("opening_cost");
 						tv_sqkt.setText(jsonobject.getString("opening_requirement"));
+						opening_datum = jsonobject.getString("opening_datum");
 						publist=gson.fromJson(jsonobject.getString("requireMaterial_pub"), new TypeToken<List<ApplyneedEntity>>() {
 						}.getType());
 						MyApplication.pub=publist;
