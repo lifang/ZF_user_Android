@@ -114,11 +114,11 @@ public class CommentAdapter extends BaseAdapter {
 
 			}
 		});
-		if (editIngPosititon == position) {
-			holder.item_et.setFocusable(true);
-			holder.item_et.setFocusableInTouchMode(true);
-			holder.item_et.requestFocus();
-		}
+//		if (editIngPosititon == position) {
+//			holder.item_et.setFocusable(true);
+//			holder.item_et.setFocusableInTouchMode(true);
+//			holder.item_et.requestFocus();
+//		}
 		
 		holder.item_et.addTextChangedListener(new TextWatcher() {
 
@@ -134,9 +134,9 @@ public class CommentAdapter extends BaseAdapter {
 
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				editIngPosititon = position;
+				//editIngPosititon = position;
 				list.get(position).setContent(arg0.toString());
-				afterTextChangedListener.onAfterTextChanged(position);
+				//afterTextChangedListener.onAfterTextChanged(position);
 			}
 		});
 	
@@ -145,15 +145,15 @@ public class CommentAdapter extends BaseAdapter {
 			holder.item_et.getText();
 			holder.item_et.setSelection(list.get(position).getContent().length());
 		}
-		if (!StringUtil.isNull(list.get(position).getContent())) {
-			if (list.get(position).getContent().length() > 0) {
-				holder.maxCountTextView.setText("还可填写"+(200-list.get(position).getContent().length())+"个汉字");
-			}else if (list.get(position).getContent().length() == 0) {
-				holder.maxCountTextView.setText("最多填写200个汉字");
-			}else if (list.get(position).getContent().length() > 200) {
-				holder.maxCountTextView.setText("已超出允许最多字数");
-			}
-		}
+//		if (!StringUtil.isNull(list.get(position).getContent())) {
+//			if (list.get(position).getContent().length() > 0) {
+//				holder.maxCountTextView.setText("还可填写"+(200-list.get(position).getContent().length())+"个汉字");
+//			}else if (list.get(position).getContent().length() == 0) {
+//				holder.maxCountTextView.setText("最多填写200个汉字");
+//			}else if (list.get(position).getContent().length() > 200) {
+//				holder.maxCountTextView.setText("已超出允许最多字数");
+//			}
+//		}
 
 		return convertView;
 	}

@@ -74,6 +74,8 @@ public class Config {
 	public static int newAddAddressId = 0;//，下订单时新增地址id
 	public static String changePhoneNum = "";//，修改手机号
 	public static String changeemail = "";//，修改邮箱号
+	public static String channelId = "";//，绑定百度推送的channelId
+	public static String notificationTitle = "";//，绑定百度推送的title
 	
 	public static final String URL_ORDER_LIST =PATHS+"order/getMyOrderAll";
 	public static final String URL_CANCEL_MYORDER =PATHS+"order/cancelMyOrder";
@@ -89,6 +91,7 @@ public class Config {
 	public static final String URL_TERMINAL_OPENSTATUS =PATHS+"terminal/openStatus";
 	public static final String URL_REPAIRPAY =PATHS+"cs/repair/repairPay";
 	public static final String URL_GETGOODIMGURL =PATHS+"good/getGoodImgUrl";
+	public static final String URL_REGISTERBAIDU =PATHS+"customers/sendDeviceCode";
 	//商户PID
 	public static final String PARTNER = "2088811347108355";
 	//商户收款账号

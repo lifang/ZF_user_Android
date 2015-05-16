@@ -19,6 +19,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.frontia.FrontiaApplication;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
@@ -59,7 +60,6 @@ public class MyApplication extends org.litepal.LitePalApplication {
 
 	private Integer customerId;
 	private String username;
-
 
 	private List<City> mCities = new ArrayList<City>();
 	private boolean haveShowHint = false;
@@ -326,6 +326,9 @@ public class MyApplication extends org.litepal.LitePalApplication {
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;
+		
+		FrontiaApplication.initFrontiaApplication(this); 
+		
 		mLocationClient = new LocationClient(this.getApplicationContext());
 		mMyLocationListener = new MyLocationListener();
 		mLocationClient.registerLocationListener(mMyLocationListener);

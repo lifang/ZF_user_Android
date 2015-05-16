@@ -62,6 +62,7 @@ OnClickListener {
 	private int total = 0;
 	private TextView countShopCar;
 	private RelativeLayout rl_edit, rl_editno;
+	private boolean isFirstCreate;
 	List<MessageEntity> idList = new ArrayList<MessageEntity>();
 	List<MessageEntity> myList = new ArrayList<MessageEntity>();
 	List<MessageEntity> moreList = new ArrayList<MessageEntity>();
@@ -103,8 +104,10 @@ OnClickListener {
 		setContentView(R.layout.my_message);
 		MyApplication.getInstance().addActivity(this);
 		MyApplication.setIsSelect(false);
+		isFirstCreate = true;
 		initView();
-		getData();
+		Config.notificationTitle = "";
+		//getData();
 
 	}
 	@Override
@@ -116,6 +119,15 @@ OnClickListener {
 		}else {
 			countShopCar.setVisibility(View.GONE);
 		}
+		Config.notificationTitle = "";
+//		if (!isFirstCreate) {
+//			page = 1;
+//			myList.clear();
+//			Xlistview.setPullLoadEnable(true);
+			getData();
+//		} else {
+//			isFirstCreate = false;
+//		}
 	}
 	private void initView() {
 		countShopCar = (TextView) findViewById(R.id.countShopCar);

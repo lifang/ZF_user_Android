@@ -169,9 +169,10 @@ public class LoginActivity extends Activity implements OnClickListener {
 				editor.commit();
 				MyApplication.getInstance().setUsername(data.getUsername());
 				MyApplication.getInstance().setCustomerId(data.getId());
-				Intent i =new Intent(getApplicationContext(), Main.class);
-				startActivity(i);
-				finish();
+				
+				// 百度推送
+				registerBaidu();
+				
 				//MyApplication.getInstance().exit();
 			}
 
@@ -183,6 +184,27 @@ public class LoginActivity extends Activity implements OnClickListener {
 		});
 
 	}
+	protected void registerBaidu() {
+
+		API.registerBaidu(LoginActivity.this,MyApplication.getInstance().getCustomerId(),"0"+Config.channelId,
+				new HttpCallback(LoginActivity.this) {
+
+			@Override
+			public void onSuccess(Object data) {
+				Intent i =new Intent(getApplicationContext(), Main.class);
+				startActivity(i);
+				finish();
+			}
+
+			@Override
+			public TypeToken getTypeToken() {
+				return null;
+			}
+		});
+
+	
+	}
+
 	private boolean check() {
 		usename=StringUtil.replaceBlank(login_edit_name.getText().toString());
 		if(usename.length()==0){

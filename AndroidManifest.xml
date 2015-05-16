@@ -8,12 +8,12 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="14" />
 
+    
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -28,12 +28,11 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
-    
+
     <application
         android:name="com.example.zf_android.MyApplication"
         android:allowBackup="true"
@@ -57,8 +56,7 @@
 
         <activity
             android:name="com.example.zf_android.activity.WelcomeActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -121,23 +119,23 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
-         <activity
+        <activity
             android:name="com.example.zf_android.activity.ChangePhone"
             android:screenOrientation="portrait" >
         </activity>
-             <activity
+        <activity
             android:name="com.example.zf_android.activity.ChangePhoneTwo"
             android:screenOrientation="portrait" >
         </activity>
-             <activity
+        <activity
             android:name="com.example.zf_android.activity.ChangeEmailTwo"
             android:screenOrientation="portrait" >
         </activity>
-               <activity
+        <activity
             android:name="com.example.zf_android.activity.GoodDescription"
             android:screenOrientation="portrait" >
         </activity>
-              <activity
+        <activity
             android:name="com.example.zf_android.activity.ChangeEmail"
             android:screenOrientation="portrait" >
         </activity>
@@ -153,11 +151,11 @@
             android:name="com.example.zf_android.activity.AdressEdit"
             android:screenOrientation="portrait" >
         </activity>
-           <activity
+        <activity
             android:name="com.example.zf_android.activity.FianceActivity"
             android:screenOrientation="portrait" >
         </activity>
-       <activity
+        <activity
             android:name="com.example.zf_android.activity.LoanActivity"
             android:screenOrientation="portrait" >
         </activity>
@@ -184,7 +182,7 @@
             android:name=".trade.CitySelectActivity"
             android:screenOrientation="portrait" >
         </activity>
-              <activity
+        <activity
             android:name=".trade.CitySearchActivity"
             android:screenOrientation="portrait" >
         </activity>
@@ -352,7 +350,7 @@
             android:name="com.example.zf_android.activity.GoodDeatail"
             android:screenOrientation="portrait" >
         </activity>
-           <activity
+        <activity
             android:name="com.example.zf_android.activity.GoodDetailImgs"
             android:screenOrientation="portrait" >
         </activity>
@@ -453,20 +451,20 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-             <activity
+        <activity
             android:name="com.example.zf_android.activity.LookTerminalsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-            <activity
+        <activity
             android:name="com.example.zf_android.activity.LookLogisticsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-       <!-- video -->
+        <!-- video -->
         <activity
             android:name=".video.VideoActivity"
-			android:screenOrientation="portrait" >
+            android:screenOrientation="portrait" >
         </activity>
         <!-- alipay -->
         <activity
@@ -486,13 +484,90 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
-
-         <activity
+        <activity
             android:name="com.example.zf_android.activity.AgreementActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         
+        <!-- 百度推送 -->
+        <!-- push富媒体，不使用富媒体推送不需要 -->
+        <activity
+            android:name="com.baidu.android.pushservice.richmedia.MediaViewActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="MediaViewActivity" >
+        </activity>
+        <activity
+            android:name="com.baidu.android.pushservice.richmedia.MediaListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="MediaListActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- push富媒体结束 -->
+
+
+        <!-- push应用定义消息receiver声明 -->
+        <receiver android:name="com.example.zf_android.MyPushMessageReceiver" >
+            <intent-filter>
+
+                <!-- 接收push消息 -->
+                <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
+                <!-- 接收bind,unbind,fetch,delete等反馈消息 -->
+                <action android:name="com.baidu.android.pushservice.action.RECEIVE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.CLICK" />
+            </intent-filter>
+        </receiver>
+
+        <!-- push必须的receviver和service声明 -->
+        <receiver
+            android:name="com.baidu.android.pushservice.PushServiceReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
+                <action android:name="com.baidu.android.pushservice.action.media.CLICK" />
+                <!-- 以下四项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.baidu.android.pushservice.RegistrationReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.METHOD" />
+                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.baidu.android.pushservice.PushService"
+            android:exported="true"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
+            </intent-filter>
+        </service>
+        <!-- 4.4版本新增的CommandService声明，提升小米和魅族手机上的实际推送到达率 -->
+        <service
+            android:name="com.baidu.android.pushservice.CommandService"
+            android:exported="true" />
+        <!-- push结束 -->
+
+
+        <!-- 在百度开发者中心查询应用的API Key -->
+        <meta-data
+            android:name="api_key"
+            android:value="YdDy9PDiFdMniMsGGg3Ny7WC" />
+        <!-- 百度推送 -->
     </application>
 
 </manifest>

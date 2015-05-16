@@ -18,7 +18,6 @@ import org.litepal.tablemanager.Connector;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -28,7 +27,6 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,18 +37,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ImageView.ScaleType;
 
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
-import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.ScreenUtils;
 import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.Utils;
 import com.example.zf_android.entity.PicEntity;
 import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CitySelectActivity;
@@ -59,15 +58,11 @@ import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
-import com.example.zf_android.trade.widget.DepthPageTransformer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class Main extends BaseActivity implements OnClickListener {
@@ -165,6 +160,10 @@ public class Main extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		//百度推送
+		PushManager.startWork(getApplicationContext(),
+				PushConstants.LOGIN_TYPE_API_KEY,
+				Utils.getMetaValue(Main.this, "api_key"));
 
 		SQLiteDatabase db = Connector.getDatabase();
 		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
@@ -212,7 +211,7 @@ public class Main extends BaseActivity implements OnClickListener {
 		SharedPreferences.Editor editor = mySharedPreferences.edit(); 
 		editor.putInt("countShopCar", Config.countShopCar); 
 		editor.commit(); 
-
+		
 		if (Config.countShopCar != 0) {
 			countShopCar.setVisibility(View.VISIBLE);
 			countShopCar.setText(Config.countShopCar+"");
@@ -233,6 +232,14 @@ public class Main extends BaseActivity implements OnClickListener {
 		MyApplication.getInstance().setUsername(username);
 		MyApplication.getInstance().setCustomerId(id);
 
+		if (!StringUtil.isNull(Config.notificationTitle)) {
+			if (islogin && id != 0) {
+				startActivity(new Intent(Main.this, MyMessage.class));
+			} else {
+				Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+				startActivity(new Intent(this, LoginActivity.class));
+			}
+		}
 		
 		timer = new Timer();
 		task = new TimerTask() {
@@ -246,7 +253,7 @@ public class Main extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void onStop() {
-		
+
 		timer.cancel();
 		super.onPause();
 	}
