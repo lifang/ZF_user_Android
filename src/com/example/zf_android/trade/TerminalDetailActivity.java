@@ -1,21 +1,31 @@
 package com.example.zf_android.trade;
 
-import android.R.integer;
+import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
+import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
+import static com.example.zf_android.trade.Constants.TerminalStatus.CANCELED;
+import static com.example.zf_android.trade.Constants.TerminalStatus.OPENED;
+import static com.example.zf_android.trade.Constants.TerminalStatus.PART_OPENED;
+import static com.example.zf_android.trade.Constants.TerminalStatus.STOPPED;
+import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -28,39 +38,13 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.common.StringUtil;
 import com.example.zf_android.trade.entity.TerminalApply;
 import com.example.zf_android.trade.entity.TerminalComment;
 import com.example.zf_android.trade.entity.TerminalDetail;
-import com.example.zf_android.trade.entity.TerminalItem;
 import com.example.zf_android.trade.entity.TerminalOpen;
 import com.example.zf_android.trade.entity.TerminalRate;
 import com.example.zf_android.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
-import com.unionpay.mobile.android.widgets.v;
-
-import java.io.File;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
-import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
-import static com.example.zf_android.trade.Constants.TerminalStatus.CANCELED;
-import static com.example.zf_android.trade.Constants.TerminalStatus.OPENED;
-import static com.example.zf_android.trade.Constants.TerminalStatus.PART_OPENED;
-import static com.example.zf_android.trade.Constants.TerminalStatus.STOPPED;
-import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
-import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
 
 /**
  * Created by Leo on 2015/3/4.

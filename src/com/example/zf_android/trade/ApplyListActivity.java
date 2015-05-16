@@ -1,5 +1,6 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
@@ -251,6 +252,7 @@ public class ApplyListActivity extends Activity implements
 				public void onClick(View view) {
 					Intent intent = new Intent(ApplyListActivity.this,
 							TerminalDetailActivity.class);
+					intent.putExtra(HAVE_VIDEO, item.getHasVideoVerify());
 					intent.putExtra(TERMINAL_ID, item.getId());
 					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
 					intent.putExtra(TERMINAL_STATUS, item.getStatus());
