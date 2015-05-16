@@ -250,7 +250,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 								CommonUtil.toastShort(ApplyDetailActivity.this,
 										data.toString());
 								Intent intent = new Intent(ApplyDetailActivity.this,
-										TerminalDetailActivity.class);
+										TerminalManageActivity.class);
 								startActivity(intent);
 								finish();
 							}
