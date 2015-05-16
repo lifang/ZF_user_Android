@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -168,12 +169,12 @@ public class PosSelect extends BaseActivity implements  OnClickListener{
 		switch (v.getId()) {
 		case R.id.next_sure:  // 
 			int a=0 ;int b=0;
-			if(et1.getText().toString()==null){
+			if(StringUtil.isNull(et1.getText().toString())){
 				a=0;
 			}else{
 				a=Integer.parseInt(  et1.getText().toString());
 			}
-			if( et2.getText().toString()==null){
+			if(StringUtil.isNull(et2.getText().toString())){
 				b=0;
 			}else{
 				b=Integer.parseInt(  et2.getText().toString());

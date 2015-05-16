@@ -15,7 +15,16 @@ public class ApplyOpenProgress {
 	@SerializedName("serial_num")
 	private String terminalNumber;
 
+	private String error;
 	private List<OpenStatus> openStatus;
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
 
 	public int getId() {
 		return id;

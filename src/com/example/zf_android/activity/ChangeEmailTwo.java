@@ -106,24 +106,25 @@ public class ChangeEmailTwo extends BaseActivity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.btn_exit:
 			if(check()){
-				Config.changeemail = phone2;
+				Config.changeemail = phoneOld;
 				finish();
 			}
 			break;
 		case R.id.tv_msg:
 			if (!StringUtil.isNull(login_edit_name.getText().toString().trim())) {
-				API.getPhoneCode(ChangeEmailTwo.this, login_edit_name.getText().toString().trim(),
-						new HttpCallback(ChangeEmailTwo.this) {		       
+				API.getUpdateEmailDentcode(ChangeEmailTwo.this,MyApplication.getInstance().getCustomerId() , login_edit_name.getText().toString().trim(),
+						new HttpCallback<ChangeEmailEntity>(ChangeEmailTwo.this) {		       
 					@Override
-					public void onSuccess(Object data) {
+					public void onSuccess(ChangeEmailEntity data) {
 						tv_msg.setClickable(false);
-						getPhoneCode = data+"";
+						getPhoneCode = data.getDentcode()+"";
 						handler.postDelayed(runnable, 1000); 
 						MyToast.showToast(getApplicationContext(),"验证码发送成功");
 					}
 					@Override
 					public TypeToken getTypeToken() {
-						return null;
+						return new TypeToken<ChangeEmailEntity>() {
+						};
 					}
 				});
 			}else {

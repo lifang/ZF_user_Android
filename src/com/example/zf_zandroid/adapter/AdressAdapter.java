@@ -6,6 +6,7 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.AdressEntity;
 import com.example.zf_android.entity.TestEntitiy;
+import com.unionpay.mobile.android.widgets.v;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -55,27 +56,34 @@ public class AdressAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.adress_item, null);
 			holder.tv_title = (TextView) convertView
 					.findViewById(R.id.adress_name);
-			 holder.tv_tel = (TextView) convertView.findViewById(R.id.tv_tel);
+			holder.tv_tel = (TextView) convertView.findViewById(R.id.tv_tel);
 			holder.item_cb = (CheckBox) convertView.findViewById(R.id.item_cb);
-			 holder.adresss = (TextView) convertView.findViewById(R.id.adresss);
+			holder.adresss = (TextView) convertView.findViewById(R.id.adresss);
+			holder.morenTextView = (TextView) convertView.findViewById(R.id.morenTextView);
 			convertView.setTag(holder);
- 
+
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		 holder.adresss.setText("收件地址 ： "+list.get(position).getAddress());
+		holder.adresss.setText("收件地址 ： "+list.get(position).getAddress());
 		holder.tv_title.setText("收件人 ： "+list.get(position).getReceiver());
-		 holder.tv_tel.setText( list.get(position).getMoblephone());
+		holder.tv_tel.setText( list.get(position).getMoblephone());
+
+		if (list.get(position).getIsDefault()==1) {
+			holder.morenTextView.setVisibility(View.VISIBLE);
+		}else {
+			holder.morenTextView.setVisibility(View.GONE);
+		}
 		if(MyApplication.getIsSelect()){
-		 
+
 			holder.item_cb.setVisibility(View.VISIBLE);
 		}else{
-			holder.item_cb.setVisibility(View.GONE);
+			holder.item_cb.setVisibility(View.INVISIBLE);
 		}
-	//	list.get(position).setIscheck(holder.item_cb.isChecked());
- 
+		//	list.get(position).setIscheck(holder.item_cb.isChecked());
+
 		holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
@@ -88,12 +96,12 @@ public class AdressAdapter extends BaseAdapter {
 		}else{
 			holder.item_cb.setChecked(list.get(position).getIscheck());
 		}
-		 
+
 		return convertView;
 	}
 
 	public final class ViewHolder {
-		public TextView tv_title, tv_time,tv_tel,adresss;
+		public TextView tv_title, tv_time,tv_tel,adresss,morenTextView;
 		public CheckBox item_cb;
 
 	}

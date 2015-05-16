@@ -63,7 +63,7 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 		setContentView(R.layout.changeemail);
 		MyApplication.getInstance().addActivity(this);
 		index=getIntent().getIntExtra("key", 1);
-		 name =getIntent().getStringExtra("name");
+		name =getIntent().getStringExtra("name");
 
 		new TitleMenuUtil(ChangeEmail.this, "修改邮箱号").show();
 		login_edit_name=(EditText) findViewById(R.id.login_edit_name);
@@ -77,7 +77,7 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 		btn_exit=(Button) findViewById(R.id.btn_exit);
 		btn_exit.setOnClickListener(this);
 		tv_msg.setOnClickListener(this);
-		
+
 		if (StringUtil.isNull(name)) {
 			login_edit_name.setVisibility(View.VISIBLE);
 			login_edit_name.setEnabled(true);
@@ -93,7 +93,7 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 			view_x2.setVisibility(View.GONE);
 			btn_exit.setText("下一步");
 		}
-		
+
 		login_edit_name.setText(name);
 
 		runnable = new Runnable() {  
@@ -122,11 +122,11 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 			if(check()){
 				if (StringUtil.isNull(name)) {
 					Intent intent2 = new Intent();
-					intent2.putExtra("text", phone2);
+					intent2.putExtra("text", phoneOld);
 					setResult(index, intent2);
 					finish();
 				}else {
-					Intent intent = new Intent(this,ChangePhoneTwo.class);
+					Intent intent = new Intent(this,ChangeEmailTwo.class);
 					startActivity(intent);
 					finish();
 				}
@@ -134,22 +134,23 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.tv_msg:
 			if (!StringUtil.isNull(login_edit_name.getText().toString().trim())) {
-				API.getPhoneCode(ChangeEmail.this, login_edit_name.getText().toString().trim(),
-						new HttpCallback(ChangeEmail.this) {		       
+				API.getUpdateEmailDentcode(ChangeEmail.this,MyApplication.getInstance().getCustomerId() ,login_edit_name.getText().toString().trim(),
+						new HttpCallback<ChangeEmailEntity>(ChangeEmail.this) {		       
 					@Override
-					public void onSuccess(Object data) {
+					public void onSuccess(ChangeEmailEntity data) {
 						tv_msg.setClickable(false);
-						getPhoneCode = data+"";
+						getPhoneCode = data.getDentcode()+"";
 						handler.postDelayed(runnable, 1000); 
 						MyToast.showToast(getApplicationContext(),"验证码发送成功");
 					}
 					@Override
 					public TypeToken getTypeToken() {
-						return null;
+						return new TypeToken<ChangeEmailEntity>() {
+						};
 					}
 				});
 			}else {
-				MyToast.showToast(getApplicationContext(),"请输入原邮箱号号");
+				MyToast.showToast(getApplicationContext(),"请输入原邮箱号");
 			}
 			break;
 		default:
@@ -174,14 +175,14 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 			MyToast.showToast(getApplicationContext(),"验证码错误");
 			return false;
 		}
-//		if (phone2.length() == 0) {
-//			MyToast.showToast(getApplicationContext(),"请输入您的新手机号");
-//			return false;
-//		}
-//		if (!StringUtil.isMobile(phone2)) {
-//			MyToast.showToast(getApplicationContext(),"请输入正确的手机号码");
-//			return false;
-//		}
+		//		if (phone2.length() == 0) {
+		//			MyToast.showToast(getApplicationContext(),"请输入您的新手机号");
+		//			return false;
+		//		}
+		//		if (!StringUtil.isMobile(phone2)) {
+		//			MyToast.showToast(getApplicationContext(),"请输入正确的手机号码");
+		//			return false;
+		//		}
 		return true;
 	}
 }

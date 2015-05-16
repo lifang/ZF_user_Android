@@ -11,7 +11,7 @@
 
 	<LinearLayout
 		android:id="@+id/apply_progress_key"
-		android:layout_width="60dp"
+		android:layout_width="100dp"
 		android:layout_height="wrap_content"
 		android:orientation="vertical"/>
 

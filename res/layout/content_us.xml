@@ -59,7 +59,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="联系客服400-0090-876"
+            android:text="联系客服400-009-0876"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 

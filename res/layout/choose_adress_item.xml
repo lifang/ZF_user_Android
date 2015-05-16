@@ -16,8 +16,8 @@
             android:layout_height="fill_parent"
             android:layout_marginLeft="7dp"
             android:gravity="center"
-            android:visibility="invisible"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:visibility="gone" >
 
             <CheckBox
                 android:id="@+id/item_cb"
@@ -29,16 +29,6 @@
                 android:checked="true"
                 android:clickable="false"
                 android:focusable="false" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="{默认}"
-                android:textColor="@color/bgtitle"
-                android:textSize="13sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,6 +78,18 @@
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/morenTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:singleLine="true"
+            android:text="{默认地址}"
+            android:textColor="@color/bgtitle"
+            android:textSize="13sp" />
     </LinearLayout>
 
     <View

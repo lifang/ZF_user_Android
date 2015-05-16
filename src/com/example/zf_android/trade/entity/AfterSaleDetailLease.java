@@ -13,6 +13,9 @@ public class AfterSaleDetailLease extends AfterSaleDetail {
 	@SerializedName("lease_deposit")
 	private int leaseDeposit;
 
+	@SerializedName("return_price")
+	private int return_price;
+	
 	@SerializedName("lease_length")
 	private int leaseLength;
 
@@ -27,6 +30,16 @@ public class AfterSaleDetailLease extends AfterSaleDetail {
 
 	@SerializedName("receiver_phone")
 	private String receiverPhone;
+
+	
+	
+	public int getReturn_price() {
+		return return_price;
+	}
+
+	public void setReturn_price(int return_price) {
+		this.return_price = return_price;
+	}
 
 	public int getLeasePrice() {
 		return leasePrice;

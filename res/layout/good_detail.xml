@@ -526,7 +526,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="商品详细说明"
+                    android:text="图文详情"
                     android:textColor="@color/text292929"
                     android:textSize="17sp" />
 

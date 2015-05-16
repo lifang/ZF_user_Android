@@ -112,7 +112,7 @@ public class Main extends BaseActivity implements OnClickListener {
 				ma.clear();
 
 				for (int i = 0; i < myList.size(); i++) {
-					item = inflater.inflate(R.layout.item, null);
+					item = inflater.inflate(R.layout.item_main, null);
 					list.add(item);
 					ma.add(myList.get(i).getPicture_url());
 					if(!nativePicList.contains(myList.get(i))&&i<nativePicList.size()){
@@ -562,7 +562,7 @@ public class Main extends BaseActivity implements OnClickListener {
 
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
-			image.setScaleType(ScaleType.FIT_XY);
+			//image.setScaleType(ScaleType.FIT_XY);
 			// ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
 			// image);
 

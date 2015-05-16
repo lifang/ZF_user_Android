@@ -104,7 +104,7 @@ public class ChangePhoneTwo extends BaseActivity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.btn_exit:
 			if(check()){
-				Config.changePhoneNum = phone2;
+				Config.changePhoneNum = phoneOld;
 				finish();
 			}
 			break;

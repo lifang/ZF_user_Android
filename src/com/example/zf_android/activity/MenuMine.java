@@ -1,6 +1,7 @@
 package com.example.zf_android.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,6 +60,11 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		}else {
 			countShopCar.setVisibility(View.GONE);
 		}
+		
+		SharedPreferences mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
+		Boolean islogin = mySharedPreferences.getBoolean("islogin", false);
+		MyApplication.getInstance().setUsername(mySharedPreferences.getString("name", ""));
+		MyApplication.getInstance().setCustomerId(mySharedPreferences.getInt("id", 0));
 	}
 	@Override
 	public void onClick(View v) {

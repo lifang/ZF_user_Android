@@ -13,6 +13,7 @@ import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.R.integer;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,7 +58,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	private String comment;
 	private ImageView reduce,add,evevt_img;
 	private int price;
-	private int goodId,paychannelId,quantity,addressId,is_need_invoice=0;
+	private int quantity = 1;
+	private int goodId,paychannelId,addressId,is_need_invoice=0;
 	private EditText buyCountEdit,comment_et,et_titel;
 	private CheckBox item_cb;
 	private int yajin;
@@ -160,14 +162,14 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 				showCountText.setText("X   "+arg0.toString());
 				tv_count.setText("共计:   "+arg0+"件");
 				if( buyCountEdit.getText().toString().trim().equals("")){
-					quantity=0;
+					quantity=1;
 				}else{
 					quantity= Integer.parseInt( buyCountEdit.getText().toString().trim() );
 				}
 				computeMoney();
 
 			}
-
+ 
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {

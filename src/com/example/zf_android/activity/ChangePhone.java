@@ -121,7 +121,7 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 			if(check()){
 				if (StringUtil.isNull(name)) {
 					Intent intent2 = new Intent();
-					intent2.putExtra("text", phone2);
+					intent2.putExtra("text", phoneOld);
 					setResult(index, intent2);
 					finish();
 				}else {

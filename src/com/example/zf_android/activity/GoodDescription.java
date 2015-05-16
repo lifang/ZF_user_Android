@@ -49,7 +49,7 @@ public class GoodDescription extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_good_description);
-		new TitleMenuUtil(GoodDescription.this, "商品详细说明").show();
+		new TitleMenuUtil(GoodDescription.this, "图文详情").show();
 		goodId = getIntent().getIntExtra("goodId", 0);
 		
 		initView();
@@ -59,9 +59,10 @@ public class GoodDescription extends BaseActivity{
 
 		eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 		listview=(ListView) findViewById(R.id.listview);
-
+		
 		myAdapter=new GoodDesAdapter(GoodDescription.this, myList);
 		listview.setAdapter(myAdapter);
+	
 	}
 	private void getData() {
 		API.getGoodImgUrl(GoodDescription.this,goodId,
@@ -70,18 +71,20 @@ public class GoodDescription extends BaseActivity{
 			@Override
 			public void onSuccess(List<GoodImgUrlEntity> data) {
 				
-				if (data.size() == 0) {
+				if (data.size() != 0) {
 					myList = data;
 				}
 				
-				if(myList.size()==0){
+				if(data.size()==0){
 					listview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}else {
 					listview.setVisibility(View.VISIBLE);
 					eva_nodata.setVisibility(View.GONE);
 				}
-				myAdapter.notifyDataSetChanged();
+				myAdapter=new GoodDesAdapter(GoodDescription.this, myList);
+				listview.setAdapter(myAdapter);
+				//myAdapter.notifyDataSetChanged();
 			}
 			@Override
 			public TypeToken<List<GoodImgUrlEntity>> getTypeToken() {

@@ -400,9 +400,10 @@ public class AfterSaleDetailActivity extends Activity {
 					AfterSaleDetailLease leaseDetail = (AfterSaleDetailLease) data;
 					LinkedHashMap<String, String> leasePairs = new LinkedHashMap<String, String>();
 					String[] leaseKeys = getResources().getStringArray(R.array.after_sale_lease);
-					if (!StringUtil.isNull(leaseDetail.getLeasePrice()+"")) {
+					if (!StringUtil.isNull(leaseDetail.getReturn_price()+"")) {
 						leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
-								String.format("%.2f",Integer.valueOf(leaseDetail.getLeaseDeposit()-leaseDetail.getLeasePrice())/100f));
+								String.format("%.2f",Integer.valueOf(leaseDetail.getReturn_price())/100f));
+						
 					}else {
 						leasePairs.put(leaseKeys[0], "");
 					}
