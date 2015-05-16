@@ -27,9 +27,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -61,6 +58,7 @@ import com.example.zf_android.R;
 import com.example.zf_android.entity.BankEntity.Bank;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.common.RegText;
 import com.example.zf_android.trade.common.StringUtil;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
 import com.example.zf_android.trade.entity.ApplyChannel;
@@ -97,8 +95,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private String mTerminalNumber;
 	private int mTerminalStatus;
 	private int mPayChannelID = 0;
-
-	private Merchant mMerchant = new Merchant();
+	private String bankCode;
+	private Merchant mMerchant;
 
 	private LayoutInflater mInflater;
 
@@ -132,7 +130,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private String photoPath;
 	private TextView uploadingTextView;
 	private ImageButton uploadingImageButton;
-
+	private View clickView;
 	private ArrayList<ApplyChooseItem> mChannelItems = new ArrayList<ApplyChooseItem>();
 
 	private List<String> mImageUrls = new ArrayList<String>();
@@ -143,7 +141,6 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private Boolean isBankName = false;
 	private Boolean isShopName = false;
 	private String shopName;
-	private String mUploadUri;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -182,7 +179,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 				Map<String, Object> params = new HashMap<String, Object>();
 				params.put("terminalId", mTerminalId);
 				params.put("status", mTerminalStatus == 2 ? 2 : 1);
-				params.put("applyCustomerId", mMerchant.getCustomerId());
+				params.put("applyCustomerId", MyApplication.getNewUser()
+						.getId());
 				params.put("publicPrivateStatus", mApplyType);
 
 				params.put("merchantId", mMerchantId);
@@ -190,16 +188,34 @@ public class ApplyDetailActivity extends FragmentActivity {
 				params.put("merchantName", getItemValue(mMerchantKeys[2]));
 				params.put("sex", mMerchantGender);
 				params.put("birthday", getItemValue(mMerchantKeys[4]));
+				if (!RegText.isIdentityCard(getItemValue(mMerchantKeys[5]))) {
+					CommonUtil
+							.toastShort(ApplyDetailActivity.this, "身份证号格式不正确");
+					return;
+				}
 				params.put("cardId", getItemValue(mMerchantKeys[5]));
+				if (!RegText.isMobileNO(getItemValue(mMerchantKeys[6]))) {
+					CommonUtil
+							.toastShort(ApplyDetailActivity.this, "手机号码格式不正确");
+					return;
+				}
 				params.put("phone", getItemValue(mMerchantKeys[6]));
+				if (!RegText.isEmail(getItemValue(mMerchantKeys[7]))) {
+					CommonUtil.toastShort(ApplyDetailActivity.this, "邮箱格式不正确");
+					return;
+				}
 				params.put("email", getItemValue(mMerchantKeys[7]));
 				params.put("cityId",
 						null != mMerchantCity ? mMerchantCity.getId() : 0);
 
 				params.put("bankNum", getItemValue(mBankKeys[0]));
 				params.put("bankName", getItemValue(mBankKeys[1]));
-				params.put("bank_name", getItemValue(mBankKeys[2]));
 
+				params.put("bank_name", getItemValue(mBankKeys[2]));
+				if (mChosenBank != null)
+					params.put("bankCode", mChosenBank.getNo());
+				else
+					params.put("bankCode", bankCode);
 				if (mApplyType == 1) {
 					params.put("registeredNo", getItemValue(mBankKeys[3]));
 					params.put("organizationNo", getItemValue(mBankKeys[4]));
@@ -227,6 +243,24 @@ public class ApplyDetailActivity extends FragmentActivity {
 								.getTag(R.id.apply_detail_key);
 						material.setValue(value);
 					}
+					// image type
+					else if (material.getTypes() == TYPE_IMAGE) {
+						String key = material.getName();
+						LinearLayout item = (LinearLayout) mContainer
+								.findViewWithTag(key);
+						if (item.findViewById(R.id.apply_detail_value) != null) {
+							material.setValue((String) item.findViewById(
+									R.id.apply_detail_value).getTag());
+						} else if (item.findViewById(R.id.apply_detail_view) != null) {
+							material.setValue((String) item.findViewById(
+									R.id.apply_detail_view).getTag());
+						} else {
+							System.out.println(item);
+						}
+						// String value = (String) item
+						// .getTag(R.id.apply_detail_key);
+						// material.setValue(value);
+					}
 					if (TextUtils.isEmpty(material.getValue()))
 						continue;
 					// image types' value have been set in advance
@@ -249,10 +283,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 							public void onSuccess(Object data) {
 								CommonUtil.toastShort(ApplyDetailActivity.this,
 										data.toString());
-								Intent intent = new Intent(
-										ApplyDetailActivity.this,
-										TerminalManageActivity.class);
-								startActivity(intent);
+
 								finish();
 							}
 
@@ -284,6 +315,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 								.getCustomerDetails();
 						final OpeningInfos openingInfos = data
 								.getOpeningInfos();
+						mMerchantId = openingInfos.getMerchant_id();
+						bankCode = openingInfos.getAccount_bank_code();
 						if (null != terminalDetail) {
 							mPosBrand.setText(terminalDetail.getBrandName());
 							mPosModel.setText(terminalDetail.getModelNumber());
@@ -440,7 +473,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 
 						// CommonUtil.toastShort(ApplyDetailActivity.this,
 						// (String) msg.obj);
-						mUploadUri = (String) msg.obj;
+						String uri = (String) msg.obj;
 						if (null != uploadingTextView) {
 							// uploadingTextView
 							// .setText(getString(R.string.apply_upload_success));
@@ -450,15 +483,20 @@ public class ApplyDetailActivity extends FragmentActivity {
 
 							uploadingTextView.setVisibility(View.GONE);
 							uploadingImageButton.setVisibility(View.VISIBLE);
+							uploadingImageButton.setTag(uri);
 							uploadingImageButton
 									.setOnClickListener(new onWatchListener());
+						} else {
+
+							clickView.setTag(uri);
+							clickView.setOnClickListener(new onWatchListener());
 						}
 						// String url = (String) msg.obj;
 						for (ApplyMaterial material : mMaterials.values()) {
 							if (material.getTypes() == TYPE_IMAGE
 									&& material.getName().equals(mUploadKey)) {
 								// material.setValue(url);
-								material.setValue(mUploadUri);
+								material.setValue(uri);
 								break;
 							}
 						}
@@ -1107,8 +1145,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.findViewById(R.id.apply_detail_key);
 			ImageButton ibView = (ImageButton) item
 					.findViewById(R.id.apply_detail_view);
-
-			mUploadUri = value;
+			ibView.setTag(value);
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
 			ibView.setOnClickListener(new onWatchListener());
@@ -1135,7 +1172,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private class onWatchListener implements View.OnClickListener {
 
 		@Override
-		public void onClick(View arg0) {
+		public void onClick(View view) {
+			clickView = view;
+			final String uri = (String) view.getTag();
 			AlertDialog.Builder builder = new AlertDialog.Builder(
 					ApplyDetailActivity.this);
 			final String[] items = getResources().getStringArray(
@@ -1155,7 +1194,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 						build.setView(textEntryView);
 						final ImageView view = (ImageView) textEntryView
 								.findViewById(R.id.imag);
-						ImageCacheUtil.IMAGE_CACHE.get(mUploadUri, view);
+						ImageCacheUtil.IMAGE_CACHE.get(uri, view);
 						build.create().show();
 						break;
 					}

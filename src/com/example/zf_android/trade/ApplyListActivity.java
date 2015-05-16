@@ -229,7 +229,7 @@ public class ApplyListActivity extends Activity implements
 			});
 
 			Boolean videoBoolean = 1 == item.getHasVideoVerify();
-			if (videoBoolean) {
+			if (!videoBoolean) {
 				holder.btnVideo.setVisibility(View.GONE);
 				holder.tvfill1.setVisibility(View.VISIBLE);
 				holder.tvfill2.setVisibility(View.VISIBLE);
