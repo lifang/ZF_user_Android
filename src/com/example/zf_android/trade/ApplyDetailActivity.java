@@ -196,9 +196,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 				params.put("cityId",
 						null != mMerchantCity ? mMerchantCity.getId() : 0);
 
-				params.put("bankName", getItemValue(mBankKeys[0]));
-				params.put("bankCode", getItemValue(mBankKeys[1]));
-				params.put("bankNum", getItemValue(mBankKeys[2]));
+				params.put("bankNum", getItemValue(mBankKeys[0]));
+				params.put("bankName", getItemValue(mBankKeys[1]));
+				params.put("bank_name", getItemValue(mBankKeys[2]));
 
 				if (mApplyType == 1) {
 					params.put("registeredNo", getItemValue(mBankKeys[3]));
@@ -249,7 +249,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 							public void onSuccess(Object data) {
 								CommonUtil.toastShort(ApplyDetailActivity.this,
 										data.toString());
-								Intent intent = new Intent(ApplyDetailActivity.this,
+								Intent intent = new Intent(
+										ApplyDetailActivity.this,
 										TerminalManageActivity.class);
 								startActivity(intent);
 								finish();
@@ -437,8 +438,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 				public void handleMessage(Message msg) {
 					if (msg.what == 1) {
 
-//						CommonUtil.toastShort(ApplyDetailActivity.this,
-//								(String) msg.obj);
+						// CommonUtil.toastShort(ApplyDetailActivity.this,
+						// (String) msg.obj);
 						mUploadUri = (String) msg.obj;
 						if (null != uploadingTextView) {
 							// uploadingTextView
@@ -785,9 +786,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 					}
 				});
 
-		setItemValue(mBankKeys[0], merchant.getAccountBankName());
-		setItemValue(mBankKeys[1], merchant.getAccountBankNum());
-		setItemValue(mBankKeys[2], merchant.getBankOpenAccount());
+		setItemValue(mBankKeys[0], merchant.getAccountBankNum());
+		setItemValue(mBankKeys[1], merchant.getAccountBankName());
+		setItemValue(mBankKeys[2], merchant.getBank_name());
 		if (mApplyType == 1) {
 			setItemValue(mBankKeys[3], merchant.getTaxRegisteredNo());
 			setItemValue(mBankKeys[4], merchant.getOrganizationCodeNo());
@@ -819,9 +820,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 					}
 				});
 
-		setItemValue(mBankKeys[0], openingInfos.getAccount_bank_name());
-		setItemValue(mBankKeys[1], openingInfos.getAccount_bank_num());
-		setItemValue(mBankKeys[2], openingInfos.getAccount_bank_code());
+		setItemValue(mBankKeys[0], openingInfos.getAccount_bank_num());
+		setItemValue(mBankKeys[1], openingInfos.getAccount_bank_name());
+		setItemValue(mBankKeys[2], openingInfos.getBank_name());
 		if (mApplyType == 1) {
 			setItemValue(mBankKeys[3], openingInfos.getTax_registered_no());
 			setItemValue(mBankKeys[4], openingInfos.getOrganization_code_no());
