@@ -4,12 +4,12 @@ package com.example.zf_android;
 public class Config {
 
 	//视频通话
-	public static final String VIDEO_SERVER_IP = "121.40.64.120";
-	//public static final String VIDEO_SERVER_IP = "121.40.84.2";
+	//public static final String VIDEO_SERVER_IP = "121.40.64.120";
+	public static final String VIDEO_SERVER_IP = "121.40.84.2";
 	public static final int VIDEO_SERVER_PORT = 8906;
 	
-	public static final String URL_NOTICE_VIDEO = "http://admin.ebank007.com/notice/video";
-	//public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:8180/zfmanager/notice/video";
+	//public static final String URL_NOTICE_VIDEO = "http://admin.ebank007.com/notice/video";
+	public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:38080/ZFManager/notice/video";
 	
 	public static final String FILE_PATH = "http://114.215.149.242:18080/ZFMerchant/";
 	public static final String POS_PIC_URL = FILE_PATH+"{0}/b.jpg";
