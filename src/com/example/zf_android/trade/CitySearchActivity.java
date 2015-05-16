@@ -166,7 +166,7 @@ public class CitySearchActivity extends Activity implements OnClickListener{
 					if (mCities.get(i).getName().contains(searchEditText.getText().toString())) {
 						searchCities.add(mCities.get(i));
 					}
-				}
+				} 
 				//去除重复元素
 				if (searchCities.size()>1) {
 					for(int i = 0 ; i < searchCities.size() - 1;i++){ 

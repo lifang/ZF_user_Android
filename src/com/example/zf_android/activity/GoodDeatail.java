@@ -310,10 +310,10 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			setting_btn_clear.setText("立即购买");
 			setting_btn_clear1.setBackgroundResource(R.drawable.bg_shape);
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bgtitle));
-			tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
-			tv_bug.setBackgroundResource(R.drawable.bg_shape);
-			tv_lea.setTextColor(getResources().getColor(R.color.text292929));
-			tv_lea.setBackgroundResource(R.drawable.send_out_goods_shape);
+			tv_bug.setTextColor(getResources().getColor(R.color.white));
+			tv_bug.setBackgroundResource(R.drawable.bg_blue_shape);
+			tv_lea.setTextColor(getResources().getColor(R.color.bgtitle));
+			tv_lea.setBackgroundResource(R.drawable.bg_shape);
 			break;
 		case R.id.tv_lea:
 			//tv_bug 
@@ -330,10 +330,10 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			setting_btn_clear.setText("立即租赁");
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bg0etitle));
 			setting_btn_clear1.setBackgroundResource(R.drawable.bg0e_shape);
-			tv_bug.setTextColor(getResources().getColor(R.color.text292929));
-			tv_bug.setBackgroundResource(R.drawable.send_out_goods_shape);
-			tv_lea.setTextColor(getResources().getColor(R.color.bgtitle));
-			tv_lea.setBackgroundResource(R.drawable.bg_shape);
+			tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
+			tv_bug.setBackgroundResource(R.drawable.bg_shape);
+			tv_lea.setTextColor(getResources().getColor(R.color.white));
+			tv_lea.setBackgroundResource(R.drawable.bg_blue_shape);
 			break;
 
 		case R.id.tv_ins:
@@ -469,11 +469,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			textView.setText(User_button.get(i).getName());
 
 			if (id == User_button.get(i).getId()) {
+				textView.setBackgroundResource(R.drawable.bg_blue_shape);
+				textView.setTextColor(getResources().getColor(R.color.white));
+			}else {
 				textView.setBackgroundResource(R.drawable.bg_shape);
 				textView.setTextColor(getResources().getColor(R.color.bgtitle));
-			}else {
-				textView.setBackgroundResource(R.drawable.send_out_goods_shape);
-				textView.setTextColor(getResources().getColor(R.color.text292929));
 			}
 			textView.setId(User_button.get(i).getId());
 			textView.setOnClickListener(this);

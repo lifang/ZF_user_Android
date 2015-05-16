@@ -422,7 +422,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		invoice_info=et_titel.getText().toString().trim();
 
 		if (is_need_invoice == 0) {
-			invoice_type = 0;
+			invoice_type = -1;
 			invoice_info = "";
 		}
 

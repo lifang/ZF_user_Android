@@ -323,10 +323,10 @@
                         android:layout_width="0dp"
                         android:layout_height="28dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_shape"
+                        android:background="@drawable/bg_blue_shape"
                         android:gravity="center"
                         android:text="购买"
-                        android:textColor="@color/bgtitle" />
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/tv_lea"
@@ -335,10 +335,10 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/send_out_goods_shape"
+                        android:background="@drawable/bg_shape"
                         android:gravity="center"
                         android:text="租赁"
-                        android:textColor="@color/text292929" />
+                        android:textColor="@color/bgtitle" />
 
                     <TextView
                         android:layout_width="0dp"

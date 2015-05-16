@@ -69,7 +69,13 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 				tv_tel.setText(entity.getOrder_receiver_phone());
 				tv_adress.setText("收货地址 :   "+entity.getOrder_address());
 				tv_ly.setText("留言 :   "+entity.getOrder_comment());
-				tv_fplx.setText(entity.getOrder_invoce_type().equals("1")?"发票类型 : 个人":"发票类型 : 公司");
+				if (entity.getOrder_invoce_type().equals("1")) {
+					tv_fplx.setText("发票类型 : 个人");
+				}else if (entity.getOrder_invoce_type().equals("0")){
+					tv_fplx.setText("发票类型 : 公司");
+				}else {
+					tv_fplx.setText("发票类型 : ");
+				}
 				fptt.setText("发票抬头 :   "+entity.getOrder_invoce_info());
 				tv_ddbh.setText("订单编号 :   "+entity.getOrder_number());
 
@@ -203,6 +209,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			break;
 		case 4:
 			tv_status.setText("已评价");
+			ll_ishow2.setVisibility(View.GONE);
 			btn_ishow.setVisibility(View.VISIBLE);
 			btn_ishow2.setVisibility(View.VISIBLE);
 			break;

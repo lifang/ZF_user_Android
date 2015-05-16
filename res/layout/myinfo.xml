@@ -430,6 +430,7 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/bg_red_dra"
                 android:text="退出登录"
+                android:visibility="gone"
                 android:textColor="@color/ffffff"
                 android:textSize="20sp" />
 
@@ -437,6 +438,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp" />
         </LinearLayout>
-    </ScrollView>
+    </ScrollView> 
 
 </LinearLayout>

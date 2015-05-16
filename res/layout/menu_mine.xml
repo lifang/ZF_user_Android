@@ -35,12 +35,12 @@
             android:textSize="17sp" />
 
         <RelativeLayout
-               android:id="@+id/search"
+            android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingRight="@dimen/d_7dp"
+            android:layout_alignParentRight="true"
             android:paddingLeft="@dimen/d_7dp"
-            android:layout_alignParentRight="true" >
+            android:paddingRight="@dimen/d_7dp" >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -70,255 +70,277 @@
         android:layout_marginTop="20dp"
         android:background="@color/Viewc2" />
 
-    <LinearLayout
-        android:id="@+id/ll_dd"
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
+        android:layout_height="wrap_content" >
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="14dp"
-            android:background="@drawable/mine_dd" />
+            android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="7dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="我的订单"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/ll_dd"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="14dp"
+                    android:background="@drawable/mine_dd" />
 
-        <TextView
-            style="@style/dot_item"
-            android:gravity="center"
-            android:text="1"
-            android:textColor="@color/ffffff"
-            android:visibility="invisible" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="7dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="我的订单"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc2" />
+                <TextView
+                    style="@style/dot_item"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/ffffff"
+                    android:visibility="invisible" />
 
-    <LinearLayout
-        android:id="@+id/ll_shjl"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="14dp"
-            android:background="@drawable/mine_l2" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="7dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="售后记录"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/ll_shjl"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="14dp"
+                    android:background="@drawable/mine_l2" />
 
-        <TextView
-            style="@style/dot_item"
-            android:gravity="center"
-            android:text="3"
-            android:textColor="@color/ffffff"
-            android:visibility="gone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="7dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="售后记录"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc2" />
+                <TextView
+                    style="@style/dot_item"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/ffffff"
+                    android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/ll_wdxx"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="14dp"
-            android:background="@drawable/mine2" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="7dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="我的信息"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/ll_wdxx"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="14dp"
+                    android:background="@drawable/mine2" />
 
-        <TextView
-            style="@style/dot_item"
-            android:gravity="center"
-            android:text="3"
-            android:textColor="@color/ffffff"
-            android:visibility="gone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="7dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="我的信息"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc2" />
+                <TextView
+                    style="@style/dot_item"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/ffffff"
+                    android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/ll_sh"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="14dp"
-            android:background="@drawable/mine4" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="7dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="我的商户"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/ll_sh"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="14dp"
+                    android:background="@drawable/mine4" />
 
-        <TextView
-            style="@style/dot_item"
-            android:gravity="center"
-            android:text="3"
-            android:textColor="@color/ffffff"
-            android:visibility="gone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="7dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="我的商户"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc2" />
+                <TextView
+                    style="@style/dot_item"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/ffffff"
+                    android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/ll_request"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_item" >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="14dp"
-            android:background="@drawable/mine5" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="7dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="申请进度查询"
-            android:textColor="@color/text292929"
-            android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/ll_request"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item" >
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="14dp"
+                    android:background="@drawable/mine5" />
 
-        <TextView
-            style="@style/dot_item"
-            android:gravity="center"
-            android:text="3"
-            android:textColor="@color/ffffff"
-            android:visibility="gone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="7dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="申请进度查询"
+                    android:textColor="@color/text292929"
+                    android:textSize="17sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/post_right" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc2" />
+                <TextView
+                    style="@style/dot_item"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/ffffff"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/post_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/Viewc2" />
+
+            <Button
+                android:id="@+id/btn_exit"
+                android:layout_width="184dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_red_dra"
+                android:text="退出登录"
+                android:textColor="@color/ffffff"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
 
     <View
         android:layout_width="fill_parent"
