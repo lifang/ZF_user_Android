@@ -327,4 +327,14 @@ public class ApplyListActivity extends Activity implements
 		// dialog.show();
 
 	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		page = 0;
+		pullType = "onRefresh";
+		noMoreData = false;
+		mApplyList.setPullLoadEnable(true);
+		loadData();
+	}
 }

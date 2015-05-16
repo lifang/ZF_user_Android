@@ -7,9 +7,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,7 +28,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
@@ -40,7 +36,6 @@ import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.MerchantEntity;
 import com.example.zf_android.trade.API;
-import com.example.zf_android.trade.ApplyDetailActivity;
 import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.Constants;
 import com.example.zf_android.trade.common.CommonUtil;
@@ -49,6 +44,8 @@ import com.example.zf_android.trade.common.RegText;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /***
  * 
@@ -80,6 +77,8 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 	private Integer customerId;
 
 	private String mUploadUri;
+
+	DisplayImageOptions options = MyApplication.getDisplayOption();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -270,7 +269,7 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 						layout.findViewById(R.id.textView).setVisibility(
 								View.GONE);
 						String url = (String) msg.obj;
-						layout.setClickable(true);
+//						layout.setClickable(true);
 						switch (type) {
 						case TYPE_10:
 							merchantEntity.setCardIdFrontPhotoPath(url);
@@ -512,7 +511,9 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 						build.setView(textEntryView);
 						final ImageView view = (ImageView) textEntryView
 								.findViewById(R.id.imag);
-						ImageCacheUtil.IMAGE_CACHE.get(mUploadUri, view);
+						// ImageCacheUtil.IMAGE_CACHE.get(mUploadUri, view);
+						ImageLoader.getInstance().displayImage(mUploadUri,
+								view, options);
 						build.create().show();
 						break;
 					}

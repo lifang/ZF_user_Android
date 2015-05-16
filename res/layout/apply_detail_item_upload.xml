@@ -24,9 +24,17 @@
             android:id="@+id/apply_detail_view"
             style="@style/TextItem"
             android:layout_gravity="right|center_vertical"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@android:color/transparent"
             android:src="@drawable/icon_open"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/right_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/post_right"
             android:visibility="gone" />
     </FrameLayout>
 

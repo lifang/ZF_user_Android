@@ -32,7 +32,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
@@ -45,6 +44,8 @@ import com.example.zf_android.trade.entity.TerminalOpen;
 import com.example.zf_android.trade.entity.TerminalRate;
 import com.example.zf_android.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by Leo on 2015/3/4.
@@ -71,6 +72,7 @@ public class TerminalDetailActivity extends Activity {
 
 	private int isVideo, status;
 	private Boolean appidBoolean, videoBoolean;
+	DisplayImageOptions options = MyApplication.getDisplayOption();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -479,12 +481,13 @@ public class TerminalDetailActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				final int position = (Integer) view.getTag();
-//				Intent intent = new Intent(TerminalDetailActivity.this,
-//						ShowWebImageActivity.class);
-//				intent.putExtra(IMAGE_NAMES, StringUtil.join(imageNames, ","));
-//				intent.putExtra(IMAGE_URLS, StringUtil.join(imageUrls, ","));
-//				intent.putExtra(POSITION, position);
-//				startActivity(intent);
+				// Intent intent = new Intent(TerminalDetailActivity.this,
+				// ShowWebImageActivity.class);
+				// intent.putExtra(IMAGE_NAMES, StringUtil.join(imageNames,
+				// ","));
+				// intent.putExtra(IMAGE_URLS, StringUtil.join(imageUrls, ","));
+				// intent.putExtra(POSITION, position);
+				// startActivity(intent);
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						TerminalDetailActivity.this);
@@ -505,9 +508,11 @@ public class TerminalDetailActivity extends Activity {
 							build.setView(textEntryView);
 							final ImageView view = (ImageView) textEntryView
 									.findViewById(R.id.imag);
-							System.out.println((Integer)view.getTag()+"");
-							ImageCacheUtil.IMAGE_CACHE.get(
-									imageUrls.get(position), view);
+							System.out.println((Integer) view.getTag() + "");
+							// ImageCacheUtil.IMAGE_CACHE.get(
+							// imageUrls.get(position), view);
+							ImageLoader.getInstance().displayImage(
+									imageUrls.get(position), view, options);
 							build.create().show();
 							break;
 						}
