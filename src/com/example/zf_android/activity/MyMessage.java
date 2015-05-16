@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
@@ -119,15 +121,15 @@ OnClickListener {
 		}else {
 			countShopCar.setVisibility(View.GONE);
 		}
+		
 		Config.notificationTitle = "";
-//		if (!isFirstCreate) {
-//			page = 1;
-//			myList.clear();
-//			Xlistview.setPullLoadEnable(true);
-			getData();
-//		} else {
-//			isFirstCreate = false;
-//		}
+		getData();
+		
+		if (!StringUtil.isNull(Config.notificationMsgID)) {
+			Intent i = new Intent(MyMessage.this, MymsgDetail.class);
+			i.putExtra("id", Config.notificationMsgID);
+			startActivityForResult(i, 101);
+		}
 	}
 	private void initView() {
 		countShopCar = (TextView) findViewById(R.id.countShopCar);
@@ -177,7 +179,7 @@ OnClickListener {
 				if (MyApplication.getIsSelect()) {
 					next_sure.setText("编辑");
 					MyApplication.setIsSelect(false);
-					
+
 					myAdapter.notifyDataSetChanged();
 					for (int i = 0; i < myList.size(); i++) {
 						myList.get(i).setIscheck(false);
@@ -291,25 +293,25 @@ OnClickListener {
 				builder.setPositiveButton("确认",
 						new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface arg0, int arg1) {
-								Msgdelete1();
-								
-							}
-						});
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						Msgdelete1();
+
+					}
+				});
 				builder.setNegativeButton("取消",
 						new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface arg0, int arg1) {
-								dialog.dismiss();
-							}
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						dialog.dismiss();
+					}
 
-						});
+				});
 
 				builder.create().show();
-				
-				
+
+
 			}else {
 				Toast.makeText(this, "请选择消息后，再执行此操作", Toast.LENGTH_SHORT).show();
 			}

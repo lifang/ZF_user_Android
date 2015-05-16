@@ -327,7 +327,7 @@ public class MyApplication extends org.litepal.LitePalApplication {
 		super.onCreate();
 		mInstance = this;
 		
-		FrontiaApplication.initFrontiaApplication(this); 
+		FrontiaApplication.initFrontiaApplication(getApplicationContext()); 
 		
 		mLocationClient = new LocationClient(this.getApplicationContext());
 		mMyLocationListener = new MyLocationListener();

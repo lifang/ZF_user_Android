@@ -76,6 +76,7 @@ public class Config {
 	public static String changeemail = "";//，修改邮箱号
 	public static String channelId = "";//，绑定百度推送的channelId
 	public static String notificationTitle = "";//，绑定百度推送的title
+	public static String notificationMsgID = "";//，绑定百度推送的title
 	
 	public static final String URL_ORDER_LIST =PATHS+"order/getMyOrderAll";
 	public static final String URL_CANCEL_MYORDER =PATHS+"order/cancelMyOrder";
