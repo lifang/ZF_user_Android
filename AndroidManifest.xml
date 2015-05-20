@@ -566,7 +566,7 @@
         <!-- 在百度开发者中心查询应用的API Key -->
         <meta-data
             android:name="api_key"
-            android:value="YdDy9PDiFdMniMsGGg3Ny7WC" />
+            android:value="v0Pe891h5dhpD4xgTzn2Ox7G" />
         <!-- 百度推送 -->
     </application>
 
