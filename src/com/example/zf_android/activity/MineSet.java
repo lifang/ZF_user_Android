@@ -30,6 +30,8 @@ import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.ChangeEmailEntity;
+import com.example.zf_android.entity.VersionEntity;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.NetworkUtil;
@@ -86,11 +88,11 @@ public class MineSet extends BaseActivity implements OnClickListener{
 				// 检查版本dialog
 				showVersionCheckingDialog();
 			}
-			API.checkVersion(this, new HttpCallback<Map<String, Object>> (MineSet.this) {
+			API.getVersion(this,3,new HttpCallback<VersionEntity> (MineSet.this) {
 				@Override
-				public void onSuccess(Map<String, Object> data) {
-					String version = (String)data.get("lastVersion");
-					String url = (String)data.get("downloadPath");
+				public void onSuccess(VersionEntity data) {
+					String version = data.getVersions();
+					String url = data.getDown_url();
 					Integer nowVersion = Tools.getVerCode(MineSet.this);
 					Message msg = null;
 					if(Double.parseDouble(version) > nowVersion){
@@ -108,11 +110,39 @@ public class MineSet extends BaseActivity implements OnClickListener{
 				}
 
 				@Override
-				public TypeToken getTypeToken() {
-					return  new TypeToken<Map<String, Object>>() {
+				public TypeToken<VersionEntity> getTypeToken() {
+					return  new TypeToken<VersionEntity>() {
 					};
 				}
 			} );
+			
+//			API.checkVersion(this, new HttpCallback<Map<String, Object>> (MineSet.this) {
+//				@Override
+//				public void onSuccess(Map<String, Object> data) {
+//					String version = (String)data.get("lastVersion");
+//					String url = (String)data.get("downloadPath");
+//					Integer nowVersion = Tools.getVerCode(MineSet.this);
+//					Message msg = null;
+//					if(Double.parseDouble(version) > nowVersion){
+//						msg = handler.obtainMessage(VersionHandler.HAS_NEW_VERSION);
+//						Bundle bundle = new Bundle();
+//						bundle.putString("url", url);
+//						msg.setData(bundle);
+//					} else {
+//						msg = handler.obtainMessage(VersionHandler.NO_NEW_VERSION);
+//					}
+//					if (versionCheckingDialog != null) {
+//						versionCheckingDialog.dismiss();
+//					}
+//					handler.sendMessage(msg);
+//				}
+//
+//				@Override
+//				public TypeToken getTypeToken() {
+//					return  new TypeToken<Map<String, Object>>() {
+//					};
+//				}
+//			} );
 
 			break;
 		case R.id.ll_clean:

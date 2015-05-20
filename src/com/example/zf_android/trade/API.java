@@ -713,7 +713,11 @@ public class API {
 	public static void checkVersion(Context context, HttpCallback callback) {
 		new HttpRequest(context, callback).post(Config.URL_CHECK_VERSION);
 	}
-
+	public static void getVersion(Context context, int types, HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("types", types);
+		new HttpRequest(context, callback).post(Config.URL_GET_VERSION,params);
+	}
 	public static void merchantInfo(Context context, int id,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();

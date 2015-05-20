@@ -23,6 +23,7 @@ public class Config {
 
 	public final static String IMAGE_PATH = "";
 	public static String URL_CHECK_VERSION=PATHS+"comment/appVersion";
+	public static final String URL_GET_VERSION = PATHS+"index/getVersion";
 	public static int ROWS=10;
 	public static String getmes=PATHS+"message/receiver/getAll";
 	public static String getsysmes=PATHS+"web/message/getAll";
