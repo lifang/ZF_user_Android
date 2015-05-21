@@ -478,7 +478,7 @@ public class API {
 
 	public static void reg_phoneCode(Context context, String codeNumber,
 
-			HttpCallback callback) {
+	HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -491,7 +491,7 @@ public class API {
 		params.put("id", id);
 		params.put("email", email);
 		new HttpRequest(context, callback)
-		.post(GET_UPDATEEMAILDENTCODE, params);
+				.post(GET_UPDATEEMAILDENTCODE, params);
 	}
 
 	public static void getPhoneCode(Context context, String phone,
@@ -503,7 +503,7 @@ public class API {
 
 	public static void getEmailPass(Context context, String codeNumber,
 
-			HttpCallback callback) {
+	HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -556,7 +556,7 @@ public class API {
 
 	public static void zhuche(Context context, String username,
 
-			String password, String code, int cityId, Boolean accountType,
+	String password, String code, int cityId, Boolean accountType,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("username", username);
@@ -581,7 +581,7 @@ public class API {
 		params.put("addressId", addressId);
 		params.put("comment", comment);
 		params.put("is_need_invoice", is_need_invoice);
-		if (invoice_type != -1) 
+		if (invoice_type != -1)
 			params.put("invoice_type", invoice_type);
 
 		params.put("invoice_info", invoice_info);
@@ -649,7 +649,7 @@ public class API {
 
 	public static void CARTFIRM1(
 
-			Context context, int customerId, ArrayList<Integer> cartid, int addressId,
+	Context context, int customerId, ArrayList<Integer> cartid, int addressId,
 			String comment, int is_need_invoice, int invoice_type,
 			String invoice_info, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -1055,11 +1055,13 @@ public class API {
 		params.put("terminalId", terminalId);
 		new HttpRequest(context, callback).post(TERMINAL_BANK, params);
 	}
+
 	public static void registerBaidu(Context context, int customerId,
 			String deviceCode, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", customerId);
 		params.put("deviceCode", deviceCode);
-		new HttpRequest(context, callback).post(Config.URL_REGISTERBAIDU, params);
+		new HttpRequest(context, callback).post(Config.URL_REGISTERBAIDU,
+				params);
 	}
 }
