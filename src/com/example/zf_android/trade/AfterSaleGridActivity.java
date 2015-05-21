@@ -15,12 +15,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 
 /**
  * Created by Leo on 2015/2/26.
  */
-public class AfterSaleGridActivity extends Activity implements View.OnClickListener {
+public class AfterSaleGridActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView mMaintain;
     private TextView mReturn;

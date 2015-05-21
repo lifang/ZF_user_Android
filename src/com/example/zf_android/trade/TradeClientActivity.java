@@ -15,6 +15,7 @@ import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeClient;
 import com.google.gson.reflect.TypeToken;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,4 +75,18 @@ public class TradeClientActivity extends ListActivity {
 		setResult(RESULT_OK, intent);
 		finish();
 	}
+	
+	 @Override
+		protected void onResume() {
+			super.onResume();
+			MobclickAgent.onPageStart( this.toString() );
+			MobclickAgent.onResume(this);
+		}
+
+		@Override
+		protected void onPause() {
+			super.onPause();
+			MobclickAgent.onPageEnd(this.toString());
+			MobclickAgent.onPause(this);
+		}
 }

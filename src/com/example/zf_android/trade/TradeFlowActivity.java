@@ -20,6 +20,7 @@ import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.widget.MyTabWidget;
 import com.example.zf_android.trade.widget.MyViewPager;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Leo on 2015/2/6.
@@ -51,8 +52,8 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
             mTabWidget.addTab(tabs[i]);
         }
         // add fragments according to the order
-        TradeFlowFragment transferFragment = TradeFlowFragment.newInstance(1);//1
-        TradeFlowFragment consumeFragment = TradeFlowFragment.newInstance(2);//2
+        TradeFlowFragment consumeFragment = TradeFlowFragment.newInstance(1);//1
+        TradeFlowFragment transferFragment = TradeFlowFragment.newInstance(2);//2
         TradeFlowFragment repaymentFragment = TradeFlowFragment.newInstance(3);//3
         TradeFlowFragment lifePayFragment = TradeFlowFragment.newInstance(5);//5
         TradeFlowFragment phonePayFragment = TradeFlowFragment.newInstance(4);//4
@@ -102,4 +103,16 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
         }
     }
 
+    
+    @Override
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+    
+    @Override
+	protected void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
 }

@@ -1,7 +1,13 @@
 package com.example.zf_android.activity;
 
  
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,15 +58,27 @@ public class SystemDetail extends BaseActivity{
 	private void getData() {
  
 
-			RequestParams params = new RequestParams();
-
-			System.out.println("````"+id);
-			params.put("id", id );
-		 
-			params.setUseJsonStreamer(true);
+//			RequestParams params = new RequestParams();
+//
+//			System.out.println("````"+id);
+//			params.put("id", id );
+//		 
+//			params.setUseJsonStreamer(true);
+			
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("id", id);
+			JSONObject jsonParams = new JSONObject(params);
+			HttpEntity entity;
+			try {
+				entity = new StringEntity(jsonParams.toString(), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				return;
+			}
+			
+			
 			AsyncHttpClient cl =new AsyncHttpClient();
 			//Config.getMSGById Config.webMSGById
-			cl.post(Config.webMSGById, params, new AsyncHttpResponseHandler() {
+			cl.post(getApplicationContext(),Config.webMSGById, null,entity,"application/json", new AsyncHttpResponseHandler() {
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,

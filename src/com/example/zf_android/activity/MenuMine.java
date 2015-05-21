@@ -57,7 +57,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		ll_request.setOnClickListener(this);
 	}
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if (Config.countShopCar != 0) {
 			countShopCar.setVisibility(View.VISIBLE);

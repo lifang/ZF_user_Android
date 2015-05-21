@@ -102,7 +102,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		setContentView(R.layout.poslist_activity);
 		// MyApplication.pse=new PosSelectEntity();
 		SharedPreferences mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
-		Boolean isOpen_mineset = mySharedPreferences.getBoolean("isOpen_ps", true);
+		Boolean isOpen_mineset = mySharedPreferences.getBoolean("isOpen_ps", false);
 		if (isOpen_mineset) {
 			has_purchase = 1;
 		}else {
@@ -232,7 +232,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 		}
 	}	
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if (Config.countShopCar == 0) {
 			countShopCar.setVisibility(View.GONE);

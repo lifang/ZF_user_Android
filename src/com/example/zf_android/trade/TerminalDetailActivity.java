@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
@@ -50,7 +51,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 /**
  * Created by Leo on 2015/3/4.
  */
-public class TerminalDetailActivity extends Activity {
+public class TerminalDetailActivity extends BaseActivity {
 
 	private int mTerminalStatus;
 	private String mTerminalNumber;

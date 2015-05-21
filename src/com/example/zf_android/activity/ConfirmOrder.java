@@ -103,7 +103,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if(!isFirstCreate){
 			getData1();

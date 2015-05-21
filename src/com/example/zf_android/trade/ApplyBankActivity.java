@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.BankEntity;
 import com.example.zf_android.entity.BankEntity.Bank;
@@ -33,7 +34,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Created by Leo on 2015/3/16.
  */
-public class ApplyBankActivity extends Activity implements
+public class ApplyBankActivity extends BaseActivity implements
 		View.OnClickListener, XListView.IXListViewListener {
 
 	private String keyword = "";

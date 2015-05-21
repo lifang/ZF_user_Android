@@ -30,6 +30,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.RegexTools;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.ApplyMaterial;
@@ -62,7 +63,7 @@ import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION
 /**
  * Created by Leo on 2015/3/5.
  */
-public class ShowWebImageActivity extends Activity {
+public class ShowWebImageActivity extends BaseActivity {
 	private String[] imageArray;
 	private String[] imageNames;
 	private ImageLoader imageLoader;

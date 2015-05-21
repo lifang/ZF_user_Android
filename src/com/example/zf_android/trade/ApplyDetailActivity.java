@@ -75,6 +75,7 @@ import com.example.zf_android.trade.widget.MyTabWidget;
 import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Leo on 2015/3/5.
@@ -1257,5 +1258,19 @@ public class ApplyDetailActivity extends FragmentActivity {
 
 		}
 
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPageStart( this.toString() );
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		MobclickAgent.onPageStart( this.toString() );
+		MobclickAgent.onResume(this);
 	}
 }

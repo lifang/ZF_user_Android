@@ -113,7 +113,7 @@ OnClickListener {
 
 	}
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if (Config.countShopCar != 0) {
 			countShopCar.setVisibility(View.VISIBLE);

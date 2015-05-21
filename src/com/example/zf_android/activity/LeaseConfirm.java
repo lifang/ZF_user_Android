@@ -101,7 +101,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		getData();
 	}
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 
 	}

@@ -52,7 +52,7 @@ public class MyInfo extends BaseActivity implements OnClickListener {
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		Config.newAddAddressId = 0;
 

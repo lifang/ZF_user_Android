@@ -15,12 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeDetail;
 import com.google.gson.reflect.TypeToken;
 
-public class TradeDetailActivity extends Activity {
+public class TradeDetailActivity extends BaseActivity {
 
 	private LinearLayout mCommercialKeyContainer;
 	private LinearLayout mCommercialValueContainer;

@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
@@ -40,7 +41,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Created by Leo on 2015/3/5.
  */
-public class ApplyListActivity extends Activity implements
+public class ApplyListActivity extends BaseActivity implements
 		XListView.IXListViewListener {
 
 	private LayoutInflater mInflater;
@@ -329,7 +330,7 @@ public class ApplyListActivity extends Activity implements
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		page = 0;
 		pullType = "onRefresh";

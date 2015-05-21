@@ -7,9 +7,10 @@ import android.view.Window;
 import android.webkit.WebView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 
-public class WebViewActivity extends Activity{
+public class WebViewActivity extends BaseActivity{
 	private String IMAGE_PATH;
 	private WebView webview;
 	@Override

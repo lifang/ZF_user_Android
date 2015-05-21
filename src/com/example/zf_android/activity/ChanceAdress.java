@@ -86,7 +86,7 @@ public class ChanceAdress extends BaseActivity{
 		getData();
 	}
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if(!isFirstCreate){
 			getData();

@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.activity.MyMessage;
 import com.example.zf_android.trade.common.CommonUtil;
@@ -52,7 +53,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Created by Leo on 2015/2/28.
  */
-public class AfterSaleDetailActivity extends Activity {
+public class AfterSaleDetailActivity extends BaseActivity {
 
 	public static final String MATERIAL_URL = "material_url";
 

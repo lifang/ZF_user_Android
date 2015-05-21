@@ -68,7 +68,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
 		String responseString = "onBind errorCode=" + errorCode + " appid="
 				+ appid + " userId=" + userId + " channelId=" + channelId
 				+ " requestId=" + requestId;
-		Log.d(TAG, responseString);
+		Log.e(TAG, responseString);
 		Config.channelId = channelId;
 		// 绑定成功，设置已绑定flag，可以有效的减少不必要的绑定请求
 		if (errorCode == 0) {
@@ -131,12 +131,12 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
 			String description, String customContentString) {
 		
 		System.out.println("customContentString::"+customContentString);
-		Log.d(TAG, title);
-		Log.d(TAG, description);
-		Log.d(TAG, customContentString);
+//		Log.d(TAG, title);
+//		Log.d(TAG, description);
+//		Log.d(TAG, customContentString);
 		String notifyString = "通知点击 title=\"" + title + "\" description=\""
 				+ description + "\" customContent=" + customContentString;
-		Log.d(TAG, notifyString);
+//		Log.d(TAG, notifyString);
 		
 		Config.notificationTitle = title;
 		// 自定义内容获取方式，mykey和myvalue对应通知推送时自定义内容中设置的键和值

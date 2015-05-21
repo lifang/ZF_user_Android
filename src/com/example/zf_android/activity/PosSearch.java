@@ -26,6 +26,7 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.examlpe.zf_android.util.StringUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_zandroid.adapter.SearchAdapter;
 /***
@@ -34,7 +35,7 @@ import com.example.zf_zandroid.adapter.SearchAdapter;
  *
  * comdo
  */
-public class PosSearch extends Activity implements OnEditorActionListener {
+public class PosSearch extends BaseActivity implements OnEditorActionListener {
 	private String CName;
 	private EditText et;
 	private ListView lv;
