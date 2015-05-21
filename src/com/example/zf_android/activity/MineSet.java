@@ -94,7 +94,7 @@ public class MineSet extends BaseActivity implements OnClickListener{
 					String url = data.getDown_url();
 					Integer nowVersion = Tools.getVerCode(MineSet.this);
 					Message msg = null;
-					if(Double.parseDouble(version) > nowVersion){
+					if(Integer.parseInt(version) > nowVersion){
 						msg = handler.obtainMessage(VersionHandler.HAS_NEW_VERSION);
 						Bundle bundle = new Bundle();
 						bundle.putString("url", url);
