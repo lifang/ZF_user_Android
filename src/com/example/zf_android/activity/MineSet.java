@@ -241,6 +241,7 @@ public class MineSet extends BaseActivity implements OnClickListener{
 			pd.dismiss();
 			Intent intent = new Intent();
 			intent.setAction(Intent.ACTION_VIEW);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
 			intent.setDataAndType(Uri.fromFile(dest),
 					"application/vnd.android.package-archive");
 			sa.startActivity(intent);

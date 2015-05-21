@@ -128,7 +128,7 @@ public class AfterSaleDetailActivity extends BaseActivity {
 						AfterSaleDetailActivity.this);
 				final AlertDialog dialog = builder.create();
 				builder.setTitle("提示");
-				builder.setMessage("确定要删除吗？");
+				builder.setMessage("确定要取消吗？");
 				builder.setPositiveButton("确认",
 						new DialogInterface.OnClickListener() {
 
