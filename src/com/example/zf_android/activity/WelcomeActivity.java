@@ -2,8 +2,10 @@ package com.example.zf_android.activity;
 
 import java.util.ArrayList;
 
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.widget.DepthPageTransformer;
+import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +22,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-public class WelcomeActivity extends Activity implements OnPageChangeListener {
+public class WelcomeActivity extends BaseActivity implements OnPageChangeListener {
 
 	private ImageView img;
 	private ViewPager view_pager;
@@ -159,5 +161,5 @@ public class WelcomeActivity extends Activity implements OnPageChangeListener {
 			((ImageView) scrollDot.getChildAt(3)).setEnabled(false);
 		}
 	}
-
+	
 }

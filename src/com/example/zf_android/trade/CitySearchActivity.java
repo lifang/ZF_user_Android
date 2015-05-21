@@ -27,12 +27,13 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.examlpe.zf_android.util.StringUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 
-public class CitySearchActivity extends Activity implements OnClickListener{
+public class CitySearchActivity extends BaseActivity implements OnClickListener{
 
 	private LinearLayout titleback_linear_back;
 	private EditText searchEditText;
@@ -166,7 +167,7 @@ public class CitySearchActivity extends Activity implements OnClickListener{
 					if (mCities.get(i).getName().contains(searchEditText.getText().toString())) {
 						searchCities.add(mCities.get(i));
 					}
-				}
+				} 
 				//去除重复元素
 				if (searchCities.size()>1) {
 					for(int i = 0 ; i < searchCities.size() - 1;i++){ 

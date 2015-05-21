@@ -273,7 +273,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		// TODO Auto-generated method stub
 		if(MyApplication.getInstance().isHasOrderPaid()){
 			onRefresh();

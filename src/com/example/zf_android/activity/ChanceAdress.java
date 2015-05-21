@@ -13,10 +13,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.examlpe.zf_android.util.ScrollViewWithListView;
@@ -46,6 +48,7 @@ public class ChanceAdress extends BaseActivity{
 	private int customerId;
 	private ChooseAdressAdapter myAdapter;
 	private boolean isFirstCreate;
+	private LinearLayout titleback_linear_back;
 	List<AdressEntity>  myList = new ArrayList<AdressEntity>();
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 	List<AdressEntity>  otherList = new ArrayList<AdressEntity>();
@@ -83,7 +86,7 @@ public class ChanceAdress extends BaseActivity{
 		getData();
 	}
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if(!isFirstCreate){
 			getData();
@@ -93,6 +96,7 @@ public class ChanceAdress extends BaseActivity{
 	
 	}
 	private void initView() {
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
 		lv=(ScrollViewWithListView) findViewById(R.id.lv);
 		myAdapter=new ChooseAdressAdapter(ChanceAdress.this, myList);
 		lv.setAdapter(myAdapter);
@@ -101,6 +105,7 @@ public class ChanceAdress extends BaseActivity{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				Config.newAddAddressId = 0;
 				Intent intent2 = new Intent();
 				intent2.putExtra("id", myList.get(arg2).getId());
 				intent2.putExtra("tel", myList.get(arg2).getMoblephone());
@@ -116,6 +121,17 @@ public class ChanceAdress extends BaseActivity{
 			public void onClick(View arg0) {
 				Intent i =new Intent(ChanceAdress.this,AdressList.class);
 				startActivity(i);
+			}
+		});
+		
+		titleback_linear_back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent2 = new Intent();
+				intent2.putExtra("id", 0);
+				setResult(11, intent2);
+				finish();
 			}
 		});
 	}
@@ -181,4 +197,17 @@ public class ChanceAdress extends BaseActivity{
 			}
 		});
 	}
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		   if (keyCode == KeyEvent.KEYCODE_BACK
+                   && event.getRepeatCount() == 0) {
+				Intent intent2 = new Intent();
+				intent2.putExtra("id", 0);
+				setResult(11, intent2);
+				finish();
+               return true;
+           }
+		return super.onKeyDown(keyCode, event);
+	}
+	
 }

@@ -4,12 +4,12 @@ package com.example.zf_android;
 public class Config {
 
 	//视频通话
-	public static final String VIDEO_SERVER_IP = "121.40.64.120";
-	//public static final String VIDEO_SERVER_IP = "121.40.84.2";
+	//public static final String VIDEO_SERVER_IP = "121.40.64.120";
+	public static final String VIDEO_SERVER_IP = "121.40.84.2";
 	public static final int VIDEO_SERVER_PORT = 8906;
 	
-	public static final String URL_NOTICE_VIDEO = "http://admin.ebank007.com/notice/video";
-	//public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:8180/zfmanager/notice/video";
+	//public static final String URL_NOTICE_VIDEO = "http://admin.ebank007.com/notice/video";
+	public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:38080/ZFManager/notice/video";
 	
 	public static final String FILE_PATH = "http://114.215.149.242:18080/ZFMerchant/";
 	public static final String POS_PIC_URL = FILE_PATH+"{0}/b.jpg";
@@ -71,6 +71,13 @@ public class Config {
 	public static String find_phoneCode = "";//找回密码的手机验证码
 	public static String reg_phoneCode = "";//注册的手机验证码
 	public static int countShopCar = 0;//新添加购物车的数量
+	public static int newAddAddressId = 0;//，下订单时新增地址id
+	public static String changePhoneNum = "";//，修改手机号
+	public static String changeemail = "";//，修改邮箱号
+	public static String channelId = "";//，绑定百度推送的channelId
+	public static String notificationTitle = "";//，绑定百度推送的title
+	public static String notificationMsgID = "";//，绑定百度推送的title
+	
 	public static final String URL_ORDER_LIST =PATHS+"order/getMyOrderAll";
 	public static final String URL_CANCEL_MYORDER =PATHS+"order/cancelMyOrder";
 	public static final String URL_GET_MYORDERBYID =PATHS+"order/getMyOrderById";
@@ -84,6 +91,8 @@ public class Config {
 	public static final String URL_GOOD_SEARCH =PATHS+"good/search";
 	public static final String URL_TERMINAL_OPENSTATUS =PATHS+"terminal/openStatus";
 	public static final String URL_REPAIRPAY =PATHS+"cs/repair/repairPay";
+	public static final String URL_GETGOODIMGURL =PATHS+"good/getGoodImgUrl";
+	public static final String URL_REGISTERBAIDU =PATHS+"customers/sendDeviceCode";
 	//商户PID
 	public static final String PARTNER = "2088811347108355";
 	//商户收款账号

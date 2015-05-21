@@ -90,7 +90,7 @@ public class AdressList extends BaseActivity {
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if (!isFirstCreate) {
 			getData();

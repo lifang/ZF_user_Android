@@ -18,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.example.zf_android.Config;
 import com.example.zf_android.entity.MerchantEntity;
@@ -36,9 +37,9 @@ public class API {
 
 	// public static final String HOST = "114.215.149.242:18080";
 	// sit
-	// public final static String HOST = "www.ebank007.com/api/";
+//	 public final static String HOST = "www.ebank007.com/api/";
 	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
-	// public final static String HOST = "121.40.64.167:8080/api/";
+//	 public final static String HOST = "121.40.64.167:8080/api/";
 	public static final String EDITADRESS = SCHEMA + HOST
 			+ "customers/updateAddress";
 
@@ -123,7 +124,9 @@ public class API {
 	// Terminal detail
 	public static final String TERMINAL_DETAIL = SCHEMA + HOST
 			+ "terminal/getApplyDetails";
-
+	// termianl bank
+	public static final String TERMINAL_BANK = SCHEMA + HOST
+			+ "terminal/ChooseBank";
 	// synchronise terminal
 	public static final String TERMINAL_SYNC = SCHEMA + HOST
 			+ "terminal/synchronous";
@@ -152,6 +155,8 @@ public class API {
 			+ "comment/upload/tempImage";
 	public static final String TERMINAL_UPLOAD_IMAGE = SCHEMA + HOST
 			+ "terminal/upload/tempImage/";
+	public static final String MERCHANT_UPLOAD_IMAGE = SCHEMA + HOST
+			+ "index/upload";
 
 	// Apply Submit
 	public static final String APPLY_SUBMIT = SCHEMA + HOST
@@ -474,7 +479,7 @@ public class API {
 
 	public static void reg_phoneCode(Context context, String codeNumber,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -487,7 +492,7 @@ public class API {
 		params.put("id", id);
 		params.put("email", email);
 		new HttpRequest(context, callback)
-				.post(GET_UPDATEEMAILDENTCODE, params);
+		.post(GET_UPDATEEMAILDENTCODE, params);
 	}
 
 	public static void getPhoneCode(Context context, String phone,
@@ -499,7 +504,7 @@ public class API {
 
 	public static void getEmailPass(Context context, String codeNumber,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -552,7 +557,7 @@ public class API {
 
 	public static void zhuche(Context context, String username,
 
-	String password, String code, int cityId, Boolean accountType,
+			String password, String code, int cityId, Boolean accountType,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("username", username);
@@ -577,7 +582,9 @@ public class API {
 		params.put("addressId", addressId);
 		params.put("comment", comment);
 		params.put("is_need_invoice", is_need_invoice);
-		params.put("invoice_type", invoice_type);
+		if (invoice_type != -1) 
+			params.put("invoice_type", invoice_type);
+
 		params.put("invoice_info", invoice_info);
 		new HttpRequest(context, callback).post(Config.URL_ORDER_SHOP, params);
 	}
@@ -643,7 +650,7 @@ public class API {
 
 	public static void CARTFIRM1(
 
-	Context context, int customerId, ArrayList<Integer> cartid, int addressId,
+			Context context, int customerId, ArrayList<Integer> cartid, int addressId,
 			String comment, int is_need_invoice, int invoice_type,
 			String invoice_info, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -667,14 +674,13 @@ public class API {
 
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
+		
 		params.put("city_id", city_id);
 		params.put("orderType", orderType);
 		params.put("has_purchase", has_purchase);
 		params.put("minPrice", minPrice);
 		params.put("maxPrice", maxPrice);
 		params.put("keys", keys);
-		params.put("page", page);
-		params.put("rows", rows);
 		Gson gson = new Gson();
 		try {
 			if (brands_id != null)
@@ -935,6 +941,7 @@ public class API {
 		params.put("customer_id", customer_id);
 		params.put("page", page);
 		params.put("rows", rows);
+		System.out.println(params.toString());
 		new HttpRequest(context, callback).post(Config.getmes, params);
 	}
 
@@ -1004,6 +1011,14 @@ public class API {
 		new HttpRequest(context, callback).post(Config.URL_REPAIRPAY, params);
 	}
 
+	public static void getGoodImgUrl(Context context, int id,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("goodId", id);
+		new HttpRequest(context, callback).post(Config.URL_GETGOODIMGURL,
+				params);
+	}
+
 	public static void uploadPic(Context context, File img, int termianlId,
 			HttpCallback callback) {
 		RequestParams params = new RequestParams();
@@ -1014,5 +1029,34 @@ public class API {
 		}
 		new HttpRequest(context, callback).post(TERMINAL_UPLOAD_IMAGE
 				+ termianlId, params);
+	}
+
+	public static void uploadImg(Context context, File file,
+			HttpCallback callback) {
+		RequestParams params = new RequestParams();
+		try {
+			params.put("file", file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		new HttpRequest(context, callback).post(MERCHANT_UPLOAD_IMAGE, params);
+	}
+
+	public static void getApplyBankList(Context context, int page,
+			String keyword, int pageSize, String terminalId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("page", page);
+		params.put("keyword", keyword);
+		params.put("pageSize", pageSize);
+		params.put("terminalId", terminalId);
+		new HttpRequest(context, callback).post(TERMINAL_BANK, params);
+	}
+	public static void registerBaidu(Context context, int customerId,
+			String deviceCode, HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", customerId);
+		params.put("deviceCode", deviceCode);
+		new HttpRequest(context, callback).post(Config.URL_REGISTERBAIDU, params);
 	}
 }

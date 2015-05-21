@@ -29,6 +29,26 @@ public class TerminalApply {
 	private String createdAt;
 
 	private int status;
+	
+	private int appId;
+	
+	private String openstatus;
+	
+	public int getAppId() {
+		return appId;
+	}
+
+	public void setAppId(int appId) {
+		this.appId = appId;
+	}
+
+	public String getOpenstatus() {
+		return openstatus;
+	}
+
+	public void setOpenstatus(String openstatus) {
+		this.openstatus = openstatus;
+	}
 
 	public int getId() {
 		return id;

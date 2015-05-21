@@ -31,6 +31,7 @@ import android.widget.TextView;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.activity.MyMessage;
@@ -44,7 +45,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Created by Leo on 2015/2/26.
  */
-public class AfterSaleListActivity extends Activity implements XListView.IXListViewListener {
+public class AfterSaleListActivity extends BaseActivity implements XListView.IXListViewListener {
 
 	private int mRecordType;
 
@@ -105,6 +106,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 					mListView.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
+		
 				page++;
 				total = data.getTotal();
 				mAdapter.notifyDataSetChanged();
@@ -224,7 +226,7 @@ public class AfterSaleListActivity extends Activity implements XListView.IXListV
 		if (mEntities.size() >= total) {
 			mListView.setPullLoadEnable(false);
 			mListView.stopLoadMore();
-			CommonUtil.toastShort(this, "no more data");
+			CommonUtil.toastShort(this, "没有更多数据");
 		} else {
 			loadData();
 		}

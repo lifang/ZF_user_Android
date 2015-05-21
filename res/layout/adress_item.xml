@@ -9,15 +9,26 @@
         android:layout_width="fill_parent"
         android:layout_height="96dp"
         android:background="@drawable/bg_item" >
-		<CheckBox
-                    android:id="@+id/item_cb"
-                    style="@style/MyCheckBox"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                   	android:layout_marginLeft="7dp"
-                 
-                   	 android:layout_gravity="center_vertical"
-                    android:checked="false" />
+
+        <LinearLayout
+            android:id="@+id/ll_isshow"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="7dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <CheckBox
+                android:id="@+id/item_cb"
+                style="@style/MyCheckBox"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="7dp"
+                android:checked="false" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -65,6 +76,18 @@
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/morenTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:singleLine="true"
+            android:text="{默认地址}"
+            android:textColor="@color/bgtitle"
+            android:textSize="13sp" />
 
         <ImageView
             android:layout_width="wrap_content"

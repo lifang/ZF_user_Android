@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.City;
@@ -26,7 +27,7 @@ import com.example.zf_android.trade.widget.WheelView;
 /**
  * Created by Leo on 2015/2/11.
  */
-public class CityProvinceActivity extends Activity {
+public class CityProvinceActivity extends BaseActivity {
 
     private List<Province> mProvinces;
     private static final int OFFSET = 5;

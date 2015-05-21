@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.activity.MyMessage;
 import com.example.zf_android.trade.common.CommonUtil;
@@ -52,7 +53,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Created by Leo on 2015/2/28.
  */
-public class AfterSaleDetailActivity extends Activity {
+public class AfterSaleDetailActivity extends BaseActivity {
 
 	public static final String MATERIAL_URL = "material_url";
 
@@ -86,7 +87,6 @@ public class AfterSaleDetailActivity extends Activity {
 		setContentView(R.layout.activity_after_sale_detail);
 		String[] titles = getResources().getStringArray(R.array.title_after_sale_detail);
 		new TitleMenuUtil(this, titles[mRecordType]).show();
-		Toast.makeText(getApplicationContext(), "111", 1000).show();
 		initViews();
 		initButtonListeners();
 		getData();
@@ -401,9 +401,10 @@ public class AfterSaleDetailActivity extends Activity {
 					AfterSaleDetailLease leaseDetail = (AfterSaleDetailLease) data;
 					LinkedHashMap<String, String> leasePairs = new LinkedHashMap<String, String>();
 					String[] leaseKeys = getResources().getStringArray(R.array.after_sale_lease);
-					if (!StringUtil.isNull(leaseDetail.getLeasePrice()+"")) {
+					if (!StringUtil.isNull(leaseDetail.getReturn_price()+"")) {
 						leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
-								String.format("%.2f",Integer.valueOf(leaseDetail.getLeasePrice())/100f));
+								String.format("%.2f",Integer.valueOf(leaseDetail.getReturn_price())/100f));
+						
 					}else {
 						leasePairs.put(leaseKeys[0], "");
 					}

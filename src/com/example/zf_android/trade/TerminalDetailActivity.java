@@ -1,45 +1,6 @@
 package com.example.zf_android.trade;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.examlpe.zf_android.util.TitleMenuUtil;
-import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
-import com.example.zf_android.trade.common.CommonUtil;
-import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.common.StringUtil;
-import com.example.zf_android.trade.entity.TerminalApply;
-import com.example.zf_android.trade.entity.TerminalComment;
-import com.example.zf_android.trade.entity.TerminalDetail;
-import com.example.zf_android.trade.entity.TerminalItem;
-import com.example.zf_android.trade.entity.TerminalOpen;
-import com.example.zf_android.trade.entity.TerminalRate;
-import com.example.zf_android.video.VideoActivity;
-import com.google.gson.reflect.TypeToken;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
+import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
@@ -49,10 +10,48 @@ import static com.example.zf_android.trade.Constants.TerminalStatus.PART_OPENED;
 import static com.example.zf_android.trade.Constants.TerminalStatus.STOPPED;
 import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
+import com.example.zf_android.R;
+import com.example.zf_android.trade.common.CommonUtil;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.entity.TerminalApply;
+import com.example.zf_android.trade.entity.TerminalComment;
+import com.example.zf_android.trade.entity.TerminalDetail;
+import com.example.zf_android.trade.entity.TerminalOpen;
+import com.example.zf_android.trade.entity.TerminalRate;
+import com.example.zf_android.video.VideoActivity;
+import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 /**
  * Created by Leo on 2015/3/4.
  */
-public class TerminalDetailActivity extends Activity {
+public class TerminalDetailActivity extends BaseActivity {
 
 	private int mTerminalStatus;
 	private String mTerminalNumber;
@@ -72,15 +71,20 @@ public class TerminalDetailActivity extends Activity {
 	private View.OnClickListener mPosListener;
 	private View.OnClickListener mVideoListener;
 
+	private int isVideo, status;
+	private Boolean appidBoolean, videoBoolean;
+	DisplayImageOptions options = MyApplication.getDisplayOption();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		isVideo = getIntent().getIntExtra(HAVE_VIDEO, 0);
 		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
 		mTerminalNumber = getIntent().getStringExtra(TERMINAL_NUMBER);
 		mTerminalStatus = getIntent().getIntExtra(TERMINAL_STATUS, 0);
 		setContentView(R.layout.activity_terminal_detail);
-		new TitleMenuUtil(this, getString(R.string.title_terminal_detail)).show();
+		new TitleMenuUtil(this, getString(R.string.title_terminal_detail))
+				.show();
 
 		initViews();
 		initBtnListeners();
@@ -107,14 +111,13 @@ public class TerminalDetailActivity extends Activity {
 
 							@Override
 							public void onSuccess(Object data) {
-								// TODO Auto-generated method stub
-								CommonUtil.toastShort(TerminalDetailActivity.this,
+								CommonUtil.toastShort(
+										TerminalDetailActivity.this,
 										data.toString());
 							}
 
 							@Override
 							public TypeToken getTypeToken() {
-								// TODO Auto-generated method stub
 								return null;
 							}
 						});
@@ -123,7 +126,8 @@ public class TerminalDetailActivity extends Activity {
 		mOpenListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Intent intent = new Intent(TerminalDetailActivity.this, ApplyDetailActivity.class);
+				Intent intent = new Intent(TerminalDetailActivity.this,
+						ApplyDetailActivity.class);
 				intent.putExtra(TERMINAL_ID, mTerminalId);
 				intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
 				intent.putExtra(TERMINAL_STATUS, mTerminalStatus);
@@ -133,49 +137,73 @@ public class TerminalDetailActivity extends Activity {
 		mPosListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				API.findPosPassword(TerminalDetailActivity.this, mTerminalId, new HttpCallback(TerminalDetailActivity.this) {
-					@Override
-					public void onSuccess(Object data) {
-						final String password = data.toString();
-						final AlertDialog.Builder builder = new AlertDialog.Builder(TerminalDetailActivity.this);
-						builder.setMessage(password);
-						builder.setPositiveButton(getString(R.string.button_copy), new DialogInterface.OnClickListener() {
+				API.findPosPassword(TerminalDetailActivity.this, mTerminalId,
+						new HttpCallback(TerminalDetailActivity.this) {
 							@Override
-							public void onClick(DialogInterface dialogInterface, int i) {
-								CommonUtil.copy(TerminalDetailActivity.this, password);
-								dialogInterface.dismiss();
-								CommonUtil.toastShort(TerminalDetailActivity.this, getString(R.string.toast_copy_password));
+							public void onSuccess(Object data) {
+								final String password = data.toString();
+								final AlertDialog.Builder builder = new AlertDialog.Builder(
+										TerminalDetailActivity.this);
+								builder.setMessage(password);
+								builder.setPositiveButton(
+										getString(R.string.button_copy),
+										new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(
+													DialogInterface dialogInterface,
+													int i) {
+												CommonUtil
+														.copy(TerminalDetailActivity.this,
+																password);
+												dialogInterface.dismiss();
+												CommonUtil
+														.toastShort(
+																TerminalDetailActivity.this,
+																getString(R.string.toast_copy_password));
+											}
+										});
+								builder.setNegativeButton(
+										getString(R.string.button_cancel),
+										new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(
+													DialogInterface dialogInterface,
+													int i) {
+												dialogInterface.dismiss();
+											}
+										});
+								builder.show();
 							}
-						});
-						builder.setNegativeButton(getString(R.string.button_cancel), new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialogInterface, int i) {
-								dialogInterface.dismiss();
-							}
-						});
-						builder.show();
-					}
 
-					@Override
-					public TypeToken getTypeToken() {
-						return null;
-					}
-				});
+							@Override
+							public TypeToken getTypeToken() {
+								return null;
+							}
+						});
 			}
 		};
 		mVideoListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				//添加视频审核
-				Intent intent = new Intent(TerminalDetailActivity.this, VideoActivity.class);
-				intent.putExtra(TERMINAL_ID, mTerminalId);
-				startActivity(intent);
+				if (status == UNOPENED && !appidBoolean) {
+
+					CommonUtil
+							.toastShort(TerminalDetailActivity.this, "请先申请开通");
+
+				} else {
+					// 添加视频审核
+					Intent intent = new Intent(TerminalDetailActivity.this,
+							VideoActivity.class);
+					intent.putExtra(TERMINAL_ID, mTerminalId);
+					startActivity(intent);
+				}
 			}
 		};
 	}
 
 	private void loadData() {
-		API.getTerminalDetail(this, mTerminalId, MyApplication.getInstance().getCustomerId(), new HttpCallback<TerminalDetail>(this) {
+		API.getTerminalDetail(this, mTerminalId, MyApplication.getInstance()
+				.getCustomerId(), new HttpCallback<TerminalDetail>(this) {
 			@Override
 			public void onSuccess(TerminalDetail data) {
 				TerminalApply apply = data.getApplyDetails();
@@ -204,55 +232,169 @@ public class TerminalDetailActivity extends Activity {
 	}
 
 	private void setStatusAndButtons(TerminalApply apply) {
-		int status = null == apply ? mTerminalStatus : apply.getStatus();
-		String[] terminalStatus = getResources().getStringArray(R.array.terminal_status);
+		status = null == apply ? mTerminalStatus : apply.getStatus();
+		String[] terminalStatus = getResources().getStringArray(
+				R.array.terminal_status);
 		mStatus.setText(terminalStatus[status]);
+
+		appidBoolean = !"".equals(apply.getAppId()) && apply.getAppId() != 0;
+		videoBoolean = 1 == isVideo;
+
 		switch (status) {
-			case OPENED:
-				mBtnRightTop.setVisibility(View.VISIBLE);
-				mBtnRightBottom.setVisibility(View.VISIBLE);
+		case OPENED:
+			mBtnRightBottom.setVisibility(View.VISIBLE);
+			mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
+			mBtnRightBottom.setOnClickListener(mPosListener);
+			if (appidBoolean) {
+				if (videoBoolean) {
 
-				mBtnRightTop.setText(getString(R.string.terminal_button_video));
-				mBtnRightTop.setOnClickListener(mVideoListener);
-				mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
-				mBtnRightBottom.setOnClickListener(mPosListener);
-				break;
-			case PART_OPENED:
+					mBtnLeftBottom.setVisibility(View.INVISIBLE);
+					mBtnLeftTop.setVisibility(View.VISIBLE);
+					mBtnLeftTop
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnLeftTop.setOnClickListener(mSyncListener);
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightTop.setOnClickListener(mVideoListener);
+
+				} else {
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnRightTop.setOnClickListener(mSyncListener);
+				}
+
+			} else {
+				if (videoBoolean) {
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightTop.setOnClickListener(mVideoListener);
+
+				}
+			}
+			break;
+		case PART_OPENED:
+			if (appidBoolean) {
+
 				mBtnLeftTop.setVisibility(View.VISIBLE);
-				mBtnLeftBottom.setVisibility(View.VISIBLE);
-				mBtnRightTop.setVisibility(View.VISIBLE);
-				mBtnRightBottom.setVisibility(View.VISIBLE);
-
 				mBtnLeftTop.setText(getString(R.string.terminal_button_sync));
 				mBtnLeftTop.setOnClickListener(mSyncListener);
-				mBtnLeftBottom.setText(getString(R.string.terminal_button_reopen));
-				mBtnLeftBottom.setOnClickListener(mOpenListener);
-				mBtnRightTop.setText(getString(R.string.terminal_button_video));
-				mBtnRightTop.setOnClickListener(mVideoListener);
-				mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
-				mBtnRightBottom.setOnClickListener(mPosListener);
-				break;
-			case UNOPENED:
-				mBtnLeftTop.setVisibility(View.VISIBLE);
+				if (videoBoolean) {
+
+					mBtnLeftBottom.setVisibility(View.VISIBLE);
+					mBtnLeftBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnLeftBottom.setOnClickListener(mVideoListener);
+				}
+
 				mBtnLeftBottom.setVisibility(View.INVISIBLE);
-				mBtnRightTop.setVisibility(View.VISIBLE);
-				mBtnRightBottom.setVisibility(View.VISIBLE);
+			} else {
+				if (videoBoolean) {
+					mBtnLeftTop.setVisibility(View.VISIBLE);
+					mBtnLeftTop
+							.setText(getString(R.string.terminal_button_video));
+					mBtnLeftTop.setOnClickListener(mVideoListener);
 
-				mBtnLeftTop.setText(getString(R.string.terminal_button_sync));
-				mBtnLeftTop.setOnClickListener(mSyncListener);
+					mBtnLeftBottom.setVisibility(View.INVISIBLE);
+				}
+			}
+			mBtnRightTop.setVisibility(View.VISIBLE);
+			mBtnRightTop.setText(getString(R.string.terminal_button_reopen));
+			mBtnRightTop.setOnClickListener(mOpenListener);
+			mBtnRightBottom.setVisibility(View.VISIBLE);
+			mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
+			mBtnRightBottom.setOnClickListener(mPosListener);
+			break;
+		case UNOPENED:
+			if (appidBoolean) {
+				if (videoBoolean) {
+
+					mBtnLeftBottom.setVisibility(View.INVISIBLE);
+					mBtnLeftTop.setVisibility(View.VISIBLE);
+					mBtnLeftTop
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnLeftTop.setOnClickListener(mSyncListener);
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightTop.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightBottom.setOnClickListener(mVideoListener);
+				} else {
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnRightTop.setOnClickListener(mSyncListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightBottom.setOnClickListener(mOpenListener);
+				}
+			} else {
+
+				mBtnRightTop.setVisibility(View.VISIBLE);
 				mBtnRightTop.setText(getString(R.string.terminal_button_open));
 				mBtnRightTop.setOnClickListener(mOpenListener);
-				mBtnRightBottom.setText(getString(R.string.terminal_button_video));
-				mBtnRightBottom.setOnClickListener(mVideoListener);
-				break;
-			case CANCELED:
-				break;
-			case STOPPED:
-				mBtnRightTop.setVisibility(View.VISIBLE);
 
-				mBtnRightTop.setText(getString(R.string.terminal_button_sync));
-				mBtnRightTop.setOnClickListener(mSyncListener);
-				break;
+				if (videoBoolean) {
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightBottom.setOnClickListener(mVideoListener);
+				} else {
+
+					mBtnRightBottom.setVisibility(View.INVISIBLE);
+				}
+			}
+
+			break;
+		case CANCELED:
+			if (appidBoolean) {
+				if (videoBoolean) {
+					mBtnLeftBottom.setVisibility(View.INVISIBLE);
+					mBtnLeftTop.setVisibility(View.VISIBLE);
+					mBtnLeftTop
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnLeftTop.setOnClickListener(mSyncListener);
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightTop.setOnClickListener(mVideoListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightBottom.setOnClickListener(mOpenListener);
+				} else {
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnRightTop.setOnClickListener(mSyncListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightBottom.setOnClickListener(mOpenListener);
+				}
+			} else {
+				if (videoBoolean) {
+
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightBottom.setOnClickListener(mVideoListener);
+				}
+				mBtnRightTop.setVisibility(View.VISIBLE);
+				mBtnRightTop
+						.setText(getString(R.string.terminal_button_reopen));
+				mBtnRightTop.setOnClickListener(mOpenListener);
+			}
+			break;
+		case STOPPED:
+
+			break;
 		}
 	}
 
@@ -260,10 +402,12 @@ public class TerminalDetailActivity extends Activity {
 		if (null == apply) {
 			LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
 			pairs.put(getString(R.string.terminal_no_detail), "");
-			return renderCategoryTemplate(R.string.terminal_category_apply, pairs);
+			return renderCategoryTemplate(R.string.terminal_category_apply,
+					pairs);
 		}
 		LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
-		String[] keys = getResources().getStringArray(R.array.terminal_apply_keys);
+		String[] keys = getResources().getStringArray(
+				R.array.terminal_apply_keys);
 		pairs.put(keys[0], apply.getTerminalNum());
 		pairs.put(keys[1], apply.getBrandName());
 		pairs.put(keys[2], apply.getModelNumber());
@@ -276,24 +420,34 @@ public class TerminalDetailActivity extends Activity {
 	}
 
 	private void addRatesTable(LinearLayout category, List<TerminalRate> rates) {
-		if (null == category || null == rates || rates.size() <= 0) return;
-		LinearLayout header = (LinearLayout) mInflater.inflate(R.layout.terminal_rates_header, null);
+		if (null == category || null == rates || rates.size() <= 0)
+			return;
+		LinearLayout header = (LinearLayout) mInflater.inflate(
+				R.layout.terminal_rates_header, null);
 		category.addView(header);
 		for (TerminalRate rate : rates) {
-			LinearLayout column = (LinearLayout) mInflater.inflate(R.layout.terminal_rates_column, null);
-			TextView typeTv = (TextView) column.findViewById(R.id.terminal_column_type);
-			TextView rateTv = (TextView) column.findViewById(R.id.terminal_column_rate);
-			TextView statusTv = (TextView) column.findViewById(R.id.terminal_column_status);
-			String[] status = getResources().getStringArray(R.array.terminal_status);
+			LinearLayout column = (LinearLayout) mInflater.inflate(
+					R.layout.terminal_rates_column, null);
+			TextView typeTv = (TextView) column
+					.findViewById(R.id.terminal_column_type);
+			TextView rateTv = (TextView) column
+					.findViewById(R.id.terminal_column_rate);
+			TextView statusTv = (TextView) column
+					.findViewById(R.id.terminal_column_status);
+			String[] status = getResources().getStringArray(
+					R.array.terminal_status);
 			typeTv.setText(rate.getType());
-			
-			DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+
+			DecimalFormat df = (DecimalFormat) NumberFormat.getInstance();
 			df.applyPattern("0.0");
-			
-			if(rate.getType().equals("消费/消费撤销")){
-				rateTv.setText(df.format((rate.getTerminalRate()+rate.getServiceRate())/10) + getString(R.string.notation_percent));
-			}else{
-				rateTv.setText(df.format(rate.getTerminalRate()/10) + getString(R.string.notation_percent));
+
+			if (rate.getType().equals("消费/消费撤销")) {
+				rateTv.setText(df.format((rate.getTerminalRate() + rate
+						.getServiceRate()) / 10)
+						+ getString(R.string.notation_percent));
+			} else {
+				rateTv.setText(df.format(rate.getTerminalRate() / 10)
+						+ getString(R.string.notation_percent));
 			}
 			statusTv.setText(status[rate.getStatus()]);
 			category.addView(column);
@@ -311,7 +465,8 @@ public class TerminalDetailActivity extends Activity {
 		final List<String> imageUrls = new ArrayList<String>();
 		final List<String> imageNames = new ArrayList<String>();
 		for (TerminalOpen openDetail : openDetails) {
-			if (null == openDetail) continue;
+			if (null == openDetail)
+				continue;
 			if (openDetail.getTypes() == 1) {
 				pairs.put(openDetail.getKey(), openDetail.getValue());
 			} else {
@@ -320,17 +475,54 @@ public class TerminalDetailActivity extends Activity {
 				imageUrls.add(openDetail.getValue());
 			}
 		}
-		LinearLayout category = renderCategoryTemplate(R.string.terminal_category_open, pairs);
+		LinearLayout category = renderCategoryTemplate(
+				R.string.terminal_category_open, pairs);
 
 		View.OnClickListener onViewPhotoListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				int position = (Integer) view.getTag();
-				Intent intent = new Intent(TerminalDetailActivity.this, ShowWebImageActivity.class);
-				intent.putExtra(IMAGE_NAMES, StringUtil.join(imageNames, ","));
-				intent.putExtra(IMAGE_URLS, StringUtil.join(imageUrls, ","));
-				intent.putExtra(POSITION, position);
-				startActivity(intent);
+				final int position = (Integer) view.getTag();
+				// Intent intent = new Intent(TerminalDetailActivity.this,
+				// ShowWebImageActivity.class);
+				// intent.putExtra(IMAGE_NAMES, StringUtil.join(imageNames,
+				// ","));
+				// intent.putExtra(IMAGE_URLS, StringUtil.join(imageUrls, ","));
+				// intent.putExtra(POSITION, position);
+				// startActivity(intent);
+
+				AlertDialog.Builder builder = new AlertDialog.Builder(
+						TerminalDetailActivity.this);
+				final String[] items = getResources().getStringArray(
+						R.array.terminal_detail_view);
+				builder.setItems(items, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						switch (which) {
+						case 0: {
+
+							AlertDialog.Builder build = new AlertDialog.Builder(
+									TerminalDetailActivity.this);
+							LayoutInflater factory = LayoutInflater
+									.from(TerminalDetailActivity.this);
+							final View textEntryView = factory.inflate(
+									R.layout.show_view, null);
+							build.setView(textEntryView);
+							final ImageView view = (ImageView) textEntryView
+									.findViewById(R.id.imag);
+							System.out.println((Integer) view.getTag() + "");
+							// ImageCacheUtil.IMAGE_CACHE.get(
+							// imageUrls.get(position), view);
+							ImageLoader.getInstance().displayImage(
+									imageUrls.get(position), view, options);
+							build.create().show();
+							break;
+						}
+
+						}
+					}
+				});
+				builder.show();
+
 			}
 		};
 
@@ -338,19 +530,25 @@ public class TerminalDetailActivity extends Activity {
 		for (int i = 0; i < photoOpens.size(); i++) {
 			TerminalOpen photoOpen = photoOpens.get(i);
 			if (i % 2 == 0) {
-				column = (LinearLayout) mInflater.inflate(R.layout.terminal_open_column, null);
-				TextView key = (TextView) column.findViewById(R.id.terminal_open_key_left);
-				ImageButton icon = (ImageButton) column.findViewById(R.id.terminal_open_icon_left);
+				column = (LinearLayout) mInflater.inflate(
+						R.layout.terminal_open_column, null);
+				TextView key = (TextView) column
+						.findViewById(R.id.terminal_open_key_left);
+				ImageButton icon = (ImageButton) column
+						.findViewById(R.id.terminal_open_icon_left);
 				icon.setTag(i);
 				icon.setOnClickListener(onViewPhotoListener);
 				key.setText(photoOpen.getKey());
 				if (i == photoOpens.size() - 1) {
 					category.addView(column);
-					column.findViewById(R.id.terminal_open_right).setVisibility(View.INVISIBLE);
+					column.findViewById(R.id.terminal_open_right)
+							.setVisibility(View.INVISIBLE);
 				}
 			} else {
-				TextView key = (TextView) column.findViewById(R.id.terminal_open_key_right);
-				ImageButton icon = (ImageButton) column.findViewById(R.id.terminal_open_icon_right);
+				TextView key = (TextView) column
+						.findViewById(R.id.terminal_open_key_right);
+				ImageButton icon = (ImageButton) column
+						.findViewById(R.id.terminal_open_icon_right);
 				icon.setTag(i);
 				icon.setOnClickListener(onViewPhotoListener);
 				key.setText(photoOpen.getKey());
@@ -362,11 +560,16 @@ public class TerminalDetailActivity extends Activity {
 	private void addComments(List<TerminalComment> comments) {
 		if (null != comments && comments.size() > 0) {
 			for (TerminalComment comment : comments) {
-				if (null == comment) continue;
-				LinearLayout commentLayout = (LinearLayout) mInflater.inflate(R.layout.after_sale_detail_comment, null);
-				TextView content = (TextView) commentLayout.findViewById(R.id.comment_content);
-				TextView person = (TextView) commentLayout.findViewById(R.id.comment_person);
-				TextView time = (TextView) commentLayout.findViewById(R.id.comment_time);
+				if (null == comment)
+					continue;
+				LinearLayout commentLayout = (LinearLayout) mInflater.inflate(
+						R.layout.after_sale_detail_comment, null);
+				TextView content = (TextView) commentLayout
+						.findViewById(R.id.comment_content);
+				TextView person = (TextView) commentLayout
+						.findViewById(R.id.comment_person);
+				TextView time = (TextView) commentLayout
+						.findViewById(R.id.comment_time);
 				content.setText(comment.getContent());
 				person.setText(comment.getName());
 				time.setText(comment.getCreateAt());
@@ -393,13 +596,18 @@ public class TerminalDetailActivity extends Activity {
 		return tv;
 	}
 
-	private LinearLayout renderCategoryTemplate(int titleRes, LinkedHashMap<String, String> pairs) {
-		LinearLayout terminalCategory = (LinearLayout) mInflater.inflate(R.layout.after_sale_detail_category, null);
+	private LinearLayout renderCategoryTemplate(int titleRes,
+			LinkedHashMap<String, String> pairs) {
+		LinearLayout terminalCategory = (LinearLayout) mInflater.inflate(
+				R.layout.after_sale_detail_category, null);
 		mCategoryContainer.addView(terminalCategory);
 
-		TextView title = (TextView) terminalCategory.findViewById(R.id.category_title);
-		LinearLayout keyContainer = (LinearLayout) terminalCategory.findViewById(R.id.category_key_container);
-		LinearLayout valueContainer = (LinearLayout) terminalCategory.findViewById(R.id.category_value_container);
+		TextView title = (TextView) terminalCategory
+				.findViewById(R.id.category_title);
+		LinearLayout keyContainer = (LinearLayout) terminalCategory
+				.findViewById(R.id.category_key_container);
+		LinearLayout valueContainer = (LinearLayout) terminalCategory
+				.findViewById(R.id.category_value_container);
 
 		title.setText(getString(titleRes));
 		for (Map.Entry<String, String> pair : pairs.entrySet()) {

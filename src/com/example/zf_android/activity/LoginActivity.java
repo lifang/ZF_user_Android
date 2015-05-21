@@ -7,6 +7,7 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
@@ -31,7 +33,7 @@ import com.google.gson.reflect.TypeToken;
  * 
  *         comdo
  */
-public class LoginActivity extends Activity implements OnClickListener {
+public class LoginActivity extends BaseActivity implements OnClickListener {
 	private TextView login_text_forget;
 	private EditText login_edit_name, login_edit_pass;
 	private LinearLayout login_linear_deletename, login_linear_deletepass,zhuche_ll,
@@ -167,10 +169,12 @@ public class LoginActivity extends Activity implements OnClickListener {
 				editor.putString("name", data.getUsername());
 				editor.putInt("id", data.getId());
 				editor.commit();
+				MyApplication.getInstance().setUsername(data.getUsername());
 				MyApplication.getInstance().setCustomerId(data.getId());
-				Intent i =new Intent(getApplicationContext(), Main.class);
-				startActivity(i);
-				finish();
+				
+				// 百度推送
+				registerBaidu();
+				
 				//MyApplication.getInstance().exit();
 			}
 
@@ -182,6 +186,28 @@ public class LoginActivity extends Activity implements OnClickListener {
 		});
 
 	}
+	protected void registerBaidu() {
+
+		API.registerBaidu(LoginActivity.this,MyApplication.getInstance().getCustomerId(),"0"+Config.channelId,
+				new HttpCallback(LoginActivity.this) {
+
+			@Override
+			public void onSuccess(Object data) {
+				Log.e("", "registerBaiduSucess");
+				Intent i =new Intent(getApplicationContext(), Main.class);
+				startActivity(i);
+				finish();
+			}
+
+			@Override
+			public TypeToken getTypeToken() {
+				return null;
+			}
+		});
+
+	
+	}
+
 	private boolean check() {
 		usename=StringUtil.replaceBlank(login_edit_name.getText().toString());
 		if(usename.length()==0){

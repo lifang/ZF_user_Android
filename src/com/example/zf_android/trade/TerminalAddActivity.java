@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -23,7 +24,7 @@ import static com.example.zf_android.trade.Constants.TerminalIntent.CHANNEL_NAME
 /**
  * Created by Leo on 2015/3/4.
  */
-public class TerminalAddActivity extends Activity implements View.OnClickListener {
+public class TerminalAddActivity extends BaseActivity implements View.OnClickListener {
 
 	private View mChooseChannel;
 	private TextView mPayChannel;
@@ -62,7 +63,7 @@ public class TerminalAddActivity extends Activity implements View.OnClickListene
 	};
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		updateUIWithValidation();
 	}

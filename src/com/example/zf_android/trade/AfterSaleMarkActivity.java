@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -20,7 +21,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Created by Leo on 2015/2/28.
  */
-public class AfterSaleMarkActivity extends Activity {
+public class AfterSaleMarkActivity extends BaseActivity {
 
     private int mRecordType;
     private int mRecordId;
@@ -74,7 +75,7 @@ public class AfterSaleMarkActivity extends Activity {
     }
 
     @Override
-    protected void onResume() {
+	public void onResume() {
         super.onResume();
         updateUIWithValidation();
     }

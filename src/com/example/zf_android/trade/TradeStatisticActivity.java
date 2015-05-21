@@ -14,12 +14,13 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeStatistic;
 import com.google.gson.reflect.TypeToken;
 
-public class TradeStatisticActivity extends Activity {
+public class TradeStatisticActivity extends BaseActivity {
 
 	private int mTradeType;
 	private String mStartDate;

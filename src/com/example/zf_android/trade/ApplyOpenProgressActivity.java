@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
 import com.example.zf_android.entity.ApplyOpenProgress;
@@ -31,7 +32,7 @@ import java.util.List;
 /**
  * Created by Leo on 2015/3/13.
  */
-public class ApplyOpenProgressActivity extends Activity {
+public class ApplyOpenProgressActivity extends BaseActivity {
 
 	private LayoutInflater mInflater;
 	private EditText mPhone;
@@ -75,28 +76,28 @@ public class ApplyOpenProgressActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				API.queryApplyProgress(ApplyOpenProgressActivity.this,
-						MyApplication.getInstance().getCustomerId(), mPhone.getText().toString(),
+						MyApplication.getInstance().getCustomerId(), mPhone.getText().toString().trim(),
 						new HttpCallback<List<ApplyOpenProgress>>(ApplyOpenProgressActivity.this) {
-							@Override
-							public void onSuccess(List<ApplyOpenProgress> data) {
-								mEntities.clear();
-								if (null != data && data.size() > 0) {
-									mTips.setVisibility(View.GONE);
-									mContent.setVisibility(View.VISIBLE);
-									mEntities.addAll(data);
-									mAdapter.notifyDataSetChanged();
-								} else {
-									mTips.setVisibility(View.VISIBLE);
-									mContent.setVisibility(View.GONE);
-								}
-							}
+					@Override
+					public void onSuccess(List<ApplyOpenProgress> data) {
+						mEntities.clear();
+						if (null != data && data.size() > 0) {
+							mTips.setVisibility(View.GONE);
+							mContent.setVisibility(View.VISIBLE);
+							mEntities.addAll(data);
+							mAdapter.notifyDataSetChanged();
+						} else {
+							mTips.setVisibility(View.VISIBLE);
+							mContent.setVisibility(View.GONE);
+						}
+					}
 
-							@Override
-							public TypeToken<List<ApplyOpenProgress>> getTypeToken() {
-								return new TypeToken<List<ApplyOpenProgress>>() {
-								};
-							}
-						});
+					@Override
+					public TypeToken<List<ApplyOpenProgress>> getTypeToken() {
+						return new TypeToken<List<ApplyOpenProgress>>() {
+						};
+					}
+				});
 			}
 		});
 
@@ -170,14 +171,16 @@ public class ApplyOpenProgressActivity extends Activity {
 			terminalValue.setText(item.getTerminalNumber());
 			holder.right.addView(terminalValue);
 
-			for (ApplyOpenProgress.OpenStatus openStatus : item.getOpenStatus()) {
-				TextView key = createKeyText();
-				key.setText(openStatus.tradeValue);
-				holder.left.addView(key);
+			if (item.getOpenStatus() != null) {
+				for (ApplyOpenProgress.OpenStatus openStatus : item.getOpenStatus()) {
+					TextView key = createKeyText();
+					key.setText(openStatus.tradeValue);
+					holder.left.addView(key);
 
-				TextView value = createValueText();
-				value.setText(status[openStatus.status]);
-				holder.right.addView(value);
+					TextView value = createValueText();
+					value.setText(status[openStatus.status]);
+					holder.right.addView(value);
+				}
 			}
 			return convertView;
 		}

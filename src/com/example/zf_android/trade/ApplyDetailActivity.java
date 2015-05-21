@@ -11,13 +11,11 @@ import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BANK;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BILLING;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL_ID;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
 import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_TITLE;
 import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
 import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
@@ -28,9 +26,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -52,19 +47,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.entity.BankEntity.Bank;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.common.RegText;
 import com.example.zf_android.trade.common.StringUtil;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
-import com.example.zf_android.trade.entity.ApplyBank;
 import com.example.zf_android.trade.entity.ApplyChannel;
-import com.example.zf_android.trade.entity.ApplyChannel.Billing;
 import com.example.zf_android.trade.entity.ApplyChooseItem;
 import com.example.zf_android.trade.entity.ApplyCustomerDetail;
 import com.example.zf_android.trade.entity.ApplyDetail;
@@ -76,6 +73,9 @@ import com.example.zf_android.trade.entity.OpeningInfos;
 import com.example.zf_android.trade.entity.Province;
 import com.example.zf_android.trade.widget.MyTabWidget;
 import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Leo on 2015/3/5.
@@ -97,7 +97,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private int mTerminalId;
 	private String mTerminalNumber;
 	private int mTerminalStatus;
-
+	private int mPayChannelID = 0;
+	private String bankCode;
 	private Merchant mMerchant;
 
 	private LayoutInflater mInflater;
@@ -125,19 +126,27 @@ public class ApplyDetailActivity extends FragmentActivity {
 	private int mMerchantGender = 3;
 	private ApplyChannel mChosenChannel;
 	private ApplyChannel.Billing mChosenBilling;
-	private ApplyBank mChosenBank;
+	private Bank mChosenBank;
 	private String mBankKey;
 	private String mUploadKey;
 
 	private String photoPath;
 	private TextView uploadingTextView;
-
+	private ImageButton uploadingImageButton;
+	private View clickView;
+	private ImageView rightview;
 	private ArrayList<ApplyChooseItem> mChannelItems = new ArrayList<ApplyChooseItem>();
 
 	private List<String> mImageUrls = new ArrayList<String>();
 	private List<String> mImageNames = new ArrayList<String>();
 
 	private LinkedHashMap<Integer, ApplyMaterial> mMaterials = new LinkedHashMap<Integer, ApplyMaterial>();
+
+	private Boolean isBankName = false;
+	private Boolean isShopName = false;
+	private String shopName;
+
+	DisplayImageOptions options = MyApplication.getDisplayOption();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -176,7 +185,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 				Map<String, Object> params = new HashMap<String, Object>();
 				params.put("terminalId", mTerminalId);
 				params.put("status", mTerminalStatus == 2 ? 2 : 1);
-				params.put("applyCustomerId", mMerchant.getCustomerId());
+				params.put("applyCustomerId", MyApplication.getNewUser()
+						.getId());
 				params.put("publicPrivateStatus", mApplyType);
 
 				params.put("merchantId", mMerchantId);
@@ -184,16 +194,34 @@ public class ApplyDetailActivity extends FragmentActivity {
 				params.put("merchantName", getItemValue(mMerchantKeys[2]));
 				params.put("sex", mMerchantGender);
 				params.put("birthday", getItemValue(mMerchantKeys[4]));
+				if (!RegText.isIdentityCard(getItemValue(mMerchantKeys[5]))) {
+					CommonUtil
+							.toastShort(ApplyDetailActivity.this, "身份证号格式不正确");
+					return;
+				}
 				params.put("cardId", getItemValue(mMerchantKeys[5]));
+				if (!RegText.isMobileNO(getItemValue(mMerchantKeys[6]))) {
+					CommonUtil
+							.toastShort(ApplyDetailActivity.this, "手机号码格式不正确");
+					return;
+				}
 				params.put("phone", getItemValue(mMerchantKeys[6]));
+				if (!RegText.isEmail(getItemValue(mMerchantKeys[7]))) {
+					CommonUtil.toastShort(ApplyDetailActivity.this, "邮箱格式不正确");
+					return;
+				}
 				params.put("email", getItemValue(mMerchantKeys[7]));
 				params.put("cityId",
 						null != mMerchantCity ? mMerchantCity.getId() : 0);
 
-				params.put("bankName", getItemValue(mBankKeys[0]));
-				params.put("bankCode", getItemValue(mBankKeys[1]));
-				params.put("bankNum", getItemValue(mBankKeys[2]));
+				params.put("bankNum", getItemValue(mBankKeys[0]));
+				params.put("bankName", getItemValue(mBankKeys[1]));
 
+				params.put("bank_name", getItemValue(mBankKeys[2]));
+				if (mChosenBank != null)
+					params.put("bankCode", mChosenBank.getNo());
+				else
+					params.put("bankCode", bankCode);
 				if (mApplyType == 1) {
 					params.put("registeredNo", getItemValue(mBankKeys[3]));
 					params.put("organizationNo", getItemValue(mBankKeys[4]));
@@ -221,6 +249,26 @@ public class ApplyDetailActivity extends FragmentActivity {
 								.getTag(R.id.apply_detail_key);
 						material.setValue(value);
 					}
+					// image type
+					else if (material.getTypes() == TYPE_IMAGE) {
+						String key = material.getName();
+						LinearLayout item = (LinearLayout) mContainer
+								.findViewWithTag(key);
+						// if (item.findViewById(R.id.apply_detail_value) !=
+						// null) {
+						// material.setValue((String) item.findViewById(
+						// R.id.apply_detail_value).getTag());
+						// } else
+						if (item.findViewById(R.id.apply_detail_view) != null) {
+							material.setValue((String) item.findViewById(
+									R.id.apply_detail_view).getTag());
+						} else {
+							System.out.println(item);
+						}
+						// String value = (String) item
+						// .getTag(R.id.apply_detail_key);
+						// material.setValue(value);
+					}
 					if (TextUtils.isEmpty(material.getValue()))
 						continue;
 					// image types' value have been set in advance
@@ -243,6 +291,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 							public void onSuccess(Object data) {
 								CommonUtil.toastShort(ApplyDetailActivity.this,
 										data.toString());
+
+								finish();
 							}
 
 							@Override
@@ -273,12 +323,13 @@ public class ApplyDetailActivity extends FragmentActivity {
 								.getCustomerDetails();
 						final OpeningInfos openingInfos = data
 								.getOpeningInfos();
+
 						if (null != terminalDetail) {
 							mPosBrand.setText(terminalDetail.getBrandName());
 							mPosModel.setText(terminalDetail.getModelNumber());
 							mSerialNum.setText(terminalDetail.getSerialNumber());
 							mPayChannel.setText(terminalDetail.getChannelName());
-
+							mPayChannelID = terminalDetail.getChannelId();
 							// terminalDetail.setSupportRequirementType(1);
 
 							// mApplyType =
@@ -353,6 +404,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 						// set the customer details
 						setCustomerDetail(materials, customerDetails);
 						if (openingInfos != null) {
+
+							mMerchantId = openingInfos.getMerchant_id();
+							bankCode = openingInfos.getAccount_bank_code();
 							setData(openingInfos);
 						}
 						updateUIWithValidation();
@@ -410,12 +464,12 @@ public class ApplyDetailActivity extends FragmentActivity {
 			break;
 		}
 		case REQUEST_CHOOSE_BANK: {
-			mChosenBank = (ApplyBank) data.getSerializableExtra(SELECTED_BANK);
+			mChosenBank = (Bank) data.getSerializableExtra(SELECTED_BANK);
 			if (null != mChosenBank) {
 				LinearLayout item = (LinearLayout) mContainer
-						.findViewWithTag(mBankKey);
-				item.setTag(R.id.apply_detail_key, mChosenBank.getCode());
-				setItemValue(mBankKey, mChosenBank.getName());
+						.findViewWithTag(mBankKeys[2]);
+				item.setTag(R.id.apply_detail_key, mChosenBank.getNo());
+				setItemValue(mBankKeys[2], mChosenBank.getName());
 			}
 
 			break;
@@ -426,18 +480,34 @@ public class ApplyDetailActivity extends FragmentActivity {
 				@Override
 				public void handleMessage(Message msg) {
 					if (msg.what == 1) {
-						CommonUtil.toastShort(ApplyDetailActivity.this,
-								(String) msg.obj);
+
+						// CommonUtil.toastShort(ApplyDetailActivity.this,
+						// (String) msg.obj);
+						String uri = (String) msg.obj;
 						if (null != uploadingTextView) {
-							uploadingTextView
-									.setText(getString(R.string.apply_upload_success));
-							uploadingTextView.setClickable(false);
+							// uploadingTextView
+							// .setText(getString(R.string.apply_upload_success));
+							// uploadingTextView.setClickable(false);
+							// uploadingTextView
+							// .setOnClickListener(new onWatchListener());
+
+							uploadingTextView.setVisibility(View.GONE);
+							uploadingImageButton.setVisibility(View.VISIBLE);
+							rightview.setVisibility(View.VISIBLE);
+							uploadingImageButton.setTag(uri);
+							uploadingImageButton
+									.setOnClickListener(new onWatchListener());
+						} else {
+
+							clickView.setTag(uri);
+							clickView.setOnClickListener(new onWatchListener());
 						}
-						String url = (String) msg.obj;
+						// String url = (String) msg.obj;
 						for (ApplyMaterial material : mMaterials.values()) {
 							if (material.getTypes() == TYPE_IMAGE
 									&& material.getName().equals(mUploadKey)) {
-								material.setValue(url);
+								// material.setValue(url);
+								material.setValue(uri);
 								break;
 							}
 						}
@@ -458,45 +528,65 @@ public class ApplyDetailActivity extends FragmentActivity {
 				uploadingTextView.setText(getString(R.string.apply_uploading));
 				uploadingTextView.setClickable(false);
 			}
-			new Thread() {
-				@Override
-				public void run() {
-					String realPath = "";
-					if (requestCode == REQUEST_TAKE_PHOTO) {
-						realPath = photoPath;
-					} else {
-						Uri uri = data.getData();
-						if (uri != null) {
-							realPath = getRealPathFromURI(uri);
-						}
-					}
-					if (TextUtils.isEmpty(realPath)) {
-						handler.sendEmptyMessage(0);
-						return;
-					}
-					CommonUtil.uploadFile(realPath, "img",
-							new CommonUtil.OnUploadListener() {
-								@Override
-								public void onSuccess(String result) {
-									try {
-										JSONObject jo = new JSONObject(result);
-										String url = jo.getString("result");
-										Message msg = new Message();
-										msg.what = 1;
-										msg.obj = url;
-										handler.sendMessage(msg);
-									} catch (JSONException e) {
-										handler.sendEmptyMessage(0);
-									}
-								}
 
-								@Override
-								public void onFailed(String message) {
-									handler.sendEmptyMessage(0);
-								}
-							});
+			String realPath = "";
+			if (requestCode == REQUEST_TAKE_PHOTO) {
+				realPath = photoPath;
+			} else {
+				Uri uri = data.getData();
+				if (uri != null) {
+					realPath = getRealPathFromURI(uri);
 				}
-			}.start();
+			}
+			if (TextUtils.isEmpty(realPath)) {
+				handler.sendEmptyMessage(0);
+				return;
+			}
+
+			File file = new File(realPath);
+			API.uploadPic(ApplyDetailActivity.this, file, mTerminalId,
+					new HttpCallback(ApplyDetailActivity.this) {
+
+						@Override
+						public void onSuccess(Object data) {
+							Message msg = new Message();
+							msg.what = 1;
+							msg.obj = data.toString();
+							handler.sendMessage(msg);
+						}
+
+						@Override
+						public void onFailure(String message) {
+							handler.sendEmptyMessage(0);
+						}
+
+						@Override
+						public TypeToken getTypeToken() {
+							return null;
+						}
+					});
+			// CommonUtil.uploadFile(realPath, "img",
+			// new CommonUtil.OnUploadListener() {
+			// @Override
+			// public void onSuccess(String result) {
+			// try {
+			// JSONObject jo = new JSONObject(result);
+			// String url = jo.getString("result");
+			// Message msg = new Message();
+			// msg.what = 1;
+			// msg.obj = url;
+			// handler.sendMessage(msg);
+			// } catch (JSONException e) {
+			// handler.sendEmptyMessage(0);
+			// }
+			// }
+			//
+			// @Override
+			// public void onFailed(String message) {
+			// handler.sendEmptyMessage(0);
+			// }
+			// });
+
 			break;
 		}
 		}
@@ -505,9 +595,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 	}
 
 	private void updateUIWithValidation() {
-		final boolean enabled = 
-				mMerchantId > 0&& 
-				!TextUtils.isEmpty(getItemValue(mMerchantKeys[1]))
+		final boolean enabled = !TextUtils
+				.isEmpty(getItemValue(mMerchantKeys[1]))
 				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[2]))
 				&& (mMerchantGender == 0 || mMerchantGender == 1)
 				&& !TextUtils.isEmpty(getItemValue(mMerchantKeys[4]))
@@ -579,6 +668,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 				null));
 		mMerchantContainer.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[1],
 				null));
+		isShopName = true;
 		mMerchantContainer.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[2],
 				null));
 
@@ -652,10 +742,23 @@ public class ApplyDetailActivity extends FragmentActivity {
 		}
 		mCustomerContainer
 				.addView(getDetailItem(ITEM_EDIT, mBankKeys[0], null));
+		isBankName = true;
 		mCustomerContainer
 				.addView(getDetailItem(ITEM_EDIT, mBankKeys[1], null));
-		mCustomerContainer
-				.addView(getDetailItem(ITEM_EDIT, mBankKeys[2], null));
+		View chooseBank = getDetailItem(ITEM_CHOOSE, mBankKeys[2], null);
+		chooseBank.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(ApplyDetailActivity.this,
+						ApplyBankActivity.class);
+				intent.putExtra(TERMINAL_ID, mTerminalId);
+				intent.putExtra(SELECTED_BANK, mChosenBank);
+				startActivityForResult(intent, REQUEST_CHOOSE_BANK);
+			}
+		});
+		mCustomerContainer.addView(chooseBank);
+		// mCustomerContainer
+		// .addView(getDetailItem(ITEM_EDIT, mBankKeys[2], null));
 
 		if (mApplyType == 1) {
 			mCustomerContainer.addView(getDetailItem(ITEM_EDIT, mBankKeys[3],
@@ -669,8 +772,11 @@ public class ApplyDetailActivity extends FragmentActivity {
 		chooseChannel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				// mChosenChannel = new ApplyChannel();
+				// mChosenBilling = mChosenChannel.new Billing();
 				Intent intent = new Intent(ApplyDetailActivity.this,
 						ApplyChannelActivity.class);
+				intent.putExtra(SELECTED_CHANNEL_ID, mPayChannelID);
 				intent.putExtra(SELECTED_CHANNEL, mChosenChannel);
 				intent.putExtra(SELECTED_BILLING, mChosenBilling);
 				startActivityForResult(intent, REQUEST_CHOOSE_CHANNEL);
@@ -729,9 +835,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 					}
 				});
 
-		setItemValue(mBankKeys[0], merchant.getAccountBankName());
-		setItemValue(mBankKeys[1], merchant.getAccountBankNum());
-		setItemValue(mBankKeys[2], merchant.getBankOpenAccount());
+		setItemValue(mBankKeys[0], merchant.getAccountBankNum());
+		setItemValue(mBankKeys[1], merchant.getAccountBankName());
+		setItemValue(mBankKeys[2], merchant.getBank_name());
 		if (mApplyType == 1) {
 			setItemValue(mBankKeys[3], merchant.getTaxRegisteredNo());
 			setItemValue(mBankKeys[4], merchant.getOrganizationCodeNo());
@@ -763,9 +869,9 @@ public class ApplyDetailActivity extends FragmentActivity {
 					}
 				});
 
-		setItemValue(mBankKeys[0], openingInfos.getAccount_bank_name());
-		setItemValue(mBankKeys[1], openingInfos.getAccount_bank_num());
-		setItemValue(mBankKeys[2], openingInfos.getAccount_bank_code());
+		setItemValue(mBankKeys[0], openingInfos.getAccount_bank_num());
+		setItemValue(mBankKeys[1], openingInfos.getAccount_bank_name());
+		setItemValue(mBankKeys[2], openingInfos.getBank_name());
 		if (mApplyType == 1) {
 			setItemValue(mBankKeys[3], openingInfos.getTax_registered_no());
 			setItemValue(mBankKeys[4], openingInfos.getOrganization_code_no());
@@ -861,7 +967,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 						mBankKey = material.getName();
 						Intent intent = new Intent(ApplyDetailActivity.this,
 								ApplyBankActivity.class);
-						intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
+						intent.putExtra(TERMINAL_ID, mTerminalId);
 						intent.putExtra(SELECTED_BANK, mChosenBank);
 						startActivityForResult(intent, REQUEST_CHOOSE_BANK);
 					}
@@ -909,15 +1015,45 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.findViewById(R.id.apply_detail_key);
 			EditText etValue = (EditText) item
 					.findViewById(R.id.apply_detail_value);
-			etValue.addTextChangedListener(new TextWatcherAdapter() {
-				public void afterTextChanged(final Editable gitDirEditText) {
-					updateUIWithValidation();
-				}
-			});
+			if (isBankName) {
+				isBankName = false;
+				etValue.setFocusable(false);
+				etValue.setEnabled(false);
+
+			}
+			if (isShopName) {
+				shopName = value;
+				isShopName = false;
+				etValue.addTextChangedListener(new TextWatcherAdapter() {
+					public void afterTextChanged(final Editable gitDirEditText) {
+
+						updateUIWithValidation();
+
+						LinearLayout item = (LinearLayout) mContainer
+								.findViewWithTag(mBankKeys[1]);
+						EditText etBankName = (EditText) item
+								.findViewById(R.id.apply_detail_value);
+						etBankName.setText(gitDirEditText.toString());
+
+					}
+				});
+			} else {
+				etValue.addTextChangedListener(new TextWatcherAdapter() {
+					public void afterTextChanged(final Editable gitDirEditText) {
+
+						updateUIWithValidation();
+					}
+				});
+			}
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
 			if (!TextUtils.isEmpty(value))
-				etValue.setText(value);
+
+				if (isBankName) {
+					etValue.setText(shopName);
+				} else {
+					etValue.setText(value);
+				}
 			break;
 		}
 		case ITEM_CHOOSE: {
@@ -937,13 +1073,18 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.findViewById(R.id.apply_detail_key);
 			final TextView tvValue = (TextView) item
 					.findViewById(R.id.apply_detail_value);
-
+			final ImageButton uploadingSuccess = (ImageButton) item
+					.findViewById(R.id.apply_detail_view);
+			final ImageView right_view = (ImageView) item
+					.findViewById(R.id.right_view);
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
 			tvValue.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
 					uploadingTextView = tvValue;
+					uploadingImageButton = uploadingSuccess;
+					rightview = right_view;
 					AlertDialog.Builder builder = new AlertDialog.Builder(
 							ApplyDetailActivity.this);
 					final String[] items = getResources().getStringArray(
@@ -1017,25 +1158,119 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.findViewById(R.id.apply_detail_key);
 			ImageButton ibView = (ImageButton) item
 					.findViewById(R.id.apply_detail_view);
-
+			ibView.setTag(value);
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
-			ibView.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					int position = mImageNames.indexOf(key);
-					Intent intent = new Intent(ApplyDetailActivity.this,
-							ShowWebImageActivity.class);
-					intent.putExtra(IMAGE_NAMES,
-							StringUtil.join(mImageNames, ","));
-					intent.putExtra(IMAGE_URLS,
-							StringUtil.join(mImageUrls, ","));
-					intent.putExtra(POSITION, position);
-					startActivity(intent);
-				}
-			});
+			ibView.setOnClickListener(new onWatchListener());
+			// new View.OnClickListener() {
+			// @Override
+			// public void onClick(View view) {
+			// int position = mImageNames.indexOf(key);
+			// Intent intent = new Intent(ApplyDetailActivity.this,
+			// ShowWebImageActivity.class);
+			// intent.putExtra(IMAGE_NAMES,
+			// StringUtil.join(mImageNames, ","));
+			// intent.putExtra(IMAGE_URLS,
+			// StringUtil.join(mImageUrls, ","));
+			// intent.putExtra(POSITION, position);
+			// startActivity(intent);
+
+			// }
+			// });
+
 		}
 		}
 	}
 
+	private class onWatchListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View view) {
+			clickView = view;
+			final String uri = (String) view.getTag();
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					ApplyDetailActivity.this);
+			final String[] items = getResources().getStringArray(
+					R.array.apply_detail_view);
+			builder.setItems(items, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					switch (which) {
+					case 0: {
+
+						AlertDialog.Builder build = new AlertDialog.Builder(
+								ApplyDetailActivity.this);
+						LayoutInflater factory = LayoutInflater
+								.from(ApplyDetailActivity.this);
+						final View textEntryView = factory.inflate(
+								R.layout.show_view, null);
+						build.setView(textEntryView);
+						final ImageView view = (ImageView) textEntryView
+								.findViewById(R.id.imag);
+						Log.e("onWatchListener-----------", uri);
+						ImageLoader.getInstance().displayImage(uri, view,
+								options);
+
+						// ImageCacheUtil.IMAGE_CACHE.get(uri, view);
+						build.create().show();
+						break;
+					}
+					case 1: {
+						Intent intent = new Intent();
+						if (Build.VERSION.SDK_INT < 19) {
+							intent = new Intent(Intent.ACTION_GET_CONTENT);
+							intent.setType("image/*");
+						} else {
+							intent = new Intent(
+									Intent.ACTION_PICK,
+									android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+						}
+						startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
+						break;
+					}
+					case 2: {
+						String state = Environment.getExternalStorageState();
+						if (state.equals(Environment.MEDIA_MOUNTED)) {
+							Intent intent = new Intent(
+									MediaStore.ACTION_IMAGE_CAPTURE);
+							File outDir = Environment
+									.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+							if (!outDir.exists()) {
+								outDir.mkdirs();
+							}
+							File outFile = new File(outDir, System
+									.currentTimeMillis() + ".jpg");
+							photoPath = outFile.getAbsolutePath();
+							intent.putExtra(MediaStore.EXTRA_OUTPUT,
+									Uri.fromFile(outFile));
+							intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+							startActivityForResult(intent, REQUEST_TAKE_PHOTO);
+						} else {
+							CommonUtil.toastShort(ApplyDetailActivity.this,
+									getString(R.string.toast_no_sdcard));
+						}
+						break;
+					}
+					}
+				}
+			});
+			builder.show();
+
+		}
+
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPageStart( this.toString() );
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		MobclickAgent.onPageStart( this.toString() );
+		MobclickAgent.onResume(this);
+	}
 }

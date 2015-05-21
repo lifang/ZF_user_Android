@@ -33,6 +33,7 @@ import com.example.zf_android.trade.common.Page;
 import com.example.zf_android.trade.entity.TradeRecord;
 import com.example.zf_android.trade.widget.XListView;
 import com.google.gson.reflect.TypeToken;
+import com.umeng.analytics.MobclickAgent;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -89,6 +90,7 @@ public class TradeFlowFragment extends Fragment implements
 	private int page = 1;
 	private boolean canLoadMore = true;
 	private int total = 0;
+	private String mPageName;
 
 	public static TradeFlowFragment newInstance(int tradeType) {
 		TradeFlowFragment fragment = new TradeFlowFragment();
@@ -112,6 +114,8 @@ public class TradeFlowFragment extends Fragment implements
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
 			mTradeType = getArguments().getInt(TRADE_TYPE);
+            mPageName = String.format("tradeflow %d", mTradeType);
+			
 		}
 	}
 
@@ -194,11 +198,6 @@ public class TradeFlowFragment extends Fragment implements
 						startActivity(intent);
 					}
 				});
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
 	}
 
 	@Override
@@ -474,8 +473,8 @@ public class TradeFlowFragment extends Fragment implements
 				holder.tvReceiveAccountKey
 						.setText(getString(R.string.trade_receive_account));
 
-				holder.tvAccount.setText(record.getPayFromAccount());
-				holder.tvReceiveAccount.setText(record.getPayIntoAccount());
+				holder.tvAccount.setText(StringUtil.replaceNum(record.getPayFromAccount()));
+				holder.tvReceiveAccount.setText(StringUtil.replaceNum(record.getPayIntoAccount()));
 				break;
 			case 1:
 				holder.tvAccountKey.setVisibility(View.INVISIBLE);
@@ -493,7 +492,7 @@ public class TradeFlowFragment extends Fragment implements
 				holder.tvReceiveAccountKey
 						.setText(getString(R.string.trade_account_number));
 
-				holder.tvAccount.setText(record.getAccountName());
+				holder.tvAccount.setText(StringUtil.replaceName(record.getAccountName()));
 				holder.tvReceiveAccount.setText(record.getAccountNumber());
 				break;
 			case 4:
@@ -502,7 +501,7 @@ public class TradeFlowFragment extends Fragment implements
 						.setText(getString(R.string.trade_phone_number));
 
 //				holder.tvReceiveAccount.setText(StringUtil.mobileUtil(record.getPhone()));
-				holder.tvReceiveAccount.setText(record.getPhone());
+				holder.tvReceiveAccount.setText(StringUtil.replaceNum(record.getPhone()));
 				break;
 			}
 
@@ -562,4 +561,18 @@ public class TradeFlowFragment extends Fragment implements
         	//然后调用onDateSet()会引以onDateSet()方法回调两次
         }
     }
+    
+    @Override
+	public void onPause() {
+  			// TODO Auto-generated method stub
+  			super.onPause();
+  			MobclickAgent.onPageEnd( mPageName );
+  		}
+    
+    @Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		MobclickAgent.onPageStart( mPageName );	
+	}
 }

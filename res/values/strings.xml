@@ -35,8 +35,8 @@
     <string name="notation_mouth">个月</string>
 
     <string-array name="trade_flow_tabs">
-        <item>转账</item>
         <item>消费</item>
+        <item>转账</item>
         <item>还款</item>
         <item>生活充值</item>
         <item>话费充值</item>
@@ -284,6 +284,7 @@
     <string name="button_cancel">取消</string>
     <string name="button_copy">复制</string>
     <string name="toast_copy_password">密码已复制到剪贴板</string>
+    <string name="no_more_data">已加载全部数据</string>
 
     <!-- ====================================================== -->
     <!-- 开通认证 -->
@@ -308,7 +309,7 @@
     <string name="apply_bank_result">搜索结果</string>
 
     <string-array name="apply_detail_merchant_keys">
-        <item>选择已有商户</item>
+        <item>可选择的常用商户</item>
         <item>姓名</item>
         <item>店铺名称(商户名)</item>
         <item>性别</item>
@@ -339,7 +340,9 @@
         <item>选择照片</item>
         <item>拍照上传</item>
     </string-array>
-
+    <string-array name="terminal_detail_view">
+        <item>查看图片</item>
+    </string-array>
     <string name="apply_upload_photo">上传图片</string>
     <string name="apply_uploading">上传中...</string>
     <string name="apply_upload_again">重新上传</string>
@@ -351,17 +354,17 @@
     <string name="apply_progress_terminal">终端号</string>
 
     <string-array name="apply_detail_bank_keys_public">
+        <item>结算银行账号</item>
+        <item>结算银行帐户名</item>
         <item>结算银行名称</item>
-        <item>结算银行代码</item>
-        <item>结算银行账户</item>
         <item>税务登记号</item>
         <item>组织机构号</item>
         <item>支付通道</item>
     </string-array>
     <string-array name="apply_detail_bank_keys_private">
+        <item>结算银行账号</item>
+        <item>结算银行帐户名</item>
         <item>结算银行名称</item>
-        <item>结算银行代码</item>
-        <item>结算银行账户</item>
         <item>支付通道</item>
     </string-array>
 

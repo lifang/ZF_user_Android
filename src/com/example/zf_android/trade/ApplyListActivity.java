@@ -1,5 +1,6 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
@@ -21,10 +22,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
@@ -38,7 +41,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Created by Leo on 2015/3/5.
  */
-public class ApplyListActivity extends Activity implements
+public class ApplyListActivity extends BaseActivity implements
 		XListView.IXListViewListener {
 
 	private LayoutInflater mInflater;
@@ -175,6 +178,12 @@ public class ApplyListActivity extends Activity implements
 						.findViewById(R.id.apply_button_open);
 				holder.btnVideo = (Button) convertView
 						.findViewById(R.id.apply_button_video);
+				holder.terminal_buttons = (LinearLayout) convertView
+						.findViewById(R.id.terminal_buttons);
+				holder.tvfill1 = (TextView) convertView
+						.findViewById(R.id.tv_fill1);
+				holder.tvfill2 = (TextView) convertView
+						.findViewById(R.id.tv_fill2);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -220,6 +229,14 @@ public class ApplyListActivity extends Activity implements
 					}
 				}
 			});
+
+			Boolean videoBoolean = 1 == item.getHasVideoVerify();
+			if (!videoBoolean) {
+				holder.btnVideo.setVisibility(View.GONE);
+				holder.tvfill1.setVisibility(View.VISIBLE);
+				holder.tvfill2.setVisibility(View.VISIBLE);
+			}
+
 			holder.btnVideo.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
@@ -236,6 +253,7 @@ public class ApplyListActivity extends Activity implements
 				public void onClick(View view) {
 					Intent intent = new Intent(ApplyListActivity.this,
 							TerminalDetailActivity.class);
+					intent.putExtra(HAVE_VIDEO, item.getHasVideoVerify());
 					intent.putExtra(TERMINAL_ID, item.getId());
 					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
 					intent.putExtra(TERMINAL_STATUS, item.getStatus());
@@ -250,6 +268,9 @@ public class ApplyListActivity extends Activity implements
 	private static class ViewHolder {
 		public TextView tvTerminalNumber;
 		public TextView tvTerminalStatus;
+		public TextView tvfill1;
+		public TextView tvfill2;
+		public LinearLayout terminal_buttons;
 		public Button btnOpen;
 		public Button btnVideo;
 	}
@@ -269,6 +290,10 @@ public class ApplyListActivity extends Activity implements
 		Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
 
 		Button btn_confirm = (Button) view.findViewById(R.id.btn_confirm);
+
+		TextView tv_protocol = (TextView) view.findViewById(R.id.tv_protocol);
+
+		tv_protocol.setText(item.getOpeningProtocol());
 
 		btn_cancel.setOnClickListener(new OnClickListener() {
 
@@ -302,5 +327,15 @@ public class ApplyListActivity extends Activity implements
 		});
 		// dialog.show();
 
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		page = 0;
+		pullType = "onRefresh";
+		noMoreData = false;
+		mApplyList.setPullLoadEnable(true);
+		loadData();
 	}
 }

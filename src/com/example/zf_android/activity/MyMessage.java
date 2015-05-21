@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
@@ -62,6 +64,7 @@ OnClickListener {
 	private int total = 0;
 	private TextView countShopCar;
 	private RelativeLayout rl_edit, rl_editno;
+	private boolean isFirstCreate;
 	List<MessageEntity> idList = new ArrayList<MessageEntity>();
 	List<MessageEntity> myList = new ArrayList<MessageEntity>();
 	List<MessageEntity> moreList = new ArrayList<MessageEntity>();
@@ -103,18 +106,29 @@ OnClickListener {
 		setContentView(R.layout.my_message);
 		MyApplication.getInstance().addActivity(this);
 		MyApplication.setIsSelect(false);
+		isFirstCreate = true;
 		initView();
-		getData();
+		Config.notificationTitle = "";
+		//getData();
 
 	}
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if (Config.countShopCar != 0) {
 			countShopCar.setVisibility(View.VISIBLE);
 			countShopCar.setText(Config.countShopCar+"");
 		}else {
 			countShopCar.setVisibility(View.GONE);
+		}
+		
+		Config.notificationTitle = "";
+		getData();
+		
+		if (!StringUtil.isNull(Config.notificationMsgID)) {
+			Intent i = new Intent(MyMessage.this, MymsgDetail.class);
+			i.putExtra("id", Config.notificationMsgID);
+			startActivityForResult(i, 101);
 		}
 	}
 	private void initView() {
@@ -165,7 +179,7 @@ OnClickListener {
 				if (MyApplication.getIsSelect()) {
 					next_sure.setText("编辑");
 					MyApplication.setIsSelect(false);
-					
+
 					myAdapter.notifyDataSetChanged();
 					for (int i = 0; i < myList.size(); i++) {
 						myList.get(i).setIscheck(false);
@@ -279,25 +293,25 @@ OnClickListener {
 				builder.setPositiveButton("确认",
 						new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface arg0, int arg1) {
-								Msgdelete1();
-								
-							}
-						});
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						Msgdelete1();
+
+					}
+				});
 				builder.setNegativeButton("取消",
 						new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface arg0, int arg1) {
-								dialog.dismiss();
-							}
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						dialog.dismiss();
+					}
 
-						});
+				});
 
 				builder.create().show();
-				
-				
+
+
 			}else {
 				Toast.makeText(this, "请选择消息后，再执行此操作", Toast.LENGTH_SHORT).show();
 			}

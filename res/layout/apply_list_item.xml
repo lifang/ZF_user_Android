@@ -1,112 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/item_white_pressed"
-              android:clickable="true">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_white_pressed"
+    android:clickable="true"
+    android:orientation="vertical" >
 
-	<View style="@style/Divider"/>
+    <View style="@style/Divider" />
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:paddingLeft="12dp"
-		android:paddingRight="12dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp" >
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="48dp"
-			android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal" >
 
-			<LinearLayout
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:orientation="vertical"
-				android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
 
-				<TextView
-					style="@style/TextTrace.Record"
-					android:text="@string/after_sale_terminal"/>
+                <TextView
+                    style="@style/TextTrace.Record"
+                    android:text="@string/after_sale_terminal" />
 
-				<TextView
-					android:id="@+id/apply_terminal_number"
-					style="@style/TextItem.Record"/>
-			</LinearLayout>
+                <TextView
+                    android:id="@+id/apply_terminal_number"
+                    style="@style/TextItem.Record" />
+            </LinearLayout>
 
-			<RelativeLayout
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
 
-				<LinearLayout
-					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
-					android:orientation="vertical"
-					android:layout_alignParentLeft="true">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical" >
 
-					<TextView
-						style="@style/TextTrace.Record"
-						android:text="@string/after_sale_status"/>
+                    <TextView
+                        style="@style/TextTrace.Record"
+                        android:text="@string/after_sale_status" />
 
-					<TextView
-						android:id="@+id/apply_terminal_status"
-						style="@style/TextItem.Record"/>
-				</LinearLayout>
+                    <TextView
+                        android:id="@+id/apply_terminal_status"
+                        style="@style/TextItem.Record" />
+                </LinearLayout>
 
-				<ImageView
-					android:id="@+id/trade_end_arrow"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_alignParentRight="true"
-					android:layout_centerVertical="true"
-					android:src="@drawable/post_right"/>
-			</RelativeLayout>
-		</LinearLayout>
+                <ImageView
+                    android:id="@+id/trade_end_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/post_right" />
+            </RelativeLayout>
+        </LinearLayout>
 
-		<LinearLayout
-			android:id="@+id/terminal_button_container"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="vertical"
-			android:clickable="true">
+        <LinearLayout
+            android:id="@+id/terminal_button_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="vertical" >
 
-			<View style="@style/Divider"/>
+            <View style="@style/Divider" />
 
-			<LinearLayout
-				android:id="@+id/terminal_buttons"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="12dp"
-				android:layout_marginBottom="12dp"
-				android:layout_gravity="center"
-				android:orientation="horizontal"
-				android:clickable="true">
+            <LinearLayout
+                android:id="@+id/terminal_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
+                android:orientation="horizontal" >
 
-				<Button
-					android:id="@+id/apply_button_open"
-					android:layout_width="0dp"
-					android:layout_height="40dp"
-					android:layout_weight="1"
-					android:layout_marginRight="@dimen/d_12dp"
-					android:textColor="@color/white"
-					android:background="@drawable/normal_button_selector"
-					android:text="@string/apply_button_open"/>
+                <TextView
+                    android:id="@+id/tv_fill1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:visibility="gone" />
 
-				<Button
-					android:id="@+id/apply_button_video"
-					android:layout_width="0dp"
-					android:layout_height="40dp"
-					android:layout_weight="1"
-					android:layout_marginLeft="@dimen/d_12dp"
-					android:textColor="@color/white"
-					android:background="@drawable/normal_button_selector"
-					android:text="@string/apply_button_video"/>
-			</LinearLayout>
-		</LinearLayout>
-	</LinearLayout>
+                <Button
+                    android:id="@+id/apply_button_open"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="@dimen/d_12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/normal_button_selector"
+                    android:text="@string/apply_button_open"
+                    android:textColor="@color/white" />
 
-	<View style="@style/Divider"/>
+                <TextView
+                    android:id="@+id/tv_fill2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/apply_button_video"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="@dimen/d_12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/normal_button_selector"
+                    android:text="@string/apply_button_video"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/Divider" />
 
 </LinearLayout>

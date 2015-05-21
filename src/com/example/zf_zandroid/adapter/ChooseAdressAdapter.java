@@ -50,6 +50,7 @@ public class ChooseAdressAdapter extends BaseAdapter {
 			holder.tv_adress = (TextView) convertView.findViewById(R.id.tv_adress);
 			holder.tv_tel = (TextView) convertView.findViewById(R.id.tv_tel);
 			holder.ll_isshow = (LinearLayout) convertView.findViewById(R.id.ll_isshow);
+			holder.morenTextView = (TextView) convertView.findViewById(R.id.morenTextView);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -58,10 +59,9 @@ public class ChooseAdressAdapter extends BaseAdapter {
 		holder.tv_title.setText("收件人 ： "+list.get(position).getReceiver());
 
 		if(list.get(position).getIsDefault()==1){
-			holder.ll_isshow .setVisibility(View.VISIBLE);
-
+			holder.morenTextView .setVisibility(View.VISIBLE);
 		}else{
-			holder.ll_isshow .setVisibility(View.INVISIBLE);
+			holder.morenTextView .setVisibility(View.INVISIBLE);
 		}
 		holder.tv_adress.setText("收件地址 ： "+list.get(position).getAddress());
 
@@ -70,6 +70,7 @@ public class ChooseAdressAdapter extends BaseAdapter {
 
 	public final class ViewHolder {
 		public TextView tv_title, tv_time,tv_tel,tv_adress;
+		public TextView morenTextView;
 		public LinearLayout ll_isshow;
 
 	}

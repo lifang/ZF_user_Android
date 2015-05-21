@@ -2,7 +2,10 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
+import android.R.integer;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 
@@ -25,6 +29,7 @@ public class CommentAdapter extends BaseAdapter {
 	private List<Goodlist> list;
 	private LayoutInflater inflater;
 	private int state;
+	private int editIngPosititon = 0;
 	private AfterTextChangedListener afterTextChangedListener;
 	private ViewHolder holder = null;
 	
@@ -109,6 +114,11 @@ public class CommentAdapter extends BaseAdapter {
 
 			}
 		});
+//		if (editIngPosititon == position) {
+//			holder.item_et.setFocusable(true);
+//			holder.item_et.setFocusableInTouchMode(true);
+//			holder.item_et.requestFocus();
+//		}
 		
 		holder.item_et.addTextChangedListener(new TextWatcher() {
 
@@ -124,29 +134,31 @@ public class CommentAdapter extends BaseAdapter {
 
 			@Override
 			public void afterTextChanged(Editable arg0) {
-		
+				//editIngPosititon = position;
 				list.get(position).setContent(arg0.toString());
-				afterTextChangedListener.onAfterTextChanged(position);
+				//afterTextChangedListener.onAfterTextChanged(position);
 			}
 		});
-		
+	
 		if (!StringUtil.isNull(list.get(position).getContent())) {
 			holder.item_et.setText(list.get(position).getContent());
 			holder.item_et.getText();
 			holder.item_et.setSelection(list.get(position).getContent().length());
 		}
-		if (!StringUtil.isNull(list.get(position).getContent())) {
-			if (list.get(position).getContent().length() > 0) {
-				holder.maxCountTextView.setText("还可填写"+(200-list.get(position).getContent().length())+"个汉字");
-			}else if (list.get(position).getContent().length() == 0) {
-				holder.maxCountTextView.setText("最多填写200个汉字");
-			}else if (list.get(position).getContent().length() > 200) {
-				holder.maxCountTextView.setText("已超出允许最多字数");
-			}
-		}
+//		if (!StringUtil.isNull(list.get(position).getContent())) {
+//			if (list.get(position).getContent().length() > 0) {
+//				holder.maxCountTextView.setText("还可填写"+(200-list.get(position).getContent().length())+"个汉字");
+//			}else if (list.get(position).getContent().length() == 0) {
+//				holder.maxCountTextView.setText("最多填写200个汉字");
+//			}else if (list.get(position).getContent().length() > 200) {
+//				holder.maxCountTextView.setText("已超出允许最多字数");
+//			}
+//		}
 
 		return convertView;
 	}
+
+	
 	public interface AfterTextChangedListener {
 		public void onAfterTextChanged(int position);
 	}

@@ -1,13 +1,16 @@
 package com.example.zf_android.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
@@ -21,6 +24,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 	private LinearLayout  ll_dd,ll_shjl,ll_wdxx,ll_sh,ll_request;
 	private RelativeLayout  main_rl1, main_rl2, main_rl3;
 	private TextView countShopCar;
+	private Button btn_exit;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,6 +33,8 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		initView();
 	}
 	private void initView() {
+		btn_exit = (Button) findViewById(R.id.btn_exit);
+		btn_exit.setOnClickListener(this);
 		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		main_rl1=(RelativeLayout) findViewById(R.id.main_rl_sy);
 		main_rl1.setOnClickListener(this);
@@ -51,7 +57,7 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		ll_request.setOnClickListener(this);
 	}
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		if (Config.countShopCar != 0) {
 			countShopCar.setVisibility(View.VISIBLE);
@@ -59,10 +65,19 @@ public class MenuMine extends BaseActivity implements OnClickListener{
 		}else {
 			countShopCar.setVisibility(View.GONE);
 		}
+		
+		SharedPreferences mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
+		Boolean islogin = mySharedPreferences.getBoolean("islogin", false);
+		MyApplication.getInstance().setUsername(mySharedPreferences.getString("name", ""));
+		MyApplication.getInstance().setCustomerId(mySharedPreferences.getInt("id", 0));
 	}
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.btn_exit:
+			Toast.makeText(getApplicationContext(), "退出成功", 1000).show();
+			MyApplication.getInstance().exit();
+			break;
 		case R.id.ll_request:
 			//申请进度查询
 			startActivity(new Intent(this, ApplyOpenProgressActivity.class));

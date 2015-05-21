@@ -15,12 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeDetail;
 import com.google.gson.reflect.TypeToken;
 
-public class TradeDetailActivity extends Activity {
+public class TradeDetailActivity extends BaseActivity {
 
 	private LinearLayout mCommercialKeyContainer;
 	private LinearLayout mCommercialValueContainer;
@@ -68,7 +69,7 @@ public class TradeDetailActivity extends Activity {
 					value.setTextColor(getResources().getColor(R.color.text6c6c6c6));
 					value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
 					value.setText(i == 0 ? data.getMerchantNumber()
-							: i == 1 ? data.getAgentId() + ""
+							: i == 1 ? data.getAgentName() + ""
 							: i == 2 ? data.getMerchantName()
 							: "");
 					mCommercialValueContainer.addView(value);

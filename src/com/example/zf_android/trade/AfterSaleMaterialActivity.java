@@ -22,13 +22,14 @@ import android.widget.TextView;
 
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.URLImageParser;
+import com.example.zf_android.BaseActivity;
 import com.example.zf_android.R;
 import com.example.zf_android.trade.common.DialogUtil;
 
 /**
  * Created by Leo on 2015/3/2.
  */
-public class AfterSaleMaterialActivity extends Activity {
+public class AfterSaleMaterialActivity extends BaseActivity {
 
 	private int mRecordType;
 	private String mUrl;

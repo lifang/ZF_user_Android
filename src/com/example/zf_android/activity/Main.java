@@ -16,9 +16,9 @@ import org.json.JSONObject;
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -28,28 +28,30 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ImageView.ScaleType;
 
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
-import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.ScreenUtils;
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.R;
+import com.example.zf_android.Utils;
 import com.example.zf_android.entity.PicEntity;
 import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CitySelectActivity;
@@ -58,18 +60,15 @@ import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
-import com.example.zf_android.trade.widget.DepthPageTransformer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.umeng.analytics.MobclickAgent;
 
-public class Main extends BaseActivity implements OnClickListener {
+public class Main extends Activity implements OnClickListener {
 	private LocationClient mLocationClient;
 	private TextView LocationResult;
 	private RelativeLayout main_rl_pos, main_rl_renzhen, main_rl_zdgl,
@@ -111,7 +110,7 @@ public class Main extends BaseActivity implements OnClickListener {
 				ma.clear();
 
 				for (int i = 0; i < myList.size(); i++) {
-					item = inflater.inflate(R.layout.item, null);
+					item = inflater.inflate(R.layout.item_main, null);
 					list.add(item);
 					ma.add(myList.get(i).getPicture_url());
 					if(!nativePicList.contains(myList.get(i))&&i<nativePicList.size()){
@@ -141,10 +140,13 @@ public class Main extends BaseActivity implements OnClickListener {
 				break;
 			case 4:
 				pagerIndex++;
+//				Log.e("==pagerIndex==", ""+pagerIndex);
 				pagerIndex = pagerIndex > list.size() - 1 ? 0 : pagerIndex;
 				view_pager.setCurrentItem(pagerIndex);
+				handler.sendEmptyMessageDelayed(4, time);
 				break;
 			}
+			super.handleMessage(msg);
 		}
 	};
 
@@ -164,23 +166,28 @@ public class Main extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		//百度推送
+		PushManager.startWork(getApplicationContext(),
+				PushConstants.LOGIN_TYPE_API_KEY,
+				Utils.getMetaValue(Main.this, "api_key"));
 
 		SQLiteDatabase db = Connector.getDatabase();
-
 		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
 		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
 
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
+		String username = mySharedPreferences.getString("name", "");
 		MyApplication.getInstance().setCustomerId(id);
+
+		MyApplication.getInstance().setUsername(username);
 
 		MyApplication.getInstance().addActivity(this);
 
 		initView();
 		testbutton = (ImageView) findViewById(R.id.testbutton);
 		testbutton.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(Main.this, LoginActivity.class);
@@ -200,24 +207,23 @@ public class Main extends BaseActivity implements OnClickListener {
 
 		System.out.println("当前城市 ID----"
 				+ MyApplication.getInstance().getCityId());
-
+		handler.sendEmptyMessageDelayed(4, time);
 	}
 
 	@Override
-	protected void onResume() {
-		super.onResume();
+	public void onResume() {
 		mySharedPreferences = getSharedPreferences("CountShopCar",MODE_PRIVATE); 
 		SharedPreferences.Editor editor = mySharedPreferences.edit(); 
 		editor.putInt("countShopCar", Config.countShopCar); 
 		editor.commit(); 
-
+		
 		if (Config.countShopCar != 0) {
 			countShopCar.setVisibility(View.VISIBLE);
 			countShopCar.setText(Config.countShopCar+"");
 		}else {
 			countShopCar.setVisibility(View.GONE);
 		}
-		
+
 		if (Constants.CITY_ID_SEARCH != 0) {
 			cityId = Constants.CITY_ID_SEARCH;
 			cityName = Constants.CITY_NAME_SEARCH;
@@ -227,22 +233,43 @@ public class Main extends BaseActivity implements OnClickListener {
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		islogin = mySharedPreferences.getBoolean("islogin", false);
 		id = mySharedPreferences.getInt("id", 0);
+		String username = mySharedPreferences.getString("name", "");
+		MyApplication.getInstance().setUsername(username);
 		MyApplication.getInstance().setCustomerId(id);
 
-		timer = new Timer();
-		task = new TimerTask() {
-			public void run() {
-				handler.sendEmptyMessage(4);
+		if (!StringUtil.isNull(Config.notificationTitle)) {
+			if (islogin && id != 0) {
+				startActivity(new Intent(Main.this, MyMessage.class));
+			} else {
+				Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+				startActivity(new Intent(this, LoginActivity.class));
 			}
-		};
-		timer.schedule(task, time, time);
-
+		}
+		
+//		timer = new Timer();
+//		task = new TimerTask() {
+//			public void run() {
+//				handler.sendEmptyMessage(4);
+//			}
+//		};
+//		timer.schedule(task, time, 6000);
+		super.onResume();
+//		MobclickAgent.onPageStart(this.toString());
+//		MobclickAgent.onResume(this);
 	}
 
 	@Override
+	protected void onPause() {
+		super.onPause();
+//		MobclickAgent.onPageEnd( this.toString() );
+//		MobclickAgent.onPause(this);
+	}
+	
+	
+	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
-		timer.cancel();
+
+//		timer.cancel();
 		super.onPause();
 	}
 
@@ -429,10 +456,10 @@ public class Main extends BaseActivity implements OnClickListener {
 			}
 			break;
 		case R.id.main_rl_Forum: // 我要贷款
-			 startActivity(new Intent(Main.this, LoanActivity.class));
+			startActivity(new Intent(Main.this, LoanActivity.class));
 			break;
 		case R.id.main_rl_wylc: // 我要理财
-			 startActivity(new Intent(Main.this, FianceActivity.class));
+			startActivity(new Intent(Main.this, FianceActivity.class));
 			break;
 		case R.id.main_rl_xtgg: // 系统公告
 
@@ -467,7 +494,7 @@ public class Main extends BaseActivity implements OnClickListener {
 			cityId = data.getIntExtra(CITY_ID, 0);
 			cityName = data.getStringExtra(CITY_NAME);
 			cityTextView.setText(cityName);
-			
+
 			Constants.CITY_ID_SEARCH = cityId;
 			Constants.CITY_NAME_SEARCH = cityName;
 			break;
@@ -613,8 +640,6 @@ public class Main extends BaseActivity implements OnClickListener {
 			index_ima = position;
 			indicator_imgs[position]
 					.setBackgroundResource(R.drawable.white_solid_point);
-			System.out.println(index_ima + "```"
-					+ myList.get(index_ima).getWebsite_url());
 			View v = list.get(position);
 			v.setOnClickListener(new OnClickListener() {
 

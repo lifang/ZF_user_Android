@@ -56,7 +56,7 @@ public class ShopCar extends BaseActivity implements OnClickListener {
 		getData();
 	}
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		Config.countShopCar = 0;
 		if(!isFirstCreate){

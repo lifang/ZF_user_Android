@@ -34,6 +34,7 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 	private int Countmun=120;
 	private Boolean isRun=true;
 	private int index;
+	private String name;
 	private Runnable runnable;
 	final Handler handler = new Handler(){          // handle  
 		public void handleMessage(Message msg){  
@@ -61,26 +62,13 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 		setContentView(R.layout.changephone);
 		MyApplication.getInstance().addActivity(this);
 		index=getIntent().getIntExtra("key", 1);
-		String name =getIntent().getStringExtra("name");
+		 name =getIntent().getStringExtra("name");
 
 		new TitleMenuUtil(ChangePhone.this, "修改手机号").show();
 		login_edit_name=(EditText) findViewById(R.id.login_edit_name);
 		login_Layout_name2 = (LinearLayout) findViewById(R.id.login_Layout_name2);
 		view_x1 = findViewById(R.id.view_x1);
 		view_x2 = findViewById(R.id.view_x2);
-		if (StringUtil.isNull(name)) {
-			login_edit_name.setVisibility(View.VISIBLE);
-			login_edit_name.setEnabled(true);
-			login_Layout_name2.setVisibility(View.GONE);
-			view_x1.setVisibility(View.GONE);
-			view_x2.setVisibility(View.GONE);
-		}else {
-			login_edit_name.setVisibility(View.VISIBLE);
-			login_edit_name.setEnabled(false);
-			login_Layout_name2.setVisibility(View.VISIBLE);
-			view_x1.setVisibility(View.VISIBLE);
-			view_x2.setVisibility(View.VISIBLE);
-		}
 
 		login_edit_name1=(EditText) findViewById(R.id.login_edit_name1);
 		login_edit_name2=(EditText) findViewById(R.id.login_edit_name2);
@@ -88,6 +76,23 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 		btn_exit=(Button) findViewById(R.id.btn_exit);
 		btn_exit.setOnClickListener(this);
 		tv_msg.setOnClickListener(this);
+		
+		if (StringUtil.isNull(name)) {
+			login_edit_name.setVisibility(View.VISIBLE);
+			login_edit_name.setEnabled(true);
+			login_Layout_name2.setVisibility(View.GONE);
+			view_x1.setVisibility(View.GONE);
+			view_x2.setVisibility(View.GONE);
+			btn_exit.setText("提交");
+		}else {
+			login_edit_name.setVisibility(View.VISIBLE);
+			login_edit_name.setEnabled(false);
+			login_Layout_name2.setVisibility(View.GONE);
+			view_x1.setVisibility(View.GONE);
+			view_x2.setVisibility(View.GONE);
+			btn_exit.setText("下一步");
+		}
+		
 		login_edit_name.setText(name);
 
 		runnable = new Runnable() {  
@@ -114,10 +119,16 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.btn_exit:
 			if(check()){
-				Intent intent2 = new Intent();
-				intent2.putExtra("text", phone2);
-				setResult(index, intent2);
-				finish();
+				if (StringUtil.isNull(name)) {
+					Intent intent2 = new Intent();
+					intent2.putExtra("text", phoneOld);
+					setResult(index, intent2);
+					finish();
+				}else {
+					Intent intent = new Intent(this,ChangePhoneTwo.class);
+					startActivity(intent);
+					finish();
+				}
 			}
 			break;
 		case R.id.tv_msg:
@@ -150,7 +161,7 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 		phoneCode=StringUtil.replaceBlank(login_edit_name1.getText().toString());
 		phone2=StringUtil.replaceBlank(login_edit_name2.getText().toString());
 		if (phoneOld.length() == 0) {
-			MyToast.showToast(getApplicationContext(),"请输入您的原手机号");
+			MyToast.showToast(getApplicationContext(),"请输入您的手机号");
 			return false;
 		}
 
@@ -162,14 +173,14 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 			MyToast.showToast(getApplicationContext(),"验证码错误");
 			return false;
 		}
-		if (phone2.length() == 0) {
-			MyToast.showToast(getApplicationContext(),"请输入您的新手机号");
-			return false;
-		}
-		if (!StringUtil.isMobile(phone2)) {
-			MyToast.showToast(getApplicationContext(),"请输入正确的手机号码");
-			return false;
-		}
+//		if (phone2.length() == 0) {
+//			MyToast.showToast(getApplicationContext(),"请输入您的新手机号");
+//			return false;
+//		}
+//		if (!StringUtil.isMobile(phone2)) {
+//			MyToast.showToast(getApplicationContext(),"请输入正确的手机号码");
+//			return false;
+//		}
 		return true;
 	}
 }
