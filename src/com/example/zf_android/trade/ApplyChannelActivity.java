@@ -59,9 +59,9 @@ public class ApplyChannelActivity extends BaseActivity {
 		channelAdapter = new ChannelListAdapter();
 		channelList.setAdapter(channelAdapter);
 
-//		if (chosenChannel != null && chosenChannel.getId() > 0) {
-//			channelList.setSelection(chosenChannel.getId());
-//		}
+		// if (chosenChannel != null && chosenChannel.getId() > 0) {
+		// channelList.setSelection(chosenChannel.getId());
+		// }
 		channelList.setSelection(0);
 		billingList = (ListView) findViewById(R.id.apply_billing_list);
 		billingList.addFooterView(new View(this));
@@ -93,6 +93,10 @@ public class ApplyChannelActivity extends BaseActivity {
 
 						channelAdapter.notifyDataSetChanged();
 						billingAdapter.notifyDataSetChanged();
+
+						if (chosenBilling != null && chosenBilling.id > 0) {
+							billingList.setSelection(chosenBilling.id);
+						}
 					}
 				});
 		billingList
@@ -102,7 +106,7 @@ public class ApplyChannelActivity extends BaseActivity {
 							View view, int i, long l) {
 						chosenBilling = (ApplyChannel.Billing) view
 								.getTag(R.id.item_id);
-						chosenChannel=channels.get(0);
+						chosenChannel = channels.get(0);
 						Intent intent = new Intent();
 						intent.putExtra(SELECTED_CHANNEL, chosenChannel);
 						intent.putExtra(SELECTED_BILLING, chosenBilling);
@@ -125,14 +129,14 @@ public class ApplyChannelActivity extends BaseActivity {
 									channels.add(data.get(i));
 							}
 
-//							if (null == chosenBilling) {
-								chosenChannel = channels.get(0);
-								if (null != chosenChannel.getBillings()
-										&& chosenChannel.getBillings().size() > 0) {
-									chosenBilling = chosenChannel.getBillings()
-											.get(0);
-								}
-//							}
+							// if (null == chosenBilling) {
+							chosenChannel = channels.get(0);
+							if (null != chosenChannel.getBillings()
+									&& chosenChannel.getBillings().size() > 0) {
+								chosenBilling = chosenChannel.getBillings()
+										.get(0);
+							}
+							// }
 
 							for (ApplyChannel channel : channels) {
 								if (channel.getId() == chosenChannel.getId()
@@ -144,24 +148,23 @@ public class ApplyChannelActivity extends BaseActivity {
 							channelAdapter.notifyDataSetChanged();
 							billingAdapter.notifyDataSetChanged();
 
-//							if (chosenChannel != null
-//									&& chosenChannel.getId() > 0) {
-//								billings.clear();
-//								ApplyChannel channel = channels
-//										.get(chosenChannel.getId() - 1);
-//								if (null != channel) {
-//									for (ApplyChannel.Billing billing : channel
-//											.getBillings()) {
-//										if (null != billing) {
-//											billings.add(billing);
-//										}
-//									}
-//								}
-								if (chosenBilling != null
-										&& chosenBilling.id > 0) {
-									billingList.setSelection(chosenBilling.id);
-								}
-//							}
+							// if (chosenChannel != null
+							// && chosenChannel.getId() > 0) {
+							// billings.clear();
+							// ApplyChannel channel = channels
+							// .get(chosenChannel.getId() - 1);
+							// if (null != channel) {
+							// for (ApplyChannel.Billing billing : channel
+							// .getBillings()) {
+							// if (null != billing) {
+							// billings.add(billing);
+							// }
+							// }
+							// }
+							if (chosenBilling != null && chosenBilling.id > 0) {
+								billingList.setSelection(chosenBilling.id);
+							}
+							// }
 						}
 
 					}
