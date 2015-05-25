@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 
 
 public class XListView extends ListView implements OnScrollListener {

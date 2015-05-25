@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
  
 public class SearchHistoryAdapter extends BaseAdapter {
 	String[] strarr;

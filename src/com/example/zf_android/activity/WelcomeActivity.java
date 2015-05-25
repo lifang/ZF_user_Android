@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.example.zf_android.BaseActivity;
 
 public class WelcomeActivity extends BaseActivity implements OnPageChangeListener {

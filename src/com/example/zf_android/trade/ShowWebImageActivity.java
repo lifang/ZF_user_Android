@@ -43,7 +43,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.RegexTools;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.trade.common.CommonUtil;

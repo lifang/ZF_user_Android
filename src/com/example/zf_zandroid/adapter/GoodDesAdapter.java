@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.activity.GoodDeatail;
 import com.example.zf_android.entity.GoodImgUrlEntity;

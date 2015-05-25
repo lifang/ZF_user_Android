@@ -13,7 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.example.zf_android.entity.PosItem;
 
 public class PositmeAdapter extends BaseAdapter {

@@ -37,7 +37,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import cn.trinea.android.common.util.JSONUtils;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.FlowLayout;
 import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.MyToast;

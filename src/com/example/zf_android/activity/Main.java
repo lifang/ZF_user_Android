@@ -45,7 +45,7 @@ import com.baidu.android.pushservice.PushManager;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.ScreenUtils;
 import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.Config;

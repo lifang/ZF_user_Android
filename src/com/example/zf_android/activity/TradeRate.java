@@ -6,7 +6,7 @@ import java.util.List;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;

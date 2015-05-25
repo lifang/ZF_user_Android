@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.example.zf_android.entity.GoodCommentEntity;
 
 public class GoodCommentAdapter extends BaseAdapter {

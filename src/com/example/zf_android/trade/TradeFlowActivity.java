@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.trade.widget.MyTabWidget;
 import com.example.zf_android.trade.widget.MyViewPager;

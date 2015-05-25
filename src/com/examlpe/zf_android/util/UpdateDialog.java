@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 
 public class UpdateDialog extends Dialog {
 	private TextView quit_message,quit_cancel,quit_ok;

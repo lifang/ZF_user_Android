@@ -24,7 +24,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.NetworkTools;
 import com.example.zf_android.activity.LoginActivity;
 import com.example.zf_android.entity.ApplyneedEntity;

@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 
 /**
  * Custom {@link TabWidget} to collaborate with a {@link ViewPager}

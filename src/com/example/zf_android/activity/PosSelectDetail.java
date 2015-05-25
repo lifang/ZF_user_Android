@@ -3,7 +3,7 @@ package com.example.zf_android.activity;
  
 import android.os.Bundle;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.example.zf_android.BaseActivity;
 
 public class PosSelectDetail extends BaseActivity{

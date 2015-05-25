@@ -22,7 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 
 public class DialogUtil {
 	private Context context;

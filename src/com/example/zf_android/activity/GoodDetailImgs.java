@@ -13,7 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

@@ -18,6 +18,7 @@ import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.activity.OrderDetail;
 import com.example.zf_android.activity.PayFromCar;
@@ -51,11 +52,6 @@ public abstract class BaseActivity extends Activity implements Callback,
 	/*****************************************************************
 	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
 	 *****************************************************************/
-	private final String mMode = "01";
-	// private static final String TN_URL_01 =
-	// "http://202.101.25.178:8080/sim/gettn";
-	private static final String TN_URL_01 = "http://121.40.84.2:8080/ZFMerchant/unionpay.do";
-	private static final String TN_URL_02 = "http://121.40.84.2:8080/ZFMerchant/api/pay/alipayback";
 	protected String outTradeNo;
 	protected String price;
 	protected String orderId;
@@ -159,7 +155,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 				/*************************************************
 				 * 步骤2：通过银联工具类启动支付插件
 				 ************************************************/
-				doStartUnionPayPlugin(this, tn, mMode);
+				doStartUnionPayPlugin(this, tn, Config.UNION_MEDE);
 			}
 		}
 		return false;
@@ -196,10 +192,10 @@ public abstract class BaseActivity extends Activity implements Callback,
 					Map<String, String> param = new HashMap<String, String>();
 					param.put("ordernumber", outTradeNo);
 					param.put("payType", "2");
-					String result = postRequest(TN_URL_02, param);
+					String result = postRequest(Config.UNION_SUCESS_URL, param);
 					Message msg = mHandler.obtainMessage();
 					msg.what = 1;
-					msg.obj = result;
+					msg.obj = "";
 					mHandler.sendMessage(msg);
 					Log.e("支付成功后请求==", "==result==" + result);
 				}
@@ -230,7 +226,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 		param.put("payType", "2");
 		param.put("android", "android");
 
-		String tn = postRequest(TN_URL_01, param);
+		String tn = postRequest(Config.UNION_TN_URL, param);
 
 		Message msg = mHandler.obtainMessage();
 		msg.what = 2;
@@ -249,7 +245,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 		try {
 			// 请求超时
 			httpPost.getParams().setParameter(
-					CoreConnectionPNames.CONNECTION_TIMEOUT, 100 * 1000);
+					CoreConnectionPNames.CONNECTION_TIMEOUT, 10 * 1000);
 			// 响应超时
 			httpPost.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
 					1000 * 10);

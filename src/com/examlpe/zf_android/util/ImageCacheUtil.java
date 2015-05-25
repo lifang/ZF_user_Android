@@ -14,7 +14,7 @@ import cn.trinea.android.common.service.impl.ImageCache;
 import cn.trinea.android.common.service.impl.ImageMemoryCache.OnImageCallbackListener;
 import cn.trinea.android.common.service.impl.RemoveTypeLastUsedTimeFirst;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 
 public class ImageCacheUtil {
 	public static final ImageCache IMAGE_CACHE = new ImageCache(128, 512);

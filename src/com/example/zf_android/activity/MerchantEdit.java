@@ -32,7 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.trinea.android.common.util.StringUtils;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;

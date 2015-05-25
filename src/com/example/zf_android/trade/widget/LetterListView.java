@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.epalmpay.user_phone.R;
+import com.epalmpay.userPhone.R;
 
 /**
  * Created by Leo on 2015/2/7.
