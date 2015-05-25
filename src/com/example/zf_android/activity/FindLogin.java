@@ -2,8 +2,8 @@ package com.example.zf_android.activity;
 
 import android.os.Bundle;
 
+import com.epalmpay.user_phone.R;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 
 public class FindLogin extends BaseActivity{
 		@Override

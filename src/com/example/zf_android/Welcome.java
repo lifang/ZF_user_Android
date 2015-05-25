@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.zf_android.activity.LoginActivity;
+import com.epalmpay.user_phone.R;
 import com.example.zf_android.activity.Main;
 
 public class Welcome extends Activity {

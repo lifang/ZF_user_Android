@@ -2,12 +2,6 @@ package com.example.zf_android.activity;
 
 import java.util.ArrayList;
 
-import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
-import com.example.zf_android.trade.widget.DepthPageTransformer;
-import com.umeng.analytics.MobclickAgent;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,12 +9,14 @@ import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.epalmpay.user_phone.R;
+import com.example.zf_android.BaseActivity;
 
 public class WelcomeActivity extends BaseActivity implements OnPageChangeListener {
 

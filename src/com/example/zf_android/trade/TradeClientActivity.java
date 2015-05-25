@@ -1,5 +1,12 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TradeIntent.CLIENT_NUMBER;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,20 +16,13 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeClient;
 import com.google.gson.reflect.TypeToken;
 import com.umeng.analytics.MobclickAgent;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.example.zf_android.trade.Constants.TradeIntent.CLIENT_NUMBER;
 
 public class TradeClientActivity extends ListActivity {
 

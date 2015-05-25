@@ -6,7 +6,6 @@ import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,10 +19,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 import com.example.zf_android.entity.BankEntity;
 import com.example.zf_android.entity.BankEntity.Bank;
 import com.example.zf_android.trade.common.CommonUtil;

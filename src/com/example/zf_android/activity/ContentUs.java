@@ -7,13 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.DialogUtil;
-import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.DialogUtil.CallBackChange;
+import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 
 public class ContentUs extends BaseActivity implements OnClickListener{
 	private LinearLayout ll_pay_type,ll_kf,ll_wx;

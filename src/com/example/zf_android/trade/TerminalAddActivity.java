@@ -1,6 +1,7 @@
 package com.example.zf_android.trade;
 
-import android.app.Activity;
+import static com.example.zf_android.trade.Constants.TerminalIntent.CHANNEL_ID;
+import static com.example.zf_android.trade.Constants.TerminalIntent.CHANNEL_NAME;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,16 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
 import com.google.gson.reflect.TypeToken;
-
-import static com.example.zf_android.trade.Constants.TerminalIntent.CHANNEL_ID;
-import static com.example.zf_android.trade.Constants.TerminalIntent.CHANNEL_NAME;
 
 /**
  * Created by Leo on 2015/3/4.

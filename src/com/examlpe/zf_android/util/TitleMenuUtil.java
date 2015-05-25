@@ -8,7 +8,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.zf_android.R;
+import com.epalmpay.user_phone.R;
 
 
 public class TitleMenuUtil {

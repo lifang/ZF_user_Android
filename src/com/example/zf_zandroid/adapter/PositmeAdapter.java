@@ -2,14 +2,6 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
-import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
-import com.example.zf_android.entity.MessageEntity;
-import com.example.zf_android.entity.PosEntity;
-import com.example.zf_android.entity.PosItem;
-import com.example.zf_android.entity.PosSelectEntity;
-import com.example.zf_android.entity.TestEntitiy;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.epalmpay.user_phone.R;
+import com.example.zf_android.entity.PosItem;
 
 public class PositmeAdapter extends BaseAdapter {
 	private Context context;

@@ -1,11 +1,5 @@
 package com.example.zf_android.trade;
 
-import static com.example.zf_android.trade.Constants.TradeType.CONSUME;
-import static com.example.zf_android.trade.Constants.TradeType.LIFE_PAY;
-import static com.example.zf_android.trade.Constants.TradeType.PHONE_PAY;
-import static com.example.zf_android.trade.Constants.TradeType.REPAYMENT;
-import static com.example.zf_android.trade.Constants.TradeType.TRANSFER;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +10,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.widget.MyTabWidget;
 import com.example.zf_android.trade.widget.MyViewPager;
 import com.umeng.analytics.MobclickAgent;

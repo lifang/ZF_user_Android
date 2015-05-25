@@ -2,26 +2,20 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
-import android.R.integer;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.RatingBar;
-import android.widget.Toast;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.StringUtil;
-import com.example.zf_android.R;
 import com.example.zf_android.entity.Goodlist;
 
 public class CommentAdapter extends BaseAdapter {

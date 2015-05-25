@@ -5,10 +5,9 @@ import android.app.Dialog;
 import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.zf_android.R;
+import com.epalmpay.user_phone.R;
 
 /**
  * Created by Leo on 2015/2/11.

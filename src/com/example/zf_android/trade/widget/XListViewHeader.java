@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.zf_android.R;
+import com.epalmpay.user_phone.R;
 
 public class XListViewHeader extends LinearLayout {
 	private LinearLayout mContainer;

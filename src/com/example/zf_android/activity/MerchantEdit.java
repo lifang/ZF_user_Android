@@ -32,12 +32,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.trinea.android.common.util.StringUtils;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.entity.MerchantEntity;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.CityProvinceActivity;

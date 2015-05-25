@@ -1,21 +1,19 @@
 package com.example.zf_android.activity;
  
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.RelativeLayout;
- 
+
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 /***
  * 
 *    
-* ÀàÃû³Æ£ºAbout   
-* ÀàÃèÊö£º  ÖÕ¶Ë¹ÜÀí
-* ´´½¨ÈË£º ljp 
-* ´´½¨Ê±¼ä£º2015-1-27 ÏÂÎç7:55:20   
+* ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½About   
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Õ¶Ë¹ï¿½ï¿½ï¿½
+* ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ ljp 
+* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2015-1-27 ï¿½ï¿½ï¿½ï¿½7:55:20   
 * @version    
 *
  */
@@ -28,7 +26,7 @@ public class ManagerPos extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu_mine);
-		new TitleMenuUtil(ManagerPos.this, "ÖÕ¶Ë¹ÜÀí").show();
+		new TitleMenuUtil(ManagerPos.this, "ï¿½Õ¶Ë¹ï¿½ï¿½ï¿½").show();
 	}
 
 	@Override

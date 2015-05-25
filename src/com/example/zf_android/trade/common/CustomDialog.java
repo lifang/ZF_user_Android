@@ -1,8 +1,5 @@
 package com.example.zf_android.trade.common;
 
-import com.example.zf_android.R;
-import com.example.zf_android.activity.Main;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -11,6 +8,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.epalmpay.user_phone.R;
 
 /**
  * customDialog 对话框

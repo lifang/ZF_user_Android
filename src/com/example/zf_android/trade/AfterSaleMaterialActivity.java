@@ -7,7 +7,6 @@ import static com.example.zf_android.trade.Constants.AfterSaleType.CHANGE;
 import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
 import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
 import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.text.Html;
@@ -20,10 +19,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.URLImageParser;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.DialogUtil;
 
 /**

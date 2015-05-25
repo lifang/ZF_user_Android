@@ -2,10 +2,6 @@ package com.examlpe.zf_android.util;
 
 import java.io.File;
 
-import com.example.zf_android.R;
-
- 
-
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Environment;
@@ -13,13 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
-import android.widget.LinearLayout.LayoutParams;
-
 import cn.trinea.android.common.entity.FailedReason;
 import cn.trinea.android.common.service.impl.ImageCache;
 import cn.trinea.android.common.service.impl.ImageMemoryCache.OnImageCallbackListener;
 import cn.trinea.android.common.service.impl.RemoveTypeLastUsedTimeFirst;
+
+import com.epalmpay.user_phone.R;
 
 public class ImageCacheUtil {
 	public static final ImageCache IMAGE_CACHE = new ImageCache(128, 512);

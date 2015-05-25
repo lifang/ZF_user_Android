@@ -1,7 +1,5 @@
 package com.example.zf_android.activity;
 
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,15 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.examlpe.zf_android.util.MyToast;
-import com.examlpe.zf_android.util.StringUtil;
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.API;
-import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.common.CustomDialog;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.google.gson.reflect.TypeToken;
