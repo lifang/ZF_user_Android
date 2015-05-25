@@ -15,10 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.DialogUtil;
 import com.examlpe.zf_android.util.DialogUtil.CallBackChange;
 import com.examlpe.zf_android.util.TitleMenuUtil;
-import com.example.zf_android.R;
 import com.example.zf_android.alipay.RepairPayActivity;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.RepairPayEntity;

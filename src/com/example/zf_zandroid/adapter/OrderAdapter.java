@@ -2,10 +2,6 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,17 +17,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
-import com.example.zf_android.R;
 import com.example.zf_android.activity.Comment;
-import com.example.zf_android.activity.MerchantList;
-import com.example.zf_android.activity.OrderDetail;
 import com.example.zf_android.activity.PayFromCar;
 import com.example.zf_android.entity.OrderEntity;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.HttpCallback;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class OrderAdapter extends BaseAdapter{

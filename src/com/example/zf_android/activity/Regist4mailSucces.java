@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
- 
+
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
  
 public class Regist4mailSucces extends BaseActivity implements OnClickListener{
 	private int a;

@@ -1,6 +1,12 @@
 package com.example.zf_android.trade;
 
-import android.app.Activity;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BILLING;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL_ID;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,20 +18,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.ApplyChannel;
 import com.google.gson.reflect.TypeToken;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_BILLING;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_CHANNEL_ID;
 
 /**
  * Created by Leo on 2015/3/16.

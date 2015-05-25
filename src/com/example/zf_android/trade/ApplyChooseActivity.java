@@ -1,5 +1,15 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
+import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_TITLE;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
+import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_TITLE;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,20 +18,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.entity.ApplyChooseItem;
 import com.umeng.analytics.MobclickAgent;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_ITEMS;
-import static com.example.zf_android.trade.Constants.ApplyIntent.CHOOSE_TITLE;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_ID;
-import static com.example.zf_android.trade.Constants.ApplyIntent.SELECTED_TITLE;
 
 public class ApplyChooseActivity extends ListActivity {
 

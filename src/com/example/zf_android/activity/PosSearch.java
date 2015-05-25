@@ -3,7 +3,6 @@ package com.example.zf_android.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -25,9 +24,9 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 import com.example.zf_zandroid.adapter.SearchAdapter;
 /***
  *   搜索

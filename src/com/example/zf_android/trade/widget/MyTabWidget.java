@@ -1,5 +1,8 @@
 package com.example.zf_android.trade.widget;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
@@ -12,10 +15,7 @@ import android.view.View;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-import com.example.zf_android.R;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.epalmpay.user_phone.R;
 
 /**
  * Custom {@link TabWidget} to collaborate with a {@link ViewPager}

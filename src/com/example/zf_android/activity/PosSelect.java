@@ -25,18 +25,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.entity.PosItem;
 import com.example.zf_android.entity.PosSelectEntity;
 import com.example.zf_android.entity.PrePosItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 public class PosSelect extends BaseActivity implements  OnClickListener{
 	private ImageView img_on_off;

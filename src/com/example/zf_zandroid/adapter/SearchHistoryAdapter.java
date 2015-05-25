@@ -1,13 +1,13 @@
 package com.example.zf_zandroid.adapter;
 
-import com.example.zf_android.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.epalmpay.user_phone.R;
  
 public class SearchHistoryAdapter extends BaseAdapter {
 	String[] strarr;

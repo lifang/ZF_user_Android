@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.zf_android.R;
+import com.epalmpay.user_phone.R;
 import com.example.zf_android.trade.entity.GriviewEntity;
 
 public class ButtonGridviewAdapter extends BaseAdapter {

@@ -3,8 +3,6 @@ package com.example.zf_android.activity;
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
 import static com.example.zf_android.trade.Constants.CityIntent.CITY_ID;
 import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
-import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
-import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,26 +10,21 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.examlpe.zf_android.util.MyToast;
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.API;
-import com.example.zf_android.trade.CityProvinceActivity;
 import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.entity.City;
-import com.example.zf_android.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
 
 public class Register extends BaseActivity implements OnClickListener {

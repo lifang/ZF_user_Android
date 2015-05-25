@@ -8,14 +8,13 @@ import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_TYPE;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeStatistic;
 import com.google.gson.reflect.TypeToken;

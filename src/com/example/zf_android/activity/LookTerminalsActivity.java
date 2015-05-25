@@ -1,12 +1,11 @@
 package com.example.zf_android.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 
 public class LookTerminalsActivity extends BaseActivity{
 	private TextView tv;

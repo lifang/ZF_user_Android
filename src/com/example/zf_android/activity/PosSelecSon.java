@@ -13,18 +13,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.epalmpay.user_phone.R;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
-import com.example.zf_android.entity.PosItem;
 import com.example.zf_android.entity.PrePosItem;
-import com.example.zf_android.entity.TestEntitiy;
 import com.example.zf_zandroid.adapter.MyExpandableListAdapter;
-import com.example.zf_zandroid.adapter.PositmeAdapter;
 
 public class PosSelecSon extends BaseActivity implements OnClickListener{
 	private ExpandableListView lv;

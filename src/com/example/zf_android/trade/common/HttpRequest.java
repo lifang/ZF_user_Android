@@ -1,21 +1,21 @@
 package com.example.zf_android.trade.common;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
-
-import com.example.zf_android.R;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.TextHttpResponseHandler;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.epalmpay.user_phone.R;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
 
 /**
  * Created by Leo on 2015/2/11.

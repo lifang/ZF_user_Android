@@ -6,7 +6,6 @@ import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_TYPE;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -14,9 +13,9 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TradeDetail;
 import com.google.gson.reflect.TypeToken;

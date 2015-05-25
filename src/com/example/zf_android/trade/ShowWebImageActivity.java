@@ -1,6 +1,21 @@
 package com.example.zf_android.trade;
 
-import android.app.Activity;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
+import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
+import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -27,13 +42,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.RegexTools;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
-import com.example.zf_android.trade.entity.ApplyMaterial;
 import com.example.zf_android.trade.widget.gestureimage.GestureImageView;
 import com.example.zf_android.trade.widget.gestureimage.MyViewPager;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -43,22 +56,6 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PHOTO;
-import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_NAMES;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.IMAGE_URLS;
-import static com.example.zf_android.trade.Constants.ShowWebImageIntent.POSITION;
 
 /**
  * Created by Leo on 2015/3/5.

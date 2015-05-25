@@ -45,12 +45,11 @@ import com.baidu.android.pushservice.PushManager;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.ScreenUtils;
 import com.examlpe.zf_android.util.StringUtil;
-import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.Utils;
 import com.example.zf_android.entity.PicEntity;
 import com.example.zf_android.trade.ApplyListActivity;
@@ -66,7 +65,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.umeng.analytics.MobclickAgent;
 
 public class Main extends Activity implements OnClickListener {
 	private LocationClient mLocationClient;

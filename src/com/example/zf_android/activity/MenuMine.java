@@ -6,16 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epalmpay.user_phone.R;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.AfterSaleGridActivity;
 import com.example.zf_android.trade.ApplyOpenProgressActivity;
 

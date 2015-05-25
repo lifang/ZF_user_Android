@@ -1,39 +1,11 @@
 package com.example.zf_android.trade;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.examlpe.zf_android.util.StringUtil;
-import com.example.zf_android.Config;
-import com.example.zf_android.R;
-import com.example.zf_android.trade.common.CommonUtil;
-import com.example.zf_android.trade.common.HttpCallback;
-import com.example.zf_android.trade.common.Page;
-import com.example.zf_android.trade.entity.TradeRecord;
-import com.example.zf_android.trade.widget.XListView;
-import com.google.gson.reflect.TypeToken;
-import com.umeng.analytics.MobclickAgent;
+import static com.example.zf_android.trade.Constants.TradeIntent.CLIENT_NUMBER;
+import static com.example.zf_android.trade.Constants.TradeIntent.END_DATE;
+import static com.example.zf_android.trade.Constants.TradeIntent.REQUEST_TRADE_CLIENT;
+import static com.example.zf_android.trade.Constants.TradeIntent.START_DATE;
+import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_RECORD_ID;
+import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_TYPE;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -44,17 +16,36 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static com.example.zf_android.trade.Constants.TradeIntent.CLIENT_NUMBER;
-import static com.example.zf_android.trade.Constants.TradeIntent.END_DATE;
-import static com.example.zf_android.trade.Constants.TradeIntent.REQUEST_TRADE_CLIENT;
-import static com.example.zf_android.trade.Constants.TradeIntent.START_DATE;
-import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_RECORD_ID;
-import static com.example.zf_android.trade.Constants.TradeIntent.TRADE_TYPE;
-import static com.example.zf_android.trade.Constants.TradeType.CONSUME;
-import static com.example.zf_android.trade.Constants.TradeType.LIFE_PAY;
-import static com.example.zf_android.trade.Constants.TradeType.PHONE_PAY;
-import static com.example.zf_android.trade.Constants.TradeType.REPAYMENT;
-import static com.example.zf_android.trade.Constants.TradeType.TRANSFER;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.epalmpay.user_phone.R;
+import com.examlpe.zf_android.util.StringUtil;
+import com.example.zf_android.Config;
+import com.example.zf_android.trade.common.CommonUtil;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.common.Page;
+import com.example.zf_android.trade.entity.TradeRecord;
+import com.example.zf_android.trade.widget.XListView;
+import com.google.gson.reflect.TypeToken;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Leo on 2015/2/6.

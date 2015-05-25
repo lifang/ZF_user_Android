@@ -7,16 +7,14 @@ import static com.example.zf_android.trade.Constants.AfterSaleType.LEASE;
 import static com.example.zf_android.trade.Constants.AfterSaleType.MAINTAIN;
 import static com.example.zf_android.trade.Constants.AfterSaleType.RETURN;
 import static com.example.zf_android.trade.Constants.AfterSaleType.UPDATE;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 
 /**
  * Created by Leo on 2015/2/26.

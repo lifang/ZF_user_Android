@@ -31,9 +31,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.epalmpay.user_phone.R;
 import com.example.zf_android.BaseActivity;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;

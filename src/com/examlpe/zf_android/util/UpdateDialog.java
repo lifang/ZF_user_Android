@@ -1,14 +1,14 @@
 package com.examlpe.zf_android.util;
 
 
-import com.example.zf_android.R;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.epalmpay.user_phone.R;
 
 public class UpdateDialog extends Dialog {
 	private TextView quit_message,quit_cancel,quit_ok;

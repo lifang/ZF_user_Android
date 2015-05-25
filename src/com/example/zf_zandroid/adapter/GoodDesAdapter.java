@@ -8,11 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.activity.GoodDeatail;
 import com.example.zf_android.entity.GoodImgUrlEntity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

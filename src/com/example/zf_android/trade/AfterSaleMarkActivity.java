@@ -2,7 +2,6 @@ package com.example.zf_android.trade;
 
 import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_ID;
 import static com.example.zf_android.trade.Constants.AfterSaleIntent.RECORD_TYPE;
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,10 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.TextWatcherAdapter;
 import com.google.gson.reflect.TypeToken;

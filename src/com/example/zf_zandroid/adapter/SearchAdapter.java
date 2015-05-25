@@ -2,20 +2,15 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
-import com.example.zf_android.R;
-
- 
-
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
-
 import android.widget.TextView;
+
+import com.epalmpay.user_phone.R;
  
 public class SearchAdapter extends BaseAdapter {
 

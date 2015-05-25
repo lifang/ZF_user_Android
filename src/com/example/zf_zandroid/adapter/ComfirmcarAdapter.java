@@ -2,36 +2,20 @@ package com.example.zf_zandroid.adapter;
 
 import java.util.List;
 
-import org.apache.http.Header;
-
-import com.examlpe.zf_android.util.StringUtil;
-import com.example.zf_android.Config;
-import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
-import com.example.zf_android.activity.ShopCar;
-import com.example.zf_android.entity.MyShopCar;
-import com.example.zf_android.entity.TestEntitiy;
-import com.example.zf_android.entity.MyShopCar.Good;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.epalmpay.user_phone.R;
+import com.examlpe.zf_android.util.StringUtil;
+import com.example.zf_android.entity.MyShopCar.Good;
 
 public class ComfirmcarAdapter extends BaseAdapter {
 	private Context context;

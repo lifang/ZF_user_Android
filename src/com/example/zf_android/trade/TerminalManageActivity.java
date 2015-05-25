@@ -1,9 +1,9 @@
 package com.example.zf_android.trade;
 
+import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_ADD;
 import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
-import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
 import static com.example.zf_android.trade.Constants.TerminalStatus.CANCELED;
@@ -15,7 +15,6 @@ import static com.example.zf_android.trade.Constants.TerminalStatus.UNOPENED;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,8 +23,8 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -33,12 +32,12 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.Page;

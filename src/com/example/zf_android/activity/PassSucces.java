@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.R;
  
 public class PassSucces extends BaseActivity implements OnClickListener{
 	private LinearLayout login_linear_signin;

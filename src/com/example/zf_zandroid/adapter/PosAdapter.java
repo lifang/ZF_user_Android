@@ -1,5 +1,7 @@
 package com.example.zf_zandroid.adapter;
 
+import java.util.List;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +11,10 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.epalmpay.user_phone.R;
 import com.examlpe.zf_android.util.ImageCacheUtil;
 import com.examlpe.zf_android.util.StringUtil;
-import com.example.zf_android.R;
 import com.example.zf_android.entity.PosEntity;
-
-import java.util.List;
 
 public class PosAdapter extends BaseAdapter {
 	private Context context;
