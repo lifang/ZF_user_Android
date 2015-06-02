@@ -39,7 +39,7 @@ public class API {
 	// sit
 //	 public final static String HOST = "www.ebank007.com/api/";
 	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
-//	 public final static String HOST = "121.40.64.167:8080/api/";
+//	 public final static String HOST = "121.40.224.25:8080/api/";
 	public static final String EDITADRESS = SCHEMA + HOST
 			+ "customers/updateAddress";
 

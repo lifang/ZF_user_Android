@@ -163,6 +163,7 @@ public class Register4phone extends BaseActivity   implements OnClickListener{
 
 			@Override
 			public void onSuccess(Object data) {
+				MyApplication.getInstance().setSearchedCityWhenReg(false);
 				MyToast.showToast(getApplicationContext(),"注册成功");
 				Intent i =new Intent(getApplicationContext(), Regist4phoneSucces.class);
 				startActivity(i);

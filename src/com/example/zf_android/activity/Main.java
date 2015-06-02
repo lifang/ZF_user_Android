@@ -5,18 +5,25 @@ import static com.example.zf_android.trade.Constants.CityIntent.CITY_NAME;
 import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_CITY;
 import static com.example.zf_android.trade.Constants.CityIntent.SELECTED_PROVINCE;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import org.apache.http.Header;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,6 +35,7 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,22 +54,31 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.epalmpay.userPhone.R;
+import com.examlpe.zf_android.util.DownloadUtils;
 import com.examlpe.zf_android.util.ScreenUtils;
 import com.examlpe.zf_android.util.StringUtil;
+import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.Utils;
 import com.example.zf_android.entity.PicEntity;
+import com.example.zf_android.entity.VersionEntity;
+import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.Constants;
 import com.example.zf_android.trade.TerminalManageActivity;
 import com.example.zf_android.trade.TradeFlowActivity;
+import com.example.zf_android.trade.common.CustomDialog;
+import com.example.zf_android.trade.common.HttpCallback;
+import com.example.zf_android.trade.common.JsonParser;
+import com.example.zf_android.trade.common.Response;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
@@ -333,6 +350,85 @@ public class Main extends Activity implements OnClickListener {
 			}
 		});
 
+		
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("types", 3);
+		JSONObject jsonParams = new JSONObject(params);
+		StringEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+			entity.setContentType("application/json;charset=UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+		MyApplication
+		.getInstance()
+		.getClient()
+		.post(Main.this, Config.URL_GET_VERSION,entity,null,
+				new AsyncHttpResponseHandler() {
+
+			@Override
+			public void onSuccess(int statusCode,
+					Header[] headers, byte[] responseBody) {
+				System.out.println("-onSuccess---");
+				
+				String responseString = new String(responseBody)
+				.toString();
+				Response data;
+				try {
+					data = JsonParser.fromJson(responseString,new TypeToken<VersionEntity>() {
+					}) ;
+				} catch (Exception e) {
+					Toast.makeText(getApplicationContext(),
+							Main.this.getString(R.string.parse_data_failed), 1000).show();
+					return;
+				}
+				if (data.getCode() == 1) {
+					VersionEntity result = (VersionEntity) data.getResult();
+					String version = result.getVersions();
+					String url = result.getDown_url();
+					Integer nowVersion = Tools.getVerCode(Main.this);
+					if(Integer.parseInt(version) > nowVersion){
+						
+						showCustomDialog(url);
+						
+					}
+					
+				} 
+				
+			}
+
+			@Override
+			public void onFailure(int statusCode,
+					Header[] headers, byte[] responseBody,
+					Throwable error) {
+				error.printStackTrace();
+			}
+		});
+
+		
+		
+//		API.getVersion(this,3,new HttpCallback<VersionEntity> (this) {
+//			@Override
+//			public void onSuccess(VersionEntity data) {
+//				String version = data.getVersions();
+//				String url = data.getDown_url();
+//				Integer nowVersion = Tools.getVerCode(Main.this);
+//				if(Integer.parseInt(version) > nowVersion){
+//					
+//					showCustomDialog(url);
+//					
+//				}
+//			}
+//
+//			@Override
+//			public TypeToken<VersionEntity> getTypeToken() {
+//				return  new TypeToken<VersionEntity>() {
+//				};
+//			}
+//		} );
+		
 	}
 
 	private void initView() {
@@ -582,14 +678,13 @@ public class Main extends Activity implements OnClickListener {
 
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
-		//	image.setScaleType(ScaleType.FIT_XY);
+//			image.setScaleType(ScaleType.FIT_XY);
 			// ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
 			// image);
 
 			MyApplication.getInstance().getImageLoader()
 			.displayImage(ma.get(position), image, options);
 
-			container.removeView(mList.get(position));
 			container.addView(mList.get(position));
 			setIndex(position);
 			view.setOnClickListener(new OnClickListener() {
@@ -669,4 +764,93 @@ public class Main extends Activity implements OnClickListener {
 		super.onDestroy();
 	}
 
+	private void showCustomDialog(final String url) {
+		final CustomDialog dialog = new CustomDialog(this);
+		dialog.setSoftKeyValue("取消", "确认");
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(false);
+		dialog.setContent("检测到新版本立即更新？");
+		dialog.setLeftListener(new android.view.View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+
+		});
+		dialog.setRightListener(new android.view.View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+				upgrading(url);
+			}
+		});
+		dialog.show();
+	}
+	
+	private void upgrading(String apkUrl) {
+		final ProgressDialog pd = new ProgressDialog(this);
+		pd.setCancelable(false);
+		pd.setCanceledOnTouchOutside(false);
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		pd.setMessage(getResources().getString(R.string.updata_check));
+		fileDownLoad(pd, apkUrl);
+		pd.show();
+	}
+
+	private void fileDownLoad(ProgressDialog dialog, final String url) {
+		try {
+			final DownloadListener listener = new DownloadListener(this, dialog);
+			final File file = new File(DownloadUtils.getFilePath(url));
+			new Thread() {
+				@Override
+				public void run() {
+					super.run();
+					try {
+						DownloadUtils.download(url,
+								file, false, listener);
+					} catch (Exception e) {
+						Log.e("userPhone", "", e);
+					}
+				}
+			}.start();
+		} catch (Exception e) {
+			dialog.dismiss();
+		}
+	}
+
+	private static class DownloadListener implements
+	DownloadUtils.DownloadListener {
+		private Context context;
+		private ProgressDialog pd;
+
+		public DownloadListener(Context context, ProgressDialog pd) {
+			super();
+			this.context = context;
+			pd.setMax(100);
+			pd.setProgress(0);
+			this.pd = pd;
+		}
+
+		@Override
+		public void downloading(int progress) {
+			pd.setProgress(progress);
+		}
+
+		@Override
+		public void downloaded(File dest) {
+			pd.dismiss();
+			Intent intent = new Intent();
+			intent.setAction(Intent.ACTION_VIEW);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+			intent.setDataAndType(Uri.fromFile(dest),
+					"application/vnd.android.package-archive");
+			context.startActivity(intent);
+		}
+
+		@Override
+		public void exception(Exception e) {
+		}
+	}
 }

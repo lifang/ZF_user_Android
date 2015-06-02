@@ -20,7 +20,7 @@ public class BaseActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		mContext = this;
-		Log.e("==mContext==",this.toString());
+//		Log.e("==mContext==",this.toString());
 		MobclickAgent.setDebugMode(true);
 		// SDK在统计Fragment时，需要关闭Activity自带的页面统计，
 		// 然后在每个页面中重新集成页面统计的代码(包括调用了 onResume 和 onPause 的Activity)。
@@ -29,7 +29,7 @@ public class BaseActivity extends Activity {
 		// MobclickAgent.setSessionContinueMillis(1000);
 
 		MobclickAgent.updateOnlineConfig(this);
-		Log.e("------", getDeviceInfo(this));
+//		Log.e("------", getDeviceInfo(this));
 	}
 
 	@Override

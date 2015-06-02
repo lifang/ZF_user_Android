@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
@@ -75,6 +76,7 @@ public class CitySearchActivity extends BaseActivity implements OnClickListener{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				MyApplication.getInstance().setSearchedCityWhenReg(true);
 				Constants.CITY_ID_SEARCH = searchCities.get(position).getId();
 				Constants.CITY_NAME_SEARCH = searchCities.get(position).getName();
 				finish();
