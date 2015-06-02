@@ -49,9 +49,6 @@ public abstract class BaseActivity extends Activity implements Callback,
 	public static final int PLUGIN_NOT_INSTALLED = -1;
 	public static final int PLUGIN_NEED_UPGRADE = 2;
 
-	/*****************************************************************
-	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
-	 *****************************************************************/
 	protected String outTradeNo;
 	protected String price;
 	protected String orderId;

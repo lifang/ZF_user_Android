@@ -435,6 +435,15 @@ public class MyApplication extends org.litepal.LitePalApplication {
 	}
 
 	private boolean hasOrderPaid;
+	private boolean isSearchedCityWhenReg;
+
+	public boolean isSearchedCityWhenReg() {
+		return isSearchedCityWhenReg;
+	}
+
+	public void setSearchedCityWhenReg(boolean isSearchedCityWhenReg) {
+		this.isSearchedCityWhenReg = isSearchedCityWhenReg;
+	}
 
 	public boolean isHasOrderPaid() {
 		return hasOrderPaid;

@@ -17,6 +17,8 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
+import android.os.Environment;
+
 public class DownloadUtils {
     private static final int CONNECT_TIMEOUT = 10000;
     private static final int DATA_TIMEOUT = 40000;
@@ -114,4 +116,22 @@ public class DownloadUtils {
 
         return totalSize;
     }
+    
+    /**
+     * 获取网上文件本地存储路径
+     * @param netUrl 
+     * @return local file path
+     */
+	public static String getFilePath(String netUrl) {
+		int lastSlashIndex = netUrl.lastIndexOf("/");
+		String fileName = netUrl.substring(lastSlashIndex + 1);
+		String fileDir = Environment.getExternalStorageDirectory()
+				.getPath() + "/epalmpay/apk/";
+		File file = new File(fileDir);
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+		String filePath = fileDir + fileName;
+		return filePath;
+	}
 }

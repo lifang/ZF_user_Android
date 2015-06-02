@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import com.epalmpay.userPhone.R;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.entity.City;
 import com.example.zf_android.trade.entity.Province;
@@ -56,6 +57,7 @@ public class CitySelectActivity extends BaseActivity {
     private List<String> mLetters = new ArrayList<String>();
     private List<Object> mItems = new ArrayList<Object>();
 	public static Activity CitySelectActivity;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +81,7 @@ public class CitySelectActivity extends BaseActivity {
 			
 			@Override
 			public void onClick(View v) {
+				
 				Intent intent = new Intent(CitySelectActivity.this,CitySearchActivity.class);
 				startActivity(intent);
 			}

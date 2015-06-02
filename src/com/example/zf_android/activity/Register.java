@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.CitySelectActivity;
+import com.example.zf_android.trade.Constants;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,7 +36,8 @@ public class Register extends BaseActivity implements OnClickListener {
 	private TextView cityText, register_hint;
 	private ImageView del;
 	public int cityid = -1;
-
+	private LinearLayout titleback_linear_back;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,6 +59,7 @@ public class Register extends BaseActivity implements OnClickListener {
 		if(TextUtils.isEmpty(MyApplication.getInstance().getCityName())){
 			cityText.setText("上海市");
 			cityid = 394;
+			MyApplication.getInstance().setReg_cityId(cityid);
 		}else{
 			cityText.setText(MyApplication.getInstance().getCityName());
 			cityid = MyApplication.getInstance().getCityId();
@@ -91,6 +95,9 @@ public class Register extends BaseActivity implements OnClickListener {
 		login.setOnClickListener(this);
 		loginNow.setOnClickListener(this);
 		forgetPass.setOnClickListener(this);
+		
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
+		titleback_linear_back.setOnClickListener(this);
 	}
 
 	@Override
@@ -147,6 +154,10 @@ public class Register extends BaseActivity implements OnClickListener {
 			startActivity(intent);
 			finish();
 			break;
+		case R.id.titleback_linear_back:
+			MyApplication.getInstance().setSearchedCityWhenReg(false);
+			finish();
+			break;
 		default:
 			break;
 		}
@@ -190,5 +201,27 @@ public class Register extends BaseActivity implements OnClickListener {
 		default:
 			break;
 		}
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if(!TextUtils.isEmpty(Constants.CITY_NAME_SEARCH)&&MyApplication.getInstance().isSearchedCityWhenReg()){
+			cityid = Constants.CITY_ID_SEARCH;
+			cityText.setText(Constants.CITY_NAME_SEARCH);
+			MyApplication.getInstance().setReg_cityId(cityid);
+		}
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+
+			MyApplication.getInstance().setSearchedCityWhenReg(false);
+			finish();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }
