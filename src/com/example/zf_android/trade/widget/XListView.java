@@ -2,6 +2,7 @@ package com.example.zf_android.trade.widget;
 
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,6 +43,11 @@ public class XListView extends ListView implements OnScrollListener {
 	private boolean mEnablePullLoad;
 	private boolean mPullLoading;
 	private boolean mIsFooterReady = false;
+
+	/*
+	 * 防止多个手指刷新，造成数据重复
+	 */
+	boolean oneRefresh = true;
 
 	public XListViewFooter getmFooterView() {
 		return mFooterView;
@@ -110,7 +116,7 @@ public class XListView extends ListView implements OnScrollListener {
 					public void onGlobalLayout() {
 						mHeaderViewHeight = mHeaderViewContent.getHeight();
 						getViewTreeObserver()
-								.removeGlobalOnLayoutListener(this);
+						.removeGlobalOnLayoutListener(this);
 					}
 				});
 	}
@@ -279,48 +285,57 @@ public class XListView extends ListView implements OnScrollListener {
 		}
 
 		switch (ev.getAction()) {
-			case MotionEvent.ACTION_DOWN:
-				mLastY = ev.getRawY();
-				break;
-			case MotionEvent.ACTION_MOVE:
-				final float deltaY = ev.getRawY() - mLastY;
-				mLastY = ev.getRawY();
-				System.out.println("��ݼ�⣺" + getFirstVisiblePosition() + "---->"
-						+ getLastVisiblePosition());
-				if (getFirstVisiblePosition() == 0
-						&& (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
-					// the first item is showing, header has shown or pull down.
-					updateHeaderHeight(deltaY / OFFSET_RADIO);
-					invokeOnScrolling();
-				} else if (getLastVisiblePosition() == mTotalItemCount - 1
-						&& (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
-					// last item, already pulled up or want to pull up.
-					updateFooterHeight(-deltaY / OFFSET_RADIO);
-				}
-				break;
-			default:
-				mLastY = -1; // reset
-				if (getFirstVisiblePosition() == 0) {
-					// invoke refresh
-					if (mEnablePullRefresh
-							&& mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
+		case MotionEvent.ACTION_DOWN:
+			mLastY = ev.getRawY();
+			break;
+		case MotionEvent.ACTION_MOVE:
+			final float deltaY = ev.getRawY() - mLastY;
+			mLastY = ev.getRawY();
+			System.out.println("��ݼ�⣺" + getFirstVisiblePosition() + "---->"
+					+ getLastVisiblePosition());
+			if (getFirstVisiblePosition() == 0
+					&& (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
+				// the first item is showing, header has shown or pull down.
+				updateHeaderHeight(deltaY / OFFSET_RADIO);
+				invokeOnScrolling();
+			} else if (getLastVisiblePosition() == mTotalItemCount - 1
+					&& (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
+				// last item, already pulled up or want to pull up.
+				updateFooterHeight(-deltaY / OFFSET_RADIO);
+			}
+			break;
+		default:
+			mLastY = -1; // reset
+			if (getFirstVisiblePosition() == 0) {
+				// invoke refresh
+				if (mEnablePullRefresh
+						&& mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
+					if (oneRefresh == true) {//防止多个手指刷新，造成数据重复
 						mPullRefreshing = true;
 						mHeaderView.setState(XListViewHeader.STATE_REFRESHING);
 						if (mListViewListener != null) {
 							mListViewListener.onRefresh();
+							
+							oneRefresh = false;
+							new Handler().postDelayed(new Runnable(){    
+								public void run() {   
+									oneRefresh = true;
+								}    
+							}, 1000); 
 						}
 					}
-					resetHeaderHeight();
 				}
-				if (getLastVisiblePosition() == mTotalItemCount - 1) {
-					// invoke load more.
-					if (mEnablePullLoad
-							&& mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
-						startLoadMore();
-					}
-					resetFooterHeight();
+				resetHeaderHeight();
+			}
+			if (getLastVisiblePosition() == mTotalItemCount - 1) {
+				// invoke load more.
+				if (mEnablePullLoad
+						&& mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
+					startLoadMore();
 				}
-				break;
+				resetFooterHeight();
+			}
+			break;
 		}
 		return super.onTouchEvent(ev);
 	}
@@ -353,7 +368,7 @@ public class XListView extends ListView implements OnScrollListener {
 
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
-	                     int visibleItemCount, int totalItemCount) {
+			int visibleItemCount, int totalItemCount) {
 		// send to user's listener
 		mTotalItemCount = totalItemCount;
 		if (mScrollListener != null) {

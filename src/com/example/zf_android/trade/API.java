@@ -681,6 +681,8 @@ public class API {
 		params.put("minPrice", minPrice);
 		params.put("maxPrice", maxPrice);
 		params.put("keys", keys);
+		params.put("page", page);
+		params.put("rows", rows);
 		Gson gson = new Gson();
 		try {
 			if (brands_id != null)
