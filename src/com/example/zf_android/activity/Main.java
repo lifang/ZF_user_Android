@@ -678,14 +678,13 @@ public class Main extends Activity implements OnClickListener {
 
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
-		//	image.setScaleType(ScaleType.FIT_XY);
+//			image.setScaleType(ScaleType.FIT_XY);
 			// ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
 			// image);
 
 			MyApplication.getInstance().getImageLoader()
 			.displayImage(ma.get(position), image, options);
 
-			container.removeView(mList.get(position));
 			container.addView(mList.get(position));
 			setIndex(position);
 			view.setOnClickListener(new OnClickListener() {
