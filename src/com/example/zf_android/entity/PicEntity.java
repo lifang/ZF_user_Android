@@ -9,6 +9,15 @@ public class PicEntity extends DataSupport{
 	private int id;
 	private String picture_url;
 	private String website_url;
+	private String goodid;
+	
+	
+	public String getGoodid() {
+		return goodid;
+	}
+	public void setGoodid(String goodid) {
+		this.goodid = goodid;
+	}
 	public int getId() {
 		return id;
 	}

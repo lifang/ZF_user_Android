@@ -678,7 +678,7 @@ public class Main extends Activity implements OnClickListener {
 
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
-			image.setScaleType(ScaleType.FIT_XY);
+		//	image.setScaleType(ScaleType.FIT_XY);
 			// ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
 			// image);
 
@@ -692,12 +692,16 @@ public class Main extends Activity implements OnClickListener {
 
 				@Override
 				public void onClick(View arg0) {
-					Intent intent = new Intent();
-					intent.setAction("android.intent.action.VIEW");
-					Uri content_url = Uri.parse(myList.get(position)
-							.getWebsite_url().toString());
-					intent.setData(content_url);
-					startActivity(intent);
+					Intent i =new Intent (Main.this,GoodDeatail.class);
+					i.putExtra("id", Integer.valueOf(myList.get(position).getGoodid()));
+					startActivity(i);
+					
+//					Intent intent = new Intent();
+//					intent.setAction("android.intent.action.VIEW");
+//					Uri content_url = Uri.parse(myList.get(position)
+//							.getWebsite_url().toString());
+//					intent.setData(content_url);
+//					startActivity(intent);
 				}
 			});
 			return mList.get(position);
@@ -723,7 +727,7 @@ public class Main extends Activity implements OnClickListener {
 		}
 
 		@Override
-		public void onPageSelected(int position) {
+		public void onPageSelected(final int position) {
 			pagerIndex = position;
 			// 改变所有导航的背景图片为：未选中
 			for (int i = 0; i < indicator_imgs.length; i++) {
@@ -739,13 +743,16 @@ public class Main extends Activity implements OnClickListener {
 
 				@Override
 				public void onClick(View arg0) {
-
-					Intent intent = new Intent();
-					intent.setAction("android.intent.action.VIEW");
-					Uri content_url = Uri.parse(myList.get(index_ima)
-							.getWebsite_url().toString());
-					intent.setData(content_url);
-					startActivity(intent);
+					Intent i =new Intent (Main.this,GoodDeatail.class);
+					i.putExtra("id", Integer.valueOf(myList.get(position).getGoodid()));
+					startActivity(i);
+					
+//					Intent intent = new Intent();
+//					intent.setAction("android.intent.action.VIEW");
+//					Uri content_url = Uri.parse(myList.get(index_ima)
+//							.getWebsite_url().toString());
+//					intent.setData(content_url);
+//					startActivity(intent);
 				}
 			});
 		}

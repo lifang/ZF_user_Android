@@ -13,7 +13,7 @@ public class AfterSaleDetail {
 	private int id;
 
 	private int status;
-
+	
 	@SerializedName("apply_time")
 	private String applyTime;
 

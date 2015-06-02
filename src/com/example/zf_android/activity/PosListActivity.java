@@ -89,7 +89,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 						Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				Toast.makeText(getApplicationContext(),  "no more data",
+				Toast.makeText(getApplicationContext(),  "没有更多数据",
 						Toast.LENGTH_SHORT).show();
 				break;
 			}
