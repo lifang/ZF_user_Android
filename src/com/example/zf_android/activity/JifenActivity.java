@@ -155,7 +155,7 @@ public class JifenActivity extends BaseActivity implements  IXListViewListener{
 		if (myList.size() >= total) {
 			Xlistview.setPullLoadEnable(false);
 			Xlistview.stopLoadMore();
-			CommonUtil.toastShort(this, "no more data");
+			CommonUtil.toastShort(this, "没有更多数据");
 		} else {
 			getData();
 		}

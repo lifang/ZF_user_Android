@@ -342,6 +342,7 @@ public class MyApplication extends org.litepal.LitePalApplication {
 		 * niemin
 		 */
 		initImageLoader(mInstance);
+		
 		Intent i = new Intent(this, NetworkStateService.class);
 		ServiceConnection connection = new ServiceConnection() {
 			@Override

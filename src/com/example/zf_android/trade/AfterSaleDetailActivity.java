@@ -129,43 +129,43 @@ public class AfterSaleDetailActivity extends BaseActivity {
 				builder.setPositiveButton("确认",
 						new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface arg0, int arg1) {
-								
-								API.cancelAfterSaleApply(AfterSaleDetailActivity.this, mRecordType, mRecordId, new HttpCallback(AfterSaleDetailActivity.this) {
-									@Override
-									public void onSuccess(Object data) {
-										mRecordStatus = 5;
-										String status = getResources().getStringArray(R.array.maintain_status)[5];
-										mStatus.setText(status);
-										if (mRecordType == CANCEL) {
-											mButton1.setText(getString(R.string.button_submit_cancel));
-											mButton1.setOnClickListener(mSubmitCancelListener);
-										} else {
-											mButton1.setVisibility(View.GONE);
-										}
-										CommonUtil.toastShort(AfterSaleDetailActivity.this, getString(R.string.toast_cancel_apply_success));
-									}
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
 
-									@Override
-									public TypeToken getTypeToken() {
-										return null;
-									}
-								});
+						API.cancelAfterSaleApply(AfterSaleDetailActivity.this, mRecordType, mRecordId, new HttpCallback(AfterSaleDetailActivity.this) {
+							@Override
+							public void onSuccess(Object data) {
+								mRecordStatus = 5;
+								String status = getResources().getStringArray(R.array.maintain_status)[5];
+								mStatus.setText(status);
+								if (mRecordType == CANCEL) {
+									mButton1.setText(getString(R.string.button_submit_cancel));
+									mButton1.setOnClickListener(mSubmitCancelListener);
+								} else {
+									mButton1.setVisibility(View.GONE);
+								}
+								CommonUtil.toastShort(AfterSaleDetailActivity.this, getString(R.string.toast_cancel_apply_success));
+							}
+
+							@Override
+							public TypeToken getTypeToken() {
+								return null;
 							}
 						});
+					}
+				});
 				builder.setNegativeButton("取消",
 						new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface arg0, int arg1) {
-								dialog.dismiss();
-							}
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						dialog.dismiss();
+					}
 
-						});
+				});
 
 				builder.create().show();
-			
+
 			}
 		};
 
@@ -307,12 +307,12 @@ public class AfterSaleDetailActivity extends BaseActivity {
 					AfterSaleDetailReturn returnDetail = (AfterSaleDetailReturn) data;
 					LinkedHashMap<String, String> returnPairs = new LinkedHashMap<String, String>();
 					String[] returnKeys = getResources().getStringArray(R.array.after_sale_return);
-					if (!StringUtil.isNull(returnDetail.getReturnPrice())) {
-						returnPairs.put(returnKeys[0], getString(R.string.notation_yuan) + 
-								String.format("%.2f",Integer.valueOf(returnDetail.getReturnPrice())/100f));
-					}else {
-						returnPairs.put(returnKeys[0], "");
-					}
+						if (!StringUtil.isNull(returnDetail.getReturnPrice())) 
+							returnPairs.put(returnKeys[0], getString(R.string.notation_yuan) + 
+									String.format("%.2f",Integer.valueOf(returnDetail.getReturnPrice())/100f));
+						else 
+							returnPairs.put(returnKeys[0], "");
+
 					//returnPairs.put(returnKeys[0], returnDetail.getReturnPrice() + "");
 					returnPairs.put(returnKeys[1], returnDetail.getBankName());
 					returnPairs.put(returnKeys[2], returnDetail.getBankAccount());
@@ -398,13 +398,28 @@ public class AfterSaleDetailActivity extends BaseActivity {
 					AfterSaleDetailLease leaseDetail = (AfterSaleDetailLease) data;
 					LinkedHashMap<String, String> leasePairs = new LinkedHashMap<String, String>();
 					String[] leaseKeys = getResources().getStringArray(R.array.after_sale_lease);
-					if (!StringUtil.isNull(leaseDetail.getReturn_price()+"")) {
-						leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
-								String.format("%.2f",Integer.valueOf(leaseDetail.getReturn_price())/100f));
-						
+					
+					if (!StringUtil.isNull(leaseDetail.getCrf_retrun_price())) {
+						if (Integer.valueOf(leaseDetail.getCrf_retrun_price()) > 0) {
+							leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
+									String.format("%.2f",Integer.valueOf(leaseDetail.getCrf_retrun_price())/100f));
+						}else {
+							if (!StringUtil.isNull(leaseDetail.getReturn_price()+"")) {
+								leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
+										String.format("%.2f",Integer.valueOf(leaseDetail.getReturn_price())/100f));
+							}else {
+								leasePairs.put(leaseKeys[0], "");
+							}
+						}
 					}else {
-						leasePairs.put(leaseKeys[0], "");
+						if (!StringUtil.isNull(leaseDetail.getReturn_price()+"")) {
+							leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
+									String.format("%.2f",Integer.valueOf(leaseDetail.getReturn_price())/100f));
+						}else {
+							leasePairs.put(leaseKeys[0], "");
+						}
 					}
+				
 					leasePairs.put(leaseKeys[1], leaseDetail.getReceiverName());
 					leasePairs.put(leaseKeys[2], leaseDetail.getReceiverPhone());
 					renderCategoryTemplate(R.string.after_sale_lease_title, leasePairs);

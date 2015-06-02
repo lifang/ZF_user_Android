@@ -557,20 +557,24 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							paychannelId=jsonobject.getInt("id");
 							factoryEntity=gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<FactoryEntity>() {
 							}.getType());
+							
+							arelist = gson.fromJson(jsonobject.getString("supportArea"), new TypeToken<List<String>>() {
+							}.getType());
+							String a="";
+							String b="";
+							for(int i=0;i<arelist.size();i++){
+								if (!StringUtil.isNull(arelist.get(i))) {
+									a=a+arelist.get(i)+"/";
+								}
+							}
+							if (a.length()>1) {
+								b = a.substring(0, a.length()-1);
+							}
+							
 							if(jsonobject.getBoolean("support_type")){
-								arelist=   gson.fromJson(jsonobject.getString("supportArea"), new TypeToken<List<String>>() {
-								}.getType());
-								String a="";
-								for(int i=0;i<arelist.size();i++){
-									if (!StringUtil.isNull(arelist.get(i))) {
-										a=a+arelist.get(i)+"/";
-									}
-								}
-								if (a.length()>1) {
-									tvc_qy.setText(a.substring(0, a.length()-1));
-								}
+								tvc_qy.setText("支持"+ b);
 							}else{
-								tvc_qy.setText("不支持");
+								tvc_qy.setText("不支持"+ b);
 							}
 							if(jsonobject.getBoolean("support_cancel_flag")){
 
@@ -683,20 +687,23 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 						pos_lv2.setAdapter(lvAdapter2);
 						lvAdapter3=new HuilvAdapter2(GoodDeatail.this, celist3);
 						pos_lv3.setAdapter(lvAdapter3);
+						
+						arelist=   gson.fromJson(jsonobject.getString("supportArea"), new TypeToken<List<String>>() {
+						}.getType());
+						String a="";
+						String b="";
+						for(int i=0;i<arelist.size();i++){
+							if (!StringUtil.isNull(arelist.get(i))) {
+								a=a+arelist.get(i)+"/";
+							}
+						}
+						if (a.length()>1) {
+							b = a.substring(0, a.length()-1);
+						}
 						if(jsonobject.getBoolean("support_type")){
-							arelist=   gson.fromJson(jsonobject.getString("supportArea"), new TypeToken<List<String>>() {
-							}.getType());
-							String a="";
-							for(int i=0;i<arelist.size();i++){
-								if (!StringUtil.isNull(arelist.get(i))) {
-									a=a+arelist.get(i)+"/";
-								}
-							}
-							if (a.length()>1) {
-								tvc_qy.setText(a.substring(0, a.length()-1));
-							}
+							tvc_qy.setText("支持"+b);
 						}else{
-							tvc_qy.setText("不支持");
+							tvc_qy.setText("不支持" + b);
 						}
 						if(jsonobject.getBoolean("support_cancel_flag")){
 

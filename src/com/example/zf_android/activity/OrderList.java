@@ -80,7 +80,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 						Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				Toast.makeText(getApplicationContext(),  "no more data",
+				Toast.makeText(getApplicationContext(),  "没有更多数据",
 						Toast.LENGTH_SHORT).show();
 				break;
 			}
@@ -221,7 +221,7 @@ public class OrderList extends BaseActivity implements  IXListViewListener{
 		if (myList.size() >= total) {
 			Xlistview.setPullLoadEnable(false);
 			Xlistview.stopLoadMore();
-			CommonUtil.toastShort(this, "no more data");
+			CommonUtil.toastShort(this, "没有更多数据");
 		} else {
 			getData();
 		}

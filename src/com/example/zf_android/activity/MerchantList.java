@@ -245,7 +245,7 @@ public class MerchantList extends BaseActivity implements IXListViewListener {
 		if (myList.size() >= total) {
 			xListview.setPullLoadEnable(false);
 			xListview.stopLoadMore();
-			CommonUtil.toastShort(this, "no more data");
+			CommonUtil.toastShort(this, "没有更多数据");
 		} else {
 			getData();
 		}
