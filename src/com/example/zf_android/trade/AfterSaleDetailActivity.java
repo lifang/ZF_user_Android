@@ -307,11 +307,11 @@ public class AfterSaleDetailActivity extends BaseActivity {
 					AfterSaleDetailReturn returnDetail = (AfterSaleDetailReturn) data;
 					LinkedHashMap<String, String> returnPairs = new LinkedHashMap<String, String>();
 					String[] returnKeys = getResources().getStringArray(R.array.after_sale_return);
-						if (!StringUtil.isNull(returnDetail.getReturnPrice())) 
-							returnPairs.put(returnKeys[0], getString(R.string.notation_yuan) + 
-									String.format("%.2f",Integer.valueOf(returnDetail.getReturnPrice())/100f));
-						else 
-							returnPairs.put(returnKeys[0], "");
+					if (!StringUtil.isNull(returnDetail.getReturnPrice())) 
+						returnPairs.put(returnKeys[0], getString(R.string.notation_yuan) + 
+								String.format("%.2f",Integer.valueOf(returnDetail.getReturnPrice())/100f));
+					else 
+						returnPairs.put(returnKeys[0], "");
 
 					//returnPairs.put(returnKeys[0], returnDetail.getReturnPrice() + "");
 					returnPairs.put(returnKeys[1], returnDetail.getBankName());
@@ -398,7 +398,7 @@ public class AfterSaleDetailActivity extends BaseActivity {
 					AfterSaleDetailLease leaseDetail = (AfterSaleDetailLease) data;
 					LinkedHashMap<String, String> leasePairs = new LinkedHashMap<String, String>();
 					String[] leaseKeys = getResources().getStringArray(R.array.after_sale_lease);
-					
+
 					if (!StringUtil.isNull(leaseDetail.getCrf_retrun_price())) {
 						if (Integer.valueOf(leaseDetail.getCrf_retrun_price()) > 0) {
 							leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
@@ -419,7 +419,7 @@ public class AfterSaleDetailActivity extends BaseActivity {
 							leasePairs.put(leaseKeys[0], "");
 						}
 					}
-				
+
 					leasePairs.put(leaseKeys[1], leaseDetail.getReceiverName());
 					leasePairs.put(leaseKeys[2], leaseDetail.getReceiverPhone());
 					renderCategoryTemplate(R.string.after_sale_lease_title, leasePairs);
@@ -547,9 +547,14 @@ public class AfterSaleDetailActivity extends BaseActivity {
 				value.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						Uri uri = Uri.parse(resourceInfo.getUpload_path());  
-						Intent it = new Intent(Intent.ACTION_VIEW, uri);  
-						startActivity(it);
+						//												Uri uri = Uri.parse(resourceInfo.getUpload_path());  
+						//												Intent it = new Intent(Intent.ACTION_VIEW, uri);  
+						//												startActivity(it);
+
+						Intent intent = new Intent(AfterSaleDetailActivity.this, ADownloadManagerActivity.class);
+						intent.putExtra(RECORD_TYPE, mRecordType);
+						intent.putExtra(MATERIAL_URL, resourceInfo.getUpload_path());
+						startActivity(intent);
 
 						//						Intent intent = new Intent(AfterSaleDetailActivity.this, AfterSaleMaterialActivity.class);
 						//						intent.putExtra(RECORD_TYPE, mRecordType);

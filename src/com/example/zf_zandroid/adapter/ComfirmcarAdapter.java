@@ -59,7 +59,7 @@ public class ComfirmcarAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.comfirm_caritem, null);
 		 
 			holder.title = (TextView) convertView.findViewById(R.id.title);			 
-		 
+		 holder.tv_open_price = (TextView) convertView.findViewById(R.id.tv_open_price);
 			holder.showCountText = (TextView) convertView
 					.findViewById(R.id.showCountText);
 			holder.retail_price = (TextView) convertView
@@ -84,6 +84,7 @@ public class ComfirmcarAdapter extends BaseAdapter {
 		holder.retail_price.setText("￥ " + StringUtil.getMoneyString(good.getRetail_price()+good.getOpening_cost()));
 		holder.wayName.setText(good.getName());
 		holder.content2.setText(good.getModel_number());
+		holder.tv_open_price.setText("（含开通费￥ "+StringUtil.getMoneyString(good.getOpening_cost())+"）");
 		return convertView;
 	}
  
@@ -101,7 +102,7 @@ public class ComfirmcarAdapter extends BaseAdapter {
 		private TextView retail_price;
 		private View delete;
 		private EditText buyCountEdit;
-		private TextView showCountText;
+		private TextView showCountText,tv_open_price;
 		private View reduce;
 		private View add;
 		public TextView Model_number,content2;

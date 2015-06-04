@@ -31,76 +31,78 @@
                 android:id="@+id/content_pp"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:ellipsize="end"
                 android:gravity="top"
                 android:maxLines="1"
                 android:textColor="@color/text292929"
-                android:textSize="11sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
                 android:textColor="@color/bgtitle"
-                android:textSize="11sp" />
+                android:textSize="17sp" />
 
             <TextView
-                android:id="@+id/tv_x"
+                android:id="@+id/tv_open_price"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
-                android:textColor="@color/text6c6c6c6"
+                android:text="（含开通费￥0.00）"
+                android:textColor="@color/bgtitle"
                 android:textSize="11sp" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="2" >
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/content1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
                     android:gravity="bottom"
-                    android:orientation="horizontal" >
+                    android:maxLines="1"
+                    android:text="品牌型号"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="11sp" />
 
-                    <TextView
-                        android:id="@+id/content1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="bottom"
-                        android:maxLines="1"
-                        android:text="品牌型号"
-                        android:textColor="@color/text6c6c6c6"
-                        android:textSize="11sp" />
-
-                    <TextView
-                        android:id="@+id/content2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:ellipsize="end"
-                        android:gravity="bottom"
-                        android:maxLines="1"
-                        android:textColor="@color/text292929"
-                        android:textSize="11sp" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/content2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="7dp"
+                    android:ellipsize="end"
                     android:gravity="bottom"
-                    android:orientation="horizontal" >
+                    android:maxLines="1"
+                    android:textColor="@color/text292929"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentBottom="true"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -113,7 +115,7 @@
                         android:textSize="11sp" />
 
                     <TextView
-                           android:id="@+id/contentText"
+                        android:id="@+id/contentText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -124,17 +126,31 @@
                         android:textSize="11sp" />
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btn_ishow"
-                    android:layout_width="50dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/send_bg_shape"
-                    android:text="评论"
-                    android:textColor="@color/bgtitle"
-                    android:textSize="9sp" />
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_x"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="7dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:text="X   1"
+                    android:textColor="@color/text292929"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_ishow"
+                android:layout_width="50dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/send_bg_shape"
+                android:text="评论"
+                android:textColor="@color/bgtitle"
+                android:textSize="9sp"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 
