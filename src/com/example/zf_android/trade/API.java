@@ -33,152 +33,152 @@ import com.loopj.android.http.RequestParams;
 @SuppressWarnings("rawtypes")
 public class API {
 
-	public static final String SCHEMA = "http://";
-
-	// public static final String HOST = "114.215.149.242:18080";
-	// sit
+//	public static final String SCHEMA = "http://";
+//
+//	// public static final String HOST = "114.215.149.242:18080";
+//	// sit
 //	 public final static String HOST = "www.ebank007.com/api/";
-	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
-//	 public final static String HOST = "121.40.224.25:8080/api/";
-	public static final String EDITADRESS = SCHEMA + HOST
+////	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
+////	 public final static String HOST = "121.40.224.25:8080/api/";
+	public static final String EDITADRESS = Config.PATHS
 			+ "customers/updateAddress";
 
 	// selection terminal list
-	public static final String TERMINAL_LIST = SCHEMA + HOST
+	public static final String TERMINAL_LIST = Config.PATHS
 			+ "trade/record/getTerminals/%d";
 	// trade record list
-	public static final String TRADE_RECORD_LIST = SCHEMA + HOST
+	public static final String TRADE_RECORD_LIST = Config.PATHS
 			+ "trade/record/getTradeRecords/%d/%s/%s/%s/%d/%d";
 	// trade record statistic
-	public static final String TRADE_RECORD_STATISTIC = SCHEMA + HOST
+	public static final String TRADE_RECORD_STATISTIC = Config.PATHS
 			+ "trade/record/getTradeRecordTotal/%d/%s/%s/%s";
 	// trade record detail
-	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST
+	public static final String TRADE_RECORD_DETAIL = Config.PATHS
 			+ "trade/record/getTradeRecord/%d/%d";
-	public static final String GETINFO = SCHEMA + HOST + "customers/getOne/%d";
+	public static final String GETINFO = Config.PATHS + "customers/getOne/%d";
 
-	public static final String AFTER_SALE_MAINTAIN_LIST = SCHEMA + HOST
+	public static final String AFTER_SALE_MAINTAIN_LIST = Config.PATHS
 			+ "cs/repair/getAll";
-	public static final String AFTER_SALE_RETURN_LIST = SCHEMA + HOST
+	public static final String AFTER_SALE_RETURN_LIST = Config.PATHS
 			+ "return/getAll";
-	public static final String AFTER_SALE_CANCEL_LIST = SCHEMA + HOST
+	public static final String AFTER_SALE_CANCEL_LIST = Config.PATHS
 			+ "cs/cancels/getAll";
-	public static final String AFTER_SALE_CHANGE_LIST = SCHEMA + HOST
+	public static final String AFTER_SALE_CHANGE_LIST = Config.PATHS
 			+ "cs/change/getAll";
-	public static final String AFTER_SALE_UPDATE_LIST = SCHEMA + HOST
+	public static final String AFTER_SALE_UPDATE_LIST = Config.PATHS
 			+ "update/info/getAll";
-	public static final String AFTER_SALE_LEASE_LIST = SCHEMA + HOST
+	public static final String AFTER_SALE_LEASE_LIST = Config.PATHS
 			+ "cs/lease/returns/getAll";
 
 	// After sale record detail
-	public static final String AFTER_SALE_MAINTAIN_DETAIL = SCHEMA + HOST
+	public static final String AFTER_SALE_MAINTAIN_DETAIL = Config.PATHS
 			+ "cs/repair/getRepairById";
-	public static final String AFTER_SALE_RETURN_DETAIL = SCHEMA + HOST
+	public static final String AFTER_SALE_RETURN_DETAIL = Config.PATHS
 			+ "return/getReturnById";
-	public static final String AFTER_SALE_CANCEL_DETAIL = SCHEMA + HOST
+	public static final String AFTER_SALE_CANCEL_DETAIL = Config.PATHS
 			+ "cs/cancels/getCanCelById";
-	public static final String AFTER_SALE_CHANGE_DETAIL = SCHEMA + HOST
+	public static final String AFTER_SALE_CHANGE_DETAIL = Config.PATHS
 			+ "cs/change/getChangeById";
-	public static final String AFTER_SALE_UPDATE_DETAIL = SCHEMA + HOST
+	public static final String AFTER_SALE_UPDATE_DETAIL = Config.PATHS
 			+ "update/info/getInfoById";
-	public static final String AFTER_SALE_LEASE_DETAIL = SCHEMA + HOST
+	public static final String AFTER_SALE_LEASE_DETAIL = Config.PATHS
 			+ "cs/lease/returns/getById";
 
 	// After sale record cancel apply
-	public static final String AFTER_SALE_MAINTAIN_CANCEL = SCHEMA + HOST
+	public static final String AFTER_SALE_MAINTAIN_CANCEL = Config.PATHS
 			+ "cs/repair/cancelApply";
-	public static final String AFTER_SALE_RETURN_CANCEL = SCHEMA + HOST
+	public static final String AFTER_SALE_RETURN_CANCEL = Config.PATHS
 			+ "return/cancelApply";
-	public static final String AFTER_SALE_CANCEL_CANCEL = SCHEMA + HOST
+	public static final String AFTER_SALE_CANCEL_CANCEL = Config.PATHS
 			+ "cs/cancels/cancelApply";
-	public static final String AFTER_SALE_CHANGE_CANCEL = SCHEMA + HOST
+	public static final String AFTER_SALE_CHANGE_CANCEL = Config.PATHS
 			+ "cs/change/cancelApply";
-	public static final String AFTER_SALE_UPDATE_CANCEL = SCHEMA + HOST
+	public static final String AFTER_SALE_UPDATE_CANCEL = Config.PATHS
 			+ "update/info/cancelApply";
-	public static final String AFTER_SALE_LEASE_CANCEL = SCHEMA + HOST
+	public static final String AFTER_SALE_LEASE_CANCEL = Config.PATHS
 			+ "cs/lease/returns/cancelApply";
 
 	// After sale resubmit cancel
-	public static final String AFTER_SALE_RESUBMIT_CANCEL = SCHEMA + HOST
+	public static final String AFTER_SALE_RESUBMIT_CANCEL = Config.PATHS
 			+ "cs/cancels/resubmitCancel";
 
 	// After sale add mark
-	public static final String AFTER_SALE_MAINTAIN_ADD_MARK = SCHEMA + HOST
+	public static final String AFTER_SALE_MAINTAIN_ADD_MARK = Config.PATHS
 			+ "cs/repair/addMark";
-	public static final String AFTER_SALE_RETURN_ADD_MARK = SCHEMA + HOST
+	public static final String AFTER_SALE_RETURN_ADD_MARK = Config.PATHS
 			+ "return/addMark";
-	public static final String AFTER_SALE_CHANGE_ADD_MARK = SCHEMA + HOST
+	public static final String AFTER_SALE_CHANGE_ADD_MARK = Config.PATHS
 			+ "cs/change/addMark";
-	public static final String AFTER_SALE_LEASE_ADD_MARK = SCHEMA + HOST
+	public static final String AFTER_SALE_LEASE_ADD_MARK = Config.PATHS
 			+ "cs/lease/returns/addMark";
 
 	// Terminal list
-	public static final String TERMINAL_APPLY_LIST = SCHEMA + HOST
+	public static final String TERMINAL_APPLY_LIST = Config.PATHS
 			+ "terminal/getApplyList";
 	// Channel list
-	public static final String CHANNEL_LIST = SCHEMA + HOST
+	public static final String CHANNEL_LIST = Config.PATHS
 			+ "terminal/getFactories";
 	// Terminal Add
-	public static final String TERMINAL_ADD = SCHEMA + HOST
+	public static final String TERMINAL_ADD = Config.PATHS
 			+ "terminal/addTerminal";
 	// Terminal detail
-	public static final String TERMINAL_DETAIL = SCHEMA + HOST
+	public static final String TERMINAL_DETAIL = Config.PATHS
 			+ "terminal/getApplyDetails";
 	// termianl bank
-	public static final String TERMINAL_BANK = SCHEMA + HOST
+	public static final String TERMINAL_BANK = Config.PATHS
 			+ "terminal/ChooseBank";
 	// synchronise terminal
-	public static final String TERMINAL_SYNC = SCHEMA + HOST
+	public static final String TERMINAL_SYNC = Config.PATHS
 			+ "terminal/synchronous";
 	// find pos password
-	public static final String TERMINAL_FIND_POS = SCHEMA + HOST
+	public static final String TERMINAL_FIND_POS = Config.PATHS
 			+ "terminal/Encryption";
 
 	// Apply List
-	public static final String APPLY_LIST = SCHEMA + HOST
+	public static final String APPLY_LIST = Config.PATHS
 			+ "apply/getApplyList";
 	// Apply Detail
-	public static final String APPLY_DETAIL = SCHEMA + HOST
+	public static final String APPLY_DETAIL = Config.PATHS
 			+ "apply/getApplyDetails";
 	// Get the Merchant Detail
-	public static final String APPLY_MERCHANT_DETAIL = SCHEMA + HOST
+	public static final String APPLY_MERCHANT_DETAIL = Config.PATHS
 			+ "apply/getMerchant";
 	// Get the Channel List
-	public static final String APPLY_CHANNEL_LIST = SCHEMA + HOST
+	public static final String APPLY_CHANNEL_LIST = Config.PATHS
 			+ "apply/getChannels";
 	// Get the Bank List
-	public static final String APPLY_BANK_LIST = SCHEMA + HOST
+	public static final String APPLY_BANK_LIST = Config.PATHS
 			+ "apply/ChooseBank";
 
 	// upload image url
-	public static final String UPLOAD_IMAGE = SCHEMA + HOST
+	public static final String UPLOAD_IMAGE = Config.PATHS
 			+ "comment/upload/tempImage";
-	public static final String TERMINAL_UPLOAD_IMAGE = SCHEMA + HOST
+	public static final String TERMINAL_UPLOAD_IMAGE = Config.PATHS
 			+ "terminal/upload/tempImage/";
-	public static final String MERCHANT_UPLOAD_IMAGE = SCHEMA + HOST
+	public static final String MERCHANT_UPLOAD_IMAGE = Config.PATHS
 			+ "index/upload";
 
 	// Apply Submit
-	public static final String APPLY_SUBMIT = SCHEMA + HOST
+	public static final String APPLY_SUBMIT = Config.PATHS
 			+ "apply/addOpeningApply";
-	public static final String GETEMAILPASS = SCHEMA + HOST
+	public static final String GETEMAILPASS = Config.PATHS
 			+ "user/sendEmailVerificationCode";
 	// Apply Opening Progress Query GETEMAILPASS
-	public static final String APPLY_PROGRESS = SCHEMA + HOST
+	public static final String APPLY_PROGRESS = Config.PATHS
 			+ "terminal/openStatus";
-	public static final String WNATBUY = SCHEMA + HOST
+	public static final String WNATBUY = Config.PATHS
 			+ "paychannel/intention/add";
-	public static final String Add_ress = SCHEMA + HOST
+	public static final String Add_ress = Config.PATHS
 			+ "customers/insertAddress/";
-	public static final String REG_PHONECODE = SCHEMA + HOST
+	public static final String REG_PHONECODE = Config.PATHS
 			+ "user/sendPhoneVerificationCodeReg";
-	public static final String ZHUCHE = SCHEMA + HOST + "user/userRegistration";
-	public static final String GETPHONEPASS = SCHEMA + HOST
+	public static final String ZHUCHE = Config.PATHS + "user/userRegistration";
+	public static final String GETPHONEPASS = Config.PATHS
 			+ "user/sendPhoneVerificationCodeFind";
-	public static final String order_cart = SCHEMA + HOST + "order/cart";
-	public static final String GET_PHONECODE = SCHEMA + HOST
+	public static final String order_cart = Config.PATHS + "order/cart";
+	public static final String GET_PHONECODE = Config.PATHS
 			+ "index/getPhoneCode";
-	public static final String GET_UPDATEEMAILDENTCODE = SCHEMA + HOST
+	public static final String GET_UPDATEEMAILDENTCODE = Config.PATHS
 			+ "customers/getUpdateEmailDentcode";
 
 	// http://114.215.149.242:18080order/cart
