@@ -39,6 +39,7 @@ import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
 import com.example.zf_android.entity.AdressEntity;
+import com.example.zf_android.entity.GoodinfoEntity;
 import com.example.zf_android.trade.API;
 import com.example.zf_android.trade.common.DialogUtil;
 import com.example.zf_android.trade.common.HttpCallback;
@@ -51,7 +52,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	List<AdressEntity>  moreList = new ArrayList<AdressEntity>();
 	private TextView tv_sjr,tv_tel,tv_adress;
 	private LinearLayout ll_choose;
-	private TextView tv_pop,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count,channel_text,content2;
+	private TextView tv_pop,tv_totle,title2,retail_price,showCountText,tv_pay,
+					tv_open_price,tv_count,channel_text,content2;
 	private Button btn_pay;
 	private String comment,invoice_info;
 	private ImageView reduce,add,evevt_img;
@@ -78,7 +80,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		if (!StringUtil.isNull(image_url)) {
 			ImageCacheUtil.IMAGE_CACHE.get(image_url,evevt_img);
 		}
-
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce=getIntent().getIntExtra("price", 0);
 		retail_price.setText("￥"+ StringUtil.getMoneyString(pirce));
@@ -88,6 +89,9 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		channel_text.setText(getIntent().getExtras().getString("payChannelName", "")); 
 		tv_totle.setText("实付：￥ "+StringUtil.getMoneyString(pirce)); 
 		content2.setText(getIntent().getStringExtra("brand")+getIntent().getStringExtra("model"));
+		
+		tv_open_price.setText("（含开通费￥ "+StringUtil.getMoneyString(getIntent().getIntExtra("open_price", 0))+"）");
+		
 		System.out.println("=paychannelId=="+paychannelId);
 		getData1();
 
@@ -98,6 +102,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 
 	}
 	private void initView() {
+		tv_open_price = (TextView) findViewById(R.id.tv_open_price);
+		
 		evevt_img = (ImageView) findViewById(R.id.evevt_img);
 		add=(ImageView) findViewById(R.id.add);
 		reduce=(ImageView) findViewById(R.id.reduce);

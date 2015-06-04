@@ -55,6 +55,15 @@ public class Goodlist {
 //  "good_num": "1",
 	private String good_channel;
 	private String good_id;
+	 private int good_opening_cost;
+	 
+	 
+	public int getGood_opening_cost() {
+		return good_opening_cost;
+	}
+	public void setGood_opening_cost(int good_opening_cost) {
+		this.good_opening_cost = good_opening_cost;
+	}
 	public String getGood_name() {
 		return good_name;
 	}

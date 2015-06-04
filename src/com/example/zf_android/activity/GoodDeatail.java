@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -71,6 +72,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private RelativeLayout setting_rl_exit,setting_rl_exit2;
 	private RelativeLayout rl_imgs;
 	private TextView countShopCar;
+	private TextView tv_all_price,tv_now_price,tv_old_price,tv_open_price;
 	private ImageView image,search2,fac_img;
 	private List<String> ma = new ArrayList<String>();
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
@@ -85,7 +87,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private int  	commentsCount;
 	FactoryEntity factoryEntity;
 	FactoryEntity factory;
-	private TextView good_description;
+	private TextView good_description,now_priceTextView;
 	private  TextView tvc_zx,tvc_qy,tv_sqkt,tv_bug,tv_lea,tv_title,content1,tv_pp,tv_xh,tv_ys,tv_price,tv_lx,tv_sjhttp
 	,tv_spxx,fac_detai,ppxx,wkxx,dcxx,tv_qgd,tv_jm,tv_comment,tv_appneed,tv_ins,tv_huilv;
 	private ScrollViewWithListView  pos_lv1,pos_lv2,pos_lv3;
@@ -139,9 +141,16 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				content1.setText(gfe.getSecond_title());
 				tv_pp.setText(gfe.getGood_brand());
 				tv_xh.setText(gfe.getModel_number());
-				tv_ys.setText("已售"+gfe.getVolume_number());
+				tv_ys.setText("累计销售"+gfe.getVolume_number());
 				all_price = gfe.getRetail_price()+opening_cost;
 				tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+				
+				tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+				tv_old_price.setText("￥ "+StringUtil.getMoneyString(gfe.getPrice()));
+				tv_old_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+				tv_now_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
+				tv_open_price.setText("￥ "+StringUtil.getMoneyString(opening_cost));
+				
 				tv_lx.setText(gfe.getCategory() );
 				if(factoryEntity != null){
 					ImageCacheUtil.IMAGE_CACHE.get(factoryEntity.getLogo_file_path(),
@@ -224,6 +233,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		lp.height = screenWidth;
 		rl_imgs.setLayoutParams(lp);
 		
+		tv_old_price = (TextView) findViewById(R.id.tv_old_price);
+		tv_all_price = (TextView) findViewById(R.id.tv_all_price);
+		tv_now_price = (TextView) findViewById(R.id.tv_now_price);
+		tv_open_price = (TextView) findViewById(R.id.tv_open_price);
+		now_priceTextView = (TextView) findViewById(R.id.now_priceTextView);
+		
 		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		setting_rl_exit = (RelativeLayout) findViewById(R.id.setting_rl_exit);
 		setting_rl_exit2 = (RelativeLayout) findViewById(R.id.setting_rl_exit2);
@@ -296,6 +311,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		case R.id.tv_bug:
 			all_price = gfe.getRetail_price()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+			tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+			tv_now_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
 			islea=false;
 
 			setting_rl_exit.setVisibility(View.VISIBLE);
@@ -303,6 +320,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			setting_btn_clear.setLayoutParams(lp1);
 
 			setting_btn_clear1.setClickable(true);
+			now_priceTextView.setText("机具现价");
 			setting_btn_clear.setText("立即购买");
 			setting_btn_clear1.setBackgroundResource(R.drawable.bg_shape);
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bgtitle));
@@ -315,6 +333,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			//tv_bug 
 			all_price = gfe.getLease_deposit()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
+			tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
+			tv_now_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()));
 			islea=true;
 
 			setting_rl_exit.setVisibility(View.GONE);
@@ -324,6 +344,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 
 			setting_btn_clear1.setClickable(false);
 			setting_btn_clear.setText("立即租赁");
+			now_priceTextView.setText("租赁押金");
 			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bg0etitle));
 			setting_btn_clear1.setBackgroundResource(R.drawable.bg0e_shape);
 			tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
@@ -366,6 +387,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					i21.putExtra("good", gfe);
 					i21.putExtra("chanel", chanel);
 					i21.putExtra("price", all_price);
+					i21.putExtra("open_price", opening_cost);
 					i21.putExtra("payChannelName", payChannelName);
 					i21.putExtra("paychannelId", paychannelId);
 					if (ma.size() != 0) {
@@ -388,6 +410,7 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					Intent i2 =new Intent(GoodDeatail.this, GoodConfirm.class);
 					i2.putExtra("getTitle", gfe.getTitle());
 					i2.putExtra("price", all_price);
+					i2.putExtra("open_price", opening_cost);
 					i2.putExtra("model", gfe.getModel_number());
 					i2.putExtra("brand", gfe.getGood_brand());
 					if (ma.size() != 0) {
@@ -715,10 +738,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							//购买
 							all_price = gfe.getRetail_price()+opening_cost;
 							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+							tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+							tv_open_price.setText("￥ "+StringUtil.getMoneyString(opening_cost));
 						}else {
 							//租赁
 							all_price = gfe.getLease_deposit()+opening_cost;
 							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
+							tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+							tv_open_price.setText("￥ "+StringUtil.getMoneyString(opening_cost));
 						}
 
 						//  					    handler.sendEmptyMessage(0);

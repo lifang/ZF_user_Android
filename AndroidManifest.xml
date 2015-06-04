@@ -76,6 +76,10 @@
             android:name="com.example.zf_android.activity.PosListActivity"
             android:screenOrientation="portrait" >
         </activity>
+           <activity
+            android:name="com.example.zf_android.trade.ADownloadManagerActivity"
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="com.example.zf_android.activity.PosSelect"
             android:screenOrientation="portrait"

@@ -51,7 +51,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	private TextView tv_sjr,tv_tel,tv_adress;
 	private LinearLayout ll_choose,llll;
 	private TextView tv_yajin,tv_lkl,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count,channel_text,content2;
-	private TextView leasepact;
+	private TextView leasepact,tv_open_price;
 	private Button btn_pay;
 	private String comment;
 	private ImageView reduce,add,evevt_img;
@@ -95,6 +95,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 		paychannelId=getIntent().getIntExtra("paychannelId", 0);
 		yajin=good.getLease_deposit();
 		tv_yajin.setText("￥   "+StringUtil.getMoneyString(yajin));
+		tv_open_price.setText("开通费￥ "+StringUtil.getMoneyString(getIntent().getIntExtra("open_price", 0)));
 		computeMoney();
 		getData();
 	}
@@ -106,9 +107,12 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener{
 	private void computeMoney(){
 		tv_pay.setText("实付：￥ "+StringUtil.getMoneyString(price*quantity)); 
 		tv_totle.setText("合计：￥ "+StringUtil.getMoneyString(price*quantity)); 
+		tv_yajin.setText("￥   "+StringUtil.getMoneyString(yajin*quantity));
 	}
 
 	private void initView() {
+		tv_open_price = (TextView) findViewById(R.id.tv_open_price);
+		
 		evevt_img = (ImageView) findViewById(R.id.evevt_img);
 		add=(ImageView) findViewById(R.id.add);
 		reduce=(ImageView) findViewById(R.id.reduce);

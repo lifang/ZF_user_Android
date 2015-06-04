@@ -62,14 +62,14 @@ public class AfterSaleMaterialActivity extends BaseActivity {
 		setContentView(R.layout.activity_after_sale_material);
 		new TitleMenuUtil(this, title).show();
 
-		//	initWebView();
-		//mWebView.loadUrl(mUrl);
+			initWebView();
+		mWebView.loadUrl(mUrl);
 
-		content = (TextView) findViewById(R.id.content);
-		content.setAutoLinkMask(Linkify.ALL);
-		content.setMovementMethod(LinkMovementMethod.getInstance());//加这句才能让里面的超链接生效
-		ReviewImgGetter = new URLImageParser(content,this);//实例化URLImageGetter类
-		content.setText(Html.fromHtml(mUrl,ReviewImgGetter,null));
+//		content = (TextView) findViewById(R.id.content);
+//		content.setAutoLinkMask(Linkify.ALL);
+//		content.setMovementMethod(LinkMovementMethod.getInstance());//加这句才能让里面的超链接生效
+//		ReviewImgGetter = new URLImageParser(content,this);//实例化URLImageGetter类
+//		content.setText(Html.fromHtml(mUrl,ReviewImgGetter,null));
 
 	}
 
