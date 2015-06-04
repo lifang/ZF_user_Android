@@ -177,26 +177,31 @@ public abstract class BaseActivity extends Activity implements Callback,
 			MyApplication.getInstance().clearHistoryForPay();
 			
 			pay_result = "支付成功!";
-			mLoadingDialog = ProgressDialog.show(mContext, // context
-					"", // title
-					"请稍候...", // message
-					true);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					Map<String, String> param = new HashMap<String, String>();
-					param.put("ordernumber", outTradeNo);
-					param.put("payType", "2");
-					String result = postRequest(Config.UNION_SUCESS_URL, param);
-					Message msg = mHandler.obtainMessage();
-					msg.what = 1;
-					msg.obj = "";
-					mHandler.sendMessage(msg);
-					Log.e("支付成功后请求==", "==result==" + result);
-				}
-			}).start();
+			Message msg = mHandler.obtainMessage();
+			msg.what = 1;
+			mHandler.sendMessage(msg);
+			
+			
+//			mLoadingDialog = ProgressDialog.show(mContext, // context
+//					"", // title
+//					"请稍候...", // message
+//					true);
+//			new Thread(new Runnable() {
+//
+//				@Override
+//				public void run() {
+//					// TODO Auto-generated method stub
+//					Map<String, String> param = new HashMap<String, String>();
+//					param.put("ordernumber", outTradeNo);
+//					param.put("payType", "2");
+//					String result = postRequest(Config.UNION_SUCESS_URL, param);
+//					Message msg = mHandler.obtainMessage();
+//					msg.what = 1;
+//					msg.obj = "";
+//					mHandler.sendMessage(msg);
+//					Log.e("支付成功后请求==", "==result==" + result);
+//				}
+//			}).start();
 
 		} else if (str.equalsIgnoreCase("fail")) {
 			pay_result = "支付失败!";
