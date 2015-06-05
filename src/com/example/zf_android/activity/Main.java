@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.http.Header;
 import org.apache.http.entity.StringEntity;
@@ -141,6 +144,18 @@ public class Main extends Activity implements OnClickListener {
 				indicator_imgs = new ImageView[ma.size()];
 				initIndicator();
 				adapter.notifyDataSetChanged();
+				
+				ScheduledExecutorService worker =
+		                Executors.newSingleThreadScheduledExecutor();
+
+		        Runnable task = new Runnable() {
+		            public void run() {
+		                pageSwitcher(5);
+		            }
+		        };
+		        worker.schedule(task, 1, TimeUnit.SECONDS);
+				
+				
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -154,11 +169,11 @@ public class Main extends Activity implements OnClickListener {
 
 				break;
 			case 4:
-				pagerIndex++;
-//				Log.e("==pagerIndex==", ""+pagerIndex);
-				pagerIndex = pagerIndex > list.size() - 1 ? 0 : pagerIndex;
-				view_pager.setCurrentItem(pagerIndex);
-				handler.sendEmptyMessageDelayed(4, time);
+//				pagerIndex++;
+////				Log.e("==pagerIndex==", ""+pagerIndex);
+//				pagerIndex = pagerIndex > list.size() - 1 ? 0 : pagerIndex;
+//				view_pager.setCurrentItem(pagerIndex);
+//				handler.sendEmptyMessageDelayed(4, time);
 				break;
 			}
 			super.handleMessage(msg);
@@ -222,7 +237,7 @@ public class Main extends Activity implements OnClickListener {
 
 		System.out.println("当前城市 ID----"
 				+ MyApplication.getInstance().getCityId());
-		handler.sendEmptyMessageDelayed(4, time);
+//		handler.sendEmptyMessageDelayed(4, time);
 	}
 
 	@Override
@@ -853,4 +868,29 @@ public class Main extends Activity implements OnClickListener {
 		public void exception(Exception e) {
 		}
 	}
+	
+	//switcher
+    public void pageSwitcher(int seconds) {
+        timer = new Timer(); // At this line a new Thread will be created
+        timer.scheduleAtFixedRate(new RemindTask(), 0, seconds * 1000); // delay
+    }
+
+    // this is an inner class...
+    class RemindTask extends TimerTask {
+
+        @Override
+        public void run() {
+
+            runOnUiThread(new Runnable() {
+                public void run() {
+                	pagerIndex++;
+                    if (pagerIndex >= myList.size()) { // In my case the number of pages are 5
+                    	pagerIndex = 0;
+                    }
+                    view_pager.setCurrentItem(pagerIndex);
+                }
+            });
+
+        }
+    }
 }
