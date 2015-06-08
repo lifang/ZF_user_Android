@@ -200,7 +200,13 @@ public class Main extends Activity implements OnClickListener {
 		PushManager.startWork(getApplicationContext(),
 				PushConstants.LOGIN_TYPE_API_KEY,
 				Utils.getMetaValue(Main.this, "api_key"));
-
+		SharedPreferences mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
+		Boolean isOpen_mineset = mySharedPreferences.getBoolean("isOpen_mineset", true);
+		if (isOpen_mineset == false) {
+			//关闭百度推送
+			PushManager.stopWork(getApplicationContext());
+		}
+		
 		SQLiteDatabase db = Connector.getDatabase();
 		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
 		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
@@ -258,6 +264,7 @@ public class Main extends Activity implements OnClickListener {
 			cityId = Constants.CITY_ID_SEARCH;
 			cityName = Constants.CITY_NAME_SEARCH;
 			cityTextView.setText(cityName);
+			MyApplication.getInstance().setCityId(cityId);
 		}
 
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
