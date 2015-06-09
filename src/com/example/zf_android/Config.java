@@ -19,40 +19,40 @@ public class Config {
 	/**
 	 * product
 	 */
-//	public static final String PATHS = "http://www.ebank007.com/api/";
-//	//异步通知接口  
-//	public static final String NOTIFT_URL = "http://www.ebank007.com/app_notify_url.jsp";
-//	//维修异步通知接口  
-//	public static final String REPAIR_NOTIFT_URL = "http://www.ebank007.com/repair_app_notify_url.jsp";
-//	//支付成功跳转页面
-//	public static final String RETURN_URL = "http://www.ebank007.com/return_url.jsp"; 
-//	//获取银联交易流水号
-//	public static final String UNION_TN_URL = "http://www.ebank007.com/unionpay.do";
-//	//支付成功回调修改订单状态
-//	public static final String UNION_SUCESS_URL = "http://www.ebank007.com/api/pay/alipayback";
-//	/*****************************************************************
-//	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
-//	 *****************************************************************/
-//	public static final String UNION_MEDE = "00";
-	
-	/**
-	 * pre -- product
-	 */
-	public static final String PATHS = "http://121.40.224.25:8080/api/";
+	public static final String PATHS = "http://www.ebank007.com/api/";
 	//异步通知接口  
-	public static final String NOTIFT_URL = "http://121.40.224.25:8080/app_notify_url.jsp";
+	public static final String NOTIFT_URL = "http://www.ebank007.com/app_notify_url.jsp";
 	//维修异步通知接口  
-	public static final String REPAIR_NOTIFT_URL = "http://121.40.224.25:8080/repair_app_notify_url.jsp";
+	public static final String REPAIR_NOTIFT_URL = "http://www.ebank007.com/repair_app_notify_url.jsp";
 	//支付成功跳转页面
-	public static final String RETURN_URL = "http://121.40.224.25:8080/return_url.jsp"; 
+	public static final String RETURN_URL = "http://www.ebank007.com/return_url.jsp"; 
 	//获取银联交易流水号
-	public static final String UNION_TN_URL = "http://121.40.224.25:8080/unionpay.do";
+	public static final String UNION_TN_URL = "http://www.ebank007.com/unionpay.do";
 	//支付成功回调修改订单状态
-	public static final String UNION_SUCESS_URL = "http://121.40.224.25:8080/api/pay/alipayback";
+	public static final String UNION_SUCESS_URL = "http://www.ebank007.com/api/pay/alipayback";
 	/*****************************************************************
 	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
 	 *****************************************************************/
 	public static final String UNION_MEDE = "00";
+	
+	/**
+	 * pre -- product
+	 */
+//	public static final String PATHS = "http://121.40.224.25:8080/api/";
+//	//异步通知接口  
+//	public static final String NOTIFT_URL = "http://121.40.224.25:8080/app_notify_url.jsp";
+//	//维修异步通知接口  
+//	public static final String REPAIR_NOTIFT_URL = "http://121.40.224.25:8080/repair_app_notify_url.jsp";
+//	//支付成功跳转页面
+//	public static final String RETURN_URL = "http://121.40.224.25:8080/return_url.jsp"; 
+//	//获取银联交易流水号
+//	public static final String UNION_TN_URL = "http://121.40.224.25:8080/unionpay.do";
+//	//支付成功回调修改订单状态
+//	public static final String UNION_SUCESS_URL = "http://121.40.224.25:8080/api/pay/alipayback";
+//	/*****************************************************************
+//	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
+//	 *****************************************************************/
+//	public static final String UNION_MEDE = "00";
 	
 	
 	/**
