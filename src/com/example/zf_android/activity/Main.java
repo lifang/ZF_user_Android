@@ -40,6 +40,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -900,4 +901,19 @@ public class Main extends Activity implements OnClickListener {
 
         }
     }
+	private long exitTime = 0;  
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - exitTime) > 2000) {  
+				Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();  
+				exitTime = System.currentTimeMillis();  
+			} else {  
+				finish();  
+				System.exit(0);  
+			}  
+		}
+
+		return true; 
+	}
 }

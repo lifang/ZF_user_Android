@@ -94,315 +94,322 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left2"
-        android:layout_marginRight="@dimen/margin_left2"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/white_hollow_point" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="刷卡交易标准手续费："
-            android:textColor="@color/text292929"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left2"
-        android:layout_marginRight="@dimen/margin_left2"
-        android:layout_marginTop="3dp"
-        android:background="@color/Viewc2"
-        android:orientation="horizontal"
-        android:padding="1dp" >
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_height="wrap_content" >
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/F3F3F3"
-            android:orientation="vertical" >
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_hollow_point" />
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="商户类"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="刷卡交易标准手续费："
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
         </LinearLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="fill_parent"
-            android:background="@color/Viewc2" />
-
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/F3F3F3"
-            android:orientation="vertical" >
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:layout_marginTop="3dp"
+            android:background="@color/Viewc2"
+            android:orientation="horizontal"
+            android:padding="1dp" >
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="费率"
-                android:textColor="@color/text292929" 
-                android:textSize="13sp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/F3F3F3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="商户类"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/Viewc2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/F3F3F3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="费率"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/Viewc2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/F3F3F3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="说明"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
         </LinearLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="fill_parent"
-            android:background="@color/Viewc2" />
+        <com.examlpe.zf_android.util.ScrollViewWithListView
+            android:id="@+id/pos_lv1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:divider="@null" >
+        </com.examlpe.zf_android.util.ScrollViewWithListView>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/F3F3F3"
-            android:orientation="vertical" >
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_hollow_point" />
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="说明"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="资金服务费："
                 android:textColor="@color/text292929"
                 android:textSize="13sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:layout_marginTop="3dp"
+            android:background="@color/Viewc2"
+            android:orientation="horizontal"
+            android:padding="1dp" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/F3F3F3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="结算周"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/Viewc2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/F3F3F3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="费率"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/Viewc2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/F3F3F3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="说明"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.examlpe.zf_android.util.ScrollViewWithListView
+            android:id="@+id/pos_lv2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:divider="@null" >
+        </com.examlpe.zf_android.util.ScrollViewWithListView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_hollow_point" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="其它交易费："
+                android:textColor="@color/text292929"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:layout_marginTop="3dp"
+            android:background="@color/Viewc2"
+            android:orientation="horizontal"
+            android:padding="1dp" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/F3F3F3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="交易类"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/Viewc2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/F3F3F3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="费率"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/Viewc2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/F3F3F3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="说明"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.examlpe.zf_android.util.ScrollViewWithListView
+            android:id="@+id/pos_lv3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left2"
+            android:layout_marginRight="@dimen/margin_left2"
+            android:divider="@null" >
+        </com.examlpe.zf_android.util.ScrollViewWithListView>
     </LinearLayout>
-
-    <com.examlpe.zf_android.util.ScrollViewWithListView
-        android:id="@+id/pos_lv1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left2"
-        android:layout_marginRight="@dimen/margin_left2"
-        android:divider="@null" >
-    </com.examlpe.zf_android.util.ScrollViewWithListView>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left2"
-        android:layout_marginRight="@dimen/margin_left2"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/white_hollow_point" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="资金服务费："
-            android:textColor="@color/text292929"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left2"
-        android:layout_marginRight="@dimen/margin_left2"
-        android:layout_marginTop="3dp"
-        android:background="@color/Viewc2"
-        android:orientation="horizontal"
-        android:padding="1dp" >
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/F3F3F3"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="结算周"
-                android:textSize="13sp"
-                android:textColor="@color/text292929" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="fill_parent"
-            android:background="@color/Viewc2" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/F3F3F3"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="费率"
-                android:textSize="13sp"
-                android:textColor="@color/text292929" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="fill_parent"
-            android:background="@color/Viewc2" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/F3F3F3"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="说明"
-                android:textSize="13sp"
-                android:textColor="@color/text292929" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <com.examlpe.zf_android.util.ScrollViewWithListView
-        android:id="@+id/pos_lv2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left2"
-        android:layout_marginRight="@dimen/margin_left2"
-        android:divider="@null" >
-    </com.examlpe.zf_android.util.ScrollViewWithListView>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left2"
-        android:layout_marginRight="@dimen/margin_left2"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/white_hollow_point" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="其它交易费："
-            android:textColor="@color/text292929"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left2"
-        android:layout_marginRight="@dimen/margin_left2"
-        android:layout_marginTop="3dp"
-        android:background="@color/Viewc2"
-        android:orientation="horizontal"
-        android:padding="1dp" >
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/F3F3F3"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="交易类"
-                android:textSize="13sp"
-                android:textColor="@color/text292929" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="fill_parent"
-            android:background="@color/Viewc2" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/F3F3F3"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="费率"
-                android:textSize="13sp"
-                android:textColor="@color/text292929" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="fill_parent"
-            android:background="@color/Viewc2" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/F3F3F3"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="说明"
-                android:textSize="13sp"
-                android:textColor="@color/text292929" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <com.examlpe.zf_android.util.ScrollViewWithListView
-        android:id="@+id/pos_lv3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left2"
-        android:layout_marginRight="@dimen/margin_left2"
-        android:divider="@null" >
-    </com.examlpe.zf_android.util.ScrollViewWithListView>
 
 </LinearLayout>

@@ -138,6 +138,16 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 				initIndicator();
 				adapter.notifyDataSetChanged();
 				//刷新列表数据
+				if (gfe.getQuantity() <= 0) {
+					setting_rl_exit.setVisibility(View.GONE);
+					LayoutParams lp=setting_btn_clear.getLayoutParams();
+					lp.width=480;
+					setting_btn_clear.setLayoutParams(lp);
+
+					setting_btn_clear1.setClickable(false);
+					setting_btn_clear.setText("缺货");
+					setting_btn_clear.setBackgroundResource(R.drawable.bggrey_shape);
+				}
 				tv_title.setText(gfe.getTitle());
 				content1.setText(gfe.getSecond_title());
 				tv_pp.setText(gfe.getGood_brand());
@@ -306,6 +316,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		case R.id.tv_huilv:
 			//tv_bug  
 			Intent tv_huilv =new Intent(GoodDeatail.this, TradeRate.class);
+			Bundle bundle = new Bundle();
+			bundle.putSerializable("celist1", celist);
+			bundle.putSerializable("celist2", celist2);
+			bundle.putSerializable("celist3", celist3);
+			tv_huilv.putExtras(bundle);
 			startActivity(tv_huilv);
 			break;
 
@@ -315,16 +330,28 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 			tv_now_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
 			islea=false;
+			
+			if (gfe.getQuantity() <= 0) {
+				setting_rl_exit.setVisibility(View.GONE);
+				LayoutParams lp=setting_btn_clear.getLayoutParams();
+				lp.width=480;
+				setting_btn_clear.setLayoutParams(lp);
 
-			setting_rl_exit.setVisibility(View.VISIBLE);
-			LayoutParams lp1=setting_btn_clear.getLayoutParams();
-			setting_btn_clear.setLayoutParams(lp1);
-
-			setting_btn_clear1.setClickable(true);
+				setting_btn_clear1.setClickable(false);
+				setting_btn_clear.setText("缺货");
+				setting_btn_clear.setBackgroundResource(R.drawable.bggrey_shape);
+			}else {
+				setting_rl_exit.setVisibility(View.VISIBLE);
+				LayoutParams lp1=setting_btn_clear.getLayoutParams();
+				setting_btn_clear.setLayoutParams(lp1);
+				
+				setting_btn_clear1.setClickable(true);
+				setting_btn_clear.setText("立即购买");
+				setting_btn_clear1.setBackgroundResource(R.drawable.bg_shape);
+				setting_btn_clear1.setTextColor(getResources().getColor(R.color.bgtitle));
+			}
+			
 			now_priceTextView.setText("机具现价");
-			setting_btn_clear.setText("立即购买");
-			setting_btn_clear1.setBackgroundResource(R.drawable.bg_shape);
-			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bgtitle));
 			tv_bug.setTextColor(getResources().getColor(R.color.white));
 			tv_bug.setBackgroundResource(R.drawable.bg_blue_shape);
 			tv_lea.setTextColor(getResources().getColor(R.color.bgtitle));
@@ -337,17 +364,28 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 			tv_now_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()));
 			islea=true;
+			if (gfe.getQuantity() <= 0) {
+				setting_rl_exit.setVisibility(View.GONE);
+				LayoutParams lp=setting_btn_clear.getLayoutParams();
+				lp.width=480;
+				setting_btn_clear.setLayoutParams(lp);
 
-			setting_rl_exit.setVisibility(View.GONE);
-			LayoutParams lp=setting_btn_clear.getLayoutParams();
-			lp.width=480;
-			setting_btn_clear.setLayoutParams(lp);
-
-			setting_btn_clear1.setClickable(false);
-			setting_btn_clear.setText("立即租赁");
+				setting_btn_clear1.setClickable(false);
+				setting_btn_clear.setText("缺货");
+				setting_btn_clear.setBackgroundResource(R.drawable.bggrey_shape);
+			}else {
+				setting_rl_exit.setVisibility(View.GONE);
+				LayoutParams lp=setting_btn_clear.getLayoutParams();
+				lp.width=480;
+				setting_btn_clear.setLayoutParams(lp);
+				
+				setting_btn_clear1.setClickable(false);
+				setting_btn_clear.setText("立即租赁");
+				setting_btn_clear1.setTextColor(getResources().getColor(R.color.bg0etitle));
+				setting_btn_clear1.setBackgroundResource(R.drawable.bg0e_shape);
+			}
+			
 			now_priceTextView.setText("租赁押金");
-			setting_btn_clear1.setTextColor(getResources().getColor(R.color.bg0etitle));
-			setting_btn_clear1.setBackgroundResource(R.drawable.bg0e_shape);
 			tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
 			tv_bug.setBackgroundResource(R.drawable.bg_shape);
 			tv_lea.setTextColor(getResources().getColor(R.color.white));
@@ -379,7 +417,12 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 			tv_comment.putExtra("commentsCount",commentsCount+"");
 			startActivity(tv_comment);
 			break;
-		case R.id.setting_btn_clear:  
+		case R.id.setting_btn_clear: 
+			if (gfe.getQuantity() <= 0) {
+				MyToast.showToast(getApplicationContext(),"很抱歉，该商品正在加紧补货中");
+				break;
+			}
+			
 			if(paychannelId == 0){
 				MyToast.showToast(getApplicationContext(),"请选择通道！");
 			}else if(islea){ 
