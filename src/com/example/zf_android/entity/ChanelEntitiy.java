@@ -1,6 +1,9 @@
 package com.example.zf_android.entity;
 
-public class ChanelEntitiy {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class ChanelEntitiy implements Serializable{
 //    "id": 1,
 //    "service_rate": 30,
 //    "description": "说明pcbc",
