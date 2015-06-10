@@ -187,8 +187,11 @@ public class ShopcarAdapter extends BaseAdapter {
 						: View.INVISIBLE);
 				hoder.editBtn.setText(isEdit ? "编辑" : "完成");
 				if(isEdit){
-					System.out.println(position+"----"+Integer.parseInt( hoder.buyCountEdit.getText().toString()));
-					changeContent(position, Integer.parseInt( hoder.buyCountEdit.getText().toString()));
+					if (!StringUtil.isNull(hoder.buyCountEdit.getText().toString())) {
+						changeContent(position, Integer.parseInt( hoder.buyCountEdit.getText().toString()));
+					}else {
+						changeContent(position, 1);
+					}
 				}
 				break;
 
@@ -253,7 +256,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				break;
 			case R.id.reduce:
 
-				if (quantity > 0) {
+				if (quantity > 1) {
 					editGood.setQuantity(--quantity);
 					hoder.buyCountEdit.setText(editGood.getQuantity() + "");
 					hoder.showCountText.setText("X  " + editGood.getQuantity());

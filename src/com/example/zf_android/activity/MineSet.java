@@ -70,7 +70,7 @@ public class MineSet extends BaseActivity implements OnClickListener{
 		ll_clean.setOnClickListener(this);
 		tv_clean=(TextView) findViewById(R.id.tv_clean);
 		tv_type = (TextView) findViewById(R.id.tv_type);
-		tv_type.setText(Tools.getVerName(this));
+		tv_type.setText("v"+Tools.getVerName(this));
 		String dataSize = "";
 		try {
 			dataSize = DataCleanManager.getTotalCacheSize(this);
