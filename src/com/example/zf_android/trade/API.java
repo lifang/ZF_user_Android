@@ -33,13 +33,13 @@ import com.loopj.android.http.RequestParams;
 @SuppressWarnings("rawtypes")
 public class API {
 
-//	public static final String SCHEMA = "http://";
-//
-//	// public static final String HOST = "114.215.149.242:18080";
-//	// sit
-//	 public final static String HOST = "www.ebank007.com/api/";
-////	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
-////	 public final static String HOST = "121.40.224.25:8080/api/";
+	// public static final String SCHEMA = "http://";
+	//
+	// // public static final String HOST = "114.215.149.242:18080";
+	// // sit
+	// public final static String HOST = "www.ebank007.com/api/";
+	// // public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
+	// // public final static String HOST = "121.40.224.25:8080/api/";
 	public static final String EDITADRESS = Config.PATHS
 			+ "customers/updateAddress";
 
@@ -135,8 +135,7 @@ public class API {
 			+ "terminal/Encryption";
 
 	// Apply List
-	public static final String APPLY_LIST = Config.PATHS
-			+ "apply/getApplyList";
+	public static final String APPLY_LIST = Config.PATHS + "apply/getApplyList";
 	// Apply Detail
 	public static final String APPLY_DETAIL = Config.PATHS
 			+ "apply/getApplyDetails";
@@ -427,7 +426,7 @@ public class API {
 
 	public static void submitApply(Context context, Map<String, Object> params,
 			HttpCallback callback) {
-		new HttpRequest(context, callback).post(APPLY_SUBMIT, params);
+		new HttpRequest(context, callback).post(APPLY_SUBMIT, params, true);
 	}
 
 	public static void queryApplyProgress(Context context, int customerId,
@@ -674,7 +673,7 @@ public class API {
 
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		
+
 		params.put("city_id", city_id);
 		params.put("orderType", orderType);
 		params.put("has_purchase", has_purchase);
@@ -715,11 +714,14 @@ public class API {
 	public static void checkVersion(Context context, HttpCallback callback) {
 		new HttpRequest(context, callback).post(Config.URL_CHECK_VERSION);
 	}
-	public static void getVersion(Context context, int types, HttpCallback callback) {
+
+	public static void getVersion(Context context, int types,
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("types", types);
-		new HttpRequest(context, callback).post(Config.URL_GET_VERSION,params);
+		new HttpRequest(context, callback).post(Config.URL_GET_VERSION, params);
 	}
+
 	public static void merchantInfo(Context context, int id,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();

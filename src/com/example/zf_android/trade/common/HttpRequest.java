@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.epalmpay.userPhone.R;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -132,7 +133,18 @@ public class HttpRequest {
 		}
 		post(url, entity);
 	}
-
+	public void post(String url, Map<String, Object> params, Boolean is) {
+		Gson gson = new Gson();
+		String gsonString = gson.toJson(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(gsonString, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			callback.onFailure(context.getString(R.string.load_data_failed));
+			return;
+		}
+		post(url, entity);
+	}
 	public void post(String url) {
 		HttpEntity entity = null;
 		post(url, entity);
