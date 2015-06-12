@@ -181,15 +181,18 @@ OnClickListener {
 					MyApplication.setIsSelect(false);
 
 					myAdapter.notifyDataSetChanged();
-					for (int i = 0; i < myList.size(); i++) {
-						myList.get(i).setIscheck(false);
-					}
+					
 					rl_editno.setVisibility(View.VISIBLE);
 					rl_edit.setVisibility(View.GONE);
 
 				} else {
 					next_sure.setText("取消");
 					MyApplication.setIsSelect(true);
+					for (int i = 0; i < myList.size(); i++) {
+						myList.get(i).setIscheck(false);
+					}
+					Stringas.clear();
+					idList.clear();
 					rl_edit.setVisibility(View.VISIBLE);
 					rl_editno.setVisibility(View.GONE);
 					myAdapter.notifyDataSetChanged();
