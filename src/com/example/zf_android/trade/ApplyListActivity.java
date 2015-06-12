@@ -256,6 +256,8 @@ public class ApplyListActivity extends BaseActivity implements
 					intent.putExtra(TERMINAL_ID, item.getId());
 					intent.putExtra(TERMINAL_NUMBER, item.getTerminalNumber());
 					intent.putExtra(TERMINAL_STATUS, item.getStatus());
+					intent.putExtra("xieyi", item.getOpeningProtocol());
+					
 					startActivity(intent);
 				}
 			});

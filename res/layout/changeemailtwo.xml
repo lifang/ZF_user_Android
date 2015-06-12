@@ -125,7 +125,6 @@
                 android:layout_marginRight="40dp"
                 android:background="@color/white"
                 android:hint="输入验证码"
-                android:inputType="textPassword"
                 android:maxWidth="20dp"
                 android:singleLine="true"
                 android:textColor="@color/text292929"

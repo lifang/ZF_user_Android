@@ -573,7 +573,9 @@ public class TerminalManageActivity extends BaseActivity implements
 		Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
 
 		Button btn_confirm = (Button) view.findViewById(R.id.btn_confirm);
+		TextView tv_protocol = (TextView) view.findViewById(R.id.tv_protocol);
 
+		tv_protocol.setText(item.getOpeningProtocol());
 		btn_cancel.setOnClickListener(new OnClickListener() {
 
 			@Override

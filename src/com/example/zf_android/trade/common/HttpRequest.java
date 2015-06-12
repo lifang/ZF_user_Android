@@ -51,7 +51,7 @@ public class HttpRequest {
 				try {
 					data = null == callback.getTypeToken() ?
 							JsonParser.fromJson(responseString) :
-							JsonParser.fromJson(responseString, callback.getTypeToken());
+								JsonParser.fromJson(responseString, callback.getTypeToken());
 				} catch (Exception e) {
 					callback.onFailure(context.getString(R.string.parse_data_failed));
 					return;
@@ -62,7 +62,7 @@ public class HttpRequest {
 					if(data.getMessage().equals("该用户已注册！")){
 						callback.onSuccess("registered");
 					}else{
-					callback.onFailure(data.getMessage());
+						callback.onFailure(data.getMessage());
 					}
 				}
 			}
@@ -136,10 +136,14 @@ public class HttpRequest {
 	public void post(String url, Map<String, Object> params, Boolean is) {
 		Gson gson = new Gson();
 		String gsonString = gson.toJson(params);
-		HttpEntity entity;
+		StringEntity entity;
 		try {
 			entity = new StringEntity(gsonString, "UTF-8");
+			entity.setContentType("application/json;charset=UTF-8");
 		} catch (UnsupportedEncodingException e) {
+			if(callback == null){
+				return;
+			}
 			callback.onFailure(context.getString(R.string.load_data_failed));
 			return;
 		}

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -20,11 +21,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.epalmpay.userPhone.R;
+import com.examlpe.zf_android.util.StringUtil;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.examlpe.zf_android.util.Tools;
 import com.example.zf_android.BaseActivity;
+import com.example.zf_android.entity.Bank;
 import com.example.zf_android.entity.BankEntity;
-import com.example.zf_android.entity.BankEntity.Bank;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.widget.XListView;
@@ -34,10 +36,11 @@ import com.google.gson.reflect.TypeToken;
  * Created by Leo on 2015/3/16.
  */
 public class ApplyBankActivity extends BaseActivity implements
-		View.OnClickListener, XListView.IXListViewListener {
+View.OnClickListener, XListView.IXListViewListener {
 
 	private String keyword = "";
 
+	private TextView next_sure;
 	private EditText mBankInput;
 	private ImageButton mBankSearch;
 	private LinearLayout mResultContainer;
@@ -57,10 +60,30 @@ public class ApplyBankActivity extends BaseActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_apply_bank);
 		new TitleMenuUtil(this, getString(R.string.title_apply_choose_bank))
-				.show();
+		.show();
 		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
 		mChosenBank = (Bank) getIntent().getSerializableExtra(SELECTED_BANK);
 
+		next_sure = (TextView) findViewById(R.id.next_sure);
+		next_sure.setVisibility(View.VISIBLE);
+		next_sure.setText("使用我输入的");
+		next_sure.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (StringUtil.isNull(mBankInput.getText().toString().trim())) {
+					CommonUtil.toastShort(ApplyBankActivity.this,"请输入银行名称");
+				}else {
+					Bank bank = new Bank();
+					bank.setName(mBankInput.getText().toString());
+					bank.setNo("");
+					Intent intent = new Intent();
+					intent.putExtra(SELECTED_BANK, bank);
+					setResult(RESULT_OK, intent);
+					finish();
+				}
+			}
+		});
 		mBankInput = (EditText) findViewById(R.id.apply_bank_input);
 		mBankSearch = (ImageButton) findViewById(R.id.apply_bank_search);
 		mBankSearch.setOnClickListener(this);
@@ -93,41 +116,41 @@ public class ApplyBankActivity extends BaseActivity implements
 		API.getApplyBankList(this, page + 1, keyword, pageSize,
 				String.valueOf(mTerminalId),
 				new HttpCallback<BankEntity>(this) {
-					@Override
-					public void onSuccess(BankEntity data) {
-						mResultContainer.setVisibility(View.VISIBLE);
+			@Override
+			public void onSuccess(BankEntity data) {
+				mResultContainer.setVisibility(View.VISIBLE);
 
-						// 没有数据或者数据不够Config.ROWS个时说明后台没有更多数据 不需要上拉加载
-						if (null == data || data.getContent().size() < pageSize)
-							noMoreData = true;
+				// 没有数据或者数据不够Config.ROWS个时说明后台没有更多数据 不需要上拉加载
+				if (null == data || data.getContent().size() < pageSize)
+					noMoreData = true;
 
-						if (pullType.equals("onRefresh")) {
-							bank.clear();
-						}
+				if (pullType.equals("onRefresh")) {
+					bank.clear();
+				}
 
-						if (null != data && data.getContent().size() > 0)
-							bank.addAll(data.getContent());
-						page++;
-						mAdapter.notifyDataSetChanged();
-					}
+				if (null != data && data.getContent().size() > 0)
+					bank.addAll(data.getContent());
+				page++;
+				mAdapter.notifyDataSetChanged();
+			}
 
-					@Override
-					public void preLoad() {
-						super.preLoad();
-					}
+			@Override
+			public void preLoad() {
+				super.preLoad();
+			}
 
-					@Override
-					public void postLoad() {
-						loadFinished();
-						super.postLoad();
-					}
+			@Override
+			public void postLoad() {
+				loadFinished();
+				super.postLoad();
+			}
 
-					@Override
-					public TypeToken<BankEntity> getTypeToken() {
-						return new TypeToken<BankEntity>() {
-						};
-					}
-				});
+			@Override
+			public TypeToken<BankEntity> getTypeToken() {
+				return new TypeToken<BankEntity>() {
+				};
+			}
+		});
 	}
 
 	@Override

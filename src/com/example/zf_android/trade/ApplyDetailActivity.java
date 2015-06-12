@@ -54,7 +54,7 @@ import android.widget.TextView;
 import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.TitleMenuUtil;
 import com.example.zf_android.MyApplication;
-import com.example.zf_android.entity.BankEntity.Bank;
+import com.example.zf_android.entity.Bank;
 import com.example.zf_android.trade.common.CommonUtil;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.common.RegText;

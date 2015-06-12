@@ -1,6 +1,7 @@
 package com.example.zf_android.trade;
 
 import static com.example.zf_android.trade.Constants.TerminalIntent.HAVE_VIDEO;
+import static com.example.zf_android.trade.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
@@ -25,7 +26,9 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +43,7 @@ import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.TerminalApply;
 import com.example.zf_android.trade.entity.TerminalComment;
 import com.example.zf_android.trade.entity.TerminalDetail;
+import com.example.zf_android.trade.entity.TerminalItem;
 import com.example.zf_android.trade.entity.TerminalOpen;
 import com.example.zf_android.trade.entity.TerminalRate;
 import com.example.zf_android.video.VideoActivity;
@@ -67,11 +71,13 @@ public class TerminalDetailActivity extends BaseActivity {
 
 	private View.OnClickListener mSyncListener;
 	private View.OnClickListener mOpenListener;
+	private View.OnClickListener mReOpenListener;
 	private View.OnClickListener mPosListener;
 	private View.OnClickListener mVideoListener;
 
 	private int isVideo, status;
 	private Boolean appidBoolean, videoBoolean;
+	private String xieyiString;
 	DisplayImageOptions options = MyApplication.getDisplayOption();
 
 	@Override
@@ -81,6 +87,7 @@ public class TerminalDetailActivity extends BaseActivity {
 		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
 		mTerminalNumber = getIntent().getStringExtra(TERMINAL_NUMBER);
 		mTerminalStatus = getIntent().getIntExtra(TERMINAL_STATUS, 0);
+		xieyiString = getIntent().getStringExtra("xieyi");
 		setContentView(R.layout.activity_terminal_detail);
 		new TitleMenuUtil(this, getString(R.string.title_terminal_detail))
 				.show();
@@ -123,6 +130,13 @@ public class TerminalDetailActivity extends BaseActivity {
 			}
 		};
 		mOpenListener = new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				openDialog();
+			
+			}
+		};
+		mReOpenListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(TerminalDetailActivity.this,
@@ -199,7 +213,58 @@ public class TerminalDetailActivity extends BaseActivity {
 			}
 		};
 	}
+	private void openDialog() {
+		 AlertDialog.Builder builder = new AlertDialog.Builder(TerminalDetailActivity.this);
 
+		LayoutInflater factory = LayoutInflater.from(this);
+		View view = factory.inflate(R.layout.protocoldialog, null);
+		builder.setView(view);
+
+		final AlertDialog dialog = builder.create();
+		dialog.show();
+		final CheckBox cb = (CheckBox) view.findViewById(R.id.cb);
+
+		Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
+
+		Button btn_confirm = (Button) view.findViewById(R.id.btn_confirm);
+
+		TextView tv_protocol = (TextView) view.findViewById(R.id.tv_protocol);
+
+		tv_protocol.setText(xieyiString);
+
+		btn_cancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		btn_confirm.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				if (!cb.isChecked()) {
+
+					CommonUtil.toastShort(TerminalDetailActivity.this,
+							"请仔细阅读开通协议，并接受协议");
+
+				} else {
+
+					dialog.dismiss();
+					Intent intent = new Intent(TerminalDetailActivity.this,
+							ApplyDetailActivity.class);
+					intent.putExtra(TERMINAL_ID, mTerminalId);
+					intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
+					intent.putExtra(TERMINAL_STATUS, mTerminalStatus);
+					startActivity(intent);
+				}
+
+			}
+		});
+		// dialog.show();
+
+	}
 	private void loadData() {
 		API.getTerminalDetail(this, mTerminalId, MyApplication.getInstance()
 				.getCustomerId(), new HttpCallback<TerminalDetail>(this) {
@@ -301,7 +366,7 @@ public class TerminalDetailActivity extends BaseActivity {
 			}
 			mBtnRightTop.setVisibility(View.VISIBLE);
 			mBtnRightTop.setText(getString(R.string.terminal_button_reopen));
-			mBtnRightTop.setOnClickListener(mOpenListener);
+			mBtnRightTop.setOnClickListener(mReOpenListener);
 			mBtnRightBottom.setVisibility(View.VISIBLE);
 			mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
 			mBtnRightBottom.setOnClickListener(mPosListener);
@@ -318,7 +383,7 @@ public class TerminalDetailActivity extends BaseActivity {
 					mBtnRightTop.setVisibility(View.VISIBLE);
 					mBtnRightTop
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightTop.setOnClickListener(mOpenListener);
+					mBtnRightTop.setOnClickListener(mReOpenListener);
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_video));
@@ -331,7 +396,7 @@ public class TerminalDetailActivity extends BaseActivity {
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightBottom.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setOnClickListener(mReOpenListener);
 				}
 			} else {
 
@@ -366,7 +431,7 @@ public class TerminalDetailActivity extends BaseActivity {
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightBottom.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setOnClickListener(mReOpenListener);
 				} else {
 					mBtnRightTop.setVisibility(View.VISIBLE);
 					mBtnRightTop
@@ -375,7 +440,7 @@ public class TerminalDetailActivity extends BaseActivity {
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightBottom.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setOnClickListener(mReOpenListener);
 				}
 			} else {
 				if (videoBoolean) {
@@ -388,7 +453,7 @@ public class TerminalDetailActivity extends BaseActivity {
 				mBtnRightTop.setVisibility(View.VISIBLE);
 				mBtnRightTop
 						.setText(getString(R.string.terminal_button_reopen));
-				mBtnRightTop.setOnClickListener(mOpenListener);
+				mBtnRightTop.setOnClickListener(mReOpenListener);
 			}
 			break;
 		case STOPPED:
