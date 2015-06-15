@@ -88,9 +88,10 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 	private int  	commentsCount;
 	FactoryEntity factoryEntity;
 	FactoryEntity factory;
-	private TextView good_description,now_priceTextView;
+	private TextView good_description,now_priceTextView,tvc_qyTextView;
 	private  TextView tvc_zx,tvc_qy,tv_sqkt,tv_bug,tv_lea,tv_title,content1,tv_pp,tv_xh,tv_ys,tv_price,tv_lx,tv_sjhttp
 	,tv_spxx,fac_detai,ppxx,wkxx,dcxx,tv_qgd,tv_jm,tv_comment,tv_appneed,tv_ins,tv_huilv;
+	private View tv_insView;
 	private ScrollViewWithListView  pos_lv1,pos_lv2,pos_lv3;
 	private HuilvAdapter lvAdapter;
 	private HuilvAdapter1 lvAdapter2;
@@ -180,6 +181,8 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 					tv_lea.setVisibility(View.VISIBLE);
 				}else{
 					tv_lea.setVisibility(View.INVISIBLE);
+					tv_ins.setVisibility(View.GONE);
+					tv_insView.setVisibility(View.GONE);
 				}
 				//	lvAdapter.notifyDataSetChanged();
 				break;
@@ -243,6 +246,9 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 		lp.width = screenWidth;
 		lp.height = screenWidth;
 		rl_imgs.setLayoutParams(lp);
+		
+		tvc_qyTextView = (TextView) findViewById(R.id.tvc_qyTextView);
+		tv_insView = findViewById(R.id.tv_insView);
 		
 		tv_old_price = (TextView) findViewById(R.id.tv_old_price);
 		tv_all_price = (TextView) findViewById(R.id.tv_all_price);
@@ -639,10 +645,11 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							}
 							
 							if(jsonobject.getBoolean("support_type")){
-								tvc_qy.setText("支持"+ b);
+								tvc_qyTextView.setText("支持支付区域");
 							}else{
-								tvc_qy.setText("不支持"+ b);
+								tvc_qyTextView.setText("不支持支付区域");
 							}
+							tvc_qy.setText(b);
 							if(jsonobject.getBoolean("support_cancel_flag")){
 
 								tvc_zx.setText("支持");
@@ -784,12 +791,14 @@ public class GoodDeatail extends BaseActivity implements OnClickListener{
 							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 							tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 							tv_open_price.setText("￥ "+StringUtil.getMoneyString(opening_cost));
+							tv_now_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
 						}else {
 							//租赁
 							all_price = gfe.getLease_deposit()+opening_cost;
 							tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
-							tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+							tv_all_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 							tv_open_price.setText("￥ "+StringUtil.getMoneyString(opening_cost));
+							tv_now_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()));
 						}
 
 						//  					    handler.sendEmptyMessage(0);
