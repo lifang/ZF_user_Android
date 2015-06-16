@@ -18,11 +18,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.ScrollViewWithListView;
@@ -83,6 +86,8 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 			}
 		}
 	};
+	private LinearLayout ll_fp;
+	private CheckBox item_cb;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -113,6 +118,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 
 	}
 	private void initView() {
+		ll_fp = (LinearLayout)findViewById(R.id.ll_fp);
 		new TitleMenuUtil(ConfirmOrder.this, "订单确定").show();
 		pos_lv=(ScrollViewWithListView) findViewById(R.id.pos_lv1);
 		btn_pay=(Button) findViewById(R.id.btn_pay);
@@ -132,6 +138,22 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 		tv_count.setText("共计  ： "+index+"件");
 		et_comment=(EditText) findViewById(R.id.et_comment);
 		et_info=(EditText) findViewById(R.id.et_info); //et_info
+		item_cb = (CheckBox) findViewById(R.id.item_cb);
+		item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				if(arg1){
+					is_need_invoice=1;
+					
+					ll_fp.setVisibility(View.VISIBLE);
+				}else{
+					is_need_invoice=0;
+				
+					ll_fp.setVisibility(View.GONE);
+				}
+			}
+		});
 	}
 	@Override
 	public void onClick(View v) {
