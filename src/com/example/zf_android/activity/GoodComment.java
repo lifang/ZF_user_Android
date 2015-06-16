@@ -163,7 +163,7 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("goodId", goodId);
-		params.put("indexPage", page);
+		params.put("page", page);
 	 	params.put("rows", rows);
 		JSONObject jsonParams = new JSONObject(params);
 		HttpEntity entity;
