@@ -637,6 +637,7 @@
                     android:textSize="17sp" />
 
                 <View
+                    android:id="@+id/tv_insView"
                     android:layout_width="0.5dp"
                     android:layout_height="fill_parent"
                     android:layout_marginBottom="3dp"
@@ -681,12 +682,14 @@
                     android:layout_height="fill_parent"
                     android:layout_marginBottom="3dp"
                     android:layout_marginTop="3dp"
+                    android:visibility="gone"
                     android:background="@color/Viewc2" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
+                       android:visibility="gone"
                     android:gravity="center"
                     android:textColor="@color/text292929"
                     android:textSize="17sp" />
@@ -735,9 +738,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:ellipsize="end"
-                    android:maxLines="1"
+                    android:layout_gravity="top"
                     android:text="品      牌     型     号"
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
@@ -746,10 +747,8 @@
                     android:id="@+id/ppxx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="top"
                     android:layout_marginLeft="7dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
                     android:text=""
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
@@ -765,9 +764,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:ellipsize="end"
-                    android:maxLines="1"
+                    android:layout_gravity="top"
                     android:text="外      壳     信     息"
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
@@ -776,70 +773,8 @@
                     android:id="@+id/wkxx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="top"
                     android:layout_marginLeft="7dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="泰山TS9000"
-                    android:textColor="@color/text6c6c6c6"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_left2"
-                android:layout_marginRight="@dimen/margin_left2"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="电      池     信     息"
-                    android:textColor="@color/text292929"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/dcxx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="7dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="泰山TS9000"
-                    android:textColor="@color/text6c6c6c6"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_left2"
-                android:layout_marginRight="@dimen/margin_left2"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="签约购单打印方式"
-                    android:textColor="@color/text292929"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/tv_qgd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="7dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
                     android:text=""
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
@@ -855,9 +790,59 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:ellipsize="end"
-                    android:maxLines="1"
+                    android:layout_gravity="top"
+                    android:text="电      池     信     息"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/dcxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="7dp"
+                    android:text=""
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_left2"
+                android:layout_marginRight="@dimen/margin_left2"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:text="签约购单打印方式"
+                    android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_qgd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="7dp"
+                    android:text=""
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_left2"
+                android:layout_marginRight="@dimen/margin_left2"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
                     android:text="加    密   卡  方   式"
                     android:textColor="@color/text292929"
                     android:textSize="13sp" />
@@ -866,10 +851,8 @@
                     android:id="@+id/tv_jm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="top"
                     android:layout_marginLeft="7dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
                     android:text=""
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />

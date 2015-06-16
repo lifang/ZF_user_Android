@@ -36,7 +36,7 @@ public class LeaseInstruction extends BaseActivity{
 			tv5=(TextView) findViewById(R.id.tv5);
 			
 			tv5.setText(gfe.getLease_agreement()+"");
-			tv4.setText(gfe.getDescription()+"");
+			tv4.setText(gfe.getLease_description()+"");
 			tv3.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_price()));
 			tv2.setText(gfe.getReturn_time()+"");
 			tv1.setText(gfe.getLease_time()+"");

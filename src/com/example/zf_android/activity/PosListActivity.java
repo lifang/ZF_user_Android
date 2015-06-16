@@ -76,7 +76,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 					eva_nodata.setVisibility(View.GONE);
 					Xlistview.setVisibility(View.VISIBLE);
 				}
-				onRefresh_number = true; 
+			 
 				myAdapter.notifyDataSetChanged();
 				break;
 			case 1:
@@ -347,6 +347,9 @@ public class PosListActivity extends BaseActivity implements OnClickListener, IX
 			@Override
 			public void onSuccess(NewPoslistEntity data) {
 				moreList=data.getList();
+				if (data.getList().size() != 0) {
+					onRefresh_number = true;
+				}
 				System.out.println("ssss"+moreList.size());
 				myList.addAll(moreList);
 				handler.sendEmptyMessage(0);
