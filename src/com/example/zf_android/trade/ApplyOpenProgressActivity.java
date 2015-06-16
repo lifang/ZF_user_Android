@@ -181,6 +181,15 @@ public class ApplyOpenProgressActivity extends BaseActivity {
 					holder.right.addView(value);
 				}
 			}
+			if (item.getOpenStatus().size() == 0){
+				TextView key = createKeyText();
+				key.setText("当前进度");
+				holder.left.addView(key);
+
+				TextView value = createValueText();
+				value.setText(item.getError());
+				holder.right.addView(value);
+			}
 			return convertView;
 		}
 	}

@@ -197,7 +197,7 @@ public class GoodComment extends BaseActivity implements  IXListViewListener{
 								total = jsonobject.getInt("total");
 								moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<GoodCommentEntity>>() {
 			 					}.getType());
-			 				 
+								page++;
 								myList.addAll(moreList);
 				 				handler.sendEmptyMessage(0);
 							}else{

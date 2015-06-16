@@ -8296,15 +8296,6 @@ cn.trinea.android.common.view.SlideOnePageGallery: boolean isScrollingLeft(andro
 cn.trinea.android.common.view.SlideOnePageGallery: boolean onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)
 com.UCMobile.PayPlugin.PayPluginService
 com.UCMobile.PayPlugin.PayResultReceiver
-com.UCMobile.PayPlugin.PayResultReceiver: void native_UCPayResultNotify(java.lang.String)
-com.UCMobile.PayPlugin.PluginSurfaceView
-com.UCMobile.PayPlugin.PluginSurfaceView: int[] getIconPixels()
-com.UCMobile.PayPlugin.PluginSurfaceView: int getIconWidth()
-com.UCMobile.PayPlugin.PluginSurfaceView: int getIconHeight()
-com.UCMobile.PayPlugin.PluginSurfaceView: int getIconRowBytes()
-com.UCMobile.PayPlugin.PluginSurfaceView: void nativeSurfaceCreated(int)
-com.UCMobile.PayPlugin.PluginSurfaceView: void nativeSurfaceChanged(int,int,int,int)
-com.UCMobile.PayPlugin.PluginSurfaceView: void nativeSurfaceDestroyed(int)
 com.alipay.android.app.IAlixPay
 com.alipay.android.app.IAlixPay: java.lang.String Pay(java.lang.String)
 com.alipay.android.app.IAlixPay: java.lang.String test()
@@ -8336,10 +8327,6 @@ com.alipay.android.app.IRemoteServiceCallback$Stub: com.alipay.android.app.IRemo
 com.alipay.android.app.IRemoteServiceCallback$Stub: android.os.IBinder asBinder()
 com.alipay.android.app.IRemoteServiceCallback$Stub: boolean onTransact(int,android.os.Parcel,android.os.Parcel,int)
 com.alipay.mobilesecuritysdk.MainHandler
-com.alipay.mobilesecuritysdk.constant.ConfigNameEnum: com.alipay.mobilesecuritysdk.constant.ConfigNameEnum[] values()
-com.alipay.mobilesecuritysdk.constant.ConfigNameEnum: com.alipay.mobilesecuritysdk.constant.ConfigNameEnum valueOf(java.lang.String)
-com.alipay.mobilesecuritysdk.constant.LocationNameEnum: com.alipay.mobilesecuritysdk.constant.LocationNameEnum[] values()
-com.alipay.mobilesecuritysdk.constant.LocationNameEnum: com.alipay.mobilesecuritysdk.constant.LocationNameEnum valueOf(java.lang.String)
 com.alipay.sdk.app.AuthTask
 com.alipay.sdk.app.AuthTask: AuthTask(android.app.Activity)
 com.alipay.sdk.app.AuthTask: java.lang.String auth(java.lang.String)
@@ -8350,18 +8337,8 @@ com.alipay.sdk.app.PayTask: PayTask(android.app.Activity)
 com.alipay.sdk.app.PayTask: java.lang.String pay(java.lang.String)
 com.alipay.sdk.app.PayTask: java.lang.String getVersion()
 com.alipay.sdk.app.PayTask: boolean checkAccountIfExist()
-com.alipay.sdk.app.ac: com.alipay.sdk.app.ac[] values()
-com.alipay.sdk.app.ac: com.alipay.sdk.app.ac valueOf(java.lang.String)
 com.alipay.sdk.auth.AuthActivity
 com.alipay.sdk.auth.AuthActivity: AuthActivity()
-com.alipay.sdk.authjs.a$a: com.alipay.sdk.authjs.a$a[] values()
-com.alipay.sdk.authjs.a$a: com.alipay.sdk.authjs.a$a valueOf(java.lang.String)
-com.alipay.sdk.protocol.a: com.alipay.sdk.protocol.a[] values()
-com.alipay.sdk.protocol.a: com.alipay.sdk.protocol.a valueOf(java.lang.String)
-com.alipay.sdk.protocol.f: com.alipay.sdk.protocol.f[] values()
-com.alipay.sdk.protocol.f: com.alipay.sdk.protocol.f valueOf(java.lang.String)
-com.alipay.sdk.util.f: com.alipay.sdk.util.f[] values()
-com.alipay.sdk.util.f: com.alipay.sdk.util.f valueOf(java.lang.String)
 com.baidu.android.pushservice.BasicPushNotificationBuilder
 com.baidu.android.pushservice.BasicPushNotificationBuilder: com.baidu.android.pushservice.apiproxy.BridgeBasicPushNotificationBuilder a
 com.baidu.android.pushservice.BasicPushNotificationBuilder: BasicPushNotificationBuilder(android.content.Context,com.baidu.android.pushservice.apiproxy.BridgeBasicPushNotificationBuilder)
@@ -12160,1407 +12137,6 @@ com.baidu.location.z$c: void onProviderDisabled(java.lang.String)
 com.baidu.location.z$c: void onProviderEnabled(java.lang.String)
 com.baidu.location.z$c: void onStatusChanged(java.lang.String,int,android.os.Bundle)
 com.baidu.location.z$c: z$c(com.baidu.location.z,com.baidu.location.z$1)
-com.bairuitech.anychat.AnyChatCoreSDK
-com.bairuitech.anychat.AnyChatCoreSDK: int RegisterNotify()
-com.bairuitech.anychat.AnyChatCoreSDK: int InitSDK(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int Connect(java.lang.String,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int Login(java.lang.String,java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: int EnterRoom(int,java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: int EnterRoomEx(java.lang.String,java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: int LeaveRoom(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int Logout()
-com.bairuitech.anychat.AnyChatCoreSDK: int Release()
-com.bairuitech.anychat.AnyChatCoreSDK: int[] GetOnlineUser()
-com.bairuitech.anychat.AnyChatCoreSDK: int SetVideoPos(int,android.view.Surface,int,int,int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int UserCameraControl(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int UserSpeakControl(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int StreamRecordCtrl(int,int,int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int StreamRecordCtrlEx(int,int,int,int,java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: int SnapShot(int,int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int AudioGetVolume(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int AudioSetVolume(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String QueryUserStateString(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int QueryUserStateInt(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int GetUserSpeakVolume(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int GetCameraState(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int GetSpeakState(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int GetUserVideoWidth(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int GetUserVideoHeight(int)
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String QueryRoomStateString(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int QueryRoomStateInt(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int SetServerAuthPass(java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: int SetSDKOptionInt(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int SetSDKOptionString(int,java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: int GetSDKOptionInt(int)
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetSDKOptionString(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int SendTextMessage(int,int,java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: int TransFile(int,java.lang.String,int,int,int,com.bairuitech.anychat.AnyChatOutParam)
-com.bairuitech.anychat.AnyChatCoreSDK: int TransBuffer(int,byte[],int)
-com.bairuitech.anychat.AnyChatCoreSDK: int TransBufferEx(int,byte[],int,int,int,int,com.bairuitech.anychat.AnyChatOutParam)
-com.bairuitech.anychat.AnyChatCoreSDK: int CancelTransTask(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int QueryTransTaskInfo(int,int,int,com.bairuitech.anychat.AnyChatOutParam)
-com.bairuitech.anychat.AnyChatCoreSDK: int SendSDKFilterData(byte[],int)
-com.bairuitech.anychat.AnyChatCoreSDK: byte[] FetchAudioPlayBuffer(int)
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String[] EnumVideoCapture()
-com.bairuitech.anychat.AnyChatCoreSDK: int SelectVideoCapture(java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetCurVideoCapture()
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String[] EnumAudioCapture()
-com.bairuitech.anychat.AnyChatCoreSDK: int SelectAudioCapture(java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetCurAudioCapture()
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String[] EnumAudioPlayback()
-com.bairuitech.anychat.AnyChatCoreSDK: int SelectAudioPlayback(java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetCurAudioPlayback()
-com.bairuitech.anychat.AnyChatCoreSDK: int ChangeChatMode(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int GetUserChatMode(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int PrivateChatRequest(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int PrivateChatEcho(int,int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int PrivateChatEchoEx(int,int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int PrivateChatExit(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int SetInputVideoFormat(int,int,int,int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int InputVideoData(byte[],int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int SetInputAudioFormat(int,int,int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int InputAudioData(byte[],int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: int VideoCallControl(int,int,int,int,int,java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: int[] GetUserFriends()
-com.bairuitech.anychat.AnyChatCoreSDK: int GetFriendStatus(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int[] GetUserGroups()
-com.bairuitech.anychat.AnyChatCoreSDK: int[] GetGroupFriends(int)
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetUserInfo(int,int)
-com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetGroupName(int)
-com.bairuitech.anychat.AnyChatCoreSDK: int UserInfoControl(int,int,int,int,java.lang.String)
-com.bairuitech.anychat.AnyChatCoreSDK: int MultiCastControl(java.lang.String,int,java.lang.String,int,int)
-com.epalmpay.userPhone.R$anim: int bottom_in
-com.epalmpay.userPhone.R$anim: int bottom_out
-com.epalmpay.userPhone.R$anim: int in_from_left
-com.epalmpay.userPhone.R$anim: int in_from_right
-com.epalmpay.userPhone.R$anim: int out_to_left
-com.epalmpay.userPhone.R$anim: int out_to_right
-com.epalmpay.userPhone.R$anim: int tanchudialog
-com.epalmpay.userPhone.R$anim: int toast_dialog_enter
-com.epalmpay.userPhone.R$anim: int toast_dialog_exit
-com.epalmpay.userPhone.R$anim: int top_in
-com.epalmpay.userPhone.R$anim: int top_out
-com.epalmpay.userPhone.R$anim: int xiaoshidialog
-com.epalmpay.userPhone.R$array: int after_sale_change
-com.epalmpay.userPhone.R$array: int after_sale_lease
-com.epalmpay.userPhone.R$array: int after_sale_maintian
-com.epalmpay.userPhone.R$array: int after_sale_number
-com.epalmpay.userPhone.R$array: int after_sale_return
-com.epalmpay.userPhone.R$array: int after_sale_terminal
-com.epalmpay.userPhone.R$array: int apply_detail_bank_keys
-com.epalmpay.userPhone.R$array: int apply_detail_bank_keys_private
-com.epalmpay.userPhone.R$array: int apply_detail_bank_keys_public
-com.epalmpay.userPhone.R$array: int apply_detail_gender
-com.epalmpay.userPhone.R$array: int apply_detail_merchant_keys
-com.epalmpay.userPhone.R$array: int apply_detail_upload
-com.epalmpay.userPhone.R$array: int apply_detail_view
-com.epalmpay.userPhone.R$array: int cancel_status
-com.epalmpay.userPhone.R$array: int change_status
-com.epalmpay.userPhone.R$array: int lease_status
-com.epalmpay.userPhone.R$array: int maintain_status
-com.epalmpay.userPhone.R$array: int return_status
-com.epalmpay.userPhone.R$array: int terminal_apply_keys
-com.epalmpay.userPhone.R$array: int terminal_detail_view
-com.epalmpay.userPhone.R$array: int terminal_open_status
-com.epalmpay.userPhone.R$array: int terminal_status
-com.epalmpay.userPhone.R$array: int title_after_sale_detail
-com.epalmpay.userPhone.R$array: int title_after_sale_list
-com.epalmpay.userPhone.R$array: int trade_flow_tabs
-com.epalmpay.userPhone.R$array: int trade_item_bank
-com.epalmpay.userPhone.R$array: int trade_item_bank_consume
-com.epalmpay.userPhone.R$array: int trade_item_bank_life_pay
-com.epalmpay.userPhone.R$array: int trade_item_bank_phone_pay
-com.epalmpay.userPhone.R$array: int trade_item_bank_transfer
-com.epalmpay.userPhone.R$array: int trade_item_commercial
-com.epalmpay.userPhone.R$array: int trade_status
-com.epalmpay.userPhone.R$array: int update_status
-com.epalmpay.userPhone.R$attr: int isAutoLoadOnBottom
-com.epalmpay.userPhone.R$attr: int isDropDownStyle
-com.epalmpay.userPhone.R$attr: int isOnBottomStyle
-com.epalmpay.userPhone.R$color: int B4B4B4
-com.epalmpay.userPhone.R$color: int B5B5B6
-com.epalmpay.userPhone.R$color: int C0075FF
-com.epalmpay.userPhone.R$color: int E8E8E7
-com.epalmpay.userPhone.R$color: int F3F2F2
-com.epalmpay.userPhone.R$color: int F3F3F3
-com.epalmpay.userPhone.R$color: int F6F9FA
-com.epalmpay.userPhone.R$color: int FB9401
-com.epalmpay.userPhone.R$color: int Viewc
-com.epalmpay.userPhone.R$color: int Viewc2
-com.epalmpay.userPhone.R$color: int adadad
-com.epalmpay.userPhone.R$color: int background_dark
-com.epalmpay.userPhone.R$color: int background_pressed
-com.epalmpay.userPhone.R$color: int bantouming
-com.epalmpay.userPhone.R$color: int bf873e
-com.epalmpay.userPhone.R$color: int bg0etitle
-com.epalmpay.userPhone.R$color: int bg_0AB2FF
-com.epalmpay.userPhone.R$color: int bg_1FB8FE
-com.epalmpay.userPhone.R$color: int bg_575D5F
-com.epalmpay.userPhone.R$color: int bg_FF0404
-com.epalmpay.userPhone.R$color: int bg_FF1F1F
-com.epalmpay.userPhone.R$color: int bg_item
-com.epalmpay.userPhone.R$color: int bgtitle
-com.epalmpay.userPhone.R$color: int black
-com.epalmpay.userPhone.R$color: int blank_button_selector
-com.epalmpay.userPhone.R$color: int blank_button_white_selector
-com.epalmpay.userPhone.R$color: int blue
-com.epalmpay.userPhone.R$color: int button_bg_hui_color
-com.epalmpay.userPhone.R$color: int c6c6c6
-com.epalmpay.userPhone.R$color: int c838383
-com.epalmpay.userPhone.R$color: int d3d3d3
-com.epalmpay.userPhone.R$color: int d7d7d7
-com.epalmpay.userPhone.R$color: int de4747
-com.epalmpay.userPhone.R$color: int drop_down_list_footer_font_color
-com.epalmpay.userPhone.R$color: int drop_down_list_header_font_color
-com.epalmpay.userPhone.R$color: int drop_down_list_header_second_font_color
-com.epalmpay.userPhone.R$color: int e1e1e1
-com.epalmpay.userPhone.R$color: int e5e5e5
-com.epalmpay.userPhone.R$color: int edithinit
-com.epalmpay.userPhone.R$color: int f1f1f1
-com.epalmpay.userPhone.R$color: int f26e26
-com.epalmpay.userPhone.R$color: int f4f4f4
-com.epalmpay.userPhone.R$color: int f6d9d9d9
-com.epalmpay.userPhone.R$color: int f6e6cd
-com.epalmpay.userPhone.R$color: int f6f4f4f4
-com.epalmpay.userPhone.R$color: int f8f8f8
-com.epalmpay.userPhone.R$color: int ff9900
-com.epalmpay.userPhone.R$color: int fffefe
-com.epalmpay.userPhone.R$color: int ffffff
-com.epalmpay.userPhone.R$color: int hint6C
-com.epalmpay.userPhone.R$color: int hintB5
-com.epalmpay.userPhone.R$color: int line_color
-com.epalmpay.userPhone.R$color: int normal_button_disabled
-com.epalmpay.userPhone.R$color: int normal_button_enabled
-com.epalmpay.userPhone.R$color: int normal_button_pressed
-com.epalmpay.userPhone.R$color: int oederdetail_item_red
-com.epalmpay.userPhone.R$color: int oederdetails_bg
-com.epalmpay.userPhone.R$color: int prebuttom
-com.epalmpay.userPhone.R$color: int progress_bg
-com.epalmpay.userPhone.R$color: int rad
-com.epalmpay.userPhone.R$color: int seekbar_bg
-com.epalmpay.userPhone.R$color: int t000000
-com.epalmpay.userPhone.R$color: int t0094d4
-com.epalmpay.userPhone.R$color: int t04b900
-com.epalmpay.userPhone.R$color: int t333333
-com.epalmpay.userPhone.R$color: int t65727f
-com.epalmpay.userPhone.R$color: int t699f4c
-com.epalmpay.userPhone.R$color: int t828282
-com.epalmpay.userPhone.R$color: int t9f4c4c
-com.epalmpay.userPhone.R$color: int t9f8150
-com.epalmpay.userPhone.R$color: int text292929
-com.epalmpay.userPhone.R$color: int text535252
-com.epalmpay.userPhone.R$color: int text5a5a5a
-com.epalmpay.userPhone.R$color: int text6c6c6c6
-com.epalmpay.userPhone.R$color: int text_read
-com.epalmpay.userPhone.R$color: int textc9c9c9
-com.epalmpay.userPhone.R$color: int tmc
-com.epalmpay.userPhone.R$color: int tmffffff
-com.epalmpay.userPhone.R$color: int top_bg_color
-com.epalmpay.userPhone.R$color: int touming
-com.epalmpay.userPhone.R$color: int touming7f
-com.epalmpay.userPhone.R$color: int toumingbai
-com.epalmpay.userPhone.R$color: int toumingf6
-com.epalmpay.userPhone.R$color: int toumingf6f1
-com.epalmpay.userPhone.R$color: int toumingf6f4
-com.epalmpay.userPhone.R$color: int trade_statistic_bg
-com.epalmpay.userPhone.R$color: int trans
-com.epalmpay.userPhone.R$color: int trans_white
-com.epalmpay.userPhone.R$color: int tv_red
-com.epalmpay.userPhone.R$color: int white
-com.epalmpay.userPhone.R$dimen: int activity_horizontal_margin
-com.epalmpay.userPhone.R$dimen: int activity_vertical_margin
-com.epalmpay.userPhone.R$dimen: int d_10dp
-com.epalmpay.userPhone.R$dimen: int d_11dp
-com.epalmpay.userPhone.R$dimen: int d_12dp
-com.epalmpay.userPhone.R$dimen: int d_13dp
-com.epalmpay.userPhone.R$dimen: int d_14dp
-com.epalmpay.userPhone.R$dimen: int d_15dp
-com.epalmpay.userPhone.R$dimen: int d_16dp
-com.epalmpay.userPhone.R$dimen: int d_17dp
-com.epalmpay.userPhone.R$dimen: int d_18dp
-com.epalmpay.userPhone.R$dimen: int d_1dp
-com.epalmpay.userPhone.R$dimen: int d_20dp
-com.epalmpay.userPhone.R$dimen: int d_2dp
-com.epalmpay.userPhone.R$dimen: int d_30dp
-com.epalmpay.userPhone.R$dimen: int d_34dp
-com.epalmpay.userPhone.R$dimen: int d_36dp
-com.epalmpay.userPhone.R$dimen: int d_3dp
-com.epalmpay.userPhone.R$dimen: int d_48dp
-com.epalmpay.userPhone.R$dimen: int d_4dp
-com.epalmpay.userPhone.R$dimen: int d_5dp
-com.epalmpay.userPhone.R$dimen: int d_64dp
-com.epalmpay.userPhone.R$dimen: int d_6dp
-com.epalmpay.userPhone.R$dimen: int d_7dp
-com.epalmpay.userPhone.R$dimen: int d_8dp
-com.epalmpay.userPhone.R$dimen: int d_9dp
-com.epalmpay.userPhone.R$dimen: int drop_down_list_footer_button_height
-com.epalmpay.userPhone.R$dimen: int drop_down_list_footer_button_margin_left
-com.epalmpay.userPhone.R$dimen: int drop_down_list_footer_progress_bar_height
-com.epalmpay.userPhone.R$dimen: int drop_down_list_header_padding_bottom
-com.epalmpay.userPhone.R$dimen: int drop_down_list_header_padding_top
-com.epalmpay.userPhone.R$dimen: int drop_down_list_header_progress_bar_height
-com.epalmpay.userPhone.R$dimen: int drop_down_list_header_release_min_distance
-com.epalmpay.userPhone.R$dimen: int margin_left
-com.epalmpay.userPhone.R$dimen: int margin_left2
-com.epalmpay.userPhone.R$dimen: int margin_right
-com.epalmpay.userPhone.R$dimen: int margin_right2
-com.epalmpay.userPhone.R$dimen: int margin_title
-com.epalmpay.userPhone.R$dimen: int s_12sp
-com.epalmpay.userPhone.R$dimen: int s_13sp
-com.epalmpay.userPhone.R$dimen: int s_14sp
-com.epalmpay.userPhone.R$dimen: int s_17sp
-com.epalmpay.userPhone.R$dimen: int s_18sp
-com.epalmpay.userPhone.R$dimen: int s_19sp
-com.epalmpay.userPhone.R$dimen: int s_20sp
-com.epalmpay.userPhone.R$dimen: int titleback_height
-com.epalmpay.userPhone.R$drawable: int after_sale_cancel
-com.epalmpay.userPhone.R$drawable: int after_sale_change
-com.epalmpay.userPhone.R$drawable: int after_sale_lease
-com.epalmpay.userPhone.R$drawable: int after_sale_maintain
-com.epalmpay.userPhone.R$drawable: int after_sale_return
-com.epalmpay.userPhone.R$drawable: int after_sale_update
-com.epalmpay.userPhone.R$drawable: int back
-com.epalmpay.userPhone.R$drawable: int background
-com.epalmpay.userPhone.R$drawable: int bg0e_shape
-com.epalmpay.userPhone.R$drawable: int bg_bk
-com.epalmpay.userPhone.R$drawable: int bg_blue_shape
-com.epalmpay.userPhone.R$drawable: int bg_blue_shapepre
-com.epalmpay.userPhone.R$drawable: int bg_btn_dra
-com.epalmpay.userPhone.R$drawable: int bg_circle_red
-com.epalmpay.userPhone.R$drawable: int bg_dialog_shape
-com.epalmpay.userPhone.R$drawable: int bg_item
-com.epalmpay.userPhone.R$drawable: int bg_login_edit
-com.epalmpay.userPhone.R$drawable: int bg_notify
-com.epalmpay.userPhone.R$drawable: int bg_red_dra
-com.epalmpay.userPhone.R$drawable: int bg_red_shape
-com.epalmpay.userPhone.R$drawable: int bg_red_shapepre
-com.epalmpay.userPhone.R$drawable: int bg_shape
-com.epalmpay.userPhone.R$drawable: int bggrey_shape
-com.epalmpay.userPhone.R$drawable: int bgnotify
-com.epalmpay.userPhone.R$drawable: int blank_button_disabled
-com.epalmpay.userPhone.R$drawable: int blank_button_enabled
-com.epalmpay.userPhone.R$drawable: int blank_button_pressed
-com.epalmpay.userPhone.R$drawable: int blank_button_selector
-com.epalmpay.userPhone.R$drawable: int blank_button_white_enabled
-com.epalmpay.userPhone.R$drawable: int blank_button_white_selector
-com.epalmpay.userPhone.R$drawable: int btn_bg
-com.epalmpay.userPhone.R$drawable: int btn_switchvideo_bg
-com.epalmpay.userPhone.R$drawable: int button_background
-com.epalmpay.userPhone.R$drawable: int buttong_light
-com.epalmpay.userPhone.R$drawable: int ca_vg
-com.epalmpay.userPhone.R$drawable: int camera_off
-com.epalmpay.userPhone.R$drawable: int camera_on
-com.epalmpay.userPhone.R$drawable: int cancle_down_btn
-com.epalmpay.userPhone.R$drawable: int car11
-com.epalmpay.userPhone.R$drawable: int car22
-com.epalmpay.userPhone.R$drawable: int cb_n
-com.epalmpay.userPhone.R$drawable: int cb_y
-com.epalmpay.userPhone.R$drawable: int check_n
-com.epalmpay.userPhone.R$drawable: int check_pass
-com.epalmpay.userPhone.R$drawable: int check_pass2
-com.epalmpay.userPhone.R$drawable: int check_y
-com.epalmpay.userPhone.R$drawable: int checkbox
-com.epalmpay.userPhone.R$drawable: int city_location
-com.epalmpay.userPhone.R$drawable: int custom_progress_draw
-com.epalmpay.userPhone.R$drawable: int data
-com.epalmpay.userPhone.R$drawable: int delete_add
-com.epalmpay.userPhone.R$drawable: int delete_sure
-com.epalmpay.userPhone.R$drawable: int dengl_delete
-com.epalmpay.userPhone.R$drawable: int dengl_delete_s
-com.epalmpay.userPhone.R$drawable: int dengl_delete_y
-com.epalmpay.userPhone.R$drawable: int dialog_background_dark
-com.epalmpay.userPhone.R$drawable: int divider
-com.epalmpay.userPhone.R$drawable: int dot
-com.epalmpay.userPhone.R$drawable: int dot_item
-com.epalmpay.userPhone.R$drawable: int dot_press
-com.epalmpay.userPhone.R$drawable: int dre0
-com.epalmpay.userPhone.R$drawable: int drop_down_list_arrow
-com.epalmpay.userPhone.R$drawable: int ebank_icon
-com.epalmpay.userPhone.R$drawable: int edit_bg
-com.epalmpay.userPhone.R$drawable: int edit_login
-com.epalmpay.userPhone.R$drawable: int guide1
-com.epalmpay.userPhone.R$drawable: int guide2
-com.epalmpay.userPhone.R$drawable: int guide3
-com.epalmpay.userPhone.R$drawable: int guide4
-com.epalmpay.userPhone.R$drawable: int home
-com.epalmpay.userPhone.R$drawable: int home2
-com.epalmpay.userPhone.R$drawable: int hourglass
-com.epalmpay.userPhone.R$drawable: int ic_launcher
-com.epalmpay.userPhone.R$drawable: int icon_open
-com.epalmpay.userPhone.R$drawable: int icon_search
-com.epalmpay.userPhone.R$drawable: int icon_selected
-com.epalmpay.userPhone.R$drawable: int imagecode
-com.epalmpay.userPhone.R$drawable: int item1
-com.epalmpay.userPhone.R$drawable: int item2
-com.epalmpay.userPhone.R$drawable: int item3
-com.epalmpay.userPhone.R$drawable: int item4
-com.epalmpay.userPhone.R$drawable: int item5
-com.epalmpay.userPhone.R$drawable: int item6
-com.epalmpay.userPhone.R$drawable: int item7
-com.epalmpay.userPhone.R$drawable: int item8
-com.epalmpay.userPhone.R$drawable: int item_down
-com.epalmpay.userPhone.R$drawable: int item_pressed
-com.epalmpay.userPhone.R$drawable: int item_white_pressed
-com.epalmpay.userPhone.R$drawable: int itme1
-com.epalmpay.userPhone.R$drawable: int jia
-com.epalmpay.userPhone.R$drawable: int jian
-com.epalmpay.userPhone.R$drawable: int layout_bg
-com.epalmpay.userPhone.R$drawable: int letter_overlay
-com.epalmpay.userPhone.R$drawable: int letter_overlay_bg
-com.epalmpay.userPhone.R$drawable: int loading_icon
-com.epalmpay.userPhone.R$drawable: int location
-com.epalmpay.userPhone.R$drawable: int lock
-com.epalmpay.userPhone.R$drawable: int login4bg
-com.epalmpay.userPhone.R$drawable: int login_bg
-com.epalmpay.userPhone.R$drawable: int login_btn
-com.epalmpay.userPhone.R$drawable: int login_delete
-com.epalmpay.userPhone.R$drawable: int login_edti
-com.epalmpay.userPhone.R$drawable: int login_error
-com.epalmpay.userPhone.R$drawable: int login_lock
-com.epalmpay.userPhone.R$drawable: int login_logo
-com.epalmpay.userPhone.R$drawable: int login_name
-com.epalmpay.userPhone.R$drawable: int login_pass
-com.epalmpay.userPhone.R$drawable: int logo
-com.epalmpay.userPhone.R$drawable: int mail_icon
-com.epalmpay.userPhone.R$drawable: int main_item2
-com.epalmpay.userPhone.R$drawable: int main_item3
-com.epalmpay.userPhone.R$drawable: int main_item4
-com.epalmpay.userPhone.R$drawable: int main_item5
-com.epalmpay.userPhone.R$drawable: int main_item6
-com.epalmpay.userPhone.R$drawable: int main_item7
-com.epalmpay.userPhone.R$drawable: int main_item8
-com.epalmpay.userPhone.R$drawable: int main_right
-com.epalmpay.userPhone.R$drawable: int main_title
-com.epalmpay.userPhone.R$drawable: int message
-com.epalmpay.userPhone.R$drawable: int message2
-com.epalmpay.userPhone.R$drawable: int mi2
-com.epalmpay.userPhone.R$drawable: int mi3
-com.epalmpay.userPhone.R$drawable: int mi_adress
-com.epalmpay.userPhone.R$drawable: int mi_gift
-com.epalmpay.userPhone.R$drawable: int mi_loca
-com.epalmpay.userPhone.R$drawable: int mi_name
-com.epalmpay.userPhone.R$drawable: int mine
-com.epalmpay.userPhone.R$drawable: int mine2
-com.epalmpay.userPhone.R$drawable: int mine4
-com.epalmpay.userPhone.R$drawable: int mine5
-com.epalmpay.userPhone.R$drawable: int mine_dd
-com.epalmpay.userPhone.R$drawable: int mine_g
-com.epalmpay.userPhone.R$drawable: int mine_l2
-com.epalmpay.userPhone.R$drawable: int mine_set
-com.epalmpay.userPhone.R$drawable: int moren
-com.epalmpay.userPhone.R$drawable: int normal_button_disabled
-com.epalmpay.userPhone.R$drawable: int normal_button_enabled
-com.epalmpay.userPhone.R$drawable: int normal_button_pressed
-com.epalmpay.userPhone.R$drawable: int normal_button_selector
-com.epalmpay.userPhone.R$drawable: int orange_error
-com.epalmpay.userPhone.R$drawable: int order_item_img
-com.epalmpay.userPhone.R$drawable: int pay_yh
-com.epalmpay.userPhone.R$drawable: int pay_zfb
-com.epalmpay.userPhone.R$drawable: int pos_off
-com.epalmpay.userPhone.R$drawable: int pos_on
-com.epalmpay.userPhone.R$drawable: int post_right
-com.epalmpay.userPhone.R$drawable: int progressbar_style
-com.epalmpay.userPhone.R$drawable: int right_gg
-com.epalmpay.userPhone.R$drawable: int sc_delete
-com.epalmpay.userPhone.R$drawable: int sc_edit
-com.epalmpay.userPhone.R$drawable: int search_bg
-com.epalmpay.userPhone.R$drawable: int see
-com.epalmpay.userPhone.R$drawable: int selector_dot
-com.epalmpay.userPhone.R$drawable: int send_bg_shape
-com.epalmpay.userPhone.R$drawable: int send_out_goods_shape
-com.epalmpay.userPhone.R$drawable: int shopcar_edit
-com.epalmpay.userPhone.R$drawable: int shopping
-com.epalmpay.userPhone.R$drawable: int shopping2
-com.epalmpay.userPhone.R$drawable: int sj_sjtest
-com.epalmpay.userPhone.R$drawable: int speak_off
-com.epalmpay.userPhone.R$drawable: int speak_on
-com.epalmpay.userPhone.R$drawable: int star_rating_bar1
-com.epalmpay.userPhone.R$drawable: int start
-com.epalmpay.userPhone.R$drawable: int switchvideo
-com.epalmpay.userPhone.R$drawable: int tab_left_bg
-com.epalmpay.userPhone.R$drawable: int tab_right_bg
-com.epalmpay.userPhone.R$drawable: int tab_widget_bg
-com.epalmpay.userPhone.R$drawable: int tab_widget_bg_one
-com.epalmpay.userPhone.R$drawable: int terminal_add
-com.epalmpay.userPhone.R$drawable: int test_zl
-com.epalmpay.userPhone.R$drawable: int testphone401
-com.epalmpay.userPhone.R$drawable: int ti_down
-com.epalmpay.userPhone.R$drawable: int ti_up
-com.epalmpay.userPhone.R$drawable: int titile_editbg
-com.epalmpay.userPhone.R$drawable: int title
-com.epalmpay.userPhone.R$drawable: int title_down
-com.epalmpay.userPhone.R$drawable: int top
-com.epalmpay.userPhone.R$drawable: int trade_client
-com.epalmpay.userPhone.R$drawable: int trade_date
-com.epalmpay.userPhone.R$drawable: int upload
-com.epalmpay.userPhone.R$drawable: int user
-com.epalmpay.userPhone.R$drawable: int username
-com.epalmpay.userPhone.R$drawable: int video_bg
-com.epalmpay.userPhone.R$drawable: int videoremote_bg
-com.epalmpay.userPhone.R$drawable: int weixin
-com.epalmpay.userPhone.R$drawable: int weixin_log
-com.epalmpay.userPhone.R$drawable: int white_hollow_point
-com.epalmpay.userPhone.R$drawable: int white_solid_point
-com.epalmpay.userPhone.R$drawable: int wjx_yul_a
-com.epalmpay.userPhone.R$drawable: int wjx_yul_b
-com.epalmpay.userPhone.R$drawable: int wjx_yul_b_y
-com.epalmpay.userPhone.R$drawable: int wujl_logo
-com.epalmpay.userPhone.R$drawable: int xiala_quxiao
-com.epalmpay.userPhone.R$drawable: int xiala_quxiao_y
-com.epalmpay.userPhone.R$drawable: int xlistview_arrow
-com.epalmpay.userPhone.R$id: int Forum
-com.epalmpay.userPhone.R$id: int Forum1
-com.epalmpay.userPhone.R$id: int ImgSwichVideo
-com.epalmpay.userPhone.R$id: int Model_number
-com.epalmpay.userPhone.R$id: int action_settings
-com.epalmpay.userPhone.R$id: int add
-com.epalmpay.userPhone.R$id: int adress_name
-com.epalmpay.userPhone.R$id: int adresslist
-com.epalmpay.userPhone.R$id: int adresss
-com.epalmpay.userPhone.R$id: int after_sale_button_center
-com.epalmpay.userPhone.R$id: int after_sale_button_center_blank
-com.epalmpay.userPhone.R$id: int after_sale_button_container
-com.epalmpay.userPhone.R$id: int after_sale_button_left
-com.epalmpay.userPhone.R$id: int after_sale_button_right
-com.epalmpay.userPhone.R$id: int after_sale_cancel
-com.epalmpay.userPhone.R$id: int after_sale_change
-com.epalmpay.userPhone.R$id: int after_sale_comment_container
-com.epalmpay.userPhone.R$id: int after_sale_detail_button_1
-com.epalmpay.userPhone.R$id: int after_sale_detail_button_2
-com.epalmpay.userPhone.R$id: int after_sale_detail_category_container
-com.epalmpay.userPhone.R$id: int after_sale_detail_status
-com.epalmpay.userPhone.R$id: int after_sale_detail_time
-com.epalmpay.userPhone.R$id: int after_sale_lease
-com.epalmpay.userPhone.R$id: int after_sale_list
-com.epalmpay.userPhone.R$id: int after_sale_maintain
-com.epalmpay.userPhone.R$id: int after_sale_mark_company
-com.epalmpay.userPhone.R$id: int after_sale_mark_number
-com.epalmpay.userPhone.R$id: int after_sale_mark_submit
-com.epalmpay.userPhone.R$id: int after_sale_material_web_view
-com.epalmpay.userPhone.R$id: int after_sale_number
-com.epalmpay.userPhone.R$id: int after_sale_number_title
-com.epalmpay.userPhone.R$id: int after_sale_return
-com.epalmpay.userPhone.R$id: int after_sale_status
-com.epalmpay.userPhone.R$id: int after_sale_terminal
-com.epalmpay.userPhone.R$id: int after_sale_time
-com.epalmpay.userPhone.R$id: int after_sale_update
-com.epalmpay.userPhone.R$id: int agreementText
-com.epalmpay.userPhone.R$id: int all_Layout
-com.epalmpay.userPhone.R$id: int apply_bank_input
-com.epalmpay.userPhone.R$id: int apply_bank_list
-com.epalmpay.userPhone.R$id: int apply_bank_result_container
-com.epalmpay.userPhone.R$id: int apply_bank_search
-com.epalmpay.userPhone.R$id: int apply_billing_list
-com.epalmpay.userPhone.R$id: int apply_button_open
-com.epalmpay.userPhone.R$id: int apply_button_video
-com.epalmpay.userPhone.R$id: int apply_channel_list
-com.epalmpay.userPhone.R$id: int apply_detail_brand
-com.epalmpay.userPhone.R$id: int apply_detail_channel
-com.epalmpay.userPhone.R$id: int apply_detail_container
-com.epalmpay.userPhone.R$id: int apply_detail_customer_container
-com.epalmpay.userPhone.R$id: int apply_detail_key
-com.epalmpay.userPhone.R$id: int apply_detail_material_container
-com.epalmpay.userPhone.R$id: int apply_detail_merchant_container
-com.epalmpay.userPhone.R$id: int apply_detail_model
-com.epalmpay.userPhone.R$id: int apply_detail_serial
-com.epalmpay.userPhone.R$id: int apply_detail_tab
-com.epalmpay.userPhone.R$id: int apply_detail_value
-com.epalmpay.userPhone.R$id: int apply_detail_view
-com.epalmpay.userPhone.R$id: int apply_list
-com.epalmpay.userPhone.R$id: int apply_progress_content
-com.epalmpay.userPhone.R$id: int apply_progress_key
-com.epalmpay.userPhone.R$id: int apply_progress_list
-com.epalmpay.userPhone.R$id: int apply_progress_phone
-com.epalmpay.userPhone.R$id: int apply_progress_query
-com.epalmpay.userPhone.R$id: int apply_progress_tips
-com.epalmpay.userPhone.R$id: int apply_progress_value
-com.epalmpay.userPhone.R$id: int apply_submit
-com.epalmpay.userPhone.R$id: int apply_terminal_number
-com.epalmpay.userPhone.R$id: int apply_terminal_status
-com.epalmpay.userPhone.R$id: int bottomView
-com.epalmpay.userPhone.R$id: int btn_cameraControl
-com.epalmpay.userPhone.R$id: int btn_cancel
-com.epalmpay.userPhone.R$id: int btn_cancle
-com.epalmpay.userPhone.R$id: int btn_confirm
-com.epalmpay.userPhone.R$id: int btn_exit
-com.epalmpay.userPhone.R$id: int btn_ishow
-com.epalmpay.userPhone.R$id: int btn_ishow2
-com.epalmpay.userPhone.R$id: int btn_pay
-com.epalmpay.userPhone.R$id: int btn_pj
-com.epalmpay.userPhone.R$id: int btn_save
-com.epalmpay.userPhone.R$id: int btn_speakControl
-com.epalmpay.userPhone.R$id: int btn_sub
-com.epalmpay.userPhone.R$id: int button_gri_tv
-com.epalmpay.userPhone.R$id: int buyCountEdit
-com.epalmpay.userPhone.R$id: int category_key_container
-com.epalmpay.userPhone.R$id: int category_title
-com.epalmpay.userPhone.R$id: int category_value_container
-com.epalmpay.userPhone.R$id: int cb
-com.epalmpay.userPhone.R$id: int cb_all
-com.epalmpay.userPhone.R$id: int channel_text
-com.epalmpay.userPhone.R$id: int checkCode
-com.epalmpay.userPhone.R$id: int cityChoose
-com.epalmpay.userPhone.R$id: int cityText
-com.epalmpay.userPhone.R$id: int city_current
-com.epalmpay.userPhone.R$id: int city_list_view
-com.epalmpay.userPhone.R$id: int codeEdit
-com.epalmpay.userPhone.R$id: int comment_content
-com.epalmpay.userPhone.R$id: int comment_et
-com.epalmpay.userPhone.R$id: int comment_person
-com.epalmpay.userPhone.R$id: int comment_time
-com.epalmpay.userPhone.R$id: int confirm
-com.epalmpay.userPhone.R$id: int content
-com.epalmpay.userPhone.R$id: int content1
-com.epalmpay.userPhone.R$id: int content2
-com.epalmpay.userPhone.R$id: int contentText
-com.epalmpay.userPhone.R$id: int content_pp
-com.epalmpay.userPhone.R$id: int content_text
-com.epalmpay.userPhone.R$id: int countShopCar
-com.epalmpay.userPhone.R$id: int countText
-com.epalmpay.userPhone.R$id: int current
-com.epalmpay.userPhone.R$id: int custom_dialog_content
-com.epalmpay.userPhone.R$id: int custom_dialog_left
-com.epalmpay.userPhone.R$id: int custom_dialog_right
-com.epalmpay.userPhone.R$id: int dcxx
-com.epalmpay.userPhone.R$id: int del
-com.epalmpay.userPhone.R$id: int delete
-com.epalmpay.userPhone.R$id: int delete1
-com.epalmpay.userPhone.R$id: int delete_img
-com.epalmpay.userPhone.R$id: int dialog
-com.epalmpay.userPhone.R$id: int dialogRoot
-com.epalmpay.userPhone.R$id: int dialog_icon
-com.epalmpay.userPhone.R$id: int dialog_text
-com.epalmpay.userPhone.R$id: int downPercent
-com.epalmpay.userPhone.R$id: int downProgressBar
-com.epalmpay.userPhone.R$id: int drop_down_list_footer_button
-com.epalmpay.userPhone.R$id: int drop_down_list_footer_progress_bar
-com.epalmpay.userPhone.R$id: int drop_down_list_header_default_text
-com.epalmpay.userPhone.R$id: int drop_down_list_header_default_text_layout
-com.epalmpay.userPhone.R$id: int drop_down_list_header_image
-com.epalmpay.userPhone.R$id: int drop_down_list_header_progress_bar
-com.epalmpay.userPhone.R$id: int drop_down_list_header_second_text
-com.epalmpay.userPhone.R$id: int editView
-com.epalmpay.userPhone.R$id: int edit_code
-com.epalmpay.userPhone.R$id: int edit_content
-com.epalmpay.userPhone.R$id: int endCall
-com.epalmpay.userPhone.R$id: int et_comment
-com.epalmpay.userPhone.R$id: int et_contetn
-com.epalmpay.userPhone.R$id: int et_info
-com.epalmpay.userPhone.R$id: int et_name1
-com.epalmpay.userPhone.R$id: int et_search
-com.epalmpay.userPhone.R$id: int et_tel
-com.epalmpay.userPhone.R$id: int et_titel
-com.epalmpay.userPhone.R$id: int et_y1
-com.epalmpay.userPhone.R$id: int et_zdj
-com.epalmpay.userPhone.R$id: int et_zgj
-com.epalmpay.userPhone.R$id: int eva_nodata
-com.epalmpay.userPhone.R$id: int evevt_img
-com.epalmpay.userPhone.R$id: int fac_detai
-com.epalmpay.userPhone.R$id: int fac_img
-com.epalmpay.userPhone.R$id: int flowLayout
-com.epalmpay.userPhone.R$id: int forgetPass
-com.epalmpay.userPhone.R$id: int fptt
-com.epalmpay.userPhone.R$id: int frame_local_area
-com.epalmpay.userPhone.R$id: int good_description
-com.epalmpay.userPhone.R$id: int gview
-com.epalmpay.userPhone.R$id: int hintLayout
-com.epalmpay.userPhone.R$id: int his_lv
-com.epalmpay.userPhone.R$id: int howMoney
-com.epalmpay.userPhone.R$id: int igw
-com.epalmpay.userPhone.R$id: int igwtv
-com.epalmpay.userPhone.R$id: int im_mess
-com.epalmpay.userPhone.R$id: int im_wd
-com.epalmpay.userPhone.R$id: int imag
-com.epalmpay.userPhone.R$id: int image
-com.epalmpay.userPhone.R$id: int img
-com.epalmpay.userPhone.R$id: int img3
-com.epalmpay.userPhone.R$id: int imgView
-com.epalmpay.userPhone.R$id: int img_add
-com.epalmpay.userPhone.R$id: int img_check
-com.epalmpay.userPhone.R$id: int img_check_n
-com.epalmpay.userPhone.R$id: int img_on_off
-com.epalmpay.userPhone.R$id: int img_see
-com.epalmpay.userPhone.R$id: int img_type
-com.epalmpay.userPhone.R$id: int in_no_record
-com.epalmpay.userPhone.R$id: int indicator
-com.epalmpay.userPhone.R$id: int is_show
-com.epalmpay.userPhone.R$id: int item_cb
-com.epalmpay.userPhone.R$id: int item_et
-com.epalmpay.userPhone.R$id: int item_id
-com.epalmpay.userPhone.R$id: int item_image
-com.epalmpay.userPhone.R$id: int item_loading
-com.epalmpay.userPhone.R$id: int item_name
-com.epalmpay.userPhone.R$id: int item_selected
-com.epalmpay.userPhone.R$id: int jtdd3
-com.epalmpay.userPhone.R$id: int jtdd31
-com.epalmpay.userPhone.R$id: int jtddla
-com.epalmpay.userPhone.R$id: int jtddla1
-com.epalmpay.userPhone.R$id: int l3
-com.epalmpay.userPhone.R$id: int l31
-com.epalmpay.userPhone.R$id: int l4
-com.epalmpay.userPhone.R$id: int l41
-com.epalmpay.userPhone.R$id: int laa
-com.epalmpay.userPhone.R$id: int laa1
-com.epalmpay.userPhone.R$id: int layout10
-com.epalmpay.userPhone.R$id: int layout11
-com.epalmpay.userPhone.R$id: int layout12
-com.epalmpay.userPhone.R$id: int layout13
-com.epalmpay.userPhone.R$id: int layout14
-com.epalmpay.userPhone.R$id: int layout15
-com.epalmpay.userPhone.R$id: int layout16
-com.epalmpay.userPhone.R$id: int leasepact
-com.epalmpay.userPhone.R$id: int letter_list_view
-com.epalmpay.userPhone.R$id: int linear_deletename
-com.epalmpay.userPhone.R$id: int list_item_textview
-com.epalmpay.userPhone.R$id: int listview
-com.epalmpay.userPhone.R$id: int ll1
-com.epalmpay.userPhone.R$id: int ll_adress
-com.epalmpay.userPhone.R$id: int ll_all
-com.epalmpay.userPhone.R$id: int ll_choose
-com.epalmpay.userPhone.R$id: int ll_clean
-com.epalmpay.userPhone.R$id: int ll_dd
-com.epalmpay.userPhone.R$id: int ll_ishow
-com.epalmpay.userPhone.R$id: int ll_ishow2
-com.epalmpay.userPhone.R$id: int ll_isshow
-com.epalmpay.userPhone.R$id: int ll_jy_type
-com.epalmpay.userPhone.R$id: int ll_kf
-com.epalmpay.userPhone.R$id: int ll_mr
-com.epalmpay.userPhone.R$id: int ll_new
-com.epalmpay.userPhone.R$id: int ll_pay_type
-com.epalmpay.userPhone.R$id: int ll_paycard_type
-com.epalmpay.userPhone.R$id: int ll_pj
-com.epalmpay.userPhone.R$id: int ll_pp
-com.epalmpay.userPhone.R$id: int ll_qgd_type
-com.epalmpay.userPhone.R$id: int ll_re
-com.epalmpay.userPhone.R$id: int ll_request
-com.epalmpay.userPhone.R$id: int ll_select
-com.epalmpay.userPhone.R$id: int ll_sh
-com.epalmpay.userPhone.R$id: int ll_shjl
-com.epalmpay.userPhone.R$id: int ll_time
-com.epalmpay.userPhone.R$id: int ll_type
-com.epalmpay.userPhone.R$id: int ll_updown
-com.epalmpay.userPhone.R$id: int ll_wdxx
-com.epalmpay.userPhone.R$id: int ll_wx
-com.epalmpay.userPhone.R$id: int ll_xxyx
-com.epalmpay.userPhone.R$id: int ll_zdj
-com.epalmpay.userPhone.R$id: int ll_zgj
-com.epalmpay.userPhone.R$id: int llll
-com.epalmpay.userPhone.R$id: int login
-com.epalmpay.userPhone.R$id: int loginNow
-com.epalmpay.userPhone.R$id: int login_Layout_name2
-com.epalmpay.userPhone.R$id: int login_edit_code
-com.epalmpay.userPhone.R$id: int login_edit_email
-com.epalmpay.userPhone.R$id: int login_edit_name
-com.epalmpay.userPhone.R$id: int login_edit_name1
-com.epalmpay.userPhone.R$id: int login_edit_name2
-com.epalmpay.userPhone.R$id: int login_edit_name3
-com.epalmpay.userPhone.R$id: int login_edit_pass
-com.epalmpay.userPhone.R$id: int login_edit_pass2
-com.epalmpay.userPhone.R$id: int login_img_lock
-com.epalmpay.userPhone.R$id: int login_img_lock1
-com.epalmpay.userPhone.R$id: int login_img_locked
-com.epalmpay.userPhone.R$id: int login_img_locked1
-com.epalmpay.userPhone.R$id: int login_img_pass
-com.epalmpay.userPhone.R$id: int login_img_pass1
-com.epalmpay.userPhone.R$id: int login_img_passcode
-com.epalmpay.userPhone.R$id: int login_info
-com.epalmpay.userPhone.R$id: int login_linear_deletcode
-com.epalmpay.userPhone.R$id: int login_linear_deletemali
-com.epalmpay.userPhone.R$id: int login_linear_deletename
-com.epalmpay.userPhone.R$id: int login_linear_deletename1
-com.epalmpay.userPhone.R$id: int login_linear_deletename2
-com.epalmpay.userPhone.R$id: int login_linear_deletename3
-com.epalmpay.userPhone.R$id: int login_linear_deletepass
-com.epalmpay.userPhone.R$id: int login_linear_deletpass
-com.epalmpay.userPhone.R$id: int login_linear_deletpass2
-com.epalmpay.userPhone.R$id: int login_linear_in
-com.epalmpay.userPhone.R$id: int login_linear_login
-com.epalmpay.userPhone.R$id: int login_linear_no
-com.epalmpay.userPhone.R$id: int login_linear_signin
-com.epalmpay.userPhone.R$id: int login_linear_yes
-com.epalmpay.userPhone.R$id: int login_text_forget
-com.epalmpay.userPhone.R$id: int logo_image
-com.epalmpay.userPhone.R$id: int lv
-com.epalmpay.userPhone.R$id: int mListView
-com.epalmpay.userPhone.R$id: int main_rl_Forum
-com.epalmpay.userPhone.R$id: int main_rl_gwc
-com.epalmpay.userPhone.R$id: int main_rl_jyls
-com.epalmpay.userPhone.R$id: int main_rl_lxwm
-com.epalmpay.userPhone.R$id: int main_rl_my
-com.epalmpay.userPhone.R$id: int main_rl_pos
-com.epalmpay.userPhone.R$id: int main_rl_pos1
-com.epalmpay.userPhone.R$id: int main_rl_renzhen
-com.epalmpay.userPhone.R$id: int main_rl_sy
-com.epalmpay.userPhone.R$id: int main_rl_wylc
-com.epalmpay.userPhone.R$id: int main_rl_xtgg
-com.epalmpay.userPhone.R$id: int main_rl_zdgl
-com.epalmpay.userPhone.R$id: int main_top
-com.epalmpay.userPhone.R$id: int maxCountTextView
-com.epalmpay.userPhone.R$id: int menu_rl_c
-com.epalmpay.userPhone.R$id: int mi_email
-com.epalmpay.userPhone.R$id: int mi_location
-com.epalmpay.userPhone.R$id: int mi_name
-com.epalmpay.userPhone.R$id: int mi_phone
-com.epalmpay.userPhone.R$id: int mi_point
-com.epalmpay.userPhone.R$id: int mi_r1
-com.epalmpay.userPhone.R$id: int mi_r2
-com.epalmpay.userPhone.R$id: int mi_r3
-com.epalmpay.userPhone.R$id: int mi_r4
-com.epalmpay.userPhone.R$id: int mi_r5
-com.epalmpay.userPhone.R$id: int mi_r6
-com.epalmpay.userPhone.R$id: int mi_r7
-com.epalmpay.userPhone.R$id: int mi_r8
-com.epalmpay.userPhone.R$id: int moneyTextView
-com.epalmpay.userPhone.R$id: int morenTextView
-com.epalmpay.userPhone.R$id: int msg
-com.epalmpay.userPhone.R$id: int msgLayout
-com.epalmpay.userPhone.R$id: int msg_conten
-com.epalmpay.userPhone.R$id: int msg_show
-com.epalmpay.userPhone.R$id: int msg_time
-com.epalmpay.userPhone.R$id: int msg_title
-com.epalmpay.userPhone.R$id: int mune_img
-com.epalmpay.userPhone.R$id: int mune_img1
-com.epalmpay.userPhone.R$id: int mune_rl
-com.epalmpay.userPhone.R$id: int mune_title
-com.epalmpay.userPhone.R$id: int nameTextView
-com.epalmpay.userPhone.R$id: int nameTextViews
-com.epalmpay.userPhone.R$id: int name_text
-com.epalmpay.userPhone.R$id: int next_cancel
-com.epalmpay.userPhone.R$id: int next_sure
-com.epalmpay.userPhone.R$id: int norecord_linear_go
-com.epalmpay.userPhone.R$id: int norecord_text_to
-com.epalmpay.userPhone.R$id: int norecord_text_to2
-com.epalmpay.userPhone.R$id: int norecord_text_to3
-com.epalmpay.userPhone.R$id: int notification_cancle
-com.epalmpay.userPhone.R$id: int notification_title
-com.epalmpay.userPhone.R$id: int now_priceTextView
-com.epalmpay.userPhone.R$id: int numTextView
-com.epalmpay.userPhone.R$id: int order_listview
-com.epalmpay.userPhone.R$id: int other
-com.epalmpay.userPhone.R$id: int phoneText
-com.epalmpay.userPhone.R$id: int pos_lv1
-com.epalmpay.userPhone.R$id: int pos_lv2
-com.epalmpay.userPhone.R$id: int pos_lv3
-com.epalmpay.userPhone.R$id: int pos_select
-com.epalmpay.userPhone.R$id: int ppxx
-com.epalmpay.userPhone.R$id: int quit_cancel
-com.epalmpay.userPhone.R$id: int quit_message
-com.epalmpay.userPhone.R$id: int quit_ok
-com.epalmpay.userPhone.R$id: int reduce
-com.epalmpay.userPhone.R$id: int regist_pass_btn
-com.epalmpay.userPhone.R$id: int register_hint
-com.epalmpay.userPhone.R$id: int retail_price
-com.epalmpay.userPhone.R$id: int right_view
-com.epalmpay.userPhone.R$id: int rl_edit
-com.epalmpay.userPhone.R$id: int rl_editno
-com.epalmpay.userPhone.R$id: int rl_imgs
-com.epalmpay.userPhone.R$id: int rl_url
-com.epalmpay.userPhone.R$id: int scroll_dot
-com.epalmpay.userPhone.R$id: int search
-com.epalmpay.userPhone.R$id: int search2
-com.epalmpay.userPhone.R$id: int searchEditLayout
-com.epalmpay.userPhone.R$id: int searchEditText
-com.epalmpay.userPhone.R$id: int search_item_tv
-com.epalmpay.userPhone.R$id: int search_main
-com.epalmpay.userPhone.R$id: int search_rl_tiem
-com.epalmpay.userPhone.R$id: int send_view4
-com.epalmpay.userPhone.R$id: int serch_edit
-com.epalmpay.userPhone.R$id: int setting_btn_clear
-com.epalmpay.userPhone.R$id: int setting_btn_clear1
-com.epalmpay.userPhone.R$id: int setting_rl_exit
-com.epalmpay.userPhone.R$id: int setting_rl_exit2
-com.epalmpay.userPhone.R$id: int showCountText
-com.epalmpay.userPhone.R$id: int si_rt_msxf
-com.epalmpay.userPhone.R$id: int sign_tv
-com.epalmpay.userPhone.R$id: int sure
-com.epalmpay.userPhone.R$id: int surface_local
-com.epalmpay.userPhone.R$id: int surface_remote
-com.epalmpay.userPhone.R$id: int tab_widget
-com.epalmpay.userPhone.R$id: int terminal_add_others
-com.epalmpay.userPhone.R$id: int terminal_button_container
-com.epalmpay.userPhone.R$id: int terminal_button_left_bottom
-com.epalmpay.userPhone.R$id: int terminal_button_left_top
-com.epalmpay.userPhone.R$id: int terminal_button_right_bottom
-com.epalmpay.userPhone.R$id: int terminal_button_right_top
-com.epalmpay.userPhone.R$id: int terminal_buttons
-com.epalmpay.userPhone.R$id: int terminal_category_container
-com.epalmpay.userPhone.R$id: int terminal_choose_channel
-com.epalmpay.userPhone.R$id: int terminal_column_rate
-com.epalmpay.userPhone.R$id: int terminal_column_status
-com.epalmpay.userPhone.R$id: int terminal_column_type
-com.epalmpay.userPhone.R$id: int terminal_comment_container
-com.epalmpay.userPhone.R$id: int terminal_detail_status
-com.epalmpay.userPhone.R$id: int terminal_linear_left
-com.epalmpay.userPhone.R$id: int terminal_linear_right
-com.epalmpay.userPhone.R$id: int terminal_list
-com.epalmpay.userPhone.R$id: int terminal_merchant_name
-com.epalmpay.userPhone.R$id: int terminal_number
-com.epalmpay.userPhone.R$id: int terminal_open_icon_left
-com.epalmpay.userPhone.R$id: int terminal_open_icon_right
-com.epalmpay.userPhone.R$id: int terminal_open_key_left
-com.epalmpay.userPhone.R$id: int terminal_open_key_right
-com.epalmpay.userPhone.R$id: int terminal_open_left
-com.epalmpay.userPhone.R$id: int terminal_open_right
-com.epalmpay.userPhone.R$id: int terminal_pay_channel
-com.epalmpay.userPhone.R$id: int terminal_status
-com.epalmpay.userPhone.R$id: int terminal_submit
-com.epalmpay.userPhone.R$id: int terminal_text
-com.epalmpay.userPhone.R$id: int testbutton
-com.epalmpay.userPhone.R$id: int textView
-com.epalmpay.userPhone.R$id: int text_view
-com.epalmpay.userPhone.R$id: int title
-com.epalmpay.userPhone.R$id: int title2
-com.epalmpay.userPhone.R$id: int titleback_image_back
-com.epalmpay.userPhone.R$id: int titleback_linear_back
-com.epalmpay.userPhone.R$id: int titleback_text_title
-com.epalmpay.userPhone.R$id: int todayorder_search_linearLayout
-com.epalmpay.userPhone.R$id: int todayorder_search_list_view
-com.epalmpay.userPhone.R$id: int tradeType
-com.epalmpay.userPhone.R$id: int trade_account
-com.epalmpay.userPhone.R$id: int trade_account_key
-com.epalmpay.userPhone.R$id: int trade_amount
-com.epalmpay.userPhone.R$id: int trade_arrow
-com.epalmpay.userPhone.R$id: int trade_bank_key_container
-com.epalmpay.userPhone.R$id: int trade_bank_value_container
-com.epalmpay.userPhone.R$id: int trade_client
-com.epalmpay.userPhone.R$id: int trade_client_name
-com.epalmpay.userPhone.R$id: int trade_client_number
-com.epalmpay.userPhone.R$id: int trade_commercial_key_container
-com.epalmpay.userPhone.R$id: int trade_commercial_value_container
-com.epalmpay.userPhone.R$id: int trade_container
-com.epalmpay.userPhone.R$id: int trade_detail_amount
-com.epalmpay.userPhone.R$id: int trade_detail_poundage
-com.epalmpay.userPhone.R$id: int trade_detail_status
-com.epalmpay.userPhone.R$id: int trade_detail_time
-com.epalmpay.userPhone.R$id: int trade_end
-com.epalmpay.userPhone.R$id: int trade_end_arrow
-com.epalmpay.userPhone.R$id: int trade_end_date
-com.epalmpay.userPhone.R$id: int trade_end_icon
-com.epalmpay.userPhone.R$id: int trade_receive_account
-com.epalmpay.userPhone.R$id: int trade_receive_account_key
-com.epalmpay.userPhone.R$id: int trade_record_list
-com.epalmpay.userPhone.R$id: int trade_search
-com.epalmpay.userPhone.R$id: int trade_search_content
-com.epalmpay.userPhone.R$id: int trade_start
-com.epalmpay.userPhone.R$id: int trade_start_arrow
-com.epalmpay.userPhone.R$id: int trade_start_date
-com.epalmpay.userPhone.R$id: int trade_start_icon
-com.epalmpay.userPhone.R$id: int trade_statistic
-com.epalmpay.userPhone.R$id: int trade_statistic_amount
-com.epalmpay.userPhone.R$id: int trade_statistic_channel
-com.epalmpay.userPhone.R$id: int trade_statistic_client
-com.epalmpay.userPhone.R$id: int trade_statistic_count
-com.epalmpay.userPhone.R$id: int trade_statistic_time
-com.epalmpay.userPhone.R$id: int trade_status
-com.epalmpay.userPhone.R$id: int trade_time
-com.epalmpay.userPhone.R$id: int tv
-com.epalmpay.userPhone.R$id: int tv1
-com.epalmpay.userPhone.R$id: int tv2
-com.epalmpay.userPhone.R$id: int tv3
-com.epalmpay.userPhone.R$id: int tv4
-com.epalmpay.userPhone.R$id: int tv5
-com.epalmpay.userPhone.R$id: int tv6
-com.epalmpay.userPhone.R$id: int tv7
-com.epalmpay.userPhone.R$id: int tv8
-com.epalmpay.userPhone.R$id: int tv_2
-com.epalmpay.userPhone.R$id: int tv_3
-com.epalmpay.userPhone.R$id: int tv_4
-com.epalmpay.userPhone.R$id: int tv_PP
-com.epalmpay.userPhone.R$id: int tv_addr
-com.epalmpay.userPhone.R$id: int tv_adress
-com.epalmpay.userPhone.R$id: int tv_adresss
-com.epalmpay.userPhone.R$id: int tv_all
-com.epalmpay.userPhone.R$id: int tv_all_price
-com.epalmpay.userPhone.R$id: int tv_appneed
-com.epalmpay.userPhone.R$id: int tv_back
-com.epalmpay.userPhone.R$id: int tv_bug
-com.epalmpay.userPhone.R$id: int tv_ccc
-com.epalmpay.userPhone.R$id: int tv_changel
-com.epalmpay.userPhone.R$id: int tv_check
-com.epalmpay.userPhone.R$id: int tv_city
-com.epalmpay.userPhone.R$id: int tv_clean
-com.epalmpay.userPhone.R$id: int tv_code
-com.epalmpay.userPhone.R$id: int tv_codeLayout
-com.epalmpay.userPhone.R$id: int tv_comment
-com.epalmpay.userPhone.R$id: int tv_count
-com.epalmpay.userPhone.R$id: int tv_ddbh
-com.epalmpay.userPhone.R$id: int tv_dec
-com.epalmpay.userPhone.R$id: int tv_delete
-com.epalmpay.userPhone.R$id: int tv_dle
-com.epalmpay.userPhone.R$id: int tv_email
-com.epalmpay.userPhone.R$id: int tv_fill1
-com.epalmpay.userPhone.R$id: int tv_fill2
-com.epalmpay.userPhone.R$id: int tv_fplx
-com.epalmpay.userPhone.R$id: int tv_gj
-com.epalmpay.userPhone.R$id: int tv_goodnum
-com.epalmpay.userPhone.R$id: int tv_gtd
-com.epalmpay.userPhone.R$id: int tv_hj
-com.epalmpay.userPhone.R$id: int tv_huilv
-com.epalmpay.userPhone.R$id: int tv_ins
-com.epalmpay.userPhone.R$id: int tv_insView
-com.epalmpay.userPhone.R$id: int tv_jf
-com.epalmpay.userPhone.R$id: int tv_jm
-com.epalmpay.userPhone.R$id: int tv_jy_type
-com.epalmpay.userPhone.R$id: int tv_lea
-com.epalmpay.userPhone.R$id: int tv_lkl
-com.epalmpay.userPhone.R$id: int tv_location
-com.epalmpay.userPhone.R$id: int tv_lx
-com.epalmpay.userPhone.R$id: int tv_ly
-com.epalmpay.userPhone.R$id: int tv_mess
-com.epalmpay.userPhone.R$id: int tv_money
-com.epalmpay.userPhone.R$id: int tv_mr
-com.epalmpay.userPhone.R$id: int tv_msg
-com.epalmpay.userPhone.R$id: int tv_name
-com.epalmpay.userPhone.R$id: int tv_new
-com.epalmpay.userPhone.R$id: int tv_now_price
-com.epalmpay.userPhone.R$id: int tv_old_price
-com.epalmpay.userPhone.R$id: int tv_open_price
-com.epalmpay.userPhone.R$id: int tv_pay
-com.epalmpay.userPhone.R$id: int tv_pay_type
-com.epalmpay.userPhone.R$id: int tv_paycard_type
-com.epalmpay.userPhone.R$id: int tv_phone
-com.epalmpay.userPhone.R$id: int tv_point
-com.epalmpay.userPhone.R$id: int tv_pop
-com.epalmpay.userPhone.R$id: int tv_pp
-com.epalmpay.userPhone.R$id: int tv_price
-com.epalmpay.userPhone.R$id: int tv_protocol
-com.epalmpay.userPhone.R$id: int tv_psf
-com.epalmpay.userPhone.R$id: int tv_qgd
-com.epalmpay.userPhone.R$id: int tv_qgd_type
-com.epalmpay.userPhone.R$id: int tv_re
-com.epalmpay.userPhone.R$id: int tv_reperson
-com.epalmpay.userPhone.R$id: int tv_size
-com.epalmpay.userPhone.R$id: int tv_sjhttp
-com.epalmpay.userPhone.R$id: int tv_sjps
-com.epalmpay.userPhone.R$id: int tv_sjr
-com.epalmpay.userPhone.R$id: int tv_spxx
-com.epalmpay.userPhone.R$id: int tv_sqkt
-com.epalmpay.userPhone.R$id: int tv_status
-com.epalmpay.userPhone.R$id: int tv_sum
-com.epalmpay.userPhone.R$id: int tv_td
-com.epalmpay.userPhone.R$id: int tv_tel
-com.epalmpay.userPhone.R$id: int tv_time
-com.epalmpay.userPhone.R$id: int tv_title
-com.epalmpay.userPhone.R$id: int tv_tme
-com.epalmpay.userPhone.R$id: int tv_totle
-com.epalmpay.userPhone.R$id: int tv_type
-com.epalmpay.userPhone.R$id: int tv_tyyp
-com.epalmpay.userPhone.R$id: int tv_username
-com.epalmpay.userPhone.R$id: int tv_wd
-com.epalmpay.userPhone.R$id: int tv_x
-com.epalmpay.userPhone.R$id: int tv_xh
-com.epalmpay.userPhone.R$id: int tv_xyjf
-com.epalmpay.userPhone.R$id: int tv_y1s
-com.epalmpay.userPhone.R$id: int tv_yajin
-com.epalmpay.userPhone.R$id: int tv_yes
-com.epalmpay.userPhone.R$id: int tvc_qy
-com.epalmpay.userPhone.R$id: int tvc_qyTextView
-com.epalmpay.userPhone.R$id: int tvc_zx
-com.epalmpay.userPhone.R$id: int tvkhyh
-com.epalmpay.userPhone.R$id: int type_Layout
-com.epalmpay.userPhone.R$id: int type_pop
-com.epalmpay.userPhone.R$id: int upload_again
-com.epalmpay.userPhone.R$id: int user_name
-com.epalmpay.userPhone.R$id: int version_checking_textView
-com.epalmpay.userPhone.R$id: int video_session
-com.epalmpay.userPhone.R$id: int view_pager
-com.epalmpay.userPhone.R$id: int view_x
-com.epalmpay.userPhone.R$id: int view_x1
-com.epalmpay.userPhone.R$id: int view_x2
-com.epalmpay.userPhone.R$id: int view_y1
-com.epalmpay.userPhone.R$id: int view_y2
-com.epalmpay.userPhone.R$id: int wait_TextView
-com.epalmpay.userPhone.R$id: int wayName
-com.epalmpay.userPhone.R$id: int web_image_viewpager
-com.epalmpay.userPhone.R$id: int webview
-com.epalmpay.userPhone.R$id: int wkxx
-com.epalmpay.userPhone.R$id: int x_listview
-com.epalmpay.userPhone.R$id: int xlistview_footer_content
-com.epalmpay.userPhone.R$id: int xlistview_footer_hint_textview
-com.epalmpay.userPhone.R$id: int xlistview_footer_progressbar
-com.epalmpay.userPhone.R$id: int xlistview_header_arrow
-com.epalmpay.userPhone.R$id: int xlistview_header_content
-com.epalmpay.userPhone.R$id: int xlistview_header_hint_textview
-com.epalmpay.userPhone.R$id: int xlistview_header_progressbar
-com.epalmpay.userPhone.R$id: int xlistview_header_text
-com.epalmpay.userPhone.R$id: int xlistview_header_time
-com.epalmpay.userPhone.R$id: int ys
-com.epalmpay.userPhone.R$id: int zf_item
-com.epalmpay.userPhone.R$id: int zftd
-com.epalmpay.userPhone.R$id: int zhuche_ll
-com.epalmpay.userPhone.R$layout: int a_downloadmanager
-com.epalmpay.userPhone.R$layout: int about
-com.epalmpay.userPhone.R$layout: int act_exchange
-com.epalmpay.userPhone.R$layout: int act_jifen
-com.epalmpay.userPhone.R$layout: int act_leas_in
-com.epalmpay.userPhone.R$layout: int act_leas_pact
-com.epalmpay.userPhone.R$layout: int act_tradereate
-com.epalmpay.userPhone.R$layout: int activity_after_sale_detail
-com.epalmpay.userPhone.R$layout: int activity_after_sale_grid
-com.epalmpay.userPhone.R$layout: int activity_after_sale_list
-com.epalmpay.userPhone.R$layout: int activity_after_sale_mark
-com.epalmpay.userPhone.R$layout: int activity_after_sale_material
-com.epalmpay.userPhone.R$layout: int activity_after_sale_pay
-com.epalmpay.userPhone.R$layout: int activity_apply_bank
-com.epalmpay.userPhone.R$layout: int activity_apply_channel
-com.epalmpay.userPhone.R$layout: int activity_apply_detail
-com.epalmpay.userPhone.R$layout: int activity_apply_list
-com.epalmpay.userPhone.R$layout: int activity_apply_open_progress
-com.epalmpay.userPhone.R$layout: int activity_city_select
-com.epalmpay.userPhone.R$layout: int activity_citysearch_list
-com.epalmpay.userPhone.R$layout: int activity_comment
-com.epalmpay.userPhone.R$layout: int activity_factory_info
-com.epalmpay.userPhone.R$layout: int activity_findpass
-com.epalmpay.userPhone.R$layout: int activity_good_description
-com.epalmpay.userPhone.R$layout: int activity_gooddetailimgs
-com.epalmpay.userPhone.R$layout: int activity_loan
-com.epalmpay.userPhone.R$layout: int activity_look_logistics
-com.epalmpay.userPhone.R$layout: int activity_main
-com.epalmpay.userPhone.R$layout: int activity_s_good
-com.epalmpay.userPhone.R$layout: int activity_simple_list
-com.epalmpay.userPhone.R$layout: int activity_terminal_add
-com.epalmpay.userPhone.R$layout: int activity_terminal_detail
-com.epalmpay.userPhone.R$layout: int activity_terminal_manage
-com.epalmpay.userPhone.R$layout: int activity_trade_flow
-com.epalmpay.userPhone.R$layout: int activity_trade_item
-com.epalmpay.userPhone.R$layout: int activity_trade_statistic
-com.epalmpay.userPhone.R$layout: int activity_welcome
-com.epalmpay.userPhone.R$layout: int acv_shopcat
-com.epalmpay.userPhone.R$layout: int adress_edit
-com.epalmpay.userPhone.R$layout: int adress_item
-com.epalmpay.userPhone.R$layout: int adress_list
-com.epalmpay.userPhone.R$layout: int after_sale_detail_category
-com.epalmpay.userPhone.R$layout: int after_sale_detail_comment
-com.epalmpay.userPhone.R$layout: int after_sale_record_item
-com.epalmpay.userPhone.R$layout: int agreement
-com.epalmpay.userPhone.R$layout: int apply_detail
-com.epalmpay.userPhone.R$layout: int apply_detail_item
-com.epalmpay.userPhone.R$layout: int apply_detail_item_choose
-com.epalmpay.userPhone.R$layout: int apply_detail_item_edit
-com.epalmpay.userPhone.R$layout: int apply_detail_item_upload
-com.epalmpay.userPhone.R$layout: int apply_detail_item_view
-com.epalmpay.userPhone.R$layout: int apply_list_item
-com.epalmpay.userPhone.R$layout: int apply_need
-com.epalmpay.userPhone.R$layout: int apply_need_item
-com.epalmpay.userPhone.R$layout: int apply_open_progress_item
-com.epalmpay.userPhone.R$layout: int button_griview
-com.epalmpay.userPhone.R$layout: int chance_adress
-com.epalmpay.userPhone.R$layout: int changeemail
-com.epalmpay.userPhone.R$layout: int changeemailtwo
-com.epalmpay.userPhone.R$layout: int changepassword
-com.epalmpay.userPhone.R$layout: int changephone
-com.epalmpay.userPhone.R$layout: int changephonetwo
-com.epalmpay.userPhone.R$layout: int changetext
-com.epalmpay.userPhone.R$layout: int choose_adress_item
-com.epalmpay.userPhone.R$layout: int comfirm_caritem
-com.epalmpay.userPhone.R$layout: int comfirm_order
-com.epalmpay.userPhone.R$layout: int comment_item
-com.epalmpay.userPhone.R$layout: int content_us
-com.epalmpay.userPhone.R$layout: int dialog
-com.epalmpay.userPhone.R$layout: int dialog_custom
-com.epalmpay.userPhone.R$layout: int dialog_dark
-com.epalmpay.userPhone.R$layout: int dialog_version_checking
-com.epalmpay.userPhone.R$layout: int drop_down_list_footer
-com.epalmpay.userPhone.R$layout: int drop_down_list_header
-com.epalmpay.userPhone.R$layout: int expand_menu
-com.epalmpay.userPhone.R$layout: int findlogin
-com.epalmpay.userPhone.R$layout: int findmailsuccess
-com.epalmpay.userPhone.R$layout: int findpass
-com.epalmpay.userPhone.R$layout: int fragment_trade_flow
-com.epalmpay.userPhone.R$layout: int fragment_trade_flow_list
-com.epalmpay.userPhone.R$layout: int good_commet
-com.epalmpay.userPhone.R$layout: int good_confirm
-com.epalmpay.userPhone.R$layout: int good_detail
-com.epalmpay.userPhone.R$layout: int gooddetail_item
-com.epalmpay.userPhone.R$layout: int griview_item
-com.epalmpay.userPhone.R$layout: int include_norecord
-com.epalmpay.userPhone.R$layout: int item
-com.epalmpay.userPhone.R$layout: int item_gooddetail
-com.epalmpay.userPhone.R$layout: int item_gooddetailimgs
-com.epalmpay.userPhone.R$layout: int item_goodimgurls
-com.epalmpay.userPhone.R$layout: int item_list_city_search
-com.epalmpay.userPhone.R$layout: int item_main
-com.epalmpay.userPhone.R$layout: int jifen_item
-com.epalmpay.userPhone.R$layout: int jyhl_item
-com.epalmpay.userPhone.R$layout: int layout_chanel
-com.epalmpay.userPhone.R$layout: int lea_confirm
-com.epalmpay.userPhone.R$layout: int letter_overlay
-com.epalmpay.userPhone.R$layout: int login
-com.epalmpay.userPhone.R$layout: int managerpos_item
-com.epalmpay.userPhone.R$layout: int menu_mine
-com.epalmpay.userPhone.R$layout: int merchant_info
-com.epalmpay.userPhone.R$layout: int merchant_item
-com.epalmpay.userPhone.R$layout: int merchant_item_edit
-com.epalmpay.userPhone.R$layout: int merchant_new
-com.epalmpay.userPhone.R$layout: int message_item
-com.epalmpay.userPhone.R$layout: int mine_set
-com.epalmpay.userPhone.R$layout: int my_message
-com.epalmpay.userPhone.R$layout: int my_notification
-com.epalmpay.userPhone.R$layout: int myinfo
-com.epalmpay.userPhone.R$layout: int order_detail
-com.epalmpay.userPhone.R$layout: int order_detail_positem
-com.epalmpay.userPhone.R$layout: int order_item
-com.epalmpay.userPhone.R$layout: int order_list
-com.epalmpay.userPhone.R$layout: int pay
-com.epalmpay.userPhone.R$layout: int pinglun_item
-com.epalmpay.userPhone.R$layout: int pop_more
-com.epalmpay.userPhone.R$layout: int popwindow
-com.epalmpay.userPhone.R$layout: int pos_item
-com.epalmpay.userPhone.R$layout: int pos_search
-com.epalmpay.userPhone.R$layout: int pos_selec_lv
-com.epalmpay.userPhone.R$layout: int pos_selec_son
-com.epalmpay.userPhone.R$layout: int pos_select_detail
-com.epalmpay.userPhone.R$layout: int poslist_activity
-com.epalmpay.userPhone.R$layout: int posselect
-com.epalmpay.userPhone.R$layout: int posselect_lvitem
-com.epalmpay.userPhone.R$layout: int protocoldialog
-com.epalmpay.userPhone.R$layout: int quit_builder
-com.epalmpay.userPhone.R$layout: int r4ms
-com.epalmpay.userPhone.R$layout: int r4ps
-com.epalmpay.userPhone.R$layout: int rate_item
-com.epalmpay.userPhone.R$layout: int record_item
-com.epalmpay.userPhone.R$layout: int regist_mail
-com.epalmpay.userPhone.R$layout: int register
-com.epalmpay.userPhone.R$layout: int register_checkcode
-com.epalmpay.userPhone.R$layout: int register_phone
-com.epalmpay.userPhone.R$layout: int search_historystr_list_item
-com.epalmpay.userPhone.R$layout: int search_item
-com.epalmpay.userPhone.R$layout: int show_view
-com.epalmpay.userPhone.R$layout: int simple_list_item
-com.epalmpay.userPhone.R$layout: int sopping_caritem
-com.epalmpay.userPhone.R$layout: int success_passphone
-com.epalmpay.userPhone.R$layout: int sys_message
-com.epalmpay.userPhone.R$layout: int system_detail
-com.epalmpay.userPhone.R$layout: int terminal_list_header
-com.epalmpay.userPhone.R$layout: int terminal_list_item
-com.epalmpay.userPhone.R$layout: int terminal_open_column
-com.epalmpay.userPhone.R$layout: int terminal_rates_column
-com.epalmpay.userPhone.R$layout: int terminal_rates_header
-com.epalmpay.userPhone.R$layout: int textview_label
-com.epalmpay.userPhone.R$layout: int title_back
-com.epalmpay.userPhone.R$layout: int title_search_one
-com.epalmpay.userPhone.R$layout: int trade_flow_item
-com.epalmpay.userPhone.R$layout: int video_frame
-com.epalmpay.userPhone.R$layout: int video_session
-com.epalmpay.userPhone.R$layout: int want_buy
-com.epalmpay.userPhone.R$layout: int web_image_activity
-com.epalmpay.userPhone.R$layout: int web_image_item
-com.epalmpay.userPhone.R$layout: int webview
-com.epalmpay.userPhone.R$layout: int welcome
-com.epalmpay.userPhone.R$layout: int xlistview_footer
-com.epalmpay.userPhone.R$layout: int xlistview_header
-com.epalmpay.userPhone.R$menu: int welcome
-com.epalmpay.userPhone.R$string: int action_settings
-com.epalmpay.userPhone.R$string: int after_sale_apply_time
-com.epalmpay.userPhone.R$string: int after_sale_cancel
-com.epalmpay.userPhone.R$string: int after_sale_cancel_material_title
-com.epalmpay.userPhone.R$string: int after_sale_change
-com.epalmpay.userPhone.R$string: int after_sale_change_material_title
-com.epalmpay.userPhone.R$string: int after_sale_change_title
-com.epalmpay.userPhone.R$string: int after_sale_lease
-com.epalmpay.userPhone.R$string: int after_sale_lease_material_title
-com.epalmpay.userPhone.R$string: int after_sale_lease_title
-com.epalmpay.userPhone.R$string: int after_sale_maintain
-com.epalmpay.userPhone.R$string: int after_sale_maintain_title
-com.epalmpay.userPhone.R$string: int after_sale_mark_company
-com.epalmpay.userPhone.R$string: int after_sale_mark_number
-com.epalmpay.userPhone.R$string: int after_sale_material_name
-com.epalmpay.userPhone.R$string: int after_sale_material_unsubmit
-com.epalmpay.userPhone.R$string: int after_sale_material_view
-com.epalmpay.userPhone.R$string: int after_sale_return
-com.epalmpay.userPhone.R$string: int after_sale_return_material_title
-com.epalmpay.userPhone.R$string: int after_sale_return_title
-com.epalmpay.userPhone.R$string: int after_sale_status
-com.epalmpay.userPhone.R$string: int after_sale_terminal
-com.epalmpay.userPhone.R$string: int after_sale_terminal_title
-com.epalmpay.userPhone.R$string: int after_sale_trace_record
-com.epalmpay.userPhone.R$string: int after_sale_update
-com.epalmpay.userPhone.R$string: int after_sale_update_material_title
-com.epalmpay.userPhone.R$string: int agreement
-com.epalmpay.userPhone.R$string: int app_name
-com.epalmpay.userPhone.R$string: int apply_bank_input
-com.epalmpay.userPhone.R$string: int apply_bank_result
-com.epalmpay.userPhone.R$string: int apply_button_open
-com.epalmpay.userPhone.R$string: int apply_button_reopen
-com.epalmpay.userPhone.R$string: int apply_button_video
-com.epalmpay.userPhone.R$string: int apply_detail_brand
-com.epalmpay.userPhone.R$string: int apply_detail_channel
-com.epalmpay.userPhone.R$string: int apply_detail_model
-com.epalmpay.userPhone.R$string: int apply_detail_serial
-com.epalmpay.userPhone.R$string: int apply_private
-com.epalmpay.userPhone.R$string: int apply_progress_no_data
-com.epalmpay.userPhone.R$string: int apply_progress_phone
-com.epalmpay.userPhone.R$string: int apply_progress_terminal
-com.epalmpay.userPhone.R$string: int apply_public
-com.epalmpay.userPhone.R$string: int apply_upload_again
-com.epalmpay.userPhone.R$string: int apply_upload_photo
-com.epalmpay.userPhone.R$string: int apply_upload_success
-com.epalmpay.userPhone.R$string: int apply_uploading
-com.epalmpay.userPhone.R$string: int button_cancel
-com.epalmpay.userPhone.R$string: int button_cancel_apply
-com.epalmpay.userPhone.R$string: int button_copy
-com.epalmpay.userPhone.R$string: int button_pay
-com.epalmpay.userPhone.R$string: int button_pay_maintain
-com.epalmpay.userPhone.R$string: int button_query
-com.epalmpay.userPhone.R$string: int button_submit
-com.epalmpay.userPhone.R$string: int button_submit_cancel
-com.epalmpay.userPhone.R$string: int button_submit_flow
-com.epalmpay.userPhone.R$string: int check_version
-com.epalmpay.userPhone.R$string: int city_current
-com.epalmpay.userPhone.R$string: int drop_down_list_footer_default_text
-com.epalmpay.userPhone.R$string: int drop_down_list_footer_loading_text
-com.epalmpay.userPhone.R$string: int drop_down_list_footer_no_more_text
-com.epalmpay.userPhone.R$string: int drop_down_list_header_default_text
-com.epalmpay.userPhone.R$string: int drop_down_list_header_loading_text
-com.epalmpay.userPhone.R$string: int drop_down_list_header_pull_text
-com.epalmpay.userPhone.R$string: int drop_down_list_header_release_text
-com.epalmpay.userPhone.R$string: int endCall1
-com.epalmpay.userPhone.R$string: int forgetpass
-com.epalmpay.userPhone.R$string: int hello_world
-com.epalmpay.userPhone.R$string: int hintname
-com.epalmpay.userPhone.R$string: int hintpass
-com.epalmpay.userPhone.R$string: int image_content
-com.epalmpay.userPhone.R$string: int load_data_failed
-com.epalmpay.userPhone.R$string: int loading_data
-com.epalmpay.userPhone.R$string: int network_info
-com.epalmpay.userPhone.R$string: int no_check_version
-com.epalmpay.userPhone.R$string: int no_more_data
-com.epalmpay.userPhone.R$string: int notation_day
-com.epalmpay.userPhone.R$string: int notation_mouth
-com.epalmpay.userPhone.R$string: int notation_percent
-com.epalmpay.userPhone.R$string: int notation_yuan
-com.epalmpay.userPhone.R$string: int parse_data_failed
-com.epalmpay.userPhone.R$string: int refresh_toomuch
-com.epalmpay.userPhone.R$string: int remeberpass
-com.epalmpay.userPhone.R$string: int terminal_add_channel
-com.epalmpay.userPhone.R$string: int terminal_add_name
-com.epalmpay.userPhone.R$string: int terminal_add_number
-com.epalmpay.userPhone.R$string: int terminal_add_others
-com.epalmpay.userPhone.R$string: int terminal_add_tips
-com.epalmpay.userPhone.R$string: int terminal_button_open
-com.epalmpay.userPhone.R$string: int terminal_button_pos
-com.epalmpay.userPhone.R$string: int terminal_button_reopen
-com.epalmpay.userPhone.R$string: int terminal_button_sync
-com.epalmpay.userPhone.R$string: int terminal_button_video
-com.epalmpay.userPhone.R$string: int terminal_category_apply
-com.epalmpay.userPhone.R$string: int terminal_category_open
-com.epalmpay.userPhone.R$string: int terminal_no_detail
-com.epalmpay.userPhone.R$string: int terminal_open_status
-com.epalmpay.userPhone.R$string: int terminal_rate
-com.epalmpay.userPhone.R$string: int terminal_status
-com.epalmpay.userPhone.R$string: int terminal_type
-com.epalmpay.userPhone.R$string: int title_after_sale
-com.epalmpay.userPhone.R$string: int title_after_sale_mark
-com.epalmpay.userPhone.R$string: int title_after_sale_pay
-com.epalmpay.userPhone.R$string: int title_apply_choose_bank
-com.epalmpay.userPhone.R$string: int title_apply_choose_channel
-com.epalmpay.userPhone.R$string: int title_apply_choose_gender
-com.epalmpay.userPhone.R$string: int title_apply_choose_merchant
-com.epalmpay.userPhone.R$string: int title_apply_open
-com.epalmpay.userPhone.R$string: int title_apply_open_progress
-com.epalmpay.userPhone.R$string: int title_city_select
-com.epalmpay.userPhone.R$string: int title_terminal_add_others
-com.epalmpay.userPhone.R$string: int title_terminal_choose_channel
-com.epalmpay.userPhone.R$string: int title_terminal_detail
-com.epalmpay.userPhone.R$string: int title_terminal_management
-com.epalmpay.userPhone.R$string: int title_trade_client
-com.epalmpay.userPhone.R$string: int title_trade_detail
-com.epalmpay.userPhone.R$string: int title_trade_flow
-com.epalmpay.userPhone.R$string: int title_trade_statistic
-com.epalmpay.userPhone.R$string: int toast_add_mark_success
-com.epalmpay.userPhone.R$string: int toast_cancel_apply_success
-com.epalmpay.userPhone.R$string: int toast_copy_password
-com.epalmpay.userPhone.R$string: int toast_end_date_error
-com.epalmpay.userPhone.R$string: int toast_no_sdcard
-com.epalmpay.userPhone.R$string: int toast_resubmit_cancel_success
-com.epalmpay.userPhone.R$string: int toast_upload_failed
-com.epalmpay.userPhone.R$string: int trade_account_name
-com.epalmpay.userPhone.R$string: int trade_account_number
-com.epalmpay.userPhone.R$string: int trade_amount
-com.epalmpay.userPhone.R$string: int trade_channel
-com.epalmpay.userPhone.R$string: int trade_charge
-com.epalmpay.userPhone.R$string: int trade_client
-com.epalmpay.userPhone.R$string: int trade_client_number
-com.epalmpay.userPhone.R$string: int trade_close_time
-com.epalmpay.userPhone.R$string: int trade_count
-com.epalmpay.userPhone.R$string: int trade_end_date
-com.epalmpay.userPhone.R$string: int trade_flow_title
-com.epalmpay.userPhone.R$string: int trade_into_account
-com.epalmpay.userPhone.R$string: int trade_item_bank_info
-com.epalmpay.userPhone.R$string: int trade_item_commercial_info
-com.epalmpay.userPhone.R$string: int trade_pay_account
-com.epalmpay.userPhone.R$string: int trade_phone_number
-com.epalmpay.userPhone.R$string: int trade_poundage
-com.epalmpay.userPhone.R$string: int trade_receive_account
-com.epalmpay.userPhone.R$string: int trade_search
-com.epalmpay.userPhone.R$string: int trade_start_date
-com.epalmpay.userPhone.R$string: int trade_statistic
-com.epalmpay.userPhone.R$string: int trade_time
-com.epalmpay.userPhone.R$string: int updata_check
-com.epalmpay.userPhone.R$string: int update_cancel
-com.epalmpay.userPhone.R$string: int update_i_know
-com.epalmpay.userPhone.R$string: int update_imde
-com.epalmpay.userPhone.R$string: int update_ok
-com.epalmpay.userPhone.R$string: int upload_fail
-com.epalmpay.userPhone.R$string: int version_check_tip
-com.epalmpay.userPhone.R$string: int version_check_true
-com.epalmpay.userPhone.R$string: int version_update_title
-com.epalmpay.userPhone.R$string: int xlistview_footer_hint_normal
-com.epalmpay.userPhone.R$string: int xlistview_footer_hint_ready
-com.epalmpay.userPhone.R$string: int xlistview_header_hint_loading
-com.epalmpay.userPhone.R$string: int xlistview_header_hint_normal
-com.epalmpay.userPhone.R$string: int xlistview_header_hint_ready
-com.epalmpay.userPhone.R$string: int xlistview_header_last_time
-com.epalmpay.userPhone.R$style: int AnimationActivity
-com.epalmpay.userPhone.R$style: int AppBaseTheme
-com.epalmpay.userPhone.R$style: int AppTheme
-com.epalmpay.userPhone.R$style: int ButtonBlank
-com.epalmpay.userPhone.R$style: int ButtonNormal
-com.epalmpay.userPhone.R$style: int CutLine
-com.epalmpay.userPhone.R$style: int CutLine_Table
-com.epalmpay.userPhone.R$style: int Dialog
-com.epalmpay.userPhone.R$style: int Divider
-com.epalmpay.userPhone.R$style: int Divider_Table
-com.epalmpay.userPhone.R$style: int EditTextItem
-com.epalmpay.userPhone.R$style: int FrameItem
-com.epalmpay.userPhone.R$style: int MyCheckBox
-com.epalmpay.userPhone.R$style: int Progress
-com.epalmpay.userPhone.R$style: int TanChuangDialog
-com.epalmpay.userPhone.R$style: int TanchuDialogAnim
-com.epalmpay.userPhone.R$style: int TextBase
-com.epalmpay.userPhone.R$style: int TextCity
-com.epalmpay.userPhone.R$style: int TextDetail_Info
-com.epalmpay.userPhone.R$style: int TextDetail_Title
-com.epalmpay.userPhone.R$style: int TextDetail_Top
-com.epalmpay.userPhone.R$style: int TextGrid
-com.epalmpay.userPhone.R$style: int TextItem
-com.epalmpay.userPhone.R$style: int TextItem_Record
-com.epalmpay.userPhone.R$style: int TextItem_Relative
-com.epalmpay.userPhone.R$style: int TextStatistic
-com.epalmpay.userPhone.R$style: int TextStatistic_Small
-com.epalmpay.userPhone.R$style: int TextTrace
-com.epalmpay.userPhone.R$style: int TextTrace_Big
-com.epalmpay.userPhone.R$style: int TextTrace_Comment
-com.epalmpay.userPhone.R$style: int TextTrace_Left
-com.epalmpay.userPhone.R$style: int TextTrace_Left_Key
-com.epalmpay.userPhone.R$style: int TextTrace_Record
-com.epalmpay.userPhone.R$style: int TextTrace_Right
-com.epalmpay.userPhone.R$style: int TextTrace_Right_Value
-com.epalmpay.userPhone.R$style: int TextTrace_Small
-com.epalmpay.userPhone.R$style: int TextTrace_Statistic
-com.epalmpay.userPhone.R$style: int TextTrace_Table
-com.epalmpay.userPhone.R$style: int dot_item
-com.epalmpay.userPhone.R$style: int drop_down_list_footer_font_style
-com.epalmpay.userPhone.R$style: int drop_down_list_footer_progress_bar_style
-com.epalmpay.userPhone.R$style: int drop_down_list_header_font_style
-com.epalmpay.userPhone.R$style: int drop_down_list_header_progress_bar_style
-com.epalmpay.userPhone.R$style: int drop_down_list_header_second_font_style
-com.epalmpay.userPhone.R$style: int mydialog
-com.epalmpay.userPhone.R$style: int star_rating_bar_style1
-com.epalmpay.userPhone.R$styleable: int[] drop_down_list_attr
-com.epalmpay.userPhone.R$styleable: int drop_down_list_attr_isAutoLoadOnBottom
-com.epalmpay.userPhone.R$styleable: int drop_down_list_attr_isDropDownStyle
-com.epalmpay.userPhone.R$styleable: int drop_down_list_attr_isOnBottomStyle
 com.examlpe.zf_android.util.FlowLayout
 com.examlpe.zf_android.util.FlowLayout: FlowLayout(android.content.Context,android.util.AttributeSet,int)
 com.examlpe.zf_android.util.FlowLayout: FlowLayout(android.content.Context,android.util.AttributeSet)
@@ -13576,7 +12152,6 @@ com.example.zf_android.MyPushMessageReceiver
 com.example.zf_android.MyPushMessageReceiver: MyPushMessageReceiver()
 com.example.zf_android.activity.About
 com.example.zf_android.activity.About: About()
-com.example.zf_android.activity.About: void onClick(android.view.View)
 com.example.zf_android.activity.Adress4Edit
 com.example.zf_android.activity.Adress4Edit: Adress4Edit()
 com.example.zf_android.activity.AdressEdit
@@ -13587,43 +12162,32 @@ com.example.zf_android.activity.AgreementActivity
 com.example.zf_android.activity.AgreementActivity: AgreementActivity()
 com.example.zf_android.activity.ApplyDetail
 com.example.zf_android.activity.ApplyDetail: ApplyDetail()
-com.example.zf_android.activity.ApplyDetail: void onClick(android.view.View)
 com.example.zf_android.activity.ApplyNeed
 com.example.zf_android.activity.ApplyNeed: ApplyNeed()
 com.example.zf_android.activity.ChanceAdress
 com.example.zf_android.activity.ChanceAdress: ChanceAdress()
 com.example.zf_android.activity.ChangeEmail
 com.example.zf_android.activity.ChangeEmail: ChangeEmail()
-com.example.zf_android.activity.ChangeEmail: void onClick(android.view.View)
 com.example.zf_android.activity.ChangeEmailTwo
 com.example.zf_android.activity.ChangeEmailTwo: ChangeEmailTwo()
-com.example.zf_android.activity.ChangeEmailTwo: void onClick(android.view.View)
 com.example.zf_android.activity.ChangePassword
 com.example.zf_android.activity.ChangePassword: ChangePassword()
-com.example.zf_android.activity.ChangePassword: void onClick(android.view.View)
 com.example.zf_android.activity.ChangePhone
 com.example.zf_android.activity.ChangePhone: ChangePhone()
-com.example.zf_android.activity.ChangePhone: void onClick(android.view.View)
 com.example.zf_android.activity.ChangePhoneTwo
 com.example.zf_android.activity.ChangePhoneTwo: ChangePhoneTwo()
-com.example.zf_android.activity.ChangePhoneTwo: void onClick(android.view.View)
 com.example.zf_android.activity.ChangeText
 com.example.zf_android.activity.ChangeText: ChangeText()
-com.example.zf_android.activity.ChangeText: void onClick(android.view.View)
 com.example.zf_android.activity.Comment
 com.example.zf_android.activity.Comment: Comment()
 com.example.zf_android.activity.ConfirmOrder
 com.example.zf_android.activity.ConfirmOrder: ConfirmOrder()
-com.example.zf_android.activity.ConfirmOrder: void onClick(android.view.View)
 com.example.zf_android.activity.ContentUs
 com.example.zf_android.activity.ContentUs: ContentUs()
-com.example.zf_android.activity.ContentUs: void onClick(android.view.View)
 com.example.zf_android.activity.CreatMerchant
 com.example.zf_android.activity.CreatMerchant: CreatMerchant()
-com.example.zf_android.activity.CreatMerchant: void onClick(android.view.View)
 com.example.zf_android.activity.Exchange
 com.example.zf_android.activity.Exchange: Exchange()
-com.example.zf_android.activity.Exchange: void onClick(android.view.View)
 com.example.zf_android.activity.FactoryInfo
 com.example.zf_android.activity.FactoryInfo: FactoryInfo()
 com.example.zf_android.activity.FianceActivity
@@ -13632,21 +12196,16 @@ com.example.zf_android.activity.FindLogin
 com.example.zf_android.activity.FindLogin: FindLogin()
 com.example.zf_android.activity.FindPass
 com.example.zf_android.activity.FindPass: FindPass()
-com.example.zf_android.activity.FindPass: void onClick(android.view.View)
 com.example.zf_android.activity.FindPassword
 com.example.zf_android.activity.FindPassword: FindPassword()
-com.example.zf_android.activity.FindPassword: void onClick(android.view.View)
 com.example.zf_android.activity.FindpassmailSucces
 com.example.zf_android.activity.FindpassmailSucces: FindpassmailSucces()
-com.example.zf_android.activity.FindpassmailSucces: void onClick(android.view.View)
 com.example.zf_android.activity.GoodComment
 com.example.zf_android.activity.GoodComment: GoodComment()
 com.example.zf_android.activity.GoodConfirm
 com.example.zf_android.activity.GoodConfirm: GoodConfirm()
-com.example.zf_android.activity.GoodConfirm: void onClick(android.view.View)
 com.example.zf_android.activity.GoodDeatail
 com.example.zf_android.activity.GoodDeatail: GoodDeatail()
-com.example.zf_android.activity.GoodDeatail: void onClick(android.view.View)
 com.example.zf_android.activity.GoodDescription
 com.example.zf_android.activity.GoodDescription: GoodDescription()
 com.example.zf_android.activity.GoodDetailImgs
@@ -13657,90 +12216,66 @@ com.example.zf_android.activity.LeaseAgreementActivity
 com.example.zf_android.activity.LeaseAgreementActivity: LeaseAgreementActivity()
 com.example.zf_android.activity.LeaseConfirm
 com.example.zf_android.activity.LeaseConfirm: LeaseConfirm()
-com.example.zf_android.activity.LeaseConfirm: void onClick(android.view.View)
 com.example.zf_android.activity.LeaseInstruction
 com.example.zf_android.activity.LeaseInstruction: LeaseInstruction()
 com.example.zf_android.activity.LoanActivity
 com.example.zf_android.activity.LoanActivity: LoanActivity()
 com.example.zf_android.activity.LoginActivity
 com.example.zf_android.activity.LoginActivity: LoginActivity()
-com.example.zf_android.activity.LoginActivity: void onClick(android.view.View)
 com.example.zf_android.activity.LookLogisticsActivity
 com.example.zf_android.activity.LookLogisticsActivity: LookLogisticsActivity()
 com.example.zf_android.activity.LookTerminalsActivity
 com.example.zf_android.activity.LookTerminalsActivity: LookTerminalsActivity()
 com.example.zf_android.activity.Main
 com.example.zf_android.activity.Main: Main()
-com.example.zf_android.activity.Main: void onClick(android.view.View)
-com.example.zf_android.activity.ManagerPos: void onClick(android.view.View)
 com.example.zf_android.activity.MenuMine
 com.example.zf_android.activity.MenuMine: MenuMine()
-com.example.zf_android.activity.MenuMine: void onClick(android.view.View)
 com.example.zf_android.activity.MerchantEdit
 com.example.zf_android.activity.MerchantEdit: MerchantEdit()
-com.example.zf_android.activity.MerchantEdit: void onClick(android.view.View)
 com.example.zf_android.activity.MerchantItemEdit
 com.example.zf_android.activity.MerchantItemEdit: MerchantItemEdit()
-com.example.zf_android.activity.MerchantItemEdit: void onClick(android.view.View)
 com.example.zf_android.activity.MerchantList
 com.example.zf_android.activity.MerchantList: MerchantList()
 com.example.zf_android.activity.MineSet
 com.example.zf_android.activity.MineSet: MineSet()
-com.example.zf_android.activity.MineSet: void onClick(android.view.View)
 com.example.zf_android.activity.MyInfo
 com.example.zf_android.activity.MyInfo: MyInfo()
-com.example.zf_android.activity.MyInfo: void onClick(android.view.View)
 com.example.zf_android.activity.MyMessage
 com.example.zf_android.activity.MyMessage: MyMessage()
-com.example.zf_android.activity.MyMessage: void onClick(android.view.View)
 com.example.zf_android.activity.MymsgDetail
 com.example.zf_android.activity.MymsgDetail: MymsgDetail()
 com.example.zf_android.activity.OrderDetail
 com.example.zf_android.activity.OrderDetail: OrderDetail()
-com.example.zf_android.activity.OrderDetail: void onClick(android.view.View)
 com.example.zf_android.activity.OrderList
 com.example.zf_android.activity.OrderList: OrderList()
 com.example.zf_android.activity.PassSucces
 com.example.zf_android.activity.PassSucces: PassSucces()
-com.example.zf_android.activity.PassSucces: void onClick(android.view.View)
 com.example.zf_android.activity.PayFromCar
 com.example.zf_android.activity.PayFromCar: PayFromCar()
-com.example.zf_android.activity.PayFromCar: void onClick(android.view.View)
 com.example.zf_android.activity.PosListActivity
 com.example.zf_android.activity.PosListActivity: PosListActivity()
-com.example.zf_android.activity.PosListActivity: void onClick(android.view.View)
 com.example.zf_android.activity.PosSearch
 com.example.zf_android.activity.PosSearch: PosSearch()
 com.example.zf_android.activity.PosSelecList
 com.example.zf_android.activity.PosSelecList: PosSelecList()
-com.example.zf_android.activity.PosSelecList: void onClick(android.view.View)
 com.example.zf_android.activity.PosSelecSon
 com.example.zf_android.activity.PosSelecSon: PosSelecSon()
-com.example.zf_android.activity.PosSelecSon: void onClick(android.view.View)
 com.example.zf_android.activity.PosSelect
 com.example.zf_android.activity.PosSelect: PosSelect()
-com.example.zf_android.activity.PosSelect: void onClick(android.view.View)
 com.example.zf_android.activity.Regist4mailSucces
 com.example.zf_android.activity.Regist4mailSucces: Regist4mailSucces()
-com.example.zf_android.activity.Regist4mailSucces: void onClick(android.view.View)
 com.example.zf_android.activity.Regist4phoneSucces
 com.example.zf_android.activity.Regist4phoneSucces: Regist4phoneSucces()
-com.example.zf_android.activity.Regist4phoneSucces: void onClick(android.view.View)
 com.example.zf_android.activity.RegistMail
 com.example.zf_android.activity.RegistMail: RegistMail()
-com.example.zf_android.activity.RegistMail: void onClick(android.view.View)
 com.example.zf_android.activity.Register
 com.example.zf_android.activity.Register: Register()
-com.example.zf_android.activity.Register: void onClick(android.view.View)
 com.example.zf_android.activity.Register3phone
 com.example.zf_android.activity.Register3phone: Register3phone()
-com.example.zf_android.activity.Register3phone: void onClick(android.view.View)
 com.example.zf_android.activity.Register4phone
 com.example.zf_android.activity.Register4phone: Register4phone()
-com.example.zf_android.activity.Register4phone: void onClick(android.view.View)
 com.example.zf_android.activity.ShopCar
 com.example.zf_android.activity.ShopCar: ShopCar()
-com.example.zf_android.activity.ShopCar: void onClick(android.view.View)
 com.example.zf_android.activity.SystemDetail
 com.example.zf_android.activity.SystemDetail: SystemDetail()
 com.example.zf_android.activity.SystemMessage
@@ -13752,9 +12287,7 @@ com.example.zf_android.activity.WantBuy: WantBuy()
 com.example.zf_android.activity.WelcomeActivity
 com.example.zf_android.activity.WelcomeActivity: WelcomeActivity()
 com.example.zf_android.alipay.PayActivity: PayActivity()
-com.example.zf_android.alipay.PayActivity: void check(android.view.View)
 com.example.zf_android.alipay.RepairPayActivity: RepairPayActivity()
-com.example.zf_android.alipay.RepairPayActivity: void check(android.view.View)
 com.example.zf_android.service.NetworkStateService
 com.example.zf_android.trade.ADownloadManagerActivity
 com.example.zf_android.trade.ADownloadManagerActivity: ADownloadManagerActivity()
@@ -13762,7 +12295,6 @@ com.example.zf_android.trade.AfterSaleDetailActivity
 com.example.zf_android.trade.AfterSaleDetailActivity: AfterSaleDetailActivity()
 com.example.zf_android.trade.AfterSaleGridActivity
 com.example.zf_android.trade.AfterSaleGridActivity: AfterSaleGridActivity()
-com.example.zf_android.trade.AfterSaleGridActivity: void onClick(android.view.View)
 com.example.zf_android.trade.AfterSaleListActivity
 com.example.zf_android.trade.AfterSaleListActivity: AfterSaleListActivity()
 com.example.zf_android.trade.AfterSaleMarkActivity
@@ -13771,10 +12303,8 @@ com.example.zf_android.trade.AfterSaleMaterialActivity
 com.example.zf_android.trade.AfterSaleMaterialActivity: AfterSaleMaterialActivity()
 com.example.zf_android.trade.AfterSalePayActivity
 com.example.zf_android.trade.AfterSalePayActivity: AfterSalePayActivity()
-com.example.zf_android.trade.AfterSalePayActivity: void onClick(android.view.View)
 com.example.zf_android.trade.ApplyBankActivity
 com.example.zf_android.trade.ApplyBankActivity: ApplyBankActivity()
-com.example.zf_android.trade.ApplyBankActivity: void onClick(android.view.View)
 com.example.zf_android.trade.ApplyChannelActivity
 com.example.zf_android.trade.ApplyChannelActivity: ApplyChannelActivity()
 com.example.zf_android.trade.ApplyChooseActivity
@@ -13789,14 +12319,12 @@ com.example.zf_android.trade.CityProvinceActivity
 com.example.zf_android.trade.CityProvinceActivity: CityProvinceActivity()
 com.example.zf_android.trade.CitySearchActivity
 com.example.zf_android.trade.CitySearchActivity: CitySearchActivity()
-com.example.zf_android.trade.CitySearchActivity: void onClick(android.view.View)
 com.example.zf_android.trade.CitySelectActivity
 com.example.zf_android.trade.CitySelectActivity: CitySelectActivity()
 com.example.zf_android.trade.ShowWebImageActivity
 com.example.zf_android.trade.ShowWebImageActivity: ShowWebImageActivity()
 com.example.zf_android.trade.TerminalAddActivity
 com.example.zf_android.trade.TerminalAddActivity: TerminalAddActivity()
-com.example.zf_android.trade.TerminalAddActivity: void onClick(android.view.View)
 com.example.zf_android.trade.TerminalChannelActivity
 com.example.zf_android.trade.TerminalChannelActivity: TerminalChannelActivity()
 com.example.zf_android.trade.TerminalDetailActivity
@@ -13818,13 +12346,10 @@ com.example.zf_android.trade.widget.LetterListView
 com.example.zf_android.trade.widget.LetterListView: LetterListView(android.content.Context,android.util.AttributeSet,int)
 com.example.zf_android.trade.widget.LetterListView: LetterListView(android.content.Context,android.util.AttributeSet)
 com.example.zf_android.trade.widget.LetterListView: LetterListView(android.content.Context)
-com.example.zf_android.trade.widget.LetterListView: void setOnTouchingLetterChangedListener(com.example.zf_android.trade.widget.LetterListView$OnTouchingLetterChangedListener)
 com.example.zf_android.trade.widget.MyTabWidget
 com.example.zf_android.trade.widget.MyTabWidget: MyTabWidget(android.content.Context)
 com.example.zf_android.trade.widget.MyTabWidget: MyTabWidget(android.content.Context,android.util.AttributeSet)
 com.example.zf_android.trade.widget.MyTabWidget: MyTabWidget(android.content.Context,android.util.AttributeSet,int)
-com.example.zf_android.trade.widget.MyTabWidget: void setViewPager(android.support.v4.view.ViewPager)
-com.example.zf_android.trade.widget.MyTabWidget: void setOnTabSelectedListener(com.example.zf_android.trade.widget.MyTabWidget$OnTabSelectedListener)
 com.example.zf_android.trade.widget.MyTextView
 com.example.zf_android.trade.widget.MyTextView: MyTextView(android.content.Context)
 com.example.zf_android.trade.widget.MyTextView: MyTextView(android.content.Context,android.util.AttributeSet)
@@ -13832,82 +12357,17 @@ com.example.zf_android.trade.widget.MyTextView: MyTextView(android.content.Conte
 com.example.zf_android.trade.widget.MyViewPager
 com.example.zf_android.trade.widget.MyViewPager: MyViewPager(android.content.Context)
 com.example.zf_android.trade.widget.MyViewPager: MyViewPager(android.content.Context,android.util.AttributeSet)
-com.example.zf_android.trade.widget.MyViewPager: void setPagingEnabled(boolean)
-com.example.zf_android.trade.widget.WheelView: java.util.List getItems()
-com.example.zf_android.trade.widget.WheelView: void setItems(java.util.List)
-com.example.zf_android.trade.widget.WheelView: int getOffset()
-com.example.zf_android.trade.widget.WheelView: void setOffset(int)
-com.example.zf_android.trade.widget.WheelView: void setBackgroundDrawable(android.graphics.drawable.Drawable)
-com.example.zf_android.trade.widget.WheelView: void setSeletion(int)
-com.example.zf_android.trade.widget.WheelView: java.lang.Object getSeletedItem()
-com.example.zf_android.trade.widget.WheelView: int getSeletedIndex()
-com.example.zf_android.trade.widget.WheelView: com.example.zf_android.trade.widget.WheelView$OnWheelViewListener getOnWheelViewListener()
-com.example.zf_android.trade.widget.WheelView: void setOnWheelViewListener(com.example.zf_android.trade.widget.WheelView$OnWheelViewListener)
 com.example.zf_android.trade.widget.XListView
-com.example.zf_android.trade.widget.XListView: com.example.zf_android.trade.widget.XListViewFooter getmFooterView()
-com.example.zf_android.trade.widget.XListView: void setmFooterView(com.example.zf_android.trade.widget.XListViewFooter)
 com.example.zf_android.trade.widget.XListView: XListView(android.content.Context)
 com.example.zf_android.trade.widget.XListView: XListView(android.content.Context,android.util.AttributeSet)
 com.example.zf_android.trade.widget.XListView: XListView(android.content.Context,android.util.AttributeSet,int)
-com.example.zf_android.trade.widget.XListView: void setAdapter(android.widget.ListAdapter)
-com.example.zf_android.trade.widget.XListView: void setPullRefreshEnable(boolean)
-com.example.zf_android.trade.widget.XListView: void setPullLoadEnable(boolean)
-com.example.zf_android.trade.widget.XListView: void setRefreshTime(java.lang.String)
-com.example.zf_android.trade.widget.XListView: void setOnScrollListener(android.widget.AbsListView$OnScrollListener)
-com.example.zf_android.trade.widget.XListView: void setXListViewListener(com.example.zf_android.trade.widget.XListView$IXListViewListener)
-com.example.zf_android.trade.widget.XListViewFooter: android.widget.TextView getmHintView()
-com.example.zf_android.trade.widget.XListViewFooter: void setmHintView(android.widget.TextView)
-com.example.zf_android.trade.widget.XListViewFooter: void setState(int)
-com.example.zf_android.trade.widget.XListViewFooter: void setState1(int)
-com.example.zf_android.trade.widget.XListViewFooter: void setState2(int)
-com.example.zf_android.trade.widget.XListViewFooter: void setBottomMargin(int)
-com.example.zf_android.trade.widget.XListViewFooter: int getBottomMargin()
-com.example.zf_android.trade.widget.XListViewHeader: void setState(int)
-com.example.zf_android.trade.widget.XListViewHeader: void setVisiableHeight(int)
-com.example.zf_android.trade.widget.XListViewHeader: int getVisiableHeight()
 com.example.zf_android.trade.widget.gestureimage.GestureImageView
 com.example.zf_android.trade.widget.gestureimage.GestureImageView: GestureImageView(android.content.Context,android.util.AttributeSet,int)
 com.example.zf_android.trade.widget.gestureimage.GestureImageView: GestureImageView(android.content.Context,android.util.AttributeSet)
 com.example.zf_android.trade.widget.gestureimage.GestureImageView: GestureImageView(android.content.Context)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setImageBitmap(android.graphics.Bitmap)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setImageDrawable(android.graphics.drawable.Drawable)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setImageResource(int)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: int getScaledWidth()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: int getScaledHeight()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: int getImageWidth()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: int getImageHeight()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: int getDisplayWidth()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setMinScale(float)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setMaxScale(float)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setScale(float)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: float getScale()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: float getImageX()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: float getImageY()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setStrict(boolean)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setRecycle(boolean)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setRotation(float)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setGestureImageViewListener(com.example.zf_android.trade.widget.gestureimage.GestureImageViewListener)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: com.example.zf_android.trade.widget.gestureimage.GestureImageViewListener getGestureImageViewListener()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: android.graphics.drawable.Drawable getDrawable()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setAlpha(int)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setColorFilter(android.graphics.ColorFilter)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setImageURI(android.net.Uri)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: android.graphics.Matrix getImageMatrix()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setScaleType(android.widget.ImageView$ScaleType)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setAdjustViewBounds(boolean)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setImageLevel(int)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setImageMatrix(android.graphics.Matrix)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setSelected(boolean)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setOnTouchListener(android.view.View$OnTouchListener)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: float getCenterX()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: float getCenterY()
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setStartingScale(float)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: void setOnClickListener(android.view.View$OnClickListener)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView: int getDeviceOrientation()
 com.example.zf_android.trade.widget.gestureimage.MyViewPager
 com.example.zf_android.trade.widget.gestureimage.MyViewPager: MyViewPager(android.content.Context)
 com.example.zf_android.trade.widget.gestureimage.MyViewPager: MyViewPager(android.content.Context,android.util.AttributeSet)
-com.example.zf_android.trade.widget.gestureimage.MyViewPager: void setGestureImages(com.example.zf_android.trade.widget.gestureimage.GestureImageView[])
 com.example.zf_android.video.VideoActivity
 com.example.zf_android.video.VideoActivity: VideoActivity()
 com.google.gson.DefaultDateTypeAdapter
@@ -17059,103 +15519,8 @@ com.nostra13.universalimageloader.utils.StorageUtils: java.io.File getIndividual
 com.nostra13.universalimageloader.utils.StorageUtils: java.io.File getOwnCacheDirectory(android.content.Context,java.lang.String)
 com.nostra13.universalimageloader.utils.StorageUtils: java.io.File getExternalCacheDir(android.content.Context)
 com.nostra13.universalimageloader.utils.StorageUtils: boolean hasExternalStoragePermission(android.content.Context)
-com.umeng.analytics.Gender: com.umeng.analytics.Gender[] values()
-com.umeng.analytics.Gender: com.umeng.analytics.Gender valueOf(java.lang.String)
-com.umeng.analytics.social.UMPlatformData$GENDER: com.umeng.analytics.social.UMPlatformData$GENDER[] values()
-com.umeng.analytics.social.UMPlatformData$GENDER: com.umeng.analytics.social.UMPlatformData$GENDER valueOf(java.lang.String)
-com.umeng.analytics.social.UMPlatformData$UMedia: com.umeng.analytics.social.UMPlatformData$UMedia[] values()
-com.umeng.analytics.social.UMPlatformData$UMedia: com.umeng.analytics.social.UMPlatformData$UMedia valueOf(java.lang.String)
-com.unionpay.mobile.android.net.HttpNative
-com.unionpay.mobile.android.net.HttpNative: java.lang.String getIssuer()
-com.unionpay.mobile.android.net.HttpNative: java.lang.String getSubject()
-com.unionpay.mobile.android.nocard.utils.UPPayEngine
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: long initJNIEnv(android.app.Activity,int,int,boolean,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String getServerUrl(int,int)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: void setSessionKey(long,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String decryptResponse(long,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String retrieveInitializeKey(long)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String initMessage(long,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String unBoundMessage(long,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String ruleMessage(long,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String followRulesMessage(long,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String openupgradeMessage(long,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String getUserInfo(long,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String commonMessage(long,java.lang.String,java.lang.String)
-com.unionpay.mobile.android.nocard.utils.UPPayEngine: java.lang.String payingMessage(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-com.unionpay.mobile.android.upwidget.d: void setOnClickListener(android.view.View$OnClickListener)
-com.unionpay.mobile.android.widgets.UPPinWidget
-com.unionpay.mobile.android.widgets.UPPinWidget: void deleteOnce(long)
-com.unionpay.mobile.android.widgets.UPPinWidget: void appendOnce(long,java.lang.String)
-com.unionpay.mobile.android.widgets.UPPinWidget: void clearAll(long)
-com.unionpay.mobile.android.widgets.UPPinWidget: java.lang.String getPINBlock(long,java.lang.String)
-com.unionpay.mobile.android.widgets.UPPinWidget: java.lang.String getPIN(long)
-com.unionpay.mobile.android.widgets.m: void setOnTouchListener(android.view.View$OnTouchListener)
 com.unionpay.uppayplugin.demo.APKActivity
 com.unionpay.uppayplugin.demo.APKActivity: APKActivity()
 com.unionpay.uppayplugin.demo.BaseActivity: BaseActivity()
 org.litepal.LitePalApplication
 org.litepal.LitePalApplication: LitePalApplication()
-u.aly.al: u.aly.al[] values()
-u.aly.al: u.aly.al valueOf(java.lang.String)
-u.aly.am$e: u.aly.am$e[] values()
-u.aly.am$e: u.aly.am$e valueOf(java.lang.String)
-u.aly.an$e: u.aly.an$e[] values()
-u.aly.an$e: u.aly.an$e valueOf(java.lang.String)
-u.aly.ao$e: u.aly.ao$e[] values()
-u.aly.ao$e: u.aly.ao$e valueOf(java.lang.String)
-u.aly.ap$e: u.aly.ap$e[] values()
-u.aly.ap$e: u.aly.ap$e valueOf(java.lang.String)
-u.aly.aq$e: u.aly.aq$e[] values()
-u.aly.aq$e: u.aly.aq$e valueOf(java.lang.String)
-u.aly.ar$e: u.aly.ar$e[] values()
-u.aly.ar$e: u.aly.ar$e valueOf(java.lang.String)
-u.aly.as$e: u.aly.as$e[] values()
-u.aly.as$e: u.aly.as$e valueOf(java.lang.String)
-u.aly.at$e: u.aly.at$e[] values()
-u.aly.at$e: u.aly.at$e valueOf(java.lang.String)
-u.aly.au: u.aly.au[] values()
-u.aly.au: u.aly.au valueOf(java.lang.String)
-u.aly.av$e: u.aly.av$e[] values()
-u.aly.av$e: u.aly.av$e valueOf(java.lang.String)
-u.aly.aw: u.aly.aw[] values()
-u.aly.aw: u.aly.aw valueOf(java.lang.String)
-u.aly.ax$e: u.aly.ax$e[] values()
-u.aly.ax$e: u.aly.ax$e valueOf(java.lang.String)
-u.aly.ay$e: u.aly.ay$e[] values()
-u.aly.ay$e: u.aly.ay$e valueOf(java.lang.String)
-u.aly.az$e: u.aly.az$e[] values()
-u.aly.az$e: u.aly.az$e valueOf(java.lang.String)
-u.aly.ba$e: u.aly.ba$e[] values()
-u.aly.ba$e: u.aly.ba$e valueOf(java.lang.String)
-u.aly.bb$e: u.aly.bb$e[] values()
-u.aly.bb$e: u.aly.bb$e valueOf(java.lang.String)
-u.aly.bc$e: u.aly.bc$e[] values()
-u.aly.bc$e: u.aly.bc$e valueOf(java.lang.String)
-u.aly.bd$e: u.aly.bd$e[] values()
-u.aly.bd$e: u.aly.bd$e valueOf(java.lang.String)
-u.aly.be$e: u.aly.be$e[] values()
-u.aly.be$e: u.aly.be$e valueOf(java.lang.String)
-u.aly.bf$e: u.aly.bf$e[] values()
-u.aly.bf$e: u.aly.bf$e valueOf(java.lang.String)
-u.aly.bg$e: u.aly.bg$e[] values()
-u.aly.bg$e: u.aly.bg$e valueOf(java.lang.String)
-u.aly.bh$a: u.aly.bh$a[] values()
-u.aly.bh$a: u.aly.bh$a valueOf(java.lang.String)
-u.aly.bi$e: u.aly.bi$e[] values()
-u.aly.bi$e: u.aly.bi$e valueOf(java.lang.String)
-u.aly.bj$e: u.aly.bj$e[] values()
-u.aly.bj$e: u.aly.bj$e valueOf(java.lang.String)
-u.aly.bk: u.aly.bk[] values()
-u.aly.bk: u.aly.bk valueOf(java.lang.String)
-u.aly.bl$e: u.aly.bl$e[] values()
-u.aly.bl$e: u.aly.bl$e valueOf(java.lang.String)
-u.aly.bm$e: u.aly.bm$e[] values()
-u.aly.bm$e: u.aly.bm$e valueOf(java.lang.String)
-u.aly.bn$e: u.aly.bn$e[] values()
-u.aly.bn$e: u.aly.bn$e valueOf(java.lang.String)
-u.aly.bo$e: u.aly.bo$e[] values()
-u.aly.bo$e: u.aly.bo$e valueOf(java.lang.String)
-u.aly.bp$e: u.aly.bp$e[] values()
-u.aly.bp$e: u.aly.bp$e valueOf(java.lang.String)
-u.aly.bv$a: u.aly.bv$a[] values()
-u.aly.bv$a: u.aly.bv$a valueOf(java.lang.String)

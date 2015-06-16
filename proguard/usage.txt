@@ -145,6 +145,8 @@ com.alipay.sdk.app.ab:
     private static void a(java.lang.String)
     private static java.lang.String c()
 com.alipay.sdk.app.ac:
+    public static com.alipay.sdk.app.ac[] values()
+    public static com.alipay.sdk.app.ac valueOf(java.lang.String)
     private void b(int)
     private void a(java.lang.String)
 com.alipay.sdk.auth.APAuthInfo
@@ -188,6 +190,9 @@ com.alipay.sdk.authjs.a:
     private org.json.JSONObject g()
     private void a(org.json.JSONObject)
 com.alipay.sdk.authjs.a$1
+com.alipay.sdk.authjs.a$a:
+    public static com.alipay.sdk.authjs.a$a[] values()
+    public static com.alipay.sdk.authjs.a$a valueOf(java.lang.String)
 com.alipay.sdk.authjs.c:
     private void a(com.alipay.sdk.authjs.a)
     private static void a(java.lang.Runnable)
@@ -357,6 +362,7 @@ com.alipay.sdk.net.d:
     private static org.json.JSONObject a(com.alipay.sdk.data.f,java.lang.String)
     private static void a(org.json.JSONObject)
 com.alipay.sdk.protocol.a:
+    public static com.alipay.sdk.protocol.a valueOf(java.lang.String)
     public final org.json.JSONObject a()
     public final java.lang.String b()
     public final java.lang.String c()
@@ -393,6 +399,7 @@ com.alipay.sdk.protocol.d
 com.alipay.sdk.protocol.e:
     private static void b(com.alipay.sdk.protocol.c)
 com.alipay.sdk.protocol.f:
+    public static com.alipay.sdk.protocol.f valueOf(java.lang.String)
     private java.lang.String a()
 com.alipay.sdk.protocol.g:
     public final boolean a()
@@ -453,6 +460,7 @@ com.alipay.sdk.util.d:
     private static java.lang.String a(java.lang.String,java.lang.String)
 com.alipay.sdk.util.e
 com.alipay.sdk.util.f:
+    public static com.alipay.sdk.util.f valueOf(java.lang.String)
     private int b()
 com.alipay.sdk.util.g:
     public static final java.lang.String a
@@ -907,7 +915,9 @@ com.example.zf_android.alipay.Base64:
 com.example.zf_android.alipay.PayActivity:
     private static final int SDK_PAY_FLAG
     private static final int SDK_CHECK_FLAG
+    107:126:public void check(android.view.View)
     133:136:public void getSDKVersion()
+com.example.zf_android.alipay.PayActivity$3
 com.example.zf_android.alipay.PayResult:
     52:52:public java.lang.String getMemo()
     59:59:public java.lang.String getResult()
@@ -915,7 +925,9 @@ com.example.zf_android.alipay.PayUtils
 com.example.zf_android.alipay.RepairPayActivity:
     private static final int SDK_PAY_FLAG
     private static final int SDK_CHECK_FLAG
+    107:126:public void check(android.view.View)
     133:136:public void getSDKVersion()
+com.example.zf_android.alipay.RepairPayActivity$3
 com.example.zf_android.alipay.SignUtils:
     private static final java.lang.String ALGORITHM
     private static final java.lang.String SIGN_ALGORITHMS
@@ -1735,23 +1747,34 @@ com.example.zf_android.trade.entity.TradeStatistic:
     60:61:public void setTradeTotal(int)
 com.example.zf_android.trade.widget.DepthPageTransformer:
     private static final float MIN_SCALE
+com.example.zf_android.trade.widget.MyViewPager:
+    36:37:public void setPagingEnabled(boolean)
 com.example.zf_android.trade.widget.WheelView:
     public static final int OFF_SET_DEFAULT
     private static final int SCROLL_DIRECTION_UP
     private static final int SCROLL_DIRECTION_DOWN
     43:45:public WheelView(android.content.Context,android.util.AttributeSet)
     48:50:public WheelView(android.content.Context,android.util.AttributeSet,int)
+    55:55:private java.util.List getItems()
+    78:78:public int getOffset()
+    309:309:public java.lang.Object getSeletedItem()
+    313:313:public int getSeletedIndex()
+    332:332:public com.example.zf_android.trade.widget.WheelView$OnWheelViewListener getOnWheelViewListener()
 com.example.zf_android.trade.widget.XListView:
     private static final int SCROLLBACK_HEADER
     private static final int SCROLLBACK_FOOTER
     private static final int SCROLL_DURATION
     private static final int PULL_LOAD_MORE_DELTA
     private static final float OFFSET_RADIO
+    58:59:public void setmFooterView(com.example.zf_android.trade.widget.XListViewFooter)
 com.example.zf_android.trade.widget.XListViewFooter:
     public static final int STATE_NORMAL
     public static final int STATE_READY
     public static final int STATE_LOADING
+    30:30:public android.widget.TextView getmHintView()
+    34:35:public void setmHintView(android.widget.TextView)
     43:45:public XListViewFooter(android.content.Context,android.util.AttributeSet)
+    69:71:public void setState1(int)
     94:96:public void normal()
     103:105:public void loading()
 com.example.zf_android.trade.widget.XListViewHeader:
@@ -1767,6 +1790,7 @@ com.example.zf_android.trade.widget.gestureimage.GestureImageView:
     456:458:public void moveBy(float,float)
     500:500:public boolean isStrict()
     508:508:public boolean isRecycle()
+    531:532:public void setGestureImageViewListener(com.example.zf_android.trade.widget.gestureimage.GestureImageViewListener)
     707:707:public boolean isPortrait()
     716:718:public void setStartingPosition(float,float)
     736:741:public boolean isOrientationAligned()
@@ -2532,6 +2556,9 @@ u.aly.ak:
     private static final long f
     private static final long g
     73:73:public long b()
+u.aly.al:
+    15:15:public static u.aly.al[] values()
+    15:15:public static u.aly.al valueOf(java.lang.String)
 u.aly.am:
     private static final int f
     129:132:public am(u.aly.am)
@@ -2546,6 +2573,8 @@ u.aly.am:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.am$e:
+    46:46:public static u.aly.am$e[] values()
+    46:46:public static u.aly.am$e valueOf(java.lang.String)
     61:65:public static u.aly.am$e a(int)
     74:76:public static u.aly.am$e b(int)
     83:83:public static u.aly.am$e a(java.lang.String)
@@ -2567,6 +2596,8 @@ u.aly.an:
     31:31:public synthetic u.aly.ch g()
     31:31:public synthetic u.aly.co b(int)
 u.aly.an$e:
+    47:47:public static u.aly.an$e[] values()
+    47:47:public static u.aly.an$e valueOf(java.lang.String)
     63:69:public static u.aly.an$e a(int)
     78:80:public static u.aly.an$e b(int)
     87:87:public static u.aly.an$e a(java.lang.String)
@@ -2607,6 +2638,8 @@ u.aly.ao:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.ao$e:
+    68:68:public static u.aly.ao$e[] values()
+    68:68:public static u.aly.ao$e valueOf(java.lang.String)
     96:118:public static u.aly.ao$e a(int)
     127:129:public static u.aly.ao$e b(int)
     136:136:public static u.aly.ao$e a(java.lang.String)
@@ -2630,6 +2663,8 @@ u.aly.ap:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.ap$e:
+    50:50:public static u.aly.ap$e[] values()
+    50:50:public static u.aly.ap$e valueOf(java.lang.String)
     67:75:public static u.aly.ap$e a(int)
     84:86:public static u.aly.ap$e b(int)
     93:93:public static u.aly.ap$e a(java.lang.String)
@@ -2645,6 +2680,8 @@ u.aly.aq:
     31:31:public synthetic u.aly.ch g()
     31:31:public synthetic u.aly.co b(int)
 u.aly.aq$e:
+    45:45:public static u.aly.aq$e[] values()
+    45:45:public static u.aly.aq$e valueOf(java.lang.String)
     60:64:public static u.aly.aq$e a(int)
     73:75:public static u.aly.aq$e b(int)
     82:82:public static u.aly.aq$e a(java.lang.String)
@@ -2698,6 +2735,8 @@ u.aly.ar:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.ar$e:
+    78:78:public static u.aly.ar$e[] values()
+    78:78:public static u.aly.ar$e valueOf(java.lang.String)
     109:145:public static u.aly.ar$e a(int)
     154:156:public static u.aly.ar$e b(int)
     163:163:public static u.aly.ar$e a(java.lang.String)
@@ -2727,9 +2766,14 @@ u.aly.at:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.at$e:
+    54:54:public static u.aly.at$e[] values()
+    54:54:public static u.aly.at$e valueOf(java.lang.String)
     75:83:public static u.aly.at$e a(int)
     92:94:public static u.aly.at$e b(int)
     101:101:public static u.aly.at$e a(java.lang.String)
+u.aly.au:
+    15:15:public static u.aly.au[] values()
+    15:15:public static u.aly.au valueOf(java.lang.String)
 u.aly.av:
     private static final int n
     private static final int o
@@ -2763,6 +2807,8 @@ u.aly.av:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.av$e:
+    54:54:public static u.aly.av$e[] values()
+    54:54:public static u.aly.av$e valueOf(java.lang.String)
     73:85:public static u.aly.av$e a(int)
     94:96:public static u.aly.av$e b(int)
     103:103:public static u.aly.av$e a(java.lang.String)
@@ -2789,6 +2835,8 @@ u.aly.ax:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.ax$e:
+    52:52:public static u.aly.ax$e[] values()
+    52:52:public static u.aly.ax$e valueOf(java.lang.String)
     70:80:public static u.aly.ax$e a(int)
     89:91:public static u.aly.ax$e b(int)
     98:98:public static u.aly.ax$e a(java.lang.String)
@@ -2809,6 +2857,8 @@ u.aly.ay:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.ay$e:
+    50:50:public static u.aly.ay$e[] values()
+    50:50:public static u.aly.ay$e valueOf(java.lang.String)
     67:75:public static u.aly.ay$e a(int)
     84:86:public static u.aly.ay$e b(int)
     93:93:public static u.aly.ay$e a(java.lang.String)
@@ -2834,6 +2884,8 @@ u.aly.az:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.az$e:
+    50:50:public static u.aly.az$e[] values()
+    50:50:public static u.aly.az$e valueOf(java.lang.String)
     67:75:public static u.aly.az$e a(int)
     84:86:public static u.aly.az$e b(int)
     93:93:public static u.aly.az$e a(java.lang.String)
@@ -2858,6 +2910,8 @@ u.aly.ba:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.ba$e:
+    50:50:public static u.aly.ba$e[] values()
+    50:50:public static u.aly.ba$e valueOf(java.lang.String)
     67:75:public static u.aly.ba$e a(int)
     84:86:public static u.aly.ba$e b(int)
     93:93:public static u.aly.ba$e a(java.lang.String)
@@ -2880,6 +2934,8 @@ u.aly.bb:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.bb$e:
+    50:50:public static u.aly.bb$e[] values()
+    50:50:public static u.aly.bb$e valueOf(java.lang.String)
     67:75:public static u.aly.bb$e a(int)
     84:86:public static u.aly.bb$e b(int)
     93:93:public static u.aly.bb$e a(java.lang.String)
@@ -2913,6 +2969,8 @@ u.aly.bc:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.bc$e:
+    52:52:public static u.aly.bc$e[] values()
+    52:52:public static u.aly.bc$e valueOf(java.lang.String)
     70:80:public static u.aly.bc$e a(int)
     89:91:public static u.aly.bc$e b(int)
     98:98:public static u.aly.bc$e a(java.lang.String)
@@ -2934,6 +2992,8 @@ u.aly.bd:
     31:31:public synthetic u.aly.ch g()
     31:31:public synthetic u.aly.co b(int)
 u.aly.bd$e:
+    47:47:public static u.aly.bd$e[] values()
+    47:47:public static u.aly.bd$e valueOf(java.lang.String)
     63:69:public static u.aly.bd$e a(int)
     78:80:public static u.aly.bd$e b(int)
     87:87:public static u.aly.bd$e a(java.lang.String)
@@ -2959,6 +3019,8 @@ u.aly.be:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.be$e:
+    50:50:public static u.aly.be$e[] values()
+    50:50:public static u.aly.be$e valueOf(java.lang.String)
     67:75:public static u.aly.be$e a(int)
     84:86:public static u.aly.be$e b(int)
     93:93:public static u.aly.be$e a(java.lang.String)
@@ -3000,6 +3062,8 @@ u.aly.bf:
     31:31:public synthetic u.aly.ch g()
     31:31:public synthetic u.aly.co b(int)
 u.aly.bf$e:
+    67:67:public static u.aly.bf$e[] values()
+    67:67:public static u.aly.bf$e valueOf(java.lang.String)
     95:117:public static u.aly.bf$e a(int)
     126:128:public static u.aly.bf$e b(int)
     135:135:public static u.aly.bf$e a(java.lang.String)
@@ -3020,6 +3084,8 @@ u.aly.bg:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.bg$e:
+    48:48:public static u.aly.bg$e[] values()
+    48:48:public static u.aly.bg$e valueOf(java.lang.String)
     64:70:public static u.aly.bg$e a(int)
     79:81:public static u.aly.bg$e b(int)
     88:88:public static u.aly.bg$e a(java.lang.String)
@@ -3044,6 +3110,7 @@ u.aly.bh:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.bh$a:
+    38:38:public static u.aly.bh$a valueOf(java.lang.String)
     78:78:public static u.aly.bh$a a(java.lang.String)
 u.aly.bi:
     private static final int h
@@ -3063,6 +3130,8 @@ u.aly.bi:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.bi$e:
+    48:48:public static u.aly.bi$e[] values()
+    48:48:public static u.aly.bi$e valueOf(java.lang.String)
     64:70:public static u.aly.bi$e a(int)
     79:81:public static u.aly.bi$e b(int)
     88:88:public static u.aly.bi$e a(java.lang.String)
@@ -3085,9 +3154,14 @@ u.aly.bj:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.bj$e:
+    50:50:public static u.aly.bj$e[] values()
+    50:50:public static u.aly.bj$e valueOf(java.lang.String)
     67:75:public static u.aly.bj$e a(int)
     84:86:public static u.aly.bj$e b(int)
     93:93:public static u.aly.bj$e a(java.lang.String)
+u.aly.bk:
+    15:15:public static u.aly.bk[] values()
+    15:15:public static u.aly.bk valueOf(java.lang.String)
 u.aly.bl:
     private static final int r
     private static final int s
@@ -3121,6 +3195,8 @@ u.aly.bl:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.bl$e:
+    58:58:public static u.aly.bl$e[] values()
+    58:58:public static u.aly.bl$e valueOf(java.lang.String)
     79:95:public static u.aly.bl$e a(int)
     104:106:public static u.aly.bl$e b(int)
     113:113:public static u.aly.bl$e a(java.lang.String)
@@ -3141,6 +3217,8 @@ u.aly.bm:
     32:32:public synthetic u.aly.ch g()
     32:32:public synthetic u.aly.co b(int)
 u.aly.bm$e:
+    48:48:public static u.aly.bm$e[] values()
+    48:48:public static u.aly.bm$e valueOf(java.lang.String)
     64:70:public static u.aly.bm$e a(int)
     79:81:public static u.aly.bm$e b(int)
     88:88:public static u.aly.bm$e a(java.lang.String)
@@ -3182,6 +3260,8 @@ u.aly.bn:
     31:31:public synthetic u.aly.ch g()
     31:31:public synthetic u.aly.co b(int)
 u.aly.bn$e:
+    65:65:public static u.aly.bn$e[] values()
+    65:65:public static u.aly.bn$e valueOf(java.lang.String)
     90:114:public static u.aly.bn$e a(int)
     123:125:public static u.aly.bn$e b(int)
     132:132:public static u.aly.bn$e a(java.lang.String)
@@ -3234,6 +3314,8 @@ u.aly.bp:
     31:31:public synthetic u.aly.ch g()
     31:31:public synthetic u.aly.co b(int)
 u.aly.bp$e:
+    63:63:public static u.aly.bp$e[] values()
+    63:63:public static u.aly.bp$e valueOf(java.lang.String)
     87:109:public static u.aly.bp$e a(int)
     118:120:public static u.aly.bp$e b(int)
     127:127:public static u.aly.bp$e a(java.lang.String)
