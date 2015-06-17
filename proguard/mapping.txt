@@ -6220,8 +6220,56 @@ android.support.v4.widget.ViewDragHelper$Callback -> android.support.v4.widget.V
     boolean tryCaptureView(android.view.View,int) -> tryCaptureView
     int clampViewPositionHorizontal(android.view.View,int,int) -> clampViewPositionHorizontal
     int clampViewPositionVertical(android.view.View,int,int) -> clampViewPositionVertical
-cn.trinea.android.common.constant.AndroidConstants -> cn.trinea.android.common.constant.AndroidConstants:
-    int ICE_CREAM_SANDWICH -> ICE_CREAM_SANDWICH
+cn.trinea.android.common.R -> cn.trinea.android.common.R:
+cn.trinea.android.common.R$attr -> cn.trinea.android.common.R$attr:
+    int isAutoLoadOnBottom -> isAutoLoadOnBottom
+    int isDropDownStyle -> isDropDownStyle
+    int isOnBottomStyle -> isOnBottomStyle
+cn.trinea.android.common.R$color -> cn.trinea.android.common.R$color:
+    int drop_down_list_footer_font_color -> drop_down_list_footer_font_color
+    int drop_down_list_header_font_color -> drop_down_list_header_font_color
+    int drop_down_list_header_second_font_color -> drop_down_list_header_second_font_color
+cn.trinea.android.common.R$dimen -> cn.trinea.android.common.R$dimen:
+    int drop_down_list_footer_button_height -> drop_down_list_footer_button_height
+    int drop_down_list_footer_button_margin_left -> drop_down_list_footer_button_margin_left
+    int drop_down_list_footer_progress_bar_height -> drop_down_list_footer_progress_bar_height
+    int drop_down_list_header_padding_bottom -> drop_down_list_header_padding_bottom
+    int drop_down_list_header_padding_top -> drop_down_list_header_padding_top
+    int drop_down_list_header_progress_bar_height -> drop_down_list_header_progress_bar_height
+    int drop_down_list_header_release_min_distance -> drop_down_list_header_release_min_distance
+cn.trinea.android.common.R$drawable -> cn.trinea.android.common.R$drawable:
+    int drop_down_list_arrow -> drop_down_list_arrow
+cn.trinea.android.common.R$id -> cn.trinea.android.common.R$id:
+    int drop_down_list_footer_button -> drop_down_list_footer_button
+    int drop_down_list_footer_progress_bar -> drop_down_list_footer_progress_bar
+    int drop_down_list_header_default_text -> drop_down_list_header_default_text
+    int drop_down_list_header_default_text_layout -> drop_down_list_header_default_text_layout
+    int drop_down_list_header_image -> drop_down_list_header_image
+    int drop_down_list_header_progress_bar -> drop_down_list_header_progress_bar
+    int drop_down_list_header_second_text -> drop_down_list_header_second_text
+cn.trinea.android.common.R$layout -> cn.trinea.android.common.R$layout:
+    int drop_down_list_footer -> drop_down_list_footer
+    int drop_down_list_header -> drop_down_list_header
+cn.trinea.android.common.R$string -> cn.trinea.android.common.R$string:
+    int drop_down_list_footer_default_text -> drop_down_list_footer_default_text
+    int drop_down_list_footer_loading_text -> drop_down_list_footer_loading_text
+    int drop_down_list_footer_no_more_text -> drop_down_list_footer_no_more_text
+    int drop_down_list_header_default_text -> drop_down_list_header_default_text
+    int drop_down_list_header_loading_text -> drop_down_list_header_loading_text
+    int drop_down_list_header_pull_text -> drop_down_list_header_pull_text
+    int drop_down_list_header_release_text -> drop_down_list_header_release_text
+    int image_content -> image_content
+cn.trinea.android.common.R$style -> cn.trinea.android.common.R$style:
+    int drop_down_list_footer_font_style -> drop_down_list_footer_font_style
+    int drop_down_list_footer_progress_bar_style -> drop_down_list_footer_progress_bar_style
+    int drop_down_list_header_font_style -> drop_down_list_header_font_style
+    int drop_down_list_header_progress_bar_style -> drop_down_list_header_progress_bar_style
+    int drop_down_list_header_second_font_style -> drop_down_list_header_second_font_style
+cn.trinea.android.common.R$styleable -> cn.trinea.android.common.R$styleable:
+    int[] drop_down_list_attr -> drop_down_list_attr
+    int drop_down_list_attr_isAutoLoadOnBottom -> drop_down_list_attr_isAutoLoadOnBottom
+    int drop_down_list_attr_isDropDownStyle -> drop_down_list_attr_isDropDownStyle
+    int drop_down_list_attr_isOnBottomStyle -> drop_down_list_attr_isOnBottomStyle
 cn.trinea.android.common.constant.DbConstants -> cn.trinea.android.common.constant.DbConstants:
     java.lang.String DB_NAME -> DB_NAME
     int DB_VERSION -> DB_VERSION
@@ -6377,7 +6425,7 @@ cn.trinea.android.common.entity.HttpResponse -> cn.trinea.android.common.entity.
     boolean isInCache() -> isInCache
     cn.trinea.android.common.entity.HttpResponse setInCache(boolean) -> setInCache
     java.lang.String getExpiresHeader() -> getExpiresHeader
-    int getCacheControlMaxAge() -> getCacheControlMaxAge
+    long getCacheControlMaxAge() -> getCacheControlMaxAge
     long getExpiresInMillis() -> getExpiresInMillis
     void setResponseHeader(java.lang.String,java.lang.String) -> setResponseHeader
     java.lang.Object getResponseHeader(java.lang.String) -> getResponseHeader
@@ -6807,6 +6855,7 @@ cn.trinea.android.common.service.impl.SimpleCache -> cn.trinea.android.common.se
     void saveCache(java.lang.String,cn.trinea.android.common.service.impl.SimpleCache) -> saveCache
 cn.trinea.android.common.util.AppUtils -> cn.trinea.android.common.util.AppUtils:
     boolean isNamedProcess(android.content.Context,java.lang.String) -> isNamedProcess
+    boolean isApplicationInBackground(android.content.Context) -> isApplicationInBackground
 cn.trinea.android.common.util.ArrayUtils -> cn.trinea.android.common.util.ArrayUtils:
     boolean isEmpty(java.lang.Object[]) -> isEmpty
     java.lang.Object getLast(java.lang.Object[],java.lang.Object,java.lang.Object,boolean) -> getLast
@@ -6829,6 +6878,10 @@ cn.trinea.android.common.util.CacheManager -> cn.trinea.android.common.util.Cach
     cn.trinea.android.common.service.HttpCache getHttpCache(android.content.Context) -> getHttpCache
     cn.trinea.android.common.service.impl.ImageCache getImageCache() -> getImageCache
     cn.trinea.android.common.service.impl.ImageSDCardCache getImageSDCardCache() -> getImageSDCardCache
+cn.trinea.android.common.util.CollectionUtils -> cn.trinea.android.common.util.CollectionUtils:
+    java.lang.CharSequence DEFAULT_JOIN_SEPARATOR -> DEFAULT_JOIN_SEPARATOR
+    boolean isEmpty(java.util.Collection) -> isEmpty
+    java.lang.String join(java.lang.Iterable) -> join
 cn.trinea.android.common.util.DbHelper -> cn.trinea.android.common.util.DbHelper:
     void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
     void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
@@ -6882,6 +6935,8 @@ cn.trinea.android.common.util.FileUtils -> cn.trinea.android.common.util.FileUti
     boolean writeFile(java.lang.String,java.io.InputStream,boolean) -> writeFile
     boolean writeFile(java.io.File,java.io.InputStream) -> writeFile
     boolean writeFile(java.io.File,java.io.InputStream,boolean) -> writeFile
+    void moveFile(java.lang.String,java.lang.String) -> moveFile
+    void moveFile(java.io.File,java.io.File) -> moveFile
     boolean copyFile(java.lang.String,java.lang.String) -> copyFile
     java.util.List readFileToList(java.lang.String,java.lang.String) -> readFileToList
     java.lang.String getFileNameWithoutExtension(java.lang.String) -> getFileNameWithoutExtension
@@ -6993,10 +7048,16 @@ cn.trinea.android.common.util.JSONUtils -> cn.trinea.android.common.util.JSONUti
     double getDouble(java.lang.String,java.lang.String,double) -> getDouble
     java.lang.String getString(org.json.JSONObject,java.lang.String,java.lang.String) -> getString
     java.lang.String getString(java.lang.String,java.lang.String,java.lang.String) -> getString
+    java.lang.String getStringCascade(org.json.JSONObject,java.lang.String,java.lang.String[]) -> getStringCascade
+    java.lang.String getStringCascade(java.lang.String,java.lang.String,java.lang.String[]) -> getStringCascade
     java.lang.String[] getStringArray(org.json.JSONObject,java.lang.String,java.lang.String[]) -> getStringArray
     java.lang.String[] getStringArray(java.lang.String,java.lang.String,java.lang.String[]) -> getStringArray
+    java.util.List getStringList(org.json.JSONObject,java.lang.String,java.util.List) -> getStringList
+    java.util.List getStringList(java.lang.String,java.lang.String,java.util.List) -> getStringList
     org.json.JSONObject getJSONObject(org.json.JSONObject,java.lang.String,org.json.JSONObject) -> getJSONObject
     org.json.JSONObject getJSONObject(java.lang.String,java.lang.String,org.json.JSONObject) -> getJSONObject
+    org.json.JSONObject getJSONObjectCascade(org.json.JSONObject,org.json.JSONObject,java.lang.String[]) -> getJSONObjectCascade
+    org.json.JSONObject getJSONObjectCascade(java.lang.String,org.json.JSONObject,java.lang.String[]) -> getJSONObjectCascade
     org.json.JSONArray getJSONArray(org.json.JSONObject,java.lang.String,org.json.JSONArray) -> getJSONArray
     org.json.JSONArray getJSONArray(java.lang.String,java.lang.String,org.json.JSONArray) -> getJSONArray
     boolean getBoolean(org.json.JSONObject,java.lang.String,java.lang.Boolean) -> getBoolean
@@ -7034,8 +7095,19 @@ cn.trinea.android.common.util.MapUtils -> cn.trinea.android.common.util.MapUtils
     java.util.Map parseKeyAndValueToMap(java.lang.String,boolean) -> parseKeyAndValueToMap
     java.util.Map parseKeyAndValueToMap(java.lang.String) -> parseKeyAndValueToMap
     java.lang.String toJson(java.util.Map) -> toJson
+cn.trinea.android.common.util.NetWorkUtils -> cn.trinea.android.common.util.NetWorkUtils:
+    java.lang.String NETWORK_TYPE_WIFI -> NETWORK_TYPE_WIFI
+    java.lang.String NETWORK_TYPE_3G -> NETWORK_TYPE_3G
+    java.lang.String NETWORK_TYPE_2G -> NETWORK_TYPE_2G
+    java.lang.String NETWORK_TYPE_WAP -> NETWORK_TYPE_WAP
+    java.lang.String NETWORK_TYPE_UNKNOWN -> NETWORK_TYPE_UNKNOWN
+    java.lang.String NETWORK_TYPE_DISCONNECT -> NETWORK_TYPE_DISCONNECT
+    int getNetworkType(android.content.Context) -> getNetworkType
+    java.lang.String getNetworkTypeName(android.content.Context) -> getNetworkTypeName
+    boolean isFastMobileNetwork(android.content.Context) -> isFastMobileNetwork
 cn.trinea.android.common.util.ObjectUtils -> cn.trinea.android.common.util.ObjectUtils:
     boolean isEquals(java.lang.Object,java.lang.Object) -> isEquals
+    java.lang.String nullStrToEmpty(java.lang.Object) -> nullStrToEmpty
     java.lang.Long[] transformLongArray(long[]) -> transformLongArray
     long[] transformLongArray(java.lang.Long[]) -> transformLongArray
     java.lang.Integer[] transformIntArray(int[]) -> transformIntArray
@@ -7154,6 +7226,8 @@ cn.trinea.android.common.util.RandomUtils -> cn.trinea.android.common.util.Rando
 cn.trinea.android.common.util.ResourceUtils -> cn.trinea.android.common.util.ResourceUtils:
     java.lang.String geFileFromAssets(android.content.Context,java.lang.String) -> geFileFromAssets
     java.lang.String geFileFromRaw(android.content.Context,int) -> geFileFromRaw
+    java.util.List geFileToListFromAssets(android.content.Context,java.lang.String) -> geFileToListFromAssets
+    java.util.List geFileToListFromRaw(android.content.Context,int) -> geFileToListFromRaw
 cn.trinea.android.common.util.ScreenUtils -> cn.trinea.android.common.util.ScreenUtils:
     float dpToPx(android.content.Context,float) -> dpToPx
     float pxToDp(android.content.Context,float) -> pxToDp
@@ -7189,16 +7263,15 @@ cn.trinea.android.common.util.SizeUtils -> cn.trinea.android.common.util.SizeUti
 cn.trinea.android.common.util.SqliteUtils -> cn.trinea.android.common.util.SqliteUtils:
     cn.trinea.android.common.util.SqliteUtils instance -> instance
     cn.trinea.android.common.util.DbHelper dbHelper -> dbHelper
-    android.database.sqlite.SQLiteDatabase wDb -> wDb
-    android.database.sqlite.SQLiteDatabase rDb -> rDb
+    android.database.sqlite.SQLiteDatabase db -> db
     cn.trinea.android.common.util.SqliteUtils getInstance(android.content.Context) -> getInstance
-    android.database.sqlite.SQLiteDatabase getWDb() -> getWDb
-    android.database.sqlite.SQLiteDatabase getRDb() -> getRDb
+    android.database.sqlite.SQLiteDatabase getDb() -> getDb
 cn.trinea.android.common.util.StringUtils -> cn.trinea.android.common.util.StringUtils:
     boolean isBlank(java.lang.String) -> isBlank
-    boolean isEmpty(java.lang.String) -> isEmpty
+    boolean isEmpty(java.lang.CharSequence) -> isEmpty
     boolean isEquals(java.lang.String,java.lang.String) -> isEquals
-    java.lang.String nullStrToEmpty(java.lang.String) -> nullStrToEmpty
+    int length(java.lang.CharSequence) -> length
+    java.lang.String nullStrToEmpty(java.lang.Object) -> nullStrToEmpty
     java.lang.String capitalizeFirstLetter(java.lang.String) -> capitalizeFirstLetter
     java.lang.String utf8Encode(java.lang.String) -> utf8Encode
     java.lang.String utf8Encode(java.lang.String,java.lang.String) -> utf8Encode
@@ -7237,6 +7310,7 @@ cn.trinea.android.common.util.ViewUtils -> cn.trinea.android.common.util.ViewUti
     void setListViewHeightBasedOnChildren(android.widget.ListView) -> setListViewHeightBasedOnChildren
     void setAbsListViewHeightBasedOnChildren(android.widget.AbsListView) -> setAbsListViewHeightBasedOnChildren
     void setSearchViewOnClickListener(android.view.View,android.view.View$OnClickListener) -> setSearchViewOnClickListener
+    java.util.List getDescendants(android.view.ViewGroup,java.lang.Class,boolean) -> getDescendants
 cn.trinea.android.common.view.BorderScrollView -> cn.trinea.android.common.view.BorderScrollView:
     cn.trinea.android.common.view.BorderScrollView$OnBorderListener onBorderListener -> onBorderListener
     android.view.View contentView -> contentView
@@ -11673,6 +11747,484 @@ com.baidu.location.z$c -> com.baidu.location.z$c:
     void onProviderDisabled(java.lang.String) -> onProviderDisabled
     void onProviderEnabled(java.lang.String) -> onProviderEnabled
     void onStatusChanged(java.lang.String,int,android.os.Bundle) -> onStatusChanged
+com.bairuitech.anychat.AnyChatAudioHelper -> com.bairuitech.anychat.AnyChatAudioHelper:
+    java.lang.String TAG -> TAG
+    android.media.AudioTrack mAudioTrack -> mAudioTrack
+    android.media.AudioRecord mAudioRecord -> mAudioRecord
+    int PLAY_MODE_AUTO -> PLAY_MODE_AUTO
+    int PLAY_MODE_RECEIVER -> PLAY_MODE_RECEIVER
+    int PLAY_MODE_SPEAKER -> PLAY_MODE_SPEAKER
+    com.bairuitech.anychat.AnyChatAudioHelper$PlayAudioThread mPlayAudioThread -> mPlayAudioThread
+    boolean mPlayThreadExitFlag -> mPlayThreadExitFlag
+    int mMinPlayBufSize -> mMinPlayBufSize
+    boolean mAudioPlayReleased -> mAudioPlayReleased
+    com.bairuitech.anychat.AnyChatAudioHelper$RecordAudioThread mRecordAudioThread -> mRecordAudioThread
+    boolean mRecordThreadExitFlag -> mRecordThreadExitFlag
+    int mMinRecordBufSize -> mMinRecordBufSize
+    boolean mAudioRecordReleased -> mAudioRecordReleased
+    android.content.Context mContext -> mContext
+    int mProfile -> mProfile
+    int mPlayMode -> mPlayMode
+    void SetContext(android.content.Context) -> SetContext
+    int InitAudioPlayer(int) -> InitAudioPlayer
+    void ReleaseAudioPlayer() -> ReleaseAudioPlayer
+    java.lang.Boolean IsSpeakerMode() -> IsSpeakerMode
+    void SwitchPlayMode(int) -> SwitchPlayMode
+    int InitAudioRecorder(int) -> InitAudioRecorder
+    void ReleaseAudioRecorder() -> ReleaseAudioRecorder
+    android.media.AudioTrack access$0(com.bairuitech.anychat.AnyChatAudioHelper) -> access$0
+    boolean access$1(com.bairuitech.anychat.AnyChatAudioHelper) -> access$1
+    android.media.AudioRecord access$2(com.bairuitech.anychat.AnyChatAudioHelper) -> access$2
+    boolean access$3(com.bairuitech.anychat.AnyChatAudioHelper) -> access$3
+com.bairuitech.anychat.AnyChatAudioHelper$PlayAudioThread -> com.bairuitech.anychat.AnyChatAudioHelper$PlayAudioThread:
+    com.bairuitech.anychat.AnyChatAudioHelper this$0 -> this$0
+    void run() -> run
+com.bairuitech.anychat.AnyChatAudioHelper$RecordAudioThread -> com.bairuitech.anychat.AnyChatAudioHelper$RecordAudioThread:
+    com.bairuitech.anychat.AnyChatAudioHelper this$0 -> this$0
+    void run() -> run
+com.bairuitech.anychat.AnyChatBaseEvent -> com.bairuitech.anychat.AnyChatBaseEvent:
+    void OnAnyChatConnectMessage(boolean) -> OnAnyChatConnectMessage
+    void OnAnyChatLoginMessage(int,int) -> OnAnyChatLoginMessage
+    void OnAnyChatEnterRoomMessage(int,int) -> OnAnyChatEnterRoomMessage
+    void OnAnyChatOnlineUserMessage(int,int) -> OnAnyChatOnlineUserMessage
+    void OnAnyChatUserAtRoomMessage(int,boolean) -> OnAnyChatUserAtRoomMessage
+    void OnAnyChatLinkCloseMessage(int) -> OnAnyChatLinkCloseMessage
+com.bairuitech.anychat.AnyChatCameraHelper -> com.bairuitech.anychat.AnyChatCameraHelper:
+    java.lang.String TAG -> TAG
+    android.hardware.Camera mCamera -> mCamera
+    boolean bIfPreview -> bIfPreview
+    boolean bNeedCapture -> bNeedCapture
+    int iCurrentCameraId -> iCurrentCameraId
+    android.view.SurfaceHolder currentHolder -> currentHolder
+    int mVideoPixfmt -> mVideoPixfmt
+    int iCaptureBuffers -> iCaptureBuffers
+    android.content.Context mContext -> mContext
+    int mCameraOrientation -> mCameraOrientation
+    int mCameraFacing -> mCameraFacing
+    int mDeviceOrientation -> mDeviceOrientation
+    int CAMERA_FACING_BACK -> CAMERA_FACING_BACK
+    int CAMERA_FACING_FRONT -> CAMERA_FACING_FRONT
+    void SetContext(android.content.Context) -> SetContext
+    void initCamera() -> initCamera
+    void CaptureControl(boolean) -> CaptureControl
+    int GetCameraNumber() -> GetCameraNumber
+    void CameraAutoFocus() -> CameraAutoFocus
+    void SwitchCamera() -> SwitchCamera
+    void SelectVideoCapture(int) -> SelectVideoCapture
+    void SelectCamera(int) -> SelectCamera
+    void surfaceChanged(android.view.SurfaceHolder,int,int,int) -> surfaceChanged
+    void surfaceCreated(android.view.SurfaceHolder) -> surfaceCreated
+    void surfaceDestroyed(android.view.SurfaceHolder) -> surfaceDestroyed
+    int getDeviceOrientation() -> getDeviceOrientation
+    void setCameraDisplayOrientation() -> setCameraDisplayOrientation
+    boolean access$0(com.bairuitech.anychat.AnyChatCameraHelper) -> access$0
+    android.hardware.Camera access$1(com.bairuitech.anychat.AnyChatCameraHelper) -> access$1
+com.bairuitech.anychat.AnyChatCameraHelper$1 -> com.bairuitech.anychat.AnyChatCameraHelper$1:
+    com.bairuitech.anychat.AnyChatCameraHelper this$0 -> this$0
+    void onPreviewFrame(byte[],android.hardware.Camera) -> onPreviewFrame
+com.bairuitech.anychat.AnyChatCoreSDK -> com.bairuitech.anychat.AnyChatCoreSDK:
+    com.bairuitech.anychat.AnyChatBaseEvent baseEvent -> baseEvent
+    com.bairuitech.anychat.AnyChatStateChgEvent stateChgEvent -> stateChgEvent
+    com.bairuitech.anychat.AnyChatPrivateChatEvent privateChatEvent -> privateChatEvent
+    com.bairuitech.anychat.AnyChatTextMsgEvent textMsgEvent -> textMsgEvent
+    com.bairuitech.anychat.AnyChatTransDataEvent transDataEvent -> transDataEvent
+    com.bairuitech.anychat.AnyChatVideoCallEvent videoCallEvent -> videoCallEvent
+    com.bairuitech.anychat.AnyChatUserInfoEvent userInfoEvent -> userInfoEvent
+    com.bairuitech.anychat.AnyChatDataEncDecEvent encdecEvent -> encdecEvent
+    com.bairuitech.anychat.AnyChatRecordEvent recordEvent -> recordEvent
+    com.bairuitech.anychat.AnyChatCoreSDK mAnyChat -> mAnyChat
+    com.bairuitech.anychat.AnyChatCoreSDK$MainHandler mHandler -> mHandler
+    com.bairuitech.anychat.AnyChatAudioHelper mAudioHelper -> mAudioHelper
+    com.bairuitech.anychat.AnyChatCameraHelper mCameraHelper -> mCameraHelper
+    com.bairuitech.anychat.AnyChatSensorHelper mSensorHelper -> mSensorHelper
+    com.bairuitech.anychat.AnyChatVideoHelper mVideoHelper -> mVideoHelper
+    int HANDLE_TYPE_NOTIFYMSG -> HANDLE_TYPE_NOTIFYMSG
+    int HANDLE_TYPE_TEXTMSG -> HANDLE_TYPE_TEXTMSG
+    int HANDLE_TYPE_TRANSFILE -> HANDLE_TYPE_TRANSFILE
+    int HANDLE_TYPE_TRANSBUF -> HANDLE_TYPE_TRANSBUF
+    int HANDLE_TYPE_TRANSBUFEX -> HANDLE_TYPE_TRANSBUFEX
+    int HANDLE_TYPE_SDKFILTER -> HANDLE_TYPE_SDKFILTER
+    int HANDLE_TYPE_VIDEOCALL -> HANDLE_TYPE_VIDEOCALL
+    int HANDLE_TYPE_RECORD -> HANDLE_TYPE_RECORD
+    com.bairuitech.anychat.AnyChatCoreSDK getInstance(android.content.Context) -> getInstance
+    void SetBaseEvent(com.bairuitech.anychat.AnyChatBaseEvent) -> SetBaseEvent
+    void SetStateChgEvent(com.bairuitech.anychat.AnyChatStateChgEvent) -> SetStateChgEvent
+    void SetPrivateChatEvent(com.bairuitech.anychat.AnyChatPrivateChatEvent) -> SetPrivateChatEvent
+    void SetTextMessageEvent(com.bairuitech.anychat.AnyChatTextMsgEvent) -> SetTextMessageEvent
+    void SetTransDataEvent(com.bairuitech.anychat.AnyChatTransDataEvent) -> SetTransDataEvent
+    void SetVideoCallEvent(com.bairuitech.anychat.AnyChatVideoCallEvent) -> SetVideoCallEvent
+    void SetUserInfoEvent(com.bairuitech.anychat.AnyChatUserInfoEvent) -> SetUserInfoEvent
+    void SetDataEncDecEvent(com.bairuitech.anychat.AnyChatDataEncDecEvent) -> SetDataEncDecEvent
+    void SetRecordSnapShotEvent(com.bairuitech.anychat.AnyChatRecordEvent) -> SetRecordSnapShotEvent
+    int GetSDKMainVersion() -> GetSDKMainVersion
+    int GetSDKSubVersion() -> GetSDKSubVersion
+    java.lang.String GetSDKBuildTime() -> GetSDKBuildTime
+    int RegisterNotify() -> RegisterNotify
+    int InitSDK(int,int) -> InitSDK
+    int Connect(java.lang.String,int) -> Connect
+    int Login(java.lang.String,java.lang.String) -> Login
+    int EnterRoom(int,java.lang.String) -> EnterRoom
+    int EnterRoomEx(java.lang.String,java.lang.String) -> EnterRoomEx
+    int LeaveRoom(int) -> LeaveRoom
+    int Logout() -> Logout
+    int Release() -> Release
+    int[] GetOnlineUser() -> GetOnlineUser
+    int SetVideoPos(int,android.view.Surface,int,int,int,int) -> SetVideoPos
+    int UserCameraControl(int,int) -> UserCameraControl
+    int UserSpeakControl(int,int) -> UserSpeakControl
+    int StreamRecordCtrl(int,int,int,int) -> StreamRecordCtrl
+    int StreamRecordCtrlEx(int,int,int,int,java.lang.String) -> StreamRecordCtrlEx
+    int SnapShot(int,int,int) -> SnapShot
+    int AudioGetVolume(int) -> AudioGetVolume
+    int AudioSetVolume(int,int) -> AudioSetVolume
+    java.lang.String QueryUserStateString(int,int) -> QueryUserStateString
+    int QueryUserStateInt(int,int) -> QueryUserStateInt
+    int GetUserSpeakVolume(int) -> GetUserSpeakVolume
+    int GetCameraState(int) -> GetCameraState
+    int GetSpeakState(int) -> GetSpeakState
+    int GetUserVideoWidth(int) -> GetUserVideoWidth
+    int GetUserVideoHeight(int) -> GetUserVideoHeight
+    java.lang.String QueryRoomStateString(int,int) -> QueryRoomStateString
+    int QueryRoomStateInt(int,int) -> QueryRoomStateInt
+    int SetServerAuthPass(java.lang.String) -> SetServerAuthPass
+    int SetSDKOptionInt(int,int) -> SetSDKOptionInt
+    int SetSDKOptionString(int,java.lang.String) -> SetSDKOptionString
+    int GetSDKOptionInt(int) -> GetSDKOptionInt
+    java.lang.String GetSDKOptionString(int) -> GetSDKOptionString
+    int SendTextMessage(int,int,java.lang.String) -> SendTextMessage
+    int TransFile(int,java.lang.String,int,int,int,com.bairuitech.anychat.AnyChatOutParam) -> TransFile
+    int TransBuffer(int,byte[],int) -> TransBuffer
+    int TransBufferEx(int,byte[],int,int,int,int,com.bairuitech.anychat.AnyChatOutParam) -> TransBufferEx
+    int CancelTransTask(int,int) -> CancelTransTask
+    int QueryTransTaskInfo(int,int,int,com.bairuitech.anychat.AnyChatOutParam) -> QueryTransTaskInfo
+    int SendSDKFilterData(byte[],int) -> SendSDKFilterData
+    byte[] FetchAudioPlayBuffer(int) -> FetchAudioPlayBuffer
+    void CameraAutoFocus() -> CameraAutoFocus
+    java.lang.String GetUserName(int) -> GetUserName
+    java.lang.String GetUserIPAddr(int) -> GetUserIPAddr
+    java.lang.String[] EnumVideoCapture() -> EnumVideoCapture
+    int SelectVideoCapture(java.lang.String) -> SelectVideoCapture
+    java.lang.String GetCurVideoCapture() -> GetCurVideoCapture
+    java.lang.String[] EnumAudioCapture() -> EnumAudioCapture
+    int SelectAudioCapture(java.lang.String) -> SelectAudioCapture
+    java.lang.String GetCurAudioCapture() -> GetCurAudioCapture
+    java.lang.String[] EnumAudioPlayback() -> EnumAudioPlayback
+    int SelectAudioPlayback(java.lang.String) -> SelectAudioPlayback
+    java.lang.String GetCurAudioPlayback() -> GetCurAudioPlayback
+    int ChangeChatMode(int) -> ChangeChatMode
+    int GetUserChatMode(int) -> GetUserChatMode
+    int PrivateChatRequest(int) -> PrivateChatRequest
+    int PrivateChatEcho(int,int,int) -> PrivateChatEcho
+    int PrivateChatEchoEx(int,int,int) -> PrivateChatEchoEx
+    int PrivateChatExit(int) -> PrivateChatExit
+    int SetInputVideoFormat(int,int,int,int,int) -> SetInputVideoFormat
+    int InputVideoData(byte[],int,int) -> InputVideoData
+    int SetInputAudioFormat(int,int,int,int) -> SetInputAudioFormat
+    int InputAudioData(byte[],int,int) -> InputAudioData
+    int VideoCallControl(int,int,int,int,int,java.lang.String) -> VideoCallControl
+    int[] GetUserFriends() -> GetUserFriends
+    int GetFriendStatus(int) -> GetFriendStatus
+    int[] GetUserGroups() -> GetUserGroups
+    int[] GetGroupFriends(int) -> GetGroupFriends
+    java.lang.String GetUserInfo(int,int) -> GetUserInfo
+    java.lang.String GetGroupName(int) -> GetGroupName
+    int UserInfoControl(int,int,int,int,java.lang.String) -> UserInfoControl
+    int MultiCastControl(java.lang.String,int,java.lang.String,int,int) -> MultiCastControl
+    void OnNotifyMsg(int,int,int) -> OnNotifyMsg
+    void OnAnyChatNotifyMsg(int,int,int) -> OnAnyChatNotifyMsg
+    void OnTextMessageCallBack(int,int,int,java.lang.String) -> OnTextMessageCallBack
+    void OnTransFileCallBack(int,java.lang.String,java.lang.String,int,int,int,int) -> OnTransFileCallBack
+    void OnTransBufferCallBack(int,byte[],int) -> OnTransBufferCallBack
+    void OnTransBufferExCallBack(int,byte[],int,int,int,int) -> OnTransBufferExCallBack
+    void OnSDKFilterDataCallBack(byte[],int) -> OnSDKFilterDataCallBack
+    void OnVideoDataCallBack(int,byte[],int,int,int) -> OnVideoDataCallBack
+    void OnVideoCallEventCallBack(int,int,int,int,int,java.lang.String) -> OnVideoCallEventCallBack
+    void OnRecordSnapShotExCallBack(int,java.lang.String,int,int,int,java.lang.String) -> OnRecordSnapShotExCallBack
+    int OnDataEncDecCallBack(int,int,byte[],int,com.bairuitech.anychat.AnyChatOutParam) -> OnDataEncDecCallBack
+    int access$0() -> access$0
+    int access$1() -> access$1
+    int access$2() -> access$2
+    int access$3() -> access$3
+    int access$4() -> access$4
+    int access$5() -> access$5
+    int access$6() -> access$6
+    int access$7() -> access$7
+com.bairuitech.anychat.AnyChatCoreSDK$MainHandler -> com.bairuitech.anychat.AnyChatCoreSDK$MainHandler:
+    java.lang.ref.WeakReference mAnyChat -> mAnyChat
+    void handleMessage(android.os.Message) -> handleMessage
+com.bairuitech.anychat.AnyChatDataEncDecEvent -> com.bairuitech.anychat.AnyChatDataEncDecEvent:
+    int BRAC_DATAENCDEC_FLAGS_ENCMODE -> BRAC_DATAENCDEC_FLAGS_ENCMODE
+    int BRAC_DATAENCDEC_FLAGS_DECMODE -> BRAC_DATAENCDEC_FLAGS_DECMODE
+    int BRAC_DATAENCDEC_FLAGS_AUDIO -> BRAC_DATAENCDEC_FLAGS_AUDIO
+    int BRAC_DATAENCDEC_FLAGS_VIDEO -> BRAC_DATAENCDEC_FLAGS_VIDEO
+    int BRAC_DATAENCDEC_FLAGS_BUFFER -> BRAC_DATAENCDEC_FLAGS_BUFFER
+    int BRAC_DATAENCDEC_FLAGS_TXTMSG -> BRAC_DATAENCDEC_FLAGS_TXTMSG
+    int OnAnyChatDataEncDec(int,int,byte[],int,com.bairuitech.anychat.AnyChatOutParam) -> OnAnyChatDataEncDec
+com.bairuitech.anychat.AnyChatDefine -> com.bairuitech.anychat.AnyChatDefine:
+    int WM_GV -> WM_GV
+    int WM_GV_CONNECT -> WM_GV_CONNECT
+    int WM_GV_LOGINSYSTEM -> WM_GV_LOGINSYSTEM
+    int WM_GV_ENTERROOM -> WM_GV_ENTERROOM
+    int WM_GV_MICSTATECHANGE -> WM_GV_MICSTATECHANGE
+    int WM_GV_USERATROOM -> WM_GV_USERATROOM
+    int WM_GV_LINKCLOSE -> WM_GV_LINKCLOSE
+    int WM_GV_ONLINEUSER -> WM_GV_ONLINEUSER
+    int WM_GV_CAMERASTATE -> WM_GV_CAMERASTATE
+    int WM_GV_CHATMODECHG -> WM_GV_CHATMODECHG
+    int WM_GV_ACTIVESTATE -> WM_GV_ACTIVESTATE
+    int WM_GV_P2PCONNECTSTATE -> WM_GV_P2PCONNECTSTATE
+    int WM_GV_VIDEOSIZECHG -> WM_GV_VIDEOSIZECHG
+    int WM_GV_USERINFOUPDATE -> WM_GV_USERINFOUPDATE
+    int WM_GV_FRIENDSTATUS -> WM_GV_FRIENDSTATUS
+    int WM_GV_PRIVATEREQUEST -> WM_GV_PRIVATEREQUEST
+    int WM_GV_PRIVATEECHO -> WM_GV_PRIVATEECHO
+    int WM_GV_PRIVATEEXIT -> WM_GV_PRIVATEEXIT
+    int WM_GV_AUDIOPLAYCTRL -> WM_GV_AUDIOPLAYCTRL
+    int WM_GV_AUDIORECCTRL -> WM_GV_AUDIORECCTRL
+    int WM_GV_VIDEOCAPCTRL -> WM_GV_VIDEOCAPCTRL
+    int BRAC_PIX_FMT_RGB24 -> BRAC_PIX_FMT_RGB24
+    int BRAC_PIX_FMT_RGB32 -> BRAC_PIX_FMT_RGB32
+    int BRAC_PIX_FMT_YV12 -> BRAC_PIX_FMT_YV12
+    int BRAC_PIX_FMT_YUY2 -> BRAC_PIX_FMT_YUY2
+    int BRAC_PIX_FMT_YUV420P -> BRAC_PIX_FMT_YUV420P
+    int BRAC_PIX_FMT_RGB565 -> BRAC_PIX_FMT_RGB565
+    int BRAC_PIX_FMT_RGB555 -> BRAC_PIX_FMT_RGB555
+    int BRAC_PIX_FMT_NV12 -> BRAC_PIX_FMT_NV12
+    int BRAC_PIX_FMT_NV21 -> BRAC_PIX_FMT_NV21
+    int BRAC_PIX_FMT_NV16 -> BRAC_PIX_FMT_NV16
+    int VIDEOCAP_DRIVER_JAVA -> VIDEOCAP_DRIVER_JAVA
+    int VIDEOSHOW_DRIVER_JAVA -> VIDEOSHOW_DRIVER_JAVA
+    int AUDIOREC_DRIVER_JAVA -> AUDIOREC_DRIVER_JAVA
+    int AUDIOPLAY_DRIVER_JAVA -> AUDIOPLAY_DRIVER_JAVA
+    int BRAC_SO_AUDIO_VADCTRL -> BRAC_SO_AUDIO_VADCTRL
+    int BRAC_SO_AUDIO_NSCTRL -> BRAC_SO_AUDIO_NSCTRL
+    int BRAC_SO_AUDIO_ECHOCTRL -> BRAC_SO_AUDIO_ECHOCTRL
+    int BRAC_SO_AUDIO_AGCCTRL -> BRAC_SO_AUDIO_AGCCTRL
+    int BRAC_SO_AUDIO_CPATUREMODE -> BRAC_SO_AUDIO_CPATUREMODE
+    int BRAC_SO_AUDIO_MICBOOST -> BRAC_SO_AUDIO_MICBOOST
+    int BRAC_SO_AUDIO_AUTOPARAM -> BRAC_SO_AUDIO_AUTOPARAM
+    int BRAC_SO_AUDIO_MONOBITRATE -> BRAC_SO_AUDIO_MONOBITRATE
+    int BRAC_SO_AUDIO_STEREOBITRATE -> BRAC_SO_AUDIO_STEREOBITRATE
+    int BRAC_SO_AUDIO_PLAYDRVCTRL -> BRAC_SO_AUDIO_PLAYDRVCTRL
+    int BRAC_SO_AUDIO_SOFTVOLMODE -> BRAC_SO_AUDIO_SOFTVOLMODE
+    int BRAC_SO_AUDIO_RECORDDRVCTRL -> BRAC_SO_AUDIO_RECORDDRVCTRL
+    int BRAC_SO_AUDIO_ECHODELAY -> BRAC_SO_AUDIO_ECHODELAY
+    int BRAC_SO_AUDIO_NSLEVEL -> BRAC_SO_AUDIO_NSLEVEL
+    int BRAC_SO_RECORD_VIDEOBR -> BRAC_SO_RECORD_VIDEOBR
+    int BRAC_SO_RECORD_AUDIOBR -> BRAC_SO_RECORD_AUDIOBR
+    int BRAC_SO_RECORD_TMPDIR -> BRAC_SO_RECORD_TMPDIR
+    int BRAC_SO_SNAPSHOT_TMPDIR -> BRAC_SO_SNAPSHOT_TMPDIR
+    int BRAC_SO_RECORD_FILETYPE -> BRAC_SO_RECORD_FILETYPE
+    int BRAC_SO_RECORD_WIDTH -> BRAC_SO_RECORD_WIDTH
+    int BRAC_SO_RECORD_HEIGHT -> BRAC_SO_RECORD_HEIGHT
+    int BRAC_SO_RECORD_FILENAMERULE -> BRAC_SO_RECORD_FILENAMERULE
+    int BRAC_SO_RECORD_CLIPMODE -> BRAC_SO_RECORD_CLIPMODE
+    int BRAC_SO_CORESDK_TMPDIR -> BRAC_SO_CORESDK_TMPDIR
+    int BRAC_SO_CORESDK_LOADCODEC -> BRAC_SO_CORESDK_LOADCODEC
+    int BRAC_SO_CORESDK_USEARMV6LIB -> BRAC_SO_CORESDK_USEARMV6LIB
+    int BRAC_SO_CORESDK_USEHWCODEC -> BRAC_SO_CORESDK_USEHWCODEC
+    int BRAC_SO_CORESDK_PATH -> BRAC_SO_CORESDK_PATH
+    int BRAC_SO_CORESDK_DUMPCOREINFO -> BRAC_SO_CORESDK_DUMPCOREINFO
+    int BRAC_SO_CORESDK_MAINVERSION -> BRAC_SO_CORESDK_MAINVERSION
+    int BRAC_SO_CORESDK_SUBVERSION -> BRAC_SO_CORESDK_SUBVERSION
+    int BRAC_SO_CORESDK_BUILDTIME -> BRAC_SO_CORESDK_BUILDTIME
+    int BRAC_SO_CORESDK_EXTVIDEOINPUT -> BRAC_SO_CORESDK_EXTVIDEOINPUT
+    int BRAC_SO_CORESDK_EXTAUDIOINPUT -> BRAC_SO_CORESDK_EXTAUDIOINPUT
+    int BRAC_SO_LOCALVIDEO_BITRATECTRL -> BRAC_SO_LOCALVIDEO_BITRATECTRL
+    int BRAC_SO_LOCALVIDEO_QUALITYCTRL -> BRAC_SO_LOCALVIDEO_QUALITYCTRL
+    int BRAC_SO_LOCALVIDEO_GOPCTRL -> BRAC_SO_LOCALVIDEO_GOPCTRL
+    int BRAC_SO_LOCALVIDEO_FPSCTRL -> BRAC_SO_LOCALVIDEO_FPSCTRL
+    int BRAC_SO_LOCALVIDEO_PRESETCTRL -> BRAC_SO_LOCALVIDEO_PRESETCTRL
+    int BRAC_SO_LOCALVIDEO_APPLYPARAM -> BRAC_SO_LOCALVIDEO_APPLYPARAM
+    int BRAC_SO_LOCALVIDEO_VIDEOSIZEPOLITIC -> BRAC_SO_LOCALVIDEO_VIDEOSIZEPOLITIC
+    int BRAC_SO_LOCALVIDEO_DEINTERLACE -> BRAC_SO_LOCALVIDEO_DEINTERLACE
+    int BRAC_SO_LOCALVIDEO_WIDTHCTRL -> BRAC_SO_LOCALVIDEO_WIDTHCTRL
+    int BRAC_SO_LOCALVIDEO_HEIGHTCTRL -> BRAC_SO_LOCALVIDEO_HEIGHTCTRL
+    int BRAC_SO_LOCALVIDEO_FOCUSCTRL -> BRAC_SO_LOCALVIDEO_FOCUSCTRL
+    int BRAC_SO_LOCALVIDEO_PIXFMTCTRL -> BRAC_SO_LOCALVIDEO_PIXFMTCTRL
+    int BRAC_SO_LOCALVIDEO_OVERLAY -> BRAC_SO_LOCALVIDEO_OVERLAY
+    int BRAC_SO_LOCALVIDEO_CODECID -> BRAC_SO_LOCALVIDEO_CODECID
+    int BRAC_SO_LOCALVIDEO_ROTATECTRL -> BRAC_SO_LOCALVIDEO_ROTATECTRL
+    int BRAC_SO_LOCALVIDEO_CAPDRIVER -> BRAC_SO_LOCALVIDEO_CAPDRIVER
+    int BRAC_SO_LOCALVIDEO_FIXCOLORDEVIA -> BRAC_SO_LOCALVIDEO_FIXCOLORDEVIA
+    int BRAC_SO_LOCALVIDEO_ORIENTATION -> BRAC_SO_LOCALVIDEO_ORIENTATION
+    int BRAC_SO_LOCALVIDEO_AUTOROTATION -> BRAC_SO_LOCALVIDEO_AUTOROTATION
+    int BRAC_SO_LOCALVIDEO_SURFACEROTATION -> BRAC_SO_LOCALVIDEO_SURFACEROTATION
+    int BRAC_SO_LOCALVIDEO_CAMERAFACE -> BRAC_SO_LOCALVIDEO_CAMERAFACE
+    int BRAC_SO_LOCALVIDEO_DEVICEMODE -> BRAC_SO_LOCALVIDEO_DEVICEMODE
+    int BRAC_SO_NETWORK_P2PPOLITIC -> BRAC_SO_NETWORK_P2PPOLITIC
+    int BRAC_SO_NETWORK_P2PCONNECT -> BRAC_SO_NETWORK_P2PCONNECT
+    int BRAC_SO_NETWORK_P2PBREAK -> BRAC_SO_NETWORK_P2PBREAK
+    int BRAC_SO_NETWORK_TCPSERVICEPORT -> BRAC_SO_NETWORK_TCPSERVICEPORT
+    int BRAC_SO_NETWORK_UDPSERVICEPORT -> BRAC_SO_NETWORK_UDPSERVICEPORT
+    int BRAC_SO_NETWORK_MULTICASTPOLITIC -> BRAC_SO_NETWORK_MULTICASTPOLITIC
+    int BRAC_SO_NETWORK_TRANSBUFMAXBITRATE -> BRAC_SO_NETWORK_TRANSBUFMAXBITRATE
+    int BRAC_SO_NETWORK_AUTORECONNECT -> BRAC_SO_NETWORK_AUTORECONNECT
+    int BRAC_SO_PROXY_FUNCTIONCTRL -> BRAC_SO_PROXY_FUNCTIONCTRL
+    int BRAC_SO_PROXY_VIDEOCTRL -> BRAC_SO_PROXY_VIDEOCTRL
+    int BRAC_SO_PROXY_AUDIOCTRL -> BRAC_SO_PROXY_AUDIOCTRL
+    int BRAC_SO_STREAM_BUFFERTIME -> BRAC_SO_STREAM_BUFFERTIME
+    int BRAC_SO_STREAM_SMOOTHPLAYMODE -> BRAC_SO_STREAM_SMOOTHPLAYMODE
+    int BRAC_SO_VIDEOSHOW_MODECTRL -> BRAC_SO_VIDEOSHOW_MODECTRL
+    int BRAC_SO_VIDEOSHOW_SETPRIMARYUSER -> BRAC_SO_VIDEOSHOW_SETPRIMARYUSER
+    int BRAC_SO_VIDEOSHOW_SETOVERLAYUSER -> BRAC_SO_VIDEOSHOW_SETOVERLAYUSER
+    int BRAC_SO_VIDEOSHOW_DRIVERCTRL -> BRAC_SO_VIDEOSHOW_DRIVERCTRL
+    int BRAC_SO_VIDEOSHOW_GPUDIRECTRENDER -> BRAC_SO_VIDEOSHOW_GPUDIRECTRENDER
+    int BRAC_SO_VIDEOSHOW_AUTOROTATION -> BRAC_SO_VIDEOSHOW_AUTOROTATION
+    int BRAC_SO_VIDEOSHOW_CLIPMODE -> BRAC_SO_VIDEOSHOW_CLIPMODE
+    int BRAC_SO_CORESDK_DEVICEMODE -> BRAC_SO_CORESDK_DEVICEMODE
+    int BRAC_SO_CORESDK_SCREENCAMERACTRL -> BRAC_SO_CORESDK_SCREENCAMERACTRL
+    int BRAC_SO_CORESDK_DATAENCRYPTION -> BRAC_SO_CORESDK_DATAENCRYPTION
+    int BRAC_SO_CORESDK_UPLOADLOGINFO -> BRAC_SO_CORESDK_UPLOADLOGINFO
+    int BRAC_SO_CORESDK_WRITELOG -> BRAC_SO_CORESDK_WRITELOG
+    int BRAC_TRANSTASK_PROGRESS -> BRAC_TRANSTASK_PROGRESS
+    int BRAC_TRANSTASK_BITRATE -> BRAC_TRANSTASK_BITRATE
+    int BRAC_TRANSTASK_STATUS -> BRAC_TRANSTASK_STATUS
+    int BRAC_RECORD_FLAGS_VIDEO -> BRAC_RECORD_FLAGS_VIDEO
+    int BRAC_RECORD_FLAGS_AUDIO -> BRAC_RECORD_FLAGS_AUDIO
+    int BRAC_RECORD_FLAGS_SERVER -> BRAC_RECORD_FLAGS_SERVER
+    int BRAC_RECORD_FLAGS_MIXAUDIO -> BRAC_RECORD_FLAGS_MIXAUDIO
+    int BRAC_RECORD_FLAGS_MIXVIDEO -> BRAC_RECORD_FLAGS_MIXVIDEO
+    int BRAC_RECORD_FLAGS_ABREAST -> BRAC_RECORD_FLAGS_ABREAST
+    int BRAC_RECORD_FLAGS_STEREO -> BRAC_RECORD_FLAGS_STEREO
+    int BRAC_RECORD_FLAGS_STREAM -> BRAC_RECORD_FLAGS_STREAM
+    int BRAC_USERSTATE_CAMERA -> BRAC_USERSTATE_CAMERA
+    int BRAC_USERSTATE_HOLDMIC -> BRAC_USERSTATE_HOLDMIC
+    int BRAC_USERSTATE_SPEAKVOLUME -> BRAC_USERSTATE_SPEAKVOLUME
+    int BRAC_USERSTATE_RECORDING -> BRAC_USERSTATE_RECORDING
+    int BRAC_USERSTATE_LEVEL -> BRAC_USERSTATE_LEVEL
+    int BRAC_USERSTATE_NICKNAME -> BRAC_USERSTATE_NICKNAME
+    int BRAC_USERSTATE_LOCALIP -> BRAC_USERSTATE_LOCALIP
+    int BRAC_USERSTATE_INTERNETIP -> BRAC_USERSTATE_INTERNETIP
+    int BRAC_USERSTATE_VIDEOBITRATE -> BRAC_USERSTATE_VIDEOBITRATE
+    int BRAC_USERSTATE_AUDIOBITRATE -> BRAC_USERSTATE_AUDIOBITRATE
+    int BRAC_USERSTATE_P2PCONNECT -> BRAC_USERSTATE_P2PCONNECT
+    int BRAC_USERSTATE_NETWORKSTATUS -> BRAC_USERSTATE_NETWORKSTATUS
+    int BRAC_USERSTATE_VIDEOSIZE -> BRAC_USERSTATE_VIDEOSIZE
+    int BRAC_USERSTATE_PACKLOSSRATE -> BRAC_USERSTATE_PACKLOSSRATE
+    int BRAC_USERSTATE_DEVICETYPE -> BRAC_USERSTATE_DEVICETYPE
+    int BRAC_USERSTATE_SELFUSERSTATUS -> BRAC_USERSTATE_SELFUSERSTATUS
+    int BRAC_USERSTATE_SELFUSERID -> BRAC_USERSTATE_SELFUSERID
+    int BRAC_USERSTATE_VIDEOROTATION -> BRAC_USERSTATE_VIDEOROTATION
+    int BRAC_USERSTATE_VIDEOMIRRORED -> BRAC_USERSTATE_VIDEOMIRRORED
+    int BRAC_ROOMSTATE_ROOMNAME -> BRAC_ROOMSTATE_ROOMNAME
+    int BRAC_ROOMSTATE_ONLINEUSERS -> BRAC_ROOMSTATE_ONLINEUSERS
+    int BRAC_VIDEOCALL_EVENT_REQUEST -> BRAC_VIDEOCALL_EVENT_REQUEST
+    int BRAC_VIDEOCALL_EVENT_REPLY -> BRAC_VIDEOCALL_EVENT_REPLY
+    int BRAC_VIDEOCALL_EVENT_START -> BRAC_VIDEOCALL_EVENT_START
+    int BRAC_VIDEOCALL_EVENT_FINISH -> BRAC_VIDEOCALL_EVENT_FINISH
+    int BRAC_VIDEOCALL_FLAGS_AUDIO -> BRAC_VIDEOCALL_FLAGS_AUDIO
+    int BRAC_VIDEOCALL_FLAGS_VIDEO -> BRAC_VIDEOCALL_FLAGS_VIDEO
+    int BRAC_VIDEOCALL_FLAGS_FBSRCAUDIO -> BRAC_VIDEOCALL_FLAGS_FBSRCAUDIO
+    int BRAC_VIDEOCALL_FLAGS_FBSRCVIDEO -> BRAC_VIDEOCALL_FLAGS_FBSRCVIDEO
+    int BRAC_VIDEOCALL_FLAGS_FBTARAUDIO -> BRAC_VIDEOCALL_FLAGS_FBTARAUDIO
+    int BRAC_VIDEOCALL_FLAGS_FBTARVIDEO -> BRAC_VIDEOCALL_FLAGS_FBTARVIDEO
+    int BRAC_ROTATION_FLAGS_MIRRORED -> BRAC_ROTATION_FLAGS_MIRRORED
+    int BRAC_ROTATION_FLAGS_ROTATION90 -> BRAC_ROTATION_FLAGS_ROTATION90
+    int BRAC_ROTATION_FLAGS_ROTATION180 -> BRAC_ROTATION_FLAGS_ROTATION180
+    int BRAC_ROTATION_FLAGS_ROTATION270 -> BRAC_ROTATION_FLAGS_ROTATION270
+    int BRAC_USERINFO_CTRLCODE_ROTATION -> BRAC_USERINFO_CTRLCODE_ROTATION
+    int BRAC_USERINFO_CTRLCODE_DEBUGLOG -> BRAC_USERINFO_CTRLCODE_DEBUGLOG
+    int BRAC_USERINFO_CTRLCODE_LVORIENTFIX -> BRAC_USERINFO_CTRLCODE_LVORIENTFIX
+    int BRAC_ERRORCODE_SUCCESS -> BRAC_ERRORCODE_SUCCESS
+    int BRAC_ERRORCODE_SESSION_QUIT -> BRAC_ERRORCODE_SESSION_QUIT
+    int BRAC_ERRORCODE_SESSION_OFFLINE -> BRAC_ERRORCODE_SESSION_OFFLINE
+    int BRAC_ERRORCODE_SESSION_BUSY -> BRAC_ERRORCODE_SESSION_BUSY
+    int BRAC_ERRORCODE_SESSION_REFUSE -> BRAC_ERRORCODE_SESSION_REFUSE
+    int BRAC_ERRORCODE_SESSION_TIMEOUT -> BRAC_ERRORCODE_SESSION_TIMEOUT
+    int BRAC_ERRORCODE_SESSION_DISCONNECT -> BRAC_ERRORCODE_SESSION_DISCONNECT
+    int ANYCHAT_RECORD_FLAGS_VIDEO -> ANYCHAT_RECORD_FLAGS_VIDEO
+    int ANYCHAT_RECORD_FLAGS_AUDIO -> ANYCHAT_RECORD_FLAGS_AUDIO
+    int ANYCHAT_RECORD_FLAGS_SERVER -> ANYCHAT_RECORD_FLAGS_SERVER
+    int ANYCHAT_RECORD_FLAGS_MIXAUDIO -> ANYCHAT_RECORD_FLAGS_MIXAUDIO
+    int ANYCHAT_RECORD_FLAGS_MIXVIDEO -> ANYCHAT_RECORD_FLAGS_MIXVIDEO
+    int ANYCHAT_RECORD_FLAGS_ABREAST -> ANYCHAT_RECORD_FLAGS_ABREAST
+    int ANYCHAT_RECORD_FLAGS_STEREO -> ANYCHAT_RECORD_FLAGS_STEREO
+    int ANYCHAT_RECORD_FLAGS_SNAPSHOT -> ANYCHAT_RECORD_FLAGS_SNAPSHOT
+    int ANYCHAT_RECORD_FLAGS_LOCALCB -> ANYCHAT_RECORD_FLAGS_LOCALCB
+    int ANYCHAT_RECORD_FLAGS_STREAM -> ANYCHAT_RECORD_FLAGS_STREAM
+com.bairuitech.anychat.AnyChatOrientationEventListener -> com.bairuitech.anychat.AnyChatOrientationEventListener:
+    void onOrientationChanged(int) -> onOrientationChanged
+com.bairuitech.anychat.AnyChatOutParam -> com.bairuitech.anychat.AnyChatOutParam:
+    int iValue -> iValue
+    java.lang.String szValue -> szValue
+    int[] intArray -> intArray
+    byte[] byteArray -> byteArray
+    double fValue -> fValue
+    int GetIntValue() -> GetIntValue
+    void SetIntValue(int) -> SetIntValue
+    double GetFloatValue() -> GetFloatValue
+    void SetFloatValue(double) -> SetFloatValue
+    java.lang.String GetStrValue() -> GetStrValue
+    void SetStrValue(java.lang.String) -> SetStrValue
+    int[] GetIntArray() -> GetIntArray
+    void SetIntArray(int[]) -> SetIntArray
+    byte[] GetByteArray() -> GetByteArray
+    void SetByteArray(byte[]) -> SetByteArray
+com.bairuitech.anychat.AnyChatPrivateChatEvent -> com.bairuitech.anychat.AnyChatPrivateChatEvent:
+    void OnAnyChatPrivateRequestMessage(int,int) -> OnAnyChatPrivateRequestMessage
+    void OnAnyChatPrivateEchoMessage(int,int) -> OnAnyChatPrivateEchoMessage
+    void OnAnyChatPrivateExitMessage(int,int) -> OnAnyChatPrivateExitMessage
+com.bairuitech.anychat.AnyChatRecordEvent -> com.bairuitech.anychat.AnyChatRecordEvent:
+    void OnAnyChatRecordEvent(int,java.lang.String,int,int,int,java.lang.String) -> OnAnyChatRecordEvent
+    void OnAnyChatSnapShotEvent(int,java.lang.String,int,int,java.lang.String) -> OnAnyChatSnapShotEvent
+com.bairuitech.anychat.AnyChatSensorHelper -> com.bairuitech.anychat.AnyChatSensorHelper:
+    com.bairuitech.anychat.AnyChatOrientationEventListener orientationListener -> orientationListener
+    float LastXSpead -> LastXSpead
+    float LastYSpead -> LastYSpead
+    float LastZSpead -> LastZSpead
+    boolean bCameraNeedFocus -> bCameraNeedFocus
+    java.util.Date LastSportTime -> LastSportTime
+    void InitSensor(android.content.Context) -> InitSensor
+    void DestroySensor() -> DestroySensor
+    void onAccuracyChanged(android.hardware.Sensor,int) -> onAccuracyChanged
+    void onSensorChanged(android.hardware.SensorEvent) -> onSensorChanged
+com.bairuitech.anychat.AnyChatStateChgEvent -> com.bairuitech.anychat.AnyChatStateChgEvent:
+    void OnAnyChatMicStateChgMessage(int,boolean) -> OnAnyChatMicStateChgMessage
+    void OnAnyChatCameraStateChgMessage(int,int) -> OnAnyChatCameraStateChgMessage
+    void OnAnyChatChatModeChgMessage(int,boolean) -> OnAnyChatChatModeChgMessage
+    void OnAnyChatActiveStateChgMessage(int,int) -> OnAnyChatActiveStateChgMessage
+    void OnAnyChatP2PConnectStateMessage(int,int) -> OnAnyChatP2PConnectStateMessage
+com.bairuitech.anychat.AnyChatTextMsgEvent -> com.bairuitech.anychat.AnyChatTextMsgEvent:
+    void OnAnyChatTextMessage(int,int,boolean,java.lang.String) -> OnAnyChatTextMessage
+com.bairuitech.anychat.AnyChatTransDataEvent -> com.bairuitech.anychat.AnyChatTransDataEvent:
+    void OnAnyChatTransFile(int,java.lang.String,java.lang.String,int,int,int,int) -> OnAnyChatTransFile
+    void OnAnyChatTransBuffer(int,byte[],int) -> OnAnyChatTransBuffer
+    void OnAnyChatTransBufferEx(int,byte[],int,int,int,int) -> OnAnyChatTransBufferEx
+    void OnAnyChatSDKFilterData(byte[],int) -> OnAnyChatSDKFilterData
+com.bairuitech.anychat.AnyChatUserInfoEvent -> com.bairuitech.anychat.AnyChatUserInfoEvent:
+    void OnAnyChatUserInfoUpdate(int,int) -> OnAnyChatUserInfoUpdate
+    void OnAnyChatFriendStatus(int,int) -> OnAnyChatFriendStatus
+com.bairuitech.anychat.AnyChatVideoCallEvent -> com.bairuitech.anychat.AnyChatVideoCallEvent:
+    void OnAnyChatVideoCallEvent(int,int,int,int,int,java.lang.String) -> OnAnyChatVideoCallEvent
+com.bairuitech.anychat.AnyChatVideoHelper -> com.bairuitech.anychat.AnyChatVideoHelper:
+    int MAX_VIDEO_NUM -> MAX_VIDEO_NUM
+    com.bairuitech.anychat.VideoRenderer[] render -> render
+    int bindVideo(android.view.SurfaceHolder) -> bindVideo
+    void SetVideoUser(int,int) -> SetVideoUser
+    int SetVideoFmt(int,int,int) -> SetVideoFmt
+    void setMaxCutScale(int,float) -> setMaxCutScale
+    void ShowVideo(int,byte[],int,int) -> ShowVideo
+    com.bairuitech.anychat.VideoRenderer GetRenderByUserId(int) -> GetRenderByUserId
+com.bairuitech.anychat.VideoRenderer -> com.bairuitech.anychat.VideoRenderer:
+    android.graphics.Bitmap bitmap -> bitmap
+    android.view.SurfaceHolder surfaceHolder -> surfaceHolder
+    android.graphics.Rect srcRect -> srcRect
+    android.graphics.Rect dstRect -> dstRect
+    float dstBottomScale -> dstBottomScale
+    float dstRightScale -> dstRightScale
+    float max_cut_imgscale -> max_cut_imgscale
+    int mUserid -> mUserid
+    int GetUserId() -> GetUserId
+    void SetUserId(int) -> SetUserId
+    void setMaxCutScale(float) -> setMaxCutScale
+    void changeDestRect(int,int) -> changeDestRect
+    void surfaceChanged(android.view.SurfaceHolder,int,int,int) -> surfaceChanged
+    void surfaceCreated(android.view.SurfaceHolder) -> surfaceCreated
+    void surfaceDestroyed(android.view.SurfaceHolder) -> surfaceDestroyed
+    android.graphics.Bitmap CreateBitmap(int,int) -> CreateBitmap
+    void SetCoordinates(float,float,float,float) -> SetCoordinates
+    void DrawByteBuffer(byte[],int,int) -> DrawByteBuffer
 com.examlpe.zf_android.util.DataCleanManager -> com.examlpe.zf_android.util.a:
     java.lang.String getTotalCacheSize(android.content.Context) -> a
     void clearAllCache(android.content.Context) -> b
@@ -12302,6 +12854,8 @@ com.example.zf_android.activity.ConfirmOrder -> com.example.zf_android.activity.
     boolean isFirstCreate -> C
     android.widget.PopupWindow menuWindow -> f
     android.os.Handler handler -> D
+    android.widget.LinearLayout ll_fp -> E
+    android.widget.CheckBox item_cb -> F
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void onClick(android.view.View) -> onClick
@@ -12309,28 +12863,33 @@ com.example.zf_android.activity.ConfirmOrder -> com.example.zf_android.activity.
     void menu_press() -> menu_press
     void getpay11() -> getpay11
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
-    android.widget.TextView access$0(com.example.zf_android.activity.ConfirmOrder) -> a
-    android.widget.TextView access$1(com.example.zf_android.activity.ConfirmOrder) -> b
-    android.widget.TextView access$2(com.example.zf_android.activity.ConfirmOrder) -> c
-    void access$3(com.example.zf_android.activity.ConfirmOrder,int) -> a
-    void access$4(com.example.zf_android.activity.ConfirmOrder,int) -> b
-    android.widget.TextView access$5(com.example.zf_android.activity.ConfirmOrder) -> d
+    void access$0(com.example.zf_android.activity.ConfirmOrder,int) -> a
+    android.widget.LinearLayout access$1(com.example.zf_android.activity.ConfirmOrder) -> a
+    android.widget.TextView access$2(com.example.zf_android.activity.ConfirmOrder) -> b
+    android.widget.TextView access$3(com.example.zf_android.activity.ConfirmOrder) -> c
+    android.widget.TextView access$4(com.example.zf_android.activity.ConfirmOrder) -> d
+    void access$5(com.example.zf_android.activity.ConfirmOrder,int) -> b
+    void access$6(com.example.zf_android.activity.ConfirmOrder,int) -> c
+    android.widget.TextView access$7(com.example.zf_android.activity.ConfirmOrder) -> e
 com.example.zf_android.activity.ConfirmOrder$1 -> com.example.zf_android.activity.as:
     com.example.zf_android.activity.ConfirmOrder this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
 com.example.zf_android.activity.ConfirmOrder$2 -> com.example.zf_android.activity.at:
     com.example.zf_android.activity.ConfirmOrder this$0 -> a
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.example.zf_android.activity.ConfirmOrder$3 -> com.example.zf_android.activity.au:
+    com.example.zf_android.activity.ConfirmOrder this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.ConfirmOrder$2$1 -> com.example.zf_android.activity.au:
-    com.example.zf_android.activity.ConfirmOrder$2 this$1 -> a
-com.example.zf_android.activity.ConfirmOrder$3 -> com.example.zf_android.activity.av:
-    com.example.zf_android.activity.ConfirmOrder this$0 -> a
-    void onClick(android.view.View) -> onClick
+com.example.zf_android.activity.ConfirmOrder$3$1 -> com.example.zf_android.activity.av:
+    com.example.zf_android.activity.ConfirmOrder$3 this$1 -> a
 com.example.zf_android.activity.ConfirmOrder$4 -> com.example.zf_android.activity.aw:
     com.example.zf_android.activity.ConfirmOrder this$0 -> a
     void onClick(android.view.View) -> onClick
 com.example.zf_android.activity.ConfirmOrder$5 -> com.example.zf_android.activity.ax:
+    com.example.zf_android.activity.ConfirmOrder this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.example.zf_android.activity.ConfirmOrder$6 -> com.example.zf_android.activity.ay:
     com.example.zf_android.activity.ConfirmOrder this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -12340,7 +12899,7 @@ com.example.zf_android.activity.ContentUs -> com.example.zf_android.activity.Con
     android.widget.LinearLayout ll_wx -> f
     void onCreate(android.os.Bundle) -> onCreate
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.ContentUs$1 -> com.example.zf_android.activity.ay:
+com.example.zf_android.activity.ContentUs$1 -> com.example.zf_android.activity.az:
     com.example.zf_android.activity.ContentUs this$0 -> a
     void change() -> change
 com.example.zf_android.activity.CreatMerchant -> com.example.zf_android.activity.CreatMerchant:
@@ -12380,37 +12939,37 @@ com.example.zf_android.activity.CreatMerchant -> com.example.zf_android.activity
     int access$5(com.example.zf_android.activity.CreatMerchant) -> c
     void access$6(com.example.zf_android.activity.CreatMerchant,java.lang.String) -> b
     boolean access$7(com.example.zf_android.activity.CreatMerchant) -> d
-com.example.zf_android.activity.CreatMerchant$1 -> com.example.zf_android.activity.az:
+com.example.zf_android.activity.CreatMerchant$1 -> com.example.zf_android.activity.ba:
     int type -> b
     com.example.zf_android.activity.CreatMerchant this$0 -> a
     android.widget.LinearLayout val$layout -> c
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.CreatMerchant$2 -> com.example.zf_android.activity.ba:
+com.example.zf_android.activity.CreatMerchant$2 -> com.example.zf_android.activity.bb:
     com.example.zf_android.activity.CreatMerchant this$0 -> a
     android.os.Handler val$handler -> b
     void onSuccess(java.lang.Object) -> onSuccess
     void onFailure(java.lang.String) -> onFailure
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.CreatMerchant$3 -> com.example.zf_android.activity.bb:
+com.example.zf_android.activity.CreatMerchant$3 -> com.example.zf_android.activity.bc:
     com.example.zf_android.activity.CreatMerchant this$0 -> a
     void onSuccess(java.lang.String) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.CreatMerchant$ItemOnClickListener -> com.example.zf_android.activity.bc:
+com.example.zf_android.activity.CreatMerchant$ItemOnClickListener -> com.example.zf_android.activity.bd:
     int type -> b
     java.lang.String title -> c
     com.example.zf_android.activity.CreatMerchant this$0 -> a
     void onClick(android.view.View) -> onClick
     int access$0(com.example.zf_android.activity.CreatMerchant$ItemOnClickListener) -> a
     com.example.zf_android.activity.CreatMerchant access$1(com.example.zf_android.activity.CreatMerchant$ItemOnClickListener) -> b
-com.example.zf_android.activity.CreatMerchant$ItemOnClickListener$1 -> com.example.zf_android.activity.bd:
+com.example.zf_android.activity.CreatMerchant$ItemOnClickListener$1 -> com.example.zf_android.activity.be:
     com.example.zf_android.activity.CreatMerchant$ItemOnClickListener this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.activity.CreatMerchant$onWatchListener -> com.example.zf_android.activity.be:
+com.example.zf_android.activity.CreatMerchant$onWatchListener -> com.example.zf_android.activity.bf:
     com.example.zf_android.activity.CreatMerchant this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.activity.CreatMerchant access$1(com.example.zf_android.activity.CreatMerchant$onWatchListener) -> a
-com.example.zf_android.activity.CreatMerchant$onWatchListener$1 -> com.example.zf_android.activity.bf:
+com.example.zf_android.activity.CreatMerchant$onWatchListener$1 -> com.example.zf_android.activity.bg:
     com.example.zf_android.activity.CreatMerchant$onWatchListener this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
 com.example.zf_android.activity.Exchange -> com.example.zf_android.activity.Exchange:
@@ -12430,7 +12989,7 @@ com.example.zf_android.activity.Exchange -> com.example.zf_android.activity.Exch
     java.lang.String formateRate(java.lang.String) -> formateRate
     void getData() -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.Exchange$1 -> com.example.zf_android.activity.bg:
+com.example.zf_android.activity.Exchange$1 -> com.example.zf_android.activity.bh:
     com.example.zf_android.activity.Exchange this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -12458,12 +13017,12 @@ com.example.zf_android.activity.FindPass -> com.example.zf_android.activity.Find
     android.widget.TextView access$1(com.example.zf_android.activity.FindPass) -> b
     void access$2(com.example.zf_android.activity.FindPass,java.lang.Boolean) -> a
     android.widget.EditText access$3(com.example.zf_android.activity.FindPass) -> c
-com.example.zf_android.activity.FindPass$1 -> com.example.zf_android.activity.bh:
+com.example.zf_android.activity.FindPass$1 -> com.example.zf_android.activity.bi:
     com.example.zf_android.activity.FindPass this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.FindPass$2 -> com.example.zf_android.activity.bi:
+com.example.zf_android.activity.FindPass$2 -> com.example.zf_android.activity.bj:
     com.example.zf_android.activity.FindPass this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -12503,36 +13062,36 @@ com.example.zf_android.activity.FindPassword -> com.example.zf_android.activity.
     android.widget.LinearLayout access$9(com.example.zf_android.activity.FindPassword) -> g
     android.widget.LinearLayout access$10(com.example.zf_android.activity.FindPassword) -> h
     android.widget.LinearLayout access$11(com.example.zf_android.activity.FindPassword) -> i
-com.example.zf_android.activity.FindPassword$1 -> com.example.zf_android.activity.bj:
+com.example.zf_android.activity.FindPassword$1 -> com.example.zf_android.activity.bk:
     com.example.zf_android.activity.FindPassword this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.FindPassword$2 -> com.example.zf_android.activity.bk:
+com.example.zf_android.activity.FindPassword$2 -> com.example.zf_android.activity.bl:
     com.example.zf_android.activity.FindPassword this$0 -> a
     void run() -> run
-com.example.zf_android.activity.FindPassword$3 -> com.example.zf_android.activity.bl:
+com.example.zf_android.activity.FindPassword$3 -> com.example.zf_android.activity.bm:
     com.example.zf_android.activity.FindPassword this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.FindPassword$4 -> com.example.zf_android.activity.bm:
+com.example.zf_android.activity.FindPassword$4 -> com.example.zf_android.activity.bn:
     com.example.zf_android.activity.FindPassword this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.FindPassword$5 -> com.example.zf_android.activity.bn:
+com.example.zf_android.activity.FindPassword$5 -> com.example.zf_android.activity.bo:
     com.example.zf_android.activity.FindPassword this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.FindPassword$6 -> com.example.zf_android.activity.bo:
+com.example.zf_android.activity.FindPassword$6 -> com.example.zf_android.activity.bp:
     com.example.zf_android.activity.FindPassword this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.FindPassword$7 -> com.example.zf_android.activity.bp:
+com.example.zf_android.activity.FindPassword$7 -> com.example.zf_android.activity.bq:
     com.example.zf_android.activity.FindPassword this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.FindPassword$8 -> com.example.zf_android.activity.bq:
+com.example.zf_android.activity.FindPassword$8 -> com.example.zf_android.activity.br:
     com.example.zf_android.activity.FindPassword this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
@@ -12568,18 +13127,20 @@ com.example.zf_android.activity.GoodComment -> com.example.zf_android.activity.G
     void access$3$5d1572ca(com.example.zf_android.activity.GoodComment) -> d
     com.example.zf_zandroid.adapter.GoodCommentAdapter access$4(com.example.zf_android.activity.GoodComment) -> e
     void access$5(com.example.zf_android.activity.GoodComment,int) -> a
-    android.os.Handler access$6(com.example.zf_android.activity.GoodComment) -> f
-com.example.zf_android.activity.GoodComment$1 -> com.example.zf_android.activity.br:
+    int access$6(com.example.zf_android.activity.GoodComment) -> f
+    void access$7(com.example.zf_android.activity.GoodComment,int) -> b
+    android.os.Handler access$8(com.example.zf_android.activity.GoodComment) -> g
+com.example.zf_android.activity.GoodComment$1 -> com.example.zf_android.activity.bs:
     com.example.zf_android.activity.GoodComment this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.GoodComment$2 -> com.example.zf_android.activity.bs:
+com.example.zf_android.activity.GoodComment$2 -> com.example.zf_android.activity.bt:
     com.example.zf_android.activity.GoodComment this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.GoodComment$3 -> com.example.zf_android.activity.bt:
+com.example.zf_android.activity.GoodComment$3 -> com.example.zf_android.activity.bu:
     com.example.zf_android.activity.GoodComment this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.GoodComment$3$1 -> com.example.zf_android.activity.bu:
+com.example.zf_android.activity.GoodComment$3$1 -> com.example.zf_android.activity.bv:
     com.example.zf_android.activity.GoodComment$3 this$1 -> a
 com.example.zf_android.activity.GoodConfirm -> com.example.zf_android.activity.GoodConfirm:
     java.util.List myList -> d
@@ -12618,6 +13179,7 @@ com.example.zf_android.activity.GoodConfirm -> com.example.zf_android.activity.G
     android.widget.CheckBox item_cb -> K
     int invoice_type -> L
     int customerId -> M
+    android.widget.LinearLayout ll_fp -> N
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void menu_press() -> menu_press
@@ -12626,48 +13188,49 @@ com.example.zf_android.activity.GoodConfirm -> com.example.zf_android.activity.G
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     void access$0(com.example.zf_android.activity.GoodConfirm,int) -> a
     android.widget.EditText access$1(com.example.zf_android.activity.GoodConfirm) -> a
-    android.widget.TextView access$2(com.example.zf_android.activity.GoodConfirm) -> b
+    android.widget.LinearLayout access$2(com.example.zf_android.activity.GoodConfirm) -> b
     android.widget.TextView access$3(com.example.zf_android.activity.GoodConfirm) -> c
-    android.widget.EditText access$4(com.example.zf_android.activity.GoodConfirm) -> d
-    void access$5(com.example.zf_android.activity.GoodConfirm,int) -> b
-    android.widget.TextView access$6(com.example.zf_android.activity.GoodConfirm) -> e
-    int access$7(com.example.zf_android.activity.GoodConfirm) -> f
+    android.widget.TextView access$4(com.example.zf_android.activity.GoodConfirm) -> d
+    android.widget.EditText access$5(com.example.zf_android.activity.GoodConfirm) -> e
+    void access$6(com.example.zf_android.activity.GoodConfirm,int) -> b
+    android.widget.TextView access$7(com.example.zf_android.activity.GoodConfirm) -> f
     int access$8(com.example.zf_android.activity.GoodConfirm) -> g
-    android.widget.TextView access$9(com.example.zf_android.activity.GoodConfirm) -> h
-    void access$10(com.example.zf_android.activity.GoodConfirm,int) -> c
-    android.widget.TextView access$11(com.example.zf_android.activity.GoodConfirm) -> i
-    android.app.Dialog access$12(com.example.zf_android.activity.GoodConfirm) -> j
-    android.widget.TextView access$13(com.example.zf_android.activity.GoodConfirm) -> k
+    int access$9(com.example.zf_android.activity.GoodConfirm) -> h
+    android.widget.TextView access$10(com.example.zf_android.activity.GoodConfirm) -> i
+    void access$11(com.example.zf_android.activity.GoodConfirm,int) -> c
+    android.widget.TextView access$12(com.example.zf_android.activity.GoodConfirm) -> j
+    android.app.Dialog access$13(com.example.zf_android.activity.GoodConfirm) -> k
     android.widget.TextView access$14(com.example.zf_android.activity.GoodConfirm) -> l
     android.widget.TextView access$15(com.example.zf_android.activity.GoodConfirm) -> m
-    void access$16(com.example.zf_android.activity.GoodConfirm,int) -> d
-com.example.zf_android.activity.GoodConfirm$1 -> com.example.zf_android.activity.bv:
+    android.widget.TextView access$16(com.example.zf_android.activity.GoodConfirm) -> n
+    void access$17(com.example.zf_android.activity.GoodConfirm,int) -> d
+com.example.zf_android.activity.GoodConfirm$1 -> com.example.zf_android.activity.bw:
     com.example.zf_android.activity.GoodConfirm this$0 -> a
     java.lang.CharSequence filter(java.lang.CharSequence,int,int,android.text.Spanned,int,int) -> filter
-com.example.zf_android.activity.GoodConfirm$2 -> com.example.zf_android.activity.bw:
+com.example.zf_android.activity.GoodConfirm$2 -> com.example.zf_android.activity.bx:
     com.example.zf_android.activity.GoodConfirm this$0 -> a
     java.lang.CharSequence filter(java.lang.CharSequence,int,int,android.text.Spanned,int,int) -> filter
-com.example.zf_android.activity.GoodConfirm$3 -> com.example.zf_android.activity.bx:
+com.example.zf_android.activity.GoodConfirm$3 -> com.example.zf_android.activity.by:
     com.example.zf_android.activity.GoodConfirm this$0 -> a
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.example.zf_android.activity.GoodConfirm$4 -> com.example.zf_android.activity.by:
+com.example.zf_android.activity.GoodConfirm$4 -> com.example.zf_android.activity.bz:
     com.example.zf_android.activity.GoodConfirm this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.GoodConfirm$5 -> com.example.zf_android.activity.bz:
+com.example.zf_android.activity.GoodConfirm$5 -> com.example.zf_android.activity.ca:
     com.example.zf_android.activity.GoodConfirm this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.GoodConfirm$6 -> com.example.zf_android.activity.ca:
+com.example.zf_android.activity.GoodConfirm$6 -> com.example.zf_android.activity.cb:
     com.example.zf_android.activity.GoodConfirm this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.GoodConfirm$7 -> com.example.zf_android.activity.cb:
+com.example.zf_android.activity.GoodConfirm$7 -> com.example.zf_android.activity.cc:
     com.example.zf_android.activity.GoodConfirm this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.GoodConfirm$7$1 -> com.example.zf_android.activity.cc:
+com.example.zf_android.activity.GoodConfirm$7$1 -> com.example.zf_android.activity.cd:
     com.example.zf_android.activity.GoodConfirm$7 this$1 -> a
-com.example.zf_android.activity.GoodConfirm$8 -> com.example.zf_android.activity.cd:
+com.example.zf_android.activity.GoodConfirm$8 -> com.example.zf_android.activity.ce:
     com.example.zf_android.activity.GoodConfirm this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -12842,64 +13405,64 @@ com.example.zf_android.activity.GoodDeatail -> com.example.zf_android.activity.G
     android.os.Handler access$74(com.example.zf_android.activity.GoodDeatail) -> ab
     java.lang.Boolean access$75(com.example.zf_android.activity.GoodDeatail) -> ac
     android.widget.TextView access$76(com.example.zf_android.activity.GoodDeatail) -> ad
-com.example.zf_android.activity.GoodDeatail$1 -> com.example.zf_android.activity.ce:
+com.example.zf_android.activity.GoodDeatail$1 -> com.example.zf_android.activity.cf:
     com.example.zf_android.activity.GoodDeatail this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.GoodDeatail$2 -> com.example.zf_android.activity.cf:
+com.example.zf_android.activity.GoodDeatail$2 -> com.example.zf_android.activity.cg:
     com.example.zf_android.activity.GoodDeatail this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
     com.example.zf_android.activity.GoodDeatail access$0(com.example.zf_android.activity.GoodDeatail$2) -> a
-com.example.zf_android.activity.GoodDeatail$2$1 -> com.example.zf_android.activity.cg:
+com.example.zf_android.activity.GoodDeatail$2$1 -> com.example.zf_android.activity.ch:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$10 -> com.example.zf_android.activity.ch:
+com.example.zf_android.activity.GoodDeatail$2$10 -> com.example.zf_android.activity.ci:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$11 -> com.example.zf_android.activity.ci:
+com.example.zf_android.activity.GoodDeatail$2$11 -> com.example.zf_android.activity.cj:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$12 -> com.example.zf_android.activity.cj:
+com.example.zf_android.activity.GoodDeatail$2$12 -> com.example.zf_android.activity.ck:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$13 -> com.example.zf_android.activity.ck:
+com.example.zf_android.activity.GoodDeatail$2$13 -> com.example.zf_android.activity.cl:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$2 -> com.example.zf_android.activity.cl:
+com.example.zf_android.activity.GoodDeatail$2$2 -> com.example.zf_android.activity.cm:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$3 -> com.example.zf_android.activity.cm:
+com.example.zf_android.activity.GoodDeatail$2$3 -> com.example.zf_android.activity.cn:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$4 -> com.example.zf_android.activity.cn:
+com.example.zf_android.activity.GoodDeatail$2$4 -> com.example.zf_android.activity.co:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$5 -> com.example.zf_android.activity.co:
+com.example.zf_android.activity.GoodDeatail$2$5 -> com.example.zf_android.activity.cp:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$6 -> com.example.zf_android.activity.cp:
+com.example.zf_android.activity.GoodDeatail$2$6 -> com.example.zf_android.activity.cq:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.GoodDeatail$2$7 -> com.example.zf_android.activity.cq:
+com.example.zf_android.activity.GoodDeatail$2$7 -> com.example.zf_android.activity.cr:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$8 -> com.example.zf_android.activity.cr:
+com.example.zf_android.activity.GoodDeatail$2$8 -> com.example.zf_android.activity.cs:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$2$9 -> com.example.zf_android.activity.cs:
+com.example.zf_android.activity.GoodDeatail$2$9 -> com.example.zf_android.activity.ct:
     com.example.zf_android.activity.GoodDeatail$2 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$3 -> com.example.zf_android.activity.ct:
+com.example.zf_android.activity.GoodDeatail$3 -> com.example.zf_android.activity.cu:
     com.example.zf_android.activity.GoodDeatail this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.GoodDeatail$3$1 -> com.example.zf_android.activity.cu:
+com.example.zf_android.activity.GoodDeatail$3$1 -> com.example.zf_android.activity.cv:
     com.example.zf_android.activity.GoodDeatail$3 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$3$2 -> com.example.zf_android.activity.cv:
+com.example.zf_android.activity.GoodDeatail$3$2 -> com.example.zf_android.activity.cw:
     com.example.zf_android.activity.GoodDeatail$3 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$3$3 -> com.example.zf_android.activity.cw:
+com.example.zf_android.activity.GoodDeatail$3$3 -> com.example.zf_android.activity.cx:
     com.example.zf_android.activity.GoodDeatail$3 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$3$4 -> com.example.zf_android.activity.cx:
+com.example.zf_android.activity.GoodDeatail$3$4 -> com.example.zf_android.activity.cy:
     com.example.zf_android.activity.GoodDeatail$3 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$3$5 -> com.example.zf_android.activity.cy:
+com.example.zf_android.activity.GoodDeatail$3$5 -> com.example.zf_android.activity.cz:
     com.example.zf_android.activity.GoodDeatail$3 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$3$6 -> com.example.zf_android.activity.cz:
+com.example.zf_android.activity.GoodDeatail$3$6 -> com.example.zf_android.activity.da:
     com.example.zf_android.activity.GoodDeatail$3 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$3$7 -> com.example.zf_android.activity.da:
+com.example.zf_android.activity.GoodDeatail$3$7 -> com.example.zf_android.activity.db:
     com.example.zf_android.activity.GoodDeatail$3 this$1 -> a
-com.example.zf_android.activity.GoodDeatail$4 -> com.example.zf_android.activity.db:
+com.example.zf_android.activity.GoodDeatail$4 -> com.example.zf_android.activity.dc:
     com.example.zf_android.activity.GoodDeatail this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.GoodDeatail$MyAdapter -> com.example.zf_android.activity.dc:
+com.example.zf_android.activity.GoodDeatail$MyAdapter -> com.example.zf_android.activity.dd:
     java.util.List mList -> b
     int index -> c
     com.example.zf_android.activity.GoodDeatail this$0 -> a
@@ -12910,17 +13473,17 @@ com.example.zf_android.activity.GoodDeatail$MyAdapter -> com.example.zf_android.
     boolean isViewFromObject(android.view.View,java.lang.Object) -> isViewFromObject
     java.lang.Object instantiateItem(android.view.ViewGroup,int) -> instantiateItem
     com.example.zf_android.activity.GoodDeatail access$0(com.example.zf_android.activity.GoodDeatail$MyAdapter) -> a
-com.example.zf_android.activity.GoodDeatail$MyAdapter$1 -> com.example.zf_android.activity.dd:
+com.example.zf_android.activity.GoodDeatail$MyAdapter$1 -> com.example.zf_android.activity.de:
     com.example.zf_android.activity.GoodDeatail$MyAdapter this$1 -> a
     int val$position -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.GoodDeatail$MyListener -> com.example.zf_android.activity.de:
+com.example.zf_android.activity.GoodDeatail$MyListener -> com.example.zf_android.activity.df:
     com.example.zf_android.activity.GoodDeatail this$0 -> a
     void onPageScrollStateChanged(int) -> onPageScrollStateChanged
     void onPageScrolled(int,float,int) -> onPageScrolled
     void onPageSelected(int) -> onPageSelected
     com.example.zf_android.activity.GoodDeatail access$1(com.example.zf_android.activity.GoodDeatail$MyListener) -> a
-com.example.zf_android.activity.GoodDeatail$MyListener$1 -> com.example.zf_android.activity.df:
+com.example.zf_android.activity.GoodDeatail$MyListener$1 -> com.example.zf_android.activity.dg:
     com.example.zf_android.activity.GoodDeatail$MyListener this$1 -> a
     int val$position -> b
     void onClick(android.view.View) -> onClick
@@ -12937,12 +13500,12 @@ com.example.zf_android.activity.GoodDescription -> com.example.zf_android.activi
     java.util.List access$3(com.example.zf_android.activity.GoodDescription) -> c
     void access$4(com.example.zf_android.activity.GoodDescription,com.example.zf_zandroid.adapter.GoodDesAdapter) -> a
     com.example.zf_zandroid.adapter.GoodDesAdapter access$5(com.example.zf_android.activity.GoodDescription) -> d
-com.example.zf_android.activity.GoodDescription$1 -> com.example.zf_android.activity.dg:
+com.example.zf_android.activity.GoodDescription$1 -> com.example.zf_android.activity.dh:
     com.example.zf_android.activity.GoodDescription this$0 -> a
     void onSuccess(java.util.List) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.GoodDescription$1$1 -> com.example.zf_android.activity.dh:
+com.example.zf_android.activity.GoodDescription$1$1 -> com.example.zf_android.activity.di:
     com.example.zf_android.activity.GoodDescription$1 this$1 -> a
 com.example.zf_android.activity.GoodDetailImgs -> com.example.zf_android.activity.GoodDetailImgs:
     android.support.v4.view.ViewPager view_pager -> f
@@ -12957,7 +13520,7 @@ com.example.zf_android.activity.GoodDetailImgs -> com.example.zf_android.activit
     void access$0(com.example.zf_android.activity.GoodDetailImgs,android.widget.ImageView) -> a
     java.util.List access$1(com.example.zf_android.activity.GoodDetailImgs) -> a
     android.widget.ImageView access$2(com.example.zf_android.activity.GoodDetailImgs) -> b
-com.example.zf_android.activity.GoodDetailImgs$MyAdapter -> com.example.zf_android.activity.di:
+com.example.zf_android.activity.GoodDetailImgs$MyAdapter -> com.example.zf_android.activity.dj:
     java.util.List mList -> b
     int index -> c
     com.example.zf_android.activity.GoodDetailImgs this$0 -> a
@@ -12967,10 +13530,10 @@ com.example.zf_android.activity.GoodDetailImgs$MyAdapter -> com.example.zf_andro
     void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> destroyItem
     boolean isViewFromObject(android.view.View,java.lang.Object) -> isViewFromObject
     java.lang.Object instantiateItem(android.view.ViewGroup,int) -> instantiateItem
-com.example.zf_android.activity.GoodDetailImgs$MyAdapter$1 -> com.example.zf_android.activity.dj:
+com.example.zf_android.activity.GoodDetailImgs$MyAdapter$1 -> com.example.zf_android.activity.dk:
     com.example.zf_android.activity.GoodDetailImgs$MyAdapter this$1 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.GoodDetailImgs$MyListener -> com.example.zf_android.activity.dk:
+com.example.zf_android.activity.GoodDetailImgs$MyListener -> com.example.zf_android.activity.dl:
     com.example.zf_android.activity.GoodDetailImgs this$0 -> a
     void onPageScrollStateChanged(int) -> onPageScrollStateChanged
     void onPageScrolled(int,float,int) -> onPageScrolled
@@ -13009,25 +13572,25 @@ com.example.zf_android.activity.JifenActivity -> com.example.zf_android.activity
     void access$11(com.example.zf_android.activity.JifenActivity,int) -> a
     void access$12(com.example.zf_android.activity.JifenActivity,int) -> b
     android.os.Handler access$13(com.example.zf_android.activity.JifenActivity) -> j
-com.example.zf_android.activity.JifenActivity$1 -> com.example.zf_android.activity.dl:
+com.example.zf_android.activity.JifenActivity$1 -> com.example.zf_android.activity.dm:
     com.example.zf_android.activity.JifenActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.JifenActivity$2 -> com.example.zf_android.activity.dm:
+com.example.zf_android.activity.JifenActivity$2 -> com.example.zf_android.activity.dn:
     com.example.zf_android.activity.JifenActivity this$0 -> a
     void onSuccess(com.example.zf_android.entity.JifenTotalEntity) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.JifenActivity$2$1 -> com.example.zf_android.activity.dn:
+com.example.zf_android.activity.JifenActivity$2$1 -> com.example.zf_android.activity.do:
     com.example.zf_android.activity.JifenActivity$2 this$1 -> a
-com.example.zf_android.activity.JifenActivity$3 -> com.example.zf_android.activity.do:
+com.example.zf_android.activity.JifenActivity$3 -> com.example.zf_android.activity.dp:
     com.example.zf_android.activity.JifenActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.JifenActivity$4 -> com.example.zf_android.activity.dp:
+com.example.zf_android.activity.JifenActivity$4 -> com.example.zf_android.activity.dq:
     com.example.zf_android.activity.JifenActivity this$0 -> a
     void onSuccess(com.example.zf_android.trade.common.Page) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.JifenActivity$4$1 -> com.example.zf_android.activity.dq:
+com.example.zf_android.activity.JifenActivity$4$1 -> com.example.zf_android.activity.dr:
     com.example.zf_android.activity.JifenActivity$4 this$1 -> a
 com.example.zf_android.activity.LeaseAgreementActivity -> com.example.zf_android.activity.LeaseAgreementActivity:
     android.widget.TextView tv -> d
@@ -13088,21 +13651,21 @@ com.example.zf_android.activity.LeaseConfirm -> com.example.zf_android.activity.
     android.widget.TextView access$8(com.example.zf_android.activity.LeaseConfirm) -> h
     android.widget.TextView access$9(com.example.zf_android.activity.LeaseConfirm) -> i
     void access$10(com.example.zf_android.activity.LeaseConfirm,int) -> b
-com.example.zf_android.activity.LeaseConfirm$1 -> com.example.zf_android.activity.dr:
+com.example.zf_android.activity.LeaseConfirm$1 -> com.example.zf_android.activity.ds:
     com.example.zf_android.activity.LeaseConfirm this$0 -> a
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.example.zf_android.activity.LeaseConfirm$2 -> com.example.zf_android.activity.ds:
+com.example.zf_android.activity.LeaseConfirm$2 -> com.example.zf_android.activity.dt:
     com.example.zf_android.activity.LeaseConfirm this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.LeaseConfirm$3 -> com.example.zf_android.activity.dt:
+com.example.zf_android.activity.LeaseConfirm$3 -> com.example.zf_android.activity.du:
     com.example.zf_android.activity.LeaseConfirm this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.LeaseConfirm$3$1 -> com.example.zf_android.activity.du:
+com.example.zf_android.activity.LeaseConfirm$3$1 -> com.example.zf_android.activity.dv:
     com.example.zf_android.activity.LeaseConfirm$3 this$1 -> a
-com.example.zf_android.activity.LeaseConfirm$4 -> com.example.zf_android.activity.dv:
+com.example.zf_android.activity.LeaseConfirm$4 -> com.example.zf_android.activity.dw:
     com.example.zf_android.activity.LeaseConfirm this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
@@ -13137,24 +13700,24 @@ com.example.zf_android.activity.LoginActivity -> com.example.zf_android.activity
     android.widget.LinearLayout access$1(com.example.zf_android.activity.LoginActivity) -> b
     android.widget.LinearLayout access$2(com.example.zf_android.activity.LoginActivity) -> c
     android.content.SharedPreferences$Editor access$3(com.example.zf_android.activity.LoginActivity) -> d
-com.example.zf_android.activity.LoginActivity$1 -> com.example.zf_android.activity.dw:
+com.example.zf_android.activity.LoginActivity$1 -> com.example.zf_android.activity.dx:
     com.example.zf_android.activity.LoginActivity this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.LoginActivity$2 -> com.example.zf_android.activity.dx:
+com.example.zf_android.activity.LoginActivity$2 -> com.example.zf_android.activity.dy:
     com.example.zf_android.activity.LoginActivity this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.LoginActivity$3 -> com.example.zf_android.activity.dy:
+com.example.zf_android.activity.LoginActivity$3 -> com.example.zf_android.activity.dz:
     com.example.zf_android.activity.LoginActivity this$0 -> a
     void onSuccess(com.example.zf_android.entity.UserEntity) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.LoginActivity$3$1 -> com.example.zf_android.activity.dz:
+com.example.zf_android.activity.LoginActivity$3$1 -> com.example.zf_android.activity.ea:
     com.example.zf_android.activity.LoginActivity$3 this$1 -> a
-com.example.zf_android.activity.LoginActivity$4 -> com.example.zf_android.activity.ea:
+com.example.zf_android.activity.LoginActivity$4 -> com.example.zf_android.activity.eb:
     com.example.zf_android.activity.LoginActivity this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -13243,50 +13806,50 @@ com.example.zf_android.activity.Main -> com.example.zf_android.activity.Main:
     android.os.Handler access$17(com.example.zf_android.activity.Main) -> l
     void access$18(com.example.zf_android.activity.Main,java.lang.String) -> a
     void access$19(com.example.zf_android.activity.Main,java.lang.String) -> b
-com.example.zf_android.activity.Main$1 -> com.example.zf_android.activity.eb:
+com.example.zf_android.activity.Main$1 -> com.example.zf_android.activity.ec:
     com.example.zf_android.activity.Main this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
     com.example.zf_android.activity.Main access$0(com.example.zf_android.activity.Main$1) -> a
-com.example.zf_android.activity.Main$1$1 -> com.example.zf_android.activity.ec:
+com.example.zf_android.activity.Main$1$1 -> com.example.zf_android.activity.ed:
     com.example.zf_android.activity.Main$1 this$1 -> a
     void run() -> run
-com.example.zf_android.activity.Main$2 -> com.example.zf_android.activity.ed:
+com.example.zf_android.activity.Main$2 -> com.example.zf_android.activity.ee:
     com.example.zf_android.activity.Main this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.Main$3 -> com.example.zf_android.activity.ee:
+com.example.zf_android.activity.Main$3 -> com.example.zf_android.activity.ef:
     com.example.zf_android.activity.Main this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.Main$3$1 -> com.example.zf_android.activity.ef:
+com.example.zf_android.activity.Main$3$1 -> com.example.zf_android.activity.eg:
     com.example.zf_android.activity.Main$3 this$1 -> a
-com.example.zf_android.activity.Main$4 -> com.example.zf_android.activity.eg:
+com.example.zf_android.activity.Main$4 -> com.example.zf_android.activity.eh:
     com.example.zf_android.activity.Main this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.Main$4$1 -> com.example.zf_android.activity.eh:
+com.example.zf_android.activity.Main$4$1 -> com.example.zf_android.activity.ei:
     com.example.zf_android.activity.Main$4 this$1 -> a
-com.example.zf_android.activity.Main$5 -> com.example.zf_android.activity.ei:
+com.example.zf_android.activity.Main$5 -> com.example.zf_android.activity.ej:
     com.example.zf_android.activity.Main this$0 -> a
     com.example.zf_android.trade.common.CustomDialog val$dialog -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.Main$6 -> com.example.zf_android.activity.ej:
+com.example.zf_android.activity.Main$6 -> com.example.zf_android.activity.ek:
     com.example.zf_android.activity.Main this$0 -> a
     com.example.zf_android.trade.common.CustomDialog val$dialog -> b
     java.lang.String val$url -> c
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.Main$7 -> com.example.zf_android.activity.ek:
+com.example.zf_android.activity.Main$7 -> com.example.zf_android.activity.el:
     com.example.zf_android.activity.Main this$0 -> a
     java.lang.String val$url -> b
     java.io.File val$file -> c
     com.example.zf_android.activity.Main$DownloadListener val$listener -> d
     void run() -> run
-com.example.zf_android.activity.Main$DownloadListener -> com.example.zf_android.activity.el:
+com.example.zf_android.activity.Main$DownloadListener -> com.example.zf_android.activity.em:
     android.content.Context context -> a
     android.app.ProgressDialog pd -> b
     void downloading(int) -> downloading
     void downloaded(java.io.File) -> downloaded
     void exception(java.lang.Exception) -> exception
-com.example.zf_android.activity.Main$MyAdapter -> com.example.zf_android.activity.em:
+com.example.zf_android.activity.Main$MyAdapter -> com.example.zf_android.activity.en:
     java.util.List mList -> b
     int index -> c
     com.example.zf_android.activity.Main this$0 -> a
@@ -13297,25 +13860,25 @@ com.example.zf_android.activity.Main$MyAdapter -> com.example.zf_android.activit
     boolean isViewFromObject(android.view.View,java.lang.Object) -> isViewFromObject
     java.lang.Object instantiateItem(android.view.ViewGroup,int) -> instantiateItem
     com.example.zf_android.activity.Main access$0(com.example.zf_android.activity.Main$MyAdapter) -> a
-com.example.zf_android.activity.Main$MyAdapter$1 -> com.example.zf_android.activity.en:
+com.example.zf_android.activity.Main$MyAdapter$1 -> com.example.zf_android.activity.eo:
     com.example.zf_android.activity.Main$MyAdapter this$1 -> a
     int val$position -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.Main$MyListener -> com.example.zf_android.activity.eo:
+com.example.zf_android.activity.Main$MyListener -> com.example.zf_android.activity.ep:
     com.example.zf_android.activity.Main this$0 -> a
     void onPageScrollStateChanged(int) -> onPageScrollStateChanged
     void onPageScrolled(int,float,int) -> onPageScrolled
     void onPageSelected(int) -> onPageSelected
     com.example.zf_android.activity.Main access$1(com.example.zf_android.activity.Main$MyListener) -> a
-com.example.zf_android.activity.Main$MyListener$1 -> com.example.zf_android.activity.ep:
+com.example.zf_android.activity.Main$MyListener$1 -> com.example.zf_android.activity.eq:
     com.example.zf_android.activity.Main$MyListener this$1 -> a
     int val$position -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.Main$RemindTask -> com.example.zf_android.activity.eq:
+com.example.zf_android.activity.Main$RemindTask -> com.example.zf_android.activity.er:
     com.example.zf_android.activity.Main this$0 -> a
     void run() -> run
     com.example.zf_android.activity.Main access$0(com.example.zf_android.activity.Main$RemindTask) -> a
-com.example.zf_android.activity.Main$RemindTask$1 -> com.example.zf_android.activity.er:
+com.example.zf_android.activity.Main$RemindTask$1 -> com.example.zf_android.activity.es:
     com.example.zf_android.activity.Main$RemindTask this$1 -> a
     void run() -> run
 com.example.zf_android.activity.MenuMine -> com.example.zf_android.activity.MenuMine:
@@ -13407,42 +13970,42 @@ com.example.zf_android.activity.MerchantEdit -> com.example.zf_android.activity.
     int access$35(com.example.zf_android.activity.MerchantEdit) -> y
     java.lang.String access$36(com.example.zf_android.activity.MerchantEdit) -> z
     boolean access$37(com.example.zf_android.activity.MerchantEdit) -> A
-com.example.zf_android.activity.MerchantEdit$1 -> com.example.zf_android.activity.es:
+com.example.zf_android.activity.MerchantEdit$1 -> com.example.zf_android.activity.et:
     com.example.zf_android.activity.MerchantEdit this$0 -> a
     void onSuccess(com.example.zf_android.entity.MerchantEntity) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.MerchantEdit$1$1 -> com.example.zf_android.activity.et:
+com.example.zf_android.activity.MerchantEdit$1$1 -> com.example.zf_android.activity.eu:
     com.example.zf_android.activity.MerchantEdit$1 this$1 -> a
-com.example.zf_android.activity.MerchantEdit$2 -> com.example.zf_android.activity.eu:
+com.example.zf_android.activity.MerchantEdit$2 -> com.example.zf_android.activity.ev:
     com.example.zf_android.activity.MerchantEdit this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.activity.MerchantEdit$3 -> com.example.zf_android.activity.ev:
+com.example.zf_android.activity.MerchantEdit$3 -> com.example.zf_android.activity.ew:
     com.example.zf_android.activity.MerchantEdit this$0 -> a
     java.lang.String val$uri -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.activity.MerchantEdit$4 -> com.example.zf_android.activity.ew:
+com.example.zf_android.activity.MerchantEdit$4 -> com.example.zf_android.activity.ex:
     int type -> b
     com.example.zf_android.activity.MerchantEdit this$0 -> a
     android.widget.LinearLayout val$layout -> c
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.MerchantEdit$5 -> com.example.zf_android.activity.ex:
+com.example.zf_android.activity.MerchantEdit$5 -> com.example.zf_android.activity.ey:
     com.example.zf_android.activity.MerchantEdit this$0 -> a
     int val$requestCode -> b
     android.content.Intent val$data -> c
     android.os.Handler val$handler -> d
     void run() -> run
-com.example.zf_android.activity.MerchantEdit$5$1 -> com.example.zf_android.activity.ey:
+com.example.zf_android.activity.MerchantEdit$5$1 -> com.example.zf_android.activity.ez:
     com.example.zf_android.activity.MerchantEdit$5 this$1 -> a
     android.os.Handler val$handler -> b
     void onSuccess(java.lang.String) -> onSuccess
     void onFailed(java.lang.String) -> onFailed
-com.example.zf_android.activity.MerchantEdit$6 -> com.example.zf_android.activity.ez:
+com.example.zf_android.activity.MerchantEdit$6 -> com.example.zf_android.activity.fa:
     com.example.zf_android.activity.MerchantEdit this$0 -> a
     void onSuccess(java.lang.String) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.MerchantEdit$ItemOnClickListener -> com.example.zf_android.activity.fa:
+com.example.zf_android.activity.MerchantEdit$ItemOnClickListener -> com.example.zf_android.activity.fb:
     int type -> b
     java.lang.String title -> c
     com.example.zf_android.activity.MerchantEdit this$0 -> a
@@ -13487,40 +14050,40 @@ com.example.zf_android.activity.MerchantList -> com.example.zf_android.activity.
     void access$8(com.example.zf_android.activity.MerchantList,int) -> a
     void access$9(com.example.zf_android.activity.MerchantList,int) -> b
     android.os.Handler access$10(com.example.zf_android.activity.MerchantList) -> h
-com.example.zf_android.activity.MerchantList$1 -> com.example.zf_android.activity.fb:
+com.example.zf_android.activity.MerchantList$1 -> com.example.zf_android.activity.fc:
     com.example.zf_android.activity.MerchantList this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.MerchantList$2 -> com.example.zf_android.activity.fc:
+com.example.zf_android.activity.MerchantList$2 -> com.example.zf_android.activity.fd:
     com.example.zf_android.activity.MerchantList this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.MerchantList$3 -> com.example.zf_android.activity.fd:
+com.example.zf_android.activity.MerchantList$3 -> com.example.zf_android.activity.fe:
     com.example.zf_android.activity.MerchantList this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.MerchantList$4 -> com.example.zf_android.activity.fe:
+com.example.zf_android.activity.MerchantList$4 -> com.example.zf_android.activity.ff:
     com.example.zf_android.activity.MerchantList this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.MerchantList$5 -> com.example.zf_android.activity.ff:
+com.example.zf_android.activity.MerchantList$5 -> com.example.zf_android.activity.fg:
     com.example.zf_android.activity.MerchantList this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.activity.MerchantList access$0(com.example.zf_android.activity.MerchantList$5) -> a
-com.example.zf_android.activity.MerchantList$5$1 -> com.example.zf_android.activity.fg:
+com.example.zf_android.activity.MerchantList$5$1 -> com.example.zf_android.activity.fh:
     com.example.zf_android.activity.MerchantList$5 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
     com.example.zf_android.activity.MerchantList$5 access$0(com.example.zf_android.activity.MerchantList$5$1) -> a
-com.example.zf_android.activity.MerchantList$5$1$1 -> com.example.zf_android.activity.fh:
+com.example.zf_android.activity.MerchantList$5$1$1 -> com.example.zf_android.activity.fi:
     com.example.zf_android.activity.MerchantList$5$1 this$2 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.MerchantList$5$2 -> com.example.zf_android.activity.fi:
+com.example.zf_android.activity.MerchantList$5$2 -> com.example.zf_android.activity.fj:
     com.example.zf_android.activity.MerchantList$5 this$1 -> a
     android.app.AlertDialog val$dialog -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.activity.MerchantList$6 -> com.example.zf_android.activity.fj:
+com.example.zf_android.activity.MerchantList$6 -> com.example.zf_android.activity.fk:
     com.example.zf_android.activity.MerchantList this$0 -> a
     void onSuccess(com.example.zf_android.trade.common.Page) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.MerchantList$6$1 -> com.example.zf_android.activity.fk:
+com.example.zf_android.activity.MerchantList$6$1 -> com.example.zf_android.activity.fl:
     com.example.zf_android.activity.MerchantList$6 this$1 -> a
 com.example.zf_android.activity.MineSet -> com.example.zf_android.activity.MineSet:
     java.lang.String LOG_TAG -> d
@@ -13540,35 +14103,35 @@ com.example.zf_android.activity.MineSet -> com.example.zf_android.activity.MineS
     android.os.Handler access$1(com.example.zf_android.activity.MineSet) -> a
     android.app.Dialog access$2(com.example.zf_android.activity.MineSet) -> b
     java.lang.String access$3() -> a
-com.example.zf_android.activity.MineSet$1 -> com.example.zf_android.activity.fl:
+com.example.zf_android.activity.MineSet$1 -> com.example.zf_android.activity.fm:
     com.example.zf_android.activity.MineSet this$0 -> a
     void onSuccess(com.example.zf_android.entity.VersionEntity) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.MineSet$1$1 -> com.example.zf_android.activity.fm:
+com.example.zf_android.activity.MineSet$1$1 -> com.example.zf_android.activity.fn:
     com.example.zf_android.activity.MineSet$1 this$1 -> a
-com.example.zf_android.activity.MineSet$2 -> com.example.zf_android.activity.fn:
+com.example.zf_android.activity.MineSet$2 -> com.example.zf_android.activity.fo:
     com.example.zf_android.activity.MineSet this$0 -> a
     java.lang.String val$url -> b
     java.io.File val$file -> c
     com.example.zf_android.activity.MineSet$DownloadListener val$listener -> d
     void run() -> run
-com.example.zf_android.activity.MineSet$DownloadListener -> com.example.zf_android.activity.fo:
+com.example.zf_android.activity.MineSet$DownloadListener -> com.example.zf_android.activity.fp:
     com.example.zf_android.activity.MineSet sa -> a
     android.app.ProgressDialog pd -> b
     void downloading(int) -> downloading
     void downloaded(java.io.File) -> downloaded
     void exception(java.lang.Exception) -> exception
-com.example.zf_android.activity.MineSet$VersionHandler -> com.example.zf_android.activity.fp:
+com.example.zf_android.activity.MineSet$VersionHandler -> com.example.zf_android.activity.fq:
     int NO_NEW_VERSION -> NO_NEW_VERSION
     int HAS_NEW_VERSION -> HAS_NEW_VERSION
     android.content.Context context -> a
     void handleMessage(android.os.Message) -> handleMessage
     android.content.Context access$0(com.example.zf_android.activity.MineSet$VersionHandler) -> a
-com.example.zf_android.activity.MineSet$VersionHandler$1 -> com.example.zf_android.activity.fq:
+com.example.zf_android.activity.MineSet$VersionHandler$1 -> com.example.zf_android.activity.fr:
     com.example.zf_android.activity.MineSet$VersionHandler this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.activity.MineSet$VersionHandler$2 -> com.example.zf_android.activity.fr:
+com.example.zf_android.activity.MineSet$VersionHandler$2 -> com.example.zf_android.activity.fs:
     com.example.zf_android.activity.MineSet$VersionHandler this$1 -> a
     java.lang.String val$url -> b
     void onClick(android.content.DialogInterface,int) -> onClick
@@ -13601,16 +14164,16 @@ com.example.zf_android.activity.MyInfo -> com.example.zf_android.activity.MyInfo
     android.widget.TextView access$3(com.example.zf_android.activity.MyInfo) -> d
     android.widget.TextView access$4(com.example.zf_android.activity.MyInfo) -> e
     java.lang.String access$5(com.example.zf_android.activity.MyInfo,int) -> a
-com.example.zf_android.activity.MyInfo$1 -> com.example.zf_android.activity.fs:
+com.example.zf_android.activity.MyInfo$1 -> com.example.zf_android.activity.ft:
     com.example.zf_android.activity.MyInfo this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.MyInfo$2 -> com.example.zf_android.activity.ft:
+com.example.zf_android.activity.MyInfo$2 -> com.example.zf_android.activity.fu:
     com.example.zf_android.activity.MyInfo this$0 -> a
     void onSuccess(com.example.zf_android.entity.MyinfoEntity) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.MyInfo$2$1 -> com.example.zf_android.activity.fu:
+com.example.zf_android.activity.MyInfo$2$1 -> com.example.zf_android.activity.fv:
     com.example.zf_android.activity.MyInfo$2 this$1 -> a
 com.example.zf_android.activity.MyMessage -> com.example.zf_android.activity.MyMessage:
     com.example.zf_android.trade.widget.XListView Xlistview -> i
@@ -13660,34 +14223,34 @@ com.example.zf_android.activity.MyMessage -> com.example.zf_android.activity.MyM
     android.os.Handler access$12(com.example.zf_android.activity.MyMessage) -> k
     void access$13(com.example.zf_android.activity.MyMessage) -> l
     void access$14(com.example.zf_android.activity.MyMessage) -> m
-com.example.zf_android.activity.MyMessage$1 -> com.example.zf_android.activity.fv:
+com.example.zf_android.activity.MyMessage$1 -> com.example.zf_android.activity.fw:
     com.example.zf_android.activity.MyMessage this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.MyMessage$2 -> com.example.zf_android.activity.fw:
+com.example.zf_android.activity.MyMessage$2 -> com.example.zf_android.activity.fx:
     com.example.zf_android.activity.MyMessage this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.MyMessage$3 -> com.example.zf_android.activity.fx:
+com.example.zf_android.activity.MyMessage$3 -> com.example.zf_android.activity.fy:
     com.example.zf_android.activity.MyMessage this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.MyMessage$4 -> com.example.zf_android.activity.fy:
+com.example.zf_android.activity.MyMessage$4 -> com.example.zf_android.activity.fz:
     com.example.zf_android.activity.MyMessage this$0 -> a
     void onSuccess(com.example.zf_android.trade.common.Pageable) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.MyMessage$4$1 -> com.example.zf_android.activity.fz:
+com.example.zf_android.activity.MyMessage$4$1 -> com.example.zf_android.activity.ga:
     com.example.zf_android.activity.MyMessage$4 this$1 -> a
-com.example.zf_android.activity.MyMessage$5 -> com.example.zf_android.activity.ga:
+com.example.zf_android.activity.MyMessage$5 -> com.example.zf_android.activity.gb:
     com.example.zf_android.activity.MyMessage this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.activity.MyMessage$6 -> com.example.zf_android.activity.gb:
+com.example.zf_android.activity.MyMessage$6 -> com.example.zf_android.activity.gc:
     com.example.zf_android.activity.MyMessage this$0 -> a
     android.app.AlertDialog val$dialog -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.activity.MyMessage$7 -> com.example.zf_android.activity.gc:
+com.example.zf_android.activity.MyMessage$7 -> com.example.zf_android.activity.gd:
     com.example.zf_android.activity.MyMessage this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.MyMessage$8 -> com.example.zf_android.activity.gd:
+com.example.zf_android.activity.MyMessage$8 -> com.example.zf_android.activity.ge:
     com.example.zf_android.activity.MyMessage this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -13707,31 +14270,31 @@ com.example.zf_android.activity.MymsgDetail -> com.example.zf_android.activity.M
     android.widget.TextView access$2(com.example.zf_android.activity.MymsgDetail) -> c
     java.lang.String access$3(com.example.zf_android.activity.MymsgDetail) -> d
     void access$4(com.example.zf_android.activity.MymsgDetail) -> e
-com.example.zf_android.activity.MymsgDetail$1 -> com.example.zf_android.activity.ge:
+com.example.zf_android.activity.MymsgDetail$1 -> com.example.zf_android.activity.gf:
     com.example.zf_android.activity.MymsgDetail this$0 -> a
     void onSuccess(com.example.zf_android.entity.MessageEntity) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.MymsgDetail$1$1 -> com.example.zf_android.activity.gf:
+com.example.zf_android.activity.MymsgDetail$1$1 -> com.example.zf_android.activity.gg:
     com.example.zf_android.activity.MymsgDetail$1 this$1 -> a
-com.example.zf_android.activity.MymsgDetail$2 -> com.example.zf_android.activity.gg:
+com.example.zf_android.activity.MymsgDetail$2 -> com.example.zf_android.activity.gh:
     com.example.zf_android.activity.MymsgDetail this$0 -> a
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.MymsgDetail$3 -> com.example.zf_android.activity.gh:
+com.example.zf_android.activity.MymsgDetail$3 -> com.example.zf_android.activity.gi:
     com.example.zf_android.activity.MymsgDetail this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.MymsgDetail$4 -> com.example.zf_android.activity.gi:
+com.example.zf_android.activity.MymsgDetail$4 -> com.example.zf_android.activity.gj:
     com.example.zf_android.activity.MymsgDetail this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.activity.MymsgDetail access$0(com.example.zf_android.activity.MymsgDetail$4) -> a
-com.example.zf_android.activity.MymsgDetail$4$1 -> com.example.zf_android.activity.gj:
+com.example.zf_android.activity.MymsgDetail$4$1 -> com.example.zf_android.activity.gk:
     com.example.zf_android.activity.MymsgDetail$4 this$1 -> a
     void change() -> change
-com.example.zf_android.activity.MymsgDetail$5 -> com.example.zf_android.activity.gk:
+com.example.zf_android.activity.MymsgDetail$5 -> com.example.zf_android.activity.gl:
     com.example.zf_android.activity.MymsgDetail this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.MymsgDetail$6 -> com.example.zf_android.activity.gl:
+com.example.zf_android.activity.MymsgDetail$6 -> com.example.zf_android.activity.gm:
     com.example.zf_android.activity.MymsgDetail this$0 -> a
     void onClick(android.view.View) -> onClick
 com.example.zf_android.activity.OrderDetail -> com.example.zf_android.activity.OrderDetail:
@@ -13798,27 +14361,27 @@ com.example.zf_android.activity.OrderDetail -> com.example.zf_android.activity.O
     com.example.zf_zandroid.adapter.RecordAdapter access$21(com.example.zf_android.activity.OrderDetail) -> s
     android.os.Handler access$22(com.example.zf_android.activity.OrderDetail) -> t
     int access$23(com.example.zf_android.activity.OrderDetail) -> u
-com.example.zf_android.activity.OrderDetail$1 -> com.example.zf_android.activity.gm:
+com.example.zf_android.activity.OrderDetail$1 -> com.example.zf_android.activity.gn:
     com.example.zf_android.activity.OrderDetail this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.OrderDetail$2 -> com.example.zf_android.activity.gn:
+com.example.zf_android.activity.OrderDetail$2 -> com.example.zf_android.activity.go:
     com.example.zf_android.activity.OrderDetail this$0 -> a
     void onSuccess(java.util.List) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.OrderDetail$2$1 -> com.example.zf_android.activity.go:
+com.example.zf_android.activity.OrderDetail$2$1 -> com.example.zf_android.activity.gp:
     com.example.zf_android.activity.OrderDetail$2 this$1 -> a
-com.example.zf_android.activity.OrderDetail$3 -> com.example.zf_android.activity.gp:
+com.example.zf_android.activity.OrderDetail$3 -> com.example.zf_android.activity.gq:
     com.example.zf_android.activity.OrderDetail this$0 -> a
     android.app.AlertDialog val$dialog -> b
     void onClick(android.content.DialogInterface,int) -> onClick
     com.example.zf_android.activity.OrderDetail access$0(com.example.zf_android.activity.OrderDetail$3) -> a
-com.example.zf_android.activity.OrderDetail$3$1 -> com.example.zf_android.activity.gq:
+com.example.zf_android.activity.OrderDetail$3$1 -> com.example.zf_android.activity.gr:
     com.example.zf_android.activity.OrderDetail$3 this$1 -> a
     android.app.AlertDialog val$dialog -> b
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.OrderDetail$4 -> com.example.zf_android.activity.gr:
+com.example.zf_android.activity.OrderDetail$4 -> com.example.zf_android.activity.gs:
     com.example.zf_android.activity.OrderDetail this$0 -> a
     android.app.AlertDialog val$dialog -> b
     void onClick(android.content.DialogInterface,int) -> onClick
@@ -13857,30 +14420,30 @@ com.example.zf_android.activity.OrderList -> com.example.zf_android.activity.Ord
     int access$11(com.example.zf_android.activity.OrderList) -> i
     void access$12(com.example.zf_android.activity.OrderList,int) -> c
     android.os.Handler access$13(com.example.zf_android.activity.OrderList) -> j
-com.example.zf_android.activity.OrderList$1 -> com.example.zf_android.activity.gs:
+com.example.zf_android.activity.OrderList$1 -> com.example.zf_android.activity.gt:
     com.example.zf_android.activity.OrderList this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.OrderList$2 -> com.example.zf_android.activity.gt:
+com.example.zf_android.activity.OrderList$2 -> com.example.zf_android.activity.gu:
     com.example.zf_android.activity.OrderList this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.OrderList$3 -> com.example.zf_android.activity.gu:
+com.example.zf_android.activity.OrderList$3 -> com.example.zf_android.activity.gv:
     com.example.zf_android.activity.OrderList this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.OrderList$4 -> com.example.zf_android.activity.gv:
+com.example.zf_android.activity.OrderList$4 -> com.example.zf_android.activity.gw:
     com.example.zf_android.activity.OrderList this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.OrderList$5 -> com.example.zf_android.activity.gw:
+com.example.zf_android.activity.OrderList$5 -> com.example.zf_android.activity.gx:
     com.example.zf_android.activity.OrderList this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.OrderList$6 -> com.example.zf_android.activity.gx:
+com.example.zf_android.activity.OrderList$6 -> com.example.zf_android.activity.gy:
     com.example.zf_android.activity.OrderList this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.OrderList$7 -> com.example.zf_android.activity.gy:
+com.example.zf_android.activity.OrderList$7 -> com.example.zf_android.activity.gz:
     com.example.zf_android.activity.OrderList this$0 -> a
     void onSuccess(com.example.zf_android.trade.common.Pageable) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.OrderList$7$1 -> com.example.zf_android.activity.gz:
+com.example.zf_android.activity.OrderList$7$1 -> com.example.zf_android.activity.ha:
     com.example.zf_android.activity.OrderList$7 this$1 -> a
 com.example.zf_android.activity.PassSucces -> com.example.zf_android.activity.PassSucces:
     android.widget.LinearLayout login_linear_signin -> d
@@ -13915,18 +14478,18 @@ com.example.zf_android.activity.PayFromCar -> com.example.zf_android.activity.Pa
     void access$7(com.example.zf_android.activity.PayFromCar,java.lang.String) -> d
     void access$8(com.example.zf_android.activity.PayFromCar,java.lang.String) -> e
     android.os.Handler access$9(com.example.zf_android.activity.PayFromCar) -> e
-com.example.zf_android.activity.PayFromCar$1 -> com.example.zf_android.activity.ha:
+com.example.zf_android.activity.PayFromCar$1 -> com.example.zf_android.activity.hb:
     com.example.zf_android.activity.PayFromCar this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.PayFromCar$2 -> com.example.zf_android.activity.hb:
+com.example.zf_android.activity.PayFromCar$2 -> com.example.zf_android.activity.hc:
     com.example.zf_android.activity.PayFromCar this$0 -> a
     void change() -> change
-com.example.zf_android.activity.PayFromCar$3 -> com.example.zf_android.activity.hc:
+com.example.zf_android.activity.PayFromCar$3 -> com.example.zf_android.activity.hd:
     com.example.zf_android.activity.PayFromCar this$0 -> a
     void onSuccess(java.util.List) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.PayFromCar$3$1 -> com.example.zf_android.activity.hd:
+com.example.zf_android.activity.PayFromCar$3$1 -> com.example.zf_android.activity.he:
     com.example.zf_android.activity.PayFromCar$3 this$1 -> a
 com.example.zf_android.activity.PosListActivity -> com.example.zf_android.activity.PosListActivity:
     android.widget.ImageView pos_select -> g
@@ -13980,18 +14543,18 @@ com.example.zf_android.activity.PosListActivity -> com.example.zf_android.activi
     com.example.zf_zandroid.adapter.PosAdapter access$3(com.example.zf_android.activity.PosListActivity) -> d
     void access$4$429ee8a9(com.example.zf_android.activity.PosListActivity) -> e
     android.os.Handler access$5(com.example.zf_android.activity.PosListActivity) -> f
-com.example.zf_android.activity.PosListActivity$1 -> com.example.zf_android.activity.he:
+com.example.zf_android.activity.PosListActivity$1 -> com.example.zf_android.activity.hf:
     com.example.zf_android.activity.PosListActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.PosListActivity$2 -> com.example.zf_android.activity.hf:
+com.example.zf_android.activity.PosListActivity$2 -> com.example.zf_android.activity.hg:
     com.example.zf_android.activity.PosListActivity this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.PosListActivity$3 -> com.example.zf_android.activity.hg:
+com.example.zf_android.activity.PosListActivity$3 -> com.example.zf_android.activity.hh:
     com.example.zf_android.activity.PosListActivity this$0 -> a
     void onSuccess(com.example.zf_android.entity.NewPoslistEntity) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.PosListActivity$3$1 -> com.example.zf_android.activity.hh:
+com.example.zf_android.activity.PosListActivity$3$1 -> com.example.zf_android.activity.hi:
     com.example.zf_android.activity.PosListActivity$3 this$1 -> a
 com.example.zf_android.activity.PosSearch -> com.example.zf_android.activity.PosSearch:
     java.lang.String CName -> h
@@ -14024,25 +14587,25 @@ com.example.zf_android.activity.PosSearch -> com.example.zf_android.activity.Pos
     java.lang.String access$7(com.example.zf_android.activity.PosSearch) -> e
     android.widget.EditText access$8(com.example.zf_android.activity.PosSearch) -> f
     android.widget.LinearLayout access$9(com.example.zf_android.activity.PosSearch) -> g
-com.example.zf_android.activity.PosSearch$1 -> com.example.zf_android.activity.hi:
+com.example.zf_android.activity.PosSearch$1 -> com.example.zf_android.activity.hj:
     com.example.zf_android.activity.PosSearch this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
     com.example.zf_android.activity.PosSearch access$0(com.example.zf_android.activity.PosSearch$1) -> a
-com.example.zf_android.activity.PosSearch$1$1 -> com.example.zf_android.activity.hj:
+com.example.zf_android.activity.PosSearch$1$1 -> com.example.zf_android.activity.hk:
     com.example.zf_android.activity.PosSearch$1 this$1 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.PosSearch$2 -> com.example.zf_android.activity.hk:
+com.example.zf_android.activity.PosSearch$2 -> com.example.zf_android.activity.hl:
     com.example.zf_android.activity.PosSearch this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.PosSearch$3 -> com.example.zf_android.activity.hl:
+com.example.zf_android.activity.PosSearch$3 -> com.example.zf_android.activity.hm:
     com.example.zf_android.activity.PosSearch this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.PosSearch$4 -> com.example.zf_android.activity.hm:
+com.example.zf_android.activity.PosSearch$4 -> com.example.zf_android.activity.hn:
     com.example.zf_android.activity.PosSearch this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.PosSearch$5 -> com.example.zf_android.activity.hn:
+com.example.zf_android.activity.PosSearch$5 -> com.example.zf_android.activity.ho:
     com.example.zf_android.activity.PosSearch this$0 -> a
     void onClick(android.view.View) -> onClick
 com.example.zf_android.activity.PosSelecList -> com.example.zf_android.activity.PosSelecList:
@@ -14065,10 +14628,10 @@ com.example.zf_android.activity.PosSelecList -> com.example.zf_android.activity.
     void access$1(com.example.zf_android.activity.PosSelecList,boolean) -> a
     java.util.List access$2(com.example.zf_android.activity.PosSelecList) -> b
     android.os.Handler access$3(com.example.zf_android.activity.PosSelecList) -> c
-com.example.zf_android.activity.PosSelecList$1 -> com.example.zf_android.activity.ho:
+com.example.zf_android.activity.PosSelecList$1 -> com.example.zf_android.activity.hp:
     com.example.zf_android.activity.PosSelecList this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.PosSelecList$2 -> com.example.zf_android.activity.hp:
+com.example.zf_android.activity.PosSelecList$2 -> com.example.zf_android.activity.hq:
     com.example.zf_android.activity.PosSelecList this$0 -> a
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.example.zf_android.activity.PosSelecSon -> com.example.zf_android.activity.PosSelecSon:
@@ -14088,10 +14651,10 @@ com.example.zf_android.activity.PosSelecSon -> com.example.zf_android.activity.P
     com.example.zf_zandroid.adapter.MyExpandableListAdapter access$0(com.example.zf_android.activity.PosSelecSon) -> a
     java.util.List access$1(com.example.zf_android.activity.PosSelecSon) -> b
     android.os.Handler access$2(com.example.zf_android.activity.PosSelecSon) -> c
-com.example.zf_android.activity.PosSelecSon$1 -> com.example.zf_android.activity.hq:
+com.example.zf_android.activity.PosSelecSon$1 -> com.example.zf_android.activity.hr:
     com.example.zf_android.activity.PosSelecSon this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.PosSelecSon$2 -> com.example.zf_android.activity.hr:
+com.example.zf_android.activity.PosSelecSon$2 -> com.example.zf_android.activity.hs:
     com.example.zf_android.activity.PosSelecSon this$0 -> a
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.example.zf_android.activity.PosSelect -> com.example.zf_android.activity.PosSelect:
@@ -14133,11 +14696,11 @@ com.example.zf_android.activity.PosSelect -> com.example.zf_android.activity.Pos
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     void access$0(com.example.zf_android.activity.PosSelect,com.example.zf_android.entity.PosSelectEntity) -> a
     com.example.zf_android.entity.PosSelectEntity access$1(com.example.zf_android.activity.PosSelect) -> a
-com.example.zf_android.activity.PosSelect$1 -> com.example.zf_android.activity.hs:
+com.example.zf_android.activity.PosSelect$1 -> com.example.zf_android.activity.ht:
     com.example.zf_android.activity.PosSelect this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.PosSelect$1$1 -> com.example.zf_android.activity.ht:
+com.example.zf_android.activity.PosSelect$1$1 -> com.example.zf_android.activity.hu:
     com.example.zf_android.activity.PosSelect$1 this$1 -> a
 com.example.zf_android.activity.Regist4mailSucces -> com.example.zf_android.activity.Regist4mailSucces:
     android.widget.TextView tv_tel -> d
@@ -14169,22 +14732,22 @@ com.example.zf_android.activity.RegistMail -> com.example.zf_android.activity.Re
     android.widget.LinearLayout access$1(com.example.zf_android.activity.RegistMail) -> b
     android.widget.LinearLayout access$2(com.example.zf_android.activity.RegistMail) -> c
     java.lang.String access$3(com.example.zf_android.activity.RegistMail) -> d
-com.example.zf_android.activity.RegistMail$1 -> com.example.zf_android.activity.hu:
+com.example.zf_android.activity.RegistMail$1 -> com.example.zf_android.activity.hv:
     com.example.zf_android.activity.RegistMail this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.RegistMail$2 -> com.example.zf_android.activity.hv:
+com.example.zf_android.activity.RegistMail$2 -> com.example.zf_android.activity.hw:
     com.example.zf_android.activity.RegistMail this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.RegistMail$3 -> com.example.zf_android.activity.hw:
+com.example.zf_android.activity.RegistMail$3 -> com.example.zf_android.activity.hx:
     com.example.zf_android.activity.RegistMail this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.RegistMail$4 -> com.example.zf_android.activity.hx:
+com.example.zf_android.activity.RegistMail$4 -> com.example.zf_android.activity.hy:
     com.example.zf_android.activity.RegistMail this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -14209,12 +14772,12 @@ com.example.zf_android.activity.Register -> com.example.zf_android.activity.Regi
     android.widget.LinearLayout access$1(com.example.zf_android.activity.Register) -> b
     android.widget.LinearLayout access$2(com.example.zf_android.activity.Register) -> c
     android.widget.EditText access$3(com.example.zf_android.activity.Register) -> d
-com.example.zf_android.activity.Register$1 -> com.example.zf_android.activity.hy:
+com.example.zf_android.activity.Register$1 -> com.example.zf_android.activity.hz:
     com.example.zf_android.activity.Register this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.Register$2 -> com.example.zf_android.activity.hz:
+com.example.zf_android.activity.Register$2 -> com.example.zf_android.activity.ia:
     com.example.zf_android.activity.Register this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -14243,27 +14806,27 @@ com.example.zf_android.activity.Register3phone -> com.example.zf_android.activit
     void access$2(com.example.zf_android.activity.Register3phone,int) -> a
     android.widget.ImageView access$3(com.example.zf_android.activity.Register3phone) -> c
     android.widget.LinearLayout access$4(com.example.zf_android.activity.Register3phone) -> d
-com.example.zf_android.activity.Register3phone$1 -> com.example.zf_android.activity.ia:
+com.example.zf_android.activity.Register3phone$1 -> com.example.zf_android.activity.ib:
     com.example.zf_android.activity.Register3phone this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.Register3phone$2 -> com.example.zf_android.activity.ib:
+com.example.zf_android.activity.Register3phone$2 -> com.example.zf_android.activity.ic:
     com.example.zf_android.activity.Register3phone this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.Register3phone$3 -> com.example.zf_android.activity.ic:
+com.example.zf_android.activity.Register3phone$3 -> com.example.zf_android.activity.id:
     com.example.zf_android.activity.Register3phone this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.Register3phone$4 -> com.example.zf_android.activity.id:
+com.example.zf_android.activity.Register3phone$4 -> com.example.zf_android.activity.ie:
     com.example.zf_android.activity.Register3phone this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.Register3phone$5 -> com.example.zf_android.activity.ie:
+com.example.zf_android.activity.Register3phone$5 -> com.example.zf_android.activity.if:
     com.example.zf_android.activity.Register3phone this$0 -> a
     com.example.zf_android.trade.common.CustomDialog val$dialog -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.Register3phone$6 -> com.example.zf_android.activity.if:
+com.example.zf_android.activity.Register3phone$6 -> com.example.zf_android.activity.ig:
     com.example.zf_android.activity.Register3phone this$0 -> a
     com.example.zf_android.trade.common.CustomDialog val$dialog -> b
     void onClick(android.view.View) -> onClick
@@ -14287,25 +14850,25 @@ com.example.zf_android.activity.Register4phone -> com.example.zf_android.activit
     android.widget.LinearLayout access$0(com.example.zf_android.activity.Register4phone) -> a
     android.widget.LinearLayout access$1(com.example.zf_android.activity.Register4phone) -> b
     android.widget.LinearLayout access$2(com.example.zf_android.activity.Register4phone) -> c
-com.example.zf_android.activity.Register4phone$1 -> com.example.zf_android.activity.ig:
+com.example.zf_android.activity.Register4phone$1 -> com.example.zf_android.activity.ih:
     com.example.zf_android.activity.Register4phone this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.Register4phone$2 -> com.example.zf_android.activity.ih:
+com.example.zf_android.activity.Register4phone$2 -> com.example.zf_android.activity.ii:
     com.example.zf_android.activity.Register4phone this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.Register4phone$3 -> com.example.zf_android.activity.ii:
+com.example.zf_android.activity.Register4phone$3 -> com.example.zf_android.activity.ij:
     com.example.zf_android.activity.Register4phone this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.activity.Register4phone$4 -> com.example.zf_android.activity.ij:
+com.example.zf_android.activity.Register4phone$4 -> com.example.zf_android.activity.ik:
     com.example.zf_android.activity.Register4phone this$0 -> a
     com.example.zf_android.trade.common.CustomDialog val$dialog -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.Register4phone$5 -> com.example.zf_android.activity.ik:
+com.example.zf_android.activity.Register4phone$5 -> com.example.zf_android.activity.il:
     com.example.zf_android.activity.Register4phone this$0 -> a
     com.example.zf_android.trade.common.CustomDialog val$dialog -> b
     void onClick(android.view.View) -> onClick
@@ -14334,18 +14897,18 @@ com.example.zf_android.activity.ShopCar -> com.example.zf_android.activity.ShopC
     com.example.zf_android.trade.widget.XListView access$5(com.example.zf_android.activity.ShopCar) -> e
     android.widget.LinearLayout access$6(com.example.zf_android.activity.ShopCar) -> f
     com.example.zf_zandroid.adapter.ShopcarAdapter access$7(com.example.zf_android.activity.ShopCar) -> g
-com.example.zf_android.activity.ShopCar$1 -> com.example.zf_android.activity.il:
+com.example.zf_android.activity.ShopCar$1 -> com.example.zf_android.activity.im:
     com.example.zf_android.activity.ShopCar this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.ShopCar$2 -> com.example.zf_android.activity.im:
+com.example.zf_android.activity.ShopCar$2 -> com.example.zf_android.activity.in:
     com.example.zf_android.activity.ShopCar this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.ShopCar$3 -> com.example.zf_android.activity.in:
+com.example.zf_android.activity.ShopCar$3 -> com.example.zf_android.activity.io:
     com.example.zf_android.activity.ShopCar this$0 -> a
     void onSuccess(java.util.List) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.activity.ShopCar$3$1 -> com.example.zf_android.activity.io:
+com.example.zf_android.activity.ShopCar$3$1 -> com.example.zf_android.activity.ip:
     com.example.zf_android.activity.ShopCar$3 this$1 -> a
 com.example.zf_android.activity.SystemDetail -> com.example.zf_android.activity.SystemDetail:
     android.widget.TextView tv_titel -> d
@@ -14356,11 +14919,11 @@ com.example.zf_android.activity.SystemDetail -> com.example.zf_android.activity.
     android.widget.TextView access$0(com.example.zf_android.activity.SystemDetail) -> a
     android.widget.TextView access$1(com.example.zf_android.activity.SystemDetail) -> b
     android.widget.TextView access$2(com.example.zf_android.activity.SystemDetail) -> c
-com.example.zf_android.activity.SystemDetail$1 -> com.example.zf_android.activity.ip:
+com.example.zf_android.activity.SystemDetail$1 -> com.example.zf_android.activity.iq:
     com.example.zf_android.activity.SystemDetail this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.SystemDetail$1$1 -> com.example.zf_android.activity.iq:
+com.example.zf_android.activity.SystemDetail$1$1 -> com.example.zf_android.activity.ir:
     com.example.zf_android.activity.SystemDetail$1 this$1 -> a
 com.example.zf_android.activity.SystemMessage -> com.example.zf_android.activity.SystemMessage:
     com.example.zf_android.trade.widget.XListView Xlistview -> f
@@ -14384,17 +14947,17 @@ com.example.zf_android.activity.SystemMessage -> com.example.zf_android.activity
     void access$3$6b5efcc0(com.example.zf_android.activity.SystemMessage) -> d
     com.example.zf_zandroid.adapter.MessageAdapter access$4(com.example.zf_android.activity.SystemMessage) -> e
     android.os.Handler access$5(com.example.zf_android.activity.SystemMessage) -> f
-com.example.zf_android.activity.SystemMessage$1 -> com.example.zf_android.activity.ir:
+com.example.zf_android.activity.SystemMessage$1 -> com.example.zf_android.activity.is:
     com.example.zf_android.activity.SystemMessage this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.activity.SystemMessage$2 -> com.example.zf_android.activity.is:
+com.example.zf_android.activity.SystemMessage$2 -> com.example.zf_android.activity.it:
     com.example.zf_android.activity.SystemMessage this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.activity.SystemMessage$3 -> com.example.zf_android.activity.it:
+com.example.zf_android.activity.SystemMessage$3 -> com.example.zf_android.activity.iu:
     com.example.zf_android.activity.SystemMessage this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_android.activity.SystemMessage$3$1 -> com.example.zf_android.activity.iu:
+com.example.zf_android.activity.SystemMessage$3$1 -> com.example.zf_android.activity.iv:
     com.example.zf_android.activity.SystemMessage$3 this$1 -> a
 com.example.zf_android.activity.TradeRate -> com.example.zf_android.activity.TradeRate:
     com.examlpe.zf_android.util.ScrollViewWithListView lv -> d
@@ -14429,15 +14992,15 @@ com.example.zf_android.activity.WantBuy -> com.example.zf_android.activity.WantB
     android.widget.EditText access$5(com.example.zf_android.activity.WantBuy) -> d
     void access$6(com.example.zf_android.activity.WantBuy,java.lang.String) -> c
     boolean access$7(com.example.zf_android.activity.WantBuy) -> e
-com.example.zf_android.activity.WantBuy$1 -> com.example.zf_android.activity.iv:
+com.example.zf_android.activity.WantBuy$1 -> com.example.zf_android.activity.iw:
     com.example.zf_android.activity.WantBuy this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.activity.WantBuy$2 -> com.example.zf_android.activity.iw:
+com.example.zf_android.activity.WantBuy$2 -> com.example.zf_android.activity.ix:
     com.example.zf_android.activity.WantBuy this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.activity.WantBuy$3 -> com.example.zf_android.activity.ix:
+com.example.zf_android.activity.WantBuy$3 -> com.example.zf_android.activity.iy:
     com.example.zf_android.activity.WantBuy this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -14456,17 +15019,17 @@ com.example.zf_android.activity.WelcomeActivity -> com.example.zf_android.activi
     android.widget.ImageView access$0(com.example.zf_android.activity.WelcomeActivity) -> a
     void access$1(com.example.zf_android.activity.WelcomeActivity) -> b
     java.util.ArrayList access$2(com.example.zf_android.activity.WelcomeActivity) -> c
-com.example.zf_android.activity.WelcomeActivity$1 -> com.example.zf_android.activity.iy:
+com.example.zf_android.activity.WelcomeActivity$1 -> com.example.zf_android.activity.iz:
     com.example.zf_android.activity.WelcomeActivity this$0 -> a
     void run() -> run
-com.example.zf_android.activity.WelcomeActivity$2 -> com.example.zf_android.activity.iz:
+com.example.zf_android.activity.WelcomeActivity$2 -> com.example.zf_android.activity.ja:
     com.example.zf_android.activity.WelcomeActivity this$0 -> a
     boolean isViewFromObject(android.view.View,java.lang.Object) -> isViewFromObject
     int getCount() -> getCount
     java.lang.Object instantiateItem(android.view.ViewGroup,int) -> instantiateItem
     void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> destroyItem
     com.example.zf_android.activity.WelcomeActivity access$0(com.example.zf_android.activity.WelcomeActivity$2) -> a
-com.example.zf_android.activity.WelcomeActivity$2$1 -> com.example.zf_android.activity.ja:
+com.example.zf_android.activity.WelcomeActivity$2$1 -> com.example.zf_android.activity.jb:
     com.example.zf_android.activity.WelcomeActivity$2 this$1 -> a
     void onClick(android.view.View) -> onClick
 com.example.zf_android.alipay.Base64 -> com.example.zf_android.a.a:
@@ -18210,6 +18773,13 @@ com.example.zf_android.video.VideoActivity -> com.example.zf_android.video.Video
     void onPause() -> onPause
     void onDestroy() -> onDestroy
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    void OnAnyChatConnectMessage(boolean) -> OnAnyChatConnectMessage
+    void OnAnyChatLoginMessage(int,int) -> OnAnyChatLoginMessage
+    void OnAnyChatEnterRoomMessage(int,int) -> OnAnyChatEnterRoomMessage
+    void OnAnyChatOnlineUserMessage(int,int) -> OnAnyChatOnlineUserMessage
+    void OnAnyChatUserAtRoomMessage(int,boolean) -> OnAnyChatUserAtRoomMessage
+    void OnAnyChatLinkCloseMessage(int) -> OnAnyChatLinkCloseMessage
+    int videoOther() -> c
     android.widget.TextView access$0(com.example.zf_android.video.VideoActivity) -> a
     void access$1(com.example.zf_android.video.VideoActivity,java.lang.Boolean) -> a
     android.view.SurfaceView access$2(com.example.zf_android.video.VideoActivity) -> b

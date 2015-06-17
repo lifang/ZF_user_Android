@@ -6871,9 +6871,67 @@ android.support.v4.widget.ViewDragHelper$Callback: int getViewVerticalDragRange(
 android.support.v4.widget.ViewDragHelper$Callback: boolean tryCaptureView(android.view.View,int)
 android.support.v4.widget.ViewDragHelper$Callback: int clampViewPositionHorizontal(android.view.View,int,int)
 android.support.v4.widget.ViewDragHelper$Callback: int clampViewPositionVertical(android.view.View,int,int)
-cn.trinea.android.common.constant.AndroidConstants
-cn.trinea.android.common.constant.AndroidConstants: int ICE_CREAM_SANDWICH
-cn.trinea.android.common.constant.AndroidConstants: AndroidConstants()
+cn.trinea.android.common.R
+cn.trinea.android.common.R: R()
+cn.trinea.android.common.R$attr
+cn.trinea.android.common.R$attr: int isAutoLoadOnBottom
+cn.trinea.android.common.R$attr: int isDropDownStyle
+cn.trinea.android.common.R$attr: int isOnBottomStyle
+cn.trinea.android.common.R$attr: R$attr()
+cn.trinea.android.common.R$color
+cn.trinea.android.common.R$color: int drop_down_list_footer_font_color
+cn.trinea.android.common.R$color: int drop_down_list_header_font_color
+cn.trinea.android.common.R$color: int drop_down_list_header_second_font_color
+cn.trinea.android.common.R$color: R$color()
+cn.trinea.android.common.R$dimen
+cn.trinea.android.common.R$dimen: int drop_down_list_footer_button_height
+cn.trinea.android.common.R$dimen: int drop_down_list_footer_button_margin_left
+cn.trinea.android.common.R$dimen: int drop_down_list_footer_progress_bar_height
+cn.trinea.android.common.R$dimen: int drop_down_list_header_padding_bottom
+cn.trinea.android.common.R$dimen: int drop_down_list_header_padding_top
+cn.trinea.android.common.R$dimen: int drop_down_list_header_progress_bar_height
+cn.trinea.android.common.R$dimen: int drop_down_list_header_release_min_distance
+cn.trinea.android.common.R$dimen: R$dimen()
+cn.trinea.android.common.R$drawable
+cn.trinea.android.common.R$drawable: int drop_down_list_arrow
+cn.trinea.android.common.R$drawable: R$drawable()
+cn.trinea.android.common.R$id
+cn.trinea.android.common.R$id: int drop_down_list_footer_button
+cn.trinea.android.common.R$id: int drop_down_list_footer_progress_bar
+cn.trinea.android.common.R$id: int drop_down_list_header_default_text
+cn.trinea.android.common.R$id: int drop_down_list_header_default_text_layout
+cn.trinea.android.common.R$id: int drop_down_list_header_image
+cn.trinea.android.common.R$id: int drop_down_list_header_progress_bar
+cn.trinea.android.common.R$id: int drop_down_list_header_second_text
+cn.trinea.android.common.R$id: R$id()
+cn.trinea.android.common.R$layout
+cn.trinea.android.common.R$layout: int drop_down_list_footer
+cn.trinea.android.common.R$layout: int drop_down_list_header
+cn.trinea.android.common.R$layout: R$layout()
+cn.trinea.android.common.R$string
+cn.trinea.android.common.R$string: int drop_down_list_footer_default_text
+cn.trinea.android.common.R$string: int drop_down_list_footer_loading_text
+cn.trinea.android.common.R$string: int drop_down_list_footer_no_more_text
+cn.trinea.android.common.R$string: int drop_down_list_header_default_text
+cn.trinea.android.common.R$string: int drop_down_list_header_loading_text
+cn.trinea.android.common.R$string: int drop_down_list_header_pull_text
+cn.trinea.android.common.R$string: int drop_down_list_header_release_text
+cn.trinea.android.common.R$string: int image_content
+cn.trinea.android.common.R$string: R$string()
+cn.trinea.android.common.R$style
+cn.trinea.android.common.R$style: int drop_down_list_footer_font_style
+cn.trinea.android.common.R$style: int drop_down_list_footer_progress_bar_style
+cn.trinea.android.common.R$style: int drop_down_list_header_font_style
+cn.trinea.android.common.R$style: int drop_down_list_header_progress_bar_style
+cn.trinea.android.common.R$style: int drop_down_list_header_second_font_style
+cn.trinea.android.common.R$style: R$style()
+cn.trinea.android.common.R$styleable
+cn.trinea.android.common.R$styleable: int[] drop_down_list_attr
+cn.trinea.android.common.R$styleable: int drop_down_list_attr_isAutoLoadOnBottom
+cn.trinea.android.common.R$styleable: int drop_down_list_attr_isDropDownStyle
+cn.trinea.android.common.R$styleable: int drop_down_list_attr_isOnBottomStyle
+cn.trinea.android.common.R$styleable: void <clinit>()
+cn.trinea.android.common.R$styleable: R$styleable()
 cn.trinea.android.common.constant.DbConstants
 cn.trinea.android.common.constant.DbConstants: java.lang.String DB_NAME
 cn.trinea.android.common.constant.DbConstants: int DB_VERSION
@@ -7044,7 +7102,7 @@ cn.trinea.android.common.entity.HttpResponse: boolean isExpired()
 cn.trinea.android.common.entity.HttpResponse: boolean isInCache()
 cn.trinea.android.common.entity.HttpResponse: cn.trinea.android.common.entity.HttpResponse setInCache(boolean)
 cn.trinea.android.common.entity.HttpResponse: java.lang.String getExpiresHeader()
-cn.trinea.android.common.entity.HttpResponse: int getCacheControlMaxAge()
+cn.trinea.android.common.entity.HttpResponse: long getCacheControlMaxAge()
 cn.trinea.android.common.entity.HttpResponse: long getExpiresInMillis()
 cn.trinea.android.common.entity.HttpResponse: void setResponseHeader(java.lang.String,java.lang.String)
 cn.trinea.android.common.entity.HttpResponse: java.lang.Object getResponseHeader(java.lang.String)
@@ -7535,6 +7593,7 @@ cn.trinea.android.common.service.impl.SimpleCache: void saveCache(java.lang.Stri
 cn.trinea.android.common.util.AppUtils
 cn.trinea.android.common.util.AppUtils: AppUtils()
 cn.trinea.android.common.util.AppUtils: boolean isNamedProcess(android.content.Context,java.lang.String)
+cn.trinea.android.common.util.AppUtils: boolean isApplicationInBackground(android.content.Context)
 cn.trinea.android.common.util.ArrayUtils
 cn.trinea.android.common.util.ArrayUtils: ArrayUtils()
 cn.trinea.android.common.util.ArrayUtils: boolean isEmpty(java.lang.Object[])
@@ -7561,6 +7620,12 @@ cn.trinea.android.common.util.CacheManager: CacheManager()
 cn.trinea.android.common.util.CacheManager: cn.trinea.android.common.service.HttpCache getHttpCache(android.content.Context)
 cn.trinea.android.common.util.CacheManager: cn.trinea.android.common.service.impl.ImageCache getImageCache()
 cn.trinea.android.common.util.CacheManager: cn.trinea.android.common.service.impl.ImageSDCardCache getImageSDCardCache()
+cn.trinea.android.common.util.CollectionUtils
+cn.trinea.android.common.util.CollectionUtils: java.lang.CharSequence DEFAULT_JOIN_SEPARATOR
+cn.trinea.android.common.util.CollectionUtils: void <clinit>()
+cn.trinea.android.common.util.CollectionUtils: CollectionUtils()
+cn.trinea.android.common.util.CollectionUtils: boolean isEmpty(java.util.Collection)
+cn.trinea.android.common.util.CollectionUtils: java.lang.String join(java.lang.Iterable)
 cn.trinea.android.common.util.DbHelper
 cn.trinea.android.common.util.DbHelper: DbHelper(android.content.Context)
 cn.trinea.android.common.util.DbHelper: void onCreate(android.database.sqlite.SQLiteDatabase)
@@ -7622,6 +7687,8 @@ cn.trinea.android.common.util.FileUtils: boolean writeFile(java.lang.String,java
 cn.trinea.android.common.util.FileUtils: boolean writeFile(java.lang.String,java.io.InputStream,boolean)
 cn.trinea.android.common.util.FileUtils: boolean writeFile(java.io.File,java.io.InputStream)
 cn.trinea.android.common.util.FileUtils: boolean writeFile(java.io.File,java.io.InputStream,boolean)
+cn.trinea.android.common.util.FileUtils: void moveFile(java.lang.String,java.lang.String)
+cn.trinea.android.common.util.FileUtils: void moveFile(java.io.File,java.io.File)
 cn.trinea.android.common.util.FileUtils: boolean copyFile(java.lang.String,java.lang.String)
 cn.trinea.android.common.util.FileUtils: java.util.List readFileToList(java.lang.String,java.lang.String)
 cn.trinea.android.common.util.FileUtils: java.lang.String getFileNameWithoutExtension(java.lang.String)
@@ -7686,13 +7753,13 @@ cn.trinea.android.common.util.ImageCacheManager: java.lang.String TAG
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageCache imageCache
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageSDCardCache imageSDCardCache
 cn.trinea.android.common.util.ImageCacheManager: void <clinit>()
+cn.trinea.android.common.util.ImageCacheManager: ImageCacheManager()
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageCache getImageCache()
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageSDCardCache getImageSDCardCache()
 cn.trinea.android.common.util.ImageCacheManager: void setImageCache()
 cn.trinea.android.common.util.ImageCacheManager: void setImageSDCardCache()
 cn.trinea.android.common.util.ImageCacheManager: android.view.animation.AlphaAnimation getInAlphaAnimation(long)
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.PreloadDataCache$OnGetDataListener getImageFromSdcardListener()
-cn.trinea.android.common.util.ImageCacheManager: ImageCacheManager()
 cn.trinea.android.common.util.ImageCacheManager$1
 cn.trinea.android.common.util.ImageCacheManager$1: ImageCacheManager$1()
 cn.trinea.android.common.util.ImageCacheManager$1: void onGetSuccess(java.lang.String,android.graphics.Bitmap,android.view.View,boolean)
@@ -7746,10 +7813,16 @@ cn.trinea.android.common.util.JSONUtils: double getDouble(org.json.JSONObject,ja
 cn.trinea.android.common.util.JSONUtils: double getDouble(java.lang.String,java.lang.String,double)
 cn.trinea.android.common.util.JSONUtils: java.lang.String getString(org.json.JSONObject,java.lang.String,java.lang.String)
 cn.trinea.android.common.util.JSONUtils: java.lang.String getString(java.lang.String,java.lang.String,java.lang.String)
+cn.trinea.android.common.util.JSONUtils: java.lang.String getStringCascade(org.json.JSONObject,java.lang.String,java.lang.String[])
+cn.trinea.android.common.util.JSONUtils: java.lang.String getStringCascade(java.lang.String,java.lang.String,java.lang.String[])
 cn.trinea.android.common.util.JSONUtils: java.lang.String[] getStringArray(org.json.JSONObject,java.lang.String,java.lang.String[])
 cn.trinea.android.common.util.JSONUtils: java.lang.String[] getStringArray(java.lang.String,java.lang.String,java.lang.String[])
+cn.trinea.android.common.util.JSONUtils: java.util.List getStringList(org.json.JSONObject,java.lang.String,java.util.List)
+cn.trinea.android.common.util.JSONUtils: java.util.List getStringList(java.lang.String,java.lang.String,java.util.List)
 cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObject(org.json.JSONObject,java.lang.String,org.json.JSONObject)
 cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObject(java.lang.String,java.lang.String,org.json.JSONObject)
+cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObjectCascade(org.json.JSONObject,org.json.JSONObject,java.lang.String[])
+cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObjectCascade(java.lang.String,org.json.JSONObject,java.lang.String[])
 cn.trinea.android.common.util.JSONUtils: org.json.JSONArray getJSONArray(org.json.JSONObject,java.lang.String,org.json.JSONArray)
 cn.trinea.android.common.util.JSONUtils: org.json.JSONArray getJSONArray(java.lang.String,java.lang.String,org.json.JSONArray)
 cn.trinea.android.common.util.JSONUtils: boolean getBoolean(org.json.JSONObject,java.lang.String,java.lang.Boolean)
@@ -7789,9 +7862,21 @@ cn.trinea.android.common.util.MapUtils: java.util.Map parseKeyAndValueToMap(java
 cn.trinea.android.common.util.MapUtils: java.util.Map parseKeyAndValueToMap(java.lang.String,boolean)
 cn.trinea.android.common.util.MapUtils: java.util.Map parseKeyAndValueToMap(java.lang.String)
 cn.trinea.android.common.util.MapUtils: java.lang.String toJson(java.util.Map)
+cn.trinea.android.common.util.NetWorkUtils
+cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_WIFI
+cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_3G
+cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_2G
+cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_WAP
+cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_UNKNOWN
+cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_DISCONNECT
+cn.trinea.android.common.util.NetWorkUtils: NetWorkUtils()
+cn.trinea.android.common.util.NetWorkUtils: int getNetworkType(android.content.Context)
+cn.trinea.android.common.util.NetWorkUtils: java.lang.String getNetworkTypeName(android.content.Context)
+cn.trinea.android.common.util.NetWorkUtils: boolean isFastMobileNetwork(android.content.Context)
 cn.trinea.android.common.util.ObjectUtils
 cn.trinea.android.common.util.ObjectUtils: ObjectUtils()
 cn.trinea.android.common.util.ObjectUtils: boolean isEquals(java.lang.Object,java.lang.Object)
+cn.trinea.android.common.util.ObjectUtils: java.lang.String nullStrToEmpty(java.lang.Object)
 cn.trinea.android.common.util.ObjectUtils: java.lang.Long[] transformLongArray(long[])
 cn.trinea.android.common.util.ObjectUtils: long[] transformLongArray(java.lang.Long[])
 cn.trinea.android.common.util.ObjectUtils: java.lang.Integer[] transformIntArray(int[])
@@ -7917,6 +8002,8 @@ cn.trinea.android.common.util.ResourceUtils
 cn.trinea.android.common.util.ResourceUtils: ResourceUtils()
 cn.trinea.android.common.util.ResourceUtils: java.lang.String geFileFromAssets(android.content.Context,java.lang.String)
 cn.trinea.android.common.util.ResourceUtils: java.lang.String geFileFromRaw(android.content.Context,int)
+cn.trinea.android.common.util.ResourceUtils: java.util.List geFileToListFromAssets(android.content.Context,java.lang.String)
+cn.trinea.android.common.util.ResourceUtils: java.util.List geFileToListFromRaw(android.content.Context,int)
 cn.trinea.android.common.util.ScreenUtils
 cn.trinea.android.common.util.ScreenUtils: ScreenUtils()
 cn.trinea.android.common.util.ScreenUtils: float dpToPx(android.content.Context,float)
@@ -7959,18 +8046,17 @@ cn.trinea.android.common.util.SizeUtils: SizeUtils()
 cn.trinea.android.common.util.SqliteUtils
 cn.trinea.android.common.util.SqliteUtils: cn.trinea.android.common.util.SqliteUtils instance
 cn.trinea.android.common.util.SqliteUtils: cn.trinea.android.common.util.DbHelper dbHelper
-cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase wDb
-cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase rDb
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase db
 cn.trinea.android.common.util.SqliteUtils: SqliteUtils(android.content.Context)
 cn.trinea.android.common.util.SqliteUtils: cn.trinea.android.common.util.SqliteUtils getInstance(android.content.Context)
-cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase getWDb()
-cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase getRDb()
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase getDb()
 cn.trinea.android.common.util.StringUtils
 cn.trinea.android.common.util.StringUtils: StringUtils()
 cn.trinea.android.common.util.StringUtils: boolean isBlank(java.lang.String)
-cn.trinea.android.common.util.StringUtils: boolean isEmpty(java.lang.String)
+cn.trinea.android.common.util.StringUtils: boolean isEmpty(java.lang.CharSequence)
 cn.trinea.android.common.util.StringUtils: boolean isEquals(java.lang.String,java.lang.String)
-cn.trinea.android.common.util.StringUtils: java.lang.String nullStrToEmpty(java.lang.String)
+cn.trinea.android.common.util.StringUtils: int length(java.lang.CharSequence)
+cn.trinea.android.common.util.StringUtils: java.lang.String nullStrToEmpty(java.lang.Object)
 cn.trinea.android.common.util.StringUtils: java.lang.String capitalizeFirstLetter(java.lang.String)
 cn.trinea.android.common.util.StringUtils: java.lang.String utf8Encode(java.lang.String)
 cn.trinea.android.common.util.StringUtils: java.lang.String utf8Encode(java.lang.String,java.lang.String)
@@ -8015,6 +8101,7 @@ cn.trinea.android.common.util.ViewUtils: void setViewHeight(android.view.View,in
 cn.trinea.android.common.util.ViewUtils: void setListViewHeightBasedOnChildren(android.widget.ListView)
 cn.trinea.android.common.util.ViewUtils: void setAbsListViewHeightBasedOnChildren(android.widget.AbsListView)
 cn.trinea.android.common.util.ViewUtils: void setSearchViewOnClickListener(android.view.View,android.view.View$OnClickListener)
+cn.trinea.android.common.util.ViewUtils: java.util.List getDescendants(android.view.ViewGroup,java.lang.Class,boolean)
 cn.trinea.android.common.view.BorderScrollView
 cn.trinea.android.common.view.BorderScrollView: cn.trinea.android.common.view.BorderScrollView$OnBorderListener onBorderListener
 cn.trinea.android.common.view.BorderScrollView: android.view.View contentView
@@ -12069,6 +12156,499 @@ com.baidu.location.z$c: void onProviderDisabled(java.lang.String)
 com.baidu.location.z$c: void onProviderEnabled(java.lang.String)
 com.baidu.location.z$c: void onStatusChanged(java.lang.String,int,android.os.Bundle)
 com.baidu.location.z$c: z$c(com.baidu.location.z,com.baidu.location.z$1)
+com.bairuitech.anychat.AnyChatAudioHelper
+com.bairuitech.anychat.AnyChatAudioHelper: java.lang.String TAG
+com.bairuitech.anychat.AnyChatAudioHelper: android.media.AudioTrack mAudioTrack
+com.bairuitech.anychat.AnyChatAudioHelper: android.media.AudioRecord mAudioRecord
+com.bairuitech.anychat.AnyChatAudioHelper: int PLAY_MODE_AUTO
+com.bairuitech.anychat.AnyChatAudioHelper: int PLAY_MODE_RECEIVER
+com.bairuitech.anychat.AnyChatAudioHelper: int PLAY_MODE_SPEAKER
+com.bairuitech.anychat.AnyChatAudioHelper: com.bairuitech.anychat.AnyChatAudioHelper$PlayAudioThread mPlayAudioThread
+com.bairuitech.anychat.AnyChatAudioHelper: boolean mPlayThreadExitFlag
+com.bairuitech.anychat.AnyChatAudioHelper: int mMinPlayBufSize
+com.bairuitech.anychat.AnyChatAudioHelper: boolean mAudioPlayReleased
+com.bairuitech.anychat.AnyChatAudioHelper: com.bairuitech.anychat.AnyChatAudioHelper$RecordAudioThread mRecordAudioThread
+com.bairuitech.anychat.AnyChatAudioHelper: boolean mRecordThreadExitFlag
+com.bairuitech.anychat.AnyChatAudioHelper: int mMinRecordBufSize
+com.bairuitech.anychat.AnyChatAudioHelper: boolean mAudioRecordReleased
+com.bairuitech.anychat.AnyChatAudioHelper: android.content.Context mContext
+com.bairuitech.anychat.AnyChatAudioHelper: int mProfile
+com.bairuitech.anychat.AnyChatAudioHelper: int mPlayMode
+com.bairuitech.anychat.AnyChatAudioHelper: AnyChatAudioHelper()
+com.bairuitech.anychat.AnyChatAudioHelper: void SetContext(android.content.Context)
+com.bairuitech.anychat.AnyChatAudioHelper: int InitAudioPlayer(int)
+com.bairuitech.anychat.AnyChatAudioHelper: void ReleaseAudioPlayer()
+com.bairuitech.anychat.AnyChatAudioHelper: java.lang.Boolean IsSpeakerMode()
+com.bairuitech.anychat.AnyChatAudioHelper: void SwitchPlayMode(int)
+com.bairuitech.anychat.AnyChatAudioHelper: int InitAudioRecorder(int)
+com.bairuitech.anychat.AnyChatAudioHelper: void ReleaseAudioRecorder()
+com.bairuitech.anychat.AnyChatAudioHelper: android.media.AudioTrack access$0(com.bairuitech.anychat.AnyChatAudioHelper)
+com.bairuitech.anychat.AnyChatAudioHelper: boolean access$1(com.bairuitech.anychat.AnyChatAudioHelper)
+com.bairuitech.anychat.AnyChatAudioHelper: android.media.AudioRecord access$2(com.bairuitech.anychat.AnyChatAudioHelper)
+com.bairuitech.anychat.AnyChatAudioHelper: boolean access$3(com.bairuitech.anychat.AnyChatAudioHelper)
+com.bairuitech.anychat.AnyChatAudioHelper$PlayAudioThread
+com.bairuitech.anychat.AnyChatAudioHelper$PlayAudioThread: com.bairuitech.anychat.AnyChatAudioHelper this$0
+com.bairuitech.anychat.AnyChatAudioHelper$PlayAudioThread: AnyChatAudioHelper$PlayAudioThread(com.bairuitech.anychat.AnyChatAudioHelper)
+com.bairuitech.anychat.AnyChatAudioHelper$PlayAudioThread: void run()
+com.bairuitech.anychat.AnyChatAudioHelper$RecordAudioThread
+com.bairuitech.anychat.AnyChatAudioHelper$RecordAudioThread: com.bairuitech.anychat.AnyChatAudioHelper this$0
+com.bairuitech.anychat.AnyChatAudioHelper$RecordAudioThread: AnyChatAudioHelper$RecordAudioThread(com.bairuitech.anychat.AnyChatAudioHelper)
+com.bairuitech.anychat.AnyChatAudioHelper$RecordAudioThread: void run()
+com.bairuitech.anychat.AnyChatBaseEvent
+com.bairuitech.anychat.AnyChatBaseEvent: void OnAnyChatConnectMessage(boolean)
+com.bairuitech.anychat.AnyChatBaseEvent: void OnAnyChatLoginMessage(int,int)
+com.bairuitech.anychat.AnyChatBaseEvent: void OnAnyChatEnterRoomMessage(int,int)
+com.bairuitech.anychat.AnyChatBaseEvent: void OnAnyChatOnlineUserMessage(int,int)
+com.bairuitech.anychat.AnyChatBaseEvent: void OnAnyChatUserAtRoomMessage(int,boolean)
+com.bairuitech.anychat.AnyChatBaseEvent: void OnAnyChatLinkCloseMessage(int)
+com.bairuitech.anychat.AnyChatCameraHelper
+com.bairuitech.anychat.AnyChatCameraHelper: java.lang.String TAG
+com.bairuitech.anychat.AnyChatCameraHelper: android.hardware.Camera mCamera
+com.bairuitech.anychat.AnyChatCameraHelper: boolean bIfPreview
+com.bairuitech.anychat.AnyChatCameraHelper: boolean bNeedCapture
+com.bairuitech.anychat.AnyChatCameraHelper: int iCurrentCameraId
+com.bairuitech.anychat.AnyChatCameraHelper: android.view.SurfaceHolder currentHolder
+com.bairuitech.anychat.AnyChatCameraHelper: int mVideoPixfmt
+com.bairuitech.anychat.AnyChatCameraHelper: int iCaptureBuffers
+com.bairuitech.anychat.AnyChatCameraHelper: android.content.Context mContext
+com.bairuitech.anychat.AnyChatCameraHelper: int mCameraOrientation
+com.bairuitech.anychat.AnyChatCameraHelper: int mCameraFacing
+com.bairuitech.anychat.AnyChatCameraHelper: int mDeviceOrientation
+com.bairuitech.anychat.AnyChatCameraHelper: int CAMERA_FACING_BACK
+com.bairuitech.anychat.AnyChatCameraHelper: int CAMERA_FACING_FRONT
+com.bairuitech.anychat.AnyChatCameraHelper: AnyChatCameraHelper()
+com.bairuitech.anychat.AnyChatCameraHelper: void SetContext(android.content.Context)
+com.bairuitech.anychat.AnyChatCameraHelper: void initCamera()
+com.bairuitech.anychat.AnyChatCameraHelper: void CaptureControl(boolean)
+com.bairuitech.anychat.AnyChatCameraHelper: int GetCameraNumber()
+com.bairuitech.anychat.AnyChatCameraHelper: void CameraAutoFocus()
+com.bairuitech.anychat.AnyChatCameraHelper: void SwitchCamera()
+com.bairuitech.anychat.AnyChatCameraHelper: void SelectVideoCapture(int)
+com.bairuitech.anychat.AnyChatCameraHelper: void SelectCamera(int)
+com.bairuitech.anychat.AnyChatCameraHelper: void surfaceChanged(android.view.SurfaceHolder,int,int,int)
+com.bairuitech.anychat.AnyChatCameraHelper: void surfaceCreated(android.view.SurfaceHolder)
+com.bairuitech.anychat.AnyChatCameraHelper: void surfaceDestroyed(android.view.SurfaceHolder)
+com.bairuitech.anychat.AnyChatCameraHelper: int getDeviceOrientation()
+com.bairuitech.anychat.AnyChatCameraHelper: void setCameraDisplayOrientation()
+com.bairuitech.anychat.AnyChatCameraHelper: boolean access$0(com.bairuitech.anychat.AnyChatCameraHelper)
+com.bairuitech.anychat.AnyChatCameraHelper: android.hardware.Camera access$1(com.bairuitech.anychat.AnyChatCameraHelper)
+com.bairuitech.anychat.AnyChatCameraHelper$1
+com.bairuitech.anychat.AnyChatCameraHelper$1: com.bairuitech.anychat.AnyChatCameraHelper this$0
+com.bairuitech.anychat.AnyChatCameraHelper$1: AnyChatCameraHelper$1(com.bairuitech.anychat.AnyChatCameraHelper)
+com.bairuitech.anychat.AnyChatCameraHelper$1: void onPreviewFrame(byte[],android.hardware.Camera)
+com.bairuitech.anychat.AnyChatCoreSDK
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatBaseEvent baseEvent
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatStateChgEvent stateChgEvent
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatPrivateChatEvent privateChatEvent
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatTextMsgEvent textMsgEvent
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatTransDataEvent transDataEvent
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatVideoCallEvent videoCallEvent
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatUserInfoEvent userInfoEvent
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatDataEncDecEvent encdecEvent
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatRecordEvent recordEvent
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatCoreSDK mAnyChat
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatCoreSDK$MainHandler mHandler
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatAudioHelper mAudioHelper
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatCameraHelper mCameraHelper
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatSensorHelper mSensorHelper
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatVideoHelper mVideoHelper
+com.bairuitech.anychat.AnyChatCoreSDK: int HANDLE_TYPE_NOTIFYMSG
+com.bairuitech.anychat.AnyChatCoreSDK: int HANDLE_TYPE_TEXTMSG
+com.bairuitech.anychat.AnyChatCoreSDK: int HANDLE_TYPE_TRANSFILE
+com.bairuitech.anychat.AnyChatCoreSDK: int HANDLE_TYPE_TRANSBUF
+com.bairuitech.anychat.AnyChatCoreSDK: int HANDLE_TYPE_TRANSBUFEX
+com.bairuitech.anychat.AnyChatCoreSDK: int HANDLE_TYPE_SDKFILTER
+com.bairuitech.anychat.AnyChatCoreSDK: int HANDLE_TYPE_VIDEOCALL
+com.bairuitech.anychat.AnyChatCoreSDK: int HANDLE_TYPE_RECORD
+com.bairuitech.anychat.AnyChatCoreSDK: void <clinit>()
+com.bairuitech.anychat.AnyChatCoreSDK: AnyChatCoreSDK()
+com.bairuitech.anychat.AnyChatCoreSDK: com.bairuitech.anychat.AnyChatCoreSDK getInstance(android.content.Context)
+com.bairuitech.anychat.AnyChatCoreSDK: void SetBaseEvent(com.bairuitech.anychat.AnyChatBaseEvent)
+com.bairuitech.anychat.AnyChatCoreSDK: void SetStateChgEvent(com.bairuitech.anychat.AnyChatStateChgEvent)
+com.bairuitech.anychat.AnyChatCoreSDK: void SetPrivateChatEvent(com.bairuitech.anychat.AnyChatPrivateChatEvent)
+com.bairuitech.anychat.AnyChatCoreSDK: void SetTextMessageEvent(com.bairuitech.anychat.AnyChatTextMsgEvent)
+com.bairuitech.anychat.AnyChatCoreSDK: void SetTransDataEvent(com.bairuitech.anychat.AnyChatTransDataEvent)
+com.bairuitech.anychat.AnyChatCoreSDK: void SetVideoCallEvent(com.bairuitech.anychat.AnyChatVideoCallEvent)
+com.bairuitech.anychat.AnyChatCoreSDK: void SetUserInfoEvent(com.bairuitech.anychat.AnyChatUserInfoEvent)
+com.bairuitech.anychat.AnyChatCoreSDK: void SetDataEncDecEvent(com.bairuitech.anychat.AnyChatDataEncDecEvent)
+com.bairuitech.anychat.AnyChatCoreSDK: void SetRecordSnapShotEvent(com.bairuitech.anychat.AnyChatRecordEvent)
+com.bairuitech.anychat.AnyChatCoreSDK: int GetSDKMainVersion()
+com.bairuitech.anychat.AnyChatCoreSDK: int GetSDKSubVersion()
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetSDKBuildTime()
+com.bairuitech.anychat.AnyChatCoreSDK: int RegisterNotify()
+com.bairuitech.anychat.AnyChatCoreSDK: int InitSDK(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int Connect(java.lang.String,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int Login(java.lang.String,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int EnterRoom(int,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int EnterRoomEx(java.lang.String,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int LeaveRoom(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int Logout()
+com.bairuitech.anychat.AnyChatCoreSDK: int Release()
+com.bairuitech.anychat.AnyChatCoreSDK: int[] GetOnlineUser()
+com.bairuitech.anychat.AnyChatCoreSDK: int SetVideoPos(int,android.view.Surface,int,int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int UserCameraControl(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int UserSpeakControl(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int StreamRecordCtrl(int,int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int StreamRecordCtrlEx(int,int,int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int SnapShot(int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int AudioGetVolume(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int AudioSetVolume(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String QueryUserStateString(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int QueryUserStateInt(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int GetUserSpeakVolume(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int GetCameraState(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int GetSpeakState(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int GetUserVideoWidth(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int GetUserVideoHeight(int)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String QueryRoomStateString(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int QueryRoomStateInt(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int SetServerAuthPass(java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int SetSDKOptionInt(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int SetSDKOptionString(int,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int GetSDKOptionInt(int)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetSDKOptionString(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int SendTextMessage(int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int TransFile(int,java.lang.String,int,int,int,com.bairuitech.anychat.AnyChatOutParam)
+com.bairuitech.anychat.AnyChatCoreSDK: int TransBuffer(int,byte[],int)
+com.bairuitech.anychat.AnyChatCoreSDK: int TransBufferEx(int,byte[],int,int,int,int,com.bairuitech.anychat.AnyChatOutParam)
+com.bairuitech.anychat.AnyChatCoreSDK: int CancelTransTask(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int QueryTransTaskInfo(int,int,int,com.bairuitech.anychat.AnyChatOutParam)
+com.bairuitech.anychat.AnyChatCoreSDK: int SendSDKFilterData(byte[],int)
+com.bairuitech.anychat.AnyChatCoreSDK: byte[] FetchAudioPlayBuffer(int)
+com.bairuitech.anychat.AnyChatCoreSDK: void CameraAutoFocus()
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetUserName(int)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetUserIPAddr(int)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String[] EnumVideoCapture()
+com.bairuitech.anychat.AnyChatCoreSDK: int SelectVideoCapture(java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetCurVideoCapture()
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String[] EnumAudioCapture()
+com.bairuitech.anychat.AnyChatCoreSDK: int SelectAudioCapture(java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetCurAudioCapture()
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String[] EnumAudioPlayback()
+com.bairuitech.anychat.AnyChatCoreSDK: int SelectAudioPlayback(java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetCurAudioPlayback()
+com.bairuitech.anychat.AnyChatCoreSDK: int ChangeChatMode(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int GetUserChatMode(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int PrivateChatRequest(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int PrivateChatEcho(int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int PrivateChatEchoEx(int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int PrivateChatExit(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int SetInputVideoFormat(int,int,int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int InputVideoData(byte[],int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int SetInputAudioFormat(int,int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int InputAudioData(byte[],int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: int VideoCallControl(int,int,int,int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int[] GetUserFriends()
+com.bairuitech.anychat.AnyChatCoreSDK: int GetFriendStatus(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int[] GetUserGroups()
+com.bairuitech.anychat.AnyChatCoreSDK: int[] GetGroupFriends(int)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetUserInfo(int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: java.lang.String GetGroupName(int)
+com.bairuitech.anychat.AnyChatCoreSDK: int UserInfoControl(int,int,int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int MultiCastControl(java.lang.String,int,java.lang.String,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnNotifyMsg(int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnAnyChatNotifyMsg(int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnTextMessageCallBack(int,int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnTransFileCallBack(int,java.lang.String,java.lang.String,int,int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnTransBufferCallBack(int,byte[],int)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnTransBufferExCallBack(int,byte[],int,int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnSDKFilterDataCallBack(byte[],int)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnVideoDataCallBack(int,byte[],int,int,int)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnVideoCallEventCallBack(int,int,int,int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: void OnRecordSnapShotExCallBack(int,java.lang.String,int,int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatCoreSDK: int OnDataEncDecCallBack(int,int,byte[],int,com.bairuitech.anychat.AnyChatOutParam)
+com.bairuitech.anychat.AnyChatCoreSDK: int access$0()
+com.bairuitech.anychat.AnyChatCoreSDK: int access$1()
+com.bairuitech.anychat.AnyChatCoreSDK: int access$2()
+com.bairuitech.anychat.AnyChatCoreSDK: int access$3()
+com.bairuitech.anychat.AnyChatCoreSDK: int access$4()
+com.bairuitech.anychat.AnyChatCoreSDK: int access$5()
+com.bairuitech.anychat.AnyChatCoreSDK: int access$6()
+com.bairuitech.anychat.AnyChatCoreSDK: int access$7()
+com.bairuitech.anychat.AnyChatCoreSDK$MainHandler
+com.bairuitech.anychat.AnyChatCoreSDK$MainHandler: java.lang.ref.WeakReference mAnyChat
+com.bairuitech.anychat.AnyChatCoreSDK$MainHandler: AnyChatCoreSDK$MainHandler(com.bairuitech.anychat.AnyChatCoreSDK)
+com.bairuitech.anychat.AnyChatCoreSDK$MainHandler: AnyChatCoreSDK$MainHandler(android.os.Looper)
+com.bairuitech.anychat.AnyChatCoreSDK$MainHandler: void handleMessage(android.os.Message)
+com.bairuitech.anychat.AnyChatDataEncDecEvent
+com.bairuitech.anychat.AnyChatDataEncDecEvent: int BRAC_DATAENCDEC_FLAGS_ENCMODE
+com.bairuitech.anychat.AnyChatDataEncDecEvent: int BRAC_DATAENCDEC_FLAGS_DECMODE
+com.bairuitech.anychat.AnyChatDataEncDecEvent: int BRAC_DATAENCDEC_FLAGS_AUDIO
+com.bairuitech.anychat.AnyChatDataEncDecEvent: int BRAC_DATAENCDEC_FLAGS_VIDEO
+com.bairuitech.anychat.AnyChatDataEncDecEvent: int BRAC_DATAENCDEC_FLAGS_BUFFER
+com.bairuitech.anychat.AnyChatDataEncDecEvent: int BRAC_DATAENCDEC_FLAGS_TXTMSG
+com.bairuitech.anychat.AnyChatDataEncDecEvent: int OnAnyChatDataEncDec(int,int,byte[],int,com.bairuitech.anychat.AnyChatOutParam)
+com.bairuitech.anychat.AnyChatDefine
+com.bairuitech.anychat.AnyChatDefine: int WM_GV
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_CONNECT
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_LOGINSYSTEM
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_ENTERROOM
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_MICSTATECHANGE
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_USERATROOM
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_LINKCLOSE
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_ONLINEUSER
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_CAMERASTATE
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_CHATMODECHG
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_ACTIVESTATE
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_P2PCONNECTSTATE
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_VIDEOSIZECHG
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_USERINFOUPDATE
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_FRIENDSTATUS
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_PRIVATEREQUEST
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_PRIVATEECHO
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_PRIVATEEXIT
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_AUDIOPLAYCTRL
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_AUDIORECCTRL
+com.bairuitech.anychat.AnyChatDefine: int WM_GV_VIDEOCAPCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_RGB24
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_RGB32
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_YV12
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_YUY2
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_YUV420P
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_RGB565
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_RGB555
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_NV12
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_NV21
+com.bairuitech.anychat.AnyChatDefine: int BRAC_PIX_FMT_NV16
+com.bairuitech.anychat.AnyChatDefine: int VIDEOCAP_DRIVER_JAVA
+com.bairuitech.anychat.AnyChatDefine: int VIDEOSHOW_DRIVER_JAVA
+com.bairuitech.anychat.AnyChatDefine: int AUDIOREC_DRIVER_JAVA
+com.bairuitech.anychat.AnyChatDefine: int AUDIOPLAY_DRIVER_JAVA
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_VADCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_NSCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_ECHOCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_AGCCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_CPATUREMODE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_MICBOOST
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_AUTOPARAM
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_MONOBITRATE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_STEREOBITRATE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_PLAYDRVCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_SOFTVOLMODE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_RECORDDRVCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_ECHODELAY
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_AUDIO_NSLEVEL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_RECORD_VIDEOBR
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_RECORD_AUDIOBR
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_RECORD_TMPDIR
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_SNAPSHOT_TMPDIR
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_RECORD_FILETYPE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_RECORD_WIDTH
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_RECORD_HEIGHT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_RECORD_FILENAMERULE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_RECORD_CLIPMODE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_TMPDIR
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_LOADCODEC
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_USEARMV6LIB
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_USEHWCODEC
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_PATH
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_DUMPCOREINFO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_MAINVERSION
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_SUBVERSION
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_BUILDTIME
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_EXTVIDEOINPUT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_EXTAUDIOINPUT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_BITRATECTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_QUALITYCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_GOPCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_FPSCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_PRESETCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_APPLYPARAM
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_VIDEOSIZEPOLITIC
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_DEINTERLACE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_WIDTHCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_HEIGHTCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_FOCUSCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_PIXFMTCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_OVERLAY
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_CODECID
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_ROTATECTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_CAPDRIVER
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_FIXCOLORDEVIA
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_ORIENTATION
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_AUTOROTATION
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_SURFACEROTATION
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_CAMERAFACE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_LOCALVIDEO_DEVICEMODE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_NETWORK_P2PPOLITIC
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_NETWORK_P2PCONNECT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_NETWORK_P2PBREAK
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_NETWORK_TCPSERVICEPORT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_NETWORK_UDPSERVICEPORT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_NETWORK_MULTICASTPOLITIC
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_NETWORK_TRANSBUFMAXBITRATE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_NETWORK_AUTORECONNECT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_PROXY_FUNCTIONCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_PROXY_VIDEOCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_PROXY_AUDIOCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_STREAM_BUFFERTIME
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_STREAM_SMOOTHPLAYMODE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_VIDEOSHOW_MODECTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_VIDEOSHOW_SETPRIMARYUSER
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_VIDEOSHOW_SETOVERLAYUSER
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_VIDEOSHOW_DRIVERCTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_VIDEOSHOW_GPUDIRECTRENDER
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_VIDEOSHOW_AUTOROTATION
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_VIDEOSHOW_CLIPMODE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_DEVICEMODE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_SCREENCAMERACTRL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_DATAENCRYPTION
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_UPLOADLOGINFO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_SO_CORESDK_WRITELOG
+com.bairuitech.anychat.AnyChatDefine: int BRAC_TRANSTASK_PROGRESS
+com.bairuitech.anychat.AnyChatDefine: int BRAC_TRANSTASK_BITRATE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_TRANSTASK_STATUS
+com.bairuitech.anychat.AnyChatDefine: int BRAC_RECORD_FLAGS_VIDEO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_RECORD_FLAGS_AUDIO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_RECORD_FLAGS_SERVER
+com.bairuitech.anychat.AnyChatDefine: int BRAC_RECORD_FLAGS_MIXAUDIO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_RECORD_FLAGS_MIXVIDEO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_RECORD_FLAGS_ABREAST
+com.bairuitech.anychat.AnyChatDefine: int BRAC_RECORD_FLAGS_STEREO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_RECORD_FLAGS_STREAM
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_CAMERA
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_HOLDMIC
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_SPEAKVOLUME
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_RECORDING
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_LEVEL
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_NICKNAME
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_LOCALIP
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_INTERNETIP
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_VIDEOBITRATE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_AUDIOBITRATE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_P2PCONNECT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_NETWORKSTATUS
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_VIDEOSIZE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_PACKLOSSRATE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_DEVICETYPE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_SELFUSERSTATUS
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_SELFUSERID
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_VIDEOROTATION
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERSTATE_VIDEOMIRRORED
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ROOMSTATE_ROOMNAME
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ROOMSTATE_ONLINEUSERS
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_EVENT_REQUEST
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_EVENT_REPLY
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_EVENT_START
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_EVENT_FINISH
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_FLAGS_AUDIO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_FLAGS_VIDEO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_FLAGS_FBSRCAUDIO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_FLAGS_FBSRCVIDEO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_FLAGS_FBTARAUDIO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_VIDEOCALL_FLAGS_FBTARVIDEO
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ROTATION_FLAGS_MIRRORED
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ROTATION_FLAGS_ROTATION90
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ROTATION_FLAGS_ROTATION180
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ROTATION_FLAGS_ROTATION270
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERINFO_CTRLCODE_ROTATION
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERINFO_CTRLCODE_DEBUGLOG
+com.bairuitech.anychat.AnyChatDefine: int BRAC_USERINFO_CTRLCODE_LVORIENTFIX
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ERRORCODE_SUCCESS
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ERRORCODE_SESSION_QUIT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ERRORCODE_SESSION_OFFLINE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ERRORCODE_SESSION_BUSY
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ERRORCODE_SESSION_REFUSE
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ERRORCODE_SESSION_TIMEOUT
+com.bairuitech.anychat.AnyChatDefine: int BRAC_ERRORCODE_SESSION_DISCONNECT
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_VIDEO
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_AUDIO
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_SERVER
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_MIXAUDIO
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_MIXVIDEO
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_ABREAST
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_STEREO
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_SNAPSHOT
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_LOCALCB
+com.bairuitech.anychat.AnyChatDefine: int ANYCHAT_RECORD_FLAGS_STREAM
+com.bairuitech.anychat.AnyChatDefine: AnyChatDefine()
+com.bairuitech.anychat.AnyChatOrientationEventListener
+com.bairuitech.anychat.AnyChatOrientationEventListener: AnyChatOrientationEventListener(android.content.Context,int)
+com.bairuitech.anychat.AnyChatOrientationEventListener: void onOrientationChanged(int)
+com.bairuitech.anychat.AnyChatOutParam
+com.bairuitech.anychat.AnyChatOutParam: int iValue
+com.bairuitech.anychat.AnyChatOutParam: java.lang.String szValue
+com.bairuitech.anychat.AnyChatOutParam: int[] intArray
+com.bairuitech.anychat.AnyChatOutParam: byte[] byteArray
+com.bairuitech.anychat.AnyChatOutParam: double fValue
+com.bairuitech.anychat.AnyChatOutParam: AnyChatOutParam()
+com.bairuitech.anychat.AnyChatOutParam: int GetIntValue()
+com.bairuitech.anychat.AnyChatOutParam: void SetIntValue(int)
+com.bairuitech.anychat.AnyChatOutParam: double GetFloatValue()
+com.bairuitech.anychat.AnyChatOutParam: void SetFloatValue(double)
+com.bairuitech.anychat.AnyChatOutParam: java.lang.String GetStrValue()
+com.bairuitech.anychat.AnyChatOutParam: void SetStrValue(java.lang.String)
+com.bairuitech.anychat.AnyChatOutParam: int[] GetIntArray()
+com.bairuitech.anychat.AnyChatOutParam: void SetIntArray(int[])
+com.bairuitech.anychat.AnyChatOutParam: byte[] GetByteArray()
+com.bairuitech.anychat.AnyChatOutParam: void SetByteArray(byte[])
+com.bairuitech.anychat.AnyChatPrivateChatEvent
+com.bairuitech.anychat.AnyChatPrivateChatEvent: void OnAnyChatPrivateRequestMessage(int,int)
+com.bairuitech.anychat.AnyChatPrivateChatEvent: void OnAnyChatPrivateEchoMessage(int,int)
+com.bairuitech.anychat.AnyChatPrivateChatEvent: void OnAnyChatPrivateExitMessage(int,int)
+com.bairuitech.anychat.AnyChatRecordEvent
+com.bairuitech.anychat.AnyChatRecordEvent: void OnAnyChatRecordEvent(int,java.lang.String,int,int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatRecordEvent: void OnAnyChatSnapShotEvent(int,java.lang.String,int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatSensorHelper
+com.bairuitech.anychat.AnyChatSensorHelper: com.bairuitech.anychat.AnyChatOrientationEventListener orientationListener
+com.bairuitech.anychat.AnyChatSensorHelper: float LastXSpead
+com.bairuitech.anychat.AnyChatSensorHelper: float LastYSpead
+com.bairuitech.anychat.AnyChatSensorHelper: float LastZSpead
+com.bairuitech.anychat.AnyChatSensorHelper: boolean bCameraNeedFocus
+com.bairuitech.anychat.AnyChatSensorHelper: java.util.Date LastSportTime
+com.bairuitech.anychat.AnyChatSensorHelper: AnyChatSensorHelper()
+com.bairuitech.anychat.AnyChatSensorHelper: void InitSensor(android.content.Context)
+com.bairuitech.anychat.AnyChatSensorHelper: void DestroySensor()
+com.bairuitech.anychat.AnyChatSensorHelper: void onAccuracyChanged(android.hardware.Sensor,int)
+com.bairuitech.anychat.AnyChatSensorHelper: void onSensorChanged(android.hardware.SensorEvent)
+com.bairuitech.anychat.AnyChatStateChgEvent
+com.bairuitech.anychat.AnyChatStateChgEvent: void OnAnyChatMicStateChgMessage(int,boolean)
+com.bairuitech.anychat.AnyChatStateChgEvent: void OnAnyChatCameraStateChgMessage(int,int)
+com.bairuitech.anychat.AnyChatStateChgEvent: void OnAnyChatChatModeChgMessage(int,boolean)
+com.bairuitech.anychat.AnyChatStateChgEvent: void OnAnyChatActiveStateChgMessage(int,int)
+com.bairuitech.anychat.AnyChatStateChgEvent: void OnAnyChatP2PConnectStateMessage(int,int)
+com.bairuitech.anychat.AnyChatTextMsgEvent
+com.bairuitech.anychat.AnyChatTextMsgEvent: void OnAnyChatTextMessage(int,int,boolean,java.lang.String)
+com.bairuitech.anychat.AnyChatTransDataEvent
+com.bairuitech.anychat.AnyChatTransDataEvent: void OnAnyChatTransFile(int,java.lang.String,java.lang.String,int,int,int,int)
+com.bairuitech.anychat.AnyChatTransDataEvent: void OnAnyChatTransBuffer(int,byte[],int)
+com.bairuitech.anychat.AnyChatTransDataEvent: void OnAnyChatTransBufferEx(int,byte[],int,int,int,int)
+com.bairuitech.anychat.AnyChatTransDataEvent: void OnAnyChatSDKFilterData(byte[],int)
+com.bairuitech.anychat.AnyChatUserInfoEvent
+com.bairuitech.anychat.AnyChatUserInfoEvent: void OnAnyChatUserInfoUpdate(int,int)
+com.bairuitech.anychat.AnyChatUserInfoEvent: void OnAnyChatFriendStatus(int,int)
+com.bairuitech.anychat.AnyChatVideoCallEvent
+com.bairuitech.anychat.AnyChatVideoCallEvent: void OnAnyChatVideoCallEvent(int,int,int,int,int,java.lang.String)
+com.bairuitech.anychat.AnyChatVideoHelper
+com.bairuitech.anychat.AnyChatVideoHelper: int MAX_VIDEO_NUM
+com.bairuitech.anychat.AnyChatVideoHelper: com.bairuitech.anychat.VideoRenderer[] render
+com.bairuitech.anychat.AnyChatVideoHelper: AnyChatVideoHelper()
+com.bairuitech.anychat.AnyChatVideoHelper: int bindVideo(android.view.SurfaceHolder)
+com.bairuitech.anychat.AnyChatVideoHelper: void SetVideoUser(int,int)
+com.bairuitech.anychat.AnyChatVideoHelper: int SetVideoFmt(int,int,int)
+com.bairuitech.anychat.AnyChatVideoHelper: void setMaxCutScale(int,float)
+com.bairuitech.anychat.AnyChatVideoHelper: void ShowVideo(int,byte[],int,int)
+com.bairuitech.anychat.AnyChatVideoHelper: com.bairuitech.anychat.VideoRenderer GetRenderByUserId(int)
+com.bairuitech.anychat.VideoRenderer
+com.bairuitech.anychat.VideoRenderer: android.graphics.Bitmap bitmap
+com.bairuitech.anychat.VideoRenderer: android.view.SurfaceHolder surfaceHolder
+com.bairuitech.anychat.VideoRenderer: android.graphics.Rect srcRect
+com.bairuitech.anychat.VideoRenderer: android.graphics.Rect dstRect
+com.bairuitech.anychat.VideoRenderer: float dstBottomScale
+com.bairuitech.anychat.VideoRenderer: float dstRightScale
+com.bairuitech.anychat.VideoRenderer: float max_cut_imgscale
+com.bairuitech.anychat.VideoRenderer: int mUserid
+com.bairuitech.anychat.VideoRenderer: VideoRenderer(android.view.SurfaceHolder)
+com.bairuitech.anychat.VideoRenderer: int GetUserId()
+com.bairuitech.anychat.VideoRenderer: void SetUserId(int)
+com.bairuitech.anychat.VideoRenderer: void setMaxCutScale(float)
+com.bairuitech.anychat.VideoRenderer: void changeDestRect(int,int)
+com.bairuitech.anychat.VideoRenderer: void surfaceChanged(android.view.SurfaceHolder,int,int,int)
+com.bairuitech.anychat.VideoRenderer: void surfaceCreated(android.view.SurfaceHolder)
+com.bairuitech.anychat.VideoRenderer: void surfaceDestroyed(android.view.SurfaceHolder)
+com.bairuitech.anychat.VideoRenderer: android.graphics.Bitmap CreateBitmap(int,int)
+com.bairuitech.anychat.VideoRenderer: void SetCoordinates(float,float,float,float)
+com.bairuitech.anychat.VideoRenderer: void DrawByteBuffer(byte[],int,int)
 com.examlpe.zf_android.util.FlowLayout
 com.examlpe.zf_android.util.FlowLayout: FlowLayout(android.content.Context,android.util.AttributeSet,int)
 com.examlpe.zf_android.util.FlowLayout: FlowLayout(android.content.Context,android.util.AttributeSet)
@@ -12191,12 +12771,13 @@ com.example.zf_android.activity.ConfirmOrder: void onClick(android.view.View)
 com.example.zf_android.activity.ConfirmOrder: void menu_press()
 com.example.zf_android.activity.ConfirmOrder: void getpay11()
 com.example.zf_android.activity.ConfirmOrder$1: void handleMessage(android.os.Message)
-com.example.zf_android.activity.ConfirmOrder$2: void onSuccess(int,org.apache.http.Header[],byte[])
-com.example.zf_android.activity.ConfirmOrder$2: void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable)
-com.example.zf_android.activity.ConfirmOrder$3: void onClick(android.view.View)
+com.example.zf_android.activity.ConfirmOrder$2: void onCheckedChanged(android.widget.CompoundButton,boolean)
+com.example.zf_android.activity.ConfirmOrder$3: void onSuccess(int,org.apache.http.Header[],byte[])
+com.example.zf_android.activity.ConfirmOrder$3: void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable)
 com.example.zf_android.activity.ConfirmOrder$4: void onClick(android.view.View)
-com.example.zf_android.activity.ConfirmOrder$5: void onSuccess(java.lang.Object)
-com.example.zf_android.activity.ConfirmOrder$5: com.google.gson.reflect.TypeToken getTypeToken()
+com.example.zf_android.activity.ConfirmOrder$5: void onClick(android.view.View)
+com.example.zf_android.activity.ConfirmOrder$6: void onSuccess(java.lang.Object)
+com.example.zf_android.activity.ConfirmOrder$6: com.google.gson.reflect.TypeToken getTypeToken()
 com.example.zf_android.activity.ContentUs
 com.example.zf_android.activity.ContentUs: ContentUs()
 com.example.zf_android.activity.ContentUs: void onClick(android.view.View)

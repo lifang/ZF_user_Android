@@ -823,14 +823,6 @@ com.example.zf_android.trade.Constants$TradeIntent
 com.example.zf_android.trade.Constants$TradeType
 com.example.zf_android.trade.TradeFlowFragment:
     private int lastItem
-com.example.zf_android.video.VideoActivity:
-    491:493:public void OnAnyChatConnectMessage(boolean)
-    497:502:public void OnAnyChatLoginMessage(int,int)
-    506:513:public void OnAnyChatEnterRoomMessage(int,int)
-    517:518:public void OnAnyChatOnlineUserMessage(int,int)
-    522:536:public void OnAnyChatUserAtRoomMessage(int,boolean)
-    540:558:public void OnAnyChatLinkCloseMessage(int)
-    561:572:private int videoOther()
 com.example.zf_android.video.config.ConfigEntity:
     public static final int VIDEO_MODE_SERVERCONFIG
     public static final int VIDEO_MODE_CUSTOMCONFIG
