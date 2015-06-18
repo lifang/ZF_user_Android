@@ -390,8 +390,8 @@ public class TerminalManageActivity extends BaseActivity implements
 					// addButton(holder.llButtons,
 					// R.string.terminal_button_video,
 					// item, mVideoListener);
-					addButton(holder.llButtons, R.string.terminal_button_pos,
-							item, mPosListener);
+//					addButton(holder.llButtons, R.string.terminal_button_pos,
+//							item, mPosListener);
 					if (videoBoolean)
 						addButton(holder.llButtons,
 								R.string.terminal_button_video, item,
@@ -413,8 +413,8 @@ public class TerminalManageActivity extends BaseActivity implements
 						addButton(holder.llButtons,
 								R.string.terminal_button_video, item,
 								mVideoListener);
-					addButton(holder.llButtons, R.string.terminal_button_pos,
-							item, mPosListener);
+					// addButton(holder.llButtons, R.string.terminal_button_pos,
+					// item, mPosListener);
 					// addButton(holder.llButtons2,
 					// R.string.terminal_button_video,
 					// item, mVideoListener);

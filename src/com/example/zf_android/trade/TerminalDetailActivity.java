@@ -22,6 +22,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Element;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -133,7 +134,7 @@ public class TerminalDetailActivity extends BaseActivity {
 			@Override
 			public void onClick(View view) {
 				openDialog();
-			
+
 			}
 		};
 		mReOpenListener = new View.OnClickListener() {
@@ -213,8 +214,10 @@ public class TerminalDetailActivity extends BaseActivity {
 			}
 		};
 	}
+
 	private void openDialog() {
-		 AlertDialog.Builder builder = new AlertDialog.Builder(TerminalDetailActivity.this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(
+				TerminalDetailActivity.this);
 
 		LayoutInflater factory = LayoutInflater.from(this);
 		View view = factory.inflate(R.layout.protocoldialog, null);
@@ -265,6 +268,7 @@ public class TerminalDetailActivity extends BaseActivity {
 		// dialog.show();
 
 	}
+
 	private void loadData() {
 		API.getTerminalDetail(this, mTerminalId, MyApplication.getInstance()
 				.getCustomerId(), new HttpCallback<TerminalDetail>(this) {
@@ -306,23 +310,65 @@ public class TerminalDetailActivity extends BaseActivity {
 
 		switch (status) {
 		case OPENED:
-			mBtnRightBottom.setVisibility(View.VISIBLE);
-			mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
-			mBtnRightBottom.setOnClickListener(mPosListener);
+			// mBtnRightBottom.setVisibility(View.VISIBLE);
+			// mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
+			// mBtnRightBottom.setOnClickListener(mPosListener);
 			if (appidBoolean) {
 				if (videoBoolean) {
 
+					mBtnLeftTop.setVisibility(View.INVISIBLE);
 					mBtnLeftBottom.setVisibility(View.INVISIBLE);
-					mBtnLeftTop.setVisibility(View.VISIBLE);
-					mBtnLeftTop
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
 							.setText(getString(R.string.terminal_button_sync));
-					mBtnLeftTop.setOnClickListener(mSyncListener);
+					mBtnRightTop.setOnClickListener(mSyncListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightBottom.setOnClickListener(mVideoListener);
+
+				} else {
+
+					mBtnLeftTop.setVisibility(View.INVISIBLE);
+					mBtnLeftBottom.setVisibility(View.INVISIBLE);
+					mBtnRightTop.setVisibility(View.INVISIBLE);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnRightBottom.setOnClickListener(mSyncListener);
+				}
+
+			} else {
+				mBtnLeftTop.setVisibility(View.INVISIBLE);
+				mBtnLeftBottom.setVisibility(View.INVISIBLE);
+				mBtnRightTop.setVisibility(View.INVISIBLE);
+				if (videoBoolean) {
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightBottom.setOnClickListener(mVideoListener);
+				} else {
+
+					mBtnRightBottom.setVisibility(View.INVISIBLE);
+				}
+			}
+			break;
+		case PART_OPENED:
+			if (appidBoolean) {
+				if (videoBoolean) {
+
+					mBtnLeftTop.setVisibility(View.INVISIBLE);
+					mBtnLeftBottom.setVisibility(View.VISIBLE);
+					mBtnLeftBottom
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnLeftBottom.setOnClickListener(mSyncListener);
 					mBtnRightTop.setVisibility(View.VISIBLE);
 					mBtnRightTop
 							.setText(getString(R.string.terminal_button_video));
 					mBtnRightTop.setOnClickListener(mVideoListener);
-
 				} else {
+					mBtnLeftTop.setVisibility(View.INVISIBLE);
+					mBtnLeftBottom.setVisibility(View.INVISIBLE);
 					mBtnRightTop.setVisibility(View.VISIBLE);
 					mBtnRightTop
 							.setText(getString(R.string.terminal_button_sync));
@@ -331,45 +377,25 @@ public class TerminalDetailActivity extends BaseActivity {
 
 			} else {
 				if (videoBoolean) {
+					mBtnLeftTop.setVisibility(View.INVISIBLE);
+					mBtnLeftBottom.setVisibility(View.INVISIBLE);
 					mBtnRightTop.setVisibility(View.VISIBLE);
 					mBtnRightTop
 							.setText(getString(R.string.terminal_button_video));
 					mBtnRightTop.setOnClickListener(mVideoListener);
+				} else {
 
-				}
-			}
-			break;
-		case PART_OPENED:
-			if (appidBoolean) {
-
-				mBtnLeftTop.setVisibility(View.VISIBLE);
-				mBtnLeftTop.setText(getString(R.string.terminal_button_sync));
-				mBtnLeftTop.setOnClickListener(mSyncListener);
-				if (videoBoolean) {
-
-					mBtnLeftBottom.setVisibility(View.VISIBLE);
-					mBtnLeftBottom
-							.setText(getString(R.string.terminal_button_video));
-					mBtnLeftBottom.setOnClickListener(mVideoListener);
-				}
-
-				mBtnLeftBottom.setVisibility(View.INVISIBLE);
-			} else {
-				if (videoBoolean) {
-					mBtnLeftTop.setVisibility(View.VISIBLE);
-					mBtnLeftTop
-							.setText(getString(R.string.terminal_button_video));
-					mBtnLeftTop.setOnClickListener(mVideoListener);
-
+					mBtnLeftTop.setVisibility(View.INVISIBLE);
 					mBtnLeftBottom.setVisibility(View.INVISIBLE);
+					mBtnRightTop.setVisibility(View.INVISIBLE);
 				}
 			}
-			mBtnRightTop.setVisibility(View.VISIBLE);
-			mBtnRightTop.setText(getString(R.string.terminal_button_reopen));
-			mBtnRightTop.setOnClickListener(mReOpenListener);
 			mBtnRightBottom.setVisibility(View.VISIBLE);
-			mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
-			mBtnRightBottom.setOnClickListener(mPosListener);
+			mBtnRightBottom.setText(getString(R.string.terminal_button_reopen));
+			mBtnRightBottom.setOnClickListener(mReOpenListener);
+			// mBtnRightBottom.setVisibility(View.VISIBLE);
+			// mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
+			// mBtnRightBottom.setOnClickListener(mPosListener);
 			break;
 		case UNOPENED:
 			if (appidBoolean) {
