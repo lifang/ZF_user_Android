@@ -6932,6 +6932,9 @@ cn.trinea.android.common.R$styleable: int drop_down_list_attr_isDropDownStyle
 cn.trinea.android.common.R$styleable: int drop_down_list_attr_isOnBottomStyle
 cn.trinea.android.common.R$styleable: void <clinit>()
 cn.trinea.android.common.R$styleable: R$styleable()
+cn.trinea.android.common.constant.AndroidConstants
+cn.trinea.android.common.constant.AndroidConstants: int ICE_CREAM_SANDWICH
+cn.trinea.android.common.constant.AndroidConstants: AndroidConstants()
 cn.trinea.android.common.constant.DbConstants
 cn.trinea.android.common.constant.DbConstants: java.lang.String DB_NAME
 cn.trinea.android.common.constant.DbConstants: int DB_VERSION
@@ -7102,7 +7105,7 @@ cn.trinea.android.common.entity.HttpResponse: boolean isExpired()
 cn.trinea.android.common.entity.HttpResponse: boolean isInCache()
 cn.trinea.android.common.entity.HttpResponse: cn.trinea.android.common.entity.HttpResponse setInCache(boolean)
 cn.trinea.android.common.entity.HttpResponse: java.lang.String getExpiresHeader()
-cn.trinea.android.common.entity.HttpResponse: long getCacheControlMaxAge()
+cn.trinea.android.common.entity.HttpResponse: int getCacheControlMaxAge()
 cn.trinea.android.common.entity.HttpResponse: long getExpiresInMillis()
 cn.trinea.android.common.entity.HttpResponse: void setResponseHeader(java.lang.String,java.lang.String)
 cn.trinea.android.common.entity.HttpResponse: java.lang.Object getResponseHeader(java.lang.String)
@@ -7593,7 +7596,6 @@ cn.trinea.android.common.service.impl.SimpleCache: void saveCache(java.lang.Stri
 cn.trinea.android.common.util.AppUtils
 cn.trinea.android.common.util.AppUtils: AppUtils()
 cn.trinea.android.common.util.AppUtils: boolean isNamedProcess(android.content.Context,java.lang.String)
-cn.trinea.android.common.util.AppUtils: boolean isApplicationInBackground(android.content.Context)
 cn.trinea.android.common.util.ArrayUtils
 cn.trinea.android.common.util.ArrayUtils: ArrayUtils()
 cn.trinea.android.common.util.ArrayUtils: boolean isEmpty(java.lang.Object[])
@@ -7620,12 +7622,6 @@ cn.trinea.android.common.util.CacheManager: CacheManager()
 cn.trinea.android.common.util.CacheManager: cn.trinea.android.common.service.HttpCache getHttpCache(android.content.Context)
 cn.trinea.android.common.util.CacheManager: cn.trinea.android.common.service.impl.ImageCache getImageCache()
 cn.trinea.android.common.util.CacheManager: cn.trinea.android.common.service.impl.ImageSDCardCache getImageSDCardCache()
-cn.trinea.android.common.util.CollectionUtils
-cn.trinea.android.common.util.CollectionUtils: java.lang.CharSequence DEFAULT_JOIN_SEPARATOR
-cn.trinea.android.common.util.CollectionUtils: void <clinit>()
-cn.trinea.android.common.util.CollectionUtils: CollectionUtils()
-cn.trinea.android.common.util.CollectionUtils: boolean isEmpty(java.util.Collection)
-cn.trinea.android.common.util.CollectionUtils: java.lang.String join(java.lang.Iterable)
 cn.trinea.android.common.util.DbHelper
 cn.trinea.android.common.util.DbHelper: DbHelper(android.content.Context)
 cn.trinea.android.common.util.DbHelper: void onCreate(android.database.sqlite.SQLiteDatabase)
@@ -7687,8 +7683,6 @@ cn.trinea.android.common.util.FileUtils: boolean writeFile(java.lang.String,java
 cn.trinea.android.common.util.FileUtils: boolean writeFile(java.lang.String,java.io.InputStream,boolean)
 cn.trinea.android.common.util.FileUtils: boolean writeFile(java.io.File,java.io.InputStream)
 cn.trinea.android.common.util.FileUtils: boolean writeFile(java.io.File,java.io.InputStream,boolean)
-cn.trinea.android.common.util.FileUtils: void moveFile(java.lang.String,java.lang.String)
-cn.trinea.android.common.util.FileUtils: void moveFile(java.io.File,java.io.File)
 cn.trinea.android.common.util.FileUtils: boolean copyFile(java.lang.String,java.lang.String)
 cn.trinea.android.common.util.FileUtils: java.util.List readFileToList(java.lang.String,java.lang.String)
 cn.trinea.android.common.util.FileUtils: java.lang.String getFileNameWithoutExtension(java.lang.String)
@@ -7753,13 +7747,13 @@ cn.trinea.android.common.util.ImageCacheManager: java.lang.String TAG
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageCache imageCache
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageSDCardCache imageSDCardCache
 cn.trinea.android.common.util.ImageCacheManager: void <clinit>()
-cn.trinea.android.common.util.ImageCacheManager: ImageCacheManager()
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageCache getImageCache()
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageSDCardCache getImageSDCardCache()
 cn.trinea.android.common.util.ImageCacheManager: void setImageCache()
 cn.trinea.android.common.util.ImageCacheManager: void setImageSDCardCache()
 cn.trinea.android.common.util.ImageCacheManager: android.view.animation.AlphaAnimation getInAlphaAnimation(long)
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.PreloadDataCache$OnGetDataListener getImageFromSdcardListener()
+cn.trinea.android.common.util.ImageCacheManager: ImageCacheManager()
 cn.trinea.android.common.util.ImageCacheManager$1
 cn.trinea.android.common.util.ImageCacheManager$1: ImageCacheManager$1()
 cn.trinea.android.common.util.ImageCacheManager$1: void onGetSuccess(java.lang.String,android.graphics.Bitmap,android.view.View,boolean)
@@ -7813,16 +7807,10 @@ cn.trinea.android.common.util.JSONUtils: double getDouble(org.json.JSONObject,ja
 cn.trinea.android.common.util.JSONUtils: double getDouble(java.lang.String,java.lang.String,double)
 cn.trinea.android.common.util.JSONUtils: java.lang.String getString(org.json.JSONObject,java.lang.String,java.lang.String)
 cn.trinea.android.common.util.JSONUtils: java.lang.String getString(java.lang.String,java.lang.String,java.lang.String)
-cn.trinea.android.common.util.JSONUtils: java.lang.String getStringCascade(org.json.JSONObject,java.lang.String,java.lang.String[])
-cn.trinea.android.common.util.JSONUtils: java.lang.String getStringCascade(java.lang.String,java.lang.String,java.lang.String[])
 cn.trinea.android.common.util.JSONUtils: java.lang.String[] getStringArray(org.json.JSONObject,java.lang.String,java.lang.String[])
 cn.trinea.android.common.util.JSONUtils: java.lang.String[] getStringArray(java.lang.String,java.lang.String,java.lang.String[])
-cn.trinea.android.common.util.JSONUtils: java.util.List getStringList(org.json.JSONObject,java.lang.String,java.util.List)
-cn.trinea.android.common.util.JSONUtils: java.util.List getStringList(java.lang.String,java.lang.String,java.util.List)
 cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObject(org.json.JSONObject,java.lang.String,org.json.JSONObject)
 cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObject(java.lang.String,java.lang.String,org.json.JSONObject)
-cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObjectCascade(org.json.JSONObject,org.json.JSONObject,java.lang.String[])
-cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObjectCascade(java.lang.String,org.json.JSONObject,java.lang.String[])
 cn.trinea.android.common.util.JSONUtils: org.json.JSONArray getJSONArray(org.json.JSONObject,java.lang.String,org.json.JSONArray)
 cn.trinea.android.common.util.JSONUtils: org.json.JSONArray getJSONArray(java.lang.String,java.lang.String,org.json.JSONArray)
 cn.trinea.android.common.util.JSONUtils: boolean getBoolean(org.json.JSONObject,java.lang.String,java.lang.Boolean)
@@ -7862,21 +7850,9 @@ cn.trinea.android.common.util.MapUtils: java.util.Map parseKeyAndValueToMap(java
 cn.trinea.android.common.util.MapUtils: java.util.Map parseKeyAndValueToMap(java.lang.String,boolean)
 cn.trinea.android.common.util.MapUtils: java.util.Map parseKeyAndValueToMap(java.lang.String)
 cn.trinea.android.common.util.MapUtils: java.lang.String toJson(java.util.Map)
-cn.trinea.android.common.util.NetWorkUtils
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_WIFI
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_3G
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_2G
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_WAP
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_UNKNOWN
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_DISCONNECT
-cn.trinea.android.common.util.NetWorkUtils: NetWorkUtils()
-cn.trinea.android.common.util.NetWorkUtils: int getNetworkType(android.content.Context)
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String getNetworkTypeName(android.content.Context)
-cn.trinea.android.common.util.NetWorkUtils: boolean isFastMobileNetwork(android.content.Context)
 cn.trinea.android.common.util.ObjectUtils
 cn.trinea.android.common.util.ObjectUtils: ObjectUtils()
 cn.trinea.android.common.util.ObjectUtils: boolean isEquals(java.lang.Object,java.lang.Object)
-cn.trinea.android.common.util.ObjectUtils: java.lang.String nullStrToEmpty(java.lang.Object)
 cn.trinea.android.common.util.ObjectUtils: java.lang.Long[] transformLongArray(long[])
 cn.trinea.android.common.util.ObjectUtils: long[] transformLongArray(java.lang.Long[])
 cn.trinea.android.common.util.ObjectUtils: java.lang.Integer[] transformIntArray(int[])
@@ -8002,8 +7978,6 @@ cn.trinea.android.common.util.ResourceUtils
 cn.trinea.android.common.util.ResourceUtils: ResourceUtils()
 cn.trinea.android.common.util.ResourceUtils: java.lang.String geFileFromAssets(android.content.Context,java.lang.String)
 cn.trinea.android.common.util.ResourceUtils: java.lang.String geFileFromRaw(android.content.Context,int)
-cn.trinea.android.common.util.ResourceUtils: java.util.List geFileToListFromAssets(android.content.Context,java.lang.String)
-cn.trinea.android.common.util.ResourceUtils: java.util.List geFileToListFromRaw(android.content.Context,int)
 cn.trinea.android.common.util.ScreenUtils
 cn.trinea.android.common.util.ScreenUtils: ScreenUtils()
 cn.trinea.android.common.util.ScreenUtils: float dpToPx(android.content.Context,float)
@@ -8046,17 +8020,18 @@ cn.trinea.android.common.util.SizeUtils: SizeUtils()
 cn.trinea.android.common.util.SqliteUtils
 cn.trinea.android.common.util.SqliteUtils: cn.trinea.android.common.util.SqliteUtils instance
 cn.trinea.android.common.util.SqliteUtils: cn.trinea.android.common.util.DbHelper dbHelper
-cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase db
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase wDb
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase rDb
 cn.trinea.android.common.util.SqliteUtils: SqliteUtils(android.content.Context)
 cn.trinea.android.common.util.SqliteUtils: cn.trinea.android.common.util.SqliteUtils getInstance(android.content.Context)
-cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase getDb()
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase getWDb()
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase getRDb()
 cn.trinea.android.common.util.StringUtils
 cn.trinea.android.common.util.StringUtils: StringUtils()
 cn.trinea.android.common.util.StringUtils: boolean isBlank(java.lang.String)
-cn.trinea.android.common.util.StringUtils: boolean isEmpty(java.lang.CharSequence)
+cn.trinea.android.common.util.StringUtils: boolean isEmpty(java.lang.String)
 cn.trinea.android.common.util.StringUtils: boolean isEquals(java.lang.String,java.lang.String)
-cn.trinea.android.common.util.StringUtils: int length(java.lang.CharSequence)
-cn.trinea.android.common.util.StringUtils: java.lang.String nullStrToEmpty(java.lang.Object)
+cn.trinea.android.common.util.StringUtils: java.lang.String nullStrToEmpty(java.lang.String)
 cn.trinea.android.common.util.StringUtils: java.lang.String capitalizeFirstLetter(java.lang.String)
 cn.trinea.android.common.util.StringUtils: java.lang.String utf8Encode(java.lang.String)
 cn.trinea.android.common.util.StringUtils: java.lang.String utf8Encode(java.lang.String,java.lang.String)
@@ -8101,7 +8076,6 @@ cn.trinea.android.common.util.ViewUtils: void setViewHeight(android.view.View,in
 cn.trinea.android.common.util.ViewUtils: void setListViewHeightBasedOnChildren(android.widget.ListView)
 cn.trinea.android.common.util.ViewUtils: void setAbsListViewHeightBasedOnChildren(android.widget.AbsListView)
 cn.trinea.android.common.util.ViewUtils: void setSearchViewOnClickListener(android.view.View,android.view.View$OnClickListener)
-cn.trinea.android.common.util.ViewUtils: java.util.List getDescendants(android.view.ViewGroup,java.lang.Class,boolean)
 cn.trinea.android.common.view.BorderScrollView
 cn.trinea.android.common.view.BorderScrollView: cn.trinea.android.common.view.BorderScrollView$OnBorderListener onBorderListener
 cn.trinea.android.common.view.BorderScrollView: android.view.View contentView
