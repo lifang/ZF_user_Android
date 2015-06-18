@@ -65,6 +65,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	private CheckBox item_cb;
 	private int invoice_type=0;//发票类型（0公司  1个人）
 	private int customerId;
+	private LinearLayout ll_fp;
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +103,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 
 	}
 	private void initView() {
+		ll_fp = (LinearLayout)findViewById(R.id.ll_fp);
 		tv_open_price = (TextView) findViewById(R.id.tv_open_price);
 		
 		evevt_img = (ImageView) findViewById(R.id.evevt_img);
@@ -182,10 +184,12 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 				if(arg1){
 					is_need_invoice=1;
 					et_titel.setEnabled(true);
+					ll_fp.setVisibility(View.VISIBLE);
 				}else{
 					is_need_invoice=0;
 					et_titel.setText("");
 					et_titel.setEnabled(false);
+					ll_fp.setVisibility(View.GONE);
 				}
 			}
 		});

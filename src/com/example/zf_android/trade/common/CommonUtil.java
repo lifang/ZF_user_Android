@@ -11,6 +11,7 @@ import android.os.Message;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -127,6 +128,7 @@ public class CommonUtil {
 		Response<List<Province>> data = JsonParser.fromJson(result, new TypeToken<List<Province>>() {
 		});
 		List<Province> provinces = data.getResult();
+		Log.e("", "");
 		return provinces;
 	}
 

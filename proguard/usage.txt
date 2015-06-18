@@ -474,100 +474,6 @@ com.alipay.sdk.widget.a:
 com.alipay.sdk.widget.d:
     public d()
     private static android.app.AlertDialog$Builder a(android.content.Context,java.lang.String,android.content.DialogInterface$OnClickListener,java.lang.String,android.content.DialogInterface$OnClickListener)
-com.bairuitech.anychat.AnyChatAudioHelper:
-    private static final java.lang.String TAG
-    public static final int PLAY_MODE_AUTO
-    public static final int PLAY_MODE_RECEIVER
-    public static final int PLAY_MODE_SPEAKER
-    137:137:public java.lang.Boolean IsSpeakerMode()
-    142:163:public void SwitchPlayMode(int)
-com.bairuitech.anychat.AnyChatCameraHelper:
-    private static final java.lang.String TAG
-    224:246:public void SelectCamera(int)
-com.bairuitech.anychat.AnyChatCoreSDK:
-    com.bairuitech.anychat.AnyChatDataEncDecEvent encdecEvent
-    60:62:public void SetStateChgEvent(com.bairuitech.anychat.AnyChatStateChgEvent)
-    66:68:public void SetPrivateChatEvent(com.bairuitech.anychat.AnyChatPrivateChatEvent)
-    72:74:public void SetTextMessageEvent(com.bairuitech.anychat.AnyChatTextMsgEvent)
-    78:80:public void SetTransDataEvent(com.bairuitech.anychat.AnyChatTransDataEvent)
-    84:86:public void SetVideoCallEvent(com.bairuitech.anychat.AnyChatVideoCallEvent)
-    90:92:public void SetUserInfoEvent(com.bairuitech.anychat.AnyChatUserInfoEvent)
-    96:98:public void SetDataEncDecEvent(com.bairuitech.anychat.AnyChatDataEncDecEvent)
-    102:104:public void SetRecordSnapShotEvent(com.bairuitech.anychat.AnyChatRecordEvent)
-    109:109:public int GetSDKMainVersion()
-    114:114:public int GetSDKSubVersion()
-    119:119:public java.lang.String GetSDKBuildTime()
-    public native int EnterRoomEx(java.lang.String,java.lang.String)
-    public native int Release()
-    public native int SetVideoPos(int,android.view.Surface,int,int,int,int)
-    public native int StreamRecordCtrl(int,int,int,int)
-    public native int StreamRecordCtrlEx(int,int,int,int,java.lang.String)
-    public native int SnapShot(int,int,int)
-    public native int AudioGetVolume(int)
-    public native int AudioSetVolume(int,int)
-    public native int GetUserSpeakVolume(int)
-    public native int GetUserVideoWidth(int)
-    public native int GetUserVideoHeight(int)
-    public native java.lang.String QueryRoomStateString(int,int)
-    public native int QueryRoomStateInt(int,int)
-    public native int SetServerAuthPass(java.lang.String)
-    public native int SetSDKOptionString(int,java.lang.String)
-    public native java.lang.String GetSDKOptionString(int)
-    public native int SendTextMessage(int,int,java.lang.String)
-    public native int TransFile(int,java.lang.String,int,int,int,com.bairuitech.anychat.AnyChatOutParam)
-    public native int TransBuffer(int,byte[],int)
-    public native int TransBufferEx(int,byte[],int,int,int,int,com.bairuitech.anychat.AnyChatOutParam)
-    public native int CancelTransTask(int,int)
-    public native int QueryTransTaskInfo(int,int,int,com.bairuitech.anychat.AnyChatOutParam)
-    public native int SendSDKFilterData(byte[],int)
-    215:216:public void CameraAutoFocus()
-    225:225:public java.lang.String GetUserIPAddr(int)
-    public native java.lang.String[] EnumAudioCapture()
-    public native int SelectAudioCapture(java.lang.String)
-    public native java.lang.String GetCurAudioCapture()
-    public native java.lang.String[] EnumAudioPlayback()
-    public native int SelectAudioPlayback(java.lang.String)
-    public native java.lang.String GetCurAudioPlayback()
-    public native int ChangeChatMode(int)
-    public native int GetUserChatMode(int)
-    public native int PrivateChatRequest(int)
-    public native int PrivateChatEcho(int,int,int)
-    public native int PrivateChatEchoEx(int,int,int)
-    public native int PrivateChatExit(int)
-    public native int VideoCallControl(int,int,int,int,int,java.lang.String)
-    public native int[] GetUserFriends()
-    public native int GetFriendStatus(int)
-    public native int[] GetUserGroups()
-    public native int[] GetGroupFriends(int)
-    public native java.lang.String GetUserInfo(int,int)
-    public native java.lang.String GetGroupName(int)
-    public native int UserInfoControl(int,int,int,int,java.lang.String)
-    public native int MultiCastControl(java.lang.String,int,java.lang.String,int,int)
-    493:503:private void OnAnyChatNotifyMsg(int,int,int)
-    507:518:private void OnTextMessageCallBack(int,int,int,java.lang.String)
-    522:536:private void OnTransFileCallBack(int,java.lang.String,java.lang.String,int,int,int,int)
-    540:550:private void OnTransBufferCallBack(int,byte[],int)
-    554:567:private void OnTransBufferExCallBack(int,byte[],int,int,int,int)
-    571:580:private void OnSDKFilterDataCallBack(byte[],int)
-    585:589:private void OnVideoDataCallBack(int,byte[],int,int,int)
-    594:607:private void OnVideoCallEventCallBack(int,int,int,int,int,java.lang.String)
-    612:625:private void OnRecordSnapShotExCallBack(int,java.lang.String,int,int,int,java.lang.String)
-    630:633:private int OnDataEncDecCallBack(int,int,byte[],int,com.bairuitech.anychat.AnyChatOutParam)
-com.bairuitech.anychat.AnyChatCoreSDK$MainHandler:
-    396:397:public AnyChatCoreSDK$MainHandler(android.os.Looper)
-com.bairuitech.anychat.AnyChatDataEncDecEvent
-com.bairuitech.anychat.AnyChatDefine
-com.bairuitech.anychat.AnyChatOutParam
-com.bairuitech.anychat.AnyChatVideoHelper:
-    52:56:public int SetVideoFmt(int,int,int)
-    65:67:public void setMaxCutScale(int,float)
-    70:74:public void ShowVideo(int,byte[],int,int)
-    77:84:private com.bairuitech.anychat.VideoRenderer GetRenderByUserId(int)
-com.bairuitech.anychat.VideoRenderer:
-    123:126:public void setMaxCutScale(float)
-    160:176:public android.graphics.Bitmap CreateBitmap(int,int)
-    182:184:public void SetCoordinates(float,float,float,float)
-    187:248:public void DrawByteBuffer(byte[],int,int)
 com.epalmpay.userPhone.BuildConfig
 com.epalmpay.userPhone.R
 com.epalmpay.userPhone.R$anim
@@ -691,8 +597,6 @@ com.examlpe.zf_android.util.UpdateDialog
 com.examlpe.zf_android.util.UpdateDialog$1
 com.examlpe.zf_android.util.UpdateDialog$2
 com.examlpe.zf_android.util.UpdateDialog$ICallBack
-com.example.zf_android.BaseActivity:
-    56:84:public static java.lang.String getDeviceInfo(android.content.Context)
 com.example.zf_android.Config:
     public static final java.lang.String VIDEO_SERVER_IP
     public static final int VIDEO_SERVER_PORT
@@ -763,22 +667,22 @@ com.example.zf_android.Config:
     public static final java.lang.String RSA_PUBLIC
     4:4:public Config()
 com.example.zf_android.MyApplication:
-    164:164:public static int getNotifyId()
-    168:169:public static void setNotifyId(int)
-    172:172:public static java.lang.String getVersionCode()
-    176:177:public static void setVersionCode(java.lang.String)
-    180:180:public static com.example.zf_android.entity.User getCurrentUser()
-    184:185:public static void setCurrentUser(com.example.zf_android.entity.User)
-    196:197:public void setClient(com.loopj.android.http.AsyncHttpClient)
-    200:200:public static java.lang.String getToken()
-    204:205:public static void setToken(java.lang.String)
-    210:210:public static com.example.zf_android.entity.PosSelectEntity getPse()
-    214:215:public static void setPse(com.example.zf_android.entity.PosSelectEntity)
-    224:225:public static void setComfirmList(java.util.List)
-    234:235:public static void setCelist(java.util.List)
-    255:256:public static void setPub(java.util.List)
-    263:264:public static void setSingle(java.util.List)
-    463:464:public void setHistoryList(java.util.ArrayList)
+    165:165:public static int getNotifyId()
+    169:170:public static void setNotifyId(int)
+    173:173:public static java.lang.String getVersionCode()
+    177:178:public static void setVersionCode(java.lang.String)
+    181:181:public static com.example.zf_android.entity.User getCurrentUser()
+    185:186:public static void setCurrentUser(com.example.zf_android.entity.User)
+    197:198:public void setClient(com.loopj.android.http.AsyncHttpClient)
+    201:201:public static java.lang.String getToken()
+    205:206:public static void setToken(java.lang.String)
+    211:211:public static com.example.zf_android.entity.PosSelectEntity getPse()
+    215:216:public static void setPse(com.example.zf_android.entity.PosSelectEntity)
+    225:226:public static void setComfirmList(java.util.List)
+    235:236:public static void setCelist(java.util.List)
+    256:257:public static void setPub(java.util.List)
+    264:265:public static void setSingle(java.util.List)
+    464:465:public void setHistoryList(java.util.ArrayList)
 com.example.zf_android.Utils:
     public static final java.lang.String TAG
     public static final java.lang.String RESPONSE_METHOD
@@ -800,10 +704,6 @@ com.example.zf_android.activity.About:
     private int a
     private int index
     private java.lang.String text
-com.example.zf_android.activity.Comment:
-    47:47:static synthetic com.example.zf_zandroid.adapter.CommentAdapter access$0(com.example.zf_android.activity.Comment)
-com.example.zf_android.activity.Comment$OnClickListen:
-    77:83:public void onAfterTextChanged(int)
 com.example.zf_android.activity.CreatMerchant:
     private static final int TYPE_7
     private static final int TYPE_10
@@ -813,31 +713,15 @@ com.example.zf_android.activity.CreatMerchant:
     private static final int TYPE_14
     private static final int TYPE_15
     private static final int TYPE_16
-com.example.zf_android.activity.FactoryInfo:
-    21:21:public static com.example.zf_android.entity.FactoryEntity getFactory()
 com.example.zf_android.activity.FindPassword:
     44:44:static synthetic java.lang.Boolean access$5(com.example.zf_android.activity.FindPassword)
 com.example.zf_android.activity.FindPassword$MyThread
-com.example.zf_android.activity.GoodComment:
-    156:159:public void buttonClick()
 com.example.zf_android.activity.GoodDeatail:
     private int quantity
-com.example.zf_android.activity.GoodDeatail$MyAdapter:
-    915:915:public int getIndex()
-com.example.zf_android.activity.GoodDetailImgs$MyAdapter:
-    74:74:public int getIndex()
-com.example.zf_android.activity.JifenActivity:
-    170:173:public void buttonClick()
 com.example.zf_android.activity.LeaseConfirm:
     private android.widget.LinearLayout llll
 com.example.zf_android.activity.Main:
-    public static final int REQUEST_CITY
-    public static final int REQUEST_CITY_WHEEL
-    public static final java.lang.String TAG_BANNER
-    public static final java.lang.String TAG_BANNER_URL
     private static final int time
-com.example.zf_android.activity.Main$MyAdapter:
-    664:664:public int getIndex()
 com.example.zf_android.activity.ManagerPos
 com.example.zf_android.activity.MerchantEdit:
     private static final int TYPE_1
@@ -859,20 +743,12 @@ com.example.zf_android.activity.MerchantEdit:
 com.example.zf_android.activity.MerchantList:
     private static final int CODE_EDIT
     private static final int CODE_CREATE
-    261:264:public void buttonClick()
-com.example.zf_android.activity.MineSet$VersionHandler:
-    public static final int NO_NEW_VERSION
-    public static final int HAS_NEW_VERSION
 com.example.zf_android.activity.MyMessage:
     org.json.JSONArray a
-    231:234:public void buttonClick()
 com.example.zf_android.activity.MymsgDetail:
     private android.widget.TextView msg_title
-com.example.zf_android.activity.OrderList:
-    237:240:public void buttonClick()
 com.example.zf_android.activity.PosListActivity:
     private android.widget.TextView next_sure
-    273:276:public void buttonClick()
 com.example.zf_android.activity.PosSearch:
     java.lang.String sessionId
     java.lang.String sign
@@ -885,15 +761,11 @@ com.example.zf_android.activity.PosSelectDetail
 com.example.zf_android.activity.Regist4mailSucces:
     private int a
     private int index
-com.example.zf_android.activity.Register3phone:
-    180:196:public void registerPhoneCode(java.lang.String)
-com.example.zf_android.activity.Register3phone$4
 com.example.zf_android.activity.SystemDetail:
     private java.lang.String url
     private android.widget.ImageView search
 com.example.zf_android.activity.SystemMessage:
     private android.widget.TextView next_sure
-    187:190:public void buttonClick()
 com.example.zf_android.activity.WebViewActivity
 com.example.zf_android.alipay.Base64:
     private static final int BASELENGTH
@@ -907,7 +779,6 @@ com.example.zf_android.alipay.Base64:
 com.example.zf_android.alipay.PayActivity:
     private static final int SDK_PAY_FLAG
     private static final int SDK_CHECK_FLAG
-    133:136:public void getSDKVersion()
 com.example.zf_android.alipay.PayResult:
     52:52:public java.lang.String getMemo()
     59:59:public java.lang.String getResult()
@@ -915,410 +786,16 @@ com.example.zf_android.alipay.PayUtils
 com.example.zf_android.alipay.RepairPayActivity:
     private static final int SDK_PAY_FLAG
     private static final int SDK_CHECK_FLAG
-    133:136:public void getSDKVersion()
 com.example.zf_android.alipay.SignUtils:
     private static final java.lang.String ALGORITHM
     private static final java.lang.String SIGN_ALGORITHMS
     private static final java.lang.String DEFAULT_CHARSET
     7:7:public SignUtils()
-com.example.zf_android.entity.AdressEntity:
-    private int customerId
-    private java.lang.String city_parent_id
-    private java.lang.String city
-    private java.lang.String city_parent_name
-    41:42:public void setId(int)
-    47:48:public void setCity_name(java.lang.String)
-    50:50:public int getCustomerId()
-    53:54:public void setCustomerId(int)
-    59:60:public void setReceiver(java.lang.String)
-    65:66:public void setIsDefault(int)
-    71:72:public void setAddress(java.lang.String)
-    77:78:public void setCityId(int)
-    80:80:public java.lang.String getCity_parent_id()
-    83:84:public void setCity_parent_id(java.lang.String)
-    89:90:public void setZipCode(java.lang.String)
-    95:96:public void setMoblephone(java.lang.String)
-    98:98:public java.lang.String getCity()
-    101:102:public void setCity(java.lang.String)
-    104:104:public java.lang.String getCity_parent_name()
-    107:108:public void setCity_parent_name(java.lang.String)
-com.example.zf_android.entity.Answer:
-    10:10:public int getGood_id()
-    16:16:public int getCustomer_id()
-    22:22:public int getScore()
-    28:28:public java.lang.String getContent()
-com.example.zf_android.entity.ApplicationEntity
-com.example.zf_android.entity.ApplyOpenProgress:
-    private int id
-    private java.lang.String error
-    22:22:public java.lang.String getError()
-    26:27:public void setError(java.lang.String)
-    30:30:public int getId()
-    34:35:public void setId(int)
-    42:43:public void setTerminalNumber(java.lang.String)
-    50:51:public void setOpenStatus(java.util.List)
-com.example.zf_android.entity.ApplyOpenProgress$OpenStatus:
-    final synthetic com.example.zf_android.entity.ApplyOpenProgress this$0
-    53:53:public ApplyOpenProgress$OpenStatus(com.example.zf_android.entity.ApplyOpenProgress)
-com.example.zf_android.entity.ApplyneedEntity:
-    private int id
-    14:15:public void setName(java.lang.String)
-    20:21:public void setIntroduction(java.lang.String)
-    23:23:public int getId()
-    26:27:public void setId(int)
-com.example.zf_android.entity.BankEntity:
-    15:16:public void setContent(java.util.List)
-com.example.zf_android.entity.ChanelEntitiy:
-    private int id
-    20:21:public void setStandard_rate(int)
-    26:27:public void setTerminal_rate(int)
-    32:33:public void setTrade_value(java.lang.String)
-    39:39:public int getId()
-    42:43:public void setId(int)
-    54:55:public void setDescription(java.lang.String)
-com.example.zf_android.entity.ChangeEmailEntity:
-    11:12:public void setDentcode(java.lang.String)
-com.example.zf_android.entity.FactoryEntity:
-    private int id
-    private int status
-    private int types
-    14:14:public int getId()
-    17:18:public void setId(int)
-    20:20:public int getStatus()
-    23:24:public void setStatus(int)
-    29:30:public void setDescription(java.lang.String)
-    35:36:public void setName(java.lang.String)
-    41:42:public void setWebsite_url(java.lang.String)
-    44:44:public int getTypes()
-    47:48:public void setTypes(int)
-    53:54:public void setLogo_file_path(java.lang.String)
-com.example.zf_android.entity.GoodCommentEntity:
-    private int id
-    18:19:public void setContent(java.lang.String)
-    21:21:public int getId()
-    24:25:public void setId(int)
-    30:31:public void setName(java.lang.String)
-    36:37:public void setScore(int)
-    42:43:public void setCreated_at(java.lang.String)
-com.example.zf_android.entity.GoodImgUrlEntity:
-    private int id
-    7:7:public int getId()
-    10:11:public void setId(int)
-    16:17:public void setUrlPath(java.lang.String)
-com.example.zf_android.entity.GoodinfoEntity:
-    private static final long serialVersionUID
-    private int total_score
-    private int factory_id
-    65:66:public void setLease_agreement(java.lang.String)
-    71:72:public void setEncrypt_card_way(java.lang.String)
-    74:74:public int getTotal_score()
-    77:78:public void setTotal_score(int)
-    83:84:public void setSign_order_way(java.lang.String)
-    89:90:public void setRetail_price(int)
-    95:96:public void setBattery_info(java.lang.String)
-    101:102:public void setLease_price(int)
-    107:108:public void setTitle(java.lang.String)
-    113:114:public void setId(int)
-    119:120:public void setVolume_number(int)
-    125:126:public void setShell_material(java.lang.String)
-    128:128:public int getFactory_id()
-    131:132:public void setFactory_id(int)
-    137:138:public void setLease_deposit(int)
-    143:144:public void setGood_brand(java.lang.String)
-    149:150:public void setCategory(java.lang.String)
-    155:156:public void setLease_time(int)
-    161:162:public void setPrice(int)
-    167:168:public void setLease_description(java.lang.String)
-    173:174:public void setDescription(java.lang.String)
-    179:180:public void setQuantity(int)
-    185:186:public void setReturn_time(int)
-    191:192:public void setSecond_title(java.lang.String)
-    198:199:public void setHas_lease(boolean)
-    204:205:public void setModel_number(java.lang.String)
-com.example.zf_android.entity.Goodlist:
-    private java.lang.String terminals
-    private java.lang.String good_volume_number
-    36:37:public void setGood_actualprice(java.lang.String)
-    39:39:public java.lang.String getTerminals()
-    42:43:public void setTerminals(java.lang.String)
-    65:66:public void setGood_opening_cost(int)
-    71:72:public void setGood_name(java.lang.String)
-    77:78:public void setGood_logo(java.lang.String)
-    83:84:public void setGood_brand(java.lang.String)
-    89:90:public void setGood_price(java.lang.String)
-    92:92:public java.lang.String getGood_volume_number()
-    95:96:public void setGood_volume_number(java.lang.String)
-    101:102:public void setGood_num(java.lang.String)
-    107:108:public void setGood_channel(java.lang.String)
-    113:114:public void setGood_id(java.lang.String)
-com.example.zf_android.entity.JifenEntity:
-    private int target_type
-    37:38:public void setOrder_number(java.lang.String)
-    43:44:public void setPayedAt(java.lang.String)
-    49:50:public void setQuantity(int)
-    55:56:public void setTypes(int)
-    58:58:public int getTarget_type()
-    61:62:public void setTarget_type(int)
-    67:68:public void setActual_price(java.lang.String)
-com.example.zf_android.entity.JifenTotalEntity:
-    11:12:public void setMoneyTotal(java.lang.String)
-    17:18:public void setQuantityTotal(java.lang.String)
-com.example.zf_android.entity.MarkEntity:
-    14:15:public void setMarks_person(java.lang.String)
-    20:21:public void setMarks_time(java.lang.String)
-    26:27:public void setMarks_content(java.lang.String)
-com.example.zf_android.entity.MerchantEntity:
-    9:10:public void setId(int)
-    129:130:public void setLegal_person_name(java.lang.String)
-com.example.zf_android.entity.MessageEntity:
-    38:39:public void setContent(java.lang.String)
-    44:45:public void setId(java.lang.String)
-    50:51:public void setTitle(java.lang.String)
-    56:57:public void setCreate_at(java.lang.String)
-com.example.zf_android.entity.MyShopCar:
-    private int code
-    private java.lang.String message
-    private java.util.List result
-    10:10:public MyShopCar()
-    16:16:public int getCode()
-    20:21:public void setCode(int)
-    24:24:public java.lang.String getMessage()
-    28:29:public void setMessage(java.lang.String)
-    129:139:public static com.example.zf_android.entity.MyShopCar getShopCar(java.lang.String)
-    143:150:public static boolean isGoodJson(java.lang.String)
-    155:155:public java.util.List getResult()
-    159:160:public void setResult(java.util.List)
-com.example.zf_android.entity.MyShopCar$Good:
-    private int goodId
-    51:52:public void setOpening_cost(int)
-    59:60:public void setId(int)
-    67:68:public void setTitle(java.lang.String)
-    75:76:public void setUrl_path(java.lang.String)
-    83:84:public void setName(java.lang.String)
-    87:87:public int getGoodId()
-    91:92:public void setGoodId(int)
-    107:108:public void setRetail_price(int)
-    115:116:public void setModel_number(java.lang.String)
-com.example.zf_android.entity.MyinfoEntity:
-    private java.lang.String password
-    17:18:public void setCity_id(java.lang.String)
-    23:24:public void setPhone(java.lang.String)
-    29:30:public void setEmail(java.lang.String)
-    35:36:public void setName(java.lang.String)
-    41:42:public void setIntegral(java.lang.String)
-    44:44:public java.lang.String getPassword()
-    47:48:public void setPassword(java.lang.String)
-com.example.zf_android.entity.NewPoslistEntity:
-    private int total
-    9:9:public int getTotal()
-    12:13:public void setTotal(int)
-    18:19:public void setList(java.util.List)
-com.example.zf_android.entity.OpenStateEntity
-com.example.zf_android.entity.OrderDetailEntity:
-    private java.lang.String order_oldprice
-    private int order_id
-    private int order_status
-    private java.lang.String good_merchant
-    56:57:public void setLogistics_name(java.lang.String)
-    70:71:public void setLogistics_number(java.lang.String)
-    84:85:public void setTerminals(java.lang.String)
-    98:99:public void setOrder_number(java.lang.String)
-    112:113:public void setOrder_receiver_phone(java.lang.String)
-    126:127:public void setOrder_payment_type(java.lang.String)
-    140:141:public void setOrder_comment(java.lang.String)
-    154:155:public void setOrder_address(java.lang.String)
-    168:169:public void setOrder_invoce_type(java.lang.String)
-    175:175:public java.lang.String getOrder_oldprice()
-    182:183:public void setOrder_oldprice(java.lang.String)
-    189:189:public int getId()
-    196:197:public void setId(int)
-    210:211:public void setOrder_totalNum(java.lang.String)
-    217:217:public int getOrder_status()
-    224:225:public void setOrder_status(int)
-    238:239:public void setOrder_receiver(java.lang.String)
-    252:253:public void setOrder_createTime(java.lang.String)
-    266:267:public void setOrder_psf(java.lang.String)
-    273:273:public java.lang.String getGood_merchant()
-    280:281:public void setGood_merchant(java.lang.String)
-    294:295:public void setOrder_invoce_info(java.lang.String)
-    308:309:public void setOrder_totalprice(java.lang.String)
-    319:320:public void setComments(com.example.zf_android.entity.OrderDetailEntity$CommentG)
-    330:331:public void setOrder_goodsList(java.util.List)
-com.example.zf_android.entity.OrderDetailEntity$CommentG:
-    public int total
-    final synthetic com.example.zf_android.entity.OrderDetailEntity this$0
-    336:336:public OrderDetailEntity$CommentG(com.example.zf_android.entity.OrderDetailEntity)
-    343:344:public void setContent(java.util.List)
-    346:346:public int getTotal()
-    349:350:public void setTotal(int)
-com.example.zf_android.entity.OrderEntity:
-    20:21:public void setOrder_totalNum(java.lang.String)
-    47:48:public void setOrder_number(java.lang.String)
-    53:54:public void setOrder_psf(int)
-    59:60:public void setOrder_createTime(java.lang.String)
-    65:66:public void setOrder_id(java.lang.String)
-    71:72:public void setOrder_totalPrice(int)
-    83:84:public void setOrder_goodsList(java.util.List)
-com.example.zf_android.entity.OrderListEntity
-com.example.zf_android.entity.OrderNew
-com.example.zf_android.entity.PicEntity:
-    19:20:public void setGoodid(java.lang.String)
-    25:26:public void setId(int)
-com.example.zf_android.entity.PosEntity:
-    private int total_score
-    19:20:public void setUrl_path(java.lang.String)
-    27:28:public void setHas_lease(java.lang.Boolean)
-    41:42:public void setVolume_number(int)
-    47:48:public void setId(int)
-    53:54:public void setGood_brand(java.lang.String)
-    56:56:public int getTotal_score()
-    59:60:public void setTotal_score(int)
-    65:66:public void setRetail_price(int)
-    71:72:public void setPay_channe(java.lang.String)
-    77:78:public void setTitle(java.lang.String)
-    83:84:public void setModel_number(java.lang.String)
-com.example.zf_android.entity.PosItem:
-    19:20:public void setId(int)
-    25:26:public void setValue(java.lang.String)
-com.example.zf_android.entity.PosSelectEntity:
-    private int minPrice
-    private int maxPrice
-    25:26:public void setCategory(java.util.List)
-    64:64:public int getMinPrice()
-    74:75:public void setMinPrice(int)
-    84:84:public int getMaxPrice()
-    94:95:public void setMaxPrice(int)
-    114:115:public void setBrands(java.util.List)
-    134:135:public void setSale_slip(java.util.List)
-    154:155:public void setPay_card(java.util.List)
-    174:175:public void setPay_channel(java.util.List)
-    194:195:public void setTrade_type(java.util.List)
-    214:215:public void settDate(java.util.List)
-com.example.zf_android.entity.PrePosItem:
-    23:24:public void setId(int)
-    29:30:public void setValue(java.lang.String)
-    35:36:public void setSon(java.util.List)
-com.example.zf_android.entity.ResultEntity
-com.example.zf_android.entity.TestEntitiy
-com.example.zf_android.entity.User:
-    private int id
-    private java.lang.String name
-    private java.lang.String username
-    private int types
-    private int status
-    private java.lang.String phone
-    private java.lang.String email
-    35:35:public java.lang.String getName()
-    38:39:public void setName(java.lang.String)
-    46:46:public int getId()
-    49:50:public void setId(int)
-    52:52:public java.lang.String getUsername()
-    55:56:public void setUsername(java.lang.String)
-    58:58:public int getTypes()
-    61:62:public void setTypes(int)
-    64:64:public int getStatus()
-    67:68:public void setStatus(int)
-    70:70:public java.lang.String getPhone()
-    73:74:public void setPhone(java.lang.String)
-    76:76:public java.lang.String getEmail()
-    79:80:public void setEmail(java.lang.String)
-com.example.zf_android.entity.UserEntity:
-    private java.lang.String phone
-    private int status
-    private int cityId
-    private int accountType
-    private int type
-    25:26:public void setId(int)
-    28:28:public java.lang.String getPhone()
-    31:32:public void setPhone(java.lang.String)
-    37:38:public void setUsername(java.lang.String)
-    40:40:public int getStatus()
-    43:44:public void setStatus(int)
-    46:46:public int getCityId()
-    49:50:public void setCityId(int)
-    52:52:public int getAccountType()
-    55:56:public void setAccountType(int)
-    58:58:public int getType()
-    61:62:public void setType(int)
-com.example.zf_android.entity.VersionEntity:
-    private int id
-    private int types
-    14:14:public int getId()
-    17:18:public void setId(int)
-    20:20:public int getTypes()
-    23:24:public void setTypes(int)
-    29:30:public void setVersions(java.lang.String)
-    35:36:public void setDown_url(java.lang.String)
 com.example.zf_android.service.NetworkStateService:
     private static final java.lang.String tag
 com.example.zf_android.trade.ADownloadManagerActivity:
     private long enqueue
     private android.app.DownloadManager dm
-com.example.zf_android.trade.ADownloadManagerActivity$MyWebViewClient:
-    83:84:public boolean shouldOverviewUrlLoading(android.webkit.WebView,java.lang.String)
-com.example.zf_android.trade.API:
-    public static final java.lang.String EDITADRESS
-    public static final java.lang.String TERMINAL_LIST
-    public static final java.lang.String TRADE_RECORD_LIST
-    public static final java.lang.String TRADE_RECORD_STATISTIC
-    public static final java.lang.String TRADE_RECORD_DETAIL
-    public static final java.lang.String GETINFO
-    public static final java.lang.String AFTER_SALE_MAINTAIN_LIST
-    public static final java.lang.String AFTER_SALE_RETURN_LIST
-    public static final java.lang.String AFTER_SALE_CANCEL_LIST
-    public static final java.lang.String AFTER_SALE_CHANGE_LIST
-    public static final java.lang.String AFTER_SALE_UPDATE_LIST
-    public static final java.lang.String AFTER_SALE_LEASE_LIST
-    public static final java.lang.String AFTER_SALE_MAINTAIN_DETAIL
-    public static final java.lang.String AFTER_SALE_RETURN_DETAIL
-    public static final java.lang.String AFTER_SALE_CANCEL_DETAIL
-    public static final java.lang.String AFTER_SALE_CHANGE_DETAIL
-    public static final java.lang.String AFTER_SALE_UPDATE_DETAIL
-    public static final java.lang.String AFTER_SALE_LEASE_DETAIL
-    public static final java.lang.String AFTER_SALE_MAINTAIN_CANCEL
-    public static final java.lang.String AFTER_SALE_RETURN_CANCEL
-    public static final java.lang.String AFTER_SALE_CANCEL_CANCEL
-    public static final java.lang.String AFTER_SALE_CHANGE_CANCEL
-    public static final java.lang.String AFTER_SALE_UPDATE_CANCEL
-    public static final java.lang.String AFTER_SALE_LEASE_CANCEL
-    public static final java.lang.String AFTER_SALE_RESUBMIT_CANCEL
-    public static final java.lang.String AFTER_SALE_MAINTAIN_ADD_MARK
-    public static final java.lang.String AFTER_SALE_RETURN_ADD_MARK
-    public static final java.lang.String AFTER_SALE_CHANGE_ADD_MARK
-    public static final java.lang.String AFTER_SALE_LEASE_ADD_MARK
-    public static final java.lang.String TERMINAL_APPLY_LIST
-    public static final java.lang.String CHANNEL_LIST
-    public static final java.lang.String TERMINAL_ADD
-    public static final java.lang.String TERMINAL_DETAIL
-    public static final java.lang.String TERMINAL_BANK
-    public static final java.lang.String TERMINAL_SYNC
-    public static final java.lang.String TERMINAL_FIND_POS
-    public static final java.lang.String APPLY_LIST
-    public static final java.lang.String APPLY_DETAIL
-    public static final java.lang.String APPLY_MERCHANT_DETAIL
-    public static final java.lang.String APPLY_CHANNEL_LIST
-    public static final java.lang.String APPLY_BANK_LIST
-    public static final java.lang.String UPLOAD_IMAGE
-    public static final java.lang.String TERMINAL_UPLOAD_IMAGE
-    public static final java.lang.String MERCHANT_UPLOAD_IMAGE
-    public static final java.lang.String APPLY_SUBMIT
-    public static final java.lang.String GETEMAILPASS
-    public static final java.lang.String APPLY_PROGRESS
-    public static final java.lang.String WNATBUY
-    public static final java.lang.String Add_ress
-    public static final java.lang.String REG_PHONECODE
-    public static final java.lang.String ZHUCHE
-    public static final java.lang.String GETPHONEPASS
-    public static final java.lang.String order_cart
-    public static final java.lang.String GET_PHONECODE
-    public static final java.lang.String GET_UPDATEEMAILDENTCODE
-    34:34:public API()
-    422:425:public static void getApplyBankList(android.content.Context,java.lang.String,com.example.zf_android.trade.common.HttpCallback)
-    627:648:public static void NewMerchant(android.content.Context,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,com.example.zf_android.trade.common.HttpCallback)
-    655:666:public static void CARTFIRM1(android.content.Context,int,java.util.ArrayList,int,java.lang.String,int,int,java.lang.String,com.example.zf_android.trade.common.HttpCallback)
-    715:716:public static void checkVersion(android.content.Context,com.example.zf_android.trade.common.HttpCallback)
-com.example.zf_android.trade.AfterSaleDetailActivity:
-    public static final java.lang.String MATERIAL_URL
 com.example.zf_android.trade.AfterSaleMaterialActivity:
     private android.widget.TextView content
     private com.examlpe.zf_android.util.URLImageParser ReviewImgGetter
@@ -1335,8 +812,6 @@ com.example.zf_android.trade.CityProvinceActivity:
     private static final int OFFSET
 com.example.zf_android.trade.CitySearchActivity$CitySearchAdapter$ViewHolder:
     android.widget.TextView tv
-com.example.zf_android.trade.Constants:
-    5:5:public Constants()
 com.example.zf_android.trade.Constants$AfterSaleIntent
 com.example.zf_android.trade.Constants$AfterSaleType
 com.example.zf_android.trade.Constants$ApplyIntent
@@ -1348,450 +823,6 @@ com.example.zf_android.trade.Constants$TradeIntent
 com.example.zf_android.trade.Constants$TradeType
 com.example.zf_android.trade.TradeFlowFragment:
     private int lastItem
-com.example.zf_android.trade.common.CommonUtil:
-    40:40:public CommonUtil()
-    62:64:public static void toastShort(android.content.Context,int)
-com.example.zf_android.trade.common.CustomDialog:
-    61:63:public void setContent(int)
-    79:83:public void setSoftKeyValue(int,int)
-com.example.zf_android.trade.common.DialogUtil:
-    15:15:public DialogUtil()
-    41:43:public static int getScreenHeight(android.app.Activity)
-com.example.zf_android.trade.common.HttpRequest:
-    89:97:public void get(java.lang.String)
-com.example.zf_android.trade.common.JsonParser:
-    13:13:public JsonParser()
-com.example.zf_android.trade.common.NetworkUtil:
-    10:10:public NetworkUtil()
-    28:31:public static java.lang.String getNetworkType(android.content.Context)
-com.example.zf_android.trade.common.Page:
-    19:20:public void setTotal(int)
-    27:28:public void setList(java.util.List)
-com.example.zf_android.trade.common.Pageable:
-    19:20:public void setTotal(int)
-    27:28:public void setContent(java.util.List)
-com.example.zf_android.trade.common.RegText:
-    11:11:public RegText()
-    21:24:public static boolean isYouBian(java.lang.String)
-com.example.zf_android.trade.common.Response:
-    26:27:public void setCode(int)
-    34:35:public void setMessage(java.lang.String)
-    42:43:public void setResult(java.lang.Object)
-com.example.zf_android.trade.common.StringUtil:
-    14:14:public StringUtil()
-    19:27:public static boolean isBlank(java.lang.CharSequence)
-    31:31:public static boolean isNotBlank(java.lang.CharSequence)
-    35:45:public static java.lang.String join(java.util.List,java.lang.String)
-com.example.zf_android.trade.entity.AfterSaleDetail:
-    private int id
-    44:44:public int getId()
-    48:49:public void setId(int)
-    56:57:public void setStatus(int)
-    64:65:public void setApplyTime(java.lang.String)
-    72:73:public void setTerminalNum(java.lang.String)
-    80:81:public void setBrandName(java.lang.String)
-    88:89:public void setBrandNumber(java.lang.String)
-    96:97:public void setPayChannel(java.lang.String)
-    104:105:public void setMerchantName(java.lang.String)
-    112:113:public void setMerchantPhone(java.lang.String)
-    120:121:public void setComments(com.example.zf_android.trade.common.Pageable)
-    128:129:public void setResource_info(java.util.List)
-com.example.zf_android.trade.entity.AfterSaleDetailCancel
-com.example.zf_android.trade.entity.AfterSaleDetailChange:
-    21:22:public void setReceiverAddr(java.lang.String)
-    29:30:public void setChangeReason(java.lang.String)
-com.example.zf_android.trade.entity.AfterSaleDetailLease:
-    41:42:public void setCrf_retrun_price(java.lang.String)
-    49:50:public void setReturn_price(int)
-    57:58:public void setLeasePrice(int)
-    65:66:public void setLeaseDeposit(int)
-    73:74:public void setLeaseLength(int)
-    81:82:public void setLeaseMaxTime(int)
-    89:90:public void setLeaseMinTime(int)
-    97:98:public void setReceiverName(java.lang.String)
-    105:106:public void setReceiverPhone(java.lang.String)
-com.example.zf_android.trade.entity.AfterSaleDetailMaintain:
-    private java.lang.String description
-    24:25:public void setChange_reason(java.lang.String)
-    31:32:public void setReceiverAddr(java.lang.String)
-    39:40:public void setRepairPrice(java.lang.String)
-    43:43:public java.lang.String getDescription()
-    47:48:public void setDescription(java.lang.String)
-com.example.zf_android.trade.entity.AfterSaleDetailReturn:
-    30:31:public void setReturnPrice(java.lang.String)
-    38:39:public void setBankName(java.lang.String)
-    46:47:public void setBankAccount(java.lang.String)
-    54:55:public void setReason(java.lang.String)
-com.example.zf_android.trade.entity.AfterSaleDetailUpdate
-com.example.zf_android.trade.entity.AfterSaleRecord:
-    28:29:public void setId(int)
-    36:37:public void setApplyNum(java.lang.String)
-    44:45:public void setCreateTime(java.lang.String)
-    52:53:public void setTerminalNum(java.lang.String)
-com.example.zf_android.trade.entity.ApplyBank
-com.example.zf_android.trade.entity.ApplyChannel:
-    37:38:public void setBillings(java.util.List)
-com.example.zf_android.trade.entity.ApplyChooseItem:
-    18:19:public void setId(int)
-    26:27:public void setTitle(java.lang.String)
-com.example.zf_android.trade.entity.ApplyCustomerDetail:
-    private java.lang.String key
-    private int types
-    20:20:public java.lang.String getKey()
-    24:25:public void setKey(java.lang.String)
-    32:33:public void setValue(java.lang.String)
-    36:36:public int getTypes()
-    40:41:public void setTypes(int)
-    48:49:public void setTargetId(int)
-com.example.zf_android.trade.entity.ApplyDetail:
-    23:24:public void setOpeningInfos(com.example.zf_android.trade.entity.OpeningInfos)
-    42:43:public void setTerminalDetail(com.example.zf_android.trade.entity.ApplyTerminalDetail)
-    50:51:public void setMaterials(java.util.List)
-    58:59:public void setMerchants(java.util.List)
-    66:67:public void setCustomerDetails(java.util.List)
-com.example.zf_android.trade.entity.ApplyMaterial:
-    26:27:public void setId(int)
-    34:35:public void setTypes(int)
-    42:43:public void setName(java.lang.String)
-    50:51:public void setOpeningRequirementId(int)
-com.example.zf_android.trade.entity.ApplyTerminalDetail:
-    8:8:public ApplyTerminalDetail()
-    27:28:public void setChannelId(int)
-    45:46:public void setSupportRequirementType(int)
-    53:54:public void setBrandName(java.lang.String)
-    61:62:public void setModelNumber(java.lang.String)
-    69:70:public void setSerialNumber(java.lang.String)
-    77:78:public void setChannelName(java.lang.String)
-com.example.zf_android.trade.entity.City:
-    private int parentId
-    20:21:public void setId(int)
-    28:29:public void setName(java.lang.String)
-    32:32:public int getParentId()
-    36:37:public void setParentId(int)
-    44:45:public void setPinyin(java.lang.String)
-com.example.zf_android.trade.entity.Comment:
-    24:25:public void setPerson(java.lang.String)
-    32:33:public void setTime(java.lang.String)
-    40:41:public void setContent(java.lang.String)
-com.example.zf_android.trade.entity.GriviewEntity:
-    private int index
-    11:12:public void setId(int)
-    17:18:public void setName(java.lang.String)
-    20:20:public int getIndex()
-    23:24:public void setIndex(int)
-com.example.zf_android.trade.entity.Merchant:
-    private java.lang.Integer id
-    private java.lang.Integer creditTypeId
-    private java.lang.String cardIdFrontPhotoPath
-    private java.lang.String cardIdBackPhotoPath
-    private java.lang.String businessLicenseNo
-    private java.lang.String bankOpenAccount
-    private java.lang.String licenseNoPicPath
-    private java.lang.String taxNoPicPath
-    private java.lang.String orgCodeNoPicPath
-    private java.lang.String accountPicPath
-    private java.lang.String accountBankName
-    private java.lang.String accountBankAddress
-    private java.util.Date createdAt
-    private java.util.Date updatedAt
-    private java.lang.Integer customerId
-    private java.lang.String bodyPhotoPath
-    private java.lang.Integer payChannelId
-    189:189:public java.lang.Integer getPayChannelId()
-    193:194:public void setPayChannelId(java.lang.Integer)
-    197:197:public java.lang.Integer getId()
-    209:210:public void setId(java.lang.Integer)
-    220:220:public java.lang.Integer getCreditTypeId()
-    232:233:public void setCreditTypeId(java.lang.Integer)
-    255:256:public void setLegalPersonName(java.lang.String)
-    278:279:public void setLegalPersonCardId(java.lang.String)
-    289:289:public java.lang.String getCardIdFrontPhotoPath()
-    301:302:public void setCardIdFrontPhotoPath(java.lang.String)
-    312:312:public java.lang.String getCardIdBackPhotoPath()
-    324:325:public void setCardIdBackPhotoPath(java.lang.String)
-    347:348:public void setTitle(java.lang.String)
-    358:358:public java.lang.String getBusinessLicenseNo()
-    370:371:public void setBusinessLicenseNo(java.lang.String)
-    393:394:public void setTaxRegisteredNo(java.lang.String)
-    416:417:public void setOrganizationCodeNo(java.lang.String)
-    427:427:public java.lang.String getBankOpenAccount()
-    439:440:public void setBankOpenAccount(java.lang.String)
-    450:450:public java.lang.String getLicenseNoPicPath()
-    462:463:public void setLicenseNoPicPath(java.lang.String)
-    473:473:public java.lang.String getTaxNoPicPath()
-    485:486:public void setTaxNoPicPath(java.lang.String)
-    496:496:public java.lang.String getOrgCodeNoPicPath()
-    508:509:public void setOrgCodeNoPicPath(java.lang.String)
-    519:519:public java.lang.String getAccountPicPath()
-    531:532:public void setAccountPicPath(java.lang.String)
-    542:542:public java.lang.String getAccountBankName()
-    554:555:public void setAccountBankName(java.lang.String)
-    565:565:public java.lang.String getAccountBankAddress()
-    577:578:public void setAccountBankAddress(java.lang.String)
-    588:588:public java.util.Date getCreatedAt()
-    600:601:public void setCreatedAt(java.util.Date)
-    611:611:public java.util.Date getUpdatedAt()
-    623:624:public void setUpdatedAt(java.util.Date)
-    646:647:public void setPhone(java.lang.String)
-    669:670:public void setAccountBankNum(java.lang.String)
-    673:673:public java.lang.Integer getCustomerId()
-    681:682:public void setBank_name(java.lang.String)
-    685:686:public void setCustomerId(java.lang.Integer)
-    700:701:public void setCityId(java.lang.Integer)
-    707:707:public java.lang.String getBodyPhotoPath()
-    715:716:public void setBodyPhotoPath(java.lang.String)
-com.example.zf_android.trade.entity.OpeningInfos:
-    private java.lang.String birthday
-    private int preliminary_verify_user_id
-    private int created_at
-    private int updated_at
-    private int id
-    private int terminal_id
-    private int types
-    private int apply_customer_id
-    private int status
-    10:10:public OpeningInfos()
-    15:15:public java.lang.String getBirthday()
-    19:20:public void setBirthday(java.lang.String)
-    23:23:public int getPreliminary_verify_user_id()
-    27:28:public void setPreliminary_verify_user_id(int)
-    35:36:public void setAccount_bank_name(java.lang.String)
-    39:39:public int getCreated_at()
-    43:44:public void setCreated_at(int)
-    51:52:public void setBilling_cyde_id(int)
-    59:60:public void setMerchant_id(int)
-    67:68:public void setBillingname(java.lang.String)
-    75:76:public void setTax_registered_no(java.lang.String)
-    79:79:public int getUpdated_at()
-    83:84:public void setUpdated_at(int)
-    91:92:public void setOrganization_code_no(java.lang.String)
-    95:95:public int getId()
-    99:100:public void setId(int)
-    103:103:public int getTerminal_id()
-    107:108:public void setTerminal_id(int)
-    115:116:public void setEmail(java.lang.String)
-    123:124:public void setAccount_bank_num(java.lang.String)
-    127:127:public int getTypes()
-    131:132:public void setTypes(int)
-    139:140:public void setPay_channel_id(int)
-    147:148:public void setSex(int)
-    155:156:public void setMerchant_name(java.lang.String)
-    163:164:public void setAccount_bank_code(java.lang.String)
-    171:172:public void setChannelname(java.lang.String)
-    179:180:public void setCard_id(java.lang.String)
-    183:183:public int getApply_customer_id()
-    187:188:public void setApply_customer_id(int)
-    195:196:public void setPhone(java.lang.String)
-    203:204:public void setName(java.lang.String)
-    211:212:public void setBirthdays(java.lang.String)
-    215:215:public int getStatus()
-    219:220:public void setStatus(int)
-    227:228:public void setCity_id(int)
-    263:264:public void setBank_name(java.lang.String)
-com.example.zf_android.trade.entity.Province:
-    19:20:public void setId(int)
-    27:28:public void setName(java.lang.String)
-    35:36:public void setCities(java.util.List)
-com.example.zf_android.trade.entity.RepairPayEntity:
-    private java.lang.String id
-    private java.lang.String receiver_phone
-    private java.lang.String receiver_addr
-    private java.lang.String receiver_person
-    16:17:public void setApply_num(java.lang.String)
-    22:23:public void setRepair_price(java.lang.String)
-    28:29:public void setMiaoshu(java.lang.String)
-    31:31:public java.lang.String getId()
-    34:35:public void setId(java.lang.String)
-    37:37:public java.lang.String getReceiver_phone()
-    40:41:public void setReceiver_phone(java.lang.String)
-    43:43:public java.lang.String getReceiver_addr()
-    46:47:public void setReceiver_addr(java.lang.String)
-    49:49:public java.lang.String getReceiver_person()
-    52:53:public void setReceiver_person(java.lang.String)
-com.example.zf_android.trade.entity.ResourceInfo:
-    private java.lang.String id
-    private java.lang.String templet_path
-    10:10:public java.lang.String getId()
-    13:14:public void setId(java.lang.String)
-    19:20:public void setTitle(java.lang.String)
-    22:22:public java.lang.String getTemplet_path()
-    25:26:public void setTemplet_path(java.lang.String)
-    31:32:public void setUpload_path(java.lang.String)
-com.example.zf_android.trade.entity.TerminalApply:
-    private int id
-    private java.lang.String openstatus
-    8:8:public TerminalApply()
-    42:43:public void setAppId(int)
-    46:46:public java.lang.String getOpenstatus()
-    50:51:public void setOpenstatus(java.lang.String)
-    54:54:public int getId()
-    58:59:public void setId(int)
-    66:67:public void setTerminalNum(java.lang.String)
-    74:75:public void setBrandName(java.lang.String)
-    82:83:public void setModelNumber(java.lang.String)
-    90:91:public void setFactorName(java.lang.String)
-    98:99:public void setTitle(java.lang.String)
-    106:107:public void setPhone(java.lang.String)
-    114:115:public void setOrderNumber(java.lang.String)
-    122:123:public void setCreatedAt(java.lang.String)
-    130:131:public void setStatus(int)
-com.example.zf_android.trade.entity.TerminalChannel:
-    16:17:public void setId(int)
-    24:25:public void setName(java.lang.String)
-com.example.zf_android.trade.entity.TerminalComment:
-    22:23:public void setContent(java.lang.String)
-    30:31:public void setName(java.lang.String)
-    38:39:public void setCreateAt(java.lang.String)
-com.example.zf_android.trade.entity.TerminalDetail:
-    private com.example.zf_android.trade.entity.TerminalTenancy tenancy
-    25:26:public void setApplyDetails(com.example.zf_android.trade.entity.TerminalApply)
-    29:29:public com.example.zf_android.trade.entity.TerminalTenancy getTenancy()
-    33:34:public void setTenancy(com.example.zf_android.trade.entity.TerminalTenancy)
-    41:42:public void setOpeningDetails(java.util.List)
-    49:50:public void setTrackRecord(java.util.List)
-    57:58:public void setRates(java.util.List)
-com.example.zf_android.trade.entity.TerminalItem:
-    27:28:public void setOpenstatus(java.lang.String)
-    35:36:public void setHasVideoVerify(int)
-    43:44:public void setOpeningProtocol(java.lang.String)
-    51:52:public void setAppid(java.lang.String)
-    59:60:public void setType(java.lang.String)
-    67:68:public void setId(int)
-    75:76:public void setTerminalNumber(java.lang.String)
-    83:84:public void setStatus(int)
-com.example.zf_android.trade.entity.TerminalOpen:
-    17:18:public void setKey(java.lang.String)
-    25:26:public void setValue(java.lang.String)
-    33:34:public void setTypes(int)
-com.example.zf_android.trade.entity.TerminalRate:
-    private int id
-    private int baseRate
-    27:27:public int getId()
-    31:32:public void setId(int)
-    39:40:public void setType(java.lang.String)
-    47:48:public void setTerminalRate(int)
-    55:56:public void setServiceRate(int)
-    59:59:public int getBaseRate()
-    63:64:public void setBaseRate(int)
-    71:72:public void setStatus(int)
-com.example.zf_android.trade.entity.TerminalTenancy
-com.example.zf_android.trade.entity.TradeClient:
-    private int payChannelId
-    13:13:public int getPayChannelId()
-    17:18:public void setPayChannelId(int)
-    25:26:public void setSerialNum(java.lang.String)
-com.example.zf_android.trade.entity.TradeDetail:
-    private int agentId
-    private int payChannelId
-    private int profitPrice
-    private java.lang.String trade_number
-    34:35:public void setAgentName(java.lang.String)
-    38:38:public java.lang.String getTrade_number()
-    42:43:public void setTrade_number(java.lang.String)
-    50:51:public void setAccount_number(java.lang.String)
-    58:59:public void setAccount_name(java.lang.String)
-    66:67:public void setPhone(java.lang.String)
-    74:75:public void setTradedTimeStr(java.lang.String)
-    78:78:public int getAgentId()
-    82:83:public void setAgentId(int)
-    90:91:public void setTerminalNumber(java.lang.String)
-    98:99:public void setAmount(int)
-    102:102:public int getPayChannelId()
-    106:107:public void setPayChannelId(int)
-    114:115:public void setTradeNumber(java.lang.String)
-    118:118:public int getProfitPrice()
-    122:123:public void setProfitPrice(int)
-    130:131:public void setPoundage(int)
-    138:139:public void setBatchNumber(java.lang.String)
-    146:147:public void setPayIntoAccount(java.lang.String)
-    154:155:public void setMerchantNumber(java.lang.String)
-    162:163:public void setTradedStatus(int)
-    170:171:public void setMerchantName(java.lang.String)
-    178:179:public void setPayFromAccount(java.lang.String)
-    186:187:public void setPayChannelName(java.lang.String)
-com.example.zf_android.trade.entity.TradeRecord:
-    private java.lang.String payedTimeStr
-    40:41:public void setId(int)
-    48:49:public void setAmount(int)
-    56:57:public void setTradedStatus(int)
-    64:65:public void setTerminalNumber(java.lang.String)
-    72:73:public void setTradedTimeStr(java.lang.String)
-    80:81:public void setPayFromAccount(java.lang.String)
-    88:89:public void setPayIntoAccount(java.lang.String)
-    92:92:public java.lang.String getPayedTimeStr()
-    96:97:public void setPayedTimeStr(java.lang.String)
-    104:105:public void setPoundage(int)
-    112:113:public void setAccountName(java.lang.String)
-    120:121:public void setAccountNumber(java.lang.String)
-    128:129:public void setPhone(java.lang.String)
-com.example.zf_android.trade.entity.TradeStatistic:
-    private int payChannelId
-    20:21:public void setTradeTypeId(int)
-    28:29:public void setAmountTotal(int)
-    32:32:public int getPayChannelId()
-    36:37:public void setPayChannelId(int)
-    44:45:public void setPayChannelName(java.lang.String)
-    52:53:public void setTerminalNumber(java.lang.String)
-    60:61:public void setTradeTotal(int)
-com.example.zf_android.trade.widget.DepthPageTransformer:
-    private static final float MIN_SCALE
-com.example.zf_android.trade.widget.WheelView:
-    public static final int OFF_SET_DEFAULT
-    private static final int SCROLL_DIRECTION_UP
-    private static final int SCROLL_DIRECTION_DOWN
-    43:45:public WheelView(android.content.Context,android.util.AttributeSet)
-    48:50:public WheelView(android.content.Context,android.util.AttributeSet,int)
-com.example.zf_android.trade.widget.XListView:
-    private static final int SCROLLBACK_HEADER
-    private static final int SCROLLBACK_FOOTER
-    private static final int SCROLL_DURATION
-    private static final int PULL_LOAD_MORE_DELTA
-    private static final float OFFSET_RADIO
-com.example.zf_android.trade.widget.XListViewFooter:
-    public static final int STATE_NORMAL
-    public static final int STATE_READY
-    public static final int STATE_LOADING
-    43:45:public XListViewFooter(android.content.Context,android.util.AttributeSet)
-    94:96:public void normal()
-    103:105:public void loading()
-com.example.zf_android.trade.widget.XListViewHeader:
-    public static final int STATE_NORMAL
-    public static final int STATE_READY
-    public static final int STATE_REFRESHING
-    44:46:public XListViewHeader(android.content.Context,android.util.AttributeSet)
-com.example.zf_android.trade.widget.gestureimage.FlingAnimation:
-    68:69:public void setFactor(float)
-com.example.zf_android.trade.widget.gestureimage.GestureImageView:
-    public static final java.lang.String GLOBAL_NS
-    public static final java.lang.String LOCAL_NS
-    456:458:public void moveBy(float,float)
-    500:500:public boolean isStrict()
-    508:508:public boolean isRecycle()
-    707:707:public boolean isPortrait()
-    716:718:public void setStartingPosition(float,float)
-    736:741:public boolean isOrientationAligned()
-com.example.zf_android.trade.widget.gestureimage.GestureImageViewTouchListener:
-    479:479:public float getMaxScale()
-    487:487:public float getMinScale()
-com.example.zf_android.trade.widget.gestureimage.MathUtils:
-    22:22:public MathUtils()
-    37:39:public static float distance(float,float,float,float)
-    61:67:public void rotate(android.graphics.PointF,android.graphics.PointF,float)
-com.example.zf_android.trade.widget.gestureimage.MoveAnimation:
-    73:75:public void reset()
-    79:79:public float getTargetX()
-    84:85:public void setTargetX(float)
-    89:89:public float getTargetY()
-    93:94:public void setTargetY(float)
-    97:97:public long getAnimationTimeMS()
-    101:102:public void setAnimationTimeMS(long)
-com.example.zf_android.trade.widget.gestureimage.ZoomAnimation:
-    129:129:public float getZoom()
-    137:137:public float getTouchX()
-    145:145:public float getTouchY()
-    153:153:public long getAnimationLengthMS()
-    157:158:public void setAnimationLengthMS(long)
-    161:161:public com.example.zf_android.trade.widget.gestureimage.ZoomAnimationListener getZoomAnimationListener()
 com.example.zf_android.video.config.ConfigEntity:
     public static final int VIDEO_MODE_SERVERCONFIG
     public static final int VIDEO_MODE_CUSTOMCONFIG
@@ -1817,9 +848,6 @@ com.example.zf_zandroid.adapter.ComfirmcarAdapter$ViewHolder:
     private android.widget.EditText buyCountEdit
     private android.view.View reduce
     private android.view.View add
-com.example.zf_zandroid.adapter.CommentAdapter:
-    33:33:public int getSelectPosition()
-    36:37:public void setSelectPosition(int)
 com.example.zf_zandroid.adapter.CommentAdapter$AfterTextChangedListener:
     public abstract void onAfterTextChanged(int)
 com.example.zf_zandroid.adapter.GridviewAdapter$ViewHolder:
@@ -1948,557 +976,7 @@ com.ta.utdid2.device.UTUtdid:
     private static final java.lang.String S_GLOBAL_PERSISTENT_CONFIG_KEY
 com.ta.utdid2.device.UTUtdidHelper:
     63:67:public static java.lang.String generateRandomUTDID()
-com.umeng.analytics.AnalyticsConfig:
-    7:7:public AnalyticsConfig()
-    22:23:public static void enableEncrypt(boolean)
-    29:30:public static void setAppkey(java.lang.String)
-    33:34:public static void setChannel(java.lang.String)
-    69:75:public static void setLocation(double,double)
-    78:79:public static void setLatencyWindow(long)
-com.umeng.analytics.Gender
-com.umeng.analytics.Gender$1
-com.umeng.analytics.Gender$2
-com.umeng.analytics.Gender$3
-com.umeng.analytics.Gender$4
-com.umeng.analytics.MobclickAgent:
-    private static final java.lang.String a
-    23:23:public MobclickAgent()
-    36:36:public static void setAutoLocation(boolean)
-    42:43:public static void setCatchUncaughtExceptions(boolean)
-    46:47:public static void setWrapper(java.lang.String,java.lang.String)
-    53:54:public static void setSessionContinueMillis(long)
-    60:61:public static void setEnableEventBuffer(boolean)
-    67:68:public static void setOnlineConfigureListener(com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener)
-    71:71:public static com.umeng.analytics.d getAgent()
-    79:86:public static void setOpenGLContext(javax.microedition.khronos.opengles.GL10)
-    154:168:public static void onResume(android.content.Context,java.lang.String,java.lang.String)
-    177:178:public static void reportError(android.content.Context,java.lang.String)
-    185:186:public static void reportError(android.content.Context,java.lang.Throwable)
-    196:196:public static void flush(android.content.Context)
-    205:206:public static void onEvent(android.content.Context,java.lang.String)
-    215:216:public static void onEvent(android.content.Context,java.lang.String,int)
-    226:232:public static void onEvent(android.content.Context,java.lang.String,java.lang.String,int)
-    241:247:public static void onEvent(android.content.Context,java.lang.String,java.lang.String)
-    257:262:public static void onEvent(android.content.Context,java.lang.String,java.util.Map)
-    273:278:public static void onEventDuration(android.content.Context,java.lang.String,long)
-    288:297:public static void onEventDuration(android.content.Context,java.lang.String,java.lang.String,long)
-    307:316:public static void onEventDuration(android.content.Context,java.lang.String,java.util.Map,long)
-    326:334:public static void onEventValue(android.content.Context,java.lang.String,java.util.Map,int)
-    342:343:public static void onEventBegin(android.content.Context,java.lang.String)
-    351:352:public static void onEventEnd(android.content.Context,java.lang.String)
-    360:361:public static void onEventBegin(android.content.Context,java.lang.String,java.lang.String)
-    369:370:public static void onEventEnd(android.content.Context,java.lang.String,java.lang.String)
-    379:384:public static void onKVEventBegin(android.content.Context,java.lang.String,java.util.Map,java.lang.String)
-    392:393:public static void onKVEventEnd(android.content.Context,java.lang.String,java.lang.String)
-    406:412:public static varargs void onSocialEvent(android.content.Context,java.lang.String,com.umeng.analytics.social.UMPlatformData[])
-    421:427:public static varargs void onSocialEvent(android.content.Context,com.umeng.analytics.social.UMPlatformData[])
-    437:438:public static java.lang.String getConfigParams(android.content.Context,java.lang.String)
-    449:458:public static void updateOnlineConfig(android.content.Context,java.lang.String,java.lang.String)
-    476:476:public static void setUserID(android.content.Context,java.lang.String,java.lang.String,com.umeng.analytics.Gender,int)
-    484:485:public static void onKillProcess(android.content.Context)
-com.umeng.analytics.MobclickAgentJSInterface
-com.umeng.analytics.MobclickAgentJSInterface$a
-com.umeng.analytics.ReportPolicy:
-    public static final int REALTIME
-    public static final int BATCH_AT_LAUNCH
-    static final int a
-    static final int b
-    public static final int DAILY
-    public static final int WIFIONLY
-    public static final int BATCH_BY_INTERVAL
-    public static final int BATCH_BY_SIZE
-    15:172:public ReportPolicy()
-com.umeng.analytics.ReportPolicy$d:
-    91:91:public long b()
-com.umeng.analytics.ReportPolicy$e
-com.umeng.analytics.a:
-    public static final java.lang.String a
-    public static final java.lang.String b
-    public static final java.lang.String c
-    public static final java.lang.String d
-    public static final java.lang.String e
-    public static final java.lang.String h
-    public static final java.lang.String i
-    public static final java.lang.String j
-    public static final java.lang.String k
-    public static final java.lang.String l
-    public static final long m
-    public static final long n
-    public static final boolean o
-    8:8:public a()
-com.umeng.analytics.b:
-    13:13:public b()
-    76:80:public static byte[] b(byte[],byte[])
-com.umeng.analytics.d:
-    73:74:public void a(com.umeng.analytics.c)
-    77:78:public void a(int)
-    81:83:public void a(java.lang.String,java.lang.String)
-    98:99:void a(com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener)
-    150:150:public u.aly.z a()
-    155:160:public void a(android.content.Context,java.lang.String,java.util.HashMap)
-    163:179:void a(android.content.Context,java.lang.String)
-    182:192:void a(android.content.Context,java.lang.Throwable)
-    210:215:void d(android.content.Context)
-    219:224:public void a(android.content.Context,java.lang.String,java.lang.String,long,int)
-    228:233:void a(android.content.Context,java.lang.String,java.util.Map,long)
-    237:246:void a(android.content.Context,java.lang.String,java.lang.String)
-    250:258:void b(android.content.Context,java.lang.String,java.lang.String)
-    262:271:void a(android.content.Context,java.lang.String,java.util.HashMap,java.lang.String)
-    275:283:void c(android.content.Context,java.lang.String,java.lang.String)
-    287:295:void e(android.content.Context)
-    25:25:static synthetic u.aly.o a(com.umeng.analytics.d)
-com.umeng.analytics.d$3
-com.umeng.analytics.d$4
-com.umeng.analytics.d$5
-com.umeng.analytics.d$6
-com.umeng.analytics.e:
-    6:6:public e()
-    10:15:public static void a(android.content.Context,java.lang.String,java.lang.String)
-    34:40:public static void b(android.content.Context)
-com.umeng.analytics.f:
-    13:13:public f()
-    71:80:public static synchronized void c(java.lang.Runnable)
-com.umeng.analytics.h:
-    private static final java.lang.String g
-    private static final java.lang.String h
-    private static final java.lang.String i
-    private static final java.lang.String j
-    private static final java.lang.String k
-    private static final java.lang.String l
-    57:65:public void a(java.lang.String,java.lang.String)
-    79:81:public void b()
-    230:230:public android.content.SharedPreferences k()
-    234:234:public android.content.SharedPreferences l()
-    238:238:public android.content.SharedPreferences m()
-com.umeng.analytics.h$a:
-    316:322:public void b()
-    325:329:public int c()
-com.umeng.analytics.onlineconfig.a:
-    private static final long k
-    public static final java.lang.String a
-    public static final java.lang.String b
-    public static final java.lang.String c
-    public static final java.lang.String d
-    public static final java.lang.String e
-    public static final java.lang.String f
-    public static final java.lang.String g
-    64:65:public void a(com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener)
-    68:69:public void a()
-    76:77:public void b()
-com.umeng.analytics.onlineconfig.a$d:
-    315:317:public a$d(org.json.JSONObject)
-    320:330:private void a(org.json.JSONObject)
-com.umeng.analytics.onlineconfig.b:
-    private final java.lang.String e
-    private final java.lang.String f
-    private final java.lang.String g
-    private final java.lang.String h
-    32:41:public b(org.json.JSONObject)
-    45:62:private void a(org.json.JSONObject)
-    65:68:private void a()
-com.umeng.analytics.social.UMPlatformData
-com.umeng.analytics.social.UMPlatformData$1
-com.umeng.analytics.social.UMPlatformData$GENDER
-com.umeng.analytics.social.UMPlatformData$GENDER$1
-com.umeng.analytics.social.UMPlatformData$GENDER$2
-com.umeng.analytics.social.UMPlatformData$UMedia
-com.umeng.analytics.social.UMPlatformData$UMedia$1
-com.umeng.analytics.social.UMPlatformData$UMedia$2
-com.umeng.analytics.social.UMPlatformData$UMedia$3
-com.umeng.analytics.social.UMPlatformData$UMedia$4
-com.umeng.analytics.social.UMPlatformData$UMedia$5
-com.umeng.analytics.social.UMPlatformData$UMedia$6
-com.umeng.analytics.social.UMPlatformData$UMedia$7
-com.umeng.analytics.social.UMPlatformData$UMedia$8
-com.umeng.analytics.social.UMSocialService
-com.umeng.analytics.social.UMSocialService$a
-com.umeng.analytics.social.UMSocialService$b
-com.umeng.analytics.social.a
-com.umeng.analytics.social.b
-com.umeng.analytics.social.c
-com.umeng.analytics.social.d
-com.umeng.analytics.social.e:
-    protected static final java.lang.String a
-    protected static final java.lang.String b
-    protected static final java.lang.String c
-    public static java.lang.String d
-    protected static final java.lang.String f
-    protected static final java.lang.String g
-    protected static final java.lang.String h
-    protected static final java.lang.String i
-    protected static final java.lang.String j
-    protected static final java.lang.String k
-    protected static final java.lang.String l
-    protected static final java.lang.String m
-    protected static final java.lang.String n
-    protected static final java.lang.String o
-    protected static final java.lang.String p
-    protected static final java.lang.String q
-    protected static final java.lang.String r
-    protected static final java.lang.String s
-    public static final int t
-    public static final int u
-    3:3:public e()
-com.umeng.analytics.social.f
-com.unionpay.UPPayAssistEx:
-    public static final int PLUGIN_VALID
-    public static final int PLUGIN_NOT_FOUND
-    public UPPayAssistEx()
-    public static void startPayByJAR(android.app.Activity,java.lang.Class,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-    public static int startPayFromBrowser(android.app.Activity,java.lang.String,java.lang.String)
-    private static int a(android.app.Activity,java.lang.String,java.lang.String)
-com.unionpay.mobile.android.data.a
-com.unionpay.mobile.android.global.a
-com.unionpay.mobile.android.global.b
-com.unionpay.mobile.android.languages.a
-com.unionpay.mobile.android.languages.b
-com.unionpay.mobile.android.languages.c
-com.unionpay.mobile.android.model.a
-com.unionpay.mobile.android.model.b
-com.unionpay.mobile.android.model.c
-com.unionpay.mobile.android.model.d
-com.unionpay.mobile.android.model.e
-com.unionpay.mobile.android.net.HttpNative
-com.unionpay.mobile.android.net.a
-com.unionpay.mobile.android.net.b
-com.unionpay.mobile.android.net.c
-com.unionpay.mobile.android.net.d
-com.unionpay.mobile.android.nocard.utils.UPPayEngine
-com.unionpay.mobile.android.nocard.utils.UPPayEngine$a
-com.unionpay.mobile.android.nocard.utils.UPPayEngine$b
-com.unionpay.mobile.android.nocard.utils.a
-com.unionpay.mobile.android.nocard.utils.b
-com.unionpay.mobile.android.nocard.utils.c
-com.unionpay.mobile.android.nocard.utils.d
-com.unionpay.mobile.android.nocard.utils.e
-com.unionpay.mobile.android.nocard.views.a
-com.unionpay.mobile.android.nocard.views.aa
-com.unionpay.mobile.android.nocard.views.ab
-com.unionpay.mobile.android.nocard.views.ac
-com.unionpay.mobile.android.nocard.views.ad
-com.unionpay.mobile.android.nocard.views.ae
-com.unionpay.mobile.android.nocard.views.af
-com.unionpay.mobile.android.nocard.views.ag
-com.unionpay.mobile.android.nocard.views.ah
-com.unionpay.mobile.android.nocard.views.ah$a
-com.unionpay.mobile.android.nocard.views.ai
-com.unionpay.mobile.android.nocard.views.aj
-com.unionpay.mobile.android.nocard.views.ak
-com.unionpay.mobile.android.nocard.views.al
-com.unionpay.mobile.android.nocard.views.am
-com.unionpay.mobile.android.nocard.views.an
-com.unionpay.mobile.android.nocard.views.ao
-com.unionpay.mobile.android.nocard.views.ap
-com.unionpay.mobile.android.nocard.views.aq
-com.unionpay.mobile.android.nocard.views.ar
-com.unionpay.mobile.android.nocard.views.as
-com.unionpay.mobile.android.nocard.views.as$a
-com.unionpay.mobile.android.nocard.views.at
-com.unionpay.mobile.android.nocard.views.au
-com.unionpay.mobile.android.nocard.views.av
-com.unionpay.mobile.android.nocard.views.aw
-com.unionpay.mobile.android.nocard.views.ax
-com.unionpay.mobile.android.nocard.views.ay
-com.unionpay.mobile.android.nocard.views.b
-com.unionpay.mobile.android.nocard.views.c
-com.unionpay.mobile.android.nocard.views.d
-com.unionpay.mobile.android.nocard.views.e
-com.unionpay.mobile.android.nocard.views.f
-com.unionpay.mobile.android.nocard.views.g
-com.unionpay.mobile.android.nocard.views.h
-com.unionpay.mobile.android.nocard.views.i
-com.unionpay.mobile.android.nocard.views.j
-com.unionpay.mobile.android.nocard.views.k
-com.unionpay.mobile.android.nocard.views.l
-com.unionpay.mobile.android.nocard.views.m
-com.unionpay.mobile.android.nocard.views.n
-com.unionpay.mobile.android.nocard.views.n$a
-com.unionpay.mobile.android.nocard.views.n$b
-com.unionpay.mobile.android.nocard.views.n$b$a
-com.unionpay.mobile.android.nocard.views.o
-com.unionpay.mobile.android.nocard.views.p
-com.unionpay.mobile.android.nocard.views.q
-com.unionpay.mobile.android.nocard.views.r
-com.unionpay.mobile.android.nocard.views.s
-com.unionpay.mobile.android.nocard.views.t
-com.unionpay.mobile.android.nocard.views.u
-com.unionpay.mobile.android.nocard.views.v
-com.unionpay.mobile.android.nocard.views.w
-com.unionpay.mobile.android.nocard.views.x
-com.unionpay.mobile.android.nocard.views.xlistview.a
-com.unionpay.mobile.android.nocard.views.y
-com.unionpay.mobile.android.nocard.views.z
-com.unionpay.mobile.android.plugin.BaseActivity
-com.unionpay.mobile.android.plugin.BaseActivity$a
-com.unionpay.mobile.android.plugin.a
-com.unionpay.mobile.android.plugin.b
-com.unionpay.mobile.android.plugin.c
-com.unionpay.mobile.android.resource.a
-com.unionpay.mobile.android.resource.b
-com.unionpay.mobile.android.resource.c
-com.unionpay.mobile.android.upviews.a
-com.unionpay.mobile.android.upviews.a$a
-com.unionpay.mobile.android.upviews.a$b
-com.unionpay.mobile.android.upviews.b
-com.unionpay.mobile.android.upviews.b$a
-com.unionpay.mobile.android.upviews.b$b
-com.unionpay.mobile.android.upviews.b$c
-com.unionpay.mobile.android.upviews.b$d
-com.unionpay.mobile.android.upviews.c
-com.unionpay.mobile.android.upwidget.a
-com.unionpay.mobile.android.upwidget.a$a
-com.unionpay.mobile.android.upwidget.b
-com.unionpay.mobile.android.upwidget.c
-com.unionpay.mobile.android.upwidget.d
-com.unionpay.mobile.android.utils.a
-com.unionpay.mobile.android.utils.b
-com.unionpay.mobile.android.utils.c
-com.unionpay.mobile.android.utils.d
-com.unionpay.mobile.android.utils.e
-com.unionpay.mobile.android.utils.f
-com.unionpay.mobile.android.utils.g
-com.unionpay.mobile.android.utils.h
-com.unionpay.mobile.android.utils.i
-com.unionpay.mobile.android.utils.j
-com.unionpay.mobile.android.utils.j$a
-com.unionpay.mobile.android.views.order.AbstractMethod
-com.unionpay.mobile.android.views.order.AbstractMethod$a
-com.unionpay.mobile.android.views.order.AbstractMethod$b
-com.unionpay.mobile.android.views.order.CViewMethods
-com.unionpay.mobile.android.views.order.CViewMethods$a
-com.unionpay.mobile.android.views.order.a
-com.unionpay.mobile.android.views.order.b
-com.unionpay.mobile.android.views.order.b$a
-com.unionpay.mobile.android.views.order.b$b
-com.unionpay.mobile.android.views.order.b$c
-com.unionpay.mobile.android.views.order.c
-com.unionpay.mobile.android.views.order.d
-com.unionpay.mobile.android.views.order.e
-com.unionpay.mobile.android.views.order.f
-com.unionpay.mobile.android.views.order.g
-com.unionpay.mobile.android.views.order.h
-com.unionpay.mobile.android.views.order.i
-com.unionpay.mobile.android.views.order.j
-com.unionpay.mobile.android.views.order.k
-com.unionpay.mobile.android.views.order.l
-com.unionpay.mobile.android.views.order.m
-com.unionpay.mobile.android.views.order.n
-com.unionpay.mobile.android.views.order.o
-com.unionpay.mobile.android.views.order.p
-com.unionpay.mobile.android.views.order.p$a
-com.unionpay.mobile.android.widgets.UPPinWidget
-com.unionpay.mobile.android.widgets.a
-com.unionpay.mobile.android.widgets.aa
-com.unionpay.mobile.android.widgets.ab
-com.unionpay.mobile.android.widgets.ac
-com.unionpay.mobile.android.widgets.ad
-com.unionpay.mobile.android.widgets.ae
-com.unionpay.mobile.android.widgets.ae$a
-com.unionpay.mobile.android.widgets.af
-com.unionpay.mobile.android.widgets.ag
-com.unionpay.mobile.android.widgets.ah
-com.unionpay.mobile.android.widgets.ai
-com.unionpay.mobile.android.widgets.aj
-com.unionpay.mobile.android.widgets.ak
-com.unionpay.mobile.android.widgets.al
-com.unionpay.mobile.android.widgets.al$a
-com.unionpay.mobile.android.widgets.am
-com.unionpay.mobile.android.widgets.an
-com.unionpay.mobile.android.widgets.an$a
-com.unionpay.mobile.android.widgets.ao
-com.unionpay.mobile.android.widgets.ao$a
-com.unionpay.mobile.android.widgets.ao$b
-com.unionpay.mobile.android.widgets.ap
-com.unionpay.mobile.android.widgets.aq
-com.unionpay.mobile.android.widgets.aq$a
-com.unionpay.mobile.android.widgets.b
-com.unionpay.mobile.android.widgets.c
-com.unionpay.mobile.android.widgets.c$a
-com.unionpay.mobile.android.widgets.d
-com.unionpay.mobile.android.widgets.e
-com.unionpay.mobile.android.widgets.f
-com.unionpay.mobile.android.widgets.g
-com.unionpay.mobile.android.widgets.h
-com.unionpay.mobile.android.widgets.i
-com.unionpay.mobile.android.widgets.i$a
-com.unionpay.mobile.android.widgets.j
-com.unionpay.mobile.android.widgets.k
-com.unionpay.mobile.android.widgets.l
-com.unionpay.mobile.android.widgets.m
-com.unionpay.mobile.android.widgets.m$a
-com.unionpay.mobile.android.widgets.m$b
-com.unionpay.mobile.android.widgets.n
-com.unionpay.mobile.android.widgets.o
-com.unionpay.mobile.android.widgets.p
-com.unionpay.mobile.android.widgets.q
-com.unionpay.mobile.android.widgets.r
-com.unionpay.mobile.android.widgets.s
-com.unionpay.mobile.android.widgets.s$a
-com.unionpay.mobile.android.widgets.t
-com.unionpay.mobile.android.widgets.u
-com.unionpay.mobile.android.widgets.v
-com.unionpay.mobile.android.widgets.w
-com.unionpay.mobile.android.widgets.x
-com.unionpay.mobile.android.widgets.x$a
-com.unionpay.mobile.android.widgets.y
-com.unionpay.mobile.android.widgets.z
-com.unionpay.mobile.android.widgets.z$a
-com.unionpay.uppay.PayActivity
-com.unionpay.uppayplugin.demo.BaseActivity:
-    public static final java.lang.String LOG_TAG
-    public static final int PLUGIN_VALID
-    public static final int PLUGIN_NOT_INSTALLED
-    public static final int PLUGIN_NEED_UPGRADE
-    240:240:int startpay(android.app.Activity,java.lang.String,int)
 com.ut.device.UTDevice
-org.litepal.LitePalBase:
-    public static final java.lang.String TAG
-    private static final int GET_ASSOCIATIONS_ACTION
-    private static final int GET_ASSOCIATION_INFO_ACTION
-    262:267:protected java.lang.String whoHoldsForeignKey(java.lang.String,java.lang.String)
-org.litepal.crud.ClusterQuery
-org.litepal.crud.DataHandler:
-    public static final java.lang.String TAG
-    167:185:protected java.lang.Object mathQuery(java.lang.String,java.lang.String[],java.lang.String[],java.lang.Class)
-    381:387:protected varargs java.lang.String getWhereClause(java.lang.String[])
-    401:409:protected varargs java.lang.String[] getWhereArgs(java.lang.String[])
-    486:497:protected java.lang.Class findDataSupportClass(org.litepal.crud.DataSupport)
-org.litepal.crud.DataSupport:
-    130:132:public static synchronized varargs org.litepal.crud.ClusterQuery select(java.lang.String[])
-    151:153:public static synchronized varargs org.litepal.crud.ClusterQuery where(java.lang.String[])
-    173:175:public static synchronized org.litepal.crud.ClusterQuery order(java.lang.String)
-    193:195:public static synchronized org.litepal.crud.ClusterQuery limit(int)
-    213:215:public static synchronized org.litepal.crud.ClusterQuery offset(int)
-    237:237:public static synchronized int count(java.lang.Class)
-    259:260:public static synchronized int count(java.lang.String)
-    283:283:public static synchronized double average(java.lang.Class,java.lang.String)
-    306:307:public static synchronized double average(java.lang.String,java.lang.String)
-    333:333:public static synchronized java.lang.Object max(java.lang.Class,java.lang.String,java.lang.Class)
-    359:360:public static synchronized java.lang.Object max(java.lang.String,java.lang.String,java.lang.Class)
-    386:386:public static synchronized java.lang.Object min(java.lang.Class,java.lang.String,java.lang.Class)
-    412:413:public static synchronized java.lang.Object min(java.lang.String,java.lang.String,java.lang.Class)
-    439:439:public static synchronized java.lang.Object sum(java.lang.Class,java.lang.String,java.lang.Class)
-    465:466:public static synchronized java.lang.Object sum(java.lang.String,java.lang.String,java.lang.Class)
-    526:526:public static synchronized java.lang.Object findFirst(java.lang.Class)
-    540:541:public static synchronized java.lang.Object findFirst(java.lang.Class,boolean)
-    560:560:public static synchronized java.lang.Object findLast(java.lang.Class)
-    574:575:public static synchronized java.lang.Object findLast(java.lang.Class,boolean)
-    683:693:public static synchronized int delete(java.lang.Class,long)
-    724:724:public static synchronized varargs int deleteAll(java.lang.Class,java.lang.String[])
-    755:756:public static synchronized varargs int deleteAll(java.lang.String,java.lang.String[])
-    781:782:public static synchronized int update(java.lang.Class,android.content.ContentValues,long)
-    816:816:public static synchronized varargs int updateAll(java.lang.Class,android.content.ContentValues,java.lang.String[])
-    850:851:public static synchronized varargs int updateAll(java.lang.String,android.content.ContentValues,java.lang.String[])
-    881:892:public static synchronized void saveAll(java.util.Collection)
-    910:919:public synchronized int delete()
-    985:990:public synchronized varargs int updateAll(java.lang.String[])
-    1085:1086:public void setToDefault(java.lang.String)
-org.litepal.crud.DeleteHandler
-org.litepal.crud.DynamicExecutor:
-    37:38:private DynamicExecutor()
-    128:132:static java.lang.Object getField(java.lang.Object,java.lang.String,java.lang.Class)
-org.litepal.crud.Many2ManyAnalyzer:
-    156:170:private boolean isDataExists(org.litepal.crud.DataSupport,org.litepal.crud.DataSupport)
-    184:189:private java.lang.String getSelection(org.litepal.crud.DataSupport,org.litepal.crud.DataSupport)
-    203:203:private java.lang.String[] getSelectionArgs(org.litepal.crud.DataSupport,org.litepal.crud.DataSupport)
-    217:217:private java.lang.String getJoinTableName(org.litepal.crud.DataSupport,org.litepal.crud.DataSupport)
-org.litepal.crud.QueryHandler:
-    77:82:java.lang.Object onFindFirst(java.lang.Class,boolean)
-    96:101:java.lang.Object onFindLast(java.lang.Class,boolean)
-    153:157:java.util.List onFind(java.lang.Class,java.lang.String[],java.lang.String[],java.lang.String,java.lang.String,boolean)
-    172:172:int onCount(java.lang.String,java.lang.String[])
-    189:189:double onAverage(java.lang.String,java.lang.String,java.lang.String[])
-    209:209:java.lang.Object onMax(java.lang.String,java.lang.String,java.lang.String[],java.lang.Class)
-    228:228:java.lang.Object onMin(java.lang.String,java.lang.String,java.lang.String[],java.lang.Class)
-    247:247:java.lang.Object onSum(java.lang.String,java.lang.String,java.lang.String[],java.lang.Class)
-org.litepal.crud.SaveHandler:
-    106:124:void onSaveAll(java.util.Collection)
-org.litepal.crud.UpdateHandler:
-    97:100:int onUpdate(java.lang.Class,long,android.content.ContentValues)
-    124:128:varargs int onUpdateAll(org.litepal.crud.DataSupport,java.lang.String[])
-    148:148:varargs int onUpdateAll(java.lang.String,android.content.ContentValues,java.lang.String[])
-    167:172:private varargs int doUpdateAllAction(java.lang.String,android.content.ContentValues,java.lang.String[])
-    209:213:private int doUpdateAssociations(org.litepal.crud.DataSupport,long,android.content.ContentValues)
-    226:232:private void analyzeAssociations(org.litepal.crud.DataSupport)
-    238:243:private void updateSelfTableForeignKey(org.litepal.crud.DataSupport,android.content.ContentValues)
-    249:260:private int updateAssociatedTableForeignKey(org.litepal.crud.DataSupport,long)
-org.litepal.exceptions.DataSupportException:
-    private static final long serialVersionUID
-    public static final java.lang.String ID_TYPE_INVALID_EXCEPTION
-    public static final java.lang.String MODEL_IS_NOT_AN_INSTANCE_OF_DATA_SUPPORT
-    public static final java.lang.String WRONG_FIELD_TYPE_FOR_ASSOCIATIONS
-    public static final java.lang.String SAVE_FAILED
-    public static final java.lang.String INSTANTIATION_EXCEPTION
-    public static final java.lang.String UPDATE_CONDITIONS_EXCEPTION
-org.litepal.exceptions.DatabaseGenerateException:
-    private static final long serialVersionUID
-    public static final java.lang.String CLASS_NOT_FOUND
-    public static final java.lang.String SQL_ERROR
-    public static final java.lang.String SQL_SYNTAX_ERROR
-    public static final java.lang.String TABLE_DOES_NOT_EXIST_WHEN_EXECUTING
-    public static final java.lang.String TABLE_DOES_NOT_EXIST
-org.litepal.exceptions.GlobalException:
-    private static final long serialVersionUID
-    public static final java.lang.String APPLICATION_CONTEXT_IS_NULL
-org.litepal.exceptions.InvalidAttributesException:
-    private static final long serialVersionUID
-    public static final java.lang.String DBNAME_IS_EMPTY_OR_NOT_DEFINED
-    public static final java.lang.String VERSION_OF_DATABASE_LESS_THAN_ONE
-    public static final java.lang.String VERSION_IS_EARLIER_THAN_CURRENT
-    public static final java.lang.String CASES_VALUE_IS_INVALID
-org.litepal.exceptions.ParseConfigurationFileException:
-    private static final long serialVersionUID
-    public static final java.lang.String CAN_NOT_FIND_LITEPAL_FILE
-    public static final java.lang.String FILE_FORMAT_IS_NOT_CORRECT
-    public static final java.lang.String PARSE_CONFIG_FAILED
-    public static final java.lang.String IO_EXCEPTION
-org.litepal.model.Table_Schema
-org.litepal.parser.LitePalParser:
-    static final java.lang.String NODE_DB_NAME
-    static final java.lang.String NODE_VERSION
-    static final java.lang.String NODE_LIST
-    static final java.lang.String NODE_MAPPING
-    static final java.lang.String NODE_CASES
-    static final java.lang.String ATTR_VALUE
-    static final java.lang.String ATTR_CLASS
-    142:177:void usePullParse()
-org.litepal.tablemanager.AssociationCreator:
-    protected abstract void createOrUpgradeTable(android.database.sqlite.SQLiteDatabase,boolean)
-org.litepal.tablemanager.AssociationUpdater:
-    public static final java.lang.String TAG
-    protected abstract void createOrUpgradeTable(android.database.sqlite.SQLiteDatabase,boolean)
-org.litepal.tablemanager.Connector:
-    34:34:public Connector()
-    81:82:public static synchronized android.database.sqlite.SQLiteDatabase getReadableDatabase()
-org.litepal.tablemanager.Creator:
-    public static final java.lang.String TAG
-org.litepal.tablemanager.Generator:
-    public static final java.lang.String TAG
-    protected abstract void createOrUpgradeTable(android.database.sqlite.SQLiteDatabase,boolean)
-    protected abstract void addOrUpdateAssociation(android.database.sqlite.SQLiteDatabase,boolean)
-org.litepal.tablemanager.LitePalOpenHelper:
-    public static final java.lang.String TAG
-org.litepal.tablemanager.model.TableModel:
-    73:73:public java.lang.String getClassName()
-    124:125:public void removeColumn(java.lang.String)
-org.litepal.util.BaseUtility:
-    40:41:private BaseUtility()
-org.litepal.util.Const
-org.litepal.util.Const$LitePal
-org.litepal.util.Const$Model
-org.litepal.util.Const$TableSchema
-org.litepal.util.DBUtility:
-    42:43:private DBUtility()
-    76:82:public static java.util.List getTableNameListByClassNameList(java.util.List)
-org.litepal.util.LogUtil:
-    public static final int DEBUG
-    public static final int ERROR
-    21:21:public LogUtil()
-    36:39:public static void e(java.lang.String,java.lang.Exception)
-org.litepal.util.SharedUtil:
-    private static final java.lang.String VERSION
-    private static final java.lang.String LITEPAL_PREPS
-    32:32:public SharedUtil()
 u.aly.a:
     80:81:public void a(u.aly.ay)
 u.aly.aa:
@@ -2515,12 +993,9 @@ u.aly.ac:
     21:21:public ac()
 u.aly.ad:
     private static final java.lang.String a
-u.aly.ae
-u.aly.af
-u.aly.ag:
-    26:28:public ag(java.lang.String)
-    36:37:public u.aly.ag a(boolean)
-u.aly.ah
+u.aly.ae:
+    private static final long e
+    21:21:public java.lang.String a()
 u.aly.ai:
     17:19:public ai(org.json.JSONArray)
 u.aly.ak:
@@ -2739,23 +1214,18 @@ u.aly.av:
     192:192:public u.aly.av a()
     197:205:public void b()
     208:208:public java.lang.String c()
-    212:213:public u.aly.av a(java.lang.String)
     217:218:public void d()
     222:222:public boolean e()
     232:232:public int f()
     236:240:public void a(java.lang.String,u.aly.bh)
     243:243:public java.util.Map h()
-    247:248:public u.aly.av a(java.util.Map)
     252:253:public void i()
     257:257:public boolean j()
     267:267:public long k()
-    271:273:public u.aly.av a(long)
     277:278:public void l()
     290:290:public int n()
-    294:296:public u.aly.av a(int)
     300:301:public void o()
     313:313:public long q()
-    317:319:public u.aly.av b(long)
     323:324:public void r()
     336:336:public u.aly.av$e c(int)
     401:405:private void a(java.io.ObjectOutputStream)
@@ -2766,7 +1236,9 @@ u.aly.av$e:
     73:85:public static u.aly.av$e a(int)
     94:96:public static u.aly.av$e b(int)
     103:103:public static u.aly.av$e a(java.lang.String)
-u.aly.aw
+u.aly.aw:
+    30:30:public int a()
+    38:46:public static u.aly.aw a(int)
 u.aly.ax:
     private static final int l
     145:150:public ax(java.lang.String,java.lang.String,long)
@@ -2897,13 +1369,11 @@ u.aly.bc:
     239:240:public void j()
     254:254:public int l()
     258:258:public java.util.Iterator m()
-    262:266:public void a(u.aly.av)
     269:269:public java.util.List n()
     273:274:public u.aly.bc b(java.util.List)
     278:279:public void o()
     293:293:public int q()
     297:297:public java.util.Iterator r()
-    301:305:public void b(u.aly.av)
     308:308:public java.util.List s()
     312:313:public u.aly.bc c(java.util.List)
     317:318:public void t()
@@ -3032,9 +1502,7 @@ u.aly.bh:
     139:153:protected void a(u.aly.bh$a,java.lang.Object)
     262:262:public u.aly.bh$a a(int)
     267:270:public java.lang.String d()
-    275:278:public void b(java.lang.String)
     281:284:public long e()
-    289:291:public void b(long)
     294:294:public boolean f()
     299:299:public boolean h()
     317:321:public int b(u.aly.bh)
@@ -3246,7 +1714,6 @@ u.aly.bq:
     76:77:public static boolean a(android.content.Context)
     87:90:public static boolean b(android.content.Context)
     151:160:public static java.lang.String e(android.content.Context)
-    172:180:public static java.lang.String[] a(javax.microedition.khronos.opengles.GL10)
     278:287:public static java.lang.String h(android.content.Context)
     299:312:public static java.lang.String i(android.content.Context)
     394:398:public static boolean b()
@@ -3266,13 +1733,6 @@ u.aly.bt$b
 u.aly.bu
 u.aly.bv
 u.aly.bv$a
-u.aly.bw:
-    303:304:public u.aly.bw a(java.util.Map)
-u.aly.bx:
-    67:68:public void a(java.lang.String)
-    75:75:public java.lang.String d()
-u.aly.by:
-    22:24:public by(org.json.JSONObject)
 u.aly.bz
 u.aly.ca
 u.aly.cb
@@ -3362,7 +1822,6 @@ u.aly.cr:
     101:105:private static java.util.List a(java.util.List)
     117:121:public java.lang.Object b(u.aly.co)
     125:125:public java.lang.Object c(int)
-    129:129:public boolean k()
     133:133:public boolean c(u.aly.co)
     137:137:public boolean d(int)
     145:148:public void b(u.aly.co,java.lang.Object)
@@ -3496,34 +1955,17 @@ u.aly.k:
     108:109:public void c()
 u.aly.l:
     30:31:public void a(u.aly.p)
-    52:57:public void a()
     69:77:public void c()
-u.aly.l$2
 u.aly.l$4
 u.aly.m:
     28:32:public int a(java.lang.String)
-    36:51:public void a(java.lang.String,u.aly.ae)
-    54:70:public u.aly.ae b(java.lang.String)
-    74:86:private void c(java.lang.String)
-    94:108:private boolean d(java.lang.String)
-u.aly.o:
-    43:56:public void a(java.lang.String,java.util.Map,long)
-    60:68:public void a(java.lang.String,java.lang.String,long,int)
-    72:80:public void a(java.lang.String,java.util.Map)
-    83:87:public void a(java.lang.String,java.lang.String)
-    90:100:public void b(java.lang.String,java.lang.String)
-    103:112:public void a(java.lang.String,java.util.Map,java.lang.String)
-    115:125:public void c(java.lang.String,java.lang.String)
-    129:139:private boolean a(java.lang.String)
-    143:149:private boolean b(java.lang.String)
-    153:172:private boolean a(java.util.Map)
 u.aly.p:
-    public abstract void a()
     public abstract void c()
 u.aly.s:
     45:45:public android.content.Context a()
     49:49:protected boolean a(int)
-u.aly.u
+u.aly.u:
+    10:10:public u()
 u.aly.x:
     private static final java.lang.String a
     10:11:private x()

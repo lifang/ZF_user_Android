@@ -88,6 +88,7 @@ public class MyApplication extends org.litepal.LitePalApplication {
 						.readProvincesAndCities(getApplicationContext());
 				for (Province province : provinces) {
 					List<City> cities = province.getCities();
+//					Log.e("----cities---", province.getName()+"");
 					mCities.addAll(cities);
 
 				}
