@@ -17125,14 +17125,13 @@ com.example.zf_android.trade.TerminalManageActivity -> com.example.zf_android.tr
     android.view.View$OnClickListener access$2(com.example.zf_android.trade.TerminalManageActivity) -> c
     android.view.View$OnClickListener access$3(com.example.zf_android.trade.TerminalManageActivity) -> d
     android.view.View$OnClickListener access$4(com.example.zf_android.trade.TerminalManageActivity) -> e
-    android.view.View$OnClickListener access$5(com.example.zf_android.trade.TerminalManageActivity) -> f
-    void access$6(com.example.zf_android.trade.TerminalManageActivity,com.example.zf_android.trade.entity.TerminalItem) -> a
-    void access$7(com.example.zf_android.trade.TerminalManageActivity) -> g
-    java.lang.String access$8(com.example.zf_android.trade.TerminalManageActivity) -> h
-    void access$9(com.example.zf_android.trade.TerminalManageActivity,int) -> a
-    int access$10(com.example.zf_android.trade.TerminalManageActivity) -> i
-    void access$11(com.example.zf_android.trade.TerminalManageActivity,int) -> b
-    com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter access$12(com.example.zf_android.trade.TerminalManageActivity) -> j
+    void access$5(com.example.zf_android.trade.TerminalManageActivity,com.example.zf_android.trade.entity.TerminalItem) -> a
+    void access$6(com.example.zf_android.trade.TerminalManageActivity) -> f
+    java.lang.String access$7(com.example.zf_android.trade.TerminalManageActivity) -> g
+    void access$8(com.example.zf_android.trade.TerminalManageActivity,int) -> a
+    int access$9(com.example.zf_android.trade.TerminalManageActivity) -> h
+    void access$10(com.example.zf_android.trade.TerminalManageActivity,int) -> b
+    com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter access$11(com.example.zf_android.trade.TerminalManageActivity) -> i
 com.example.zf_android.trade.TerminalManageActivity$1 -> com.example.zf_android.trade.et:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     void onClick(android.view.View) -> onClick
@@ -17692,7 +17691,7 @@ com.example.zf_android.trade.entity.ApplyMaterial -> com.example.zf_android.trad
     int id -> id
     int types -> types
     java.lang.String name -> name
-    int openingRequirementId -> openingRequirementId
+    int opening_requirements_id -> opening_requirements_id
     java.lang.String value -> value
     int getId() -> getId
     void setId(int) -> setId
