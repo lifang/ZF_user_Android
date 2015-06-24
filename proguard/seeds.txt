@@ -15047,7 +15047,7 @@ com.example.zf_android.trade.entity.ApplyMaterial
 com.example.zf_android.trade.entity.ApplyMaterial: int id
 com.example.zf_android.trade.entity.ApplyMaterial: int types
 com.example.zf_android.trade.entity.ApplyMaterial: java.lang.String name
-com.example.zf_android.trade.entity.ApplyMaterial: int openingRequirementId
+com.example.zf_android.trade.entity.ApplyMaterial: int opening_requirements_id
 com.example.zf_android.trade.entity.ApplyMaterial: java.lang.String value
 com.example.zf_android.trade.entity.ApplyMaterial: ApplyMaterial()
 com.example.zf_android.trade.entity.ApplyMaterial: int getId()

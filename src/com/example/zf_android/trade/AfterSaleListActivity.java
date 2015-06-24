@@ -444,4 +444,15 @@ public class AfterSaleListActivity extends BaseActivity implements XListView.IXL
 
 		}
 	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (MyApplication.getInstance().isHasOrderPaid()) {
+			MyApplication.getInstance().setHasOrderPaid(false);
+			page = 0;
+			mEntities.clear();
+			loadData();
+		}
+	}
 }

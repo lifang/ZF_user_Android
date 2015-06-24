@@ -14,7 +14,7 @@ public class GoodinfoEntity implements Serializable{
 //     "encrypt_card_way": "加密卡方式2",
 	private String encrypt_card_way;
 //     "total_score": 5,
-	private int total_score;
+	private String total_score;
 	
 //     "sign_order_way": "签购单打印方式2",
 	private String sign_order_way;
@@ -70,10 +70,10 @@ public class GoodinfoEntity implements Serializable{
 	public void setEncrypt_card_way(String encrypt_card_way) {
 		this.encrypt_card_way = encrypt_card_way;
 	}
-	public int getTotal_score() {
+	public String getTotal_score() {
 		return total_score;
 	}
-	public void setTotal_score(int total_score) {
+	public void setTotal_score(String total_score) {
 		this.total_score = total_score;
 	}
 	public String getSign_order_way() {
