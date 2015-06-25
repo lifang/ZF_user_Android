@@ -1030,8 +1030,7 @@ public class API {
 
 	public static void uploadPic(Context context, File img, int termianlId,
 			HttpCallback callback) throws FileNotFoundException {
-		//RequestParams params = new RequestParams();
-		Map<String, Object> params = new HashMap<String, Object>();
+		RequestParams params = new RequestParams();
 		params.put("img", img);
 		new HttpRequest(context, callback).post(TERMINAL_UPLOAD_IMAGE
 				+ termianlId, params);
@@ -1039,8 +1038,7 @@ public class API {
 
 	public static void uploadImg(Context context, File file,
 			HttpCallback callback) throws FileNotFoundException {
-		//RequestParams params = new RequestParams();
-		Map<String, Object> params = new HashMap<String, Object>();
+		RequestParams params = new RequestParams();
 		params.put("file", file);
 		new HttpRequest(context, callback).post(MERCHANT_UPLOAD_IMAGE, params);
 	}
