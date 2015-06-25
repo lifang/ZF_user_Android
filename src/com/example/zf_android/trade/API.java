@@ -1007,7 +1007,8 @@ public class API {
 	}
 
 	public static void noticeVideo(Context context, int terminalId) {
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("terminalId", terminalId);
 		new HttpRequest(context, null).post(Config.URL_NOTICE_VIDEO, params);
 	}
@@ -1028,25 +1029,19 @@ public class API {
 	}
 
 	public static void uploadPic(Context context, File img, int termianlId,
-			HttpCallback callback) {
-		RequestParams params = new RequestParams();
-		try {
-			params.put("img", img);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			HttpCallback callback) throws FileNotFoundException {
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("img", img);
 		new HttpRequest(context, callback).post(TERMINAL_UPLOAD_IMAGE
 				+ termianlId, params);
 	}
 
 	public static void uploadImg(Context context, File file,
-			HttpCallback callback) {
-		RequestParams params = new RequestParams();
-		try {
-			params.put("file", file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			HttpCallback callback) throws FileNotFoundException {
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("file", file);
 		new HttpRequest(context, callback).post(MERCHANT_UPLOAD_IMAGE, params);
 	}
 

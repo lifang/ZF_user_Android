@@ -21,6 +21,7 @@ import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_NUM
 import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STATUS;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -543,27 +544,32 @@ public class ApplyDetailActivity extends FragmentActivity {
 			}
 
 			File file = new File(realPath);
-			API.uploadPic(ApplyDetailActivity.this, file, mTerminalId,
-					new HttpCallback(ApplyDetailActivity.this) {
+			try {
+				API.uploadPic(ApplyDetailActivity.this, file, mTerminalId,
+						new HttpCallback(ApplyDetailActivity.this) {
 
-						@Override
-						public void onSuccess(Object data) {
-							Message msg = new Message();
-							msg.what = 1;
-							msg.obj = data.toString();
-							handler.sendMessage(msg);
-						}
+							@Override
+							public void onSuccess(Object data) {
+								Message msg = new Message();
+								msg.what = 1;
+								msg.obj = data.toString();
+								handler.sendMessage(msg);
+							}
 
-						@Override
-						public void onFailure(String message) {
-							handler.sendEmptyMessage(0);
-						}
+							@Override
+							public void onFailure(String message) {
+								handler.sendEmptyMessage(0);
+							}
 
-						@Override
-						public TypeToken getTypeToken() {
-							return null;
-						}
-					});
+							@Override
+							public TypeToken getTypeToken() {
+								return null;
+							}
+						});
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// CommonUtil.uploadFile(realPath, "img",
 			// new CommonUtil.OnUploadListener() {
 			// @Override

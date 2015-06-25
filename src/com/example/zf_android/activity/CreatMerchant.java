@@ -4,6 +4,7 @@ import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_TAKE_PH
 import static com.example.zf_android.trade.Constants.ApplyIntent.REQUEST_UPLOAD_IMAGE;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -330,27 +331,32 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 			}
 
 			File file = new File(realPath);
-			API.uploadImg(CreatMerchant.this, file, new HttpCallback(
-					CreatMerchant.this) {
+			try {
+				API.uploadImg(CreatMerchant.this, file, new HttpCallback(
+						CreatMerchant.this) {
 
-				@Override
-				public void onSuccess(Object data) {
-					Message msg = new Message();
-					msg.what = 1;
-					msg.obj = data.toString();
-					handler.sendMessage(msg);
-				}
+					@Override
+					public void onSuccess(Object data) {
+						Message msg = new Message();
+						msg.what = 1;
+						msg.obj = data.toString();
+						handler.sendMessage(msg);
+					}
 
-				@Override
-				public void onFailure(String message) {
-					handler.sendEmptyMessage(0);
-				}
+					@Override
+					public void onFailure(String message) {
+						handler.sendEmptyMessage(0);
+					}
 
-				@Override
-				public TypeToken getTypeToken() {
-					return null;
-				}
-			});
+					@Override
+					public TypeToken getTypeToken() {
+						return null;
+					}
+				});
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// CommonUtil.uploadFile(realPath, "img",
 			// new CommonUtil.OnUploadListener() {
 			// @Override
