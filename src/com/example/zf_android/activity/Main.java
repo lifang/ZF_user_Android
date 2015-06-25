@@ -308,7 +308,7 @@ public class Main extends Activity implements OnClickListener {
 	protected void onStop() {
 
 //		timer.cancel();
-		super.onPause();
+		super.onStop();
 	}
 
 	private void InitLocation(){

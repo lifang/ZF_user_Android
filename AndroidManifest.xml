@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.epalmpay.userPhone"
-    android:versionCode="1003"
-    android:versionName="1.0.3" >
+    android:versionCode="1005"
+    android:versionName="1.0.5" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -485,6 +485,11 @@
         </activity>
         <activity
             android:name="com.unionpay.uppayplugin.demo.APKActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.unionpay.uppayplugin.demo.RepairPayUnionActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>

@@ -6932,6 +6932,9 @@ cn.trinea.android.common.R$styleable: int drop_down_list_attr_isDropDownStyle
 cn.trinea.android.common.R$styleable: int drop_down_list_attr_isOnBottomStyle
 cn.trinea.android.common.R$styleable: void <clinit>()
 cn.trinea.android.common.R$styleable: R$styleable()
+cn.trinea.android.common.constant.AndroidConstants
+cn.trinea.android.common.constant.AndroidConstants: int ICE_CREAM_SANDWICH
+cn.trinea.android.common.constant.AndroidConstants: AndroidConstants()
 cn.trinea.android.common.constant.DbConstants
 cn.trinea.android.common.constant.DbConstants: java.lang.String DB_NAME
 cn.trinea.android.common.constant.DbConstants: int DB_VERSION
@@ -7102,7 +7105,7 @@ cn.trinea.android.common.entity.HttpResponse: boolean isExpired()
 cn.trinea.android.common.entity.HttpResponse: boolean isInCache()
 cn.trinea.android.common.entity.HttpResponse: cn.trinea.android.common.entity.HttpResponse setInCache(boolean)
 cn.trinea.android.common.entity.HttpResponse: java.lang.String getExpiresHeader()
-cn.trinea.android.common.entity.HttpResponse: long getCacheControlMaxAge()
+cn.trinea.android.common.entity.HttpResponse: int getCacheControlMaxAge()
 cn.trinea.android.common.entity.HttpResponse: long getExpiresInMillis()
 cn.trinea.android.common.entity.HttpResponse: void setResponseHeader(java.lang.String,java.lang.String)
 cn.trinea.android.common.entity.HttpResponse: java.lang.Object getResponseHeader(java.lang.String)
@@ -7593,7 +7596,6 @@ cn.trinea.android.common.service.impl.SimpleCache: void saveCache(java.lang.Stri
 cn.trinea.android.common.util.AppUtils
 cn.trinea.android.common.util.AppUtils: AppUtils()
 cn.trinea.android.common.util.AppUtils: boolean isNamedProcess(android.content.Context,java.lang.String)
-cn.trinea.android.common.util.AppUtils: boolean isApplicationInBackground(android.content.Context)
 cn.trinea.android.common.util.ArrayUtils
 cn.trinea.android.common.util.ArrayUtils: ArrayUtils()
 cn.trinea.android.common.util.ArrayUtils: boolean isEmpty(java.lang.Object[])
@@ -7620,12 +7622,6 @@ cn.trinea.android.common.util.CacheManager: CacheManager()
 cn.trinea.android.common.util.CacheManager: cn.trinea.android.common.service.HttpCache getHttpCache(android.content.Context)
 cn.trinea.android.common.util.CacheManager: cn.trinea.android.common.service.impl.ImageCache getImageCache()
 cn.trinea.android.common.util.CacheManager: cn.trinea.android.common.service.impl.ImageSDCardCache getImageSDCardCache()
-cn.trinea.android.common.util.CollectionUtils
-cn.trinea.android.common.util.CollectionUtils: java.lang.CharSequence DEFAULT_JOIN_SEPARATOR
-cn.trinea.android.common.util.CollectionUtils: void <clinit>()
-cn.trinea.android.common.util.CollectionUtils: CollectionUtils()
-cn.trinea.android.common.util.CollectionUtils: boolean isEmpty(java.util.Collection)
-cn.trinea.android.common.util.CollectionUtils: java.lang.String join(java.lang.Iterable)
 cn.trinea.android.common.util.DbHelper
 cn.trinea.android.common.util.DbHelper: DbHelper(android.content.Context)
 cn.trinea.android.common.util.DbHelper: void onCreate(android.database.sqlite.SQLiteDatabase)
@@ -7687,8 +7683,6 @@ cn.trinea.android.common.util.FileUtils: boolean writeFile(java.lang.String,java
 cn.trinea.android.common.util.FileUtils: boolean writeFile(java.lang.String,java.io.InputStream,boolean)
 cn.trinea.android.common.util.FileUtils: boolean writeFile(java.io.File,java.io.InputStream)
 cn.trinea.android.common.util.FileUtils: boolean writeFile(java.io.File,java.io.InputStream,boolean)
-cn.trinea.android.common.util.FileUtils: void moveFile(java.lang.String,java.lang.String)
-cn.trinea.android.common.util.FileUtils: void moveFile(java.io.File,java.io.File)
 cn.trinea.android.common.util.FileUtils: boolean copyFile(java.lang.String,java.lang.String)
 cn.trinea.android.common.util.FileUtils: java.util.List readFileToList(java.lang.String,java.lang.String)
 cn.trinea.android.common.util.FileUtils: java.lang.String getFileNameWithoutExtension(java.lang.String)
@@ -7753,13 +7747,13 @@ cn.trinea.android.common.util.ImageCacheManager: java.lang.String TAG
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageCache imageCache
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageSDCardCache imageSDCardCache
 cn.trinea.android.common.util.ImageCacheManager: void <clinit>()
-cn.trinea.android.common.util.ImageCacheManager: ImageCacheManager()
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageCache getImageCache()
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.ImageSDCardCache getImageSDCardCache()
 cn.trinea.android.common.util.ImageCacheManager: void setImageCache()
 cn.trinea.android.common.util.ImageCacheManager: void setImageSDCardCache()
 cn.trinea.android.common.util.ImageCacheManager: android.view.animation.AlphaAnimation getInAlphaAnimation(long)
 cn.trinea.android.common.util.ImageCacheManager: cn.trinea.android.common.service.impl.PreloadDataCache$OnGetDataListener getImageFromSdcardListener()
+cn.trinea.android.common.util.ImageCacheManager: ImageCacheManager()
 cn.trinea.android.common.util.ImageCacheManager$1
 cn.trinea.android.common.util.ImageCacheManager$1: ImageCacheManager$1()
 cn.trinea.android.common.util.ImageCacheManager$1: void onGetSuccess(java.lang.String,android.graphics.Bitmap,android.view.View,boolean)
@@ -7813,16 +7807,10 @@ cn.trinea.android.common.util.JSONUtils: double getDouble(org.json.JSONObject,ja
 cn.trinea.android.common.util.JSONUtils: double getDouble(java.lang.String,java.lang.String,double)
 cn.trinea.android.common.util.JSONUtils: java.lang.String getString(org.json.JSONObject,java.lang.String,java.lang.String)
 cn.trinea.android.common.util.JSONUtils: java.lang.String getString(java.lang.String,java.lang.String,java.lang.String)
-cn.trinea.android.common.util.JSONUtils: java.lang.String getStringCascade(org.json.JSONObject,java.lang.String,java.lang.String[])
-cn.trinea.android.common.util.JSONUtils: java.lang.String getStringCascade(java.lang.String,java.lang.String,java.lang.String[])
 cn.trinea.android.common.util.JSONUtils: java.lang.String[] getStringArray(org.json.JSONObject,java.lang.String,java.lang.String[])
 cn.trinea.android.common.util.JSONUtils: java.lang.String[] getStringArray(java.lang.String,java.lang.String,java.lang.String[])
-cn.trinea.android.common.util.JSONUtils: java.util.List getStringList(org.json.JSONObject,java.lang.String,java.util.List)
-cn.trinea.android.common.util.JSONUtils: java.util.List getStringList(java.lang.String,java.lang.String,java.util.List)
 cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObject(org.json.JSONObject,java.lang.String,org.json.JSONObject)
 cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObject(java.lang.String,java.lang.String,org.json.JSONObject)
-cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObjectCascade(org.json.JSONObject,org.json.JSONObject,java.lang.String[])
-cn.trinea.android.common.util.JSONUtils: org.json.JSONObject getJSONObjectCascade(java.lang.String,org.json.JSONObject,java.lang.String[])
 cn.trinea.android.common.util.JSONUtils: org.json.JSONArray getJSONArray(org.json.JSONObject,java.lang.String,org.json.JSONArray)
 cn.trinea.android.common.util.JSONUtils: org.json.JSONArray getJSONArray(java.lang.String,java.lang.String,org.json.JSONArray)
 cn.trinea.android.common.util.JSONUtils: boolean getBoolean(org.json.JSONObject,java.lang.String,java.lang.Boolean)
@@ -7862,21 +7850,9 @@ cn.trinea.android.common.util.MapUtils: java.util.Map parseKeyAndValueToMap(java
 cn.trinea.android.common.util.MapUtils: java.util.Map parseKeyAndValueToMap(java.lang.String,boolean)
 cn.trinea.android.common.util.MapUtils: java.util.Map parseKeyAndValueToMap(java.lang.String)
 cn.trinea.android.common.util.MapUtils: java.lang.String toJson(java.util.Map)
-cn.trinea.android.common.util.NetWorkUtils
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_WIFI
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_3G
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_2G
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_WAP
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_UNKNOWN
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String NETWORK_TYPE_DISCONNECT
-cn.trinea.android.common.util.NetWorkUtils: NetWorkUtils()
-cn.trinea.android.common.util.NetWorkUtils: int getNetworkType(android.content.Context)
-cn.trinea.android.common.util.NetWorkUtils: java.lang.String getNetworkTypeName(android.content.Context)
-cn.trinea.android.common.util.NetWorkUtils: boolean isFastMobileNetwork(android.content.Context)
 cn.trinea.android.common.util.ObjectUtils
 cn.trinea.android.common.util.ObjectUtils: ObjectUtils()
 cn.trinea.android.common.util.ObjectUtils: boolean isEquals(java.lang.Object,java.lang.Object)
-cn.trinea.android.common.util.ObjectUtils: java.lang.String nullStrToEmpty(java.lang.Object)
 cn.trinea.android.common.util.ObjectUtils: java.lang.Long[] transformLongArray(long[])
 cn.trinea.android.common.util.ObjectUtils: long[] transformLongArray(java.lang.Long[])
 cn.trinea.android.common.util.ObjectUtils: java.lang.Integer[] transformIntArray(int[])
@@ -8002,8 +7978,6 @@ cn.trinea.android.common.util.ResourceUtils
 cn.trinea.android.common.util.ResourceUtils: ResourceUtils()
 cn.trinea.android.common.util.ResourceUtils: java.lang.String geFileFromAssets(android.content.Context,java.lang.String)
 cn.trinea.android.common.util.ResourceUtils: java.lang.String geFileFromRaw(android.content.Context,int)
-cn.trinea.android.common.util.ResourceUtils: java.util.List geFileToListFromAssets(android.content.Context,java.lang.String)
-cn.trinea.android.common.util.ResourceUtils: java.util.List geFileToListFromRaw(android.content.Context,int)
 cn.trinea.android.common.util.ScreenUtils
 cn.trinea.android.common.util.ScreenUtils: ScreenUtils()
 cn.trinea.android.common.util.ScreenUtils: float dpToPx(android.content.Context,float)
@@ -8046,17 +8020,18 @@ cn.trinea.android.common.util.SizeUtils: SizeUtils()
 cn.trinea.android.common.util.SqliteUtils
 cn.trinea.android.common.util.SqliteUtils: cn.trinea.android.common.util.SqliteUtils instance
 cn.trinea.android.common.util.SqliteUtils: cn.trinea.android.common.util.DbHelper dbHelper
-cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase db
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase wDb
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase rDb
 cn.trinea.android.common.util.SqliteUtils: SqliteUtils(android.content.Context)
 cn.trinea.android.common.util.SqliteUtils: cn.trinea.android.common.util.SqliteUtils getInstance(android.content.Context)
-cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase getDb()
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase getWDb()
+cn.trinea.android.common.util.SqliteUtils: android.database.sqlite.SQLiteDatabase getRDb()
 cn.trinea.android.common.util.StringUtils
 cn.trinea.android.common.util.StringUtils: StringUtils()
 cn.trinea.android.common.util.StringUtils: boolean isBlank(java.lang.String)
-cn.trinea.android.common.util.StringUtils: boolean isEmpty(java.lang.CharSequence)
+cn.trinea.android.common.util.StringUtils: boolean isEmpty(java.lang.String)
 cn.trinea.android.common.util.StringUtils: boolean isEquals(java.lang.String,java.lang.String)
-cn.trinea.android.common.util.StringUtils: int length(java.lang.CharSequence)
-cn.trinea.android.common.util.StringUtils: java.lang.String nullStrToEmpty(java.lang.Object)
+cn.trinea.android.common.util.StringUtils: java.lang.String nullStrToEmpty(java.lang.String)
 cn.trinea.android.common.util.StringUtils: java.lang.String capitalizeFirstLetter(java.lang.String)
 cn.trinea.android.common.util.StringUtils: java.lang.String utf8Encode(java.lang.String)
 cn.trinea.android.common.util.StringUtils: java.lang.String utf8Encode(java.lang.String,java.lang.String)
@@ -8101,7 +8076,6 @@ cn.trinea.android.common.util.ViewUtils: void setViewHeight(android.view.View,in
 cn.trinea.android.common.util.ViewUtils: void setListViewHeightBasedOnChildren(android.widget.ListView)
 cn.trinea.android.common.util.ViewUtils: void setAbsListViewHeightBasedOnChildren(android.widget.AbsListView)
 cn.trinea.android.common.util.ViewUtils: void setSearchViewOnClickListener(android.view.View,android.view.View$OnClickListener)
-cn.trinea.android.common.util.ViewUtils: java.util.List getDescendants(android.view.ViewGroup,java.lang.Class,boolean)
 cn.trinea.android.common.view.BorderScrollView
 cn.trinea.android.common.view.BorderScrollView: cn.trinea.android.common.view.BorderScrollView$OnBorderListener onBorderListener
 cn.trinea.android.common.view.BorderScrollView: android.view.View contentView
@@ -13501,7 +13475,7 @@ com.example.zf_android.entity.GoodinfoEntity
 com.example.zf_android.entity.GoodinfoEntity: long serialVersionUID
 com.example.zf_android.entity.GoodinfoEntity: java.lang.String lease_agreement
 com.example.zf_android.entity.GoodinfoEntity: java.lang.String encrypt_card_way
-com.example.zf_android.entity.GoodinfoEntity: int total_score
+com.example.zf_android.entity.GoodinfoEntity: java.lang.String total_score
 com.example.zf_android.entity.GoodinfoEntity: java.lang.String sign_order_way
 com.example.zf_android.entity.GoodinfoEntity: int retail_price
 com.example.zf_android.entity.GoodinfoEntity: java.lang.String battery_info
@@ -13528,8 +13502,8 @@ com.example.zf_android.entity.GoodinfoEntity: java.lang.String getLease_agreemen
 com.example.zf_android.entity.GoodinfoEntity: void setLease_agreement(java.lang.String)
 com.example.zf_android.entity.GoodinfoEntity: java.lang.String getEncrypt_card_way()
 com.example.zf_android.entity.GoodinfoEntity: void setEncrypt_card_way(java.lang.String)
-com.example.zf_android.entity.GoodinfoEntity: int getTotal_score()
-com.example.zf_android.entity.GoodinfoEntity: void setTotal_score(int)
+com.example.zf_android.entity.GoodinfoEntity: java.lang.String getTotal_score()
+com.example.zf_android.entity.GoodinfoEntity: void setTotal_score(java.lang.String)
 com.example.zf_android.entity.GoodinfoEntity: java.lang.String getSign_order_way()
 com.example.zf_android.entity.GoodinfoEntity: void setSign_order_way(java.lang.String)
 com.example.zf_android.entity.GoodinfoEntity: int getRetail_price()
@@ -13954,7 +13928,7 @@ com.example.zf_android.entity.PosEntity: java.lang.Boolean has_lease
 com.example.zf_android.entity.PosEntity: int volume_number
 com.example.zf_android.entity.PosEntity: int id
 com.example.zf_android.entity.PosEntity: java.lang.String good_brand
-com.example.zf_android.entity.PosEntity: int total_score
+com.example.zf_android.entity.PosEntity: java.lang.String total_score
 com.example.zf_android.entity.PosEntity: int retail_price
 com.example.zf_android.entity.PosEntity: java.lang.String pay_channe
 com.example.zf_android.entity.PosEntity: java.lang.String Title
@@ -13970,8 +13944,8 @@ com.example.zf_android.entity.PosEntity: int getId()
 com.example.zf_android.entity.PosEntity: void setId(int)
 com.example.zf_android.entity.PosEntity: java.lang.String getGood_brand()
 com.example.zf_android.entity.PosEntity: void setGood_brand(java.lang.String)
-com.example.zf_android.entity.PosEntity: int getTotal_score()
-com.example.zf_android.entity.PosEntity: void setTotal_score(int)
+com.example.zf_android.entity.PosEntity: java.lang.String getTotal_score()
+com.example.zf_android.entity.PosEntity: void setTotal_score(java.lang.String)
 com.example.zf_android.entity.PosEntity: int getRetail_price()
 com.example.zf_android.entity.PosEntity: void setRetail_price(int)
 com.example.zf_android.entity.PosEntity: java.lang.String getPay_channe()
@@ -14308,6 +14282,7 @@ com.example.zf_android.trade.AfterSaleListActivity
 com.example.zf_android.trade.AfterSaleListActivity: AfterSaleListActivity()
 com.example.zf_android.trade.AfterSaleListActivity: void onRefresh()
 com.example.zf_android.trade.AfterSaleListActivity: void onLoadMore()
+com.example.zf_android.trade.AfterSaleListActivity: void onResume()
 com.example.zf_android.trade.AfterSaleListActivity$1: void onSuccess(com.example.zf_android.trade.common.Pageable)
 com.example.zf_android.trade.AfterSaleListActivity$1: com.google.gson.reflect.TypeToken getTypeToken()
 com.example.zf_android.trade.AfterSaleListActivity$1: void onSuccess(java.lang.Object)
@@ -14404,13 +14379,14 @@ com.example.zf_android.trade.ApplyDetailActivity$1: void onClick(android.view.Vi
 com.example.zf_android.trade.ApplyDetailActivity$1$1: void onSuccess(java.lang.Object)
 com.example.zf_android.trade.ApplyDetailActivity$1$1: com.google.gson.reflect.TypeToken getTypeToken()
 com.example.zf_android.trade.ApplyDetailActivity$10: void onClick(android.view.View)
-com.example.zf_android.trade.ApplyDetailActivity$11: void onCityFound(com.example.zf_android.trade.entity.Province,com.example.zf_android.trade.entity.City)
+com.example.zf_android.trade.ApplyDetailActivity$11: void onClick(android.view.View)
 com.example.zf_android.trade.ApplyDetailActivity$12: void onCityFound(com.example.zf_android.trade.entity.Province,com.example.zf_android.trade.entity.City)
-com.example.zf_android.trade.ApplyDetailActivity$13: void onClick(android.view.View)
-com.example.zf_android.trade.ApplyDetailActivity$14: void afterTextChanged(android.text.Editable)
+com.example.zf_android.trade.ApplyDetailActivity$13: void onCityFound(com.example.zf_android.trade.entity.Province,com.example.zf_android.trade.entity.City)
+com.example.zf_android.trade.ApplyDetailActivity$14: void onClick(android.view.View)
 com.example.zf_android.trade.ApplyDetailActivity$15: void afterTextChanged(android.text.Editable)
-com.example.zf_android.trade.ApplyDetailActivity$16: void onClick(android.view.View)
-com.example.zf_android.trade.ApplyDetailActivity$16$1: void onClick(android.content.DialogInterface,int)
+com.example.zf_android.trade.ApplyDetailActivity$16: void afterTextChanged(android.text.Editable)
+com.example.zf_android.trade.ApplyDetailActivity$17: void onClick(android.view.View)
+com.example.zf_android.trade.ApplyDetailActivity$17$1: void onClick(android.content.DialogInterface,int)
 com.example.zf_android.trade.ApplyDetailActivity$2: void onSuccess(com.example.zf_android.trade.entity.ApplyDetail)
 com.example.zf_android.trade.ApplyDetailActivity$2: com.google.gson.reflect.TypeToken getTypeToken()
 com.example.zf_android.trade.ApplyDetailActivity$2: void onSuccess(java.lang.Object)
@@ -14425,11 +14401,15 @@ com.example.zf_android.trade.ApplyDetailActivity$4: void handleMessage(android.o
 com.example.zf_android.trade.ApplyDetailActivity$5: void onSuccess(java.lang.Object)
 com.example.zf_android.trade.ApplyDetailActivity$5: void onFailure(java.lang.String)
 com.example.zf_android.trade.ApplyDetailActivity$5: com.google.gson.reflect.TypeToken getTypeToken()
-com.example.zf_android.trade.ApplyDetailActivity$6: void onClick(android.view.View)
-com.example.zf_android.trade.ApplyDetailActivity$6$1: void onClick(android.content.DialogInterface,int)
+com.example.zf_android.trade.ApplyDetailActivity$6: void run()
+com.example.zf_android.trade.ApplyDetailActivity$6$1: void onSuccess(java.lang.Object)
+com.example.zf_android.trade.ApplyDetailActivity$6$1: void onFailure(java.lang.String)
+com.example.zf_android.trade.ApplyDetailActivity$6$1: void preLoad()
+com.example.zf_android.trade.ApplyDetailActivity$6$1: com.google.gson.reflect.TypeToken getTypeToken()
 com.example.zf_android.trade.ApplyDetailActivity$7: void onClick(android.view.View)
-com.example.zf_android.trade.ApplyDetailActivity$7$1: void onDateSet(java.lang.String)
+com.example.zf_android.trade.ApplyDetailActivity$7$1: void onClick(android.content.DialogInterface,int)
 com.example.zf_android.trade.ApplyDetailActivity$8: void onClick(android.view.View)
+com.example.zf_android.trade.ApplyDetailActivity$8$1: void onDateSet(java.lang.String)
 com.example.zf_android.trade.ApplyDetailActivity$9: void onClick(android.view.View)
 com.example.zf_android.trade.ApplyDetailActivity$onWatchListener: void onClick(android.view.View)
 com.example.zf_android.trade.ApplyDetailActivity$onWatchListener$1: void onClick(android.content.DialogInterface,int)
@@ -14795,6 +14775,18 @@ com.example.zf_android.trade.common.DialogUtil: DialogUtil()
 com.example.zf_android.trade.common.DialogUtil: android.app.Dialog getLoadingDialg(android.app.Activity)
 com.example.zf_android.trade.common.DialogUtil: int getScreenWidth(android.app.Activity)
 com.example.zf_android.trade.common.DialogUtil: int getScreenHeight(android.app.Activity)
+com.example.zf_android.trade.common.FileSizeUtil
+com.example.zf_android.trade.common.FileSizeUtil: int SIZETYPE_B
+com.example.zf_android.trade.common.FileSizeUtil: int SIZETYPE_KB
+com.example.zf_android.trade.common.FileSizeUtil: int SIZETYPE_MB
+com.example.zf_android.trade.common.FileSizeUtil: int SIZETYPE_GB
+com.example.zf_android.trade.common.FileSizeUtil: FileSizeUtil()
+com.example.zf_android.trade.common.FileSizeUtil: double getFileOrFilesSize(java.lang.String,int)
+com.example.zf_android.trade.common.FileSizeUtil: java.lang.String getAutoFileOrFilesSize(java.lang.String)
+com.example.zf_android.trade.common.FileSizeUtil: long getFileSize(java.io.File)
+com.example.zf_android.trade.common.FileSizeUtil: long getFileSizes(java.io.File)
+com.example.zf_android.trade.common.FileSizeUtil: java.lang.String FormetFileSize(long)
+com.example.zf_android.trade.common.FileSizeUtil: double FormetFileSize(long,int)
 com.example.zf_android.trade.common.HttpCallback
 com.example.zf_android.trade.common.HttpCallback: android.content.Context context
 com.example.zf_android.trade.common.HttpCallback: android.app.Dialog loadingDialog
@@ -15866,6 +15858,58 @@ com.example.zf_android.trade.widget.XListViewHeader: void initView(android.conte
 com.example.zf_android.trade.widget.XListViewHeader: void setState(int)
 com.example.zf_android.trade.widget.XListViewHeader: void setVisiableHeight(int)
 com.example.zf_android.trade.widget.XListViewHeader: int getVisiableHeight()
+com.example.zf_android.trade.widget.ZoomImageView
+com.example.zf_android.trade.widget.ZoomImageView: java.lang.String TAG
+com.example.zf_android.trade.widget.ZoomImageView: float SCALE_MAX
+com.example.zf_android.trade.widget.ZoomImageView: float SCALE_MID
+com.example.zf_android.trade.widget.ZoomImageView: float initScale
+com.example.zf_android.trade.widget.ZoomImageView: boolean once
+com.example.zf_android.trade.widget.ZoomImageView: float[] matrixValues
+com.example.zf_android.trade.widget.ZoomImageView: android.view.ScaleGestureDetector mScaleGestureDetector
+com.example.zf_android.trade.widget.ZoomImageView: android.graphics.Matrix mScaleMatrix
+com.example.zf_android.trade.widget.ZoomImageView: android.view.GestureDetector mGestureDetector
+com.example.zf_android.trade.widget.ZoomImageView: boolean isAutoScale
+com.example.zf_android.trade.widget.ZoomImageView: int mTouchSlop
+com.example.zf_android.trade.widget.ZoomImageView: float mLastX
+com.example.zf_android.trade.widget.ZoomImageView: float mLastY
+com.example.zf_android.trade.widget.ZoomImageView: boolean isCanDrag
+com.example.zf_android.trade.widget.ZoomImageView: int lastPointerCount
+com.example.zf_android.trade.widget.ZoomImageView: boolean isCheckTopAndBottom
+com.example.zf_android.trade.widget.ZoomImageView: boolean isCheckLeftAndRight
+com.example.zf_android.trade.widget.ZoomImageView: void <clinit>()
+com.example.zf_android.trade.widget.ZoomImageView: ZoomImageView(android.content.Context)
+com.example.zf_android.trade.widget.ZoomImageView: ZoomImageView(android.content.Context,android.util.AttributeSet)
+com.example.zf_android.trade.widget.ZoomImageView: boolean onScale(android.view.ScaleGestureDetector)
+com.example.zf_android.trade.widget.ZoomImageView: void checkBorderAndCenterWhenScale()
+com.example.zf_android.trade.widget.ZoomImageView: android.graphics.RectF getMatrixRectF()
+com.example.zf_android.trade.widget.ZoomImageView: boolean onScaleBegin(android.view.ScaleGestureDetector)
+com.example.zf_android.trade.widget.ZoomImageView: void onScaleEnd(android.view.ScaleGestureDetector)
+com.example.zf_android.trade.widget.ZoomImageView: boolean onTouch(android.view.View,android.view.MotionEvent)
+com.example.zf_android.trade.widget.ZoomImageView: float getScale()
+com.example.zf_android.trade.widget.ZoomImageView: void onAttachedToWindow()
+com.example.zf_android.trade.widget.ZoomImageView: void onDetachedFromWindow()
+com.example.zf_android.trade.widget.ZoomImageView: void onGlobalLayout()
+com.example.zf_android.trade.widget.ZoomImageView: void checkMatrixBounds()
+com.example.zf_android.trade.widget.ZoomImageView: boolean isCanDrag(float,float)
+com.example.zf_android.trade.widget.ZoomImageView: android.graphics.Matrix access$0(com.example.zf_android.trade.widget.ZoomImageView)
+com.example.zf_android.trade.widget.ZoomImageView: void access$1(com.example.zf_android.trade.widget.ZoomImageView)
+com.example.zf_android.trade.widget.ZoomImageView: void access$2(com.example.zf_android.trade.widget.ZoomImageView,boolean)
+com.example.zf_android.trade.widget.ZoomImageView: boolean access$3(com.example.zf_android.trade.widget.ZoomImageView)
+com.example.zf_android.trade.widget.ZoomImageView: float access$4(com.example.zf_android.trade.widget.ZoomImageView)
+com.example.zf_android.trade.widget.ZoomImageView$1
+com.example.zf_android.trade.widget.ZoomImageView$1: com.example.zf_android.trade.widget.ZoomImageView this$0
+com.example.zf_android.trade.widget.ZoomImageView$1: ZoomImageView$1(com.example.zf_android.trade.widget.ZoomImageView)
+com.example.zf_android.trade.widget.ZoomImageView$1: boolean onDoubleTap(android.view.MotionEvent)
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable: float BIGGER
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable: float SMALLER
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable: float mTargetScale
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable: float tmpScale
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable: float x
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable: float y
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable: com.example.zf_android.trade.widget.ZoomImageView this$0
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable: ZoomImageView$AutoScaleRunnable(com.example.zf_android.trade.widget.ZoomImageView,float,float,float)
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable: void run()
 com.example.zf_android.trade.widget.gestureimage.Animation
 com.example.zf_android.trade.widget.gestureimage.Animation: boolean update(com.example.zf_android.trade.widget.gestureimage.GestureImageView,long)
 com.example.zf_android.trade.widget.gestureimage.Animator
@@ -21947,6 +21991,55 @@ com.unionpay.uppayplugin.demo.BaseActivity$2
 com.unionpay.uppayplugin.demo.BaseActivity$2: com.unionpay.uppayplugin.demo.BaseActivity this$0
 com.unionpay.uppayplugin.demo.BaseActivity$2: BaseActivity$2(com.unionpay.uppayplugin.demo.BaseActivity)
 com.unionpay.uppayplugin.demo.BaseActivity$2: void onClick(android.content.DialogInterface,int)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String LOG_TAG
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: android.content.Context mContext
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: android.os.Handler mHandler
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: android.app.ProgressDialog mLoadingDialog
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int PLUGIN_VALID
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int PLUGIN_NOT_INSTALLED
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int PLUGIN_NEED_UPGRADE
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String outTradeNo
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String price
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int record_id
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int record_type
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String str
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String pay_result
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String apkTn
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String apkMode
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: boolean IS_PLUGIN_NOT_INSTALLED
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: RepairPayUnionActivity()
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void onCreate(android.os.Bundle)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: boolean handleMessage(android.os.Message)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void onActivityResult(int,int,android.content.Intent)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void run()
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int startpay(android.app.Activity,java.lang.String,int)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String postRequest(java.lang.String,java.util.Map)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void doStartUnionPayPlugin(android.app.Activity,java.lang.String,java.lang.String)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void onResume()
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int access$0(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String access$1(com.unionpay.uppayplugin.demo.RepairPayUnionActivity,java.lang.String,java.util.Map)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: android.os.Handler access$2(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1: RepairPayUnionActivity$1(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1: void onClick(android.content.DialogInterface,int)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2: RepairPayUnionActivity$2(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2: void onClick(android.content.DialogInterface,int)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3: RepairPayUnionActivity$3(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3: void run()
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4: RepairPayUnionActivity$4(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4: void onClick(android.content.DialogInterface,int)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5: RepairPayUnionActivity$5(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5: void onClick(android.content.DialogInterface,int)
 org.litepal.LitePalApplication
 org.litepal.LitePalApplication: LitePalApplication()
 org.litepal.LitePalBase: java.lang.String TAG

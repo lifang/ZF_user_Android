@@ -19,17 +19,19 @@ import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.DialogUtil;
 import com.examlpe.zf_android.util.DialogUtil.CallBackChange;
 import com.examlpe.zf_android.util.TitleMenuUtil;
+import com.example.zf_android.MyApplication;
 import com.example.zf_android.alipay.RepairPayActivity;
 import com.example.zf_android.trade.common.HttpCallback;
 import com.example.zf_android.trade.entity.RepairPayEntity;
 import com.google.gson.reflect.TypeToken;
+import com.unionpay.uppayplugin.demo.RepairPayUnionActivity;
 
 /**
  * Created by Leo on 2015/3/2.
  */
 public class AfterSalePayActivity extends RepairPayActivity implements OnClickListener {
 	private TextView tv_pay;
-	private LinearLayout titleback_linear_back, ll_sh;
+	private LinearLayout titleback_linear_back,ll_request, ll_sh;
 	private String orderId = "";
 	private String outTradeNo;
 	private String subject;
@@ -37,7 +39,7 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 	private String price;
 
 	private int mRecordType;
-
+	private String unionprice;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -67,6 +69,8 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 		titleback_linear_back.setOnClickListener(this);
 		ll_sh = (LinearLayout) findViewById(R.id.ll_sh);
 		ll_sh.setOnClickListener(this);
+		ll_request = (LinearLayout) findViewById(R.id.ll_request);
+		ll_request.setOnClickListener(this);
 
 		getData();
 	}
@@ -79,6 +83,21 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 		case R.id.ll_sh:
 			pay(outTradeNo, subject, body, price);
 			break;
+		case R.id.ll_request:
+//			pay(outTradeNo, subject, body, price);
+		
+		Intent intent = new Intent();
+        intent.setClass(this, RepairPayUnionActivity.class);
+        intent.putExtra("outTradeNo", outTradeNo);
+        intent.putExtra("price", unionprice);
+        intent.putExtra("record_type", mRecordType);
+		intent.putExtra("record_id", Integer.valueOf(orderId));
+        startActivity(intent);
+        
+        if(!MyApplication.getInstance().getHistoryList().contains(this)){
+        	MyApplication.getInstance().getHistoryList().add(this);	
+        }
+        break;
 		default:
 			break;
 		}
@@ -121,6 +140,7 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 				body = subject;
 				outTradeNo = data.getApply_num();
 				price = data.getRepair_price();
+				unionprice =price;
 				price = String.format("%.2f", Integer.parseInt(price)/100f);
 				handler.sendEmptyMessage(0);
 			}

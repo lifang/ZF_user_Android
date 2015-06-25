@@ -6270,6 +6270,8 @@ cn.trinea.android.common.R$styleable -> cn.trinea.android.common.R$styleable:
     int drop_down_list_attr_isAutoLoadOnBottom -> drop_down_list_attr_isAutoLoadOnBottom
     int drop_down_list_attr_isDropDownStyle -> drop_down_list_attr_isDropDownStyle
     int drop_down_list_attr_isOnBottomStyle -> drop_down_list_attr_isOnBottomStyle
+cn.trinea.android.common.constant.AndroidConstants -> cn.trinea.android.common.constant.AndroidConstants:
+    int ICE_CREAM_SANDWICH -> ICE_CREAM_SANDWICH
 cn.trinea.android.common.constant.DbConstants -> cn.trinea.android.common.constant.DbConstants:
     java.lang.String DB_NAME -> DB_NAME
     int DB_VERSION -> DB_VERSION
@@ -6425,7 +6427,7 @@ cn.trinea.android.common.entity.HttpResponse -> cn.trinea.android.common.entity.
     boolean isInCache() -> isInCache
     cn.trinea.android.common.entity.HttpResponse setInCache(boolean) -> setInCache
     java.lang.String getExpiresHeader() -> getExpiresHeader
-    long getCacheControlMaxAge() -> getCacheControlMaxAge
+    int getCacheControlMaxAge() -> getCacheControlMaxAge
     long getExpiresInMillis() -> getExpiresInMillis
     void setResponseHeader(java.lang.String,java.lang.String) -> setResponseHeader
     java.lang.Object getResponseHeader(java.lang.String) -> getResponseHeader
@@ -6855,7 +6857,6 @@ cn.trinea.android.common.service.impl.SimpleCache -> cn.trinea.android.common.se
     void saveCache(java.lang.String,cn.trinea.android.common.service.impl.SimpleCache) -> saveCache
 cn.trinea.android.common.util.AppUtils -> cn.trinea.android.common.util.AppUtils:
     boolean isNamedProcess(android.content.Context,java.lang.String) -> isNamedProcess
-    boolean isApplicationInBackground(android.content.Context) -> isApplicationInBackground
 cn.trinea.android.common.util.ArrayUtils -> cn.trinea.android.common.util.ArrayUtils:
     boolean isEmpty(java.lang.Object[]) -> isEmpty
     java.lang.Object getLast(java.lang.Object[],java.lang.Object,java.lang.Object,boolean) -> getLast
@@ -6878,10 +6879,6 @@ cn.trinea.android.common.util.CacheManager -> cn.trinea.android.common.util.Cach
     cn.trinea.android.common.service.HttpCache getHttpCache(android.content.Context) -> getHttpCache
     cn.trinea.android.common.service.impl.ImageCache getImageCache() -> getImageCache
     cn.trinea.android.common.service.impl.ImageSDCardCache getImageSDCardCache() -> getImageSDCardCache
-cn.trinea.android.common.util.CollectionUtils -> cn.trinea.android.common.util.CollectionUtils:
-    java.lang.CharSequence DEFAULT_JOIN_SEPARATOR -> DEFAULT_JOIN_SEPARATOR
-    boolean isEmpty(java.util.Collection) -> isEmpty
-    java.lang.String join(java.lang.Iterable) -> join
 cn.trinea.android.common.util.DbHelper -> cn.trinea.android.common.util.DbHelper:
     void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
     void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
@@ -6935,8 +6932,6 @@ cn.trinea.android.common.util.FileUtils -> cn.trinea.android.common.util.FileUti
     boolean writeFile(java.lang.String,java.io.InputStream,boolean) -> writeFile
     boolean writeFile(java.io.File,java.io.InputStream) -> writeFile
     boolean writeFile(java.io.File,java.io.InputStream,boolean) -> writeFile
-    void moveFile(java.lang.String,java.lang.String) -> moveFile
-    void moveFile(java.io.File,java.io.File) -> moveFile
     boolean copyFile(java.lang.String,java.lang.String) -> copyFile
     java.util.List readFileToList(java.lang.String,java.lang.String) -> readFileToList
     java.lang.String getFileNameWithoutExtension(java.lang.String) -> getFileNameWithoutExtension
@@ -7048,16 +7043,10 @@ cn.trinea.android.common.util.JSONUtils -> cn.trinea.android.common.util.JSONUti
     double getDouble(java.lang.String,java.lang.String,double) -> getDouble
     java.lang.String getString(org.json.JSONObject,java.lang.String,java.lang.String) -> getString
     java.lang.String getString(java.lang.String,java.lang.String,java.lang.String) -> getString
-    java.lang.String getStringCascade(org.json.JSONObject,java.lang.String,java.lang.String[]) -> getStringCascade
-    java.lang.String getStringCascade(java.lang.String,java.lang.String,java.lang.String[]) -> getStringCascade
     java.lang.String[] getStringArray(org.json.JSONObject,java.lang.String,java.lang.String[]) -> getStringArray
     java.lang.String[] getStringArray(java.lang.String,java.lang.String,java.lang.String[]) -> getStringArray
-    java.util.List getStringList(org.json.JSONObject,java.lang.String,java.util.List) -> getStringList
-    java.util.List getStringList(java.lang.String,java.lang.String,java.util.List) -> getStringList
     org.json.JSONObject getJSONObject(org.json.JSONObject,java.lang.String,org.json.JSONObject) -> getJSONObject
     org.json.JSONObject getJSONObject(java.lang.String,java.lang.String,org.json.JSONObject) -> getJSONObject
-    org.json.JSONObject getJSONObjectCascade(org.json.JSONObject,org.json.JSONObject,java.lang.String[]) -> getJSONObjectCascade
-    org.json.JSONObject getJSONObjectCascade(java.lang.String,org.json.JSONObject,java.lang.String[]) -> getJSONObjectCascade
     org.json.JSONArray getJSONArray(org.json.JSONObject,java.lang.String,org.json.JSONArray) -> getJSONArray
     org.json.JSONArray getJSONArray(java.lang.String,java.lang.String,org.json.JSONArray) -> getJSONArray
     boolean getBoolean(org.json.JSONObject,java.lang.String,java.lang.Boolean) -> getBoolean
@@ -7095,19 +7084,8 @@ cn.trinea.android.common.util.MapUtils -> cn.trinea.android.common.util.MapUtils
     java.util.Map parseKeyAndValueToMap(java.lang.String,boolean) -> parseKeyAndValueToMap
     java.util.Map parseKeyAndValueToMap(java.lang.String) -> parseKeyAndValueToMap
     java.lang.String toJson(java.util.Map) -> toJson
-cn.trinea.android.common.util.NetWorkUtils -> cn.trinea.android.common.util.NetWorkUtils:
-    java.lang.String NETWORK_TYPE_WIFI -> NETWORK_TYPE_WIFI
-    java.lang.String NETWORK_TYPE_3G -> NETWORK_TYPE_3G
-    java.lang.String NETWORK_TYPE_2G -> NETWORK_TYPE_2G
-    java.lang.String NETWORK_TYPE_WAP -> NETWORK_TYPE_WAP
-    java.lang.String NETWORK_TYPE_UNKNOWN -> NETWORK_TYPE_UNKNOWN
-    java.lang.String NETWORK_TYPE_DISCONNECT -> NETWORK_TYPE_DISCONNECT
-    int getNetworkType(android.content.Context) -> getNetworkType
-    java.lang.String getNetworkTypeName(android.content.Context) -> getNetworkTypeName
-    boolean isFastMobileNetwork(android.content.Context) -> isFastMobileNetwork
 cn.trinea.android.common.util.ObjectUtils -> cn.trinea.android.common.util.ObjectUtils:
     boolean isEquals(java.lang.Object,java.lang.Object) -> isEquals
-    java.lang.String nullStrToEmpty(java.lang.Object) -> nullStrToEmpty
     java.lang.Long[] transformLongArray(long[]) -> transformLongArray
     long[] transformLongArray(java.lang.Long[]) -> transformLongArray
     java.lang.Integer[] transformIntArray(int[]) -> transformIntArray
@@ -7226,8 +7204,6 @@ cn.trinea.android.common.util.RandomUtils -> cn.trinea.android.common.util.Rando
 cn.trinea.android.common.util.ResourceUtils -> cn.trinea.android.common.util.ResourceUtils:
     java.lang.String geFileFromAssets(android.content.Context,java.lang.String) -> geFileFromAssets
     java.lang.String geFileFromRaw(android.content.Context,int) -> geFileFromRaw
-    java.util.List geFileToListFromAssets(android.content.Context,java.lang.String) -> geFileToListFromAssets
-    java.util.List geFileToListFromRaw(android.content.Context,int) -> geFileToListFromRaw
 cn.trinea.android.common.util.ScreenUtils -> cn.trinea.android.common.util.ScreenUtils:
     float dpToPx(android.content.Context,float) -> dpToPx
     float pxToDp(android.content.Context,float) -> pxToDp
@@ -7263,15 +7239,16 @@ cn.trinea.android.common.util.SizeUtils -> cn.trinea.android.common.util.SizeUti
 cn.trinea.android.common.util.SqliteUtils -> cn.trinea.android.common.util.SqliteUtils:
     cn.trinea.android.common.util.SqliteUtils instance -> instance
     cn.trinea.android.common.util.DbHelper dbHelper -> dbHelper
-    android.database.sqlite.SQLiteDatabase db -> db
+    android.database.sqlite.SQLiteDatabase wDb -> wDb
+    android.database.sqlite.SQLiteDatabase rDb -> rDb
     cn.trinea.android.common.util.SqliteUtils getInstance(android.content.Context) -> getInstance
-    android.database.sqlite.SQLiteDatabase getDb() -> getDb
+    android.database.sqlite.SQLiteDatabase getWDb() -> getWDb
+    android.database.sqlite.SQLiteDatabase getRDb() -> getRDb
 cn.trinea.android.common.util.StringUtils -> cn.trinea.android.common.util.StringUtils:
     boolean isBlank(java.lang.String) -> isBlank
-    boolean isEmpty(java.lang.CharSequence) -> isEmpty
+    boolean isEmpty(java.lang.String) -> isEmpty
     boolean isEquals(java.lang.String,java.lang.String) -> isEquals
-    int length(java.lang.CharSequence) -> length
-    java.lang.String nullStrToEmpty(java.lang.Object) -> nullStrToEmpty
+    java.lang.String nullStrToEmpty(java.lang.String) -> nullStrToEmpty
     java.lang.String capitalizeFirstLetter(java.lang.String) -> capitalizeFirstLetter
     java.lang.String utf8Encode(java.lang.String) -> utf8Encode
     java.lang.String utf8Encode(java.lang.String,java.lang.String) -> utf8Encode
@@ -7310,7 +7287,6 @@ cn.trinea.android.common.util.ViewUtils -> cn.trinea.android.common.util.ViewUti
     void setListViewHeightBasedOnChildren(android.widget.ListView) -> setListViewHeightBasedOnChildren
     void setAbsListViewHeightBasedOnChildren(android.widget.AbsListView) -> setAbsListViewHeightBasedOnChildren
     void setSearchViewOnClickListener(android.view.View,android.view.View$OnClickListener) -> setSearchViewOnClickListener
-    java.util.List getDescendants(android.view.ViewGroup,java.lang.Class,boolean) -> getDescendants
 cn.trinea.android.common.view.BorderScrollView -> cn.trinea.android.common.view.BorderScrollView:
     cn.trinea.android.common.view.BorderScrollView$OnBorderListener onBorderListener -> onBorderListener
     android.view.View contentView -> contentView
@@ -15263,7 +15239,7 @@ com.example.zf_android.entity.GoodinfoEntity -> com.example.zf_android.entity.Go
     long serialVersionUID -> serialVersionUID
     java.lang.String lease_agreement -> lease_agreement
     java.lang.String encrypt_card_way -> encrypt_card_way
-    int total_score -> total_score
+    java.lang.String total_score -> total_score
     java.lang.String sign_order_way -> sign_order_way
     int retail_price -> retail_price
     java.lang.String battery_info -> battery_info
@@ -15289,8 +15265,8 @@ com.example.zf_android.entity.GoodinfoEntity -> com.example.zf_android.entity.Go
     void setLease_agreement(java.lang.String) -> setLease_agreement
     java.lang.String getEncrypt_card_way() -> getEncrypt_card_way
     void setEncrypt_card_way(java.lang.String) -> setEncrypt_card_way
-    int getTotal_score() -> getTotal_score
-    void setTotal_score(int) -> setTotal_score
+    java.lang.String getTotal_score() -> getTotal_score
+    void setTotal_score(java.lang.String) -> setTotal_score
     java.lang.String getSign_order_way() -> getSign_order_way
     void setSign_order_way(java.lang.String) -> setSign_order_way
     int getRetail_price() -> getRetail_price
@@ -15698,7 +15674,7 @@ com.example.zf_android.entity.PosEntity -> com.example.zf_android.entity.PosEnti
     int volume_number -> volume_number
     int id -> id
     java.lang.String good_brand -> good_brand
-    int total_score -> total_score
+    java.lang.String total_score -> total_score
     int retail_price -> retail_price
     java.lang.String pay_channe -> pay_channe
     java.lang.String Title -> Title
@@ -15713,8 +15689,8 @@ com.example.zf_android.entity.PosEntity -> com.example.zf_android.entity.PosEnti
     void setId(int) -> setId
     java.lang.String getGood_brand() -> getGood_brand
     void setGood_brand(java.lang.String) -> setGood_brand
-    int getTotal_score() -> getTotal_score
-    void setTotal_score(int) -> setTotal_score
+    java.lang.String getTotal_score() -> getTotal_score
+    void setTotal_score(java.lang.String) -> setTotal_score
     int getRetail_price() -> getRetail_price
     void setRetail_price(int) -> setRetail_price
     java.lang.String getPay_channe() -> getPay_channe
@@ -16170,6 +16146,7 @@ com.example.zf_android.trade.AfterSaleListActivity -> com.example.zf_android.tra
     void onRefresh() -> onRefresh
     void onLoadMore() -> onLoadMore
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void onResume() -> onResume
     java.util.List access$0(com.example.zf_android.trade.AfterSaleListActivity) -> a
     android.view.LayoutInflater access$1(com.example.zf_android.trade.AfterSaleListActivity) -> b
     int access$2(com.example.zf_android.trade.AfterSaleListActivity) -> c
@@ -16290,14 +16267,16 @@ com.example.zf_android.trade.AfterSaleMaterialActivity$2 -> com.example.zf_andro
 com.example.zf_android.trade.AfterSalePayActivity -> com.example.zf_android.trade.AfterSalePayActivity:
     android.widget.TextView tv_pay -> d
     android.widget.LinearLayout titleback_linear_back -> e
-    android.widget.LinearLayout ll_sh -> f
-    java.lang.String orderId -> g
-    java.lang.String outTradeNo -> h
-    java.lang.String subject -> i
-    java.lang.String body -> j
-    java.lang.String price -> k
-    int mRecordType -> l
-    android.os.Handler handler -> m
+    android.widget.LinearLayout ll_request -> f
+    android.widget.LinearLayout ll_sh -> g
+    java.lang.String orderId -> h
+    java.lang.String outTradeNo -> i
+    java.lang.String subject -> j
+    java.lang.String body -> k
+    java.lang.String price -> l
+    int mRecordType -> m
+    java.lang.String unionprice -> n
+    android.os.Handler handler -> o
     void onCreate(android.os.Bundle) -> onCreate
     void onClick(android.view.View) -> onClick
     void dialogIntent() -> a
@@ -16314,7 +16293,8 @@ com.example.zf_android.trade.AfterSalePayActivity -> com.example.zf_android.trad
     void access$6(com.example.zf_android.trade.AfterSalePayActivity,java.lang.String) -> b
     void access$7(com.example.zf_android.trade.AfterSalePayActivity,java.lang.String) -> c
     void access$8(com.example.zf_android.trade.AfterSalePayActivity,java.lang.String) -> d
-    android.os.Handler access$9(com.example.zf_android.trade.AfterSalePayActivity) -> f
+    void access$9(com.example.zf_android.trade.AfterSalePayActivity,java.lang.String) -> e
+    android.os.Handler access$10(com.example.zf_android.trade.AfterSalePayActivity) -> f
 com.example.zf_android.trade.AfterSalePayActivity$1 -> com.example.zf_android.trade.ao:
     com.example.zf_android.trade.AfterSalePayActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
@@ -16487,16 +16467,18 @@ com.example.zf_android.trade.ApplyDetailActivity -> com.example.zf_android.trade
     java.lang.Boolean isShopName -> Q
     java.lang.String shopName -> R
     com.nostra13.universalimageloader.core.DisplayImageOptions options -> a
+    android.app.Dialog loadingDialog -> S
     void onCreate(android.os.Bundle) -> onCreate
     void loadData(int) -> a
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     void updateUIWithValidation() -> a
     java.lang.String getRealPathFromURI(android.net.Uri) -> getRealPathFromURI
     void setItemValue(java.lang.String,java.lang.String) -> a
-    java.lang.String getItemValue(java.lang.String) -> a
+    java.lang.String getItemValue(java.lang.String) -> b
     android.widget.LinearLayout getDetailItem(int,java.lang.String,java.lang.String) -> a
     void onPause() -> onPause
     void onResume() -> onResume
+    java.io.File compressImage(android.graphics.Bitmap) -> a
     void access$0(com.example.zf_android.trade.ApplyDetailActivity,android.view.View) -> a
     void access$1(com.example.zf_android.trade.ApplyDetailActivity,java.lang.String) -> a
     int access$2(com.example.zf_android.trade.ApplyDetailActivity) -> a
@@ -16541,18 +16523,20 @@ com.example.zf_android.trade.ApplyDetailActivity -> com.example.zf_android.trade
     android.widget.ImageView access$41(com.example.zf_android.trade.ApplyDetailActivity) -> C
     android.view.View access$42(com.example.zf_android.trade.ApplyDetailActivity) -> D
     java.lang.String access$43(com.example.zf_android.trade.ApplyDetailActivity) -> E
-    void access$44(com.example.zf_android.trade.ApplyDetailActivity,java.lang.String,java.lang.String) -> a
-    void access$45(com.example.zf_android.trade.ApplyDetailActivity,int) -> e
-    java.lang.String access$46(com.example.zf_android.trade.ApplyDetailActivity) -> F
-    com.example.zf_android.trade.entity.Province access$47(com.example.zf_android.trade.ApplyDetailActivity) -> G
-    int access$48(com.example.zf_android.trade.ApplyDetailActivity) -> H
-    void access$49(com.example.zf_android.trade.ApplyDetailActivity,com.example.zf_android.trade.entity.Province) -> a
-    void access$50(com.example.zf_android.trade.ApplyDetailActivity,com.example.zf_android.trade.entity.City) -> a
-    void access$51(com.example.zf_android.trade.ApplyDetailActivity,java.lang.String) -> d
-    void access$52(com.example.zf_android.trade.ApplyDetailActivity,android.widget.TextView) -> a
-    void access$53(com.example.zf_android.trade.ApplyDetailActivity,android.widget.ImageButton) -> a
-    void access$54(com.example.zf_android.trade.ApplyDetailActivity,android.widget.ImageView) -> a
-    void access$55(com.example.zf_android.trade.ApplyDetailActivity,java.lang.String) -> e
+    java.io.File access$44$3270b53e(java.lang.String) -> a
+    android.app.Dialog access$45(com.example.zf_android.trade.ApplyDetailActivity) -> F
+    void access$46(com.example.zf_android.trade.ApplyDetailActivity,java.lang.String,java.lang.String) -> a
+    void access$47(com.example.zf_android.trade.ApplyDetailActivity,int) -> e
+    java.lang.String access$48(com.example.zf_android.trade.ApplyDetailActivity) -> G
+    com.example.zf_android.trade.entity.Province access$49(com.example.zf_android.trade.ApplyDetailActivity) -> H
+    int access$50(com.example.zf_android.trade.ApplyDetailActivity) -> I
+    void access$51(com.example.zf_android.trade.ApplyDetailActivity,com.example.zf_android.trade.entity.Province) -> a
+    void access$52(com.example.zf_android.trade.ApplyDetailActivity,com.example.zf_android.trade.entity.City) -> a
+    void access$53(com.example.zf_android.trade.ApplyDetailActivity,java.lang.String) -> d
+    void access$54(com.example.zf_android.trade.ApplyDetailActivity,android.widget.TextView) -> a
+    void access$55(com.example.zf_android.trade.ApplyDetailActivity,android.widget.ImageButton) -> a
+    void access$56(com.example.zf_android.trade.ApplyDetailActivity,android.widget.ImageView) -> a
+    void access$57(com.example.zf_android.trade.ApplyDetailActivity,java.lang.String) -> e
 com.example.zf_android.trade.ApplyDetailActivity$1 -> com.example.zf_android.trade.bf:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     void onClick(android.view.View) -> onClick
@@ -16566,95 +16550,108 @@ com.example.zf_android.trade.ApplyDetailActivity$10 -> com.example.zf_android.tr
     void onClick(android.view.View) -> onClick
 com.example.zf_android.trade.ApplyDetailActivity$11 -> com.example.zf_android.trade.bi:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
-    void onCityFound(com.example.zf_android.trade.entity.Province,com.example.zf_android.trade.entity.City) -> onCityFound
+    void onClick(android.view.View) -> onClick
 com.example.zf_android.trade.ApplyDetailActivity$12 -> com.example.zf_android.trade.bj:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     void onCityFound(com.example.zf_android.trade.entity.Province,com.example.zf_android.trade.entity.City) -> onCityFound
 com.example.zf_android.trade.ApplyDetailActivity$13 -> com.example.zf_android.trade.bk:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
-    com.example.zf_android.trade.entity.ApplyMaterial val$material -> b
-    void onClick(android.view.View) -> onClick
+    void onCityFound(com.example.zf_android.trade.entity.Province,com.example.zf_android.trade.entity.City) -> onCityFound
 com.example.zf_android.trade.ApplyDetailActivity$14 -> com.example.zf_android.trade.bl:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
-    void afterTextChanged(android.text.Editable) -> afterTextChanged
+    com.example.zf_android.trade.entity.ApplyMaterial val$material -> b
+    void onClick(android.view.View) -> onClick
 com.example.zf_android.trade.ApplyDetailActivity$15 -> com.example.zf_android.trade.bm:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     void afterTextChanged(android.text.Editable) -> afterTextChanged
 com.example.zf_android.trade.ApplyDetailActivity$16 -> com.example.zf_android.trade.bn:
+    com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
+    void afterTextChanged(android.text.Editable) -> afterTextChanged
+com.example.zf_android.trade.ApplyDetailActivity$17 -> com.example.zf_android.trade.bo:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     android.widget.TextView val$tvValue -> b
     android.widget.ImageButton val$uploadingSuccess -> c
     android.widget.ImageView val$right_view -> d
     java.lang.String val$key -> e
     void onClick(android.view.View) -> onClick
-    com.example.zf_android.trade.ApplyDetailActivity access$0(com.example.zf_android.trade.ApplyDetailActivity$16) -> a
-com.example.zf_android.trade.ApplyDetailActivity$16$1 -> com.example.zf_android.trade.bo:
-    com.example.zf_android.trade.ApplyDetailActivity$16 this$1 -> a
+    com.example.zf_android.trade.ApplyDetailActivity access$0(com.example.zf_android.trade.ApplyDetailActivity$17) -> a
+com.example.zf_android.trade.ApplyDetailActivity$17$1 -> com.example.zf_android.trade.bp:
+    com.example.zf_android.trade.ApplyDetailActivity$17 this$1 -> a
     java.lang.String val$key -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.trade.ApplyDetailActivity$2 -> com.example.zf_android.trade.bp:
+com.example.zf_android.trade.ApplyDetailActivity$2 -> com.example.zf_android.trade.bq:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     void onSuccess(com.example.zf_android.trade.entity.ApplyDetail) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
     com.example.zf_android.trade.ApplyDetailActivity access$1(com.example.zf_android.trade.ApplyDetailActivity$2) -> a
-com.example.zf_android.trade.ApplyDetailActivity$2$1 -> com.example.zf_android.trade.bq:
+com.example.zf_android.trade.ApplyDetailActivity$2$1 -> com.example.zf_android.trade.br:
     com.example.zf_android.trade.ApplyDetailActivity$2 this$1 -> a
     void onTabSelected(int) -> onTabSelected
-com.example.zf_android.trade.ApplyDetailActivity$2$2 -> com.example.zf_android.trade.br:
+com.example.zf_android.trade.ApplyDetailActivity$2$2 -> com.example.zf_android.trade.bs:
     com.example.zf_android.trade.ApplyDetailActivity$2 this$1 -> a
     void onTabSelected(int) -> onTabSelected
-com.example.zf_android.trade.ApplyDetailActivity$2$3 -> com.example.zf_android.trade.bs:
+com.example.zf_android.trade.ApplyDetailActivity$2$3 -> com.example.zf_android.trade.bt:
     com.example.zf_android.trade.ApplyDetailActivity$2 this$1 -> a
     void onTabSelected(int) -> onTabSelected
-com.example.zf_android.trade.ApplyDetailActivity$2$4 -> com.example.zf_android.trade.bt:
+com.example.zf_android.trade.ApplyDetailActivity$2$4 -> com.example.zf_android.trade.bu:
     com.example.zf_android.trade.ApplyDetailActivity$2 this$1 -> a
     java.util.List val$merchants -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ApplyDetailActivity$2$5 -> com.example.zf_android.trade.bu:
+com.example.zf_android.trade.ApplyDetailActivity$2$5 -> com.example.zf_android.trade.bv:
     com.example.zf_android.trade.ApplyDetailActivity$2 this$1 -> a
-com.example.zf_android.trade.ApplyDetailActivity$3 -> com.example.zf_android.trade.bv:
+com.example.zf_android.trade.ApplyDetailActivity$3 -> com.example.zf_android.trade.bw:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     void onSuccess(com.example.zf_android.trade.entity.Merchant) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.ApplyDetailActivity$3$1 -> com.example.zf_android.trade.bw:
+com.example.zf_android.trade.ApplyDetailActivity$3$1 -> com.example.zf_android.trade.bx:
     com.example.zf_android.trade.ApplyDetailActivity$3 this$1 -> a
-com.example.zf_android.trade.ApplyDetailActivity$4 -> com.example.zf_android.trade.bx:
+com.example.zf_android.trade.ApplyDetailActivity$4 -> com.example.zf_android.trade.by:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.trade.ApplyDetailActivity$5 -> com.example.zf_android.trade.by:
+com.example.zf_android.trade.ApplyDetailActivity$5 -> com.example.zf_android.trade.bz:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     android.os.Handler val$handler -> b
     void onSuccess(java.lang.Object) -> onSuccess
     void onFailure(java.lang.String) -> onFailure
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.trade.ApplyDetailActivity$6 -> com.example.zf_android.trade.bz:
+com.example.zf_android.trade.ApplyDetailActivity$6 -> com.example.zf_android.trade.ca:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
-    void onClick(android.view.View) -> onClick
+    java.io.File val$file -> b
+    android.os.Handler val$handler -> c
+    void run() -> run
     com.example.zf_android.trade.ApplyDetailActivity access$0(com.example.zf_android.trade.ApplyDetailActivity$6) -> a
-com.example.zf_android.trade.ApplyDetailActivity$6$1 -> com.example.zf_android.trade.ca:
+com.example.zf_android.trade.ApplyDetailActivity$6$1 -> com.example.zf_android.trade.cb:
     com.example.zf_android.trade.ApplyDetailActivity$6 this$1 -> a
-    java.lang.String[] val$items -> b
-    void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.trade.ApplyDetailActivity$7 -> com.example.zf_android.trade.cb:
+    android.os.Handler val$handler -> b
+    void onSuccess(java.lang.Object) -> onSuccess
+    void onFailure(java.lang.String) -> onFailure
+    void preLoad() -> preLoad
+    com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
+com.example.zf_android.trade.ApplyDetailActivity$7 -> com.example.zf_android.trade.cc:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.trade.ApplyDetailActivity access$0(com.example.zf_android.trade.ApplyDetailActivity$7) -> a
-com.example.zf_android.trade.ApplyDetailActivity$7$1 -> com.example.zf_android.trade.cc:
+com.example.zf_android.trade.ApplyDetailActivity$7$1 -> com.example.zf_android.trade.cd:
     com.example.zf_android.trade.ApplyDetailActivity$7 this$1 -> a
+    java.lang.String[] val$items -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.example.zf_android.trade.ApplyDetailActivity$8 -> com.example.zf_android.trade.ce:
+    com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+    com.example.zf_android.trade.ApplyDetailActivity access$0(com.example.zf_android.trade.ApplyDetailActivity$8) -> a
+com.example.zf_android.trade.ApplyDetailActivity$8$1 -> com.example.zf_android.trade.cf:
+    com.example.zf_android.trade.ApplyDetailActivity$8 this$1 -> a
     void onDateSet(java.lang.String) -> onDateSet
-com.example.zf_android.trade.ApplyDetailActivity$8 -> com.example.zf_android.trade.cd:
+com.example.zf_android.trade.ApplyDetailActivity$9 -> com.example.zf_android.trade.cg:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ApplyDetailActivity$9 -> com.example.zf_android.trade.ce:
-    com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ApplyDetailActivity$onWatchListener -> com.example.zf_android.trade.cf:
+com.example.zf_android.trade.ApplyDetailActivity$onWatchListener -> com.example.zf_android.trade.ch:
     com.example.zf_android.trade.ApplyDetailActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.trade.ApplyDetailActivity access$1(com.example.zf_android.trade.ApplyDetailActivity$onWatchListener) -> a
-com.example.zf_android.trade.ApplyDetailActivity$onWatchListener$1 -> com.example.zf_android.trade.cg:
+com.example.zf_android.trade.ApplyDetailActivity$onWatchListener$1 -> com.example.zf_android.trade.ci:
     com.example.zf_android.trade.ApplyDetailActivity$onWatchListener this$1 -> a
     java.lang.String val$uri -> b
     void onClick(android.content.DialogInterface,int) -> onClick
@@ -16680,26 +16677,26 @@ com.example.zf_android.trade.ApplyListActivity -> com.example.zf_android.trade.A
     void access$6(com.example.zf_android.trade.ApplyListActivity,int) -> a
     com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter access$7(com.example.zf_android.trade.ApplyListActivity) -> f
     void access$8(com.example.zf_android.trade.ApplyListActivity) -> g
-com.example.zf_android.trade.ApplyListActivity$1 -> com.example.zf_android.trade.ch:
+com.example.zf_android.trade.ApplyListActivity$1 -> com.example.zf_android.trade.cj:
     com.example.zf_android.trade.ApplyListActivity this$0 -> a
     void onSuccess(java.util.List) -> onSuccess
     void preLoad() -> preLoad
     void postLoad() -> postLoad
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.ApplyListActivity$1$1 -> com.example.zf_android.trade.ci:
+com.example.zf_android.trade.ApplyListActivity$1$1 -> com.example.zf_android.trade.ck:
     com.example.zf_android.trade.ApplyListActivity$1 this$1 -> a
-com.example.zf_android.trade.ApplyListActivity$2 -> com.example.zf_android.trade.cj:
+com.example.zf_android.trade.ApplyListActivity$2 -> com.example.zf_android.trade.cl:
     com.example.zf_android.trade.ApplyListActivity this$0 -> a
     android.app.AlertDialog val$dialog -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ApplyListActivity$3 -> com.example.zf_android.trade.ck:
+com.example.zf_android.trade.ApplyListActivity$3 -> com.example.zf_android.trade.cm:
     com.example.zf_android.trade.ApplyListActivity this$0 -> a
     android.widget.CheckBox val$cb -> b
     android.app.AlertDialog val$dialog -> c
     com.example.zf_android.trade.entity.TerminalItem val$item -> d
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter -> com.example.zf_android.trade.cl:
+com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter -> com.example.zf_android.trade.cn:
     com.example.zf_android.trade.ApplyListActivity this$0 -> a
     int getCount() -> getCount
     com.example.zf_android.trade.entity.TerminalItem getItem(int) -> getItem
@@ -16707,19 +16704,19 @@ com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter -> com.example.z
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
     java.lang.Object getItem(int) -> getItem
     com.example.zf_android.trade.ApplyListActivity access$1(com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter) -> a
-com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter$1 -> com.example.zf_android.trade.cm:
+com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter$1 -> com.example.zf_android.trade.co:
     com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter this$1 -> a
     com.example.zf_android.trade.entity.TerminalItem val$item -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter$2 -> com.example.zf_android.trade.cn:
+com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter$2 -> com.example.zf_android.trade.cp:
     com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter this$1 -> a
     com.example.zf_android.trade.entity.TerminalItem val$item -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter$3 -> com.example.zf_android.trade.co:
+com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter$3 -> com.example.zf_android.trade.cq:
     com.example.zf_android.trade.ApplyListActivity$ApplyListAdapter this$1 -> a
     com.example.zf_android.trade.entity.TerminalItem val$item -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ApplyListActivity$ViewHolder -> com.example.zf_android.trade.cp:
+com.example.zf_android.trade.ApplyListActivity$ViewHolder -> com.example.zf_android.trade.cr:
     android.widget.TextView tvTerminalNumber -> tvTerminalNumber
     android.widget.TextView tvTerminalStatus -> tvTerminalStatus
     android.widget.TextView tvfill1 -> tvfill1
@@ -16746,28 +16743,28 @@ com.example.zf_android.trade.ApplyOpenProgressActivity -> com.example.zf_android
     android.widget.TextView access$6(com.example.zf_android.trade.ApplyOpenProgressActivity) -> g
     android.widget.LinearLayout access$7(com.example.zf_android.trade.ApplyOpenProgressActivity) -> h
     com.example.zf_android.trade.ApplyOpenProgressActivity$ApplyProgressListAdapter access$8(com.example.zf_android.trade.ApplyOpenProgressActivity) -> i
-com.example.zf_android.trade.ApplyOpenProgressActivity$1 -> com.example.zf_android.trade.cq:
+com.example.zf_android.trade.ApplyOpenProgressActivity$1 -> com.example.zf_android.trade.cs:
     com.example.zf_android.trade.ApplyOpenProgressActivity this$0 -> a
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.trade.ApplyOpenProgressActivity$2 -> com.example.zf_android.trade.cr:
+com.example.zf_android.trade.ApplyOpenProgressActivity$2 -> com.example.zf_android.trade.ct:
     com.example.zf_android.trade.ApplyOpenProgressActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.trade.ApplyOpenProgressActivity access$0(com.example.zf_android.trade.ApplyOpenProgressActivity$2) -> a
-com.example.zf_android.trade.ApplyOpenProgressActivity$2$1 -> com.example.zf_android.trade.cs:
+com.example.zf_android.trade.ApplyOpenProgressActivity$2$1 -> com.example.zf_android.trade.cu:
     com.example.zf_android.trade.ApplyOpenProgressActivity$2 this$1 -> a
     void onSuccess(java.util.List) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.ApplyOpenProgressActivity$2$1$1 -> com.example.zf_android.trade.ct:
+com.example.zf_android.trade.ApplyOpenProgressActivity$2$1$1 -> com.example.zf_android.trade.cv:
     com.example.zf_android.trade.ApplyOpenProgressActivity$2$1 this$2 -> a
-com.example.zf_android.trade.ApplyOpenProgressActivity$ApplyProgressListAdapter -> com.example.zf_android.trade.cu:
+com.example.zf_android.trade.ApplyOpenProgressActivity$ApplyProgressListAdapter -> com.example.zf_android.trade.cw:
     com.example.zf_android.trade.ApplyOpenProgressActivity this$0 -> a
     int getCount() -> getCount
     com.example.zf_android.entity.ApplyOpenProgress getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
     java.lang.Object getItem(int) -> getItem
-com.example.zf_android.trade.ApplyOpenProgressActivity$ViewHolder -> com.example.zf_android.trade.cv:
+com.example.zf_android.trade.ApplyOpenProgressActivity$ViewHolder -> com.example.zf_android.trade.cx:
     android.widget.LinearLayout left -> left
     android.widget.LinearLayout right -> right
 com.example.zf_android.trade.CityProvinceActivity -> com.example.zf_android.trade.CityProvinceActivity:
@@ -16781,22 +16778,22 @@ com.example.zf_android.trade.CityProvinceActivity -> com.example.zf_android.trad
     void access$3(com.example.zf_android.trade.CityProvinceActivity,com.example.zf_android.trade.entity.Province) -> a
     void access$4(com.example.zf_android.trade.CityProvinceActivity,com.example.zf_android.trade.entity.City) -> a
     void access$5(com.example.zf_android.trade.CityProvinceActivity,java.util.List) -> a
-com.example.zf_android.trade.CityProvinceActivity$1 -> com.example.zf_android.trade.cw:
+com.example.zf_android.trade.CityProvinceActivity$1 -> com.example.zf_android.trade.cy:
     com.example.zf_android.trade.CityProvinceActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.CityProvinceActivity$2 -> com.example.zf_android.trade.cx:
+com.example.zf_android.trade.CityProvinceActivity$2 -> com.example.zf_android.trade.cz:
     com.example.zf_android.trade.CityProvinceActivity this$0 -> a
     com.example.zf_android.trade.widget.WheelView val$cityWheel -> b
     void onSelected(int,java.lang.Object) -> onSelected
-com.example.zf_android.trade.CityProvinceActivity$3 -> com.example.zf_android.trade.cy:
+com.example.zf_android.trade.CityProvinceActivity$3 -> com.example.zf_android.trade.da:
     com.example.zf_android.trade.CityProvinceActivity this$0 -> a
     void onSelected(int,java.lang.Object) -> onSelected
-com.example.zf_android.trade.CityProvinceActivity$4 -> com.example.zf_android.trade.cz:
+com.example.zf_android.trade.CityProvinceActivity$4 -> com.example.zf_android.trade.db:
     com.example.zf_android.trade.CityProvinceActivity this$0 -> a
     com.example.zf_android.trade.widget.WheelView val$provinceWheel -> b
     com.example.zf_android.trade.widget.WheelView val$cityWheel -> c
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.trade.CityProvinceActivity$5 -> com.example.zf_android.trade.da:
+com.example.zf_android.trade.CityProvinceActivity$5 -> com.example.zf_android.trade.dc:
     com.example.zf_android.trade.CityProvinceActivity this$0 -> a
     android.os.Handler val$handler -> b
     void run() -> run
@@ -16817,25 +16814,25 @@ com.example.zf_android.trade.CitySearchActivity -> com.example.zf_android.trade.
     android.widget.LinearLayout access$1(com.example.zf_android.trade.CitySearchActivity) -> b
     android.widget.EditText access$2(com.example.zf_android.trade.CitySearchActivity) -> c
     void access$3(com.example.zf_android.trade.CitySearchActivity) -> d
-com.example.zf_android.trade.CitySearchActivity$1 -> com.example.zf_android.trade.db:
+com.example.zf_android.trade.CitySearchActivity$1 -> com.example.zf_android.trade.dd:
     com.example.zf_android.trade.CitySearchActivity this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.trade.CitySearchActivity$2 -> com.example.zf_android.trade.dc:
+com.example.zf_android.trade.CitySearchActivity$2 -> com.example.zf_android.trade.de:
     com.example.zf_android.trade.CitySearchActivity this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.trade.CitySearchActivity$3 -> com.example.zf_android.trade.dd:
+com.example.zf_android.trade.CitySearchActivity$3 -> com.example.zf_android.trade.df:
     com.example.zf_android.trade.CitySearchActivity this$0 -> a
     boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
-com.example.zf_android.trade.CitySearchActivity$CitySearchAdapter -> com.example.zf_android.trade.de:
+com.example.zf_android.trade.CitySearchActivity$CitySearchAdapter -> com.example.zf_android.trade.dg:
     android.view.LayoutInflater inflater -> a
     com.example.zf_android.trade.CitySearchActivity this$0 -> b
     int getCount() -> getCount
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.example.zf_android.trade.CitySearchActivity$CitySearchAdapter$ViewHolder -> com.example.zf_android.trade.df:
+com.example.zf_android.trade.CitySearchActivity$CitySearchAdapter$ViewHolder -> com.example.zf_android.trade.dh:
     android.widget.RelativeLayout type_pop -> type_pop
     android.widget.TextView nameTextView -> nameTextView
     com.example.zf_android.trade.CitySearchActivity$CitySearchAdapter this$1 -> a
@@ -16864,41 +16861,41 @@ com.example.zf_android.trade.CitySelectActivity -> com.example.zf_android.trade.
     android.widget.TextView access$5(com.example.zf_android.trade.CitySelectActivity) -> f
     android.widget.ListView access$6(com.example.zf_android.trade.CitySelectActivity) -> g
     java.lang.Thread access$7(com.example.zf_android.trade.CitySelectActivity) -> h
-com.example.zf_android.trade.CitySelectActivity$1 -> com.example.zf_android.trade.dg:
+com.example.zf_android.trade.CitySelectActivity$1 -> com.example.zf_android.trade.di:
     com.example.zf_android.trade.CitySelectActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.CitySelectActivity$2 -> com.example.zf_android.trade.dh:
+com.example.zf_android.trade.CitySelectActivity$2 -> com.example.zf_android.trade.dj:
     com.example.zf_android.trade.CitySelectActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.CitySelectActivity$3 -> com.example.zf_android.trade.di:
+com.example.zf_android.trade.CitySelectActivity$3 -> com.example.zf_android.trade.dk:
     com.example.zf_android.trade.CitySelectActivity this$0 -> a
     void run() -> run
-com.example.zf_android.trade.CitySelectActivity$3$1 -> com.example.zf_android.trade.dj:
+com.example.zf_android.trade.CitySelectActivity$3$1 -> com.example.zf_android.trade.dl:
     com.example.zf_android.trade.CitySelectActivity$3 this$1 -> a
     int compare(com.example.zf_android.trade.entity.City,com.example.zf_android.trade.entity.City) -> compare
     int compare(java.lang.Object,java.lang.Object) -> compare
-com.example.zf_android.trade.CitySelectActivity$4 -> com.example.zf_android.trade.dk:
+com.example.zf_android.trade.CitySelectActivity$4 -> com.example.zf_android.trade.dm:
     com.example.zf_android.trade.CitySelectActivity this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.trade.CitySelectActivity$5 -> com.example.zf_android.trade.dl:
+com.example.zf_android.trade.CitySelectActivity$5 -> com.example.zf_android.trade.dn:
     com.example.zf_android.trade.CitySelectActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.trade.CitySelectActivity$6 -> com.example.zf_android.trade.dm:
+com.example.zf_android.trade.CitySelectActivity$6 -> com.example.zf_android.trade.do:
     com.example.zf_android.trade.CitySelectActivity this$0 -> a
     void run() -> run
-com.example.zf_android.trade.CitySelectActivity$7 -> com.example.zf_android.trade.dn:
+com.example.zf_android.trade.CitySelectActivity$7 -> com.example.zf_android.trade.dp:
     com.example.zf_android.trade.CitySelectActivity this$0 -> a
     void onTouchingLetterChanged(java.lang.String) -> onTouchingLetterChanged
-com.example.zf_android.trade.CitySelectActivity$CityListAdapter -> com.example.zf_android.trade.do:
+com.example.zf_android.trade.CitySelectActivity$CityListAdapter -> com.example.zf_android.trade.dq:
     com.example.zf_android.trade.CitySelectActivity this$0 -> a
     int getCount() -> getCount
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.example.zf_android.trade.CitySelectActivity$CityListAdapter$ViewHolder -> com.example.zf_android.trade.dp:
+com.example.zf_android.trade.CitySelectActivity$CityListAdapter$ViewHolder -> com.example.zf_android.trade.dr:
     android.widget.TextView tv -> a
     com.example.zf_android.trade.CitySelectActivity$CityListAdapter this$1 -> b
-com.example.zf_android.trade.Constants -> com.example.zf_android.trade.dq:
+com.example.zf_android.trade.Constants -> com.example.zf_android.trade.ds:
     java.lang.Integer CUSTOMER_ID -> CUSTOMER_ID
     int CITY_ID_SEARCH -> CITY_ID_SEARCH
     java.lang.String CITY_NAME_SEARCH -> CITY_NAME_SEARCH
@@ -16928,41 +16925,41 @@ com.example.zf_android.trade.ShowWebImageActivity -> com.example.zf_android.trad
     java.lang.String access$5(com.example.zf_android.trade.ShowWebImageActivity) -> f
     void access$6(com.example.zf_android.trade.ShowWebImageActivity,java.lang.String) -> a
     void access$7(com.example.zf_android.trade.ShowWebImageActivity,java.lang.String) -> b
-com.example.zf_android.trade.ShowWebImageActivity$1 -> com.example.zf_android.trade.dr:
+com.example.zf_android.trade.ShowWebImageActivity$1 -> com.example.zf_android.trade.dt:
     com.example.zf_android.trade.ShowWebImageActivity this$0 -> a
     void onPageSelected(int) -> onPageSelected
     void onPageScrolled(int,float,int) -> onPageScrolled
     void onPageScrollStateChanged(int) -> onPageScrollStateChanged
-com.example.zf_android.trade.ShowWebImageActivity$2 -> com.example.zf_android.trade.ds:
+com.example.zf_android.trade.ShowWebImageActivity$2 -> com.example.zf_android.trade.du:
     com.example.zf_android.trade.ShowWebImageActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ShowWebImageActivity$3 -> com.example.zf_android.trade.dt:
+com.example.zf_android.trade.ShowWebImageActivity$3 -> com.example.zf_android.trade.dv:
     com.example.zf_android.trade.ShowWebImageActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_android.trade.ShowWebImageActivity$4 -> com.example.zf_android.trade.du:
+com.example.zf_android.trade.ShowWebImageActivity$4 -> com.example.zf_android.trade.dw:
     com.example.zf_android.trade.ShowWebImageActivity this$0 -> a
     int val$requestCode -> b
     android.content.Intent val$data -> c
     android.os.Handler val$handler -> d
     void run() -> run
-com.example.zf_android.trade.ShowWebImageActivity$4$1 -> com.example.zf_android.trade.dv:
+com.example.zf_android.trade.ShowWebImageActivity$4$1 -> com.example.zf_android.trade.dx:
     com.example.zf_android.trade.ShowWebImageActivity$4 this$1 -> a
     android.os.Handler val$handler -> b
     void onSuccess(java.lang.String) -> onSuccess
     void onFailed(java.lang.String) -> onFailed
-com.example.zf_android.trade.ShowWebImageActivity$5 -> com.example.zf_android.trade.dw:
+com.example.zf_android.trade.ShowWebImageActivity$5 -> com.example.zf_android.trade.dy:
     com.example.zf_android.trade.ShowWebImageActivity this$0 -> a
     android.widget.ProgressBar val$progressBar -> b
     void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> onLoadingComplete
     void onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason) -> onLoadingFailed
     void onLoadingStarted(java.lang.String,android.view.View) -> onLoadingStarted
-com.example.zf_android.trade.ShowWebImageActivity$6 -> com.example.zf_android.trade.dx:
+com.example.zf_android.trade.ShowWebImageActivity$6 -> com.example.zf_android.trade.dz:
     com.example.zf_android.trade.ShowWebImageActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.ShowWebImageActivity$7 -> com.example.zf_android.trade.dy:
+com.example.zf_android.trade.ShowWebImageActivity$7 -> com.example.zf_android.trade.ea:
     com.example.zf_android.trade.ShowWebImageActivity this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.trade.ShowWebImageActivity$ImagePagerAdapter -> com.example.zf_android.trade.dz:
+com.example.zf_android.trade.ShowWebImageActivity$ImagePagerAdapter -> com.example.zf_android.trade.eb:
     java.util.List views -> b
     com.example.zf_android.trade.ShowWebImageActivity this$0 -> a
     void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> destroyItem
@@ -16985,10 +16982,10 @@ com.example.zf_android.trade.TerminalAddActivity -> com.example.zf_android.trade
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     void onClick(android.view.View) -> onClick
     void access$0(com.example.zf_android.trade.TerminalAddActivity) -> a
-com.example.zf_android.trade.TerminalAddActivity$1 -> com.example.zf_android.trade.ea:
+com.example.zf_android.trade.TerminalAddActivity$1 -> com.example.zf_android.trade.ec:
     com.example.zf_android.trade.TerminalAddActivity this$0 -> a
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.example.zf_android.trade.TerminalAddActivity$2 -> com.example.zf_android.trade.eb:
+com.example.zf_android.trade.TerminalAddActivity$2 -> com.example.zf_android.trade.ed:
     com.example.zf_android.trade.TerminalAddActivity this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -16997,7 +16994,7 @@ com.example.zf_android.trade.TerminalChannelActivity -> com.example.zf_android.t
     void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
     void onResume() -> onResume
     void onPause() -> onPause
-com.example.zf_android.trade.TerminalChannelActivity$1 -> com.example.zf_android.trade.ec:
+com.example.zf_android.trade.TerminalChannelActivity$1 -> com.example.zf_android.trade.ee:
     com.example.zf_android.trade.TerminalChannelActivity this$0 -> a
     int val$selectedId -> b
     java.util.List val$items -> c
@@ -17005,7 +17002,7 @@ com.example.zf_android.trade.TerminalChannelActivity$1 -> com.example.zf_android
     void onSuccess(java.util.List) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.TerminalChannelActivity$1$1 -> com.example.zf_android.trade.ed:
+com.example.zf_android.trade.TerminalChannelActivity$1$1 -> com.example.zf_android.trade.ef:
     com.example.zf_android.trade.TerminalChannelActivity$1 this$1 -> a
 com.example.zf_android.trade.TerminalDetailActivity -> com.example.zf_android.trade.TerminalDetailActivity:
     int mTerminalStatus -> e
@@ -17043,61 +17040,61 @@ com.example.zf_android.trade.TerminalDetailActivity -> com.example.zf_android.tr
     void access$8(com.example.zf_android.trade.TerminalDetailActivity,android.widget.LinearLayout,java.util.List) -> a
     void access$9(com.example.zf_android.trade.TerminalDetailActivity,java.util.List) -> a
     void access$10(com.example.zf_android.trade.TerminalDetailActivity,java.util.List) -> b
-com.example.zf_android.trade.TerminalDetailActivity$1 -> com.example.zf_android.trade.ee:
+com.example.zf_android.trade.TerminalDetailActivity$1 -> com.example.zf_android.trade.eg:
     com.example.zf_android.trade.TerminalDetailActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.trade.TerminalDetailActivity access$0(com.example.zf_android.trade.TerminalDetailActivity$1) -> a
-com.example.zf_android.trade.TerminalDetailActivity$1$1 -> com.example.zf_android.trade.ef:
+com.example.zf_android.trade.TerminalDetailActivity$1$1 -> com.example.zf_android.trade.eh:
     com.example.zf_android.trade.TerminalDetailActivity$1 this$1 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.trade.TerminalDetailActivity$2 -> com.example.zf_android.trade.eg:
+com.example.zf_android.trade.TerminalDetailActivity$2 -> com.example.zf_android.trade.ei:
     com.example.zf_android.trade.TerminalDetailActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalDetailActivity$3 -> com.example.zf_android.trade.eh:
+com.example.zf_android.trade.TerminalDetailActivity$3 -> com.example.zf_android.trade.ej:
     com.example.zf_android.trade.TerminalDetailActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalDetailActivity$4 -> com.example.zf_android.trade.ei:
+com.example.zf_android.trade.TerminalDetailActivity$4 -> com.example.zf_android.trade.ek:
     com.example.zf_android.trade.TerminalDetailActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.trade.TerminalDetailActivity access$0(com.example.zf_android.trade.TerminalDetailActivity$4) -> a
-com.example.zf_android.trade.TerminalDetailActivity$4$1 -> com.example.zf_android.trade.ej:
+com.example.zf_android.trade.TerminalDetailActivity$4$1 -> com.example.zf_android.trade.el:
     com.example.zf_android.trade.TerminalDetailActivity$4 this$1 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     com.example.zf_android.trade.TerminalDetailActivity$4 access$0(com.example.zf_android.trade.TerminalDetailActivity$4$1) -> a
-com.example.zf_android.trade.TerminalDetailActivity$4$1$1 -> com.example.zf_android.trade.ek:
+com.example.zf_android.trade.TerminalDetailActivity$4$1$1 -> com.example.zf_android.trade.em:
     com.example.zf_android.trade.TerminalDetailActivity$4$1 this$2 -> a
     java.lang.String val$password -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.trade.TerminalDetailActivity$4$1$2 -> com.example.zf_android.trade.el:
+com.example.zf_android.trade.TerminalDetailActivity$4$1$2 -> com.example.zf_android.trade.en:
     com.example.zf_android.trade.TerminalDetailActivity$4$1 this$2 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.trade.TerminalDetailActivity$5 -> com.example.zf_android.trade.em:
+com.example.zf_android.trade.TerminalDetailActivity$5 -> com.example.zf_android.trade.eo:
     com.example.zf_android.trade.TerminalDetailActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalDetailActivity$6 -> com.example.zf_android.trade.en:
+com.example.zf_android.trade.TerminalDetailActivity$6 -> com.example.zf_android.trade.ep:
     com.example.zf_android.trade.TerminalDetailActivity this$0 -> a
     android.app.AlertDialog val$dialog -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalDetailActivity$7 -> com.example.zf_android.trade.eo:
+com.example.zf_android.trade.TerminalDetailActivity$7 -> com.example.zf_android.trade.eq:
     com.example.zf_android.trade.TerminalDetailActivity this$0 -> a
     android.widget.CheckBox val$cb -> b
     android.app.AlertDialog val$dialog -> c
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalDetailActivity$8 -> com.example.zf_android.trade.ep:
+com.example.zf_android.trade.TerminalDetailActivity$8 -> com.example.zf_android.trade.er:
     com.example.zf_android.trade.TerminalDetailActivity this$0 -> a
     void onSuccess(com.example.zf_android.trade.entity.TerminalDetail) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.TerminalDetailActivity$8$1 -> com.example.zf_android.trade.eq:
+com.example.zf_android.trade.TerminalDetailActivity$8$1 -> com.example.zf_android.trade.es:
     com.example.zf_android.trade.TerminalDetailActivity$8 this$1 -> a
-com.example.zf_android.trade.TerminalDetailActivity$9 -> com.example.zf_android.trade.er:
+com.example.zf_android.trade.TerminalDetailActivity$9 -> com.example.zf_android.trade.et:
     com.example.zf_android.trade.TerminalDetailActivity this$0 -> a
     java.util.List val$imageUrls -> b
     void onClick(android.view.View) -> onClick
     com.example.zf_android.trade.TerminalDetailActivity access$0(com.example.zf_android.trade.TerminalDetailActivity$9) -> a
-com.example.zf_android.trade.TerminalDetailActivity$9$1 -> com.example.zf_android.trade.es:
+com.example.zf_android.trade.TerminalDetailActivity$9$1 -> com.example.zf_android.trade.eu:
     com.example.zf_android.trade.TerminalDetailActivity$9 this$1 -> a
     java.util.List val$imageUrls -> b
     int val$position -> c
@@ -17132,59 +17129,59 @@ com.example.zf_android.trade.TerminalManageActivity -> com.example.zf_android.tr
     int access$9(com.example.zf_android.trade.TerminalManageActivity) -> h
     void access$10(com.example.zf_android.trade.TerminalManageActivity,int) -> b
     com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter access$11(com.example.zf_android.trade.TerminalManageActivity) -> i
-com.example.zf_android.trade.TerminalManageActivity$1 -> com.example.zf_android.trade.et:
+com.example.zf_android.trade.TerminalManageActivity$1 -> com.example.zf_android.trade.ev:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalManageActivity$2 -> com.example.zf_android.trade.eu:
+com.example.zf_android.trade.TerminalManageActivity$2 -> com.example.zf_android.trade.ew:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.trade.TerminalManageActivity access$0(com.example.zf_android.trade.TerminalManageActivity$2) -> a
-com.example.zf_android.trade.TerminalManageActivity$2$1 -> com.example.zf_android.trade.ev:
+com.example.zf_android.trade.TerminalManageActivity$2$1 -> com.example.zf_android.trade.ex:
     com.example.zf_android.trade.TerminalManageActivity$2 this$1 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_android.trade.TerminalManageActivity$3 -> com.example.zf_android.trade.ew:
+com.example.zf_android.trade.TerminalManageActivity$3 -> com.example.zf_android.trade.ey:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalManageActivity$4 -> com.example.zf_android.trade.ex:
+com.example.zf_android.trade.TerminalManageActivity$4 -> com.example.zf_android.trade.ez:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_android.trade.TerminalManageActivity access$0(com.example.zf_android.trade.TerminalManageActivity$4) -> a
-com.example.zf_android.trade.TerminalManageActivity$4$1 -> com.example.zf_android.trade.ey:
+com.example.zf_android.trade.TerminalManageActivity$4$1 -> com.example.zf_android.trade.fa:
     com.example.zf_android.trade.TerminalManageActivity$4 this$1 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     com.example.zf_android.trade.TerminalManageActivity$4 access$0(com.example.zf_android.trade.TerminalManageActivity$4$1) -> a
-com.example.zf_android.trade.TerminalManageActivity$4$1$1 -> com.example.zf_android.trade.ez:
+com.example.zf_android.trade.TerminalManageActivity$4$1$1 -> com.example.zf_android.trade.fb:
     com.example.zf_android.trade.TerminalManageActivity$4$1 this$2 -> a
     java.lang.String val$password -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.trade.TerminalManageActivity$4$1$2 -> com.example.zf_android.trade.fa:
+com.example.zf_android.trade.TerminalManageActivity$4$1$2 -> com.example.zf_android.trade.fc:
     com.example.zf_android.trade.TerminalManageActivity$4$1 this$2 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.example.zf_android.trade.TerminalManageActivity$5 -> com.example.zf_android.trade.fb:
+com.example.zf_android.trade.TerminalManageActivity$5 -> com.example.zf_android.trade.fd:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalManageActivity$6 -> com.example.zf_android.trade.fc:
+com.example.zf_android.trade.TerminalManageActivity$6 -> com.example.zf_android.trade.fe:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     void onSuccess(com.example.zf_android.trade.common.Page) -> onSuccess
     void preLoad() -> preLoad
     void postLoad() -> postLoad
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.TerminalManageActivity$6$1 -> com.example.zf_android.trade.fd:
+com.example.zf_android.trade.TerminalManageActivity$6$1 -> com.example.zf_android.trade.ff:
     com.example.zf_android.trade.TerminalManageActivity$6 this$1 -> a
-com.example.zf_android.trade.TerminalManageActivity$7 -> com.example.zf_android.trade.fe:
+com.example.zf_android.trade.TerminalManageActivity$7 -> com.example.zf_android.trade.fg:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     android.app.AlertDialog val$dialog -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalManageActivity$8 -> com.example.zf_android.trade.ff:
+com.example.zf_android.trade.TerminalManageActivity$8 -> com.example.zf_android.trade.fh:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     android.widget.CheckBox val$cb -> b
     android.app.AlertDialog val$dialog -> c
     com.example.zf_android.trade.entity.TerminalItem val$item -> d
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter -> com.example.zf_android.trade.fg:
+com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter -> com.example.zf_android.trade.fi:
     com.example.zf_android.trade.TerminalManageActivity this$0 -> a
     int getCount() -> getCount
     com.example.zf_android.trade.entity.TerminalItem getItem(int) -> getItem
@@ -17193,11 +17190,11 @@ com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter -> com.e
     void addButton(android.widget.LinearLayout,int,java.lang.Object,android.view.View$OnClickListener) -> a
     java.lang.Object getItem(int) -> getItem
     com.example.zf_android.trade.TerminalManageActivity access$1(com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter) -> a
-com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter$1 -> com.example.zf_android.trade.fh:
+com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter$1 -> com.example.zf_android.trade.fj:
     com.example.zf_android.trade.TerminalManageActivity$TerminalListAdapter this$1 -> a
     com.example.zf_android.trade.entity.TerminalItem val$item -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_android.trade.TerminalManageActivity$ViewHolder -> com.example.zf_android.trade.fi:
+com.example.zf_android.trade.TerminalManageActivity$ViewHolder -> com.example.zf_android.trade.fk:
     android.widget.TextView tvTerminalNumber -> tvTerminalNumber
     android.widget.TextView tvTerminalStatus -> tvTerminalStatus
     android.widget.LinearLayout llButtonContainer -> llButtonContainer
@@ -17208,7 +17205,7 @@ com.example.zf_android.trade.TradeClientActivity -> com.example.zf_android.trade
     void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
     void onResume() -> onResume
     void onPause() -> onPause
-com.example.zf_android.trade.TradeClientActivity$1 -> com.example.zf_android.trade.fj:
+com.example.zf_android.trade.TradeClientActivity$1 -> com.example.zf_android.trade.fl:
     com.example.zf_android.trade.TradeClientActivity this$0 -> a
     java.lang.String val$selectedNumber -> b
     java.util.List val$items -> c
@@ -17216,7 +17213,7 @@ com.example.zf_android.trade.TradeClientActivity$1 -> com.example.zf_android.tra
     void onSuccess(java.util.List) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.TradeClientActivity$1$1 -> com.example.zf_android.trade.fk:
+com.example.zf_android.trade.TradeClientActivity$1$1 -> com.example.zf_android.trade.fm:
     com.example.zf_android.trade.TradeClientActivity$1 this$1 -> a
 com.example.zf_android.trade.TradeDetailActivity -> com.example.zf_android.trade.TradeDetailActivity:
     android.widget.LinearLayout mCommercialKeyContainer -> d
@@ -17239,12 +17236,12 @@ com.example.zf_android.trade.TradeDetailActivity -> com.example.zf_android.trade
     void access$6(com.example.zf_android.trade.TradeDetailActivity,java.lang.String[]) -> a
     java.lang.String[] access$7(com.example.zf_android.trade.TradeDetailActivity) -> g
     android.widget.LinearLayout access$8(com.example.zf_android.trade.TradeDetailActivity) -> h
-com.example.zf_android.trade.TradeDetailActivity$1 -> com.example.zf_android.trade.fl:
+com.example.zf_android.trade.TradeDetailActivity$1 -> com.example.zf_android.trade.fn:
     com.example.zf_android.trade.TradeDetailActivity this$0 -> a
     void onSuccess(com.example.zf_android.trade.entity.TradeDetail) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.TradeDetailActivity$1$1 -> com.example.zf_android.trade.fm:
+com.example.zf_android.trade.TradeDetailActivity$1$1 -> com.example.zf_android.trade.fo:
     com.example.zf_android.trade.TradeDetailActivity$1 this$1 -> a
 com.example.zf_android.trade.TradeFlowActivity -> com.example.zf_android.trade.TradeFlowActivity:
     com.example.zf_android.trade.widget.MyTabWidget mTabWidget -> a
@@ -17312,46 +17309,46 @@ com.example.zf_android.trade.TradeFlowFragment -> com.example.zf_android.trade.T
     android.widget.TextView access$11(com.example.zf_android.trade.TradeFlowFragment) -> j
     void access$12(com.example.zf_android.trade.TradeFlowFragment,java.lang.String) -> b
     void access$13(com.example.zf_android.trade.TradeFlowFragment) -> k
-com.example.zf_android.trade.TradeFlowFragment$1 -> com.example.zf_android.trade.fn:
+com.example.zf_android.trade.TradeFlowFragment$1 -> com.example.zf_android.trade.fp:
     com.example.zf_android.trade.TradeFlowFragment this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_android.trade.TradeFlowFragment$2 -> com.example.zf_android.trade.fo:
+com.example.zf_android.trade.TradeFlowFragment$2 -> com.example.zf_android.trade.fq:
     com.example.zf_android.trade.TradeFlowFragment this$0 -> a
     void onSuccess(com.example.zf_android.trade.common.Page) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.TradeFlowFragment$2$1 -> com.example.zf_android.trade.fp:
+com.example.zf_android.trade.TradeFlowFragment$2$1 -> com.example.zf_android.trade.fr:
     com.example.zf_android.trade.TradeFlowFragment$2 this$1 -> a
-com.example.zf_android.trade.TradeFlowFragment$3 -> com.example.zf_android.trade.fq:
+com.example.zf_android.trade.TradeFlowFragment$3 -> com.example.zf_android.trade.fs:
     com.example.zf_android.trade.TradeFlowFragment this$0 -> a
     void onSuccess(com.example.zf_android.trade.common.Page) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.TradeFlowFragment$3$1 -> com.example.zf_android.trade.fr:
+com.example.zf_android.trade.TradeFlowFragment$3$1 -> com.example.zf_android.trade.ft:
     com.example.zf_android.trade.TradeFlowFragment$3 this$1 -> a
-com.example.zf_android.trade.TradeFlowFragment$4 -> com.example.zf_android.trade.fs:
+com.example.zf_android.trade.TradeFlowFragment$4 -> com.example.zf_android.trade.fu:
     com.example.zf_android.trade.TradeFlowFragment this$0 -> a
     java.util.Calendar val$c -> b
     boolean val$isStartDate -> c
     java.lang.String val$nowStr -> d
     android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
     com.example.zf_android.trade.TradeFlowFragment access$0(com.example.zf_android.trade.TradeFlowFragment$4) -> a
-com.example.zf_android.trade.TradeFlowFragment$4$1 -> com.example.zf_android.trade.ft:
+com.example.zf_android.trade.TradeFlowFragment$4$1 -> com.example.zf_android.trade.fv:
     com.example.zf_android.trade.TradeFlowFragment$4 this$1 -> a
     boolean val$isStartDate -> b
     java.lang.String val$nowStr -> c
     void onDateSet(android.widget.DatePicker,int,int,int) -> onDateSet
-com.example.zf_android.trade.TradeFlowFragment$MyDatePickerDialog -> com.example.zf_android.trade.fu:
+com.example.zf_android.trade.TradeFlowFragment$MyDatePickerDialog -> com.example.zf_android.trade.fw:
     com.example.zf_android.trade.TradeFlowFragment this$0 -> a
     void onStop() -> onStop
-com.example.zf_android.trade.TradeFlowFragment$TradeRecordListAdapter -> com.example.zf_android.trade.fv:
+com.example.zf_android.trade.TradeFlowFragment$TradeRecordListAdapter -> com.example.zf_android.trade.fx:
     com.example.zf_android.trade.TradeFlowFragment this$0 -> a
     int getCount() -> getCount
     com.example.zf_android.trade.entity.TradeRecord getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
     java.lang.Object getItem(int) -> getItem
-com.example.zf_android.trade.TradeFlowFragment$ViewHolder -> com.example.zf_android.trade.fw:
+com.example.zf_android.trade.TradeFlowFragment$ViewHolder -> com.example.zf_android.trade.fy:
     android.widget.TextView tvStatus -> tvStatus
     android.widget.TextView tvTime -> tvTime
     android.widget.TextView tvAccountKey -> tvAccountKey
@@ -17380,12 +17377,12 @@ com.example.zf_android.trade.TradeStatisticActivity -> com.example.zf_android.tr
     android.widget.TextView access$5(com.example.zf_android.trade.TradeStatisticActivity) -> f
     android.widget.TextView access$6(com.example.zf_android.trade.TradeStatisticActivity) -> g
     android.widget.TextView access$7(com.example.zf_android.trade.TradeStatisticActivity) -> h
-com.example.zf_android.trade.TradeStatisticActivity$1 -> com.example.zf_android.trade.fx:
+com.example.zf_android.trade.TradeStatisticActivity$1 -> com.example.zf_android.trade.fz:
     com.example.zf_android.trade.TradeStatisticActivity this$0 -> a
     void onSuccess(com.example.zf_android.trade.entity.TradeStatistic) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_android.trade.TradeStatisticActivity$1$1 -> com.example.zf_android.trade.fy:
+com.example.zf_android.trade.TradeStatisticActivity$1$1 -> com.example.zf_android.trade.ga:
     com.example.zf_android.trade.TradeStatisticActivity$1 this$1 -> a
 com.example.zf_android.trade.common.CommonUtil -> com.example.zf_android.trade.common.CommonUtil:
     void copy(android.content.Context,java.lang.String) -> copy
@@ -17439,6 +17436,17 @@ com.example.zf_android.trade.common.DialogUtil -> com.example.zf_android.trade.c
     android.app.Dialog getLoadingDialg(android.app.Activity) -> getLoadingDialg
     int getScreenWidth(android.app.Activity) -> getScreenWidth
     int getScreenHeight(android.app.Activity) -> getScreenHeight
+com.example.zf_android.trade.common.FileSizeUtil -> com.example.zf_android.trade.common.FileSizeUtil:
+    int SIZETYPE_B -> SIZETYPE_B
+    int SIZETYPE_KB -> SIZETYPE_KB
+    int SIZETYPE_MB -> SIZETYPE_MB
+    int SIZETYPE_GB -> SIZETYPE_GB
+    double getFileOrFilesSize(java.lang.String,int) -> getFileOrFilesSize
+    java.lang.String getAutoFileOrFilesSize(java.lang.String) -> getAutoFileOrFilesSize
+    long getFileSize(java.io.File) -> getFileSize
+    long getFileSizes(java.io.File) -> getFileSizes
+    java.lang.String FormetFileSize(long) -> FormetFileSize
+    double FormetFileSize(long,int) -> FormetFileSize
 com.example.zf_android.trade.common.HttpCallback -> com.example.zf_android.trade.common.HttpCallback:
     android.content.Context context -> context
     android.app.Dialog loadingDialog -> loadingDialog
@@ -18430,6 +18438,53 @@ com.example.zf_android.trade.widget.XListViewHeader -> com.example.zf_android.tr
     void setState(int) -> setState
     void setVisiableHeight(int) -> setVisiableHeight
     int getVisiableHeight() -> getVisiableHeight
+com.example.zf_android.trade.widget.ZoomImageView -> com.example.zf_android.trade.widget.ZoomImageView:
+    java.lang.String TAG -> TAG
+    float SCALE_MAX -> SCALE_MAX
+    float SCALE_MID -> SCALE_MID
+    float initScale -> initScale
+    boolean once -> once
+    float[] matrixValues -> matrixValues
+    android.view.ScaleGestureDetector mScaleGestureDetector -> mScaleGestureDetector
+    android.graphics.Matrix mScaleMatrix -> mScaleMatrix
+    android.view.GestureDetector mGestureDetector -> mGestureDetector
+    boolean isAutoScale -> isAutoScale
+    int mTouchSlop -> mTouchSlop
+    float mLastX -> mLastX
+    float mLastY -> mLastY
+    boolean isCanDrag -> isCanDrag
+    int lastPointerCount -> lastPointerCount
+    boolean isCheckTopAndBottom -> isCheckTopAndBottom
+    boolean isCheckLeftAndRight -> isCheckLeftAndRight
+    boolean onScale(android.view.ScaleGestureDetector) -> onScale
+    void checkBorderAndCenterWhenScale() -> checkBorderAndCenterWhenScale
+    android.graphics.RectF getMatrixRectF() -> getMatrixRectF
+    boolean onScaleBegin(android.view.ScaleGestureDetector) -> onScaleBegin
+    void onScaleEnd(android.view.ScaleGestureDetector) -> onScaleEnd
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    float getScale() -> getScale
+    void onAttachedToWindow() -> onAttachedToWindow
+    void onDetachedFromWindow() -> onDetachedFromWindow
+    void onGlobalLayout() -> onGlobalLayout
+    void checkMatrixBounds() -> checkMatrixBounds
+    boolean isCanDrag(float,float) -> isCanDrag
+    android.graphics.Matrix access$0(com.example.zf_android.trade.widget.ZoomImageView) -> access$0
+    void access$1(com.example.zf_android.trade.widget.ZoomImageView) -> access$1
+    void access$2(com.example.zf_android.trade.widget.ZoomImageView,boolean) -> access$2
+    boolean access$3(com.example.zf_android.trade.widget.ZoomImageView) -> access$3
+    float access$4(com.example.zf_android.trade.widget.ZoomImageView) -> access$4
+com.example.zf_android.trade.widget.ZoomImageView$1 -> com.example.zf_android.trade.widget.ZoomImageView$1:
+    com.example.zf_android.trade.widget.ZoomImageView this$0 -> this$0
+    boolean onDoubleTap(android.view.MotionEvent) -> onDoubleTap
+com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable -> com.example.zf_android.trade.widget.ZoomImageView$AutoScaleRunnable:
+    float BIGGER -> BIGGER
+    float SMALLER -> SMALLER
+    float mTargetScale -> mTargetScale
+    float tmpScale -> tmpScale
+    float x -> x
+    float y -> y
+    com.example.zf_android.trade.widget.ZoomImageView this$0 -> this$0
+    void run() -> run
 com.example.zf_android.trade.widget.gestureimage.Animation -> com.example.zf_android.trade.widget.gestureimage.Animation:
     boolean update(com.example.zf_android.trade.widget.gestureimage.GestureImageView,long) -> update
 com.example.zf_android.trade.widget.gestureimage.Animator -> com.example.zf_android.trade.widget.gestureimage.Animator:
@@ -24715,6 +24770,49 @@ com.unionpay.uppayplugin.demo.BaseActivity$1 -> com.unionpay.uppayplugin.demo.Ba
     void onClick(android.content.DialogInterface,int) -> onClick
 com.unionpay.uppayplugin.demo.BaseActivity$2 -> com.unionpay.uppayplugin.demo.BaseActivity$2:
     com.unionpay.uppayplugin.demo.BaseActivity this$0 -> this$0
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity:
+    java.lang.String LOG_TAG -> LOG_TAG
+    android.content.Context mContext -> mContext
+    android.os.Handler mHandler -> mHandler
+    android.app.ProgressDialog mLoadingDialog -> mLoadingDialog
+    int PLUGIN_VALID -> PLUGIN_VALID
+    int PLUGIN_NOT_INSTALLED -> PLUGIN_NOT_INSTALLED
+    int PLUGIN_NEED_UPGRADE -> PLUGIN_NEED_UPGRADE
+    java.lang.String outTradeNo -> outTradeNo
+    java.lang.String price -> price
+    int record_id -> record_id
+    int record_type -> record_type
+    java.lang.String str -> str
+    java.lang.String pay_result -> pay_result
+    java.lang.String apkTn -> apkTn
+    java.lang.String apkMode -> apkMode
+    boolean IS_PLUGIN_NOT_INSTALLED -> IS_PLUGIN_NOT_INSTALLED
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void run() -> run
+    int startpay(android.app.Activity,java.lang.String,int) -> startpay
+    java.lang.String postRequest(java.lang.String,java.util.Map) -> postRequest
+    void doStartUnionPayPlugin(android.app.Activity,java.lang.String,java.lang.String) -> doStartUnionPayPlugin
+    void onResume() -> onResume
+    int access$0(com.unionpay.uppayplugin.demo.RepairPayUnionActivity) -> access$0
+    java.lang.String access$1(com.unionpay.uppayplugin.demo.RepairPayUnionActivity,java.lang.String,java.util.Map) -> access$1
+    android.os.Handler access$2(com.unionpay.uppayplugin.demo.RepairPayUnionActivity) -> access$2
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
+    void run() -> run
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
     void onClick(android.content.DialogInterface,int) -> onClick
 org.litepal.LitePalApplication -> org.litepal.LitePalApplication:
     android.content.Context mContext -> a
