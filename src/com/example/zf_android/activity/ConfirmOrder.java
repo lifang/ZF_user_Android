@@ -162,7 +162,11 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 			menu_press();
 			break;
 		case R.id.btn_pay:
-			getpay11();
+			if (addressId != 0) {
+					getpay11();
+			}else {
+				Toast.makeText(this, "收件地址不能为空", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		case R.id.ll_adress:
 			Intent ll_adress=new Intent(ConfirmOrder.this,ChanceAdress.class);
