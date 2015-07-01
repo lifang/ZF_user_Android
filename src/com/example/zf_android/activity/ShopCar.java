@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epalmpay.userPhone.R;
+import com.examlpe.zf_android.util.StringUtil;
 import com.example.zf_android.BaseActivity;
 import com.example.zf_android.Config;
 import com.example.zf_android.MyApplication;
@@ -137,6 +138,7 @@ public class ShopCar extends BaseActivity implements OnClickListener {
 							myShopList.addAll(data);
 						}
 						if (myShopList.size() == 0) {
+							howMoney.setText("合计 ： ￥" + StringUtil.getMoneyString(0));
 							Xlistview.setVisibility(View.GONE);
 							eva_nodata.setVisibility(View.VISIBLE);
 						}else {

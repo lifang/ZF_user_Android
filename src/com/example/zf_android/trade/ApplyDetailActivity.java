@@ -23,6 +23,7 @@ import static com.example.zf_android.trade.Constants.TerminalIntent.TERMINAL_STA
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -558,27 +559,32 @@ public class ApplyDetailActivity extends FragmentActivity {
 			final File file = new File(realPath);
 			if (FileSizeUtil.getFileOrFilesSize(file.getAbsolutePath(),
 					FileSizeUtil.SIZETYPE_MB) < 2.0d) {
-				API.uploadPic(ApplyDetailActivity.this, file, mTerminalId,
-						new HttpCallback(ApplyDetailActivity.this) {
+				try {
+					API.uploadPic(ApplyDetailActivity.this, file, mTerminalId,
+							new HttpCallback(ApplyDetailActivity.this) {
 
-							@Override
-							public void onSuccess(Object data) {
-								Message msg = new Message();
-								msg.what = 1;
-								msg.obj = data.toString();
-								handler.sendMessage(msg);
-							}
+								@Override
+								public void onSuccess(Object data) {
+									Message msg = new Message();
+									msg.what = 1;
+									msg.obj = data.toString();
+									handler.sendMessage(msg);
+								}
 
-							@Override
-							public void onFailure(String message) {
-								handler.sendEmptyMessage(0);
-							}
+								@Override
+								public void onFailure(String message) {
+									handler.sendEmptyMessage(0);
+								}
 
-							@Override
-							public TypeToken getTypeToken() {
-								return null;
-							}
-						});
+								@Override
+								public TypeToken getTypeToken() {
+									return null;
+								}
+							});
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} else {
 				loadingDialog.show();
 				handler.post(new Runnable() {
@@ -588,37 +594,42 @@ public class ApplyDetailActivity extends FragmentActivity {
 						// TODO Auto-generated method stub
 
 						final File uploadFile = getimage(file.getAbsolutePath());
-						API.uploadPic(ApplyDetailActivity.this, uploadFile,
-								mTerminalId, new HttpCallback(
-										ApplyDetailActivity.this) {
+						try {
+							API.uploadPic(ApplyDetailActivity.this, uploadFile,
+									mTerminalId, new HttpCallback(
+											ApplyDetailActivity.this) {
 
-									@Override
-									public void onSuccess(Object data) {
-										Message msg = new Message();
-										msg.what = 1;
-										msg.obj = data.toString();
-										handler.sendMessage(msg);
-										loadingDialog.dismiss();
-										// uploadFile.delete();
-									}
+										@Override
+										public void onSuccess(Object data) {
+											Message msg = new Message();
+											msg.what = 1;
+											msg.obj = data.toString();
+											handler.sendMessage(msg);
+											loadingDialog.dismiss();
+											// uploadFile.delete();
+										}
 
-									@Override
-									public void onFailure(String message) {
-										handler.sendEmptyMessage(0);
-										loadingDialog.dismiss();
-										// uploadFile.delete();
-									}
+										@Override
+										public void onFailure(String message) {
+											handler.sendEmptyMessage(0);
+											loadingDialog.dismiss();
+											// uploadFile.delete();
+										}
 
-									@Override
-									public void preLoad() {
-										// TODO Auto-generated method stub
-									}
+										@Override
+										public void preLoad() {
+											// TODO Auto-generated method stub
+										}
 
-									@Override
-									public TypeToken getTypeToken() {
-										return null;
-									}
-								});
+										@Override
+										public TypeToken getTypeToken() {
+											return null;
+										}
+									});
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 
 				});
