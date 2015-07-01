@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -51,6 +52,9 @@ public class GoodDescription extends BaseActivity{
 			@Override
 			public void onSuccess(List<GoodImgUrlEntity> data) {
 
+				for (int i = 0; i < data.size(); i++) {
+					Log.e("", ""+data.get(i).getId());
+				}
 				if (data.size() != 0) {
 					myList = data;
 				}
