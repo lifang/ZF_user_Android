@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Bitmap;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.util.Log;
@@ -381,6 +382,7 @@ public class MyApplication extends org.litepal.LitePalApplication {
 		.showStubImage(R.drawable.moren)			// 设置图片下载期间显示的图片
 		.showImageForEmptyUri(R.drawable.moren)	// 设置图片Uri为空或是错误的时候显示的图片
 		.showImageOnFail(R.drawable.moren)		// 设置图片加载或解码过程中发生错误显示的图片	
+		.bitmapConfig(Bitmap.Config.RGB_565)
 		.cacheInMemory(true)						// 设置下载的图片是否缓存在内存中
 		.imageScaleType(ImageScaleType.EXACTLY_STRETCHED)							
 		.cacheOnDisc(true)							// 设置下载的图片是否缓存在SD卡中

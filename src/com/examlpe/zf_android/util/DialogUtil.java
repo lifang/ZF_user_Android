@@ -52,7 +52,7 @@ public class DialogUtil {
 
 			switch (msg.what) {
 			case 0:
-				// Toast.makeText(context, "保存成功", Toast.LENGTH_SHORT).show();
+				 Toast.makeText(context, "保存成功", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(
 						Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 				Uri uri = Uri.fromFile(new File(new StringBuilder()

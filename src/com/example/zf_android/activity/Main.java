@@ -68,6 +68,7 @@ import com.example.zf_android.Utils;
 import com.example.zf_android.entity.PicEntity;
 import com.example.zf_android.entity.VersionEntity;
 import com.example.zf_android.trade.API;
+import com.example.zf_android.trade.AfterSaleGridActivity;
 import com.example.zf_android.trade.ApplyListActivity;
 import com.example.zf_android.trade.CitySelectActivity;
 import com.example.zf_android.trade.Constants;
@@ -188,7 +189,7 @@ public class Main extends Activity implements OnClickListener {
 	DisplayImageOptions options = new DisplayImageOptions.Builder()
 	//			.showImageOnLoading(R.drawable.moren)
 	.cacheInMemory(false).cacheOnDisc(true)
-	.imageScaleType(ImageScaleType.EXACTLY)
+	.imageScaleType(ImageScaleType.IN_SAMPLE_INT)
 	.bitmapConfig(Bitmap.Config.RGB_565)
 	.displayer(new FadeInBitmapDisplayer(300)).build();;
 
@@ -572,11 +573,15 @@ public class Main extends Activity implements OnClickListener {
 				startActivity(new Intent(this, LoginActivity.class));
 			}
 			break;
-		case R.id.main_rl_Forum: // 我要贷款
-			startActivity(new Intent(Main.this, LoanActivity.class));
+		case R.id.main_rl_Forum: // 我的订单
+			startActivity(new Intent(Main.this, OrderList.class));
+//		case R.id.main_rl_Forum: // 我要贷款
+//			startActivity(new Intent(Main.this, LoanActivity.class));
 			break;
-		case R.id.main_rl_wylc: // 我要理财
-			startActivity(new Intent(Main.this, FianceActivity.class));
+		case R.id.main_rl_wylc: // 售后记录
+			startActivity(new Intent(Main.this, AfterSaleGridActivity.class));
+//		case R.id.main_rl_wylc: // 我要理财
+//			startActivity(new Intent(Main.this, FianceActivity.class));
 			break;
 		case R.id.main_rl_xtgg: // 系统公告
 
@@ -704,7 +709,11 @@ public class Main extends Activity implements OnClickListener {
 //			image.setScaleType(ScaleType.FIT_XY);
 			// ImageCacheUtil.IMAGE_CACHE.get(ma.get(position),
 			// image);
-
+//			ViewGroup.LayoutParams lp = image.getLayoutParams();
+//			lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+//			lp.height = ViewGroup.LayoutParams.MATCH_PARENT;
+//			image.setLayoutParams(lp);
+//			image.setMaxWidth(GoodDeatail.screenWidth);
 			MyApplication.getInstance().getImageLoader()
 			.displayImage(ma.get(position), image, options);
 
