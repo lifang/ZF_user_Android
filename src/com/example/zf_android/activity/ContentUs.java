@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.epalmpay.userPhone.R;
 import com.examlpe.zf_android.util.DialogUtil;
@@ -49,8 +50,8 @@ public class ContentUs extends BaseActivity implements OnClickListener{
 			Dialog dialog = new DialogUtil(ContentUs.this,
 					"保存到本地").getCheck(new CallBackChange() {
 						@Override
-						public void change() {
-							
+						public void change() { 
+							Toast.makeText(ContentUs.this, "成功保存到本地", Toast.LENGTH_SHORT).show();
 						}
 
 					});

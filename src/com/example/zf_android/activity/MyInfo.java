@@ -245,7 +245,7 @@ public class MyInfo extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onSuccess(Object data) {
-				Toast.makeText(getApplicationContext(), "信息更新成", 1000).show();
+				Toast.makeText(getApplicationContext(), "信息更新成功", 1000).show();
 			}
 
 			@Override
