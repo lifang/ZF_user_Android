@@ -9,11 +9,11 @@
         android:right="2dp"
         android:top="1dp" />
 
-    <solid android:color="#00000000" />
+    <solid android:color="@color/Viewc" />
 
     <stroke
         android:width="0.5dp"
-        android:color="@color/white" />
+        android:color="@color/Viewc" />
 
     <size
         android:height="15dp"

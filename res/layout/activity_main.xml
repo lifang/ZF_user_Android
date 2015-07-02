@@ -309,7 +309,7 @@
                             android:layout_below="@id/Forum"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="11dp"
-                            android:text="我要贷款"
+                            android:text="我的订单"
                             android:textColor="@color/text5a5a5a"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -358,7 +358,7 @@
                             android:layout_below="@id/l31"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="11dp"
-                            android:text="我要理财"
+                            android:text="售后记录"
                             android:textColor="@color/text5a5a5a"
                             android:textSize="16sp" />
                     </LinearLayout>

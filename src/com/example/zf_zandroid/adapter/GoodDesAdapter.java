@@ -3,11 +3,13 @@ package com.example.zf_zandroid.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 import com.epalmpay.userPhone.R;
 import com.example.zf_android.MyApplication;
@@ -55,11 +57,9 @@ public class GoodDesAdapter extends BaseAdapter {
 		}
 		ViewGroup.LayoutParams lp = holder.image.getLayoutParams();
 		lp.width = GoodDeatail.screenWidth;
-		lp.height = GoodDeatail.screenWidth;
+		lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
 		holder.image.setLayoutParams(lp);
 		holder.image.setMaxWidth(GoodDeatail.screenWidth);
-		holder.image.setMaxHeight(GoodDeatail.screenWidth);
-		
 		ImageLoader.getInstance().displayImage(list.get(position).getUrlPath(), holder.image, options);
 		return convertView;
 	}

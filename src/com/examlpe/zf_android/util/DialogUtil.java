@@ -52,7 +52,7 @@ public class DialogUtil {
 
 			switch (msg.what) {
 			case 0:
-				//Toast.makeText(context, "保存成功", Toast.LENGTH_SHORT).show();
+				 Toast.makeText(context, "保存成功", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(
 						Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 				Uri uri = Uri.fromFile(new File(new StringBuilder()
@@ -62,10 +62,10 @@ public class DialogUtil {
 						+ "/code.jpg"));
 				intent.setData(uri);
 				context.sendBroadcast(intent);
-				
-//				context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
-//						Uri.parse("file://"
-//								+ Environment.getExternalStorageDirectory())));
+
+				// context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+				// Uri.parse("file://"
+				// + Environment.getExternalStorageDirectory())));
 				break;
 			case 1:
 				Toast.makeText(context, "保存失败", Toast.LENGTH_SHORT).show();
@@ -77,6 +77,7 @@ public class DialogUtil {
 
 		};
 	};
+	private boolean flag = false;
 
 	public Dialog getCheck(final CallBackChange call) {
 		LayoutInflater inflater = LayoutInflater.from(context);
@@ -87,6 +88,7 @@ public class DialogUtil {
 		LinearLayout no = (LinearLayout) v.findViewById(R.id.login_linear_no);
 		final ImageView uv = (ImageView) v.findViewById(R.id.is_show);
 		if (text.endsWith("保存到本地")) {
+			flag = true;
 			title.setVisibility(View.INVISIBLE);
 			uv.setVisibility(View.VISIBLE);
 			tv_yes.setText(text);
@@ -104,65 +106,67 @@ public class DialogUtil {
 		yes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				new Thread() {
-					public void run() {
+				if (flag) {
+					new Thread() {
+						public void run() {
 
-						InputStream is = context.getResources()
-								.openRawResource(R.drawable.imagecode);
-						FileOutputStream fos = null;
-						BufferedOutputStream bos = null;
-						File file = null;
-						File imageFile = null;
-						try {
-							file = new File(new StringBuilder()
-									.append(Environment
-											.getExternalStorageDirectory()
-											.getAbsolutePath())
-									.append(File.separator).append("CODE")
-									.toString());
-							if (!file.exists()) {
-								file.mkdir();
-							}
-							imageFile = new File(new StringBuilder()
-									.append(Environment
-											.getExternalStorageDirectory()
-											.getAbsolutePath())
-									.append(File.separator).append("CODE")
-									.toString()
-									+ "/code.jpg");
-							if (!imageFile.exists()) {
-								fos = new FileOutputStream(imageFile);
-								bos = new BufferedOutputStream(fos);
-								byte[] b = new byte[1024];
-								int length;
-								while ((length = is.read(b)) != -1) {
-									bos.write(b, 0, length);
-									bos.flush();
-								}
-								handler.sendEmptyMessage(0);
-								dialog.dismiss();
-							} else {
-								handler.sendEmptyMessage(0);
-								dialog.dismiss();
-							}
-						} catch (Exception e) {
-							handler.sendEmptyMessage(1);
-							e.printStackTrace();
-						} finally {
+							InputStream is = context.getResources()
+									.openRawResource(R.drawable.imagecode);
+							FileOutputStream fos = null;
+							BufferedOutputStream bos = null;
+							File file = null;
+							File imageFile = null;
 							try {
-								if (is != null) {
-									is.close();
+								file = new File(new StringBuilder()
+										.append(Environment
+												.getExternalStorageDirectory()
+												.getAbsolutePath())
+										.append(File.separator).append("CODE")
+										.toString());
+								if (!file.exists()) {
+									file.mkdir();
 								}
-								if (bos != null) {
-									bos.close();
+								imageFile = new File(new StringBuilder()
+										.append(Environment
+												.getExternalStorageDirectory()
+												.getAbsolutePath())
+										.append(File.separator).append("CODE")
+										.toString()
+										+ "/code.jpg");
+								if (!imageFile.exists()) {
+									fos = new FileOutputStream(imageFile);
+									bos = new BufferedOutputStream(fos);
+									byte[] b = new byte[1024];
+									int length;
+									while ((length = is.read(b)) != -1) {
+										bos.write(b, 0, length);
+										bos.flush();
+									}
+									handler.sendEmptyMessage(0);
+									dialog.dismiss();
+								} else {
+									handler.sendEmptyMessage(0);
+									dialog.dismiss();
 								}
-							} catch (IOException e) {
+							} catch (Exception e) {
+								handler.sendEmptyMessage(1);
 								e.printStackTrace();
+							} finally {
+								try {
+									if (is != null) {
+										is.close();
+									}
+									if (bos != null) {
+										bos.close();
+									}
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
 							}
-						}
-						;
-					};
-				}.start();
+							;
+						};
+					}.start();
+				}
 				call.change();
 			}
 		});
