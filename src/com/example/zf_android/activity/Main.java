@@ -714,6 +714,7 @@ public class Main extends Activity implements OnClickListener {
 //			lp.height = ViewGroup.LayoutParams.MATCH_PARENT;
 //			image.setLayoutParams(lp);
 //			image.setMaxWidth(GoodDeatail.screenWidth);
+			   image.setScaleType(ScaleType.CENTER_CROP);
 			MyApplication.getInstance().getImageLoader()
 			.displayImage(ma.get(position), image, options);
 
