@@ -48,6 +48,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -155,6 +156,8 @@ public class ApplyDetailActivity extends FragmentActivity {
 
 	private Boolean isBankName = false;
 	private Boolean isShopName = false;
+	private Boolean isBankNum  = false;
+	private Boolean isPhone  = false;
 	private String shopName;
 
 	DisplayImageOptions options = MyApplication.getDisplayOption();
@@ -783,6 +786,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 		mMerchantContainer.addView(merchantBirthday);
 		mMerchantContainer.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[5],
 				null));
+		isPhone = true;
 		mMerchantContainer.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[6],
 				null));
 		mMerchantContainer.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[7],
@@ -810,6 +814,7 @@ public class ApplyDetailActivity extends FragmentActivity {
 			mBankKeys = getResources().getStringArray(
 					R.array.apply_detail_bank_keys_private);
 		}
+		isBankNum = true;
 		mCustomerContainer
 				.addView(getDetailItem(ITEM_EDIT, mBankKeys[0], null));
 		isBankName = true;
@@ -1086,6 +1091,15 @@ public class ApplyDetailActivity extends FragmentActivity {
 					.findViewById(R.id.apply_detail_key);
 			EditText etValue = (EditText) item
 					.findViewById(R.id.apply_detail_value);
+			if (isBankNum) {
+				isBankNum = false;
+				etValue.setInputType(InputType.TYPE_CLASS_NUMBER);
+			}
+			if (isPhone) {
+				isPhone = false;
+				etValue.setInputType(InputType.TYPE_CLASS_NUMBER);
+			}
+			
 			if (isBankName) {
 				isBankName = false;
 				etValue.setFocusable(false);
